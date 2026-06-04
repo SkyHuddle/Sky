@@ -5,6 +5,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        gold: {
+          DEFAULT: "#C9A227",
+          dim: "#8A7020",
+          muted: "rgba(201, 162, 39, 0.6)",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -50,7 +55,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        serif: ['"Instrument Serif"', 'serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Rajdhani', 'Inter', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
         xl: "calc(var(--radius) + 4px)",
