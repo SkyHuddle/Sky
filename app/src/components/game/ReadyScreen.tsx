@@ -3,7 +3,7 @@ import type { DraftPick } from '@/core/types';
 import { ROLE_LABELS } from '@/core/types';
 import { Button } from '@/components/ui/button';
 import { SimulationGuide } from './SimulationGuide';
-import { computeEffectiveRatings } from '@/engine/player-power';
+import { careerOverall } from '@/engine/player-power';
 
 interface ReadyScreenProps {
   picks: DraftPick[];
@@ -13,10 +13,7 @@ interface ReadyScreenProps {
 
 export function ReadyScreen({ picks, onAttempt, onEdit }: ReadyScreenProps) {
   const avgOvr =
-    picks.reduce(
-      (s, p) => s + computeEffectiveRatings(p.player, p.team).overall,
-      0
-    ) / picks.length;
+    picks.reduce((s, p) => s + careerOverall(p.player), 0) / picks.length;
 
   return (
     <div className="flex flex-col min-h-[100dvh] px-5 py-10 max-w-lg mx-auto justify-between">
@@ -67,7 +64,7 @@ export function ReadyScreen({ picks, onAttempt, onEdit }: ReadyScreenProps) {
                 <p className="font-display text-lg text-white truncate">{player.name}</p>
               </div>
               <span className="text-gold font-display text-xl">
-                {computeEffectiveRatings(player, team).overall}
+                {careerOverall(player)}
               </span>
             </motion.div>
           ))}

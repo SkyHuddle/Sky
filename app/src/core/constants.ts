@@ -14,7 +14,7 @@ export const RUN_BEAT_DELAY = 380;
  * Minimum team power (0–100 scale) to clear each stage.
  * Your roster power is compared: roll = power ± variance; pass if roll ≥ threshold.
  */
-/** Bars use effective card ratings (team-year adjusted), not peak OVR on the badge */
+/** Bars use career OVR (Gol.gg / curated) — team-year on the card is draft flavor only */
 export const STAGE_THRESHOLDS = {
   spring: 76,
   msi: 82,

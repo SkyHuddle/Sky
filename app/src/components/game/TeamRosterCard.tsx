@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import type { HistoricalTeam, Player, Role } from '@/core/types';
 import { ROLE_LABELS } from '@/core/types';
-import { effectiveOverall } from '@/engine/player-power';
 import { cn } from '@/lib/utils';
 
 interface TeamRosterCardProps {
@@ -15,15 +14,13 @@ interface TeamRosterCardProps {
 
 export function TeamRosterCard({
   player,
-  team,
+  team: _team,
   teamRole,
   onSelect,
   disabled,
   roleTaken,
 }: TeamRosterCardProps) {
-  const cardOvr = effectiveOverall(player, team);
-  const peakOvr = player.ratings.overall;
-  const showPeakDelta = Math.abs(cardOvr - peakOvr) >= 4;
+  const cardOvr = player.ratings.overall;
   const initials = player.name
     .split(' ')
     .map((n) => n[0])
@@ -66,9 +63,6 @@ export function TeamRosterCard({
         </div>
         <div className="text-right shrink-0">
           <span className="font-display text-xl text-gold tabular-nums">{cardOvr}</span>
-          {showPeakDelta && (
-            <p className="text-[9px] text-white/30 tabular-nums">peak {peakOvr}</p>
-          )}
         </div>
       </div>
     </motion.button>
