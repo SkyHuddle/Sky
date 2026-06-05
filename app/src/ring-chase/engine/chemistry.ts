@@ -1,12 +1,4 @@
-import type { CodPlayer, ChemistryReport, CodRole } from '../core/types';
-
-function countRoles(players: CodPlayer[]): Record<CodRole, number> {
-  const counts: Record<CodRole, number> = { mainAR: 0, flex: 0, smg: 0 };
-  for (const p of players) {
-    counts[p.primaryRole] += 1;
-  }
-  return counts;
-}
+import type { CodPlayer, ChemistryReport, DraftPick } from '../core/types';
 
 function hasLeader(players: CodPlayer[]): boolean {
   return players.some((p) => p.ratings.leadership >= 88);
@@ -30,19 +22,22 @@ function teammateSynergy(players: CodPlayer[]): number {
   return 0;
 }
 
-export function evaluateChemistry(players: CodPlayer[]): ChemistryReport {
+/** Chemistry uses drafted lineup slots, not player card primary roles */
+export function evaluateChemistry(picks: DraftPick[]): ChemistryReport {
   const modifiers: string[] = [];
   const issues: string[] = [];
   let score = 0;
+  const players = picks.map((p) => p.player);
 
-  if (players.length < 4) {
+  if (picks.length < 4) {
     return { score: -5, modifiers, issues: ['Incomplete roster'] };
   }
 
-  const roles = countRoles(players);
-  const smgCount = players.filter((p) => p.primaryRole === 'smg' || p.secondaryRole === 'smg').length;
+  const hasMainAr = picks.some((p) => p.role === 'mainAR');
+  const hasFlex = picks.some((p) => p.role === 'flex');
+  const smgSlots = picks.filter((p) => p.role === 'smg' || p.role === 'smg2').length;
 
-  if (roles.mainAR >= 1) {
+  if (hasMainAr) {
     score += 2;
     modifiers.push('True Main AR');
   } else {
@@ -50,22 +45,17 @@ export function evaluateChemistry(players: CodPlayer[]): ChemistryReport {
     issues.push('No true Main AR');
   }
 
-  if (roles.flex >= 1) {
+  if (hasFlex) {
     score += 1.5;
     modifiers.push('Flex presence');
   }
 
-  if (smgCount >= 2) {
+  if (smgSlots >= 2) {
     score += 2;
     modifiers.push('SMG duo pressure');
   } else {
     score -= 3;
     issues.push('No true SMG duo');
-  }
-
-  if (roles.mainAR >= 3) {
-    score -= 4;
-    issues.push('Too many Main ARs');
   }
 
   if (hasLeader(players)) {
@@ -125,8 +115,7 @@ export function evaluateChemistry(players: CodPlayer[]): ChemistryReport {
     issues.push('Too many ego slayers');
   }
 
-  const eras = new Set(players.map((p) => (p.rings > 0 ? 'champ' : 'hungry')));
-  if (eras.size === 1 && players.every((p) => p.rings === 0)) {
+  if (players.every((p) => p.rings === 0)) {
     score -= 0.5;
     issues.push('No ring experience');
   }

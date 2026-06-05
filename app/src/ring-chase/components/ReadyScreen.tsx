@@ -17,7 +17,7 @@ export function ReadyScreen({ picks, onAttempt, onEdit }: ReadyScreenProps) {
     picks.reduce((s, p) => s + p.player.ratings.overall, 0) / picks.length;
   const odds = estimateRingOdds(picks);
   const oddsPct = Math.max(1, Math.round(odds * 100));
-  const chemistry = evaluateChemistry(picks.map((p) => p.player));
+  const chemistry = evaluateChemistry(picks);
 
   return (
     <div className="flex flex-col min-h-[100dvh] px-5 py-10 max-w-lg mx-auto justify-between">

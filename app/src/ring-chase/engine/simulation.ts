@@ -68,7 +68,7 @@ function isChampsPass(outcome: ChampsOutcome): boolean {
 
 export function ringProbability(picks: DraftPick[]): number {
   const players = picks.map((p) => p.player);
-  const chemistry = evaluateChemistry(players);
+  const chemistry = evaluateChemistry(picks);
   let odds = 1;
   for (const stage of STAGES) {
     const power = stageTeamPower(players, stage, chemistry.score);
@@ -82,7 +82,7 @@ export function simulateRingChase(
   options?: { seed?: string }
 ): SimulationResult {
   const players = picks.map((p) => p.player);
-  const chemistry = evaluateChemistry(players);
+  const chemistry = evaluateChemistry(picks);
   const seed = options?.seed
     ? hashString(options.seed)
     : (Date.now() ^ (Math.random() * 1e9)) >>> 0;
