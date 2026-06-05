@@ -121,6 +121,7 @@ export function DraftScreen({
                   >
                     <TeamRosterCard
                       player={player}
+                      team={currentRound.team}
                       teamRole={teamRole}
                       onSelect={() => onSelectPlayer(player, teamRole)}
                       disabled={blocked}

@@ -1,24 +1,24 @@
 /** Player-facing explanation of Golden Road simulation logic */
 export const SIMULATION_GUIDE = {
-  headline: 'How the Golden Road is scored',
+  headline: 'How ratings & the Golden Road work',
   intro:
-    'After your draft, we run four checks — Spring, MSI, Summer, and Worlds. You must pass all four to complete the Golden Road.',
+    'The number on a player card is their strength on that team-year — not their career peak. CLG 2020 hits different than T1 2016.',
   sections: [
     {
-      title: 'Team power',
-      body: 'Each player has hidden ratings (overall, peak, international play, clutch, etc.). We combine your five picks into one team power score, with extra weight on the stats that matter for each stage.',
+      title: 'Are ratings real?',
+      body: 'We hand-curve each pro from historical results (titles, peak years, international play). It is informed by esports history, not live match API data. Faker on a 2016 SKT card is elite; the same name on a weak year/team card gets scaled down automatically.',
     },
     {
-      title: 'The roll',
-      body: 'Each stage adds a small random swing (bigger for low-clutch rosters). Your roll must beat a difficulty bar. Spring is easiest; Worlds is hardest.',
+      title: 'Card power vs peak OVR',
+      body: 'Weak teams (CLG, Excel, Immortals), off-peak years, and LCS/LEC cards lose power — especially for MSI and Worlds. You might see 88 peak on a legend, but 71 effective on a bad roll.',
     },
     {
-      title: 'Draft quality matters',
-      body: 'Pulling from weak teams (CLG, Excel, etc.) slightly lowers your power. Stacking legends helps — but there is always variance. A god squad can still stumble at MSI.',
+      title: 'The four checks',
+      body: 'Spring → MSI → Summer → Worlds. Each stage rolls your effective team power vs a difficulty bar. MSI is the usual killer. You must clear all four.',
     },
     {
       title: 'What to expect',
-      body: 'Most runs fail somewhere. Near-misses (lost Worlds finals) are common. A perfect Golden Road should feel rare — roughly a few percent of strong drafts, much less with weak cards.',
+      body: 'A perfect draft from great cards might have ~10% Golden Road odds. Mixed or weak rolls should fail most of the time. Near-misses at Worlds are the sweet spot.',
     },
   ],
 } as const;

@@ -12,11 +12,12 @@ export const STAGE_PAUSE = 600;
  * Minimum team power (0–100 scale) to clear each stage.
  * Your roster power is compared: roll = power ± variance; pass if roll ≥ threshold.
  */
+/** Bars use effective card ratings (team-year adjusted), not peak OVR on the badge */
 export const STAGE_THRESHOLDS = {
-  spring: 74,
-  msi: 79,
-  summer: 75,
-  worlds: 83,
+  spring: 76,
+  msi: 82,
+  summer: 77,
+  worlds: 85,
 } as const;
 
 export const WORLDS_FAILURE_LABELS = {

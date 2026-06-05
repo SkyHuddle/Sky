@@ -7,6 +7,7 @@ import type {
 } from '@/core/types';
 import { STAGE_THRESHOLDS, WORLDS_FAILURE_LABELS } from '@/core/constants';
 import { computeRosterScore, countTitles, stageTeamPower } from './ratings';
+import { playersForSimulation } from './player-power';
 import { hashString } from './draft';
 
 function mulberry32(seed: number) {
@@ -19,7 +20,7 @@ function mulberry32(seed: number) {
 }
 
 function rollVariance(rng: () => number, clutch: number): number {
-  const spread = 11 - clutch / 14;
+  const spread = 13 - clutch / 12;
   return (rng() - 0.5) * spread;
 }
 
@@ -29,9 +30,9 @@ function worldsFailureDetail(
   rng: () => number
 ): WorldsFailureDetail {
   const gap = threshold - power;
-  if (gap > 10 || rng() < 0.32) return 'groups';
-  if (gap > 6 || rng() < 0.48) return 'quarterfinals';
-  if (gap > 3 || rng() < 0.62) return 'semifinals';
+  if (gap > 10 || rng() < 0.35) return 'groups';
+  if (gap > 6 || rng() < 0.5) return 'quarterfinals';
+  if (gap > 3 || rng() < 0.65) return 'semifinals';
   return 'finals';
 }
 
@@ -48,49 +49,20 @@ function failureMessage(stage: StageId, detail?: WorldsFailureDetail): string {
   return labels[stage];
 }
 
-/** Softer penalty for drafting from underdog team cards */
-function draftContextPenalty(picks: DraftPick[]): number {
-  return picks.reduce((sum, p) => {
-    if (p.team.tier === 'weak') return sum + 1.8;
-    if (p.team.tier === 'average') return sum + 0.6;
-    return sum;
-  }, 0);
-}
-
-/** Small bonus when average OVR is elite */
-function rosterQualityBonus(players: { ratings: { overall: number } }[]): number {
-  const avg = players.reduce((s, p) => s + p.ratings.overall, 0) / players.length;
-  if (avg >= 92) return 2.5;
-  if (avg >= 89) return 1.2;
-  if (avg >= 86) return 0.4;
-  return 0;
-}
-
 export function simulateGoldenRoad(
   picks: DraftPick[],
   options?: { seed?: string }
 ): SimulationResult {
-  const players = picks.map((p) => p.player);
+  const simPlayers = playersForSimulation(picks);
   const seed = options?.seed
     ? hashString(options.seed)
     : (Date.now() ^ (Math.random() * 1e9)) >>> 0;
   const rng = mulberry32(seed);
 
-  const penalty = draftContextPenalty(picks);
-  const bonus = rosterQualityBonus(players);
-  const rosterScore = Math.max(
-    0,
-    computeRosterScore(players) - penalty * 0.2 + bonus
-  );
-  const titleCounts = countTitles(players);
+  const rosterScore = computeRosterScore(simPlayers);
+  const titleCounts = countTitles(simPlayers);
   const avgClutch =
-    players.reduce((s, p) => s + p.ratings.clutch, 0) / players.length;
-
-  const powerBase =
-    players.reduce((s, p) => s + p.ratings.overall, 0) / players.length -
-    penalty +
-    bonus;
-
+    simPlayers.reduce((s, p) => s + p.ratings.clutch, 0) / simPlayers.length;
   const stages: StageOutcome[] = [];
   const stageOrder: StageId[] = ['spring', 'msi', 'summer', 'worlds'];
   let failed = false;
@@ -98,16 +70,15 @@ export function simulateGoldenRoad(
   let failureMessageText = '';
 
   for (const stage of stageOrder) {
-    const stagePower = stageTeamPower(players, stage);
-    const blended = stagePower * 0.55 + powerBase * 0.45 - penalty * 0.5;
-    const threshold = STAGE_THRESHOLDS[stage] + rng() * 3 - 1.5;
+    const stagePower = stageTeamPower(simPlayers, stage);
+    const threshold = STAGE_THRESHOLDS[stage] + rng() * 4 - 2;
     const variance = rollVariance(rng, avgClutch);
-    const roll = blended + variance;
+    const roll = stagePower + variance;
     const passed = roll >= threshold;
 
     let detail: WorldsFailureDetail | undefined;
     if (!passed && stage === 'worlds') {
-      detail = worldsFailureDetail(blended, threshold, rng);
+      detail = worldsFailureDetail(stagePower, threshold, rng);
     }
 
     stages.push({
@@ -135,4 +106,15 @@ export function simulateGoldenRoad(
     rosterScore: Math.round(rosterScore * 10) / 10,
     titleCounts,
   };
+}
+
+/** Rough win chance estimate for UI/debug — not shown by default */
+export function estimateGoldenRoadOdds(picks: DraftPick[]): number {
+  const players = playersForSimulation(picks);
+  const avg = players.reduce((s, p) => s + p.ratings.overall, 0) / 5;
+  if (avg >= 88) return 0.12;
+  if (avg >= 84) return 0.06;
+  if (avg >= 80) return 0.025;
+  if (avg >= 76) return 0.01;
+  return 0.003;
 }
