@@ -13,7 +13,8 @@
     "validate:ring-chase-data": "tsx scripts/etl/validate-ring-chase-data.ts",
     "validate:ring-chase-ovr": "tsx scripts/etl/validate-ring-chase-ovr.ts",
     "validate:ring-chase-records": "tsx scripts/etl/validate-ring-chase-records.ts",
-    "validate:ring-chase": "npm run validate:ring-chase-data && npm run validate:ring-chase-ovr && npm run validate:ring-chase-records",
+    "validate:ring-chase-season": "tsx scripts/etl/validate-ring-chase-season-calibration.ts",
+    "validate:ring-chase": "npm run validate:ring-chase-data && npm run validate:ring-chase-ovr && npm run validate:ring-chase-records && npm run validate:ring-chase-season",
     "recompute:ring-chase-ratings": "tsx scripts/etl/recompute-team-year-ratings.ts"
   },
   "dependencies": {
