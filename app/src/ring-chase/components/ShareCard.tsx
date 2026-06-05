@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 import type { DraftPick, GameMode, SimulationResult } from '../core/types';
 import { formatPickLine } from '../engine/explanations';
 import { cardOverall } from '../engine/card-context';
-import { getPlayerHeadshot } from '../data/team-year-ratings';
+import { PlayerHeadshot } from './PlayerHeadshot';
 
 interface ShareCardProps {
   picks: DraftPick[];
@@ -73,7 +73,6 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
           <div className="space-y-0 border-t border-kb-hairline pt-3">
             {picks.map((pick) => {
               const ovr = cardOverall(pick.player, pick.team);
-              const headshot = getPlayerHeadshot(pick.player, pick.team);
               return (
                 <div
                   key={`${pick.team.id}-${pick.player.id}`}
@@ -87,11 +86,11 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
                       border: `1px solid ${pick.team.accent}33`,
                     }}
                   >
-                    {headshot ? (
-                      <img src={headshot} alt="" className="w-full h-full object-cover object-top" />
-                    ) : (
-                      pick.player.gamertag.slice(0, 2).toUpperCase()
-                    )}
+                    <PlayerHeadshot
+                      player={pick.player}
+                      team={pick.team}
+                      fallbackClassName="text-[10px] font-bold"
+                    />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm text-kb-fg truncate font-medium">

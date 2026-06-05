@@ -119,6 +119,51 @@ export function useRingChaseGame() {
     setDraftSubphase('spin');
   }, [mode, respinsLeft, draftSubphase, draftRounds, roundIndex, runSeed]);
 
+  const finalizeRun = useCallback(
+    (finalPicks: DraftPick[]) => {
+      const simSeed =
+        mode === 'daily'
+          ? `${dateKey}-${finalPicks.map((p) => p.player.id).sort().join('-')}`
+          : undefined;
+      const sim = simulateRingChase(finalPicks, { seed: simSeed });
+      setResult(sim);
+      setPhase('result');
+
+      recordAttempt(sim.ringWon, sim.perfectSeason, sim.rosterScore, mode === 'daily');
+
+      if (mode === 'daily') {
+        const percentile = estimatePercentile(sim.rosterScore, sim.ringWon, sim.perfectSeason);
+        setDailyPercentile(percentile);
+        saveDailyResult({
+          date: dateKey,
+          score: sim.rosterScore,
+          ringWon: sim.ringWon,
+          perfectSeason: sim.perfectSeason,
+          majorWins: sim.majorWins,
+          record: sim.seasonSummary.record,
+          headline: sim.seasonSummary.headline,
+          percentile,
+        });
+        const board = submitDailyBoardEntry(
+          dateKey,
+          sim.seasonSummary,
+          {
+            score: sim.rosterScore,
+            ringWon: sim.ringWon,
+            perfectSeason: sim.perfectSeason,
+            majorWins: sim.majorWins,
+            record: sim.seasonSummary.record,
+            headline: sim.seasonSummary.headline,
+          },
+          finalPicks.map((p) => p.player.gamertag)
+        );
+        setDailyBoard(board);
+        setDailyBoardEntryId(`you-${dateKey}`);
+      }
+    },
+    [mode, dateKey]
+  );
+
   const selectPlayer = useCallback(
     (player: CodPlayer, naturalRole: RosterSlot) => {
       const round = draftRounds[roundIndex];
@@ -137,57 +182,15 @@ export function useRingChaseGame() {
       setPicks(nextPicks);
 
       if (roundIndex >= SLOT_ORDER.length - 1) {
-        setPhase('ready');
+        finalizeRun(nextPicks);
       } else {
         setRoundIndex((i) => i + 1);
         setDraftSubphase('spin');
         setSpinGeneration((g) => g + 1);
       }
     },
-    [draftRounds, roundIndex, picks, mode, dailyConstraint, openRoles]
+    [draftRounds, roundIndex, picks, mode, dailyConstraint, openRoles, finalizeRun]
   );
-
-  const startSimulation = useCallback(() => {
-    const simSeed =
-      mode === 'daily'
-        ? `${dateKey}-${picks.map((p) => p.player.id).sort().join('-')}`
-        : undefined;
-    const sim = simulateRingChase(picks, { seed: simSeed });
-    setResult(sim);
-    setPhase('result');
-
-    recordAttempt(sim.ringWon, sim.perfectSeason, sim.rosterScore, mode === 'daily');
-
-    if (mode === 'daily') {
-      const percentile = estimatePercentile(sim.rosterScore, sim.ringWon, sim.perfectSeason);
-      setDailyPercentile(percentile);
-      saveDailyResult({
-        date: dateKey,
-        score: sim.rosterScore,
-        ringWon: sim.ringWon,
-        perfectSeason: sim.perfectSeason,
-        majorWins: sim.majorWins,
-        record: sim.seasonSummary.record,
-        headline: sim.seasonSummary.headline,
-        percentile,
-      });
-      const board = submitDailyBoardEntry(
-        dateKey,
-        sim.seasonSummary,
-        {
-          score: sim.rosterScore,
-          ringWon: sim.ringWon,
-          perfectSeason: sim.perfectSeason,
-          majorWins: sim.majorWins,
-          record: sim.seasonSummary.record,
-          headline: sim.seasonSummary.headline,
-        },
-        picks.map((p) => p.player.gamertag)
-      );
-      setDailyBoard(board);
-      setDailyBoardEntryId(`you-${dateKey}`);
-    }
-  }, [picks, mode, dateKey]);
 
   const resetToHome = useCallback(() => {
     setPhase('home');
@@ -206,15 +209,6 @@ export function useRingChaseGame() {
     if (mode === 'daily') return;
     startGame(mode);
   }, [mode, startGame]);
-
-  const redraftLast = useCallback(() => {
-    if (mode === 'daily') return;
-    if (picks.length === 0) return;
-    setPicks((prev) => prev.slice(0, -1));
-    setRoundIndex(picks.length - 1);
-    setDraftSubphase('pick');
-    setPhase('draft');
-  }, [mode, picks]);
 
   return {
     phase,
@@ -238,9 +232,7 @@ export function useRingChaseGame() {
     finishSpin,
     respinTeam,
     selectPlayer,
-    startSimulation,
     resetToHome,
     playAgain,
-    redraftLast,
   };
 }

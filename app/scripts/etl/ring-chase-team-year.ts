@@ -16,6 +16,7 @@ import {
 } from '../../src/ring-chase/data/accomplishment';
 import type { CodPlayer, HistoricalCodTeam, PlayerRatings } from '../../src/ring-chase/core/types';
 import { ESTIMATED_SLOT_OVERRIDES } from '../../src/ring-chase/data/estimated-slot-overrides';
+import { pickBestHeadshot, buildEraHeadshotCandidates } from '../../src/ring-chase/data/headshot-resolve';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT_DIR = join(__dirname, '../../src/ring-chase/data/generated');
@@ -268,6 +269,14 @@ async function fetchSeasonStats(seasonId: number): Promise<StatRow[]> {
 async function main() {
   console.log('Ring Chase team-year ETL (BreakingPoint)...');
 
+  let existingEntries: Record<string, TeamYearRatingsEntry> = {};
+  try {
+    const prior = JSON.parse(readFileSync(OUT_FILE, 'utf8')) as TeamYearRatingsBundle;
+    existingEntries = prior.entries ?? {};
+  } catch {
+    /* first run */
+  }
+
   const playerIndex = JSON.parse(readFileSync(PLAYERS_INDEX, 'utf8')) as BpPlayerRow[];
   const seasonIds = [...new Set(Object.values(CALENDAR_TO_BP_SEASON))].sort((a, b) => a - b);
 
@@ -357,7 +366,11 @@ async function main() {
         calendarYear: team.season,
         bpPlayerId: bpPlayer?.id,
         bpTag: bpPlayer?.tag ?? tag,
-        headshot: bpPlayer?.headshot ?? null,
+        headshot: pickBestHeadshot(team.season, [
+          existingEntries[slotKey]?.headshot,
+          ...buildEraHeadshotCandidates(player, team, bpPlayer?.tag ?? tag),
+          bpPlayer?.headshot ?? null,
+        ]),
         source,
         accomplishment,
         stats,
