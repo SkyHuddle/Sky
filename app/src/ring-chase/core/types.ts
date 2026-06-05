@@ -2,6 +2,9 @@
 
 export type CodRole = 'mainAR' | 'flex' | 'smg';
 
+/** Lineup slot on a historical team card (four-man roster) */
+export type RosterSlot = 'mainAR' | 'flex' | 'smg' | 'smg2';
+
 export type StageId = 'major1' | 'major2' | 'major3' | 'major4' | 'champs';
 
 export const STAGES: StageId[] = ['major1', 'major2', 'major3', 'major4', 'champs'];
@@ -106,7 +109,7 @@ export interface HistoricalCodTeam {
   gameTitle: string;
   eventContext: string;
   region: string;
-  roster: string[];
+  roster: Record<RosterSlot, string>;
   teamRating: number;
   placement: string;
   majorWins: number;
@@ -127,6 +130,10 @@ export interface DraftRound {
 
 export interface DraftPick {
   roundIndex: number;
+  /** Slot on your Ring Chase roster */
+  role: RosterSlot;
+  /** Slot they played on the rolled team card */
+  naturalRole: RosterSlot;
   player: CodPlayer;
   team: HistoricalCodTeam;
 }
@@ -191,7 +198,14 @@ export interface DailyRunResult {
 }
 
 export const ROLE_LABELS: Record<CodRole, string> = {
-  mainAR: 'Main AR',
-  flex: 'Flex',
+  mainAR: 'MAIN AR',
+  flex: 'FLEX',
   smg: 'SMG',
+};
+
+export const SLOT_LABELS: Record<RosterSlot, string> = {
+  mainAR: 'MAIN AR',
+  flex: 'FLEX',
+  smg: 'SMG',
+  smg2: 'SMG 2',
 };

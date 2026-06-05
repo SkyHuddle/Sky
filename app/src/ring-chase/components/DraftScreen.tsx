@@ -1,5 +1,15 @@
+import { useMemo } from 'react';
 import { motion } from 'framer-motion';
-import type { CodPlayer, DailyConstraint, DraftPick, DraftRound, DraftSubphase } from '../core/types';
+import type {
+  CodPlayer,
+  DailyConstraint,
+  DraftPick,
+  DraftRound,
+  DraftSubphase,
+  RosterSlot,
+} from '../core/types';
+import { SLOT_LABELS } from '../core/types';
+import { SLOT_ORDER } from '../core/constants';
 import { PlayerCard } from './PlayerCard';
 import { TeamSlotMachine } from './TeamSlotMachine';
 import { playerPassesFilter } from '../features/daily';
@@ -8,13 +18,14 @@ interface DraftScreenProps {
   currentRound: DraftRound;
   draftSubphase: DraftSubphase;
   picks: DraftPick[];
+  openRoles: RosterSlot[];
   spinGeneration: number;
   respinsLeft: number;
   dailyConstraint: DailyConstraint;
   isDaily: boolean;
   onSpinComplete: () => void;
   onRespinTeam: () => void;
-  onSelectPlayer: (player: CodPlayer) => void;
+  onSelectPlayer: (player: CodPlayer, naturalRole: RosterSlot) => void;
   onBack: () => void;
 }
 
@@ -22,6 +33,7 @@ export function DraftScreen({
   currentRound,
   draftSubphase,
   picks,
+  openRoles,
   spinGeneration,
   respinsLeft,
   dailyConstraint,
@@ -34,14 +46,36 @@ export function DraftScreen({
   const pickedIds = new Set(picks.map((p) => p.player.id));
   const { team } = currentRound;
 
-  const rosterEntries = currentRound.roster.map((player) => {
-    const taken = pickedIds.has(player.id);
-    const blocked =
-      isDaily && !playerPassesFilter(player, picks, dailyConstraint);
-    return { player, taken, blocked, disabled: taken || blocked };
-  });
+  const rosterEntries = useMemo(() => {
+    return SLOT_ORDER.map((teamRole) => {
+      const playerId = currentRound.team.roster[teamRole];
+      const player = currentRound.roster.find((p) => p.id === playerId);
+      if (!player) return null;
 
-  const pickableCount = rosterEntries.filter((e) => !e.disabled).length;
+      const taken = pickedIds.has(player.id);
+      const roleTaken = !openRoles.includes(teamRole);
+      const dailyBlocked =
+        isDaily && !playerPassesFilter(player, picks, dailyConstraint);
+      const blocked = taken || roleTaken || dailyBlocked;
+
+      return { player, teamRole, roleTaken, dailyBlocked, blocked };
+    })
+      .filter((entry): entry is NonNullable<typeof entry> => entry != null)
+      .sort((a, b) => {
+        if (a.blocked !== b.blocked) return a.blocked ? 1 : -1;
+        return b.player.ratings.overall - a.player.ratings.overall;
+      });
+  }, [currentRound, openRoles, pickedIds, isDaily, picks, dailyConstraint]);
+
+  const bestPickId = useMemo(() => {
+    const pickable = rosterEntries.filter((e) => !e.blocked);
+    if (pickable.length === 0) return null;
+    return pickable.reduce((best, e) =>
+      e.player.ratings.overall > best.player.ratings.overall ? e : best
+    ).player.id;
+  }, [rosterEntries]);
+
+  const pickableCount = rosterEntries.filter((e) => !e.blocked).length;
 
   return (
     <div className="flex flex-col min-h-[100dvh] max-w-lg mx-auto">
@@ -55,10 +89,10 @@ export function DraftScreen({
             ← Exit
           </button>
           <span className="text-[10px] uppercase tracking-[0.2em] text-white/35">
-            Round {picks.length + 1} of 4
+            Pick {picks.length + 1} / 4
           </span>
         </div>
-        <PickSlots picks={picks} />
+        <RosterSlots picks={picks} openRoles={openRoles} />
       </header>
 
       <div className="flex-1 overflow-y-auto">
@@ -89,6 +123,27 @@ export function DraftScreen({
               )}
             </div>
 
+            <div className="mb-4 rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3.5">
+              <p className="text-xs text-white/55 leading-relaxed">
+                {pickableCount === 1 ? (
+                  <>
+                    Draft your{' '}
+                    <span className="text-ring-gold font-medium">
+                      {SLOT_LABELS[openRoles[0]!]}
+                    </span>
+                    . Highest OVR wins.
+                  </>
+                ) : pickableCount > 1 ? (
+                  <>
+                    {pickableCount} slots open — cards sorted by OVR.{' '}
+                    <span className="text-ring-gold/90">Best pick</span> is highlighted.
+                  </>
+                ) : (
+                  <>No eligible players for today&apos;s rule on this team.</>
+                )}
+              </p>
+            </div>
+
             {pickableCount === 0 && (
               <p className="text-sm text-red-400/80 mb-4 rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-3">
                 No eligible players for today&apos;s rule on this team. Respin or try Daily tomorrow.
@@ -96,13 +151,26 @@ export function DraftScreen({
             )}
 
             <div className="space-y-2.5">
-              {rosterEntries.map(({ player, disabled }) => (
-                <PlayerCard
-                  key={player.id}
-                  player={player}
-                  disabled={disabled}
-                  onSelect={() => onSelectPlayer(player)}
-                />
+              {rosterEntries.map(({ player, teamRole, roleTaken, dailyBlocked, blocked }) => (
+                <div key={player.id}>
+                  <PlayerCard
+                    player={player}
+                    teamSlot={teamRole}
+                    disabled={blocked}
+                    recommended={!blocked && player.id === bestPickId}
+                    onSelect={() => onSelectPlayer(player, teamRole)}
+                  />
+                  {roleTaken && (
+                    <p className="text-[10px] text-white/25 mt-1.5 pl-1">
+                      {SLOT_LABELS[teamRole]} slot filled
+                    </p>
+                  )}
+                  {!roleTaken && dailyBlocked && (
+                    <p className="text-[10px] text-red-400/75 mt-1.5 pl-1">
+                      Blocked by today&apos;s rule
+                    </p>
+                  )}
+                </div>
               ))}
             </div>
 
@@ -122,24 +190,59 @@ export function DraftScreen({
   );
 }
 
-function PickSlots({ picks }: { picks: DraftPick[] }) {
+function RosterSlots({
+  picks,
+  openRoles,
+}: {
+  picks: DraftPick[];
+  openRoles: RosterSlot[];
+}) {
+  const teamOvr =
+    picks.length > 0
+      ? Math.round(
+          picks.reduce((sum, pick) => sum + pick.player.ratings.overall, 0) / picks.length
+        )
+      : null;
+
   return (
-    <div className="flex gap-2">
-      {[0, 1, 2, 3].map((i) => {
-        const pick = picks[i];
-        return (
-          <div
-            key={i}
-            className={`flex-1 h-12 rounded-xl border flex items-center justify-center text-[10px] uppercase tracking-wider ${
-              pick
-                ? 'border-ring-gold/30 bg-ring-gold/8 text-ring-gold/90'
-                : 'border-white/[0.06] bg-white/[0.02] text-white/20'
-            }`}
-          >
-            {pick ? pick.player.gamertag.slice(0, 6) : `R${i + 1}`}
-          </div>
-        );
-      })}
+    <div>
+      <div className="flex gap-1.5">
+        {SLOT_ORDER.map((slot) => {
+          const pick = picks.find((p) => p.role === slot);
+          const open = openRoles.includes(slot);
+          const ovr = pick ? Math.round(pick.player.ratings.overall) : null;
+
+          return (
+            <div
+              key={slot}
+              className={`flex-1 rounded-xl py-2 px-1 text-center border transition-all ${
+                pick
+                  ? 'border-ring-gold/25 bg-ring-gold/8'
+                  : open
+                    ? 'border-ring-gold/15 bg-ring-gold/[0.04] ring-1 ring-ring-gold/10'
+                    : 'border-white/5 opacity-40'
+              }`}
+            >
+              <p className="text-[7px] uppercase tracking-wider text-white/30 font-medium">
+                {SLOT_LABELS[slot].slice(0, 3)}
+              </p>
+              <p className="text-[10px] text-white/85 truncate font-medium mt-0.5 px-0.5">
+                {pick ? pick.player.gamertag.slice(0, 6) : open ? '?' : '—'}
+              </p>
+              {ovr != null && (
+                <p className="text-[9px] font-display tabular-nums mt-0.5 text-ring-gold/80">
+                  {ovr}
+                </p>
+              )}
+            </div>
+          );
+        })}
+      </div>
+      {teamOvr != null && (
+        <p className="text-[9px] text-center text-white/30 mt-2 uppercase tracking-wider">
+          Draft avg <span className="text-ring-gold/80 font-display tabular-nums">{teamOvr}</span> OVR
+        </p>
+      )}
     </div>
   );
 }

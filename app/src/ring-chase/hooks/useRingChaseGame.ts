@@ -6,8 +6,10 @@ import type {
   DraftSubphase,
   GameMode,
   GamePhase,
+  RosterSlot,
   SimulationResult,
 } from '../core/types';
+import { SLOT_ORDER } from '../core/constants';
 import {
   createRunSeed,
   generateDailyRounds,
@@ -42,6 +44,13 @@ export function useRingChaseGame() {
   const dailyConstraint = useMemo(() => getDailyConstraint(), []);
 
   const currentRound: DraftRound | null = draftRounds[roundIndex] ?? null;
+
+  const filledRoles = useMemo(() => new Set(picks.map((p) => p.role)), [picks]);
+
+  const openRoles = useMemo(
+    () => SLOT_ORDER.filter((slot) => !filledRoles.has(slot)),
+    [filledRoles]
+  );
 
   const startGame = useCallback(
     (gameMode: GameMode) => {
@@ -101,17 +110,23 @@ export function useRingChaseGame() {
   }, [respinsLeft, draftSubphase, draftRounds, roundIndex, runSeed, mode, dailyConstraint]);
 
   const selectPlayer = useCallback(
-    (player: CodPlayer) => {
+    (player: CodPlayer, naturalRole: RosterSlot) => {
       const round = draftRounds[roundIndex];
-      if (!round) return;
+      if (!round || !openRoles.includes(naturalRole)) return;
       if (picks.some((p) => p.player.id === player.id)) return;
       if (mode === 'daily' && !playerPassesFilter(player, picks, dailyConstraint)) return;
 
-      const pick: DraftPick = { roundIndex, player, team: round.team };
+      const pick: DraftPick = {
+        roundIndex,
+        role: naturalRole,
+        naturalRole,
+        player,
+        team: round.team,
+      };
       const nextPicks = [...picks, pick];
       setPicks(nextPicks);
 
-      if (roundIndex >= 3) {
+      if (roundIndex >= SLOT_ORDER.length - 1) {
         setPhase('ready');
       } else {
         setRoundIndex((i) => i + 1);
@@ -119,7 +134,7 @@ export function useRingChaseGame() {
         setSpinGeneration((g) => g + 1);
       }
     },
-    [draftRounds, roundIndex, picks, mode, dailyConstraint]
+    [draftRounds, roundIndex, picks, mode, dailyConstraint, openRoles]
   );
 
   const startSimulation = useCallback(() => {
@@ -179,6 +194,7 @@ export function useRingChaseGame() {
     draftSubphase,
     spinGeneration,
     respinsLeft,
+    openRoles,
     result,
     dailyConstraint,
     dailyPercentile,

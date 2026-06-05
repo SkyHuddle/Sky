@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import type { DraftPick } from '../core/types';
-import { ROLE_LABELS } from '../core/types';
+import { SLOT_LABELS } from '../core/types';
 import { Button } from '@/components/ui/button';
 import { RingPath } from './RingPath';
 import { estimateRingOdds } from '../engine/simulation';
@@ -54,7 +54,7 @@ export function ReadyScreen({ picks, onAttempt, onEdit }: ReadyScreenProps) {
         </motion.div>
 
         <motion.div className="mt-5 space-y-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.16 }}>
-          {picks.map(({ player, team }, i) => (
+          {picks.map(({ player, team, role }, i) => (
             <motion.div
               key={`${team.id}-${player.id}`}
               className="flex items-center gap-3.5 p-3 rounded-2xl glass-panel"
@@ -70,7 +70,7 @@ export function ReadyScreen({ picks, onAttempt, onEdit }: ReadyScreenProps) {
                 {player.gamertag.slice(0, 2).toUpperCase()}
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-[9px] text-white/35 uppercase">{ROLE_LABELS[player.primaryRole]}</p>
+                <p className="text-[9px] text-white/35 uppercase tracking-wider">{SLOT_LABELS[role]}</p>
                 <p className="font-display text-base text-white truncate">{player.gamertag}</p>
                 <p className="text-[10px] text-white/30 truncate">
                   {team.season} {team.teamName}

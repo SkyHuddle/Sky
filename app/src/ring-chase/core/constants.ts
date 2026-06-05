@@ -1,6 +1,8 @@
-import type { StageId } from './types';
+import type { RosterSlot, StageId } from './types';
 
 export const DRAFT_ROUNDS = 4;
+
+export const SLOT_ORDER: RosterSlot[] = ['mainAR', 'flex', 'smg', 'smg2'];
 
 /** Stage reveal timing (ms) */
 export const STAGE_REVEAL_DELAY = 1100;

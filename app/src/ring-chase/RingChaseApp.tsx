@@ -48,6 +48,7 @@ export function RingChaseApp() {
               currentRound={game.currentRound}
               draftSubphase={game.draftSubphase}
               picks={game.picks}
+              openRoles={game.openRoles}
               spinGeneration={game.spinGeneration}
               respinsLeft={game.respinsLeft}
               dailyConstraint={game.dailyConstraint}

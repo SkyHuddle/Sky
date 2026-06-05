@@ -1,4 +1,7 @@
-import type { HistoricalCodTeam, TeamTier } from '../core/types';
+import type { HistoricalCodTeam, RosterSlot, TeamTier } from '../core/types';
+import { assignRosterSlots } from './roster-slots';
+
+type RosterInput = Record<RosterSlot, string> | string[];
 
 function team(
   id: string,
@@ -7,7 +10,7 @@ function team(
   gameTitle: string,
   eventContext: string,
   region: string,
-  roster: string[],
+  roster: RosterInput,
   opts: {
     teamRating: number;
     placement: string;
@@ -27,7 +30,7 @@ function team(
     gameTitle,
     eventContext,
     region,
-    roster,
+    roster: Array.isArray(roster) ? assignRosterSlots(roster) : roster,
     teamRating: opts.teamRating,
     placement: opts.placement,
     majorWins: opts.majorWins,
@@ -131,6 +134,24 @@ export const COD_TEAMS: HistoricalCodTeam[] = [
   team('optic-2022', 'OpTic Texas', 2022, 'Vanguard', 'Major winners', 'NA', ['dashy', 'shotzzy', 'enable', 'prolute'], {
     teamRating: 89, placement: 'Major Winner', majorWins: 1, champsPlacement: 'Top 6', isChampsWinner: false, accent: '#9BC848', tier: 'elite',
   }),
+  team(
+    'lg-2016',
+    'Luminosity Gaming',
+    2016,
+    'Black Ops III',
+    'Champs winners',
+    'NA',
+    { mainAR: 'classic', flex: 'slasher', smg: 'tjhaly', smg2: 'slacked' },
+    {
+      teamRating: 91,
+      placement: 'Champs Winner',
+      majorWins: 2,
+      champsPlacement: 'Champion',
+      isChampsWinner: true,
+      accent: '#FACC15',
+      tier: 'legendary',
+    }
+  ),
 ];
 
 export function getAllTeams(): HistoricalCodTeam[] {
@@ -142,6 +163,6 @@ export function getTeamById(id: string): HistoricalCodTeam | undefined {
 }
 
 export function getValidTeams(filter?: (t: HistoricalCodTeam) => boolean): HistoricalCodTeam[] {
-  const teams = COD_TEAMS.filter((t) => t.roster.length >= 4);
+  const teams = COD_TEAMS.filter((t) => Object.keys(t.roster).length >= 4);
   return filter ? teams.filter(filter) : teams;
 }
