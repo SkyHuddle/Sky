@@ -90,7 +90,7 @@ export function DraftScreen({
 
             <div className="flex items-center justify-between gap-3 mb-4">
               <p className="text-white/45 text-xs leading-relaxed flex-1">
-                Pick one pro — stats are Gol.gg KDA for this team-year. Open:{' '}
+                Pick one pro — OVR from Gol.gg team-year stats. Open:{' '}
                 <span className="text-gold font-medium">
                   {openRoles.map((r) => ROLE_LABELS[r]).join(', ')}
                 </span>

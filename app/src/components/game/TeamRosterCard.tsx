@@ -3,6 +3,7 @@ import type { HistoricalTeam, Player, Role } from '@/core/types';
 import { ROLE_LABELS } from '@/core/types';
 import {
   cardKda,
+  cardOverall,
   formatKda,
   golStatSource,
   hasGolCardStats,
@@ -27,6 +28,7 @@ export function TeamRosterCard({
   roleTaken,
 }: TeamRosterCardProps) {
   const kda = cardKda(player, team);
+  const overall = cardOverall(player, team);
   const hasGol = hasGolCardStats(player, team);
   const source = golStatSource(player, team);
   const initials = player.name
@@ -99,19 +101,16 @@ export function TeamRosterCard({
         </div>
 
         <div className="text-right shrink-0 pl-2">
-          {kda != null ? (
-            <>
-              <p className="text-[9px] uppercase tracking-[0.2em] text-white/35 mb-0.5">
-                KDA
-              </p>
-              <span className="font-display text-3xl text-gold tabular-nums leading-none">
-                {formatKda(kda)}
-              </span>
-            </>
-          ) : (
-            <span className="text-[10px] text-white/30 uppercase tracking-wider">
-              No data
-            </span>
+          <p className="text-[9px] uppercase tracking-[0.2em] text-white/35 mb-0.5">
+            OVR
+          </p>
+          <span className="font-display text-3xl text-gold tabular-nums leading-none">
+            {overall}
+          </span>
+          {kda != null && (
+            <p className="text-[10px] text-white/35 tabular-nums mt-1">
+              {formatKda(kda)} KDA
+            </p>
           )}
         </div>
       </div>
@@ -165,7 +164,7 @@ export function TeamBanner({ team }: TeamBannerProps) {
               {TIER_BADGE[team.tier]}
             </span>
             <span className="text-[9px] uppercase px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300/90 border border-emerald-500/25">
-              Gol.gg KDA
+              Gol.gg OVR
             </span>
           </div>
           <h3 className="font-display text-3xl text-white tracking-wide leading-none">

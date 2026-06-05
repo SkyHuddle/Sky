@@ -50,7 +50,7 @@ export function HomeScreen({
             <Database className="w-3 h-3 text-emerald-400/90" />
             <span className="text-[9px] uppercase tracking-wider text-emerald-300/80">
               {teamYearMeta
-                ? `Gol.gg KDA · ${teamYearMeta.count} team-year cards`
+                ? `Gol.gg OVR · ${teamYearMeta.count} team-year cards`
                 : `Gol.gg · ${golMeta!.count} players`}
             </span>
           </div>

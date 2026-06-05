@@ -9,7 +9,7 @@ import { loadAppTeams } from './load-app-teams';
 import { loadAppPlayers } from './load-app-players';
 import { parseGolTeamRoster, GOL_TEAM_STATS_URL } from './parse-gol-team-html';
 import { parseGolPlayerHtml, GOL_PLAYER_SEASON_URL } from './parse-gol-html';
-import { computeRatingsFromKda } from './compute-ratings';
+import { computeRatingsFromTeamYear } from './compute-ratings';
 import { yearToGolSeason } from './gol-season';
 import type { GolIdMap, GolTeamYearStats, TeamYearRatingsBundle } from './types';
 
@@ -113,6 +113,7 @@ async function main() {
           games: extra.games,
         };
 
+        const ratings = computeRatingsFromTeamYear(stats, player.role);
         bundle.entries[entryKey(team.id, playerId)] = {
           teamId: team.id,
           playerId,
@@ -121,9 +122,9 @@ async function main() {
           season,
           source,
           stats,
-          ratings: computeRatingsFromKda(kda, player.role),
+          ratings,
         };
-        console.log(`  ${player.name}: ${kda.toFixed(1)} KDA (${source})`);
+        console.log(`  ${player.name}: OVR ${ratings.overall} · ${kda.toFixed(1)} KDA (${source})`);
       }
     } catch (e) {
       console.warn(`  error:`, e);

@@ -1,6 +1,6 @@
 {
   "source": "gol.gg-team-year",
-  "generatedAt": "2026-06-05T04:18:46.450Z",
+  "generatedAt": "2026-06-05T04:36:21.949Z",
   "entryCount": 265,
   "entries": {
     "rox-2016:smeb": {
@@ -19,13 +19,13 @@
         "games": 106
       },
       "ratings": {
-        "overall": 78,
-        "peak": 79,
-        "international": 78,
-        "clutch": 81,
-        "consistency": 78,
-        "leadership": 78,
-        "synergy": 80
+        "overall": 79,
+        "peak": 80,
+        "international": 84,
+        "clutch": 75,
+        "consistency": 94,
+        "leadership": 66,
+        "synergy": 85
       }
     },
     "rox-2016:peanut": {
@@ -44,13 +44,13 @@
         "games": 106
       },
       "ratings": {
-        "overall": 91,
-        "peak": 94,
-        "international": 91,
-        "clutch": 95,
-        "consistency": 91,
-        "leadership": 91,
-        "synergy": 94
+        "overall": 81,
+        "peak": 84,
+        "international": 86,
+        "clutch": 84,
+        "consistency": 94,
+        "leadership": 74,
+        "synergy": 91
       }
     },
     "rox-2016:kuro": {
@@ -69,13 +69,13 @@
         "games": 94
       },
       "ratings": {
-        "overall": 90,
-        "peak": 93,
-        "international": 90,
-        "clutch": 94,
-        "consistency": 90,
-        "leadership": 90,
-        "synergy": 93
+        "overall": 86,
+        "peak": 89,
+        "international": 91,
+        "clutch": 84,
+        "consistency": 94,
+        "leadership": 66,
+        "synergy": 86
       }
     },
     "rox-2016:pray": {
@@ -94,13 +94,13 @@
         "games": 106
       },
       "ratings": {
-        "overall": 84,
-        "peak": 85,
-        "international": 84,
-        "clutch": 87,
-        "consistency": 84,
-        "leadership": 84,
-        "synergy": 86
+        "overall": 86,
+        "peak": 87,
+        "international": 91,
+        "clutch": 80,
+        "consistency": 94,
+        "leadership": 66,
+        "synergy": 85
       }
     },
     "rox-2016:gorilla": {
@@ -119,13 +119,13 @@
         "games": 106
       },
       "ratings": {
-        "overall": 79,
-        "peak": 80,
-        "international": 79,
-        "clutch": 81,
-        "consistency": 79,
-        "leadership": 83,
-        "synergy": 81
+        "overall": 77,
+        "peak": 78,
+        "international": 82,
+        "clutch": 75,
+        "consistency": 94,
+        "leadership": 73,
+        "synergy": 86
       }
     },
     "skt-2016:duke": {
@@ -144,13 +144,13 @@
         "games": 142
       },
       "ratings": {
-        "overall": 76,
-        "peak": 77,
-        "international": 76,
-        "clutch": 78,
-        "consistency": 76,
-        "leadership": 76,
-        "synergy": 78
+        "overall": 75,
+        "peak": 76,
+        "international": 79,
+        "clutch": 73,
+        "consistency": 91,
+        "leadership": 65,
+        "synergy": 77
       }
     },
     "skt-2016:blank": {
@@ -169,13 +169,13 @@
         "games": 101
       },
       "ratings": {
-        "overall": 82,
-        "peak": 83,
-        "international": 82,
-        "clutch": 85,
-        "consistency": 82,
-        "leadership": 82,
-        "synergy": 84
+        "overall": 76,
+        "peak": 77,
+        "international": 80,
+        "clutch": 77,
+        "consistency": 92,
+        "leadership": 73,
+        "synergy": 86
       }
     },
     "skt-2016:faker": {
@@ -194,13 +194,13 @@
         "games": 141
       },
       "ratings": {
-        "overall": 76,
-        "peak": 77,
-        "international": 76,
-        "clutch": 78,
-        "consistency": 76,
-        "leadership": 76,
-        "synergy": 78
+        "overall": 84,
+        "peak": 85,
+        "international": 88,
+        "clutch": 74,
+        "consistency": 91,
+        "leadership": 66,
+        "synergy": 84
       }
     },
     "skt-2016:bang": {
@@ -219,13 +219,13 @@
         "games": 142
       },
       "ratings": {
-        "overall": 94,
-        "peak": 97,
+        "overall": 90,
+        "peak": 93,
         "international": 94,
-        "clutch": 96,
-        "consistency": 94,
-        "leadership": 92,
-        "synergy": 94
+        "clutch": 88,
+        "consistency": 91,
+        "leadership": 66,
+        "synergy": 86
       }
     },
     "skt-2016:wolf": {
@@ -244,13 +244,13 @@
         "games": 142
       },
       "ratings": {
-        "overall": 84,
-        "peak": 85,
-        "international": 84,
-        "clutch": 87,
-        "consistency": 84,
-        "leadership": 88,
-        "synergy": 86
+        "overall": 77,
+        "peak": 78,
+        "international": 81,
+        "clutch": 78,
+        "consistency": 91,
+        "leadership": 73,
+        "synergy": 84
       }
     },
     "ssg-2017:cuvee": {
@@ -269,13 +269,13 @@
         "games": 128
       },
       "ratings": {
-        "overall": 67,
-        "peak": 68,
-        "international": 67,
-        "clutch": 69,
-        "consistency": 67,
-        "leadership": 67,
-        "synergy": 68
+        "overall": 73,
+        "peak": 74,
+        "international": 76,
+        "clutch": 66,
+        "consistency": 90,
+        "leadership": 64,
+        "synergy": 74
       }
     },
     "ssg-2017:ambition": {
@@ -296,11 +296,11 @@
       "ratings": {
         "overall": 73,
         "peak": 74,
-        "international": 73,
-        "clutch": 75,
-        "consistency": 73,
+        "international": 77,
+        "clutch": 71,
+        "consistency": 93,
         "leadership": 73,
-        "synergy": 74
+        "synergy": 84
       }
     },
     "ssg-2017:crown": {
@@ -319,13 +319,13 @@
         "games": 128
       },
       "ratings": {
-        "overall": 70,
-        "peak": 71,
-        "international": 70,
-        "clutch": 72,
-        "consistency": 70,
-        "leadership": 70,
-        "synergy": 71
+        "overall": 80,
+        "peak": 81,
+        "international": 83,
+        "clutch": 69,
+        "consistency": 90,
+        "leadership": 65,
+        "synergy": 80
       }
     },
     "ssg-2017:ruler": {
@@ -344,12 +344,12 @@
         "games": 118
       },
       "ratings": {
-        "overall": 79,
-        "peak": 80,
-        "international": 79,
-        "clutch": 82,
-        "consistency": 79,
-        "leadership": 79,
+        "overall": 84,
+        "peak": 85,
+        "international": 88,
+        "clutch": 75,
+        "consistency": 92,
+        "leadership": 65,
         "synergy": 81
       }
     },
@@ -369,13 +369,13 @@
         "games": 119
       },
       "ratings": {
-        "overall": 85,
-        "peak": 86,
-        "international": 85,
-        "clutch": 88,
-        "consistency": 85,
-        "leadership": 89,
-        "synergy": 87
+        "overall": 79,
+        "peak": 80,
+        "international": 83,
+        "clutch": 80,
+        "consistency": 91,
+        "leadership": 73,
+        "synergy": 88
       }
     },
     "t1-2017:khan": {
@@ -394,13 +394,13 @@
         "games": 55
       },
       "ratings": {
-        "overall": 74,
-        "peak": 75,
-        "international": 74,
-        "clutch": 76,
-        "consistency": 74,
-        "leadership": 74,
-        "synergy": 76
+        "overall": 73,
+        "peak": 74,
+        "international": 77,
+        "clutch": 71,
+        "consistency": 89,
+        "leadership": 61,
+        "synergy": 74
       }
     },
     "t1-2017:blank": {
@@ -419,13 +419,13 @@
         "games": 39
       },
       "ratings": {
-        "overall": 80,
-        "peak": 81,
+        "overall": 75,
+        "peak": 76,
         "international": 80,
-        "clutch": 83,
-        "consistency": 80,
-        "leadership": 80,
-        "synergy": 82
+        "clutch": 77,
+        "consistency": 90,
+        "leadership": 69,
+        "synergy": 92
       }
     },
     "t1-2017:faker": {
@@ -444,13 +444,13 @@
         "games": 139
       },
       "ratings": {
-        "overall": 74,
-        "peak": 75,
-        "international": 74,
-        "clutch": 76,
-        "consistency": 74,
-        "leadership": 74,
-        "synergy": 76
+        "overall": 81,
+        "peak": 82,
+        "international": 85,
+        "clutch": 72,
+        "consistency": 91,
+        "leadership": 65,
+        "synergy": 82
       }
     },
     "t1-2017:bang": {
@@ -469,13 +469,13 @@
         "games": 139
       },
       "ratings": {
-        "overall": 88,
-        "peak": 91,
-        "international": 88,
-        "clutch": 91,
-        "consistency": 88,
-        "leadership": 88,
-        "synergy": 91
+        "overall": 86,
+        "peak": 89,
+        "international": 90,
+        "clutch": 81,
+        "consistency": 91,
+        "leadership": 65,
+        "synergy": 79
       }
     },
     "t1-2017:wolf": {
@@ -494,13 +494,13 @@
         "games": 139
       },
       "ratings": {
-        "overall": 80,
-        "peak": 81,
+        "overall": 76,
+        "peak": 77,
         "international": 80,
-        "clutch": 83,
-        "consistency": 80,
-        "leadership": 84,
-        "synergy": 82
+        "clutch": 75,
+        "consistency": 91,
+        "leadership": 72,
+        "synergy": 83
       }
     },
     "we-2017:957": {
@@ -519,13 +519,13 @@
         "games": 143
       },
       "ratings": {
-        "overall": 78,
-        "peak": 79,
+        "overall": 75,
+        "peak": 76,
         "international": 78,
-        "clutch": 81,
-        "consistency": 78,
-        "leadership": 78,
-        "synergy": 80
+        "clutch": 74,
+        "consistency": 87,
+        "leadership": 65,
+        "synergy": 77
       }
     },
     "we-2017:condi": {
@@ -544,13 +544,13 @@
         "games": 143
       },
       "ratings": {
-        "overall": 79,
-        "peak": 80,
-        "international": 79,
-        "clutch": 81,
-        "consistency": 79,
-        "leadership": 79,
-        "synergy": 81
+        "overall": 75,
+        "peak": 76,
+        "international": 78,
+        "clutch": 76,
+        "consistency": 87,
+        "leadership": 73,
+        "synergy": 89
       }
     },
     "we-2017:xiye": {
@@ -569,13 +569,13 @@
         "games": 143
       },
       "ratings": {
-        "overall": 83,
-        "peak": 84,
-        "international": 83,
-        "clutch": 86,
-        "consistency": 83,
-        "leadership": 83,
-        "synergy": 85
+        "overall": 85,
+        "peak": 86,
+        "international": 88,
+        "clutch": 80,
+        "consistency": 87,
+        "leadership": 66,
+        "synergy": 89
       }
     },
     "we-2017:mystic": {
@@ -594,13 +594,13 @@
         "games": 143
       },
       "ratings": {
-        "overall": 81,
-        "peak": 82,
-        "international": 81,
-        "clutch": 84,
-        "consistency": 81,
-        "leadership": 81,
-        "synergy": 83
+        "overall": 88,
+        "peak": 89,
+        "international": 91,
+        "clutch": 78,
+        "consistency": 87,
+        "leadership": 66,
+        "synergy": 89
       }
     },
     "we-2017:ben": {
@@ -619,13 +619,13 @@
         "games": 124
       },
       "ratings": {
-        "overall": 75,
-        "peak": 76,
-        "international": 75,
-        "clutch": 77,
-        "consistency": 75,
-        "leadership": 79,
-        "synergy": 77
+        "overall": 77,
+        "peak": 78,
+        "international": 80,
+        "clutch": 74,
+        "consistency": 88,
+        "leadership": 74,
+        "synergy": 91
       }
     },
     "c9-2018:licorice": {
@@ -644,13 +644,13 @@
         "games": 74
       },
       "ratings": {
-        "overall": 65,
-        "peak": 66,
-        "international": 65,
-        "clutch": 66,
-        "consistency": 65,
-        "leadership": 65,
-        "synergy": 66
+        "overall": 71,
+        "peak": 72,
+        "international": 72,
+        "clutch": 65,
+        "consistency": 80,
+        "leadership": 63,
+        "synergy": 73
       }
     },
     "c9-2018:blaber": {
@@ -669,13 +669,13 @@
         "games": 32
       },
       "ratings": {
-        "overall": 71,
-        "peak": 72,
-        "international": 71,
-        "clutch": 73,
-        "consistency": 71,
-        "leadership": 71,
-        "synergy": 72
+        "overall": 74,
+        "peak": 75,
+        "international": 79,
+        "clutch": 71,
+        "consistency": 89,
+        "leadership": 69,
+        "synergy": 94
       }
     },
     "c9-2018:jensen": {
@@ -694,13 +694,13 @@
         "games": 70
       },
       "ratings": {
-        "overall": 62,
-        "peak": 63,
-        "international": 62,
-        "clutch": 63,
-        "consistency": 62,
-        "leadership": 62,
-        "synergy": 63
+        "overall": 74,
+        "peak": 75,
+        "international": 75,
+        "clutch": 66,
+        "consistency": 81,
+        "leadership": 65,
+        "synergy": 89
       }
     },
     "c9-2018:sneaky": {
@@ -719,13 +719,13 @@
         "games": 75
       },
       "ratings": {
-        "overall": 75,
-        "peak": 76,
-        "international": 75,
-        "clutch": 77,
-        "consistency": 75,
-        "leadership": 75,
-        "synergy": 77
+        "overall": 84,
+        "peak": 85,
+        "international": 86,
+        "clutch": 74,
+        "consistency": 85,
+        "leadership": 65,
+        "synergy": 85
       }
     },
     "c9-2018:zeyzal": {
@@ -744,13 +744,13 @@
         "games": 74
       },
       "ratings": {
-        "overall": 72,
-        "peak": 73,
-        "international": 72,
-        "clutch": 74,
-        "consistency": 72,
-        "leadership": 76,
-        "synergy": 73
+        "overall": 74,
+        "peak": 75,
+        "international": 76,
+        "clutch": 71,
+        "consistency": 85,
+        "leadership": 72,
+        "synergy": 87
       }
     },
     "fnc-2018:bwipo": {
@@ -769,13 +769,13 @@
         "games": 59
       },
       "ratings": {
-        "overall": 76,
-        "peak": 77,
-        "international": 76,
-        "clutch": 78,
-        "consistency": 76,
-        "leadership": 76,
-        "synergy": 78
+        "overall": 77,
+        "peak": 78,
+        "international": 80,
+        "clutch": 72,
+        "consistency": 85,
+        "leadership": 62,
+        "synergy": 76
       }
     },
     "fnc-2018:broxah": {
@@ -794,13 +794,13 @@
         "games": 87
       },
       "ratings": {
-        "overall": 52,
-        "peak": 53,
-        "international": 52,
-        "clutch": 52,
-        "consistency": 52,
-        "leadership": 52,
-        "synergy": 52
+        "overall": 66,
+        "peak": 67,
+        "international": 70,
+        "clutch": 58,
+        "consistency": 91,
+        "leadership": 72,
+        "synergy": 83
       }
     },
     "fnc-2018:caps": {
@@ -819,13 +819,13 @@
         "games": 87
       },
       "ratings": {
-        "overall": 50,
-        "peak": 51,
-        "international": 50,
-        "clutch": 50,
-        "consistency": 50,
-        "leadership": 50,
-        "synergy": 50
+        "overall": 80,
+        "peak": 81,
+        "international": 84,
+        "clutch": 58,
+        "consistency": 91,
+        "leadership": 65,
+        "synergy": 83
       }
     },
     "fnc-2018:rekkles": {
@@ -844,13 +844,13 @@
         "games": 69
       },
       "ratings": {
-        "overall": 94,
-        "peak": 97,
+        "overall": 91,
+        "peak": 94,
         "international": 94,
-        "clutch": 96,
-        "consistency": 94,
-        "leadership": 92,
-        "synergy": 94
+        "clutch": 89,
+        "consistency": 87,
+        "leadership": 65,
+        "synergy": 87
       }
     },
     "fnc-2018:hylissang": {
@@ -869,13 +869,13 @@
         "games": 87
       },
       "ratings": {
-        "overall": 66,
-        "peak": 67,
-        "international": 66,
-        "clutch": 67,
-        "consistency": 66,
-        "leadership": 70,
-        "synergy": 67
+        "overall": 71,
+        "peak": 72,
+        "international": 75,
+        "clutch": 66,
+        "consistency": 91,
+        "leadership": 72,
+        "synergy": 80
       }
     },
     "ig-2018:theshy": {
@@ -894,13 +894,13 @@
         "games": 73
       },
       "ratings": {
-        "overall": 68,
-        "peak": 69,
-        "international": 68,
-        "clutch": 70,
-        "consistency": 68,
-        "leadership": 68,
-        "synergy": 69
+        "overall": 73,
+        "peak": 74,
+        "international": 78,
+        "clutch": 65,
+        "consistency": 94,
+        "leadership": 62,
+        "synergy": 67
       }
     },
     "ig-2018:ning": {
@@ -921,11 +921,11 @@
       "ratings": {
         "overall": 75,
         "peak": 76,
-        "international": 75,
-        "clutch": 77,
-        "consistency": 75,
-        "leadership": 75,
-        "synergy": 77
+        "international": 80,
+        "clutch": 73,
+        "consistency": 94,
+        "leadership": 73,
+        "synergy": 87
       }
     },
     "ig-2018:rookie": {
@@ -944,13 +944,13 @@
         "games": 131
       },
       "ratings": {
-        "overall": 87,
-        "peak": 90,
-        "international": 87,
-        "clutch": 90,
-        "consistency": 87,
-        "leadership": 87,
-        "synergy": 90
+        "overall": 88,
+        "peak": 89,
+        "international": 93,
+        "clutch": 83,
+        "consistency": 94,
+        "leadership": 67,
+        "synergy": 91
       }
     },
     "ig-2018:jackeylove": {
@@ -969,13 +969,13 @@
         "games": 128
       },
       "ratings": {
-        "overall": 73,
-        "peak": 74,
-        "international": 73,
-        "clutch": 75,
-        "consistency": 73,
-        "leadership": 73,
-        "synergy": 75
+        "overall": 70,
+        "peak": 71,
+        "international": 75,
+        "clutch": 69,
+        "consistency": 94,
+        "leadership": 63,
+        "synergy": 71
       }
     },
     "ig-2018:baolan": {
@@ -994,13 +994,13 @@
         "games": 130
       },
       "ratings": {
-        "overall": 84,
-        "peak": 85,
-        "international": 84,
-        "clutch": 87,
-        "consistency": 84,
-        "leadership": 88,
-        "synergy": 86
+        "overall": 78,
+        "peak": 79,
+        "international": 83,
+        "clutch": 78,
+        "consistency": 94,
+        "leadership": 73,
+        "synergy": 85
       }
     },
     "kt-2018:smeb": {
@@ -1019,13 +1019,13 @@
         "games": 123
       },
       "ratings": {
-        "overall": 73,
-        "peak": 74,
-        "international": 73,
-        "clutch": 75,
-        "consistency": 73,
-        "leadership": 73,
-        "synergy": 75
+        "overall": 77,
+        "peak": 78,
+        "international": 80,
+        "clutch": 71,
+        "consistency": 89,
+        "leadership": 65,
+        "synergy": 80
       }
     },
     "kt-2018:score": {
@@ -1044,13 +1044,13 @@
         "games": 112
       },
       "ratings": {
-        "overall": 78,
-        "peak": 79,
+        "overall": 75,
+        "peak": 76,
         "international": 78,
-        "clutch": 80,
-        "consistency": 78,
-        "leadership": 78,
-        "synergy": 80
+        "clutch": 76,
+        "consistency": 89,
+        "leadership": 74,
+        "synergy": 91
       }
     },
     "kt-2018:bdd": {
@@ -1069,13 +1069,13 @@
         "games": 126
       },
       "ratings": {
-        "overall": 83,
-        "peak": 84,
-        "international": 83,
-        "clutch": 86,
-        "consistency": 83,
-        "leadership": 83,
-        "synergy": 85
+        "overall": 77,
+        "peak": 78,
+        "international": 80,
+        "clutch": 77,
+        "consistency": 87,
+        "leadership": 64,
+        "synergy": 74
       }
     },
     "kt-2018:deft": {
@@ -1094,13 +1094,13 @@
         "games": 124
       },
       "ratings": {
-        "overall": 81,
-        "peak": 82,
-        "international": 81,
-        "clutch": 84,
-        "consistency": 81,
-        "leadership": 81,
-        "synergy": 83
+        "overall": 86,
+        "peak": 87,
+        "international": 89,
+        "clutch": 77,
+        "consistency": 88,
+        "leadership": 65,
+        "synergy": 81
       }
     },
     "kt-2018:mata": {
@@ -1119,13 +1119,13 @@
         "games": 124
       },
       "ratings": {
-        "overall": 80,
-        "peak": 81,
-        "international": 80,
-        "clutch": 83,
-        "consistency": 80,
-        "leadership": 84,
-        "synergy": 82
+        "overall": 76,
+        "peak": 77,
+        "international": 79,
+        "clutch": 76,
+        "consistency": 88,
+        "leadership": 73,
+        "synergy": 85
       }
     },
     "rng-2018:letme": {
@@ -1144,13 +1144,13 @@
         "games": 110
       },
       "ratings": {
-        "overall": 77,
-        "peak": 78,
+        "overall": 74,
+        "peak": 75,
         "international": 77,
-        "clutch": 79,
-        "consistency": 77,
-        "leadership": 77,
-        "synergy": 79
+        "clutch": 72,
+        "consistency": 87,
+        "leadership": 64,
+        "synergy": 73
       }
     },
     "rng-2018:mlxg": {
@@ -1169,13 +1169,13 @@
         "games": 68
       },
       "ratings": {
-        "overall": 79,
-        "peak": 80,
-        "international": 79,
-        "clutch": 81,
-        "consistency": 79,
-        "leadership": 79,
-        "synergy": 81
+        "overall": 75,
+        "peak": 76,
+        "international": 78,
+        "clutch": 76,
+        "consistency": 86,
+        "leadership": 72,
+        "synergy": 91
       }
     },
     "rng-2018:xiaohu": {
@@ -1194,13 +1194,13 @@
         "games": 154
       },
       "ratings": {
-        "overall": 61,
-        "peak": 62,
-        "international": 61,
-        "clutch": 62,
-        "consistency": 61,
-        "leadership": 61,
-        "synergy": 62
+        "overall": 77,
+        "peak": 78,
+        "international": 80,
+        "clutch": 64,
+        "consistency": 88,
+        "leadership": 65,
+        "synergy": 81
       }
     },
     "rng-2018:uzi": {
@@ -1219,13 +1219,13 @@
         "games": 114
       },
       "ratings": {
-        "overall": 89,
-        "peak": 92,
-        "international": 89,
-        "clutch": 93,
-        "consistency": 89,
-        "leadership": 89,
-        "synergy": 92
+        "overall": 91,
+        "peak": 94,
+        "international": 94,
+        "clutch": 84,
+        "consistency": 90,
+        "leadership": 66,
+        "synergy": 88
       }
     },
     "rng-2018:ming": {
@@ -1244,263 +1244,263 @@
         "games": 154
       },
       "ratings": {
-        "overall": 80,
-        "peak": 81,
+        "overall": 77,
+        "peak": 78,
         "international": 80,
-        "clutch": 83,
-        "consistency": 80,
-        "leadership": 84,
-        "synergy": 82
-      }
-    },
-    "cg-2019:impact": {
-      "teamId": "cg-2019",
-      "playerId": "impact",
-      "golTeamId": 596,
-      "golPlayerId": 46,
-      "season": "S9",
-      "source": "season",
-      "stats": {
-        "kda": 3.4,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 66.7,
-        "games": 84
-      },
-      "ratings": {
-        "overall": 67,
-        "peak": 68,
-        "international": 67,
-        "clutch": 69,
-        "consistency": 67,
-        "leadership": 67,
-        "synergy": 68
-      }
-    },
-    "cg-2019:xmithie": {
-      "teamId": "cg-2019",
-      "playerId": "xmithie",
-      "golTeamId": 596,
-      "golPlayerId": 269,
-      "season": "S9",
-      "source": "season",
-      "stats": {
-        "kda": 3.9,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 66.7,
-        "games": 84
-      },
-      "ratings": {
-        "overall": 74,
-        "peak": 75,
-        "international": 74,
-        "clutch": 76,
-        "consistency": 74,
-        "leadership": 74,
-        "synergy": 76
-      }
-    },
-    "cg-2019:jensen": {
-      "teamId": "cg-2019",
-      "playerId": "jensen",
-      "golTeamId": 596,
-      "golPlayerId": 583,
-      "season": "S9",
-      "source": "season",
-      "stats": {
-        "kda": 4.5,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 66.7,
-        "games": 84
-      },
-      "ratings": {
-        "overall": 78,
-        "peak": 79,
-        "international": 78,
-        "clutch": 81,
-        "consistency": 78,
-        "leadership": 78,
-        "synergy": 80
-      }
-    },
-    "cg-2019:sneaky": {
-      "teamId": "cg-2019",
-      "playerId": "sneaky",
-      "golTeamId": 596,
-      "golPlayerId": 129,
-      "season": "S9",
-      "source": "season",
-      "stats": {
-        "kda": 4.2,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 60,
-        "games": 55
-      },
-      "ratings": {
-        "overall": 75,
-        "peak": 76,
-        "international": 75,
         "clutch": 77,
-        "consistency": 75,
-        "leadership": 75,
-        "synergy": 77
-      }
-    },
-    "cg-2019:zeyzal": {
-      "teamId": "cg-2019",
-      "playerId": "zeyzal",
-      "golTeamId": 596,
-      "golPlayerId": 854,
-      "season": "S9",
-      "source": "season",
-      "stats": {
-        "kda": 3.9,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 58.3,
-        "games": 60
-      },
-      "ratings": {
-        "overall": 74,
-        "peak": 75,
-        "international": 74,
-        "clutch": 76,
-        "consistency": 74,
-        "leadership": 78,
-        "synergy": 76
-      }
-    },
-    "clg-2019:licorice": {
-      "teamId": "clg-2019",
-      "playerId": "licorice",
-      "golTeamId": 597,
-      "golPlayerId": 852,
-      "season": "S9",
-      "source": "season",
-      "stats": {
-        "kda": 3.1,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 57.9,
-        "games": 57
-      },
-      "ratings": {
-        "overall": 64,
-        "peak": 65,
-        "international": 64,
-        "clutch": 65,
-        "consistency": 64,
-        "leadership": 64,
-        "synergy": 65
-      }
-    },
-    "clg-2019:blaber": {
-      "teamId": "clg-2019",
-      "playerId": "blaber",
-      "golTeamId": 597,
-      "golPlayerId": 1634,
-      "season": "S9",
-      "source": "season",
-      "stats": {
-        "kda": 3.8,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 64.9,
-        "games": 57
-      },
-      "ratings": {
-        "overall": 73,
-        "peak": 74,
-        "international": 73,
-        "clutch": 75,
-        "consistency": 73,
+        "consistency": 88,
         "leadership": 73,
+        "synergy": 89
+      }
+    },
+    "cg-2019:huni": {
+      "teamId": "cg-2019",
+      "playerId": "huni",
+      "golTeamId": 596,
+      "golPlayerId": 371,
+      "season": "S9",
+      "source": "team-roster",
+      "stats": {
+        "kda": 2.6,
+        "killParticipation": 62.3,
+        "damagePct": 28.6,
+        "goldPct": 22,
+        "winRate": 46.8,
+        "games": 77
+      },
+      "ratings": {
+        "overall": 71,
+        "peak": 72,
+        "international": 69,
+        "clutch": 62,
+        "consistency": 70,
+        "leadership": 64,
         "synergy": 74
       }
     },
-    "clg-2019:jensen": {
-      "teamId": "clg-2019",
-      "playerId": "jensen",
-      "golTeamId": 597,
-      "golPlayerId": 583,
+    "cg-2019:lira": {
+      "teamId": "cg-2019",
+      "playerId": "lira",
+      "golTeamId": 596,
+      "golPlayerId": 447,
       "season": "S9",
-      "source": "season",
+      "source": "team-roster",
       "stats": {
-        "kda": 4.5,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 66.7,
-        "games": 84
+        "kda": 3.5,
+        "killParticipation": 69.1,
+        "damagePct": 11.1,
+        "goldPct": 18.3,
+        "winRate": 46.8,
+        "games": 77
       },
       "ratings": {
-        "overall": 78,
-        "peak": 79,
-        "international": 78,
-        "clutch": 81,
-        "consistency": 78,
-        "leadership": 78,
-        "synergy": 80
+        "overall": 69,
+        "peak": 70,
+        "international": 67,
+        "clutch": 69,
+        "consistency": 70,
+        "leadership": 72,
+        "synergy": 82
       }
     },
-    "clg-2019:sneaky": {
-      "teamId": "clg-2019",
-      "playerId": "sneaky",
-      "golTeamId": 597,
-      "golPlayerId": 129,
+    "cg-2019:damonte": {
+      "teamId": "cg-2019",
+      "playerId": "damonte",
+      "golTeamId": 596,
+      "golPlayerId": 855,
       "season": "S9",
-      "source": "season",
+      "source": "team-roster",
       "stats": {
-        "kda": 4.2,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 60,
-        "games": 55
-      },
-      "ratings": {
-        "overall": 75,
-        "peak": 76,
-        "international": 75,
-        "clutch": 77,
-        "consistency": 75,
-        "leadership": 75,
-        "synergy": 77
-      }
-    },
-    "clg-2019:zeyzal": {
-      "teamId": "clg-2019",
-      "playerId": "zeyzal",
-      "golTeamId": 597,
-      "golPlayerId": 854,
-      "season": "S9",
-      "source": "season",
-      "stats": {
-        "kda": 3.9,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 58.3,
-        "games": 60
+        "kda": 3.5,
+        "killParticipation": 63.6,
+        "damagePct": 22.1,
+        "goldPct": 21.8,
+        "winRate": 47.4,
+        "games": 78
       },
       "ratings": {
         "overall": 74,
         "peak": 75,
+        "international": 72,
+        "clutch": 68,
+        "consistency": 71,
+        "leadership": 64,
+        "synergy": 75
+      }
+    },
+    "cg-2019:codysun": {
+      "teamId": "cg-2019",
+      "playerId": "codysun",
+      "golTeamId": 596,
+      "golPlayerId": 794,
+      "season": "S9",
+      "source": "team-roster",
+      "stats": {
+        "kda": 5.7,
+        "killParticipation": 67,
+        "damagePct": 29.4,
+        "goldPct": 24.5,
+        "winRate": 44.4,
+        "games": 81
+      },
+      "ratings": {
+        "overall": 85,
+        "peak": 88,
+        "international": 82,
+        "clutch": 83,
+        "consistency": 68,
+        "leadership": 65,
+        "synergy": 79
+      }
+    },
+    "cg-2019:vulcan": {
+      "teamId": "cg-2019",
+      "playerId": "vulcan",
+      "golTeamId": 596,
+      "golPlayerId": 1301,
+      "season": "S9",
+      "source": "team-roster",
+      "stats": {
+        "kda": 2.9,
+        "killParticipation": 70.9,
+        "damagePct": 8.3,
+        "goldPct": 13.6,
+        "winRate": 46.8,
+        "games": 77
+      },
+      "ratings": {
+        "overall": 70,
+        "peak": 71,
+        "international": 68,
+        "clutch": 66,
+        "consistency": 70,
+        "leadership": 73,
+        "synergy": 85
+      }
+    },
+    "clg-2019:ruin": {
+      "teamId": "clg-2019",
+      "playerId": "ruin",
+      "golTeamId": 597,
+      "golPlayerId": 1084,
+      "season": "S9",
+      "source": "team-roster",
+      "stats": {
+        "kda": 2.3,
+        "killParticipation": 55.8,
+        "damagePct": 25.5,
+        "goldPct": 21.8,
+        "winRate": 69.1,
+        "games": 68
+      },
+      "ratings": {
+        "overall": 70,
+        "peak": 71,
         "international": 74,
-        "clutch": 76,
+        "clutch": 58,
+        "consistency": 89,
+        "leadership": 62,
+        "synergy": 69
+      }
+    },
+    "clg-2019:griffin": {
+      "teamId": "clg-2019",
+      "playerId": "griffin",
+      "golTeamId": 597,
+      "golPlayerId": 862,
+      "season": "S9",
+      "source": "team-roster",
+      "stats": {
+        "kda": 2.8,
+        "killParticipation": 70.6,
+        "damagePct": 11.9,
+        "goldPct": 17.8,
+        "winRate": 53.6,
+        "games": 56
+      },
+      "ratings": {
+        "overall": 68,
+        "peak": 69,
+        "international": 68,
+        "clutch": 65,
+        "consistency": 73,
+        "leadership": 70,
+        "synergy": 85
+      }
+    },
+    "clg-2019:powerofevil": {
+      "teamId": "clg-2019",
+      "playerId": "powerofevil",
+      "golTeamId": 597,
+      "golPlayerId": 235,
+      "season": "S9",
+      "source": "team-roster",
+      "stats": {
+        "kda": 3.7,
+        "killParticipation": 70,
+        "damagePct": 30,
+        "goldPct": 22.9,
+        "winRate": 50.9,
+        "games": 53
+      },
+      "ratings": {
+        "overall": 80,
+        "peak": 81,
+        "international": 79,
+        "clutch": 71,
+        "consistency": 71,
+        "leadership": 63,
+        "synergy": 84
+      }
+    },
+    "clg-2019:stixxay": {
+      "teamId": "clg-2019",
+      "playerId": "stixxay",
+      "golTeamId": 597,
+      "golPlayerId": 580,
+      "season": "S9",
+      "source": "team-roster",
+      "stats": {
+        "kda": 3.9,
+        "killParticipation": 61.7,
+        "damagePct": 25.6,
+        "goldPct": 23.6,
+        "winRate": 54.5,
+        "games": 55
+      },
+      "ratings": {
+        "overall": 76,
+        "peak": 77,
+        "international": 76,
+        "clutch": 70,
         "consistency": 74,
-        "leadership": 78,
-        "synergy": 76
+        "leadership": 62,
+        "synergy": 74
+      }
+    },
+    "clg-2019:biofrost": {
+      "teamId": "clg-2019",
+      "playerId": "biofrost",
+      "golTeamId": 597,
+      "golPlayerId": 706,
+      "season": "S9",
+      "source": "team-roster",
+      "stats": {
+        "kda": 3.7,
+        "killParticipation": 68.6,
+        "damagePct": 8.6,
+        "goldPct": 14.2,
+        "winRate": 50.9,
+        "games": 53
+      },
+      "ratings": {
+        "overall": 71,
+        "peak": 72,
+        "international": 70,
+        "clutch": 70,
+        "consistency": 71,
+        "leadership": 70,
+        "synergy": 82
       }
     },
     "fpx-2019:gimgoon": {
@@ -1519,13 +1519,13 @@
         "games": 110
       },
       "ratings": {
-        "overall": 83,
-        "peak": 84,
-        "international": 83,
-        "clutch": 86,
-        "consistency": 83,
-        "leadership": 83,
-        "synergy": 85
+        "overall": 76,
+        "peak": 77,
+        "international": 81,
+        "clutch": 75,
+        "consistency": 94,
+        "leadership": 63,
+        "synergy": 69
       }
     },
     "fpx-2019:tian": {
@@ -1544,13 +1544,13 @@
         "games": 109
       },
       "ratings": {
-        "overall": 96,
-        "peak": 98,
-        "international": 96,
-        "clutch": 96,
-        "consistency": 96,
-        "leadership": 92,
-        "synergy": 94
+        "overall": 77,
+        "peak": 80,
+        "international": 82,
+        "clutch": 83,
+        "consistency": 94,
+        "leadership": 69,
+        "synergy": 62
       }
     },
     "fpx-2019:doinb": {
@@ -1569,12 +1569,12 @@
         "games": 110
       },
       "ratings": {
-        "overall": 94,
-        "peak": 97,
-        "international": 94,
-        "clutch": 96,
+        "overall": 83,
+        "peak": 86,
+        "international": 88,
+        "clutch": 90,
         "consistency": 94,
-        "leadership": 92,
+        "leadership": 67,
         "synergy": 94
       }
     },
@@ -1594,13 +1594,13 @@
         "games": 110
       },
       "ratings": {
-        "overall": 89,
-        "peak": 92,
-        "international": 89,
-        "clutch": 93,
-        "consistency": 89,
-        "leadership": 89,
-        "synergy": 92
+        "overall": 86,
+        "peak": 89,
+        "international": 91,
+        "clutch": 82,
+        "consistency": 94,
+        "leadership": 65,
+        "synergy": 80
       }
     },
     "fpx-2019:crisp": {
@@ -1619,13 +1619,13 @@
         "games": 110
       },
       "ratings": {
-        "overall": 82,
-        "peak": 83,
+        "overall": 77,
+        "peak": 78,
         "international": 82,
-        "clutch": 85,
-        "consistency": 82,
-        "leadership": 86,
-        "synergy": 84
+        "clutch": 76,
+        "consistency": 94,
+        "leadership": 72,
+        "synergy": 83
       }
     },
     "g2-2019:wunder": {
@@ -1644,13 +1644,13 @@
         "games": 92
       },
       "ratings": {
-        "overall": 66,
-        "peak": 67,
-        "international": 66,
-        "clutch": 67,
-        "consistency": 66,
-        "leadership": 66,
-        "synergy": 67
+        "overall": 70,
+        "peak": 71,
+        "international": 74,
+        "clutch": 63,
+        "consistency": 91,
+        "leadership": 62,
+        "synergy": 61
       }
     },
     "g2-2019:jankos": {
@@ -1669,13 +1669,13 @@
         "games": 92
       },
       "ratings": {
-        "overall": 78,
-        "peak": 79,
+        "overall": 74,
+        "peak": 75,
         "international": 78,
-        "clutch": 80,
-        "consistency": 78,
-        "leadership": 78,
-        "synergy": 80
+        "clutch": 73,
+        "consistency": 91,
+        "leadership": 72,
+        "synergy": 81
       }
     },
     "g2-2019:caps": {
@@ -1694,13 +1694,13 @@
         "games": 92
       },
       "ratings": {
-        "overall": 64,
-        "peak": 65,
-        "international": 64,
-        "clutch": 65,
-        "consistency": 64,
-        "leadership": 64,
-        "synergy": 65
+        "overall": 73,
+        "peak": 74,
+        "international": 77,
+        "clutch": 60,
+        "consistency": 91,
+        "leadership": 61,
+        "synergy": 55
       }
     },
     "g2-2019:perkz": {
@@ -1719,13 +1719,13 @@
         "games": 92
       },
       "ratings": {
-        "overall": 94,
-        "peak": 97,
-        "international": 94,
-        "clutch": 96,
-        "consistency": 94,
-        "leadership": 92,
-        "synergy": 94
+        "overall": 76,
+        "peak": 79,
+        "international": 80,
+        "clutch": 86,
+        "consistency": 91,
+        "leadership": 64,
+        "synergy": 76
       }
     },
     "g2-2019:mikyx": {
@@ -1744,138 +1744,138 @@
         "games": 90
       },
       "ratings": {
-        "overall": 71,
-        "peak": 72,
-        "international": 71,
-        "clutch": 73,
-        "consistency": 71,
-        "leadership": 75,
-        "synergy": 72
+        "overall": 68,
+        "peak": 69,
+        "international": 72,
+        "clutch": 65,
+        "consistency": 92,
+        "leadership": 69,
+        "synergy": 63
       }
     },
-    "gg-2019:licorice": {
+    "gg-2019:hauntzer": {
       "teamId": "gg-2019",
-      "playerId": "licorice",
+      "playerId": "hauntzer",
       "golTeamId": 600,
-      "golPlayerId": 852,
+      "golPlayerId": 323,
       "season": "S9",
-      "source": "season",
+      "source": "team-roster",
       "stats": {
         "kda": 3.1,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 57.9,
-        "games": 57
+        "killParticipation": 58.6,
+        "damagePct": 22.9,
+        "goldPct": 22.3,
+        "winRate": 44.2,
+        "games": 43
+      },
+      "ratings": {
+        "overall": 67,
+        "peak": 68,
+        "international": 64,
+        "clutch": 64,
+        "consistency": 63,
+        "leadership": 60,
+        "synergy": 69
+      }
+    },
+    "gg-2019:contractz": {
+      "teamId": "gg-2019",
+      "playerId": "contractz",
+      "golTeamId": 600,
+      "golPlayerId": 733,
+      "season": "S9",
+      "source": "team-roster",
+      "stats": {
+        "kda": 2.6,
+        "killParticipation": 66.7,
+        "damagePct": 13.3,
+        "goldPct": 17.8,
+        "winRate": 44.2,
+        "games": 43
       },
       "ratings": {
         "overall": 64,
         "peak": 65,
-        "international": 64,
-        "clutch": 65,
-        "consistency": 64,
-        "leadership": 64,
-        "synergy": 65
+        "international": 61,
+        "clutch": 63,
+        "consistency": 63,
+        "leadership": 68,
+        "synergy": 79
       }
     },
-    "gg-2019:blaber": {
+    "gg-2019:froggen": {
       "teamId": "gg-2019",
-      "playerId": "blaber",
+      "playerId": "froggen",
       "golTeamId": 600,
-      "golPlayerId": 1634,
+      "golPlayerId": 3,
       "season": "S9",
-      "source": "season",
+      "source": "team-roster",
       "stats": {
-        "kda": 3.8,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 64.9,
-        "games": 57
-      },
-      "ratings": {
-        "overall": 73,
-        "peak": 74,
-        "international": 73,
-        "clutch": 75,
-        "consistency": 73,
-        "leadership": 73,
-        "synergy": 74
-      }
-    },
-    "gg-2019:jensen": {
-      "teamId": "gg-2019",
-      "playerId": "jensen",
-      "golTeamId": 600,
-      "golPlayerId": 583,
-      "season": "S9",
-      "source": "season",
-      "stats": {
-        "kda": 4.5,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 66.7,
-        "games": 84
+        "kda": 3.4,
+        "killParticipation": 70.3,
+        "damagePct": 30.7,
+        "goldPct": 22.1,
+        "winRate": 44.2,
+        "games": 43
       },
       "ratings": {
         "overall": 78,
         "peak": 79,
-        "international": 78,
-        "clutch": 81,
-        "consistency": 78,
-        "leadership": 78,
-        "synergy": 80
+        "international": 75,
+        "clutch": 69,
+        "consistency": 63,
+        "leadership": 62,
+        "synergy": 83
       }
     },
-    "gg-2019:wildturtle": {
+    "gg-2019:fbi": {
       "teamId": "gg-2019",
-      "playerId": "wildturtle",
+      "playerId": "fbi",
       "golTeamId": 600,
-      "golPlayerId": 139,
+      "golPlayerId": 1138,
       "season": "S9",
-      "source": "season",
+      "source": "team-roster",
       "stats": {
-        "kda": 3.6,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 38.8,
-        "games": 49
+        "kda": 2.6,
+        "killParticipation": 74.4,
+        "damagePct": 26.5,
+        "goldPct": 23,
+        "winRate": 68.2,
+        "games": 44
+      },
+      "ratings": {
+        "overall": 79,
+        "peak": 80,
+        "international": 82,
+        "clutch": 65,
+        "consistency": 85,
+        "leadership": 63,
+        "synergy": 92
+      }
+    },
+    "gg-2019:huhi": {
+      "teamId": "gg-2019",
+      "playerId": "huhi",
+      "golTeamId": 600,
+      "golPlayerId": 579,
+      "season": "S9",
+      "source": "team-roster",
+      "stats": {
+        "kda": 2.7,
+        "killParticipation": 80.1,
+        "damagePct": 8,
+        "goldPct": 14.3,
+        "winRate": 43.2,
+        "games": 37
       },
       "ratings": {
         "overall": 69,
         "peak": 70,
-        "international": 69,
-        "clutch": 71,
-        "consistency": 69,
+        "international": 66,
+        "clutch": 66,
+        "consistency": 61,
         "leadership": 69,
-        "synergy": 70
-      }
-    },
-    "gg-2019:zeyzal": {
-      "teamId": "gg-2019",
-      "playerId": "zeyzal",
-      "golTeamId": 600,
-      "golPlayerId": 854,
-      "season": "S9",
-      "source": "season",
-      "stats": {
-        "kda": 3.9,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 58.3,
-        "games": 60
-      },
-      "ratings": {
-        "overall": 74,
-        "peak": 75,
-        "international": 74,
-        "clutch": 76,
-        "consistency": 74,
-        "leadership": 78,
-        "synergy": 76
+        "synergy": 89
       }
     },
     "griffin-2019:sword": {
@@ -1894,13 +1894,13 @@
         "games": 0
       },
       "ratings": {
-        "overall": 59,
-        "peak": 60,
-        "international": 59,
+        "overall": 64,
+        "peak": 65,
+        "international": 63,
         "clutch": 60,
-        "consistency": 59,
-        "leadership": 59,
-        "synergy": 60
+        "consistency": 64,
+        "leadership": 56,
+        "synergy": 71
       }
     },
     "griffin-2019:tarzan": {
@@ -1919,13 +1919,13 @@
         "games": 110
       },
       "ratings": {
-        "overall": 96,
-        "peak": 98,
-        "international": 96,
-        "clutch": 96,
-        "consistency": 96,
-        "leadership": 92,
-        "synergy": 94
+        "overall": 81,
+        "peak": 84,
+        "international": 85,
+        "clutch": 88,
+        "consistency": 92,
+        "leadership": 73,
+        "synergy": 90
       }
     },
     "griffin-2019:chovy": {
@@ -1944,13 +1944,13 @@
         "games": 110
       },
       "ratings": {
-        "overall": 94,
-        "peak": 97,
-        "international": 94,
-        "clutch": 96,
-        "consistency": 94,
-        "leadership": 92,
-        "synergy": 94
+        "overall": 84,
+        "peak": 87,
+        "international": 88,
+        "clutch": 86,
+        "consistency": 92,
+        "leadership": 64,
+        "synergy": 75
       }
     },
     "griffin-2019:viper": {
@@ -1969,13 +1969,13 @@
         "games": 110
       },
       "ratings": {
-        "overall": 94,
-        "peak": 97,
-        "international": 94,
-        "clutch": 96,
-        "consistency": 94,
-        "leadership": 92,
-        "synergy": 94
+        "overall": 89,
+        "peak": 92,
+        "international": 93,
+        "clutch": 87,
+        "consistency": 92,
+        "leadership": 65,
+        "synergy": 80
       }
     },
     "griffin-2019:lehends": {
@@ -1994,13 +1994,13 @@
         "games": 109
       },
       "ratings": {
-        "overall": 96,
-        "peak": 98,
-        "international": 96,
-        "clutch": 96,
-        "consistency": 96,
-        "leadership": 92,
-        "synergy": 94
+        "overall": 81,
+        "peak": 84,
+        "international": 85,
+        "clutch": 88,
+        "consistency": 92,
+        "leadership": 73,
+        "synergy": 85
       }
     },
     "tl-2019:impact": {
@@ -2019,13 +2019,13 @@
         "games": 84
       },
       "ratings": {
-        "overall": 67,
-        "peak": 68,
-        "international": 67,
-        "clutch": 69,
-        "consistency": 67,
-        "leadership": 67,
-        "synergy": 68
+        "overall": 73,
+        "peak": 74,
+        "international": 76,
+        "clutch": 66,
+        "consistency": 89,
+        "leadership": 64,
+        "synergy": 71
       }
     },
     "tl-2019:xmithie": {
@@ -2044,13 +2044,13 @@
         "games": 84
       },
       "ratings": {
-        "overall": 74,
-        "peak": 75,
-        "international": 74,
-        "clutch": 76,
-        "consistency": 74,
-        "leadership": 74,
-        "synergy": 76
+        "overall": 73,
+        "peak": 74,
+        "international": 76,
+        "clutch": 72,
+        "consistency": 89,
+        "leadership": 73,
+        "synergy": 86
       }
     },
     "tl-2019:jensen": {
@@ -2069,13 +2069,13 @@
         "games": 84
       },
       "ratings": {
-        "overall": 78,
-        "peak": 79,
-        "international": 78,
-        "clutch": 81,
-        "consistency": 78,
-        "leadership": 78,
-        "synergy": 80
+        "overall": 82,
+        "peak": 83,
+        "international": 85,
+        "clutch": 75,
+        "consistency": 89,
+        "leadership": 65,
+        "synergy": 81
       }
     },
     "tl-2019:doublelift": {
@@ -2094,13 +2094,13 @@
         "games": 84
       },
       "ratings": {
-        "overall": 83,
-        "peak": 84,
-        "international": 83,
-        "clutch": 86,
-        "consistency": 83,
-        "leadership": 83,
-        "synergy": 85
+        "overall": 87,
+        "peak": 88,
+        "international": 90,
+        "clutch": 80,
+        "consistency": 89,
+        "leadership": 66,
+        "synergy": 87
       }
     },
     "tl-2019:corejj": {
@@ -2119,138 +2119,138 @@
         "games": 84
       },
       "ratings": {
-        "overall": 80,
-        "peak": 81,
+        "overall": 77,
+        "peak": 78,
         "international": 80,
-        "clutch": 83,
-        "consistency": 80,
-        "leadership": 84,
-        "synergy": 82
+        "clutch": 76,
+        "consistency": 89,
+        "leadership": 73,
+        "synergy": 89
       }
     },
-    "clg-2020:impact": {
+    "clg-2020:ruin": {
       "teamId": "clg-2020",
-      "playerId": "impact",
+      "playerId": "ruin",
       "golTeamId": 869,
-      "golPlayerId": 46,
+      "golPlayerId": 1084,
       "season": "S10",
-      "source": "season",
+      "source": "team-roster",
       "stats": {
-        "kda": 3,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 60,
-        "games": 60
+        "kda": 2.1,
+        "killParticipation": 69,
+        "damagePct": 24.5,
+        "goldPct": 22.1,
+        "winRate": 23.7,
+        "games": 38
       },
       "ratings": {
-        "overall": 63,
-        "peak": 64,
-        "international": 63,
-        "clutch": 64,
-        "consistency": 63,
-        "leadership": 63,
+        "overall": 67,
+        "peak": 68,
+        "international": 62,
+        "clutch": 60,
+        "consistency": 54,
+        "leadership": 61,
+        "synergy": 80
+      }
+    },
+    "clg-2020:fragas": {
+      "teamId": "clg-2020",
+      "playerId": "fragas",
+      "golTeamId": 869,
+      "golPlayerId": 1977,
+      "season": "S10",
+      "source": "team-roster",
+      "stats": {
+        "kda": 0.6,
+        "killParticipation": 56,
+        "damagePct": 15,
+        "goldPct": 17.6,
+        "winRate": 33.3,
+        "games": 45
+      },
+      "ratings": {
+        "overall": 58,
+        "peak": 59,
+        "international": 53,
+        "clutch": 55,
+        "consistency": 55,
+        "leadership": 66,
         "synergy": 64
       }
     },
-    "clg-2020:blaber": {
+    "clg-2020:pobelter": {
       "teamId": "clg-2020",
-      "playerId": "blaber",
+      "playerId": "pobelter",
       "golTeamId": 869,
-      "golPlayerId": 1634,
+      "golPlayerId": 330,
       "season": "S10",
-      "source": "season",
+      "source": "team-roster",
       "stats": {
-        "kda": 4.4,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 77.2,
-        "games": 57
+        "kda": 2.3,
+        "killParticipation": 69.9,
+        "damagePct": 26.7,
+        "goldPct": 23.4,
+        "winRate": 27.6,
+        "games": 29
       },
       "ratings": {
-        "overall": 79,
-        "peak": 80,
-        "international": 79,
-        "clutch": 81,
-        "consistency": 79,
-        "leadership": 79,
-        "synergy": 81
+        "overall": 72,
+        "peak": 73,
+        "international": 67,
+        "clutch": 62,
+        "consistency": 53,
+        "leadership": 60,
+        "synergy": 82
       }
     },
-    "clg-2020:jensen": {
+    "clg-2020:stixxay": {
       "teamId": "clg-2020",
-      "playerId": "jensen",
+      "playerId": "stixxay",
       "golTeamId": 869,
-      "golPlayerId": 583,
+      "golPlayerId": 580,
       "season": "S10",
-      "source": "season",
+      "source": "team-roster",
       "stats": {
-        "kda": 5.5,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 60,
-        "games": 60
-      },
-      "ratings": {
-        "overall": 87,
-        "peak": 90,
-        "international": 87,
-        "clutch": 90,
-        "consistency": 87,
-        "leadership": 87,
-        "synergy": 90
-      }
-    },
-    "clg-2020:wildturtle": {
-      "teamId": "clg-2020",
-      "playerId": "wildturtle",
-      "golTeamId": 869,
-      "golPlayerId": 139,
-      "season": "S10",
-      "source": "season",
-      "stats": {
-        "kda": 4.1,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 54.4,
-        "games": 79
+        "kda": 3.1,
+        "killParticipation": 64.5,
+        "damagePct": 29.2,
+        "goldPct": 24,
+        "winRate": 19.5,
+        "games": 41
       },
       "ratings": {
         "overall": 74,
         "peak": 75,
-        "international": 74,
-        "clutch": 76,
-        "consistency": 74,
-        "leadership": 74,
-        "synergy": 76
+        "international": 69,
+        "clutch": 65,
+        "consistency": 55,
+        "leadership": 61,
+        "synergy": 75
       }
     },
-    "clg-2020:vulcan": {
+    "clg-2020:smoothie": {
       "teamId": "clg-2020",
-      "playerId": "vulcan",
+      "playerId": "smoothie",
       "golTeamId": 869,
-      "golPlayerId": 1301,
+      "golPlayerId": 501,
       "season": "S10",
-      "source": "season",
+      "source": "team-roster",
       "stats": {
-        "kda": 7.2,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 77.2,
-        "games": 57
+        "kda": 2.5,
+        "killParticipation": 69.2,
+        "damagePct": 6.7,
+        "goldPct": 12.6,
+        "winRate": 21.6,
+        "games": 37
       },
       "ratings": {
-        "overall": 96,
-        "peak": 98,
-        "international": 96,
-        "clutch": 96,
-        "consistency": 96,
-        "leadership": 92,
-        "synergy": 94
+        "overall": 65,
+        "peak": 66,
+        "international": 60,
+        "clutch": 63,
+        "consistency": 54,
+        "leadership": 68,
+        "synergy": 81
       }
     },
     "dk-2020:nuguri": {
@@ -2269,13 +2269,13 @@
         "games": 115
       },
       "ratings": {
-        "overall": 66,
-        "peak": 67,
-        "international": 66,
-        "clutch": 67,
-        "consistency": 66,
-        "leadership": 66,
-        "synergy": 67
+        "overall": 75,
+        "peak": 76,
+        "international": 78,
+        "clutch": 66,
+        "consistency": 90,
+        "leadership": 64,
+        "synergy": 75
       }
     },
     "dk-2020:canyon": {
@@ -2294,13 +2294,13 @@
         "games": 115
       },
       "ratings": {
-        "overall": 80,
-        "peak": 81,
-        "international": 80,
-        "clutch": 83,
-        "consistency": 80,
-        "leadership": 80,
-        "synergy": 82
+        "overall": 75,
+        "peak": 76,
+        "international": 78,
+        "clutch": 76,
+        "consistency": 90,
+        "leadership": 73,
+        "synergy": 85
       }
     },
     "dk-2020:showmaker": {
@@ -2319,13 +2319,13 @@
         "games": 115
       },
       "ratings": {
-        "overall": 94,
-        "peak": 97,
-        "international": 94,
-        "clutch": 96,
-        "consistency": 94,
-        "leadership": 92,
-        "synergy": 94
+        "overall": 87,
+        "peak": 90,
+        "international": 90,
+        "clutch": 88,
+        "consistency": 90,
+        "leadership": 66,
+        "synergy": 85
       }
     },
     "dk-2020:ghost": {
@@ -2344,12 +2344,12 @@
         "games": 87
       },
       "ratings": {
-        "overall": 94,
-        "peak": 97,
-        "international": 94,
-        "clutch": 96,
+        "overall": 82,
+        "peak": 85,
+        "international": 87,
+        "clutch": 90,
         "consistency": 94,
-        "leadership": 92,
+        "leadership": 67,
         "synergy": 94
       }
     },
@@ -2369,263 +2369,263 @@
         "games": 102
       },
       "ratings": {
-        "overall": 91,
-        "peak": 94,
-        "international": 91,
-        "clutch": 95,
-        "consistency": 91,
-        "leadership": 92,
-        "synergy": 94
+        "overall": 82,
+        "peak": 85,
+        "international": 86,
+        "clutch": 83,
+        "consistency": 93,
+        "leadership": 73,
+        "synergy": 86
       }
     },
-    "eg-2020:impact": {
+    "eg-2020:huni": {
       "teamId": "eg-2020",
-      "playerId": "impact",
+      "playerId": "huni",
       "golTeamId": 872,
-      "golPlayerId": 46,
+      "golPlayerId": 371,
       "season": "S10",
-      "source": "season",
+      "source": "team-roster",
       "stats": {
-        "kda": 3,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 60,
-        "games": 60
-      },
-      "ratings": {
-        "overall": 63,
-        "peak": 64,
-        "international": 63,
-        "clutch": 64,
-        "consistency": 63,
-        "leadership": 63,
-        "synergy": 64
-      }
-    },
-    "eg-2020:xmithie": {
-      "teamId": "eg-2020",
-      "playerId": "xmithie",
-      "golTeamId": 872,
-      "golPlayerId": 269,
-      "season": "S10",
-      "source": "season",
-      "stats": {
-        "kda": 2.2,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 38.5,
-        "games": 39
-      },
-      "ratings": {
-        "overall": 58,
-        "peak": 59,
-        "international": 58,
-        "clutch": 59,
-        "consistency": 58,
-        "leadership": 58,
-        "synergy": 58
-      }
-    },
-    "eg-2020:jensen": {
-      "teamId": "eg-2020",
-      "playerId": "jensen",
-      "golTeamId": 872,
-      "golPlayerId": 583,
-      "season": "S10",
-      "source": "season",
-      "stats": {
-        "kda": 5.5,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 60,
-        "games": 60
-      },
-      "ratings": {
-        "overall": 87,
-        "peak": 90,
-        "international": 87,
-        "clutch": 90,
-        "consistency": 87,
-        "leadership": 87,
-        "synergy": 90
-      }
-    },
-    "eg-2020:sneaky": {
-      "teamId": "eg-2020",
-      "playerId": "sneaky",
-      "golTeamId": 872,
-      "golPlayerId": 129,
-      "season": "S10",
-      "source": "season",
-      "stats": {
-        "kda": 2.5,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 50,
-        "games": 0
-      },
-      "ratings": {
-        "overall": 59,
-        "peak": 60,
-        "international": 59,
-        "clutch": 60,
-        "consistency": 59,
-        "leadership": 59,
-        "synergy": 60
-      }
-    },
-    "eg-2020:vulcan": {
-      "teamId": "eg-2020",
-      "playerId": "vulcan",
-      "golTeamId": 872,
-      "golPlayerId": 1301,
-      "season": "S10",
-      "source": "season",
-      "stats": {
-        "kda": 7.2,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 77.2,
-        "games": 57
-      },
-      "ratings": {
-        "overall": 96,
-        "peak": 98,
-        "international": 96,
-        "clutch": 96,
-        "consistency": 96,
-        "leadership": 92,
-        "synergy": 94
-      }
-    },
-    "excel-2020:armut": {
-      "teamId": "excel-2020",
-      "playerId": "armut",
-      "golTeamId": 888,
-      "golPlayerId": 1308,
-      "season": "S10",
-      "source": "season",
-      "stats": {
-        "kda": 4.1,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 60.3,
-        "games": 58
-      },
-      "ratings": {
-        "overall": 74,
-        "peak": 75,
-        "international": 74,
-        "clutch": 76,
-        "consistency": 74,
-        "leadership": 74,
-        "synergy": 76
-      }
-    },
-    "excel-2020:elyoya": {
-      "teamId": "excel-2020",
-      "playerId": "elyoya",
-      "golTeamId": 888,
-      "golPlayerId": 2719,
-      "season": "S10",
-      "source": "season",
-      "stats": {
-        "kda": 6.1,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 70.1,
-        "games": 77
-      },
-      "ratings": {
-        "overall": 95,
-        "peak": 98,
-        "international": 95,
-        "clutch": 96,
-        "consistency": 95,
-        "leadership": 92,
-        "synergy": 94
-      }
-    },
-    "excel-2020:humanoid": {
-      "teamId": "excel-2020",
-      "playerId": "humanoid",
-      "golTeamId": 888,
-      "golPlayerId": 1716,
-      "season": "S10",
-      "source": "season",
-      "stats": {
-        "kda": 2.8,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 50.7,
-        "games": 69
-      },
-      "ratings": {
-        "overall": 61,
-        "peak": 62,
-        "international": 61,
-        "clutch": 62,
-        "consistency": 61,
-        "leadership": 61,
-        "synergy": 62
-      }
-    },
-    "excel-2020:carzzy": {
-      "teamId": "excel-2020",
-      "playerId": "carzzy",
-      "golTeamId": 888,
-      "golPlayerId": 1584,
-      "season": "S10",
-      "source": "season",
-      "stats": {
-        "kda": 3.7,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 50.7,
-        "games": 69
+        "kda": 2.6,
+        "killParticipation": 68,
+        "damagePct": 25.6,
+        "goldPct": 21.9,
+        "winRate": 44.9,
+        "games": 49
       },
       "ratings": {
         "overall": 70,
         "peak": 71,
-        "international": 70,
-        "clutch": 72,
-        "consistency": 70,
-        "leadership": 70,
-        "synergy": 71
+        "international": 67,
+        "clutch": 63,
+        "consistency": 65,
+        "leadership": 62,
+        "synergy": 81
       }
     },
-    "excel-2020:labrov": {
-      "teamId": "excel-2020",
-      "playerId": "labrov",
-      "golTeamId": 888,
-      "golPlayerId": 2887,
+    "eg-2020:svenskeren": {
+      "teamId": "eg-2020",
+      "playerId": "svenskeren",
+      "golTeamId": 872,
+      "golPlayerId": 27,
+      "season": "S10",
+      "source": "team-roster",
+      "stats": {
+        "kda": 2.2,
+        "killParticipation": 69.9,
+        "damagePct": 13.7,
+        "goldPct": 18.1,
+        "winRate": 46.8,
+        "games": 62
+      },
+      "ratings": {
+        "overall": 65,
+        "peak": 66,
+        "international": 63,
+        "clutch": 61,
+        "consistency": 68,
+        "leadership": 71,
+        "synergy": 83
+      }
+    },
+    "eg-2020:goldenglue": {
+      "teamId": "eg-2020",
+      "playerId": "goldenglue",
+      "golTeamId": 872,
+      "golPlayerId": 502,
+      "season": "S10",
+      "source": "team-roster",
+      "stats": {
+        "kda": 2.8,
+        "killParticipation": 70.4,
+        "damagePct": 25.5,
+        "goldPct": 22.8,
+        "winRate": 41.5,
+        "games": 41
+      },
+      "ratings": {
+        "overall": 74,
+        "peak": 75,
+        "international": 71,
+        "clutch": 65,
+        "consistency": 60,
+        "leadership": 62,
+        "synergy": 83
+      }
+    },
+    "eg-2020:bang": {
+      "teamId": "eg-2020",
+      "playerId": "bang",
+      "golTeamId": 872,
+      "golPlayerId": 100,
       "season": "S10",
       "source": "season",
       "stats": {
-        "kda": 3.8,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 47.4,
-        "games": 38
+        "kda": 4.4,
+        "killParticipation": 84.2,
+        "damagePct": 26.1,
+        "goldPct": 18.7,
+        "winRate": 48.3,
+        "games": 60
+      },
+      "ratings": {
+        "overall": 79,
+        "peak": 80,
+        "international": 77,
+        "clutch": 77,
+        "consistency": 69,
+        "leadership": 65,
+        "synergy": 90
+      }
+    },
+    "eg-2020:zeyzal": {
+      "teamId": "eg-2020",
+      "playerId": "zeyzal",
+      "golTeamId": 872,
+      "golPlayerId": 854,
+      "season": "S10",
+      "source": "team-roster",
+      "stats": {
+        "kda": 4.3,
+        "killParticipation": 67.5,
+        "damagePct": 16.7,
+        "goldPct": 19.3,
+        "winRate": 48.3,
+        "games": 60
       },
       "ratings": {
         "overall": 73,
         "peak": 74,
-        "international": 73,
-        "clutch": 75,
+        "international": 71,
+        "clutch": 74,
+        "consistency": 69,
+        "leadership": 70,
+        "synergy": 80
+      }
+    },
+    "excel-2020:kryze": {
+      "teamId": "excel-2020",
+      "playerId": "kryze",
+      "golTeamId": 888,
+      "golPlayerId": 2577,
+      "season": "S10",
+      "source": "team-roster",
+      "stats": {
+        "kda": 2,
+        "killParticipation": 57.8,
+        "damagePct": 24.1,
+        "goldPct": 22.7,
+        "winRate": 54.8,
+        "games": 42
+      },
+      "ratings": {
+        "overall": 66,
+        "peak": 67,
+        "international": 66,
+        "clutch": 57,
         "consistency": 73,
-        "leadership": 77,
-        "synergy": 74
+        "leadership": 59,
+        "synergy": 69
+      }
+    },
+    "excel-2020:caedrel": {
+      "teamId": "excel-2020",
+      "playerId": "caedrel",
+      "golTeamId": 888,
+      "golPlayerId": 656,
+      "season": "S10",
+      "source": "team-roster",
+      "stats": {
+        "kda": 2.4,
+        "killParticipation": 64.1,
+        "damagePct": 13.1,
+        "goldPct": 17.6,
+        "winRate": 41.7,
+        "games": 36
+      },
+      "ratings": {
+        "overall": 62,
+        "peak": 63,
+        "international": 59,
+        "clutch": 61,
+        "consistency": 60,
+        "leadership": 67,
+        "synergy": 75
+      }
+    },
+    "excel-2020:special": {
+      "teamId": "excel-2020",
+      "playerId": "special",
+      "golTeamId": 888,
+      "golPlayerId": 1570,
+      "season": "S10",
+      "source": "team-roster",
+      "stats": {
+        "kda": 2.3,
+        "killParticipation": 64.5,
+        "damagePct": 23.4,
+        "goldPct": 23.2,
+        "winRate": 44.4,
+        "games": 27
+      },
+      "ratings": {
+        "overall": 69,
+        "peak": 70,
+        "international": 66,
+        "clutch": 60,
+        "consistency": 61,
+        "leadership": 59,
+        "synergy": 76
+      }
+    },
+    "excel-2020:patrik": {
+      "teamId": "excel-2020",
+      "playerId": "patrik",
+      "golTeamId": 888,
+      "golPlayerId": 1304,
+      "season": "S10",
+      "source": "team-roster",
+      "stats": {
+        "kda": 0.7,
+        "killParticipation": 40,
+        "damagePct": 18.8,
+        "goldPct": 16.4,
+        "winRate": 41.7,
+        "games": 36
+      },
+      "ratings": {
+        "overall": 57,
+        "peak": 58,
+        "international": 54,
+        "clutch": 52,
+        "consistency": 60,
+        "leadership": 56,
+        "synergy": 51
+      }
+    },
+    "excel-2020:tore": {
+      "teamId": "excel-2020",
+      "playerId": "tore",
+      "golTeamId": 888,
+      "golPlayerId": 879,
+      "season": "S10",
+      "source": "team-roster",
+      "stats": {
+        "kda": 0.8,
+        "killParticipation": 60,
+        "damagePct": 23,
+        "goldPct": 20.4,
+        "winRate": 41.7,
+        "games": 36
+      },
+      "ratings": {
+        "overall": 62,
+        "peak": 63,
+        "international": 59,
+        "clutch": 56,
+        "consistency": 60,
+        "leadership": 66,
+        "synergy": 70
       }
     },
     "fnc-2020:bwipo": {
@@ -2644,63 +2644,63 @@
         "games": 68
       },
       "ratings": {
-        "overall": 50,
-        "peak": 51,
-        "international": 50,
-        "clutch": 50,
-        "consistency": 50,
-        "leadership": 50,
-        "synergy": 50
-      }
-    },
-    "fnc-2020:broxah": {
-      "teamId": "fnc-2020",
-      "playerId": "broxah",
-      "golTeamId": 890,
-      "golPlayerId": 872,
-      "season": "S10",
-      "source": "season",
-      "stats": {
-        "kda": 5.5,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 63,
-        "games": 54
-      },
-      "ratings": {
-        "overall": 89,
-        "peak": 92,
-        "international": 89,
-        "clutch": 92,
-        "consistency": 89,
-        "leadership": 89,
-        "synergy": 92
-      }
-    },
-    "fnc-2020:humanoid": {
-      "teamId": "fnc-2020",
-      "playerId": "humanoid",
-      "golTeamId": 890,
-      "golPlayerId": 1716,
-      "season": "S10",
-      "source": "season",
-      "stats": {
-        "kda": 2.8,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 50.7,
-        "games": 69
-      },
-      "ratings": {
         "overall": 61,
         "peak": 62,
-        "international": 61,
-        "clutch": 62,
-        "consistency": 61,
-        "leadership": 61,
-        "synergy": 62
+        "international": 62,
+        "clutch": 55,
+        "consistency": 80,
+        "leadership": 62,
+        "synergy": 66
+      }
+    },
+    "fnc-2020:selfmade": {
+      "teamId": "fnc-2020",
+      "playerId": "selfmade",
+      "golTeamId": 890,
+      "golPlayerId": 1465,
+      "season": "S10",
+      "source": "team-roster",
+      "stats": {
+        "kda": 3.7,
+        "killParticipation": 69.2,
+        "damagePct": 19.4,
+        "goldPct": 19.3,
+        "winRate": 58.8,
+        "games": 68
+      },
+      "ratings": {
+        "overall": 73,
+        "peak": 74,
+        "international": 74,
+        "clutch": 71,
+        "consistency": 80,
+        "leadership": 72,
+        "synergy": 84
+      }
+    },
+    "fnc-2020:nemesis": {
+      "teamId": "fnc-2020",
+      "playerId": "nemesis",
+      "golTeamId": 890,
+      "golPlayerId": 1466,
+      "season": "S10",
+      "source": "team-roster",
+      "stats": {
+        "kda": 3.6,
+        "killParticipation": 56.7,
+        "damagePct": 24.6,
+        "goldPct": 22.8,
+        "winRate": 58.8,
+        "games": 68
+      },
+      "ratings": {
+        "overall": 75,
+        "peak": 76,
+        "international": 76,
+        "clutch": 67,
+        "consistency": 80,
+        "leadership": 62,
+        "synergy": 68
       }
     },
     "fnc-2020:rekkles": {
@@ -2719,13 +2719,13 @@
         "games": 68
       },
       "ratings": {
-        "overall": 94,
-        "peak": 97,
-        "international": 94,
-        "clutch": 96,
-        "consistency": 94,
-        "leadership": 92,
-        "synergy": 94
+        "overall": 82,
+        "peak": 85,
+        "international": 83,
+        "clutch": 90,
+        "consistency": 80,
+        "leadership": 66,
+        "synergy": 92
       }
     },
     "fnc-2020:hylissang": {
@@ -2744,263 +2744,263 @@
         "games": 68
       },
       "ratings": {
-        "overall": 60,
-        "peak": 61,
-        "international": 60,
-        "clutch": 61,
-        "consistency": 60,
-        "leadership": 64,
-        "synergy": 61
+        "overall": 64,
+        "peak": 65,
+        "international": 65,
+        "clutch": 58,
+        "consistency": 80,
+        "leadership": 68,
+        "synergy": 64
       }
     },
-    "immortals-2020:licorice": {
+    "immortals-2020:allorim": {
       "teamId": "immortals-2020",
-      "playerId": "licorice",
+      "playerId": "allorim",
       "golTeamId": 875,
-      "golPlayerId": 852,
+      "golPlayerId": 857,
       "season": "S10",
-      "source": "season",
+      "source": "team-roster",
       "stats": {
-        "kda": 4.2,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 77.2,
-        "games": 57
-      },
-      "ratings": {
-        "overall": 75,
-        "peak": 76,
-        "international": 75,
-        "clutch": 77,
-        "consistency": 75,
-        "leadership": 75,
-        "synergy": 77
-      }
-    },
-    "immortals-2020:blaber": {
-      "teamId": "immortals-2020",
-      "playerId": "blaber",
-      "golTeamId": 875,
-      "golPlayerId": 1634,
-      "season": "S10",
-      "source": "season",
-      "stats": {
-        "kda": 4.4,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 77.2,
-        "games": 57
-      },
-      "ratings": {
-        "overall": 79,
-        "peak": 80,
-        "international": 79,
-        "clutch": 81,
-        "consistency": 79,
-        "leadership": 79,
-        "synergy": 81
-      }
-    },
-    "immortals-2020:jensen": {
-      "teamId": "immortals-2020",
-      "playerId": "jensen",
-      "golTeamId": 875,
-      "golPlayerId": 583,
-      "season": "S10",
-      "source": "season",
-      "stats": {
-        "kda": 5.5,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 60,
-        "games": 60
-      },
-      "ratings": {
-        "overall": 87,
-        "peak": 90,
-        "international": 87,
-        "clutch": 90,
-        "consistency": 87,
-        "leadership": 87,
-        "synergy": 90
-      }
-    },
-    "immortals-2020:wildturtle": {
-      "teamId": "immortals-2020",
-      "playerId": "wildturtle",
-      "golTeamId": 875,
-      "golPlayerId": 139,
-      "season": "S10",
-      "source": "season",
-      "stats": {
-        "kda": 4.1,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 54.4,
-        "games": 79
-      },
-      "ratings": {
-        "overall": 74,
-        "peak": 75,
-        "international": 74,
-        "clutch": 76,
-        "consistency": 74,
-        "leadership": 74,
-        "synergy": 76
-      }
-    },
-    "immortals-2020:zeyzal": {
-      "teamId": "immortals-2020",
-      "playerId": "zeyzal",
-      "golTeamId": 875,
-      "golPlayerId": 854,
-      "season": "S10",
-      "source": "season",
-      "stats": {
-        "kda": 3.5,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 48.3,
-        "games": 60
-      },
-      "ratings": {
-        "overall": 70,
-        "peak": 71,
-        "international": 70,
-        "clutch": 72,
-        "consistency": 70,
-        "leadership": 74,
-        "synergy": 71
-      }
-    },
-    "misfits-2020:armut": {
-      "teamId": "misfits-2020",
-      "playerId": "armut",
-      "golTeamId": 893,
-      "golPlayerId": 1308,
-      "season": "S10",
-      "source": "season",
-      "stats": {
-        "kda": 4.1,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 60.3,
-        "games": 58
-      },
-      "ratings": {
-        "overall": 74,
-        "peak": 75,
-        "international": 74,
-        "clutch": 76,
-        "consistency": 74,
-        "leadership": 74,
-        "synergy": 76
-      }
-    },
-    "misfits-2020:elyoya": {
-      "teamId": "misfits-2020",
-      "playerId": "elyoya",
-      "golTeamId": 893,
-      "golPlayerId": 2719,
-      "season": "S10",
-      "source": "season",
-      "stats": {
-        "kda": 6.1,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 70.1,
-        "games": 77
-      },
-      "ratings": {
-        "overall": 95,
-        "peak": 98,
-        "international": 95,
-        "clutch": 96,
-        "consistency": 95,
-        "leadership": 92,
-        "synergy": 94
-      }
-    },
-    "misfits-2020:humanoid": {
-      "teamId": "misfits-2020",
-      "playerId": "humanoid",
-      "golTeamId": 893,
-      "golPlayerId": 1716,
-      "season": "S10",
-      "source": "season",
-      "stats": {
-        "kda": 2.8,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 50.7,
-        "games": 69
+        "kda": 1.6,
+        "killParticipation": 58.8,
+        "damagePct": 19,
+        "goldPct": 20.8,
+        "winRate": 36.8,
+        "games": 38
       },
       "ratings": {
         "overall": 61,
         "peak": 62,
-        "international": 61,
-        "clutch": 62,
-        "consistency": 61,
-        "leadership": 61,
-        "synergy": 62
+        "international": 56,
+        "clutch": 56,
+        "consistency": 56,
+        "leadership": 59,
+        "synergy": 68
       }
     },
-    "misfits-2020:carzzy": {
-      "teamId": "misfits-2020",
-      "playerId": "carzzy",
-      "golTeamId": 893,
-      "golPlayerId": 1584,
+    "immortals-2020:xmithie": {
+      "teamId": "immortals-2020",
+      "playerId": "xmithie",
+      "golTeamId": 875,
+      "golPlayerId": 269,
       "season": "S10",
-      "source": "season",
+      "source": "team-roster",
       "stats": {
-        "kda": 3.7,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 50.7,
-        "games": 69
+        "kda": 2,
+        "killParticipation": 71.7,
+        "damagePct": 13.5,
+        "goldPct": 18.3,
+        "winRate": 38.5,
+        "games": 39
       },
       "ratings": {
-        "overall": 70,
-        "peak": 71,
-        "international": 70,
-        "clutch": 72,
-        "consistency": 70,
-        "leadership": 70,
-        "synergy": 71
+        "overall": 63,
+        "peak": 64,
+        "international": 59,
+        "clutch": 60,
+        "consistency": 57,
+        "leadership": 69,
+        "synergy": 84
       }
     },
-    "misfits-2020:labrov": {
-      "teamId": "misfits-2020",
-      "playerId": "labrov",
-      "golTeamId": 893,
-      "golPlayerId": 2887,
+    "immortals-2020:insanity": {
+      "teamId": "immortals-2020",
+      "playerId": "insanity",
+      "golTeamId": 875,
+      "golPlayerId": 1633,
       "season": "S10",
-      "source": "season",
+      "source": "team-roster",
       "stats": {
-        "kda": 3.8,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 47.4,
+        "kda": 3,
+        "killParticipation": 74.6,
+        "damagePct": 32.3,
+        "goldPct": 23.9,
+        "winRate": 36.8,
         "games": 38
       },
       "ratings": {
-        "overall": 73,
-        "peak": 74,
+        "overall": 78,
+        "peak": 79,
         "international": 73,
-        "clutch": 75,
-        "consistency": 73,
-        "leadership": 77,
-        "synergy": 74
+        "clutch": 68,
+        "consistency": 56,
+        "leadership": 62,
+        "synergy": 88
+      }
+    },
+    "immortals-2020:apollo": {
+      "teamId": "immortals-2020",
+      "playerId": "apollo",
+      "golTeamId": 875,
+      "golPlayerId": 315,
+      "season": "S10",
+      "source": "team-roster",
+      "stats": {
+        "kda": 3.4,
+        "killParticipation": 71.2,
+        "damagePct": 27.1,
+        "goldPct": 23.9,
+        "winRate": 41,
+        "games": 39
+      },
+      "ratings": {
+        "overall": 76,
+        "peak": 77,
+        "international": 73,
+        "clutch": 69,
+        "consistency": 60,
+        "leadership": 62,
+        "synergy": 84
+      }
+    },
+    "immortals-2020:hakuho": {
+      "teamId": "immortals-2020",
+      "playerId": "hakuho",
+      "golTeamId": 875,
+      "golPlayerId": 644,
+      "season": "S10",
+      "source": "team-roster",
+      "stats": {
+        "kda": 2.6,
+        "killParticipation": 69.4,
+        "damagePct": 7.6,
+        "goldPct": 13.3,
+        "winRate": 38.5,
+        "games": 39
+      },
+      "ratings": {
+        "overall": 66,
+        "peak": 67,
+        "international": 62,
+        "clutch": 64,
+        "consistency": 57,
+        "leadership": 68,
+        "synergy": 81
+      }
+    },
+    "misfits-2020:dandan": {
+      "teamId": "misfits-2020",
+      "playerId": "dandan",
+      "golTeamId": 893,
+      "golPlayerId": 2050,
+      "season": "S10",
+      "source": "team-roster",
+      "stats": {
+        "kda": 2.8,
+        "killParticipation": 60.1,
+        "damagePct": 23.8,
+        "goldPct": 22.4,
+        "winRate": 45,
+        "games": 40
+      },
+      "ratings": {
+        "overall": 67,
+        "peak": 68,
+        "international": 65,
+        "clutch": 62,
+        "consistency": 63,
+        "leadership": 60,
+        "synergy": 71
+      }
+    },
+    "misfits-2020:razork": {
+      "teamId": "misfits-2020",
+      "playerId": "razork",
+      "golTeamId": 893,
+      "golPlayerId": 1491,
+      "season": "S10",
+      "source": "team-roster",
+      "stats": {
+        "kda": 2.3,
+        "killParticipation": 70.8,
+        "damagePct": 13.9,
+        "goldPct": 17.8,
+        "winRate": 45,
+        "games": 40
+      },
+      "ratings": {
+        "overall": 64,
+        "peak": 65,
+        "international": 62,
+        "clutch": 62,
+        "consistency": 63,
+        "leadership": 69,
+        "synergy": 84
+      }
+    },
+    "misfits-2020:febiven": {
+      "teamId": "misfits-2020",
+      "playerId": "febiven",
+      "golTeamId": 893,
+      "golPlayerId": 373,
+      "season": "S10",
+      "source": "team-roster",
+      "stats": {
+        "kda": 2.9,
+        "killParticipation": 64.6,
+        "damagePct": 27.9,
+        "goldPct": 22.8,
+        "winRate": 45,
+        "games": 40
+      },
+      "ratings": {
+        "overall": 74,
+        "peak": 75,
+        "international": 72,
+        "clutch": 64,
+        "consistency": 63,
+        "leadership": 60,
+        "synergy": 76
+      }
+    },
+    "misfits-2020:kobbe": {
+      "teamId": "misfits-2020",
+      "playerId": "kobbe",
+      "golTeamId": 893,
+      "golPlayerId": 598,
+      "season": "S10",
+      "source": "team-roster",
+      "stats": {
+        "kda": 3.9,
+        "killParticipation": 64.2,
+        "damagePct": 27,
+        "goldPct": 24.6,
+        "winRate": 45.7,
+        "games": 46
+      },
+      "ratings": {
+        "overall": 77,
+        "peak": 78,
+        "international": 75,
+        "clutch": 71,
+        "consistency": 65,
+        "leadership": 61,
+        "synergy": 76
+      }
+    },
+    "misfits-2020:denyk": {
+      "teamId": "misfits-2020",
+      "playerId": "denyk",
+      "golTeamId": 893,
+      "golPlayerId": 1660,
+      "season": "S10",
+      "source": "team-roster",
+      "stats": {
+        "kda": 3,
+        "killParticipation": 65.7,
+        "damagePct": 7.3,
+        "goldPct": 12.9,
+        "winRate": 48.1,
+        "games": 27
+      },
+      "ratings": {
+        "overall": 66,
+        "peak": 67,
+        "international": 64,
+        "clutch": 65,
+        "consistency": 64,
+        "leadership": 66,
+        "synergy": 78
       }
     },
     "sn-2020:bin": {
@@ -3019,13 +3019,13 @@
         "games": 97
       },
       "ratings": {
-        "overall": 61,
-        "peak": 62,
-        "international": 61,
-        "clutch": 62,
-        "consistency": 61,
-        "leadership": 61,
-        "synergy": 62
+        "overall": 70,
+        "peak": 71,
+        "international": 70,
+        "clutch": 61,
+        "consistency": 80,
+        "leadership": 64,
+        "synergy": 70
       }
     },
     "sn-2020:sofm": {
@@ -3047,10 +3047,10 @@
         "overall": 72,
         "peak": 73,
         "international": 72,
-        "clutch": 74,
-        "consistency": 72,
-        "leadership": 72,
-        "synergy": 73
+        "clutch": 71,
+        "consistency": 78,
+        "leadership": 73,
+        "synergy": 85
       }
     },
     "sn-2020:angel": {
@@ -3069,13 +3069,13 @@
         "games": 119
       },
       "ratings": {
-        "overall": 79,
-        "peak": 80,
-        "international": 79,
-        "clutch": 82,
-        "consistency": 79,
-        "leadership": 79,
-        "synergy": 81
+        "overall": 81,
+        "peak": 82,
+        "international": 81,
+        "clutch": 76,
+        "consistency": 78,
+        "leadership": 66,
+        "synergy": 84
       }
     },
     "sn-2020:huanfeng": {
@@ -3094,13 +3094,13 @@
         "games": 113
       },
       "ratings": {
-        "overall": 77,
-        "peak": 78,
-        "international": 77,
-        "clutch": 79,
-        "consistency": 77,
-        "leadership": 77,
-        "synergy": 79
+        "overall": 84,
+        "peak": 85,
+        "international": 85,
+        "clutch": 75,
+        "consistency": 80,
+        "leadership": 66,
+        "synergy": 83
       }
     },
     "sn-2020:swordart": {
@@ -3119,13 +3119,13 @@
         "games": 119
       },
       "ratings": {
-        "overall": 65,
-        "peak": 66,
-        "international": 65,
-        "clutch": 66,
-        "consistency": 65,
-        "leadership": 69,
-        "synergy": 66
+        "overall": 70,
+        "peak": 71,
+        "international": 70,
+        "clutch": 65,
+        "consistency": 78,
+        "leadership": 72,
+        "synergy": 80
       }
     },
     "tes-2020:369": {
@@ -3144,12 +3144,12 @@
         "games": 129
       },
       "ratings": {
-        "overall": 69,
-        "peak": 70,
-        "international": 69,
-        "clutch": 71,
-        "consistency": 69,
-        "leadership": 69,
+        "overall": 73,
+        "peak": 74,
+        "international": 76,
+        "clutch": 67,
+        "consistency": 89,
+        "leadership": 63,
         "synergy": 70
       }
     },
@@ -3169,13 +3169,13 @@
         "games": 129
       },
       "ratings": {
-        "overall": 75,
-        "peak": 76,
+        "overall": 72,
+        "peak": 73,
         "international": 75,
-        "clutch": 77,
-        "consistency": 75,
-        "leadership": 75,
-        "synergy": 77
+        "clutch": 72,
+        "consistency": 89,
+        "leadership": 72,
+        "synergy": 81
       }
     },
     "tes-2020:knight": {
@@ -3194,13 +3194,13 @@
         "games": 129
       },
       "ratings": {
-        "overall": 92,
-        "peak": 95,
+        "overall": 89,
+        "peak": 92,
         "international": 92,
-        "clutch": 96,
-        "consistency": 92,
-        "leadership": 92,
-        "synergy": 94
+        "clutch": 86,
+        "consistency": 89,
+        "leadership": 67,
+        "synergy": 90
       }
     },
     "tes-2020:jackeylove": {
@@ -3219,13 +3219,13 @@
         "games": 87
       },
       "ratings": {
-        "overall": 74,
-        "peak": 75,
-        "international": 74,
-        "clutch": 76,
-        "consistency": 74,
-        "leadership": 74,
-        "synergy": 76
+        "overall": 85,
+        "peak": 86,
+        "international": 89,
+        "clutch": 73,
+        "consistency": 93,
+        "leadership": 66,
+        "synergy": 84
       }
     },
     "tes-2020:yuyanjia": {
@@ -3244,13 +3244,13 @@
         "games": 98
       },
       "ratings": {
-        "overall": 75,
-        "peak": 76,
-        "international": 75,
-        "clutch": 77,
-        "consistency": 75,
-        "leadership": 79,
-        "synergy": 77
+        "overall": 73,
+        "peak": 74,
+        "international": 76,
+        "clutch": 71,
+        "consistency": 90,
+        "leadership": 72,
+        "synergy": 80
       }
     },
     "tsm-2020:brokenblade": {
@@ -3269,63 +3269,63 @@
         "games": 77
       },
       "ratings": {
-        "overall": 66,
-        "peak": 67,
-        "international": 66,
-        "clutch": 67,
-        "consistency": 66,
-        "leadership": 66,
-        "synergy": 67
+        "overall": 72,
+        "peak": 73,
+        "international": 72,
+        "clutch": 66,
+        "consistency": 76,
+        "leadership": 64,
+        "synergy": 76
       }
     },
-    "tsm-2020:blaber": {
+    "tsm-2020:spica": {
       "teamId": "tsm-2020",
-      "playerId": "blaber",
+      "playerId": "spica",
       "golTeamId": 877,
-      "golPlayerId": 1634,
+      "golPlayerId": 1785,
       "season": "S10",
-      "source": "season",
+      "source": "team-roster",
       "stats": {
-        "kda": 4.4,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 77.2,
-        "games": 57
+        "kda": 3.9,
+        "killParticipation": 71.8,
+        "damagePct": 14.7,
+        "goldPct": 18.7,
+        "winRate": 55.4,
+        "games": 74
       },
       "ratings": {
-        "overall": 79,
-        "peak": 80,
-        "international": 79,
-        "clutch": 81,
-        "consistency": 79,
-        "leadership": 79,
-        "synergy": 81
+        "overall": 72,
+        "peak": 73,
+        "international": 72,
+        "clutch": 73,
+        "consistency": 78,
+        "leadership": 73,
+        "synergy": 87
       }
     },
-    "tsm-2020:jojopyun": {
+    "tsm-2020:bjergsen": {
       "teamId": "tsm-2020",
-      "playerId": "jojopyun",
+      "playerId": "bjergsen",
       "golTeamId": 877,
-      "golPlayerId": 3544,
+      "golPlayerId": 138,
       "season": "S10",
-      "source": "season",
+      "source": "team-roster",
       "stats": {
-        "kda": 2.5,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 50,
-        "games": 0
+        "kda": 5.9,
+        "killParticipation": 68.3,
+        "damagePct": 26.3,
+        "goldPct": 23,
+        "winRate": 53.2,
+        "games": 77
       },
       "ratings": {
-        "overall": 59,
-        "peak": 60,
-        "international": 59,
-        "clutch": 60,
-        "consistency": 59,
-        "leadership": 59,
-        "synergy": 60
+        "overall": 84,
+        "peak": 87,
+        "international": 84,
+        "clutch": 84,
+        "consistency": 76,
+        "leadership": 65,
+        "synergy": 82
       }
     },
     "tsm-2020:doublelift": {
@@ -3344,288 +3344,288 @@
         "games": 64
       },
       "ratings": {
+        "overall": 78,
+        "peak": 79,
+        "international": 77,
+        "clutch": 70,
+        "consistency": 71,
+        "leadership": 63,
+        "synergy": 78
+      }
+    },
+    "tsm-2020:biofrost": {
+      "teamId": "tsm-2020",
+      "playerId": "biofrost",
+      "golTeamId": 877,
+      "golPlayerId": 706,
+      "season": "S10",
+      "source": "team-roster",
+      "stats": {
+        "kda": 3.5,
+        "killParticipation": 65.1,
+        "damagePct": 7.1,
+        "goldPct": 13,
+        "winRate": 50.7,
+        "games": 71
+      },
+      "ratings": {
         "overall": 70,
         "peak": 71,
-        "international": 70,
-        "clutch": 72,
-        "consistency": 70,
+        "international": 69,
+        "clutch": 68,
+        "consistency": 73,
+        "leadership": 71,
+        "synergy": 78
+      }
+    },
+    "100t-2021:ssumday": {
+      "teamId": "100t-2021",
+      "playerId": "ssumday",
+      "golTeamId": 1127,
+      "golPlayerId": 107,
+      "season": "S11",
+      "source": "team-roster",
+      "stats": {
+        "kda": 3.1,
+        "killParticipation": 57,
+        "damagePct": 22.8,
+        "goldPct": 21.3,
+        "winRate": 61.4,
+        "games": 88
+      },
+      "ratings": {
+        "overall": 71,
+        "peak": 72,
+        "international": 73,
+        "clutch": 63,
+        "consistency": 84,
+        "leadership": 63,
+        "synergy": 69
+      }
+    },
+    "100t-2021:closer": {
+      "teamId": "100t-2021",
+      "playerId": "closer",
+      "golTeamId": 1127,
+      "golPlayerId": 1638,
+      "season": "S11",
+      "source": "team-roster",
+      "stats": {
+        "kda": 4.5,
+        "killParticipation": 70.8,
+        "damagePct": 16.6,
+        "goldPct": 19.7,
+        "winRate": 61.4,
+        "games": 88
+      },
+      "ratings": {
+        "overall": 76,
+        "peak": 77,
+        "international": 78,
+        "clutch": 76,
+        "consistency": 84,
+        "leadership": 73,
+        "synergy": 87
+      }
+    },
+    "100t-2021:abbedagge": {
+      "teamId": "100t-2021",
+      "playerId": "abbedagge",
+      "golTeamId": 1127,
+      "golPlayerId": 1639,
+      "season": "S11",
+      "source": "team-roster",
+      "stats": {
+        "kda": 4.1,
+        "killParticipation": 68.4,
+        "damagePct": 23.7,
+        "goldPct": 22.2,
+        "winRate": 59.5,
+        "games": 79
+      },
+      "ratings": {
+        "overall": 79,
+        "peak": 80,
+        "international": 80,
+        "clutch": 73,
+        "consistency": 82,
+        "leadership": 66,
+        "synergy": 83
+      }
+    },
+    "100t-2021:fbi": {
+      "teamId": "100t-2021",
+      "playerId": "fbi",
+      "golTeamId": 1127,
+      "golPlayerId": 1138,
+      "season": "S11",
+      "source": "team-roster",
+      "stats": {
+        "kda": 4.6,
+        "killParticipation": 79.7,
+        "damagePct": 30.2,
+        "goldPct": 18.3,
+        "winRate": 61.4,
+        "games": 88
+      },
+      "ratings": {
+        "overall": 84,
+        "peak": 85,
+        "international": 86,
+        "clutch": 78,
+        "consistency": 84,
+        "leadership": 67,
+        "synergy": 92
+      }
+    },
+    "100t-2021:huhi": {
+      "teamId": "100t-2021",
+      "playerId": "huhi",
+      "golTeamId": 1127,
+      "golPlayerId": 579,
+      "season": "S11",
+      "source": "team-roster",
+      "stats": {
+        "kda": 2.6,
+        "killParticipation": 55.5,
+        "damagePct": 10.3,
+        "goldPct": 18.7,
+        "winRate": 61.4,
+        "games": 88
+      },
+      "ratings": {
+        "overall": 66,
+        "peak": 67,
+        "international": 68,
+        "clutch": 60,
+        "consistency": 84,
         "leadership": 70,
+        "synergy": 67
+      }
+    },
+    "dig-2021:fakegod": {
+      "teamId": "dig-2021",
+      "playerId": "fakegod",
+      "golTeamId": 1130,
+      "golPlayerId": 1976,
+      "season": "S11",
+      "source": "team-roster",
+      "stats": {
+        "kda": 4.5,
+        "killParticipation": 60,
+        "damagePct": 7.2,
+        "goldPct": 13.6,
+        "winRate": 42.4,
+        "games": 59
+      },
+      "ratings": {
+        "overall": 66,
+        "peak": 67,
+        "international": 63,
+        "clutch": 73,
+        "consistency": 64,
+        "leadership": 62,
+        "synergy": 70
+      }
+    },
+    "dig-2021:akaadian": {
+      "teamId": "dig-2021",
+      "playerId": "akaadian",
+      "golTeamId": 1130,
+      "golPlayerId": 811,
+      "season": "S11",
+      "source": "team-roster",
+      "stats": {
+        "kda": 5,
+        "killParticipation": 50,
+        "damagePct": 25.2,
+        "goldPct": 25.8,
+        "winRate": 39.3,
+        "games": 56
+      },
+      "ratings": {
+        "overall": 72,
+        "peak": 73,
+        "international": 68,
+        "clutch": 74,
+        "consistency": 61,
+        "leadership": 66,
+        "synergy": 57
+      }
+    },
+    "dig-2021:yusui": {
+      "teamId": "dig-2021",
+      "playerId": "yusui",
+      "golTeamId": 1130,
+      "golPlayerId": 1632,
+      "season": "S11",
+      "source": "team-roster",
+      "stats": {
+        "kda": 2.7,
+        "killParticipation": 53.3,
+        "damagePct": 22.8,
+        "goldPct": 23,
+        "winRate": 38.5,
+        "games": 52
+      },
+      "ratings": {
+        "overall": 67,
+        "peak": 68,
+        "international": 63,
+        "clutch": 60,
+        "consistency": 59,
+        "leadership": 60,
+        "synergy": 61
+      }
+    },
+    "dig-2021:neo": {
+      "teamId": "dig-2021",
+      "playerId": "neo",
+      "golTeamId": 1130,
+      "golPlayerId": 1126,
+      "season": "S11",
+      "source": "season",
+      "stats": {
+        "kda": 2.5,
+        "killParticipation": 60,
+        "damagePct": 20,
+        "goldPct": 20,
+        "winRate": 50,
+        "games": 0
+      },
+      "ratings": {
+        "overall": 65,
+        "peak": 66,
+        "international": 64,
+        "clutch": 60,
+        "consistency": 64,
+        "leadership": 56,
         "synergy": 71
       }
     },
-    "tsm-2020:vulcan": {
-      "teamId": "tsm-2020",
-      "playerId": "vulcan",
-      "golTeamId": 877,
-      "golPlayerId": 1301,
-      "season": "S10",
-      "source": "season",
-      "stats": {
-        "kda": 7.2,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 77.2,
-        "games": 57
-      },
-      "ratings": {
-        "overall": 96,
-        "peak": 98,
-        "international": 96,
-        "clutch": 96,
-        "consistency": 96,
-        "leadership": 92,
-        "synergy": 94
-      }
-    },
-    "100t-2021:impact": {
-      "teamId": "100t-2021",
-      "playerId": "impact",
-      "golTeamId": 1127,
-      "golPlayerId": 46,
-      "season": "S11",
-      "source": "season",
-      "stats": {
-        "kda": 2.9,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 55.7,
-        "games": 70
-      },
-      "ratings": {
-        "overall": 62,
-        "peak": 63,
-        "international": 62,
-        "clutch": 63,
-        "consistency": 62,
-        "leadership": 62,
-        "synergy": 63
-      }
-    },
-    "100t-2021:blaber": {
-      "teamId": "100t-2021",
-      "playerId": "blaber",
-      "golTeamId": 1127,
-      "golPlayerId": 1634,
-      "season": "S11",
-      "source": "season",
-      "stats": {
-        "kda": 4.6,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 58.3,
-        "games": 127
-      },
-      "ratings": {
-        "overall": 81,
-        "peak": 82,
-        "international": 81,
-        "clutch": 84,
-        "consistency": 81,
-        "leadership": 81,
-        "synergy": 83
-      }
-    },
-    "100t-2021:jojopyun": {
-      "teamId": "100t-2021",
-      "playerId": "jojopyun",
-      "golTeamId": 1127,
-      "golPlayerId": 3544,
-      "season": "S11",
-      "source": "season",
-      "stats": {
-        "kda": 2.7,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 45.8,
-        "games": 72
-      },
-      "ratings": {
-        "overall": 61,
-        "peak": 62,
-        "international": 61,
-        "clutch": 62,
-        "consistency": 61,
-        "leadership": 61,
-        "synergy": 62
-      }
-    },
-    "100t-2021:doublelift": {
-      "teamId": "100t-2021",
-      "playerId": "doublelift",
-      "golTeamId": 1127,
-      "golPlayerId": 149,
-      "season": "S11",
-      "source": "season",
-      "stats": {
-        "kda": 2.5,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 50,
-        "games": 0
-      },
-      "ratings": {
-        "overall": 59,
-        "peak": 60,
-        "international": 59,
-        "clutch": 60,
-        "consistency": 59,
-        "leadership": 59,
-        "synergy": 60
-      }
-    },
-    "100t-2021:vulcan": {
-      "teamId": "100t-2021",
-      "playerId": "vulcan",
-      "golTeamId": 1127,
-      "golPlayerId": 1301,
-      "season": "S11",
-      "source": "season",
-      "stats": {
-        "kda": 3.7,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 58.3,
-        "games": 127
-      },
-      "ratings": {
-        "overall": 72,
-        "peak": 73,
-        "international": 72,
-        "clutch": 74,
-        "consistency": 72,
-        "leadership": 76,
-        "synergy": 73
-      }
-    },
-    "dig-2021:impact": {
+    "dig-2021:aphromoo": {
       "teamId": "dig-2021",
-      "playerId": "impact",
+      "playerId": "aphromoo",
       "golTeamId": 1130,
-      "golPlayerId": 46,
+      "golPlayerId": 150,
       "season": "S11",
-      "source": "season",
+      "source": "team-roster",
       "stats": {
-        "kda": 2.9,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 55.7,
-        "games": 70
+        "kda": 7.7,
+        "killParticipation": 45.5,
+        "damagePct": 15.3,
+        "goldPct": 18,
+        "winRate": 42.4,
+        "games": 59
       },
       "ratings": {
-        "overall": 62,
-        "peak": 63,
-        "international": 62,
-        "clutch": 63,
-        "consistency": 62,
-        "leadership": 62,
-        "synergy": 63
-      }
-    },
-    "dig-2021:blaber": {
-      "teamId": "dig-2021",
-      "playerId": "blaber",
-      "golTeamId": 1130,
-      "golPlayerId": 1634,
-      "season": "S11",
-      "source": "season",
-      "stats": {
-        "kda": 4.6,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 58.3,
-        "games": 127
-      },
-      "ratings": {
-        "overall": 81,
-        "peak": 82,
-        "international": 81,
-        "clutch": 84,
-        "consistency": 81,
-        "leadership": 81,
-        "synergy": 83
-      }
-    },
-    "dig-2021:jojopyun": {
-      "teamId": "dig-2021",
-      "playerId": "jojopyun",
-      "golTeamId": 1130,
-      "golPlayerId": 3544,
-      "season": "S11",
-      "source": "season",
-      "stats": {
-        "kda": 2.7,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 45.8,
-        "games": 72
-      },
-      "ratings": {
-        "overall": 61,
-        "peak": 62,
-        "international": 61,
-        "clutch": 62,
-        "consistency": 61,
-        "leadership": 61,
-        "synergy": 62
-      }
-    },
-    "dig-2021:doublelift": {
-      "teamId": "dig-2021",
-      "playerId": "doublelift",
-      "golTeamId": 1130,
-      "golPlayerId": 149,
-      "season": "S11",
-      "source": "season",
-      "stats": {
-        "kda": 2.5,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 50,
-        "games": 0
-      },
-      "ratings": {
-        "overall": 59,
-        "peak": 60,
-        "international": 59,
-        "clutch": 60,
-        "consistency": 59,
-        "leadership": 59,
-        "synergy": 60
-      }
-    },
-    "dig-2021:vulcan": {
-      "teamId": "dig-2021",
-      "playerId": "vulcan",
-      "golTeamId": 1130,
-      "golPlayerId": 1301,
-      "season": "S11",
-      "source": "season",
-      "stats": {
-        "kda": 3.7,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 58.3,
-        "games": 127
-      },
-      "ratings": {
-        "overall": 72,
-        "peak": 73,
-        "international": 72,
-        "clutch": 74,
-        "consistency": 72,
-        "leadership": 76,
-        "synergy": 73
+        "overall": 68,
+        "peak": 71,
+        "international": 65,
+        "clutch": 82,
+        "consistency": 64,
+        "leadership": 66,
+        "synergy": 52
       }
     },
     "dk-2021:khan": {
@@ -3644,13 +3644,13 @@
         "games": 155
       },
       "ratings": {
-        "overall": 69,
-        "peak": 70,
-        "international": 69,
-        "clutch": 71,
-        "consistency": 69,
-        "leadership": 69,
-        "synergy": 70
+        "overall": 75,
+        "peak": 76,
+        "international": 80,
+        "clutch": 68,
+        "consistency": 94,
+        "leadership": 64,
+        "synergy": 76
       }
     },
     "dk-2021:canyon": {
@@ -3669,13 +3669,13 @@
         "games": 155
       },
       "ratings": {
-        "overall": 81,
-        "peak": 82,
-        "international": 81,
-        "clutch": 84,
-        "consistency": 81,
-        "leadership": 81,
-        "synergy": 83
+        "overall": 78,
+        "peak": 79,
+        "international": 83,
+        "clutch": 76,
+        "consistency": 94,
+        "leadership": 72,
+        "synergy": 84
       }
     },
     "dk-2021:showmaker": {
@@ -3694,13 +3694,13 @@
         "games": 155
       },
       "ratings": {
-        "overall": 86,
-        "peak": 89,
-        "international": 86,
-        "clutch": 89,
-        "consistency": 86,
-        "leadership": 86,
-        "synergy": 88
+        "overall": 87,
+        "peak": 88,
+        "international": 92,
+        "clutch": 80,
+        "consistency": 94,
+        "leadership": 65,
+        "synergy": 80
       }
     },
     "dk-2021:ghost": {
@@ -3719,12 +3719,12 @@
         "games": 145
       },
       "ratings": {
-        "overall": 94,
-        "peak": 97,
-        "international": 94,
-        "clutch": 96,
+        "overall": 86,
+        "peak": 89,
+        "international": 91,
+        "clutch": 90,
         "consistency": 94,
-        "leadership": 92,
+        "leadership": 67,
         "synergy": 94
       }
     },
@@ -3744,13 +3744,13 @@
         "games": 155
       },
       "ratings": {
-        "overall": 68,
-        "peak": 69,
-        "international": 68,
-        "clutch": 69,
-        "consistency": 68,
-        "leadership": 72,
-        "synergy": 69
+        "overall": 73,
+        "peak": 74,
+        "international": 78,
+        "clutch": 66,
+        "consistency": 94,
+        "leadership": 71,
+        "synergy": 78
       }
     },
     "edg-2021:flandre": {
@@ -3769,13 +3769,13 @@
         "games": 121
       },
       "ratings": {
-        "overall": 68,
-        "peak": 69,
-        "international": 68,
-        "clutch": 70,
-        "consistency": 68,
-        "leadership": 68,
-        "synergy": 69
+        "overall": 73,
+        "peak": 74,
+        "international": 77,
+        "clutch": 66,
+        "consistency": 91,
+        "leadership": 63,
+        "synergy": 70
       }
     },
     "edg-2021:jiejie": {
@@ -3794,13 +3794,13 @@
         "games": 119
       },
       "ratings": {
-        "overall": 87,
-        "peak": 88,
-        "international": 87,
-        "clutch": 90,
-        "consistency": 87,
-        "leadership": 87,
-        "synergy": 89
+        "overall": 78,
+        "peak": 79,
+        "international": 82,
+        "clutch": 82,
+        "consistency": 92,
+        "leadership": 74,
+        "synergy": 90
       }
     },
     "edg-2021:scout": {
@@ -3821,10 +3821,10 @@
       "ratings": {
         "overall": 85,
         "peak": 86,
-        "international": 85,
-        "clutch": 88,
-        "consistency": 85,
-        "leadership": 85,
+        "international": 89,
+        "clutch": 81,
+        "consistency": 91,
+        "leadership": 66,
         "synergy": 87
       }
     },
@@ -3844,13 +3844,13 @@
         "games": 121
       },
       "ratings": {
-        "overall": 94,
-        "peak": 97,
-        "international": 94,
-        "clutch": 96,
-        "consistency": 94,
-        "leadership": 92,
-        "synergy": 94
+        "overall": 87,
+        "peak": 90,
+        "international": 91,
+        "clutch": 90,
+        "consistency": 91,
+        "leadership": 67,
+        "synergy": 93
       }
     },
     "edg-2021:meiko": {
@@ -3869,138 +3869,138 @@
         "games": 121
       },
       "ratings": {
-        "overall": 94,
-        "peak": 97,
-        "international": 94,
-        "clutch": 96,
-        "consistency": 94,
-        "leadership": 92,
-        "synergy": 94
-      }
-    },
-    "fly-2021:impact": {
-      "teamId": "fly-2021",
-      "playerId": "impact",
-      "golTeamId": 1132,
-      "golPlayerId": 46,
-      "season": "S11",
-      "source": "season",
-      "stats": {
-        "kda": 2.9,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 55.7,
-        "games": 70
-      },
-      "ratings": {
-        "overall": 62,
-        "peak": 63,
-        "international": 62,
-        "clutch": 63,
-        "consistency": 62,
-        "leadership": 62,
-        "synergy": 63
-      }
-    },
-    "fly-2021:blaber": {
-      "teamId": "fly-2021",
-      "playerId": "blaber",
-      "golTeamId": 1132,
-      "golPlayerId": 1634,
-      "season": "S11",
-      "source": "season",
-      "stats": {
-        "kda": 4.6,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 58.3,
-        "games": 127
-      },
-      "ratings": {
-        "overall": 81,
-        "peak": 82,
-        "international": 81,
-        "clutch": 84,
-        "consistency": 81,
-        "leadership": 81,
+        "overall": 80,
+        "peak": 83,
+        "international": 84,
+        "clutch": 85,
+        "consistency": 91,
+        "leadership": 72,
         "synergy": 83
       }
     },
-    "fly-2021:jojopyun": {
+    "fly-2021:kumo": {
       "teamId": "fly-2021",
-      "playerId": "jojopyun",
+      "playerId": "kumo",
       "golTeamId": 1132,
-      "golPlayerId": 3544,
+      "golPlayerId": 1974,
       "season": "S11",
-      "source": "season",
+      "source": "team-roster",
+      "stats": {
+        "kda": 1.8,
+        "killParticipation": 48.5,
+        "damagePct": 19.6,
+        "goldPct": 21.4,
+        "winRate": 60,
+        "games": 55
+      },
+      "ratings": {
+        "overall": 63,
+        "peak": 64,
+        "international": 64,
+        "clutch": 53,
+        "consistency": 79,
+        "leadership": 59,
+        "synergy": 58
+      }
+    },
+    "fly-2021:josedeodo": {
+      "teamId": "fly-2021",
+      "playerId": "josedeodo",
+      "golTeamId": 1132,
+      "golPlayerId": 1364,
+      "season": "S11",
+      "source": "team-roster",
+      "stats": {
+        "kda": 3,
+        "killParticipation": 68.4,
+        "damagePct": 16.9,
+        "goldPct": 20.2,
+        "winRate": 42.3,
+        "games": 52
+      },
+      "ratings": {
+        "overall": 68,
+        "peak": 69,
+        "international": 65,
+        "clutch": 66,
+        "consistency": 63,
+        "leadership": 70,
+        "synergy": 81
+      }
+    },
+    "fly-2021:palafox": {
+      "teamId": "fly-2021",
+      "playerId": "palafox",
+      "golTeamId": 1132,
+      "golPlayerId": 1282,
+      "season": "S11",
+      "source": "team-roster",
+      "stats": {
+        "kda": 2.4,
+        "killParticipation": 58.8,
+        "damagePct": 23.7,
+        "goldPct": 22.1,
+        "winRate": 40.7,
+        "games": 54
+      },
+      "ratings": {
+        "overall": 68,
+        "peak": 69,
+        "international": 64,
+        "clutch": 60,
+        "consistency": 62,
+        "leadership": 61,
+        "synergy": 68
+      }
+    },
+    "fly-2021:tomo": {
+      "teamId": "fly-2021",
+      "playerId": "tomo",
+      "golTeamId": 1132,
+      "golPlayerId": 3060,
+      "season": "S11",
+      "source": "team-roster",
       "stats": {
         "kda": 2.7,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 45.8,
-        "games": 72
+        "killParticipation": 66.2,
+        "damagePct": 30.7,
+        "goldPct": 22.8,
+        "winRate": 56.9,
+        "games": 51
       },
       "ratings": {
-        "overall": 61,
-        "peak": 62,
-        "international": 61,
-        "clutch": 62,
-        "consistency": 61,
-        "leadership": 61,
-        "synergy": 62
+        "overall": 77,
+        "peak": 78,
+        "international": 77,
+        "clutch": 63,
+        "consistency": 76,
+        "leadership": 62,
+        "synergy": 80
       }
     },
-    "fly-2021:wildturtle": {
+    "fly-2021:diamond": {
       "teamId": "fly-2021",
-      "playerId": "wildturtle",
+      "playerId": "diamond",
       "golTeamId": 1132,
-      "golPlayerId": 139,
+      "golPlayerId": 1975,
       "season": "S11",
-      "source": "season",
+      "source": "team-roster",
       "stats": {
-        "kda": 2.8,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 26,
-        "games": 50
+        "kda": 1.6,
+        "killParticipation": 36.7,
+        "damagePct": 5.6,
+        "goldPct": 17.2,
+        "winRate": 48.2,
+        "games": 56
       },
       "ratings": {
-        "overall": 61,
-        "peak": 62,
-        "international": 61,
-        "clutch": 62,
-        "consistency": 61,
-        "leadership": 61,
-        "synergy": 62
-      }
-    },
-    "fly-2021:vulcan": {
-      "teamId": "fly-2021",
-      "playerId": "vulcan",
-      "golTeamId": 1132,
-      "golPlayerId": 1301,
-      "season": "S11",
-      "source": "season",
-      "stats": {
-        "kda": 3.7,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 58.3,
-        "games": 127
-      },
-      "ratings": {
-        "overall": 72,
-        "peak": 73,
-        "international": 72,
-        "clutch": 74,
-        "consistency": 72,
-        "leadership": 76,
-        "synergy": 73
+        "overall": 57,
+        "peak": 58,
+        "international": 55,
+        "clutch": 52,
+        "consistency": 69,
+        "leadership": 65,
+        "synergy": 52
       }
     },
     "mad-2021:armut": {
@@ -4019,13 +4019,13 @@
         "games": 92
       },
       "ratings": {
-        "overall": 60,
-        "peak": 61,
-        "international": 60,
-        "clutch": 61,
-        "consistency": 60,
-        "leadership": 60,
-        "synergy": 61
+        "overall": 73,
+        "peak": 74,
+        "international": 74,
+        "clutch": 65,
+        "consistency": 83,
+        "leadership": 67,
+        "synergy": 92
       }
     },
     "mad-2021:elyoya": {
@@ -4044,13 +4044,13 @@
         "games": 92
       },
       "ratings": {
-        "overall": 54,
-        "peak": 55,
-        "international": 54,
-        "clutch": 54,
-        "consistency": 54,
-        "leadership": 54,
-        "synergy": 54
+        "overall": 71,
+        "peak": 72,
+        "international": 72,
+        "clutch": 57,
+        "consistency": 83,
+        "leadership": 72,
+        "synergy": 79
       }
     },
     "mad-2021:humanoid": {
@@ -4069,13 +4069,13 @@
         "games": 92
       },
       "ratings": {
-        "overall": 56,
-        "peak": 57,
-        "international": 56,
-        "clutch": 57,
-        "consistency": 56,
-        "leadership": 56,
-        "synergy": 56
+        "overall": 77,
+        "peak": 78,
+        "international": 78,
+        "clutch": 63,
+        "consistency": 83,
+        "leadership": 67,
+        "synergy": 92
       }
     },
     "mad-2021:carzzy": {
@@ -4094,13 +4094,13 @@
         "games": 92
       },
       "ratings": {
-        "overall": 64,
-        "peak": 65,
-        "international": 64,
-        "clutch": 65,
-        "consistency": 64,
-        "leadership": 64,
-        "synergy": 65
+        "overall": 76,
+        "peak": 77,
+        "international": 77,
+        "clutch": 68,
+        "consistency": 83,
+        "leadership": 67,
+        "synergy": 92
       }
     },
     "mad-2021:kaiser": {
@@ -4119,13 +4119,13 @@
         "games": 92
       },
       "ratings": {
-        "overall": 90,
-        "peak": 93,
-        "international": 90,
-        "clutch": 93,
-        "consistency": 90,
-        "leadership": 92,
-        "synergy": 93
+        "overall": 81,
+        "peak": 84,
+        "international": 82,
+        "clutch": 84,
+        "consistency": 83,
+        "leadership": 74,
+        "synergy": 92
       }
     },
     "rng-2021:xiaobai": {
@@ -4144,13 +4144,13 @@
         "games": 1
       },
       "ratings": {
-        "overall": 50,
-        "peak": 51,
-        "international": 50,
-        "clutch": 50,
-        "consistency": 50,
-        "leadership": 50,
-        "synergy": 50
+        "overall": 60,
+        "peak": 61,
+        "international": 65,
+        "clutch": 52,
+        "consistency": 86,
+        "leadership": 53,
+        "synergy": 57
       }
     },
     "rng-2021:wei": {
@@ -4169,13 +4169,13 @@
         "games": 143
       },
       "ratings": {
-        "overall": 79,
-        "peak": 80,
+        "overall": 76,
+        "peak": 77,
         "international": 79,
-        "clutch": 81,
-        "consistency": 79,
-        "leadership": 79,
-        "synergy": 81
+        "clutch": 75,
+        "consistency": 90,
+        "leadership": 73,
+        "synergy": 87
       }
     },
     "rng-2021:xiaohu": {
@@ -4194,13 +4194,13 @@
         "games": 143
       },
       "ratings": {
-        "overall": 72,
-        "peak": 73,
-        "international": 72,
-        "clutch": 74,
-        "consistency": 72,
-        "leadership": 72,
-        "synergy": 74
+        "overall": 87,
+        "peak": 88,
+        "international": 90,
+        "clutch": 73,
+        "consistency": 90,
+        "leadership": 67,
+        "synergy": 90
       }
     },
     "rng-2021:gala": {
@@ -4219,13 +4219,13 @@
         "games": 143
       },
       "ratings": {
-        "overall": 50,
-        "peak": 51,
-        "international": 50,
-        "clutch": 50,
-        "consistency": 50,
-        "leadership": 50,
-        "synergy": 50
+        "overall": 71,
+        "peak": 72,
+        "international": 74,
+        "clutch": 57,
+        "consistency": 90,
+        "leadership": 65,
+        "synergy": 77
       }
     },
     "rng-2021:ming": {
@@ -4244,63 +4244,63 @@
         "games": 143
       },
       "ratings": {
-        "overall": 52,
-        "peak": 53,
-        "international": 52,
-        "clutch": 52,
-        "consistency": 52,
-        "leadership": 56,
-        "synergy": 52
+        "overall": 63,
+        "peak": 64,
+        "international": 66,
+        "clutch": 53,
+        "consistency": 90,
+        "leadership": 69,
+        "synergy": 61
       }
     },
-    "liquid-2021:impact": {
+    "liquid-2021:alphari": {
       "teamId": "liquid-2021",
-      "playerId": "impact",
+      "playerId": "alphari",
       "golTeamId": 1135,
-      "golPlayerId": 46,
+      "golPlayerId": 730,
       "season": "S11",
-      "source": "season",
+      "source": "team-roster",
       "stats": {
-        "kda": 2.9,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 55.7,
-        "games": 70
+        "kda": 4.2,
+        "killParticipation": 65.8,
+        "damagePct": 27.1,
+        "goldPct": 22.5,
+        "winRate": 59.5,
+        "games": 84
       },
       "ratings": {
-        "overall": 62,
-        "peak": 63,
-        "international": 62,
-        "clutch": 63,
-        "consistency": 62,
-        "leadership": 62,
-        "synergy": 63
+        "overall": 77,
+        "peak": 78,
+        "international": 78,
+        "clutch": 73,
+        "consistency": 82,
+        "leadership": 65,
+        "synergy": 80
       }
     },
-    "liquid-2021:blaber": {
+    "liquid-2021:santorin": {
       "teamId": "liquid-2021",
-      "playerId": "blaber",
+      "playerId": "santorin",
       "golTeamId": 1135,
-      "golPlayerId": 1634,
+      "golPlayerId": 227,
       "season": "S11",
-      "source": "season",
+      "source": "team-roster",
       "stats": {
-        "kda": 4.6,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 58.3,
-        "games": 127
+        "kda": 4.4,
+        "killParticipation": 71.4,
+        "damagePct": 15.3,
+        "goldPct": 18.9,
+        "winRate": 61.1,
+        "games": 72
       },
       "ratings": {
-        "overall": 81,
-        "peak": 82,
-        "international": 81,
-        "clutch": 84,
-        "consistency": 81,
-        "leadership": 81,
-        "synergy": 83
+        "overall": 74,
+        "peak": 75,
+        "international": 76,
+        "clutch": 76,
+        "consistency": 82,
+        "leadership": 72,
+        "synergy": 87
       }
     },
     "liquid-2021:jensen": {
@@ -4319,38 +4319,38 @@
         "games": 99
       },
       "ratings": {
-        "overall": 82,
-        "peak": 83,
-        "international": 82,
-        "clutch": 85,
+        "overall": 83,
+        "peak": 84,
+        "international": 84,
+        "clutch": 79,
         "consistency": 82,
-        "leadership": 82,
-        "synergy": 84
+        "leadership": 66,
+        "synergy": 86
       }
     },
-    "liquid-2021:doublelift": {
+    "liquid-2021:tactical": {
       "teamId": "liquid-2021",
-      "playerId": "doublelift",
+      "playerId": "tactical",
       "golTeamId": 1135,
-      "golPlayerId": 149,
+      "golPlayerId": 1979,
       "season": "S11",
-      "source": "season",
+      "source": "team-roster",
       "stats": {
-        "kda": 2.5,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 50,
-        "games": 0
+        "kda": 4.3,
+        "killParticipation": 71.1,
+        "damagePct": 26.9,
+        "goldPct": 17.8,
+        "winRate": 59.6,
+        "games": 99
       },
       "ratings": {
-        "overall": 59,
-        "peak": 60,
-        "international": 59,
-        "clutch": 60,
-        "consistency": 59,
-        "leadership": 59,
-        "synergy": 60
+        "overall": 80,
+        "peak": 81,
+        "international": 81,
+        "clutch": 75,
+        "consistency": 82,
+        "leadership": 66,
+        "synergy": 87
       }
     },
     "liquid-2021:corejj": {
@@ -4369,113 +4369,113 @@
         "games": 99
       },
       "ratings": {
-        "overall": 96,
-        "peak": 98,
-        "international": 96,
-        "clutch": 96,
-        "consistency": 96,
-        "leadership": 92,
-        "synergy": 94
-      }
-    },
-    "vit-2021:armut": {
-      "teamId": "vit-2021",
-      "playerId": "armut",
-      "golTeamId": 1156,
-      "golPlayerId": 1308,
-      "season": "S11",
-      "source": "season",
-      "stats": {
-        "kda": 3.3,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 60.9,
-        "games": 92
-      },
-      "ratings": {
-        "overall": 66,
-        "peak": 67,
-        "international": 66,
-        "clutch": 67,
-        "consistency": 66,
-        "leadership": 66,
-        "synergy": 67
-      }
-    },
-    "vit-2021:elyoya": {
-      "teamId": "vit-2021",
-      "playerId": "elyoya",
-      "golTeamId": 1156,
-      "golPlayerId": 2719,
-      "season": "S11",
-      "source": "season",
-      "stats": {
-        "kda": 4.6,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 60.9,
-        "games": 92
-      },
-      "ratings": {
-        "overall": 81,
-        "peak": 82,
-        "international": 81,
+        "overall": 74,
+        "peak": 77,
+        "international": 75,
         "clutch": 84,
-        "consistency": 81,
-        "leadership": 81,
-        "synergy": 83
+        "consistency": 82,
+        "leadership": 70,
+        "synergy": 65
       }
     },
-    "vit-2021:perkz": {
+    "vit-2021:szygenda": {
       "teamId": "vit-2021",
-      "playerId": "perkz",
+      "playerId": "szygenda",
       "golTeamId": 1156,
-      "golPlayerId": 555,
+      "golPlayerId": 2130,
       "season": "S11",
-      "source": "season",
+      "source": "team-roster",
       "stats": {
-        "kda": 3.8,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 58.3,
-        "games": 127
+        "kda": 2.7,
+        "killParticipation": 57.3,
+        "damagePct": 22.1,
+        "goldPct": 20.4,
+        "winRate": 54.9,
+        "games": 51
+      },
+      "ratings": {
+        "overall": 67,
+        "peak": 68,
+        "international": 67,
+        "clutch": 61,
+        "consistency": 74,
+        "leadership": 60,
+        "synergy": 69
+      }
+    },
+    "vit-2021:selfmade": {
+      "teamId": "vit-2021",
+      "playerId": "selfmade",
+      "golTeamId": 1156,
+      "golPlayerId": 1465,
+      "season": "S11",
+      "source": "team-roster",
+      "stats": {
+        "kda": 3.2,
+        "killParticipation": 71.2,
+        "damagePct": 21.7,
+        "goldPct": 20.1,
+        "winRate": 45.8,
+        "games": 48
       },
       "ratings": {
         "overall": 71,
         "peak": 72,
-        "international": 71,
-        "clutch": 73,
-        "consistency": 71,
-        "leadership": 71,
-        "synergy": 72
+        "international": 69,
+        "clutch": 68,
+        "consistency": 65,
+        "leadership": 70,
+        "synergy": 85
       }
     },
-    "vit-2021:carzzy": {
+    "vit-2021:lider": {
       "teamId": "vit-2021",
-      "playerId": "carzzy",
+      "playerId": "lider",
       "golTeamId": 1156,
-      "golPlayerId": 1584,
+      "golPlayerId": 2052,
       "season": "S11",
-      "source": "season",
+      "source": "team-roster",
       "stats": {
-        "kda": 3.6,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 60.9,
-        "games": 92
+        "kda": 2.8,
+        "killParticipation": 63.9,
+        "damagePct": 24.2,
+        "goldPct": 23.6,
+        "winRate": 55.9,
+        "games": 59
       },
       "ratings": {
-        "overall": 69,
-        "peak": 70,
-        "international": 69,
-        "clutch": 71,
-        "consistency": 69,
-        "leadership": 69,
-        "synergy": 70
+        "overall": 74,
+        "peak": 75,
+        "international": 74,
+        "clutch": 63,
+        "consistency": 76,
+        "leadership": 62,
+        "synergy": 77
+      }
+    },
+    "vit-2021:crownie": {
+      "teamId": "vit-2021",
+      "playerId": "crownie",
+      "golTeamId": 1156,
+      "golPlayerId": 1209,
+      "season": "S11",
+      "source": "team-roster",
+      "stats": {
+        "kda": 4.6,
+        "killParticipation": 64.7,
+        "damagePct": 27.7,
+        "goldPct": 24.4,
+        "winRate": 41.2,
+        "games": 34
+      },
+      "ratings": {
+        "overall": 78,
+        "peak": 79,
+        "international": 75,
+        "clutch": 75,
+        "consistency": 59,
+        "leadership": 60,
+        "synergy": 76
       }
     },
     "vit-2021:labrov": {
@@ -4494,138 +4494,138 @@
         "games": 41
       },
       "ratings": {
-        "overall": 59,
-        "peak": 60,
-        "international": 59,
-        "clutch": 60,
-        "consistency": 59,
-        "leadership": 63,
-        "synergy": 59
+        "overall": 66,
+        "peak": 67,
+        "international": 61,
+        "clutch": 62,
+        "consistency": 56,
+        "leadership": 69,
+        "synergy": 84
       }
     },
-    "astralis-2022:brokenblade": {
+    "astralis-2022:vizicsacsi": {
       "teamId": "astralis-2022",
-      "playerId": "brokenblade",
+      "playerId": "vizicsacsi",
       "golTeamId": 1460,
-      "golPlayerId": 1310,
+      "golPlayerId": 233,
       "season": "S12",
-      "source": "season",
+      "source": "team-roster",
+      "stats": {
+        "kda": 2.5,
+        "killParticipation": 60.5,
+        "damagePct": 20.9,
+        "goldPct": 20.8,
+        "winRate": 40,
+        "games": 40
+      },
+      "ratings": {
+        "overall": 65,
+        "peak": 66,
+        "international": 61,
+        "clutch": 61,
+        "consistency": 59,
+        "leadership": 60,
+        "synergy": 70
+      }
+    },
+    "astralis-2022:xerxe": {
+      "teamId": "astralis-2022",
+      "playerId": "xerxe",
+      "golTeamId": 1460,
+      "golPlayerId": 809,
+      "season": "S12",
+      "source": "team-roster",
+      "stats": {
+        "kda": 4.4,
+        "killParticipation": 76.4,
+        "damagePct": 17.6,
+        "goldPct": 18.8,
+        "winRate": 30.8,
+        "games": 39
+      },
+      "ratings": {
+        "overall": 71,
+        "peak": 72,
+        "international": 66,
+        "clutch": 77,
+        "consistency": 54,
+        "leadership": 69,
+        "synergy": 88
+      }
+    },
+    "astralis-2022:dajor": {
+      "teamId": "astralis-2022",
+      "playerId": "dajor",
+      "golTeamId": 1460,
+      "golPlayerId": 4107,
+      "season": "S12",
+      "source": "team-roster",
+      "stats": {
+        "kda": 2.6,
+        "killParticipation": 67,
+        "damagePct": 25.7,
+        "goldPct": 22.2,
+        "winRate": 27.8,
+        "games": 36
+      },
+      "ratings": {
+        "overall": 71,
+        "peak": 72,
+        "international": 66,
+        "clutch": 63,
+        "consistency": 54,
+        "leadership": 61,
+        "synergy": 78
+      }
+    },
+    "astralis-2022:kobbe": {
+      "teamId": "astralis-2022",
+      "playerId": "kobbe",
+      "golTeamId": 1460,
+      "golPlayerId": 598,
+      "season": "S12",
+      "source": "team-roster",
       "stats": {
         "kda": 3.9,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 62.9,
-        "games": 89
+        "killParticipation": 67.2,
+        "damagePct": 27.5,
+        "goldPct": 25,
+        "winRate": 27.8,
+        "games": 36
       },
       "ratings": {
-        "overall": 72,
-        "peak": 73,
-        "international": 72,
-        "clutch": 74,
-        "consistency": 72,
-        "leadership": 72,
-        "synergy": 74
+        "overall": 76,
+        "peak": 77,
+        "international": 71,
+        "clutch": 71,
+        "consistency": 54,
+        "leadership": 61,
+        "synergy": 78
       }
     },
-    "astralis-2022:elyoya": {
+    "astralis-2022:execute": {
       "teamId": "astralis-2022",
-      "playerId": "elyoya",
+      "playerId": "execute",
       "golTeamId": 1460,
-      "golPlayerId": 2719,
+      "golPlayerId": 2657,
       "season": "S12",
-      "source": "season",
+      "source": "team-roster",
       "stats": {
-        "kda": 4,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 50.9,
-        "games": 57
+        "kda": 2.8,
+        "killParticipation": 74.9,
+        "damagePct": 8.9,
+        "goldPct": 13.1,
+        "winRate": 38.9,
+        "games": 18
       },
       "ratings": {
-        "overall": 75,
-        "peak": 76,
-        "international": 75,
-        "clutch": 77,
-        "consistency": 75,
-        "leadership": 75,
-        "synergy": 77
-      }
-    },
-    "astralis-2022:humanoid": {
-      "teamId": "astralis-2022",
-      "playerId": "humanoid",
-      "golTeamId": 1460,
-      "golPlayerId": 1716,
-      "season": "S12",
-      "source": "season",
-      "stats": {
-        "kda": 3.2,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 57.9,
-        "games": 76
-      },
-      "ratings": {
-        "overall": 65,
-        "peak": 66,
-        "international": 65,
+        "overall": 68,
+        "peak": 69,
+        "international": 64,
         "clutch": 66,
-        "consistency": 65,
-        "leadership": 65,
-        "synergy": 66
-      }
-    },
-    "astralis-2022:carzzy": {
-      "teamId": "astralis-2022",
-      "playerId": "carzzy",
-      "golTeamId": 1460,
-      "golPlayerId": 1584,
-      "season": "S12",
-      "source": "season",
-      "stats": {
-        "kda": 3.2,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 46.7,
-        "games": 45
-      },
-      "ratings": {
-        "overall": 65,
-        "peak": 66,
-        "international": 65,
-        "clutch": 66,
-        "consistency": 65,
-        "leadership": 65,
-        "synergy": 66
-      }
-    },
-    "astralis-2022:kaiser": {
-      "teamId": "astralis-2022",
-      "playerId": "kaiser",
-      "golTeamId": 1460,
-      "golPlayerId": 2704,
-      "season": "S12",
-      "source": "season",
-      "stats": {
-        "kda": 3.5,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 50.9,
-        "games": 57
-      },
-      "ratings": {
-        "overall": 70,
-        "peak": 71,
-        "international": 70,
-        "clutch": 72,
-        "consistency": 70,
-        "leadership": 74,
-        "synergy": 71
+        "consistency": 55,
+        "leadership": 67,
+        "synergy": 88
       }
     },
     "drx-2022:kingen": {
@@ -4644,13 +4644,13 @@
         "games": 130
       },
       "ratings": {
-        "overall": 63,
-        "peak": 64,
-        "international": 63,
-        "clutch": 64,
-        "consistency": 63,
-        "leadership": 63,
-        "synergy": 64
+        "overall": 70,
+        "peak": 71,
+        "international": 70,
+        "clutch": 63,
+        "consistency": 78,
+        "leadership": 64,
+        "synergy": 70
       }
     },
     "drx-2022:pyosik": {
@@ -4669,13 +4669,13 @@
         "games": 118
       },
       "ratings": {
-        "overall": 69,
-        "peak": 70,
-        "international": 69,
-        "clutch": 71,
-        "consistency": 69,
-        "leadership": 69,
-        "synergy": 70
+        "overall": 70,
+        "peak": 71,
+        "international": 70,
+        "clutch": 69,
+        "consistency": 77,
+        "leadership": 73,
+        "synergy": 84
       }
     },
     "drx-2022:zeka": {
@@ -4694,13 +4694,13 @@
         "games": 130
       },
       "ratings": {
-        "overall": 77,
-        "peak": 78,
-        "international": 77,
-        "clutch": 79,
-        "consistency": 77,
-        "leadership": 77,
-        "synergy": 79
+        "overall": 80,
+        "peak": 81,
+        "international": 80,
+        "clutch": 74,
+        "consistency": 78,
+        "leadership": 65,
+        "synergy": 80
       }
     },
     "drx-2022:deft": {
@@ -4719,13 +4719,13 @@
         "games": 130
       },
       "ratings": {
-        "overall": 67,
-        "peak": 68,
-        "international": 67,
-        "clutch": 69,
-        "consistency": 67,
+        "overall": 76,
+        "peak": 77,
+        "international": 76,
+        "clutch": 70,
+        "consistency": 78,
         "leadership": 67,
-        "synergy": 68
+        "synergy": 91
       }
     },
     "drx-2022:beryl": {
@@ -4744,13 +4744,13 @@
         "games": 130
       },
       "ratings": {
-        "overall": 60,
-        "peak": 61,
-        "international": 60,
-        "clutch": 61,
-        "consistency": 60,
-        "leadership": 64,
-        "synergy": 61
+        "overall": 73,
+        "peak": 74,
+        "international": 73,
+        "clutch": 64,
+        "consistency": 78,
+        "leadership": 74,
+        "synergy": 91
       }
     },
     "lcs-2022-eg:impact": {
@@ -4769,38 +4769,38 @@
         "games": 123
       },
       "ratings": {
-        "overall": 66,
-        "peak": 67,
-        "international": 66,
-        "clutch": 67,
-        "consistency": 66,
-        "leadership": 66,
-        "synergy": 67
+        "overall": 72,
+        "peak": 73,
+        "international": 74,
+        "clutch": 65,
+        "consistency": 83,
+        "leadership": 64,
+        "synergy": 70
       }
     },
-    "lcs-2022-eg:blaber": {
+    "lcs-2022-eg:inspired": {
       "teamId": "lcs-2022-eg",
-      "playerId": "blaber",
+      "playerId": "inspired",
       "golTeamId": 1444,
-      "golPlayerId": 1634,
+      "golPlayerId": 1501,
       "season": "S12",
-      "source": "season",
+      "source": "team-roster",
       "stats": {
-        "kda": 3.5,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 57.7,
-        "games": 78
+        "kda": 6,
+        "killParticipation": 70.5,
+        "damagePct": 14.6,
+        "goldPct": 19.2,
+        "winRate": 61,
+        "games": 123
       },
       "ratings": {
-        "overall": 70,
-        "peak": 71,
-        "international": 70,
-        "clutch": 72,
-        "consistency": 70,
-        "leadership": 70,
-        "synergy": 71
+        "overall": 78,
+        "peak": 81,
+        "international": 80,
+        "clutch": 86,
+        "consistency": 83,
+        "leadership": 73,
+        "synergy": 86
       }
     },
     "lcs-2022-eg:jojopyun": {
@@ -4819,38 +4819,38 @@
         "games": 123
       },
       "ratings": {
-        "overall": 70,
-        "peak": 71,
-        "international": 70,
-        "clutch": 72,
-        "consistency": 70,
-        "leadership": 70,
-        "synergy": 71
+        "overall": 78,
+        "peak": 79,
+        "international": 80,
+        "clutch": 70,
+        "consistency": 83,
+        "leadership": 65,
+        "synergy": 80
       }
     },
-    "lcs-2022-eg:wildturtle": {
+    "lcs-2022-eg:kaori": {
       "teamId": "lcs-2022-eg",
-      "playerId": "wildturtle",
+      "playerId": "kaori",
       "golTeamId": 1444,
-      "golPlayerId": 139,
+      "golPlayerId": 2242,
       "season": "S12",
-      "source": "season",
+      "source": "team-roster",
       "stats": {
-        "kda": 2.9,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 43.6,
-        "games": 39
+        "kda": 3.9,
+        "killParticipation": 62.5,
+        "damagePct": 27.3,
+        "goldPct": 25.4,
+        "winRate": 43.1,
+        "games": 109
       },
       "ratings": {
-        "overall": 62,
-        "peak": 63,
-        "international": 62,
-        "clutch": 63,
-        "consistency": 62,
-        "leadership": 62,
-        "synergy": 63
+        "overall": 78,
+        "peak": 79,
+        "international": 75,
+        "clutch": 70,
+        "consistency": 67,
+        "leadership": 65,
+        "synergy": 73
       }
     },
     "lcs-2022-eg:vulcan": {
@@ -4869,13 +4869,13 @@
         "games": 123
       },
       "ratings": {
-        "overall": 96,
-        "peak": 98,
-        "international": 96,
-        "clutch": 96,
-        "consistency": 96,
-        "leadership": 92,
-        "synergy": 94
+        "overall": 78,
+        "peak": 81,
+        "international": 80,
+        "clutch": 87,
+        "consistency": 83,
+        "leadership": 71,
+        "synergy": 75
       }
     },
     "g2-2022:wunder": {
@@ -4894,13 +4894,13 @@
         "games": 76
       },
       "ratings": {
-        "overall": 58,
-        "peak": 59,
-        "international": 58,
-        "clutch": 59,
-        "consistency": 58,
-        "leadership": 58,
-        "synergy": 59
+        "overall": 68,
+        "peak": 69,
+        "international": 69,
+        "clutch": 60,
+        "consistency": 80,
+        "leadership": 64,
+        "synergy": 72
       }
     },
     "g2-2022:jankos": {
@@ -4919,13 +4919,13 @@
         "games": 89
       },
       "ratings": {
-        "overall": 70,
-        "peak": 71,
-        "international": 70,
-        "clutch": 72,
-        "consistency": 70,
-        "leadership": 70,
-        "synergy": 71
+        "overall": 72,
+        "peak": 73,
+        "international": 74,
+        "clutch": 69,
+        "consistency": 85,
+        "leadership": 73,
+        "synergy": 84
       }
     },
     "g2-2022:caps": {
@@ -4944,13 +4944,13 @@
         "games": 89
       },
       "ratings": {
-        "overall": 71,
-        "peak": 72,
-        "international": 71,
-        "clutch": 73,
-        "consistency": 71,
-        "leadership": 71,
-        "synergy": 72
+        "overall": 80,
+        "peak": 81,
+        "international": 82,
+        "clutch": 71,
+        "consistency": 85,
+        "leadership": 66,
+        "synergy": 83
       }
     },
     "g2-2022:hans-sama": {
@@ -4969,13 +4969,13 @@
         "games": 79
       },
       "ratings": {
-        "overall": 83,
-        "peak": 84,
-        "international": 83,
-        "clutch": 86,
-        "consistency": 83,
-        "leadership": 83,
-        "synergy": 85
+        "overall": 77,
+        "peak": 78,
+        "international": 79,
+        "clutch": 77,
+        "consistency": 87,
+        "leadership": 64,
+        "synergy": 73
       }
     },
     "g2-2022:mikyx": {
@@ -4994,13 +4994,13 @@
         "games": 42
       },
       "ratings": {
-        "overall": 61,
-        "peak": 62,
-        "international": 61,
-        "clutch": 62,
-        "consistency": 61,
-        "leadership": 65,
-        "synergy": 62
+        "overall": 65,
+        "peak": 66,
+        "international": 64,
+        "clutch": 60,
+        "consistency": 68,
+        "leadership": 67,
+        "synergy": 71
       }
     },
     "hle-2022:kingen": {
@@ -5019,13 +5019,13 @@
         "games": 130
       },
       "ratings": {
-        "overall": 63,
-        "peak": 64,
-        "international": 63,
+        "overall": 69,
+        "peak": 70,
+        "international": 69,
         "clutch": 64,
-        "consistency": 63,
-        "leadership": 63,
-        "synergy": 64
+        "consistency": 78,
+        "leadership": 64,
+        "synergy": 72
       }
     },
     "hle-2022:peanut": {
@@ -5044,13 +5044,13 @@
         "games": 107
       },
       "ratings": {
-        "overall": 86,
-        "peak": 87,
-        "international": 86,
-        "clutch": 89,
-        "consistency": 86,
-        "leadership": 86,
-        "synergy": 88
+        "overall": 77,
+        "peak": 78,
+        "international": 82,
+        "clutch": 78,
+        "consistency": 94,
+        "leadership": 71,
+        "synergy": 75
       }
     },
     "hle-2022:chovy": {
@@ -5069,13 +5069,13 @@
         "games": 106
       },
       "ratings": {
-        "overall": 94,
-        "peak": 97,
-        "international": 94,
-        "clutch": 96,
+        "overall": 82,
+        "peak": 85,
+        "international": 87,
+        "clutch": 86,
         "consistency": 94,
-        "leadership": 92,
-        "synergy": 94
+        "leadership": 64,
+        "synergy": 75
       }
     },
     "hle-2022:deft": {
@@ -5097,10 +5097,10 @@
         "overall": 73,
         "peak": 74,
         "international": 73,
-        "clutch": 75,
-        "consistency": 73,
-        "leadership": 73,
-        "synergy": 75
+        "clutch": 70,
+        "consistency": 78,
+        "leadership": 64,
+        "synergy": 72
       }
     },
     "hle-2022:delight": {
@@ -5119,13 +5119,13 @@
         "games": 87
       },
       "ratings": {
-        "overall": 61,
-        "peak": 62,
-        "international": 61,
-        "clutch": 62,
-        "consistency": 61,
-        "leadership": 65,
-        "synergy": 62
+        "overall": 65,
+        "peak": 66,
+        "international": 60,
+        "clutch": 60,
+        "consistency": 62,
+        "leadership": 71,
+        "synergy": 69
       }
     },
     "rng-2022:bin": {
@@ -5144,13 +5144,13 @@
         "games": 126
       },
       "ratings": {
-        "overall": 66,
-        "peak": 67,
-        "international": 66,
-        "clutch": 67,
-        "consistency": 66,
-        "leadership": 66,
-        "synergy": 67
+        "overall": 69,
+        "peak": 70,
+        "international": 70,
+        "clutch": 63,
+        "consistency": 81,
+        "leadership": 62,
+        "synergy": 61
       }
     },
     "rng-2022:wei": {
@@ -5169,13 +5169,13 @@
         "games": 156
       },
       "ratings": {
-        "overall": 76,
-        "peak": 77,
-        "international": 76,
-        "clutch": 78,
-        "consistency": 76,
-        "leadership": 76,
-        "synergy": 78
+        "overall": 72,
+        "peak": 73,
+        "international": 74,
+        "clutch": 72,
+        "consistency": 87,
+        "leadership": 72,
+        "synergy": 80
       }
     },
     "rng-2022:xiaohu": {
@@ -5194,13 +5194,13 @@
         "games": 156
       },
       "ratings": {
-        "overall": 82,
-        "peak": 83,
-        "international": 82,
-        "clutch": 85,
-        "consistency": 82,
-        "leadership": 82,
-        "synergy": 84
+        "overall": 84,
+        "peak": 85,
+        "international": 86,
+        "clutch": 78,
+        "consistency": 87,
+        "leadership": 66,
+        "synergy": 85
       }
     },
     "rng-2022:gala": {
@@ -5219,13 +5219,13 @@
         "games": 156
       },
       "ratings": {
-        "overall": 68,
-        "peak": 69,
-        "international": 68,
-        "clutch": 70,
-        "consistency": 68,
-        "leadership": 68,
-        "synergy": 69
+        "overall": 78,
+        "peak": 79,
+        "international": 80,
+        "clutch": 71,
+        "consistency": 87,
+        "leadership": 67,
+        "synergy": 92
       }
     },
     "rng-2022:ming": {
@@ -5244,138 +5244,138 @@
         "games": 153
       },
       "ratings": {
-        "overall": 62,
-        "peak": 63,
-        "international": 62,
+        "overall": 71,
+        "peak": 72,
+        "international": 74,
         "clutch": 63,
-        "consistency": 62,
-        "leadership": 66,
-        "synergy": 63
+        "consistency": 88,
+        "leadership": 72,
+        "synergy": 81
       }
     },
-    "sk-2022:brokenblade": {
+    "sk-2022:jenax": {
       "teamId": "sk-2022",
-      "playerId": "brokenblade",
+      "playerId": "jenax",
       "golTeamId": 1467,
-      "golPlayerId": 1310,
+      "golPlayerId": 1817,
       "season": "S12",
-      "source": "season",
+      "source": "team-roster",
       "stats": {
-        "kda": 3.9,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 62.9,
-        "games": 89
+        "kda": 2.7,
+        "killParticipation": 62.8,
+        "damagePct": 26.2,
+        "goldPct": 23.2,
+        "winRate": 38.9,
+        "games": 36
       },
       "ratings": {
-        "overall": 72,
-        "peak": 73,
-        "international": 72,
-        "clutch": 74,
-        "consistency": 72,
-        "leadership": 72,
+        "overall": 68,
+        "peak": 69,
+        "international": 64,
+        "clutch": 62,
+        "consistency": 57,
+        "leadership": 60,
+        "synergy": 73
+      }
+    },
+    "sk-2022:gilius": {
+      "teamId": "sk-2022",
+      "playerId": "gilius",
+      "golTeamId": 1467,
+      "golPlayerId": 214,
+      "season": "S12",
+      "source": "team-roster",
+      "stats": {
+        "kda": 2,
+        "killParticipation": 63.8,
+        "damagePct": 12.6,
+        "goldPct": 17.4,
+        "winRate": 38.9,
+        "games": 36
+      },
+      "ratings": {
+        "overall": 61,
+        "peak": 62,
+        "international": 57,
+        "clutch": 58,
+        "consistency": 57,
+        "leadership": 67,
         "synergy": 74
       }
     },
-    "sk-2022:elyoya": {
+    "sk-2022:sertuss": {
       "teamId": "sk-2022",
-      "playerId": "elyoya",
+      "playerId": "sertuss",
       "golTeamId": 1467,
-      "golPlayerId": 2719,
+      "golPlayerId": 1620,
       "season": "S12",
-      "source": "season",
+      "source": "team-roster",
       "stats": {
-        "kda": 4,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 50.9,
-        "games": 57
+        "kda": 3.4,
+        "killParticipation": 69.6,
+        "damagePct": 27,
+        "goldPct": 22.7,
+        "winRate": 38.9,
+        "games": 36
       },
       "ratings": {
         "overall": 75,
         "peak": 76,
-        "international": 75,
-        "clutch": 77,
-        "consistency": 75,
-        "leadership": 75,
+        "international": 71,
+        "clutch": 69,
+        "consistency": 57,
+        "leadership": 61,
+        "synergy": 82
+      }
+    },
+    "sk-2022:jezu": {
+      "teamId": "sk-2022",
+      "playerId": "jezu",
+      "golTeamId": 1467,
+      "golPlayerId": 2678,
+      "season": "S12",
+      "source": "team-roster",
+      "stats": {
+        "kda": 4,
+        "killParticipation": 65.6,
+        "damagePct": 25.7,
+        "goldPct": 24,
+        "winRate": 41.2,
+        "games": 34
+      },
+      "ratings": {
+        "overall": 75,
+        "peak": 76,
+        "international": 72,
+        "clutch": 72,
+        "consistency": 59,
+        "leadership": 60,
         "synergy": 77
       }
     },
-    "sk-2022:humanoid": {
+    "sk-2022:treatz": {
       "teamId": "sk-2022",
-      "playerId": "humanoid",
+      "playerId": "treatz",
       "golTeamId": 1467,
-      "golPlayerId": 1716,
+      "golPlayerId": 1496,
       "season": "S12",
-      "source": "season",
+      "source": "team-roster",
       "stats": {
-        "kda": 3.2,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 57.9,
-        "games": 76
+        "kda": 2.7,
+        "killParticipation": 69.4,
+        "damagePct": 8.6,
+        "goldPct": 13,
+        "winRate": 38.9,
+        "games": 36
       },
       "ratings": {
-        "overall": 65,
-        "peak": 66,
-        "international": 65,
-        "clutch": 66,
-        "consistency": 65,
-        "leadership": 65,
-        "synergy": 66
-      }
-    },
-    "sk-2022:carzzy": {
-      "teamId": "sk-2022",
-      "playerId": "carzzy",
-      "golTeamId": 1467,
-      "golPlayerId": 1584,
-      "season": "S12",
-      "source": "season",
-      "stats": {
-        "kda": 3.2,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 46.7,
-        "games": 45
-      },
-      "ratings": {
-        "overall": 65,
-        "peak": 66,
-        "international": 65,
-        "clutch": 66,
-        "consistency": 65,
-        "leadership": 65,
-        "synergy": 66
-      }
-    },
-    "sk-2022:labrov": {
-      "teamId": "sk-2022",
-      "playerId": "labrov",
-      "golTeamId": 1467,
-      "golPlayerId": 2887,
-      "season": "S12",
-      "source": "season",
-      "stats": {
-        "kda": 2.9,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 46.7,
-        "games": 45
-      },
-      "ratings": {
-        "overall": 64,
-        "peak": 65,
-        "international": 64,
-        "clutch": 65,
-        "consistency": 64,
+        "overall": 66,
+        "peak": 67,
+        "international": 62,
+        "clutch": 64,
+        "consistency": 57,
         "leadership": 68,
-        "synergy": 65
+        "synergy": 81
       }
     },
     "blg-2023:bin": {
@@ -5394,13 +5394,13 @@
         "games": 160
       },
       "ratings": {
-        "overall": 94,
-        "peak": 97,
-        "international": 94,
-        "clutch": 96,
-        "consistency": 94,
-        "leadership": 92,
-        "synergy": 94
+        "overall": 83,
+        "peak": 86,
+        "international": 85,
+        "clutch": 87,
+        "consistency": 85,
+        "leadership": 65,
+        "synergy": 78
       }
     },
     "blg-2023:xun": {
@@ -5419,13 +5419,13 @@
         "games": 160
       },
       "ratings": {
-        "overall": 75,
-        "peak": 76,
-        "international": 75,
-        "clutch": 77,
-        "consistency": 75,
-        "leadership": 75,
-        "synergy": 77
+        "overall": 74,
+        "peak": 75,
+        "international": 76,
+        "clutch": 73,
+        "consistency": 85,
+        "leadership": 73,
+        "synergy": 87
       }
     },
     "blg-2023:knight": {
@@ -5444,13 +5444,13 @@
         "games": 124
       },
       "ratings": {
-        "overall": 86,
-        "peak": 89,
-        "international": 86,
-        "clutch": 89,
-        "consistency": 86,
-        "leadership": 86,
-        "synergy": 88
+        "overall": 79,
+        "peak": 80,
+        "international": 84,
+        "clutch": 79,
+        "consistency": 94,
+        "leadership": 64,
+        "synergy": 75
       }
     },
     "blg-2023:elk": {
@@ -5469,13 +5469,13 @@
         "games": 160
       },
       "ratings": {
-        "overall": 94,
-        "peak": 97,
-        "international": 94,
-        "clutch": 96,
-        "consistency": 94,
-        "leadership": 92,
-        "synergy": 94
+        "overall": 87,
+        "peak": 90,
+        "international": 89,
+        "clutch": 90,
+        "consistency": 85,
+        "leadership": 67,
+        "synergy": 92
       }
     },
     "blg-2023:on": {
@@ -5494,13 +5494,13 @@
         "games": 160
       },
       "ratings": {
-        "overall": 73,
-        "peak": 74,
-        "international": 73,
-        "clutch": 75,
-        "consistency": 73,
-        "leadership": 77,
-        "synergy": 74
+        "overall": 78,
+        "peak": 79,
+        "international": 80,
+        "clutch": 73,
+        "consistency": 85,
+        "leadership": 74,
+        "synergy": 92
       }
     },
     "jdg-2023:369": {
@@ -5519,13 +5519,13 @@
         "games": 125
       },
       "ratings": {
-        "overall": 74,
-        "peak": 75,
-        "international": 74,
-        "clutch": 76,
-        "consistency": 74,
-        "leadership": 74,
-        "synergy": 76
+        "overall": 73,
+        "peak": 74,
+        "international": 78,
+        "clutch": 69,
+        "consistency": 94,
+        "leadership": 63,
+        "synergy": 69
       }
     },
     "jdg-2023:kanavi": {
@@ -5544,13 +5544,13 @@
         "games": 125
       },
       "ratings": {
-        "overall": 83,
-        "peak": 84,
-        "international": 83,
-        "clutch": 86,
-        "consistency": 83,
-        "leadership": 83,
-        "synergy": 85
+        "overall": 79,
+        "peak": 80,
+        "international": 84,
+        "clutch": 78,
+        "consistency": 94,
+        "leadership": 73,
+        "synergy": 90
       }
     },
     "jdg-2023:knight": {
@@ -5569,13 +5569,13 @@
         "games": 124
       },
       "ratings": {
-        "overall": 86,
-        "peak": 89,
-        "international": 86,
-        "clutch": 89,
-        "consistency": 86,
-        "leadership": 86,
-        "synergy": 88
+        "overall": 85,
+        "peak": 86,
+        "international": 90,
+        "clutch": 81,
+        "consistency": 94,
+        "leadership": 65,
+        "synergy": 84
       }
     },
     "jdg-2023:ruler": {
@@ -5594,13 +5594,13 @@
         "games": 125
       },
       "ratings": {
-        "overall": 94,
-        "peak": 97,
+        "overall": 89,
+        "peak": 92,
         "international": 94,
-        "clutch": 96,
+        "clutch": 88,
         "consistency": 94,
-        "leadership": 92,
-        "synergy": 94
+        "leadership": 65,
+        "synergy": 83
       }
     },
     "jdg-2023:missing": {
@@ -5619,13 +5619,13 @@
         "games": 125
       },
       "ratings": {
-        "overall": 84,
-        "peak": 85,
-        "international": 84,
-        "clutch": 87,
-        "consistency": 84,
-        "leadership": 88,
-        "synergy": 86
+        "overall": 80,
+        "peak": 81,
+        "international": 85,
+        "clutch": 79,
+        "consistency": 94,
+        "leadership": 74,
+        "synergy": 93
       }
     },
     "t1-2023:zeus": {
@@ -5644,13 +5644,13 @@
         "games": 152
       },
       "ratings": {
-        "overall": 65,
-        "peak": 66,
-        "international": 65,
-        "clutch": 66,
-        "consistency": 65,
-        "leadership": 65,
-        "synergy": 66
+        "overall": 71,
+        "peak": 72,
+        "international": 73,
+        "clutch": 64,
+        "consistency": 85,
+        "leadership": 63,
+        "synergy": 69
       }
     },
     "t1-2023:oner": {
@@ -5669,13 +5669,13 @@
         "games": 152
       },
       "ratings": {
-        "overall": 74,
-        "peak": 75,
-        "international": 74,
-        "clutch": 76,
-        "consistency": 74,
+        "overall": 75,
+        "peak": 76,
+        "international": 77,
+        "clutch": 73,
+        "consistency": 85,
         "leadership": 74,
-        "synergy": 76
+        "synergy": 92
       }
     },
     "t1-2023:faker": {
@@ -5694,13 +5694,13 @@
         "games": 134
       },
       "ratings": {
-        "overall": 68,
-        "peak": 69,
-        "international": 68,
-        "clutch": 70,
-        "consistency": 68,
-        "leadership": 68,
-        "synergy": 69
+        "overall": 77,
+        "peak": 78,
+        "international": 80,
+        "clutch": 68,
+        "consistency": 90,
+        "leadership": 65,
+        "synergy": 77
       }
     },
     "t1-2023:gumayusi": {
@@ -5719,13 +5719,13 @@
         "games": 152
       },
       "ratings": {
-        "overall": 80,
-        "peak": 81,
-        "international": 80,
-        "clutch": 83,
-        "consistency": 80,
-        "leadership": 80,
-        "synergy": 82
+        "overall": 76,
+        "peak": 77,
+        "international": 78,
+        "clutch": 75,
+        "consistency": 85,
+        "leadership": 64,
+        "synergy": 75
       }
     },
     "t1-2023:keria": {
@@ -5744,138 +5744,138 @@
         "games": 152
       },
       "ratings": {
-        "overall": 96,
-        "peak": 98,
-        "international": 96,
-        "clutch": 96,
-        "consistency": 96,
-        "leadership": 92,
-        "synergy": 94
-      }
-    },
-    "heretics-2023:brokenblade": {
-      "teamId": "heretics-2023",
-      "playerId": "brokenblade",
-      "golTeamId": 1818,
-      "golPlayerId": 1310,
-      "season": "S13",
-      "source": "season",
-      "stats": {
-        "kda": 4.3,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 68,
-        "games": 100
-      },
-      "ratings": {
-        "overall": 76,
-        "peak": 77,
-        "international": 76,
-        "clutch": 78,
-        "consistency": 76,
-        "leadership": 76,
-        "synergy": 78
-      }
-    },
-    "heretics-2023:elyoya": {
-      "teamId": "heretics-2023",
-      "playerId": "elyoya",
-      "golTeamId": 1818,
-      "golPlayerId": 2719,
-      "season": "S13",
-      "source": "season",
-      "stats": {
-        "kda": 3.9,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 47.4,
-        "games": 95
-      },
-      "ratings": {
-        "overall": 74,
-        "peak": 75,
-        "international": 74,
-        "clutch": 76,
-        "consistency": 74,
-        "leadership": 74,
-        "synergy": 76
-      }
-    },
-    "heretics-2023:humanoid": {
-      "teamId": "heretics-2023",
-      "playerId": "humanoid",
-      "golTeamId": 1818,
-      "golPlayerId": 1716,
-      "season": "S13",
-      "source": "season",
-      "stats": {
-        "kda": 3.2,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 49.3,
-        "games": 75
-      },
-      "ratings": {
-        "overall": 65,
-        "peak": 66,
-        "international": 65,
-        "clutch": 66,
-        "consistency": 65,
-        "leadership": 65,
-        "synergy": 66
-      }
-    },
-    "heretics-2023:hans-sama": {
-      "teamId": "heretics-2023",
-      "playerId": "hans-sama",
-      "golTeamId": 1818,
-      "golPlayerId": 732,
-      "season": "S13",
-      "source": "season",
-      "stats": {
-        "kda": 5.3,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 68,
-        "games": 100
-      },
-      "ratings": {
-        "overall": 85,
-        "peak": 86,
-        "international": 85,
-        "clutch": 88,
+        "overall": 84,
+        "peak": 87,
+        "international": 86,
+        "clutch": 90,
         "consistency": 85,
-        "leadership": 85,
+        "leadership": 74,
+        "synergy": 92
+      }
+    },
+    "heretics-2023:evi": {
+      "teamId": "heretics-2023",
+      "playerId": "evi",
+      "golTeamId": 1818,
+      "golPlayerId": 969,
+      "season": "S13",
+      "source": "team-roster",
+      "stats": {
+        "kda": 2.2,
+        "killParticipation": 53.5,
+        "damagePct": 20.8,
+        "goldPct": 19.7,
+        "winRate": 43.2,
+        "games": 44
+      },
+      "ratings": {
+        "overall": 62,
+        "peak": 63,
+        "international": 59,
+        "clutch": 57,
+        "consistency": 62,
+        "leadership": 59,
+        "synergy": 62
+      }
+    },
+    "heretics-2023:jankos": {
+      "teamId": "heretics-2023",
+      "playerId": "jankos",
+      "golTeamId": 1818,
+      "golPlayerId": 34,
+      "season": "S13",
+      "source": "team-roster",
+      "stats": {
+        "kda": 3.5,
+        "killParticipation": 72.6,
+        "damagePct": 15.5,
+        "goldPct": 19.1,
+        "winRate": 43.2,
+        "games": 44
+      },
+      "ratings": {
+        "overall": 69,
+        "peak": 70,
+        "international": 66,
+        "clutch": 70,
+        "consistency": 62,
+        "leadership": 70,
+        "synergy": 86
+      }
+    },
+    "heretics-2023:vetheo": {
+      "teamId": "heretics-2023",
+      "playerId": "vetheo",
+      "golTeamId": 1818,
+      "golPlayerId": 2685,
+      "season": "S13",
+      "source": "team-roster",
+      "stats": {
+        "kda": 4.6,
+        "killParticipation": 73.7,
+        "damagePct": 29.8,
+        "goldPct": 24.9,
+        "winRate": 40,
+        "games": 35
+      },
+      "ratings": {
+        "overall": 82,
+        "peak": 83,
+        "international": 78,
+        "clutch": 78,
+        "consistency": 58,
+        "leadership": 62,
         "synergy": 87
       }
     },
-    "heretics-2023:labrov": {
+    "heretics-2023:flakked": {
       "teamId": "heretics-2023",
-      "playerId": "labrov",
+      "playerId": "flakked",
       "golTeamId": 1818,
-      "golPlayerId": 2887,
+      "golPlayerId": 2206,
       "season": "S13",
-      "source": "season",
+      "source": "team-roster",
       "stats": {
-        "kda": 3.3,
-        "killParticipation": 60,
-        "damagePct": 20,
-        "goldPct": 20,
-        "winRate": 55.4,
-        "games": 83
+        "kda": 4.3,
+        "killParticipation": 64.5,
+        "damagePct": 28.8,
+        "goldPct": 24.6,
+        "winRate": 58.3,
+        "games": 60
       },
       "ratings": {
-        "overall": 68,
-        "peak": 69,
+        "overall": 81,
+        "peak": 82,
+        "international": 82,
+        "clutch": 73,
+        "consistency": 78,
+        "leadership": 63,
+        "synergy": 78
+      }
+    },
+    "heretics-2023:mersa": {
+      "teamId": "heretics-2023",
+      "playerId": "mersa",
+      "golTeamId": 1818,
+      "golPlayerId": 3231,
+      "season": "S13",
+      "source": "team-roster",
+      "stats": {
+        "kda": 3.9,
+        "killParticipation": 72.8,
+        "damagePct": 7.1,
+        "goldPct": 13.1,
+        "winRate": 43.2,
+        "games": 44
+      },
+      "ratings": {
+        "overall": 71,
+        "peak": 72,
         "international": 68,
-        "clutch": 69,
-        "consistency": 68,
-        "leadership": 72,
-        "synergy": 69
+        "clutch": 73,
+        "consistency": 62,
+        "leadership": 70,
+        "synergy": 86
       }
     },
     "wbg-2023:theshy": {
@@ -5894,13 +5894,13 @@
         "games": 118
       },
       "ratings": {
-        "overall": 57,
-        "peak": 58,
-        "international": 57,
-        "clutch": 58,
-        "consistency": 57,
-        "leadership": 57,
-        "synergy": 57
+        "overall": 67,
+        "peak": 68,
+        "international": 69,
+        "clutch": 56,
+        "consistency": 83,
+        "leadership": 62,
+        "synergy": 58
       }
     },
     "wbg-2023:wei": {
@@ -5919,13 +5919,13 @@
         "games": 89
       },
       "ratings": {
-        "overall": 68,
-        "peak": 69,
+        "overall": 69,
+        "peak": 70,
         "international": 68,
-        "clutch": 69,
-        "consistency": 68,
-        "leadership": 68,
-        "synergy": 69
+        "clutch": 66,
+        "consistency": 74,
+        "leadership": 71,
+        "synergy": 71
       }
     },
     "wbg-2023:xiaohu": {
@@ -5944,13 +5944,13 @@
         "games": 118
       },
       "ratings": {
-        "overall": 74,
-        "peak": 75,
-        "international": 74,
-        "clutch": 76,
-        "consistency": 74,
-        "leadership": 74,
-        "synergy": 76
+        "overall": 81,
+        "peak": 82,
+        "international": 83,
+        "clutch": 73,
+        "consistency": 83,
+        "leadership": 66,
+        "synergy": 85
       }
     },
     "wbg-2023:light": {
@@ -5969,13 +5969,13 @@
         "games": 0
       },
       "ratings": {
-        "overall": 59,
-        "peak": 60,
-        "international": 59,
+        "overall": 65,
+        "peak": 66,
+        "international": 64,
         "clutch": 60,
-        "consistency": 59,
-        "leadership": 59,
-        "synergy": 60
+        "consistency": 64,
+        "leadership": 56,
+        "synergy": 71
       }
     },
     "wbg-2023:crisp": {
@@ -5994,13 +5994,13 @@
         "games": 118
       },
       "ratings": {
-        "overall": 52,
-        "peak": 53,
-        "international": 52,
+        "overall": 59,
+        "peak": 60,
+        "international": 61,
         "clutch": 52,
-        "consistency": 52,
-        "leadership": 56,
-        "synergy": 52
+        "consistency": 83,
+        "leadership": 68,
+        "synergy": 54
       }
     },
     "blg-2024:bin": {
@@ -6021,11 +6021,11 @@
       "ratings": {
         "overall": 72,
         "peak": 73,
-        "international": 72,
-        "clutch": 74,
-        "consistency": 72,
-        "leadership": 72,
-        "synergy": 74
+        "international": 76,
+        "clutch": 67,
+        "consistency": 94,
+        "leadership": 62,
+        "synergy": 65
       }
     },
     "blg-2024:xun": {
@@ -6044,13 +6044,13 @@
         "games": 123
       },
       "ratings": {
-        "overall": 82,
-        "peak": 83,
-        "international": 82,
-        "clutch": 85,
-        "consistency": 82,
-        "leadership": 82,
-        "synergy": 84
+        "overall": 76,
+        "peak": 77,
+        "international": 80,
+        "clutch": 77,
+        "consistency": 93,
+        "leadership": 73,
+        "synergy": 85
       }
     },
     "blg-2024:knight": {
@@ -6069,13 +6069,13 @@
         "games": 149
       },
       "ratings": {
-        "overall": 87,
-        "peak": 90,
-        "international": 87,
-        "clutch": 90,
-        "consistency": 87,
-        "leadership": 87,
-        "synergy": 90
+        "overall": 85,
+        "peak": 86,
+        "international": 89,
+        "clutch": 81,
+        "consistency": 94,
+        "leadership": 65,
+        "synergy": 83
       }
     },
     "blg-2024:elk": {
@@ -6096,11 +6096,11 @@
       "ratings": {
         "overall": 88,
         "peak": 91,
-        "international": 88,
-        "clutch": 91,
-        "consistency": 88,
-        "leadership": 88,
-        "synergy": 91
+        "international": 92,
+        "clutch": 83,
+        "consistency": 94,
+        "leadership": 66,
+        "synergy": 87
       }
     },
     "blg-2024:on": {
@@ -6119,13 +6119,13 @@
         "games": 149
       },
       "ratings": {
-        "overall": 74,
-        "peak": 75,
-        "international": 74,
-        "clutch": 76,
-        "consistency": 74,
-        "leadership": 78,
-        "synergy": 76
+        "overall": 76,
+        "peak": 77,
+        "international": 80,
+        "clutch": 72,
+        "consistency": 94,
+        "leadership": 73,
+        "synergy": 88
       }
     },
     "g2-2024:brokenblade": {
@@ -6144,13 +6144,13 @@
         "games": 115
       },
       "ratings": {
-        "overall": 71,
-        "peak": 72,
-        "international": 71,
-        "clutch": 73,
-        "consistency": 71,
-        "leadership": 71,
-        "synergy": 72
+        "overall": 72,
+        "peak": 73,
+        "international": 75,
+        "clutch": 67,
+        "consistency": 90,
+        "leadership": 63,
+        "synergy": 68
       }
     },
     "g2-2024:yike": {
@@ -6169,13 +6169,13 @@
         "games": 115
       },
       "ratings": {
-        "overall": 82,
-        "peak": 83,
-        "international": 82,
-        "clutch": 85,
-        "consistency": 82,
-        "leadership": 82,
-        "synergy": 84
+        "overall": 78,
+        "peak": 79,
+        "international": 81,
+        "clutch": 78,
+        "consistency": 90,
+        "leadership": 74,
+        "synergy": 91
       }
     },
     "g2-2024:caps": {
@@ -6194,13 +6194,13 @@
         "games": 115
       },
       "ratings": {
-        "overall": 77,
-        "peak": 78,
-        "international": 77,
-        "clutch": 79,
-        "consistency": 77,
-        "leadership": 77,
-        "synergy": 79
+        "overall": 83,
+        "peak": 84,
+        "international": 86,
+        "clutch": 74,
+        "consistency": 90,
+        "leadership": 65,
+        "synergy": 81
       }
     },
     "g2-2024:hans-sama": {
@@ -6219,13 +6219,13 @@
         "games": 115
       },
       "ratings": {
-        "overall": 83,
-        "peak": 84,
-        "international": 83,
-        "clutch": 86,
-        "consistency": 83,
-        "leadership": 83,
-        "synergy": 85
+        "overall": 84,
+        "peak": 85,
+        "international": 87,
+        "clutch": 79,
+        "consistency": 90,
+        "leadership": 65,
+        "synergy": 81
       }
     },
     "g2-2024:mikyx": {
@@ -6244,13 +6244,13 @@
         "games": 115
       },
       "ratings": {
-        "overall": 63,
-        "peak": 64,
-        "international": 63,
+        "overall": 72,
+        "peak": 73,
+        "international": 75,
         "clutch": 64,
-        "consistency": 63,
-        "leadership": 67,
-        "synergy": 64
+        "consistency": 90,
+        "leadership": 73,
+        "synergy": 86
       }
     },
     "gen-2024:kiin": {
@@ -6269,12 +6269,12 @@
         "games": 135
       },
       "ratings": {
-        "overall": 73,
-        "peak": 74,
-        "international": 73,
-        "clutch": 75,
-        "consistency": 73,
-        "leadership": 73,
+        "overall": 74,
+        "peak": 75,
+        "international": 79,
+        "clutch": 70,
+        "consistency": 94,
+        "leadership": 64,
         "synergy": 75
       }
     },
@@ -6294,13 +6294,13 @@
         "games": 135
       },
       "ratings": {
-        "overall": 91,
-        "peak": 94,
-        "international": 91,
-        "clutch": 95,
-        "consistency": 91,
-        "leadership": 91,
-        "synergy": 94
+        "overall": 78,
+        "peak": 81,
+        "international": 83,
+        "clutch": 81,
+        "consistency": 94,
+        "leadership": 71,
+        "synergy": 75
       }
     },
     "gen-2024:chovy": {
@@ -6319,13 +6319,13 @@
         "games": 135
       },
       "ratings": {
-        "overall": 93,
-        "peak": 96,
-        "international": 93,
-        "clutch": 96,
-        "consistency": 93,
-        "leadership": 92,
-        "synergy": 94
+        "overall": 81,
+        "peak": 84,
+        "international": 86,
+        "clutch": 83,
+        "consistency": 94,
+        "leadership": 64,
+        "synergy": 75
       }
     },
     "gen-2024:ruler": {
@@ -6344,13 +6344,13 @@
         "games": 113
       },
       "ratings": {
-        "overall": 83,
-        "peak": 84,
-        "international": 83,
-        "clutch": 86,
+        "overall": 76,
+        "peak": 77,
+        "international": 78,
+        "clutch": 77,
         "consistency": 83,
-        "leadership": 83,
-        "synergy": 85
+        "leadership": 64,
+        "synergy": 73
       }
     },
     "gen-2024:delight": {
@@ -6369,13 +6369,13 @@
         "games": 124
       },
       "ratings": {
-        "overall": 81,
-        "peak": 82,
-        "international": 81,
-        "clutch": 84,
-        "consistency": 81,
-        "leadership": 85,
-        "synergy": 83
+        "overall": 75,
+        "peak": 76,
+        "international": 78,
+        "clutch": 74,
+        "consistency": 89,
+        "leadership": 71,
+        "synergy": 74
       }
     },
     "jdg-2024:369": {
@@ -6394,13 +6394,13 @@
         "games": 139
       },
       "ratings": {
-        "overall": 67,
-        "peak": 68,
-        "international": 67,
-        "clutch": 69,
-        "consistency": 67,
-        "leadership": 67,
-        "synergy": 68
+        "overall": 72,
+        "peak": 73,
+        "international": 75,
+        "clutch": 66,
+        "consistency": 90,
+        "leadership": 64,
+        "synergy": 74
       }
     },
     "jdg-2024:kanavi": {
@@ -6421,11 +6421,11 @@
       "ratings": {
         "overall": 77,
         "peak": 78,
-        "international": 77,
-        "clutch": 79,
-        "consistency": 77,
-        "leadership": 77,
-        "synergy": 79
+        "international": 79,
+        "clutch": 75,
+        "consistency": 84,
+        "leadership": 74,
+        "synergy": 92
       }
     },
     "jdg-2024:knight": {
@@ -6444,13 +6444,13 @@
         "games": 149
       },
       "ratings": {
-        "overall": 87,
-        "peak": 90,
-        "international": 87,
-        "clutch": 90,
-        "consistency": 87,
-        "leadership": 87,
-        "synergy": 90
+        "overall": 79,
+        "peak": 80,
+        "international": 83,
+        "clutch": 80,
+        "consistency": 94,
+        "leadership": 64,
+        "synergy": 75
       }
     },
     "jdg-2024:ruler": {
@@ -6469,13 +6469,13 @@
         "games": 113
       },
       "ratings": {
-        "overall": 83,
-        "peak": 84,
-        "international": 83,
-        "clutch": 86,
+        "overall": 84,
+        "peak": 85,
+        "international": 86,
+        "clutch": 78,
         "consistency": 83,
-        "leadership": 83,
-        "synergy": 85
+        "leadership": 65,
+        "synergy": 80
       }
     },
     "jdg-2024:missing": {
@@ -6494,13 +6494,13 @@
         "games": 113
       },
       "ratings": {
-        "overall": 68,
-        "peak": 69,
-        "international": 68,
+        "overall": 73,
+        "peak": 74,
+        "international": 75,
         "clutch": 69,
-        "consistency": 68,
-        "leadership": 72,
-        "synergy": 69
+        "consistency": 83,
+        "leadership": 73,
+        "synergy": 87
       }
     },
     "t1-2024:zeus": {
@@ -6519,13 +6519,13 @@
         "games": 176
       },
       "ratings": {
-        "overall": 63,
-        "peak": 64,
-        "international": 63,
-        "clutch": 64,
-        "consistency": 63,
+        "overall": 71,
+        "peak": 72,
+        "international": 73,
+        "clutch": 63,
+        "consistency": 86,
         "leadership": 63,
-        "synergy": 64
+        "synergy": 70
       }
     },
     "t1-2024:oner": {
@@ -6544,13 +6544,13 @@
         "games": 174
       },
       "ratings": {
-        "overall": 76,
-        "peak": 77,
+        "overall": 74,
+        "peak": 75,
         "international": 76,
-        "clutch": 78,
-        "consistency": 76,
-        "leadership": 76,
-        "synergy": 78
+        "clutch": 73,
+        "consistency": 86,
+        "leadership": 73,
+        "synergy": 86
       }
     },
     "t1-2024:faker": {
@@ -6569,13 +6569,13 @@
         "games": 176
       },
       "ratings": {
-        "overall": 72,
-        "peak": 73,
-        "international": 72,
-        "clutch": 74,
-        "consistency": 72,
-        "leadership": 72,
-        "synergy": 74
+        "overall": 79,
+        "peak": 80,
+        "international": 81,
+        "clutch": 70,
+        "consistency": 86,
+        "leadership": 65,
+        "synergy": 79
       }
     },
     "t1-2024:gumayusi": {
@@ -6594,12 +6594,12 @@
         "games": 176
       },
       "ratings": {
-        "overall": 80,
-        "peak": 81,
-        "international": 80,
-        "clutch": 83,
-        "consistency": 80,
-        "leadership": 80,
+        "overall": 82,
+        "peak": 83,
+        "international": 84,
+        "clutch": 76,
+        "consistency": 86,
+        "leadership": 65,
         "synergy": 82
       }
     },
@@ -6619,13 +6619,13 @@
         "games": 176
       },
       "ratings": {
-        "overall": 77,
-        "peak": 78,
-        "international": 77,
-        "clutch": 79,
-        "consistency": 77,
-        "leadership": 81,
-        "synergy": 79
+        "overall": 76,
+        "peak": 77,
+        "international": 78,
+        "clutch": 74,
+        "consistency": 86,
+        "leadership": 73,
+        "synergy": 87
       }
     }
   }

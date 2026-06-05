@@ -1,5 +1,6 @@
 import type { Player } from '@/core/types';
 import { LOL_LEGEND_PLAYERS } from './lol-legends';
+import { LOL_REGIONAL_PLAYERS } from './lol-regional';
 
 /** Helper to build player entries with consistent rating scale (0–99) */
 function p(
@@ -169,4 +170,8 @@ export const LOL_CORE_PLAYERS: Player[] = [
     { overall: 86, peak: 89, international: 82, clutch: 85, consistency: 88, leadership: 87, synergy: 87 }, '#4ECDC4'),
 ];
 
-export const LOL_PLAYERS: Player[] = [...LOL_CORE_PLAYERS, ...LOL_LEGEND_PLAYERS];
+export const LOL_PLAYERS: Player[] = [
+  ...LOL_CORE_PLAYERS,
+  ...LOL_LEGEND_PLAYERS,
+  ...LOL_REGIONAL_PLAYERS,
+];

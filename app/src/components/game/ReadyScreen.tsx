@@ -3,7 +3,7 @@ import type { DraftPick } from '@/core/types';
 import { ROLE_LABELS } from '@/core/types';
 import { Button } from '@/components/ui/button';
 import { SimulationGuide } from './SimulationGuide';
-import { cardKda, formatKda } from '@/engine/player-power';
+import { cardKda, cardOverall, formatKda } from '@/engine/player-power';
 
 interface ReadyScreenProps {
   picks: DraftPick[];
@@ -12,8 +12,8 @@ interface ReadyScreenProps {
 }
 
 export function ReadyScreen({ picks, onAttempt, onEdit }: ReadyScreenProps) {
-  const avgKda =
-    picks.reduce((s, p) => s + (cardKda(p.player, p.team) ?? 0), 0) / picks.length;
+  const avgOvr =
+    picks.reduce((s, p) => s + cardOverall(p.player, p.team), 0) / picks.length;
 
   return (
     <div className="flex flex-col min-h-[100dvh] px-5 py-10 max-w-lg mx-auto justify-between">
@@ -68,24 +68,27 @@ export function ReadyScreen({ picks, onAttempt, onEdit }: ReadyScreenProps) {
                 <p className="font-display text-lg text-white truncate">{player.name}</p>
               </div>
               <div className="text-right">
-                <p className="text-[8px] uppercase tracking-wider text-white/30">KDA</p>
+                <p className="text-[8px] uppercase tracking-wider text-white/30">OVR</p>
                 <span className="text-gold font-display text-2xl tabular-nums">
-                  {cardKda(player, team) != null
-                    ? formatKda(cardKda(player, team)!)
-                    : '—'}
+                  {cardOverall(player, team)}
                 </span>
+                {cardKda(player, team) != null && (
+                  <p className="text-[9px] text-white/30 tabular-nums mt-0.5">
+                    {formatKda(cardKda(player, team)!)} KDA
+                  </p>
+                )}
               </div>
             </motion.div>
           ))}
         </motion.div>
 
         <p className="text-center text-white/40 text-sm mt-6">
-          Avg KDA{' '}
+          Avg OVR{' '}
           <span className="text-gold font-display text-2xl ml-1 tabular-nums">
-            {formatKda(avgKda)}
+            {avgOvr.toFixed(0)}
           </span>
           <span className="block text-[10px] text-emerald-400/70 mt-1 uppercase tracking-wider">
-            Gol.gg team-year stats
+            Gol.gg team-year composite score
           </span>
         </p>
 

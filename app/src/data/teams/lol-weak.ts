@@ -13,7 +13,7 @@ const ALL: DraftTournamentPhase[] = [
   'worlds_playoffs',
 ];
 
-/** LCS / LEC / PCS cellar teams — high roll rate in early rounds */
+/** LCS / LEC cellar teams — rosters match Gol.gg last line-up */
 export const LOL_WEAK_TEAMS: HistoricalTeam[] = [
   {
     id: 'clg-2019',
@@ -25,7 +25,7 @@ export const LOL_WEAK_TEAMS: HistoricalTeam[] = [
     accent: '#9B59B6',
     tier: 'weak',
     phases: SPRING,
-    roster: R('licorice', 'blaber', 'jensen', 'sneaky', 'zeyzal'),
+    roster: R('ruin', 'griffin', 'powerofevil', 'stixxay', 'biofrost'),
   },
   {
     id: 'clg-2020',
@@ -37,7 +37,7 @@ export const LOL_WEAK_TEAMS: HistoricalTeam[] = [
     accent: '#9B59B6',
     tier: 'weak',
     phases: SPRING,
-    roster: R('impact', 'blaber', 'jensen', 'wildturtle', 'vulcan'),
+    roster: R('ruin', 'fragas', 'pobelter', 'stixxay', 'smoothie'),
   },
   {
     id: 'dig-2021',
@@ -49,7 +49,7 @@ export const LOL_WEAK_TEAMS: HistoricalTeam[] = [
     accent: '#F1C40F',
     tier: 'weak',
     phases: SPRING,
-    roster: R('impact', 'blaber', 'jojopyun', 'doublelift', 'vulcan'),
+    roster: R('fakegod', 'akaadian', 'yusui', 'neo', 'aphromoo'),
   },
   {
     id: 'fly-2021',
@@ -61,7 +61,7 @@ export const LOL_WEAK_TEAMS: HistoricalTeam[] = [
     accent: '#2ECC71',
     tier: 'weak',
     phases: NA_EU,
-    roster: R('impact', 'blaber', 'jojopyun', 'wildturtle', 'vulcan'),
+    roster: R('kumo', 'josedeodo', 'palafox', 'tomo', 'diamond'),
   },
   {
     id: 'immortals-2020',
@@ -73,7 +73,7 @@ export const LOL_WEAK_TEAMS: HistoricalTeam[] = [
     accent: '#7F8C8D',
     tier: 'weak',
     phases: SPRING,
-    roster: R('licorice', 'blaber', 'jensen', 'wildturtle', 'zeyzal'),
+    roster: R('allorim', 'xmithie', 'insanity', 'apollo', 'hakuho'),
   },
   {
     id: 'eg-2020',
@@ -85,7 +85,7 @@ export const LOL_WEAK_TEAMS: HistoricalTeam[] = [
     accent: '#3498DB',
     tier: 'weak',
     phases: SPRING,
-    roster: R('impact', 'xmithie', 'jensen', 'sneaky', 'vulcan'),
+    roster: R('huni', 'svenskeren', 'goldenglue', 'bang', 'zeyzal'),
   },
   {
     id: '100t-2021',
@@ -97,7 +97,7 @@ export const LOL_WEAK_TEAMS: HistoricalTeam[] = [
     accent: '#E74C3C',
     tier: 'average',
     phases: NA_EU,
-    roster: R('impact', 'blaber', 'jojopyun', 'doublelift', 'vulcan'),
+    roster: R('ssumday', 'closer', 'abbedagge', 'fbi', 'huhi'),
   },
   {
     id: 'excel-2020',
@@ -109,7 +109,7 @@ export const LOL_WEAK_TEAMS: HistoricalTeam[] = [
     accent: '#1ABC9C',
     tier: 'weak',
     phases: SPRING,
-    roster: R('armut', 'elyoya', 'humanoid', 'carzzy', 'labrov'),
+    roster: R('kryze', 'caedrel', 'special', 'patrik', 'tore'),
   },
   {
     id: 'misfits-2020',
@@ -121,7 +121,7 @@ export const LOL_WEAK_TEAMS: HistoricalTeam[] = [
     accent: '#E67E22',
     tier: 'weak',
     phases: SPRING,
-    roster: R('armut', 'elyoya', 'humanoid', 'carzzy', 'labrov'),
+    roster: R('dandan', 'razork', 'febiven', 'kobbe', 'denyk'),
   },
   {
     id: 'sk-2022',
@@ -133,7 +133,7 @@ export const LOL_WEAK_TEAMS: HistoricalTeam[] = [
     accent: '#E74C3C',
     tier: 'weak',
     phases: SPRING,
-    roster: R('brokenblade', 'elyoya', 'humanoid', 'carzzy', 'labrov'),
+    roster: R('jenax', 'gilius', 'sertuss', 'jezu', 'treatz'),
   },
   {
     id: 'astralis-2022',
@@ -145,7 +145,7 @@ export const LOL_WEAK_TEAMS: HistoricalTeam[] = [
     accent: '#95A5A6',
     tier: 'weak',
     phases: SPRING,
-    roster: R('brokenblade', 'elyoya', 'humanoid', 'carzzy', 'kaiser'),
+    roster: R('vizicsacsi', 'xerxe', 'dajor', 'kobbe', 'execute'),
   },
   {
     id: 'vit-2021',
@@ -157,7 +157,7 @@ export const LOL_WEAK_TEAMS: HistoricalTeam[] = [
     accent: '#F1C40F',
     tier: 'weak',
     phases: NA_EU,
-    roster: R('armut', 'elyoya', 'perkz', 'carzzy', 'labrov'),
+    roster: R('szygenda', 'selfmade', 'lider', 'crownie', 'labrov'),
   },
   {
     id: 'cg-2019',
@@ -169,7 +169,7 @@ export const LOL_WEAK_TEAMS: HistoricalTeam[] = [
     accent: '#8E44AD',
     tier: 'weak',
     phases: SPRING,
-    roster: R('impact', 'xmithie', 'jensen', 'sneaky', 'zeyzal'),
+    roster: R('huni', 'lira', 'damonte', 'codysun', 'vulcan'),
   },
   {
     id: 'gg-2019',
@@ -181,7 +181,7 @@ export const LOL_WEAK_TEAMS: HistoricalTeam[] = [
     accent: '#F39C12',
     tier: 'weak',
     phases: SPRING,
-    roster: R('licorice', 'blaber', 'jensen', 'wildturtle', 'zeyzal'),
+    roster: R('hauntzer', 'contractz', 'froggen', 'fbi', 'huhi'),
   },
   {
     id: 'tsm-2020',
@@ -193,19 +193,7 @@ export const LOL_WEAK_TEAMS: HistoricalTeam[] = [
     accent: '#BDC3C7',
     tier: 'weak',
     phases: SPRING,
-    roster: R('brokenblade', 'blaber', 'jojopyun', 'doublelift', 'vulcan'),
-  },
-  {
-    id: 'navi-2021',
-    esport: 'lol',
-    name: 'Natus Vincere',
-    year: 2021,
-    region: 'LEC',
-    tagline: 'Failed Experiment',
-    accent: '#F1C40F',
-    tier: 'weak',
-    phases: NA_EU,
-    roster: R('armut', 'elyoya', 'perkz', 'carzzy', 'labrov'),
+    roster: R('brokenblade', 'spica', 'bjergsen', 'doublelift', 'biofrost'),
   },
   {
     id: 'lcs-2022-eg',
@@ -217,7 +205,7 @@ export const LOL_WEAK_TEAMS: HistoricalTeam[] = [
     accent: '#3498DB',
     tier: 'average',
     phases: NA_EU,
-    roster: R('impact', 'blaber', 'jojopyun', 'wildturtle', 'vulcan'),
+    roster: R('impact', 'inspired', 'jojopyun', 'kaori', 'vulcan'),
   },
   {
     id: 'heretics-2023',
@@ -229,7 +217,7 @@ export const LOL_WEAK_TEAMS: HistoricalTeam[] = [
     accent: '#E74C3C',
     tier: 'weak',
     phases: NA_EU,
-    roster: R('brokenblade', 'elyoya', 'humanoid', 'hans-sama', 'labrov'),
+    roster: R('evi', 'jankos', 'vetheo', 'flakked', 'mersa'),
   },
   {
     id: 'fnc-2020',
@@ -241,7 +229,7 @@ export const LOL_WEAK_TEAMS: HistoricalTeam[] = [
     accent: '#FDCB6E',
     tier: 'average',
     phases: ALL,
-    roster: R('bwipo', 'broxah', 'humanoid', 'rekkles', 'hylissang'),
+    roster: R('bwipo', 'selfmade', 'nemesis', 'rekkles', 'hylissang'),
   },
   {
     id: 'liquid-2021',
@@ -253,6 +241,6 @@ export const LOL_WEAK_TEAMS: HistoricalTeam[] = [
     accent: '#00CEC9',
     tier: 'average',
     phases: ALL,
-    roster: R('impact', 'blaber', 'jensen', 'doublelift', 'corejj'),
+    roster: R('alphari', 'santorin', 'jensen', 'tactical', 'corejj'),
   },
 ];
