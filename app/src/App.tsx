@@ -1,10 +1,10 @@
 import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ArrowUpRight, Zap, Trophy, Dumbbell, Mail, Sparkles, Target } from 'lucide-react';
+import { X, ArrowUpRight, Zap, Trophy, Dumbbell, Mail, Sparkles, Target, Circle } from 'lucide-react';
 import Hero from './sections/Hero';
 import Intro from './components/Intro';
 
-type PanelType = 'knowball' | 'bodyintel' | 'skyler' | null;
+type PanelType = 'knowball' | 'bodyintel' | 'ringchase' | 'skyler' | null;
 
 const easeCustom: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -43,6 +43,23 @@ const panels = {
     link: '#',
     cta: 'Join the waitlist',
   },
+  ringchase: {
+    title: 'Ring Chase',
+    tagline: 'CoD Esports Roster Game',
+    status: 'Live',
+    accent: '#C9A227',
+    image: '/images/knowball.jpg',
+    description:
+      'Draft four legends from iconic historical teams — OpTic 2017, FaZe 2021, Empire 2020, and more. Chase the ring through four Majors and Champs.',
+    bullets: [
+      { text: '4-round constrained draft — pick one per team', icon: Target },
+      { text: 'Chemistry-aware sim with BP Rating data', icon: Zap },
+      { text: 'Daily Ring Chase with global constraints', icon: Trophy },
+      { text: 'Screenshot-first share cards for X & Discord', icon: Sparkles },
+    ],
+    link: '/ring-chase',
+    cta: 'Play Ring Chase',
+  },
   skyler: {
     title: 'Skyler Camper',
     tagline: 'Builder',
@@ -54,6 +71,7 @@ const panels = {
     bullets: [
       { text: 'Founded Betmap.co — see where betting is legal and find the best promos', icon: Target },
       { text: 'Building BodyIntel — track food, workouts, supplements, and water', icon: Dumbbell },
+      { text: 'Built Ring Chase — CoD esports draft game powered by BreakingPoint stats', icon: Circle },
       { text: 'Creating KnowBall — an addictive sports trivia game for any age', icon: Trophy },
       { text: 'Always learning, always building', icon: Sparkles },
     ],

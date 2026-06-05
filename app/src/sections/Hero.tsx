@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { Link } from 'react-router';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, Play } from 'lucide-react';
+import { ArrowUpRight, Play, Circle } from 'lucide-react';
 
 const easeCustom: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -11,7 +12,7 @@ interface FloatingObj {
   image: string;
   style: React.CSSProperties;
   floatDelay: number;
-  panelId: 'knowball' | 'bodyintel' | 'skyler';
+  panelId: 'knowball' | 'bodyintel' | 'ringchase' | 'skyler';
 }
 
 const floatingObjects: FloatingObj[] = [
@@ -36,7 +37,7 @@ const floatingObjects: FloatingObj[] = [
 ];
 
 interface HeroProps {
-  onOpenPanel: (panel: 'knowball' | 'bodyintel' | 'skyler') => void;
+  onOpenPanel: (panel: 'knowball' | 'bodyintel' | 'ringchase' | 'skyler') => void;
   onReplayIntro: () => void;
 }
 
@@ -250,17 +251,64 @@ export default function Hero({ onOpenPanel, onReplayIntro }: HeroProps) {
             Skyler Camper
           </a>
 
-          <button
-            onClick={onReplayIntro}
-            className="group flex items-center gap-2 text-[10px] font-medium tracking-[0.06em] uppercase bg-transparent border-none cursor-pointer transition-colors duration-300"
-            style={{ color: 'rgba(225, 224, 204, 0.5)' }}
-            onMouseEnter={(e) => { (e.target as HTMLElement).style.color = '#E1E0CC'; }}
-            onMouseLeave={(e) => { (e.target as HTMLElement).style.color = 'rgba(225, 224, 204, 0.5)'; }}
-          >
-            <Play className="w-3 h-3" />
-            <span>Replay intro</span>
-          </button>
+          <div className="flex items-center gap-4">
+            <Link
+              to="/ring-chase"
+              className="group flex items-center gap-2 text-[10px] font-semibold tracking-[0.08em] uppercase transition-colors duration-300"
+              style={{ color: '#c9a227' }}
+            >
+              <Circle className="w-3 h-3 fill-[#c9a227]/30" />
+              <span>Ring Chase</span>
+              <ArrowUpRight className="w-3 h-3 opacity-60 group-hover:opacity-100 transition-opacity" />
+            </Link>
+            <button
+              onClick={onReplayIntro}
+              className="group flex items-center gap-2 text-[10px] font-medium tracking-[0.06em] uppercase bg-transparent border-none cursor-pointer transition-colors duration-300"
+              style={{ color: 'rgba(225, 224, 204, 0.5)' }}
+              onMouseEnter={(e) => { (e.target as HTMLElement).style.color = '#E1E0CC'; }}
+              onMouseLeave={(e) => { (e.target as HTMLElement).style.color = 'rgba(225, 224, 204, 0.5)'; }}
+            >
+              <Play className="w-3 h-3" />
+              <span>Replay intro</span>
+            </button>
+          </div>
         </motion.nav>
+
+        <motion.div
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 z-[12] w-[calc(100%-2.5rem)] max-w-sm"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.6, ease: easeCustom }}
+        >
+          <Link
+            to="/ring-chase"
+            className="flex items-center justify-between gap-3 rounded-2xl px-5 py-4 transition-transform duration-300 hover:scale-[1.02] active:scale-[0.99]"
+            style={{
+              backgroundColor: 'rgba(10, 10, 10, 0.82)',
+              backdropFilter: 'blur(16px)',
+              border: '1px solid rgba(201, 162, 39, 0.35)',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,162,39,0.08)',
+            }}
+          >
+            <div>
+              <p className="text-[9px] uppercase tracking-[0.25em] font-medium" style={{ color: 'rgba(201,162,39,0.8)' }}>
+                New · CoD Esports
+              </p>
+              <p className="text-base font-bold tracking-wide mt-0.5" style={{ color: '#E1E0CC' }}>
+                RING CHASE
+              </p>
+              <p className="text-[11px] mt-0.5" style={{ color: 'rgba(225,224,204,0.45)' }}>
+                Draft history. Chase the ring.
+              </p>
+            </div>
+            <div
+              className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+              style={{ backgroundColor: 'rgba(201, 162, 39, 0.15)' }}
+            >
+              <ArrowUpRight className="w-4 h-4" style={{ color: '#c9a227' }} />
+            </div>
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

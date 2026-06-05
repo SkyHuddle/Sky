@@ -8,42 +8,50 @@ Call of Duty esports roster game — draft 4 legends from historical teams and c
 cd app && npm install && npm run dev
 ```
 
-Open **http://localhost:3000/ring-chase**
+- Portfolio: **http://localhost:3000/**
+- Game: **http://localhost:3000/ring-chase**
 
-## Modes
+## BreakingPoint data source
 
-- **Ring Chase** — unlimited random team drafts
-- **Daily Ring Chase** — same 4 iconic teams + constraint for everyone
-- **Perfect Season** — win all 4 Majors + Champs (extremely rare)
+BreakingPoint.gg does **not** use `api.breakingpoint.gg`. Their site and mobile app read from **Supabase PostgREST**:
+
+| Setting | Value |
+|---------|--------|
+| Project | `dfpiiufxcciujugzjvgx.supabase.co` |
+| API | `https://dfpiiufxcciujugzjvgx.supabase.co/rest/v1` |
+| Auth | Public `anon` JWT (embedded in their frontend bundle) |
+
+### Verified tables (read access)
+
+- `players` — 753+ pros (tag, headshot, position, team)
+- `teams`, `seasons`, `events`, `matches`
+- `player_stats` — per-map K/D, BP Rating, mode splits
+- `player_team_history`, `team_event_view`
+- `titles`, `modes`, `maps`, `positions`
+
+Gameplay uses **seeded historical data** + optional ETL cache. No live API calls during runs.
+
+### Sync ETL
+
+```bash
+npm run etl:breakingpoint
+# BP_SEASON_ID=2025 npm run etl:breakingpoint
+```
+
+Writes to `src/ring-chase/data/generated/bp-sync-meta.json`.
+
+Override via env:
+
+- `VITE_BP_SUPABASE_URL`
+- `VITE_BP_SUPABASE_ANON_KEY`
 
 ## Architecture
 
 ```
 ring-chase/
-  core/           types, constants
-  data/           seeded players + historical teams (V1)
-  engine/         draft, ratings, chemistry, simulation
-  features/       daily constraints (30+), localStorage stats
-  services/
-    breakingpoint/  API client (swap endpoints here only)
-    data/           sync orchestrator (API → cache → seed fallback)
-    database/       Postgres schema types for future backend
-  components/     mobile-first game UI
-  hooks/          useRingChaseGame phase machine
+  services/breakingpoint/   Supabase REST client (only place that knows BP schema)
+  services/data/sync.ts     Aggregate stats → ratings pipeline
+  data/generated/           ETL output (gitignored optional)
+  engine/                   draft, chemistry, simulation
+  components/               mobile-first UI
 ```
-
-Gameplay reads from the **seeded database**, not live BreakingPoint calls.
-
-## Data pipeline (future)
-
-1. `breakingpointClient` fetches stats on cron
-2. Normalized into Postgres tables (`services/database/schema.ts`)
-3. Rating service computes hidden axes
-4. Draft pool + simulation run from cache
-
-Set `VITE_BREAKINGPOINT_API_URL` and `VITE_BREAKINGPOINT_API_KEY` when API access is available.
-
-## V1 content
-
-- **70+ players** — Scump, Simp, Shotzzy, HyDra, Clayster, etc.
-- **30 iconic teams** — OpTic 2017, FaZe 2021, Empire 2020, NYSL 2023, etc.

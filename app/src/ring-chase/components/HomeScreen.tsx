@@ -1,5 +1,6 @@
+import { Link } from 'react-router';
 import { motion } from 'framer-motion';
-import { Trophy, Flame, Target, Calendar, Circle } from 'lucide-react';
+import { Trophy, Flame, Target, Calendar, Circle, ArrowLeft } from 'lucide-react';
 import type { DailyConstraint, DailyRunResult, PlayerStats } from '../core/types';
 import { Button } from '@/components/ui/button';
 import { RingPath } from './RingPath';
@@ -31,6 +32,13 @@ export function HomeScreen({
 
   return (
     <div className="flex flex-col min-h-[100dvh] px-5 pb-10 pt-14 max-w-lg mx-auto">
+      <Link
+        to="/"
+        className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-white/30 hover:text-white/50 mb-4 -mt-2 transition-colors"
+      >
+        <ArrowLeft className="w-3 h-3" />
+        Skyler Camper
+      </Link>
       <motion.header
         className="text-center mb-8"
         initial={{ opacity: 0, y: 24 }}

@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# BreakingPoint ETL cache (regenerate via npm run etl:breakingpoint)
+src/ring-chase/data/generated/bp-players-index.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
