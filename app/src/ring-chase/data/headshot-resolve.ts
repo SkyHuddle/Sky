@@ -78,8 +78,12 @@ export function resolveTeamYearHeadshots(
   bpTag?: string
 ): string[] {
   const built = buildEraHeadshotCandidates(player, team, bpTag);
-  const best = pickBestHeadshot(team.season, [storedHeadshot, ...built, genericHeadshot]);
-  const ordered = [best, storedHeadshot, ...built, genericHeadshot].filter(
+  const eraFallbacks = [...built].sort(
+    (a, b) => eraHeadshotScore(b, team.season) - eraHeadshotScore(a, team.season)
+  );
+
+  // Prefer verified bundle / BP index URLs — era guesses often 404 but scored higher before.
+  const ordered = [storedHeadshot, genericHeadshot, ...eraFallbacks].filter(
     (url): url is string => Boolean(url)
   );
   return [...new Set(ordered)];

@@ -1,15 +1,8 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import type { CodPlayer, HistoricalCodTeam } from '../core/types';
 import { resolveTeamYearHeadshots } from '../data/headshot-resolve';
+import { lookupPlayerHeadshot } from '../data/headshot-index';
 import { getTeamYearEntry } from '../data/team-year-ratings';
-import bpPlayers from '../data/generated/bp-players-index.json';
-
-type BpPlayerRow = { id: number; tag: string; headshot: string | null };
-
-const headshotByTag = new Map<string, string | null>();
-for (const row of bpPlayers as BpPlayerRow[]) {
-  if (row.headshot) headshotByTag.set(row.tag.toLowerCase(), row.headshot);
-}
 
 interface PlayerHeadshotProps {
   player: CodPlayer;
@@ -24,12 +17,11 @@ export function PlayerHeadshot({
   className = 'w-full h-full object-cover object-top',
   fallbackClassName,
 }: PlayerHeadshotProps) {
+  const entry = team ? getTeamYearEntry(team.id, player.id) : null;
+  const candidateKey = `${team?.id ?? 'none'}:${player.id}:${entry?.headshot ?? ''}`;
+
   const candidates = useMemo(() => {
-    const entry = team ? getTeamYearEntry(team.id, player.id) : null;
-    const generic =
-      headshotByTag.get((entry?.bpTag ?? player.gamertag).toLowerCase()) ??
-      headshotByTag.get(player.gamertag.toLowerCase()) ??
-      null;
+    const generic = lookupPlayerHeadshot(player.id, player.gamertag, entry?.bpTag);
     if (!team) return generic ? [generic] : [];
     return resolveTeamYearHeadshots(
       player,
@@ -38,9 +30,14 @@ export function PlayerHeadshot({
       generic,
       entry?.bpTag
     );
-  }, [player, team]);
+  }, [player, team, entry?.bpTag, entry?.headshot]);
 
   const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    setIndex(0);
+  }, [candidateKey]);
+
   const src = candidates[index];
 
   if (!src) {
@@ -53,6 +50,7 @@ export function PlayerHeadshot({
 
   return (
     <img
+      key={`${candidateKey}:${index}`}
       src={src}
       alt=""
       className={className}
