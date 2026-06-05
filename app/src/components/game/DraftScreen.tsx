@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import type {
   DailyConstraint,
   DraftPick,
@@ -12,44 +12,35 @@ import { DRAFT_PHASE_LABELS, ROLE_LABELS } from '@/core/types';
 import { DRAFT_PHASE_ORDER } from '@/core/types';
 import { TeamBanner, TeamRosterCard } from './TeamRosterCard';
 import { TeamSlotMachine } from './TeamSlotMachine';
-import { PositionAssignSheet } from './PositionAssignSheet';
 import { isOnePerOrgDay, orgConstraintViolated } from '@/features/daily';
 
 interface DraftScreenProps {
-  roundIndex: number;
   currentRound: DraftRound;
   draftSubphase: DraftSubphase;
   picks: DraftPick[];
   openRoles: Role[];
+  spinGeneration: number;
   skipsLeft: number;
   dailyConstraint?: DailyConstraint;
   isDaily: boolean;
-  pendingPlayer: Player | null;
-  pendingNaturalRole: Role | null;
   onSpinComplete: () => void;
   onSkipTeam: () => void;
   onSelectPlayer: (player: Player, naturalRole: Role) => void;
-  onAssignRole: (role: Role) => void;
-  onCancelAssign: () => void;
   onBack: () => void;
 }
 
 export function DraftScreen({
-  roundIndex: _roundIndex,
   currentRound,
   draftSubphase,
   picks,
   openRoles,
+  spinGeneration,
   skipsLeft,
   dailyConstraint,
   isDaily,
-  pendingPlayer,
-  pendingNaturalRole,
   onSpinComplete,
   onSkipTeam,
   onSelectPlayer,
-  onAssignRole,
-  onCancelAssign,
   onBack,
 }: DraftScreenProps) {
   const orgLock =
@@ -80,8 +71,11 @@ export function DraftScreen({
       <div className="flex-1 overflow-y-auto">
         {draftSubphase === 'spin' && (
           <TeamSlotMachine
+            key={spinGeneration}
             phase={currentRound.phase}
-            sequence={currentRound.spinSequence}
+            team={currentRound.team}
+            spin={currentRound.spin}
+            spinKey={spinGeneration}
             onComplete={onSpinComplete}
             onSkip={onSkipTeam}
             canSkip={skipsLeft > 0}
@@ -97,7 +91,7 @@ export function DraftScreen({
             <TeamBanner team={currentRound.team} />
 
             <p className="text-white/45 text-xs mb-3 leading-relaxed">
-              Pick one player from this roster. You still need:{' '}
+              Tap a player for their role. Open slots:{' '}
               <span className="text-gold">
                 {openRoles.map((r) => ROLE_LABELS[r]).join(', ')}
               </span>
@@ -109,12 +103,14 @@ export function DraftScreen({
                 const player = currentRound.roster.find((p) => p.id === playerId);
                 if (!player) return null;
 
+                const roleTaken = !openRoles.includes(teamRole);
                 const blocked =
-                  orgLock &&
-                  orgConstraintViolated(
-                    picks.map((p) => p.player),
-                    player
-                  );
+                  roleTaken ||
+                  (orgLock &&
+                    orgConstraintViolated(
+                      picks.map((p) => p.player),
+                      player
+                    ));
 
                 return (
                   <motion.div
@@ -128,7 +124,18 @@ export function DraftScreen({
                       teamRole={teamRole}
                       onSelect={() => onSelectPlayer(player, teamRole)}
                       disabled={blocked}
+                      roleTaken={roleTaken}
                     />
+                    {roleTaken && (
+                      <p className="text-[10px] text-white/30 mt-1 pl-1">
+                        {ROLE_LABELS[teamRole]} already filled
+                      </p>
+                    )}
+                    {!roleTaken && blocked && (
+                      <p className="text-[10px] text-red-400/80 mt-1 pl-1">
+                        Org already used
+                      </p>
+                    )}
                   </motion.div>
                 );
               })}
@@ -136,18 +143,6 @@ export function DraftScreen({
           </motion.div>
         )}
       </div>
-
-      <AnimatePresence>
-        {draftSubphase === 'assign' && pendingPlayer && pendingNaturalRole && (
-          <PositionAssignSheet
-            player={pendingPlayer}
-            naturalRole={pendingNaturalRole}
-            openRoles={openRoles}
-            onAssign={onAssignRole}
-            onCancel={onCancelAssign}
-          />
-        )}
-      </AnimatePresence>
     </div>
   );
 }
@@ -162,7 +157,7 @@ function TournamentProgress({
   return (
     <div className="mb-3">
       <p className="text-[10px] uppercase tracking-widest text-gold/60 mb-2">
-        Golden Road — {DRAFT_PHASE_LABELS[currentPhase]}
+        {DRAFT_PHASE_LABELS[currentPhase]}
       </p>
       <div className="flex gap-1">
         {DRAFT_PHASE_ORDER.map((phase, i) => (
@@ -175,7 +170,6 @@ function TournamentProgress({
                   ? 'bg-gold/50'
                   : 'bg-white/10'
             }`}
-            title={DRAFT_PHASE_LABELS[phase]}
           />
         ))}
       </div>
@@ -204,7 +198,7 @@ function RosterSlots({
                 ? 'border-gold/30 bg-gold/10'
                 : open
                   ? 'border-white/15 bg-white/[0.03]'
-                  : 'border-white/5 bg-transparent opacity-40'
+                  : 'border-white/5 opacity-40'
             }`}
           >
             <p className="text-[8px] uppercase tracking-wider text-white/35">

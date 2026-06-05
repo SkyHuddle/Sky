@@ -8,16 +8,16 @@ export const ROLE_ORDER: Role[] = ['top', 'jungle', 'mid', 'adc', 'support'];
 export const STAGE_REVEAL_DELAY = 1400;
 export const STAGE_PAUSE = 600;
 
-/** Simulation difficulty — raised for harder Golden Road */
+/**
+ * Minimum team power (0–100 scale) to clear each stage.
+ * Your roster power is compared: roll = power ± variance; pass if roll ≥ threshold.
+ */
 export const STAGE_THRESHOLDS = {
-  spring: 78,
-  msi: 84,
-  summer: 80,
-  worlds: 88,
+  spring: 74,
+  msi: 79,
+  summer: 75,
+  worlds: 83,
 } as const;
-
-/** Off-role assignment penalty applied in simulation */
-export const OFF_ROLE_PENALTY = 4.5;
 
 export const WORLDS_FAILURE_LABELS = {
   groups: 'Lost in Worlds Groups',
@@ -27,5 +27,5 @@ export const WORLDS_FAILURE_LABELS = {
 } as const;
 
 /** Slot machine timing */
-export const SPIN_DURATION_MS = 2400;
-export const SPIN_TICK_MS = 70;
+export const SPIN_DURATION_MS = 2600;
+export const SPIN_TICK_MS = 75;

@@ -33,8 +33,7 @@ export function useGame() {
   const [roundIndex, setRoundIndex] = useState(0);
   const [draftRounds, setDraftRounds] = useState<DraftRound[]>([]);
   const [draftSubphase, setDraftSubphase] = useState<DraftSubphase>('spin');
-  const [pendingPlayer, setPendingPlayer] = useState<Player | null>(null);
-  const [pendingNaturalRole, setPendingNaturalRole] = useState<Role | null>(null);
+  const [spinGeneration, setSpinGeneration] = useState(0);
   const [skipsLeft, setSkipsLeft] = useState(1);
   const [result, setResult] = useState<SimulationResult | null>(null);
   const [dailyPercentile, setDailyPercentile] = useState<number | null>(null);
@@ -64,8 +63,7 @@ export function useGame() {
     setPicks([]);
     setRoundIndex(0);
     setDraftSubphase('spin');
-    setPendingPlayer(null);
-    setPendingNaturalRole(null);
+    setSpinGeneration(0);
     setSkipsLeft(1);
     setResult(null);
     setDailyPercentile(null);
@@ -77,99 +75,56 @@ export function useGame() {
   }, []);
 
   const skipTeam = useCallback(() => {
-    if (skipsLeft <= 0 || !currentRound) return;
+    if (skipsLeft <= 0) return;
+
     const usedIds = draftRounds
       .filter((_, i) => i !== roundIndex)
       .map((r) => r.team.id);
     const filter = mode === 'daily' ? dailyConstraint.filter : undefined;
     const next = rerollRound(runSeed, roundIndex, usedIds, filter);
+
     setDraftRounds((prev) => {
       const copy = [...prev];
       copy[roundIndex] = next;
       return copy;
     });
     setSkipsLeft((s) => s - 1);
+    setSpinGeneration((g) => g + 1);
     setDraftSubphase('spin');
-  }, [skipsLeft, currentRound, draftRounds, roundIndex, runSeed, mode, dailyConstraint.filter]);
+  }, [skipsLeft, draftRounds, roundIndex, runSeed, mode, dailyConstraint.filter]);
 
   const selectPlayer = useCallback(
     (player: Player, naturalRole: Role) => {
+      if (!currentRound || !openRoles.includes(naturalRole)) return;
+
       if (
         mode === 'daily' &&
         isOnePerOrgDay(dailyConstraint.id) &&
-        orgConstraintViolated(
-          picks.map((p) => p.player),
-          player
-        )
+        orgConstraintViolated(picks.map((p) => p.player), player)
       ) {
         return;
       }
 
-      if (openRoles.length === 1) {
-        const role = openRoles[0];
-        if (!currentRound) return;
-        const pick: DraftPick = {
-          role,
-          naturalRole,
-          player,
-          team: currentRound.team,
-          phase: currentRound.phase,
-        };
-        const nextPicks = [...picks, pick];
-        setPicks(nextPicks);
-        if (roundIndex >= ROLE_ORDER.length - 1) {
-          setPhase('ready');
-        } else {
-          setRoundIndex((i) => i + 1);
-          setDraftSubphase('spin');
-        }
-        return;
-      }
-
-      setPendingPlayer(player);
-      setPendingNaturalRole(naturalRole);
-      setDraftSubphase('assign');
-    },
-    [
-      mode,
-      dailyConstraint.id,
-      picks,
-      openRoles,
-      currentRound,
-      roundIndex,
-    ]
-  );
-
-  const assignRole = useCallback(
-    (role: Role) => {
-      if (!pendingPlayer || !pendingNaturalRole || !currentRound) return;
-
       const pick: DraftPick = {
-        role,
-        naturalRole: pendingNaturalRole,
-        player: pendingPlayer,
+        role: naturalRole,
+        naturalRole,
+        player,
         team: currentRound.team,
         phase: currentRound.phase,
       };
+
       setPicks((prev) => [...prev, pick]);
-      setPendingPlayer(null);
-      setPendingNaturalRole(null);
 
       if (roundIndex >= ROLE_ORDER.length - 1) {
         setPhase('ready');
       } else {
         setRoundIndex((i) => i + 1);
         setDraftSubphase('spin');
+        setSpinGeneration((g) => g + 1);
       }
     },
-    [pendingPlayer, pendingNaturalRole, currentRound, roundIndex]
+    [currentRound, openRoles, mode, dailyConstraint.id, picks, roundIndex]
   );
-
-  const cancelAssign = useCallback(() => {
-    setPendingPlayer(null);
-    setPendingNaturalRole(null);
-    setDraftSubphase('pick');
-  }, []);
 
   const startSimulation = useCallback(() => {
     const simSeed =
@@ -206,8 +161,7 @@ export function useGame() {
     setRunSeed('');
     setResult(null);
     setDraftSubphase('spin');
-    setPendingPlayer(null);
-    setPendingNaturalRole(null);
+    setSpinGeneration(0);
   }, []);
 
   const playAgain = useCallback(() => {
@@ -219,6 +173,7 @@ export function useGame() {
     setPicks((prev) => prev.slice(0, -1));
     setRoundIndex(picks.length - 1);
     setDraftSubphase('spin');
+    setSpinGeneration((g) => g + 1);
     setPhase('draft');
   }, [picks]);
 
@@ -228,10 +183,8 @@ export function useGame() {
     picks,
     roundIndex,
     currentRound,
-    draftRounds,
     draftSubphase,
-    pendingPlayer,
-    pendingNaturalRole,
+    spinGeneration,
     openRoles,
     filledRoles,
     skipsLeft,
@@ -243,8 +196,6 @@ export function useGame() {
     finishSpin,
     skipTeam,
     selectPlayer,
-    assignRole,
-    cancelAssign,
     startSimulation,
     finishSimulation,
     resetToHome,

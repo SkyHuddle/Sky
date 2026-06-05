@@ -8,6 +8,7 @@ interface TeamRosterCardProps {
   teamRole: Role;
   onSelect: () => void;
   disabled?: boolean;
+  roleTaken?: boolean;
 }
 
 export function TeamRosterCard({
@@ -15,6 +16,7 @@ export function TeamRosterCard({
   teamRole,
   onSelect,
   disabled,
+  roleTaken,
 }: TeamRosterCardProps) {
   const initials = player.name
     .split(' ')
@@ -32,7 +34,8 @@ export function TeamRosterCard({
         'relative w-full text-left rounded-xl p-3 transition-all',
         'border border-white/[0.08] bg-white/[0.03]',
         'active:scale-[0.98] disabled:opacity-40 disabled:pointer-events-none',
-        !disabled && 'hover:border-gold/35 hover:bg-white/[0.06]'
+        !disabled && 'hover:border-gold/35 hover:bg-white/[0.06]',
+        roleTaken && 'opacity-35'
       )}
       whileTap={{ scale: disabled ? 1 : 0.98 }}
     >

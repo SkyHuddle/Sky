@@ -73,21 +73,17 @@ export default function App() {
             className="relative z-10"
           >
             <DraftScreen
-              roundIndex={game.roundIndex}
               currentRound={game.currentRound}
               draftSubphase={game.draftSubphase}
               picks={game.picks}
               openRoles={game.openRoles}
+              spinGeneration={game.spinGeneration}
               skipsLeft={game.skipsLeft}
               dailyConstraint={game.dailyConstraint}
               isDaily={game.mode === 'daily'}
-              pendingPlayer={game.pendingPlayer}
-              pendingNaturalRole={game.pendingNaturalRole}
               onSpinComplete={game.finishSpin}
               onSkipTeam={game.skipTeam}
               onSelectPlayer={game.selectPlayer}
-              onAssignRole={game.assignRole}
-              onCancelAssign={game.cancelAssign}
               onBack={handleBack}
             />
           </motion.div>

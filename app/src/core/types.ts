@@ -83,13 +83,19 @@ export interface HistoricalTeam {
   roster: Record<Role, string>;
 }
 
+/** Dual-reel slot spin — year and team name roll independently, land together */
+export interface SlotSpin {
+  yearSequence: number[];
+  nameSequence: string[];
+  regionSequence: string[];
+}
+
 export interface DraftRound {
   roundIndex: number;
   phase: DraftTournamentPhase;
   team: HistoricalTeam;
   roster: Player[];
-  /** Teams to flash during slot animation */
-  spinSequence: HistoricalTeam[];
+  spin: SlotSpin;
 }
 
 export type StageId = 'spring' | 'msi' | 'summer' | 'worlds';
@@ -130,7 +136,7 @@ export type GameMode = 'free' | 'daily';
 
 export type GamePhase = 'home' | 'draft' | 'ready' | 'simulation' | 'result';
 
-export type DraftSubphase = 'spin' | 'pick' | 'assign';
+export type DraftSubphase = 'spin' | 'pick';
 
 export interface DraftPick {
   /** Slot on your Golden Road roster */

@@ -1,5 +1,11 @@
-import type { SimulationResult, StageId, StageOutcome, WorldsFailureDetail, DraftPick } from '@/core/types';
-import { STAGE_THRESHOLDS, WORLDS_FAILURE_LABELS, OFF_ROLE_PENALTY } from '@/core/constants';
+import type {
+  SimulationResult,
+  StageId,
+  StageOutcome,
+  WorldsFailureDetail,
+  DraftPick,
+} from '@/core/types';
+import { STAGE_THRESHOLDS, WORLDS_FAILURE_LABELS } from '@/core/constants';
 import { computeRosterScore, countTitles, stageTeamPower } from './ratings';
 import { hashString } from './draft';
 
@@ -13,7 +19,7 @@ function mulberry32(seed: number) {
 }
 
 function rollVariance(rng: () => number, clutch: number): number {
-  const spread = 16 - clutch / 10;
+  const spread = 11 - clutch / 14;
   return (rng() - 0.5) * spread;
 }
 
@@ -23,16 +29,13 @@ function worldsFailureDetail(
   rng: () => number
 ): WorldsFailureDetail {
   const gap = threshold - power;
-  if (gap > 14 || rng() < 0.4) return 'groups';
-  if (gap > 8 || rng() < 0.55) return 'quarterfinals';
-  if (gap > 4 || rng() < 0.7) return 'semifinals';
+  if (gap > 10 || rng() < 0.32) return 'groups';
+  if (gap > 6 || rng() < 0.48) return 'quarterfinals';
+  if (gap > 3 || rng() < 0.62) return 'semifinals';
   return 'finals';
 }
 
-function failureMessage(
-  stage: StageId,
-  detail?: WorldsFailureDetail
-): string {
+function failureMessage(stage: StageId, detail?: WorldsFailureDetail): string {
   if (stage === 'worlds' && detail) {
     return WORLDS_FAILURE_LABELS[detail];
   }
@@ -45,18 +48,22 @@ function failureMessage(
   return labels[stage];
 }
 
-function offRolePenalty(picks: DraftPick[]): number {
+/** Softer penalty for drafting from underdog team cards */
+function draftContextPenalty(picks: DraftPick[]): number {
   return picks.reduce((sum, p) => {
-    return sum + (p.role !== p.naturalRole ? OFF_ROLE_PENALTY : 0);
+    if (p.team.tier === 'weak') return sum + 1.8;
+    if (p.team.tier === 'average') return sum + 0.6;
+    return sum;
   }, 0);
 }
 
-function weakTeamPenalty(picks: DraftPick[]): number {
-  return picks.reduce((sum, p) => {
-    if (p.team.tier === 'weak') return sum + 3;
-    if (p.team.tier === 'average') return sum + 1.2;
-    return sum;
-  }, 0);
+/** Small bonus when average OVR is elite */
+function rosterQualityBonus(players: { ratings: { overall: number } }[]): number {
+  const avg = players.reduce((s, p) => s + p.ratings.overall, 0) / players.length;
+  if (avg >= 92) return 2.5;
+  if (avg >= 89) return 1.2;
+  if (avg >= 86) return 0.4;
+  return 0;
 }
 
 export function simulateGoldenRoad(
@@ -69,15 +76,20 @@ export function simulateGoldenRoad(
     : (Date.now() ^ (Math.random() * 1e9)) >>> 0;
   const rng = mulberry32(seed);
 
+  const penalty = draftContextPenalty(picks);
+  const bonus = rosterQualityBonus(players);
   const rosterScore = Math.max(
     0,
-    computeRosterScore(players) - offRolePenalty(picks) * 0.35 - weakTeamPenalty(picks) * 0.25
+    computeRosterScore(players) - penalty * 0.2 + bonus
   );
   const titleCounts = countTitles(players);
   const avgClutch =
     players.reduce((s, p) => s + p.ratings.clutch, 0) / players.length;
 
-  const penalty = offRolePenalty(picks) + weakTeamPenalty(picks);
+  const powerBase =
+    players.reduce((s, p) => s + p.ratings.overall, 0) / players.length -
+    penalty +
+    bonus;
 
   const stages: StageOutcome[] = [];
   const stageOrder: StageId[] = ['spring', 'msi', 'summer', 'worlds'];
@@ -86,15 +98,16 @@ export function simulateGoldenRoad(
   let failureMessageText = '';
 
   for (const stage of stageOrder) {
-    const power = stageTeamPower(players, stage) - penalty;
-    const threshold = STAGE_THRESHOLDS[stage] + rng() * 5 - 1;
+    const stagePower = stageTeamPower(players, stage);
+    const blended = stagePower * 0.55 + powerBase * 0.45 - penalty * 0.5;
+    const threshold = STAGE_THRESHOLDS[stage] + rng() * 3 - 1.5;
     const variance = rollVariance(rng, avgClutch);
-    const roll = power + variance;
+    const roll = blended + variance;
     const passed = roll >= threshold;
 
     let detail: WorldsFailureDetail | undefined;
     if (!passed && stage === 'worlds') {
-      detail = worldsFailureDetail(power, threshold, rng);
+      detail = worldsFailureDetail(blended, threshold, rng);
     }
 
     stages.push({

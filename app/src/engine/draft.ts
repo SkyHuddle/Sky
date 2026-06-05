@@ -3,6 +3,7 @@ import type {
   DraftTournamentPhase,
   HistoricalTeam,
   Player,
+  SlotSpin,
   TeamTier,
 } from '@/core/types';
 import { DRAFT_PHASE_ORDER } from '@/core/types';
@@ -95,26 +96,41 @@ function rollTeamForPhase(
   return pickFrom[Math.floor(rng() * pickFrom.length)];
 }
 
-export function buildSpinSequence(
+/** Year reel and team-name reel spin independently, then land on the same card */
+export function buildDualSpin(
   finalTeam: HistoricalTeam,
   phase: DraftTournamentPhase,
   seed: string,
   roundIndex: number,
-  durationMs = 2400,
+  durationMs = 2600,
   tickMs = SPIN_TICK_MS
-): HistoricalTeam[] {
+): SlotSpin {
   const rng = mulberry32(hashString(`${seed}-spin-${roundIndex}`));
   const ticks = Math.floor(durationMs / tickMs);
   const pool = shuffle(
     getValidTeams('lol').filter((t) => t.phases.includes(phase)),
     rng
   );
-  const sequence: HistoricalTeam[] = [];
+  const years = pool.map((t) => t.year);
+  const names = pool.map((t) => t.name);
+  const regions = pool.map((t) => t.region);
+
+  const yearSequence: number[] = [];
+  const nameSequence: string[] = [];
+  const regionSequence: string[] = [];
+
   for (let i = 0; i < ticks - 1; i++) {
-    sequence.push(pool[i % pool.length]);
+    const decoy = pool[Math.floor(rng() * pool.length)];
+    yearSequence.push(years[Math.floor(rng() * years.length)] ?? decoy.year);
+    nameSequence.push(names[Math.floor(rng() * names.length)] ?? decoy.name);
+    regionSequence.push(regions[Math.floor(rng() * regions.length)] ?? decoy.region);
   }
-  sequence.push(finalTeam);
-  return sequence;
+
+  yearSequence.push(finalTeam.year);
+  nameSequence.push(finalTeam.name);
+  regionSequence.push(finalTeam.region);
+
+  return { yearSequence, nameSequence, regionSequence };
 }
 
 export function generateDraftRounds(
@@ -130,14 +146,14 @@ export function generateDraftRounds(
     const team = rollTeamForPhase(phase, rng, usedTeamIds, filter);
     usedTeamIds.add(team.id);
     const roster = resolveTeamRoster(team) ?? [];
-    const spinSequence = buildSpinSequence(team, phase, seed, i);
+    const spin = buildDualSpin(team, phase, seed, i);
 
     rounds.push({
       roundIndex: i,
       phase,
       team,
       roster,
-      spinSequence,
+      spin,
     });
   }
 
@@ -155,13 +171,13 @@ export function rerollRound(
   const used = new Set(usedTeamIds);
   const team = rollTeamForPhase(phase, rng, used, filter);
   const roster = resolveTeamRoster(team) ?? [];
-  const spinSequence = buildSpinSequence(team, phase, seed, roundIndex);
+  const spin = buildDualSpin(team, phase, seed, roundIndex);
   return {
     roundIndex,
     phase,
     team,
     roster,
-    spinSequence,
+    spin,
   };
 }
 

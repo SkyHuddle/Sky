@@ -1,13 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import type { HistoricalTeam } from '@/core/types';
+import type { HistoricalTeam, SlotSpin } from '@/core/types';
 import { DRAFT_PHASE_LABELS } from '@/core/types';
 import type { DraftTournamentPhase } from '@/core/types';
-import { SPIN_DURATION_MS, SPIN_TICK_MS } from '@/core/constants';
+import { SPIN_TICK_MS } from '@/core/constants';
 
 interface TeamSlotMachineProps {
   phase: DraftTournamentPhase;
-  sequence: HistoricalTeam[];
+  team: HistoricalTeam;
+  spin: SlotSpin;
+  spinKey: number;
   onComplete: () => void;
   onSkip?: () => void;
   canSkip?: boolean;
@@ -15,103 +17,98 @@ interface TeamSlotMachineProps {
 
 export function TeamSlotMachine({
   phase,
-  sequence,
+  team,
+  spin,
+  spinKey,
   onComplete,
   onSkip,
   canSkip,
 }: TeamSlotMachineProps) {
   const [index, setIndex] = useState(0);
   const [done, setDone] = useState(false);
+  const onCompleteRef = useRef(onComplete);
+  onCompleteRef.current = onComplete;
 
   useEffect(() => {
     setIndex(0);
     setDone(false);
-  }, [sequence]);
+  }, [spinKey, spin]);
 
   useEffect(() => {
-    if (sequence.length === 0) return;
+    const totalTicks = spin.yearSequence.length;
+    if (totalTicks === 0) return;
 
-    const totalTicks = sequence.length;
     let tick = 0;
+    let cancelled = false;
 
     const interval = setInterval(() => {
+      if (cancelled) return;
       tick += 1;
       setIndex(tick - 1);
 
       if (tick >= totalTicks) {
         clearInterval(interval);
         setDone(true);
-        setTimeout(onComplete, 350);
+        setTimeout(() => {
+          if (!cancelled) onCompleteRef.current();
+        }, 400);
       }
     }, SPIN_TICK_MS);
 
-    return () => clearInterval(interval);
-  }, [sequence, onComplete]);
+    return () => {
+      cancelled = true;
+      clearInterval(interval);
+    };
+  }, [spinKey, spin.yearSequence.length]);
 
-  const current = sequence[index] ?? sequence[sequence.length - 1];
-  if (!current) return null;
-
-  const progress = Math.min(1, (index + 1) / sequence.length);
-  const slowing = progress > 0.65;
+  const year = spin.yearSequence[index] ?? team.year;
+  const name = spin.nameSequence[index] ?? team.name;
+  const region = spin.regionSequence[index] ?? team.region;
+  const progress = spin.yearSequence.length
+    ? (index + 1) / spin.yearSequence.length
+    : 1;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[50dvh] px-5">
+    <div className="flex flex-col items-center justify-center min-h-[50dvh] px-5 pb-6">
       <p className="text-[10px] uppercase tracking-[0.35em] text-gold/70 mb-2">
         {DRAFT_PHASE_LABELS[phase]}
       </p>
-      <p className="text-white/40 text-xs mb-8 uppercase tracking-widest">
-        Rolling team & year…
+      <p className="text-white/40 text-xs mb-6 uppercase tracking-widest">
+        Rolling year & team…
       </p>
 
-      <motion.div
-        className="w-full max-w-sm rounded-2xl border border-white/10 bg-white/[0.04] p-8 text-center relative overflow-hidden"
-        animate={
-          done
-            ? { scale: 1, borderColor: 'rgba(201, 162, 39, 0.5)' }
-            : { scale: slowing ? 1 : [1, 1.01, 1] }
-        }
-        transition={{ duration: done ? 0.3 : 0.15 }}
-      >
-        {!done && (
-          <motion.div
-            className="absolute inset-x-0 top-0 h-1 bg-gold/60"
-            style={{ scaleX: progress, transformOrigin: 'left' }}
-          />
-        )}
+      <div className="w-full max-w-sm grid grid-cols-2 gap-3 mb-4">
+        <Reel label="Year" value={String(year)} highlight={done} accent={team.accent} />
+        <Reel
+          label="Team"
+          value={name}
+          sub={region}
+          highlight={done}
+          accent={team.accent}
+          small
+        />
+      </div>
 
-        <motion.div
-          key={`${current.id}-${index}`}
-          initial={{ opacity: 0.4, y: 8 }}
-          animate={{ opacity: 1, y: done ? 0 : 8 }}
-          transition={{ duration: done ? 0.2 : 0.05 }}
-        >
-          <p className="text-[10px] uppercase tracking-[0.25em] text-white/40 mb-2">
-            {current.region}
+      <motion.div
+        className="w-full max-w-sm rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-center"
+        animate={done ? { borderColor: 'rgba(201, 162, 39, 0.45)' } : {}}
+      >
+        {!done ? (
+          <div className="h-1 rounded-full bg-white/10 overflow-hidden">
+            <motion.div
+              className="h-full bg-gold/70"
+              style={{ width: `${progress * 100}%` }}
+            />
+          </div>
+        ) : (
+          <p className="text-sm" style={{ color: team.accent }}>
+            {team.tagline}
           </p>
-          <p
-            className="font-display text-4xl sm:text-5xl tracking-wide leading-none"
-            style={{ color: done ? current.accent : '#fff' }}
-          >
-            {current.year}
-          </p>
-          <p className="font-display text-xl sm:text-2xl text-white mt-3 tracking-wide">
-            {current.name}
-          </p>
-          {done && (
-            <motion.p
-              className="text-sm mt-2"
-              style={{ color: `${current.accent}cc` }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-            >
-              {current.tagline}
-            </motion.p>
-          )}
-        </motion.div>
+        )}
       </motion.div>
 
       {!done && (
-        <p className="text-white/25 text-[10px] uppercase tracking-widest mt-6 animate-pulse">
+        <p className="text-white/25 text-[10px] uppercase tracking-widest mt-5 animate-pulse">
           Spinning…
         </p>
       )}
@@ -119,14 +116,55 @@ export function TeamSlotMachine({
       {canSkip && onSkip && !done && (
         <button
           type="button"
-          onClick={onSkip}
-          className="mt-8 text-sm text-white/40 hover:text-gold border border-white/10 hover:border-gold/30 rounded-full px-5 py-2 transition-colors"
+          onClick={(e) => {
+            e.preventDefault();
+            onSkip();
+          }}
+          className="mt-6 z-10 text-sm font-medium text-gold border border-gold/40 bg-gold/10 hover:bg-gold/20 rounded-full px-6 py-3 transition-colors active:scale-[0.98]"
         >
-          Skip team (1 left)
+          Skip team · {canSkip ? '1 left' : '0 left'}
         </button>
       )}
     </div>
   );
 }
 
-export { SPIN_DURATION_MS };
+function Reel({
+  label,
+  value,
+  sub,
+  highlight,
+  accent,
+  small,
+}: {
+  label: string;
+  value: string;
+  sub?: string;
+  highlight: boolean;
+  accent: string;
+  small?: boolean;
+}) {
+  return (
+    <motion.div
+      className="rounded-xl border border-white/10 bg-white/[0.04] p-4 text-center overflow-hidden min-h-[100px] flex flex-col justify-center"
+      animate={highlight ? { borderColor: `${accent}80` } : {}}
+    >
+      <p className="text-[9px] uppercase tracking-[0.3em] text-white/35 mb-2">{label}</p>
+      <motion.p
+        key={value}
+        initial={{ opacity: 0.5, y: 6 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.06 }}
+        className={`font-display tracking-wide leading-tight ${
+          small ? 'text-lg' : 'text-4xl'
+        } ${highlight ? '' : 'text-white'}`}
+        style={highlight ? { color: accent } : undefined}
+      >
+        {value}
+      </motion.p>
+      {sub && (
+        <p className="text-[10px] text-white/30 mt-1 uppercase tracking-wider">{sub}</p>
+      )}
+    </motion.div>
+  );
+}

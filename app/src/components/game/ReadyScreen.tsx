@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import type { DraftPick } from '@/core/types';
 import { ROLE_LABELS } from '@/core/types';
 import { Button } from '@/components/ui/button';
+import { SimulationGuide } from './SimulationGuide';
 
 interface ReadyScreenProps {
   picks: DraftPick[];
@@ -37,7 +38,7 @@ export function ReadyScreen({ picks, onAttempt, onEdit }: ReadyScreenProps) {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1 }}
         >
-          {picks.map(({ role, naturalRole, player, team }, i) => (
+          {picks.map(({ role, player, team }, i) => (
             <motion.div
               key={role}
               className="flex items-center gap-4 p-3 rounded-xl border border-white/[0.06] bg-white/[0.03]"
@@ -57,8 +58,7 @@ export function ReadyScreen({ picks, onAttempt, onEdit }: ReadyScreenProps) {
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-[10px] text-white/35 uppercase tracking-widest">
-                  {ROLE_LABELS[role]}
-                  {role !== naturalRole && ` (was ${ROLE_LABELS[naturalRole]})`} · {team.year} {team.name}
+                  {ROLE_LABELS[role]} · {team.year} {team.name}
                 </p>
                 <p className="font-display text-lg text-white truncate">{player.name}</p>
               </div>
@@ -70,6 +70,10 @@ export function ReadyScreen({ picks, onAttempt, onEdit }: ReadyScreenProps) {
         <p className="text-center text-white/40 text-sm mt-6">
           Team OVR <span className="text-gold font-display text-2xl ml-1">{avgOvr.toFixed(0)}</span>
         </p>
+
+        <div className="mt-6">
+          <SimulationGuide />
+        </div>
       </div>
 
       <motion.div
