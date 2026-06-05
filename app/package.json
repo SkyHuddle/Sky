@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "etl:breakingpoint": "tsx scripts/etl/breakingpoint-sync.ts",
     "etl:ring-chase-team-year": "tsx scripts/etl/ring-chase-team-year.ts",
-    "validate:ring-chase-data": "tsx scripts/etl/validate-ring-chase-data.ts"
+    "validate:ring-chase-data": "tsx scripts/etl/validate-ring-chase-data.ts",
+    "validate:ring-chase-records": "tsx scripts/etl/validate-ring-chase-records.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

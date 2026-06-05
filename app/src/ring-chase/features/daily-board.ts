@@ -48,7 +48,7 @@ function seedCommunityEntries(dateKey: string): DailyBoardEntry[] {
     const majors = Math.floor(rng() * 5);
     const ringWon = majors === 4 && rng() > 0.55;
     const perfect = ringWon && rng() > 0.35;
-    const regWins = Math.min(18, Math.max(6, Math.round(8 + majors * 2 + rng() * 4)));
+    const regWins = Math.floor(rng() * 21);
     const regLosses = 20 - regWins;
     const record = `${regWins}-${regLosses}`;
     const ringLine = perfect ? 'Perfect Season' : ringWon ? 'Ring' : 'No Ring';

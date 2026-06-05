@@ -43,7 +43,7 @@ export function ReadyScreen({ picks, isDaily, onAttempt, onEdit }: ReadyScreenPr
           <p className="text-[10px] uppercase tracking-[0.35em] text-kb-gold/80">Roster locked</p>
           <h2 className="font-display text-4xl text-kb-fg mt-2">RUN THE TABLE</h2>
           <p className="text-kb-mute text-xs mt-2 max-w-[260px] mx-auto leading-relaxed">
-            Win Major I–IV, then Champs. Chase 20-0 or risk 0-20.
+            Win Major I–IV, then Champs. Your season lands somewhere on the 20-0 → 0-20 ladder.
           </p>
         </motion.div>
 

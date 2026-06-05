@@ -1,10 +1,35 @@
-import type { ChampsOutcome, DraftPick, SeasonSummary, SimulationResult, StageId, StageOutcome } from '../core/types';
+import type { ChampsOutcome, DraftPick, SeasonSummary, SimulationResult, StageOutcome } from '../core/types';
 import { CHAMPS_OUTCOME_LABELS } from '../core/types';
 import { hashString } from './rng';
 
 export type { SeasonSummary };
 
-const REGULAR_SEASON_GAMES = 20;
+export const REGULAR_SEASON_GAMES = 20;
+
+/** Ladder buckets: score 0–999 → wins 0–19; perfect season → 20-0 only */
+const LADDER_MAX_NON_PERFECT = 999;
+const LADDER_BUCKET = 50;
+
+const CHAMPS_LADDER: Record<ChampsOutcome, number> = {
+  champion: 120,
+  grand_final: 92,
+  top3: 78,
+  top4: 65,
+  top6: 50,
+  top8: 38,
+  missed: 12,
+};
+
+export type RegularSeasonInput = Pick<
+  SimulationResult,
+  | 'majorWins'
+  | 'ringWon'
+  | 'champsOutcome'
+  | 'rosterScore'
+  | 'perfectSeason'
+  | 'failureStage'
+  | 'stages'
+>;
 
 function bracketRecord(stages: StageOutcome[]): { wins: number; losses: number } {
   let wins = 0;
@@ -73,74 +98,64 @@ function buildNarrative(
   return `You went ${record} but the run ended before a ring.`;
 }
 
-function champsRegularSeasonBonus(outcome: ChampsOutcome, ringWon: boolean): number {
-  if (ringWon) return 0;
-  if (outcome === 'grand_final') return 2;
-  if (outcome === 'top4') return 1;
-  if (outcome === 'top6') return 0;
-  return 0;
-}
-
-function failureCeiling(stage: StageId | null): number {
-  if (!stage) return REGULAR_SEASON_GAMES - 1;
-  const caps: Record<StageId, number> = {
-    major1: 2,
-    major2: 7,
-    major3: 11,
-    major4: 14,
-    champs: 17,
-  };
-  return caps[stage];
-}
-
 /**
- * Maps bracket outcome → CDL-style 20-game regular season record.
- * Full range: 20-0 (perfect) through 0-20 (bombed out).
+ * Continuous 0–999 ladder from bracket outcome + roster context.
+ * Each 50-point band maps to one regular-season win total (0–19).
  */
-function regularSeasonRecord(
-  picks: DraftPick[],
-  result: Pick<
-    SimulationResult,
-    | 'majorWins'
-    | 'ringWon'
-    | 'champsOutcome'
-    | 'rosterScore'
-    | 'perfectSeason'
-    | 'failureStage'
-    | 'stages'
-  >
-): { wins: number; losses: number } {
-  if (result.perfectSeason) {
-    return { wins: REGULAR_SEASON_GAMES, losses: 0 };
+export function computeLadderScore(picks: DraftPick[], result: RegularSeasonInput): number {
+  if (result.perfectSeason) return 1000;
+
+  const trapSlots = picks.filter((p) => p.team.tier === 'underdog').length;
+  const avgPower =
+    result.stages.length > 0
+      ? result.stages.reduce((sum, stage) => sum + stage.power, 0) / result.stages.length
+      : result.rosterScore;
+
+  let score = result.majorWins * 168;
+  score += result.ringWon ? CHAMPS_LADDER.champion : CHAMPS_LADDER[result.champsOutcome];
+  score += (result.rosterScore - 72) * 2.4;
+  score += avgPower * 2.5;
+  score -= trapSlots * 44;
+
+  if (result.majorWins === 0) score -= 38;
+  if (result.failureStage === 'major1') score -= 22;
+  else if (result.failureStage === 'major2') score -= 8;
+
+  for (const stage of result.stages) {
+    const beatsCleared = stage.run.filter((beat) => beat.passed).length;
+    score += beatsCleared * 2.2;
+    if (!stage.passed) {
+      score += stage.passChance * 0.42;
+    }
   }
 
   const pickKey = picks.map((p) => `${p.team.id}:${p.player.id}`).join('|');
-  const noise = (hashString(`${pickKey}-reg`) % 5) - 2;
-  const trapSlots = picks.filter((p) => p.team.tier === 'underdog').length;
+  const spread = hashString(
+    `${pickKey}|${result.majorWins}|${result.failureStage ?? ''}|${result.champsOutcome}|${Math.round(result.rosterScore)}`
+  );
+  score += spread % 50;
 
-  let wins =
-    result.majorWins * 4 +
-    (result.ringWon ? 4 : 0) +
-    champsRegularSeasonBonus(result.champsOutcome, result.ringWon);
+  return Math.max(0, Math.min(LADDER_MAX_NON_PERFECT, Math.round(score)));
+}
 
-  wins += Math.round((result.rosterScore - 82) * 0.22);
-  wins -= Math.round(trapSlots * 1.25);
-  wins += noise;
+/** Maps ladder → wins in [0, 20]. Every combo 0-20 … 20-0 is a distinct bucket. */
+export function computeRegularSeasonWins(picks: DraftPick[], result: RegularSeasonInput): number {
+  if (result.perfectSeason) return REGULAR_SEASON_GAMES;
+  const score = computeLadderScore(picks, result);
+  const wins = Math.floor(score / LADDER_BUCKET);
+  return Math.max(0, Math.min(REGULAR_SEASON_GAMES - 1, wins));
+}
 
-  if (!result.ringWon && result.failureStage) {
-    wins = Math.min(wins, failureCeiling(result.failureStage));
-  }
+export function formatRegularSeasonRecord(wins: number): string {
+  const clamped = Math.max(0, Math.min(REGULAR_SEASON_GAMES, wins));
+  return `${clamped}-${REGULAR_SEASON_GAMES - clamped}`;
+}
 
-  const firstMajor = result.stages.find((s) => s.stage === 'major1');
-  if (
-    result.majorWins === 0 &&
-    result.failureStage === 'major1' &&
-    firstMajor?.outcome === 'eliminated'
-  ) {
-    wins = Math.min(wins, Math.max(0, Math.round((result.rosterScore - 74) * 0.15)));
-  }
-
-  wins = Math.max(0, Math.min(REGULAR_SEASON_GAMES - 1, Math.round(wins)));
+function regularSeasonRecord(
+  picks: DraftPick[],
+  result: RegularSeasonInput
+): { wins: number; losses: number } {
+  const wins = computeRegularSeasonWins(picks, result);
   return { wins, losses: REGULAR_SEASON_GAMES - wins };
 }
 
@@ -151,7 +166,7 @@ export function buildSeasonSummary(
   const { stages, majorWins, ringWon, perfectSeason, champsOutcome } = result;
   const reg = regularSeasonRecord(picks, result);
   const bracket = bracketRecord(stages);
-  const record = `${reg.wins}-${reg.losses}`;
+  const record = formatRegularSeasonRecord(reg.wins);
   const majors = majorsLine(majorWins);
   const majorsWon = majorsVerb(majorWins);
   const champs = champsLine(champsOutcome, ringWon);

@@ -55,7 +55,7 @@ export function HomeScreen({
         </h1>
 
         <p className="text-kb-soft text-sm mt-5 max-w-[320px] mx-auto leading-relaxed">
-          Spin team-years, draft four cards, run the CDL gauntlet. Chase 20-0 or bomb out at 0-20.
+          Spin team-years, draft four cards, run the CDL gauntlet. Any record from 20-0 to 0-20 is on the table.
         </p>
         <p className="text-[10px] text-kb-mute mt-3 max-w-[320px] mx-auto leading-relaxed">
           {getDataSourceLabel()}
