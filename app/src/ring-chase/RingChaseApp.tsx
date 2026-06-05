@@ -4,7 +4,6 @@ import { useRingChaseGame } from './hooks/useRingChaseGame';
 import { HomeScreen } from './components/HomeScreen';
 import { DraftScreen } from './components/DraftScreen';
 import { ReadyScreen } from './components/ReadyScreen';
-import { SimulationScreen } from './components/SimulationScreen';
 import { ResultScreen } from './components/ResultScreen';
 import { loadStats, loadDailyResult } from './features/storage';
 import { getDateKey } from './features/daily';
@@ -88,21 +87,6 @@ export function RingChaseApp() {
                 isDaily={game.mode === 'daily'}
                 onAttempt={game.startSimulation}
                 onEdit={game.redraftLast}
-              />
-            </motion.div>
-          )}
-
-          {game.phase === 'simulation' && game.result && (
-            <motion.div key="sim" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-              <SimulationScreen
-                result={game.result}
-                picks={game.picks}
-                simSeed={
-                  game.mode === 'daily'
-                    ? `${game.dateKey}-${game.picks.map((p) => p.player.id).sort().join('-')}`
-                    : game.runSeed
-                }
-                onComplete={game.finishSimulation}
               />
             </motion.div>
           )}

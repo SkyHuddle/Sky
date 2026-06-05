@@ -8,7 +8,7 @@ import type {
   DraftSubphase,
   RosterSlot,
 } from '../core/types';
-import { DRAFT_ROUND_LABELS, SLOT_LABELS } from '../core/types';
+import { SLOT_LABELS } from '../core/types';
 import { SLOT_ORDER } from '../core/constants';
 import { PlayerCard } from './PlayerCard';
 import { TeamBanner } from './TeamBanner';
@@ -83,7 +83,7 @@ export function DraftScreen({
             ← Exit
           </button>
           <span className="text-[10px] uppercase tracking-[0.2em] text-kb-mute">
-            {DRAFT_ROUND_LABELS[picks.length] ?? `Pick ${picks.length + 1}`} · {SLOT_LABELS[openRoles[0] ?? 'mainAR']}
+            {picks.length + 1} / 4
           </span>
         </div>
         <RosterSlots picks={picks} openRoles={openRoles} />
@@ -97,7 +97,6 @@ export function DraftScreen({
             spin={currentRound.spin}
             spinKey={spinGeneration}
             roundIndex={currentRound.roundIndex}
-            draftSlot={openRoles[0] ?? 'mainAR'}
             onComplete={onSpinComplete}
           />
         )}
@@ -113,24 +112,6 @@ export function DraftScreen({
             {isDaily && dailyConstraint.id !== 'standard' && (
               <p className="text-[10px] text-kb-amber/80 mb-4 -mt-2 px-1 font-medium">{dailyConstraint.title}</p>
             )}
-
-            <div className="mb-4 rounded-[var(--kb-r-md)] border border-kb-border bg-kb-glass px-4 py-3.5">
-              <p className="text-xs text-kb-soft leading-relaxed">
-                {pickableCount === 1 ? (
-                  <>
-                    Draft your{' '}
-                    <span className="text-kb-gold font-semibold">
-                      {SLOT_LABELS[openRoles[0]!]}
-                    </span>
-                    .
-                  </>
-                ) : pickableCount > 1 ? (
-                  <>Pick the {SLOT_LABELS[openRoles[0]!]} for this roster.</>
-                ) : (
-                  <>No eligible players for today&apos;s rule on this team.</>
-                )}
-              </p>
-            </div>
 
             {pickableCount === 0 && (
               <p className="text-sm text-kb-crimson/90 mb-4 rounded-[var(--kb-r-md)] border border-kb-crimson/20 bg-kb-crimson/10 px-4 py-3">

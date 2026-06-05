@@ -7,7 +7,6 @@ import { SeasonRecordCard } from './SeasonRecordCard';
 import { HistoricalCompare } from './HistoricalCompare';
 import { DailyLeaderboard } from './DailyLeaderboard';
 import { RingCtaButton } from './RingCtaButton';
-import { KbCard } from './KbCard';
 import { addShareHistory } from '../features/storage';
 import { loadDailyBoard } from '../features/daily-board';
 import { getDateKey } from '../features/daily';
@@ -97,14 +96,6 @@ export function ResultScreen({
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
       >
-        <KbCard className="mb-2">
-          <p className="text-[10px] uppercase tracking-widest text-kb-mute mb-2">Tape review</p>
-          <p className="text-sm text-kb-soft leading-relaxed">{result.explanation}</p>
-          {result.chemistry.modifiers[0] && (
-            <p className="text-xs text-kb-mute mt-2">{result.chemistry.modifiers[0]}</p>
-          )}
-        </KbCard>
-
         <RingCtaButton onClick={handleShare} variant="glass">
           Share Result
         </RingCtaButton>
