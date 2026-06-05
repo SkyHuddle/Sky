@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Link } from 'react-router';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, Play, Circle } from 'lucide-react';
+import { ESPORTS_URL } from '../config/esports';
 
 const easeCustom: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -252,15 +252,17 @@ export default function Hero({ onOpenPanel, onReplayIntro }: HeroProps) {
           </a>
 
           <div className="flex items-center gap-4">
-            <Link
-              to="/ring-chase"
+            <a
+              href={ESPORTS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group flex items-center gap-2 text-[10px] font-semibold tracking-[0.08em] uppercase transition-colors duration-300"
               style={{ color: '#c9a227' }}
             >
               <Circle className="w-3 h-3 fill-[#c9a227]/30" />
-              <span>Ring Chase</span>
+              <span>Esports Games</span>
               <ArrowUpRight className="w-3 h-3 opacity-60 group-hover:opacity-100 transition-opacity" />
-            </Link>
+            </a>
             <button
               onClick={onReplayIntro}
               className="group flex items-center gap-2 text-[10px] font-medium tracking-[0.06em] uppercase bg-transparent border-none cursor-pointer transition-colors duration-300"
@@ -280,8 +282,10 @@ export default function Hero({ onOpenPanel, onReplayIntro }: HeroProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.6, ease: easeCustom }}
         >
-          <Link
-            to="/ring-chase"
+          <a
+            href={ESPORTS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center justify-between gap-3 rounded-2xl px-5 py-4 transition-transform duration-300 hover:scale-[1.02] active:scale-[0.99]"
             style={{
               backgroundColor: 'rgba(10, 10, 10, 0.82)',
@@ -292,13 +296,13 @@ export default function Hero({ onOpenPanel, onReplayIntro }: HeroProps) {
           >
             <div>
               <p className="text-[9px] uppercase tracking-[0.25em] font-medium" style={{ color: 'rgba(201,162,39,0.8)' }}>
-                New · CoD Esports
+                Ring Chase · Golden Road
               </p>
               <p className="text-base font-bold tracking-wide mt-0.5" style={{ color: '#E1E0CC' }}>
-                RING CHASE
+                ESPORTS GAMES
               </p>
               <p className="text-[11px] mt-0.5" style={{ color: 'rgba(225,224,204,0.45)' }}>
-                Draft history. Chase the ring.
+                CoD &amp; LoL draft games — separate site
               </p>
             </div>
             <div
@@ -307,7 +311,7 @@ export default function Hero({ onOpenPanel, onReplayIntro }: HeroProps) {
             >
               <ArrowUpRight className="w-4 h-4" style={{ color: '#c9a227' }} />
             </div>
-          </Link>
+          </a>
         </motion.div>
       </div>
     </section>
