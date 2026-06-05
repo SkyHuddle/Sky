@@ -55,7 +55,7 @@ export function HomeScreen({
         </h1>
 
         <p className="text-kb-soft text-sm mt-5 max-w-[320px] mx-auto leading-relaxed">
-          Do you actually know ball? This is the CoD version — draft team-year cards, run the table, share your season.
+          82-0 energy for CoD — spin dynasties and trap cards, draft four team-years, chase a perfect 4 majors + ring season.
         </p>
         <p className="text-[10px] text-kb-mute mt-3 max-w-[320px] mx-auto leading-relaxed">
           {getDataSourceLabel()}. Same vibe as{' '}

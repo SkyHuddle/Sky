@@ -14,23 +14,23 @@ export const SPIN_TICK_MS = 75;
 
 /** Logistic midpoints for per-stage pass probability */
 export const STAGE_PASS_MIDPOINTS: Record<StageId, number> = {
-  major1: 74,
-  major2: 76,
-  major3: 75,
-  major4: 77,
-  champs: 79,
+  major1: 79,
+  major2: 81,
+  major3: 80,
+  major4: 82,
+  champs: 84,
 };
 
 export const STAGE_PASS_STEEPNESS: Record<StageId, number> = {
-  major1: 0.11,
-  major2: 0.12,
-  major3: 0.11,
-  major4: 0.13,
-  champs: 0.14,
+  major1: 0.13,
+  major2: 0.14,
+  major3: 0.13,
+  major4: 0.14,
+  champs: 0.15,
 };
 
-export const STAGE_PASS_MIN = 0.08;
-export const STAGE_PASS_MAX = 0.9;
+export const STAGE_PASS_MIN = 0.06;
+export const STAGE_PASS_MAX = 0.82;
 export const MIN_RING_CHANCE = 0.005;
 
 export const STAGE_FAILURE_LABELS: Record<StageId, string> = {
@@ -41,11 +41,14 @@ export const STAGE_FAILURE_LABELS: Record<StageId, string> = {
   champs: 'Champs',
 };
 
-/** Tier weights for random team selection */
+/**
+ * Tier weights for random team selection — 82-0 / 20-0 style mix.
+ * Equal per-tier weight so trap (underdog) cards spin often; dynasties still show up.
+ */
 export const TIER_WEIGHTS: Record<string, number> = {
-  legendary: 28,
-  elite: 24,
+  legendary: 22,
+  elite: 22,
   strong: 22,
-  solid: 16,
-  underdog: 10,
+  solid: 22,
+  underdog: 22,
 };

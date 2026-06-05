@@ -35,6 +35,14 @@ export function accomplishmentFromTeam(team: HistoricalCodTeam): TeamYearAccompl
   if (champs.includes('top 4') || champs.includes('top 3') || champs.includes('top 6')) {
     return 'contender';
   }
+  if (
+    placement.includes('missed') ||
+    champs.includes('top 8') ||
+    champs.includes('top 10') ||
+    champs.includes('top 12')
+  ) {
+    return 'standard';
+  }
 
   return 'standard';
 }

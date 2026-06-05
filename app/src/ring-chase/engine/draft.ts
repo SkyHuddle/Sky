@@ -110,28 +110,38 @@ export function rerollRound(
   return buildRound(roundIndex, team, seed, rng);
 }
 
-/** Daily mode: fixed iconic teams for deterministic global challenge */
+/** Daily mode: mixed dynasties + trap cards (82-0 / 20-0 style board) */
 export function getDailyTeams(dateKey: string): string[] {
-  const iconic = [
+  const dynasties = [
     'optic-2017',
     'faze-2021',
     'empire-2020',
+    'envy-2016',
     'nysl-2023',
     'lat-2022',
     'optic-tx-2024',
     'col-2014',
-    'envy-2016',
-    'eunited-2019',
     'faze-2023',
     'lg-2016',
-    'lg-2017',
-    'lg-2018',
-    'lg-2019',
-    'rise-2016',
-    'seattle-2020',
+  ];
+  const trapCards = [
+    'legion-2023',
+    'guerrillas-2020',
+    'paris-2021',
+    'miami-2024',
+    'cloud9-2017',
+    'mutineers-2020',
+    'ravens-2021',
+    'rokkr-2022',
+    'surge-2021',
+    'florida-2022',
+    'boston-2022',
+    'london-2024',
   ];
   const rng = mulberry32(hashString(`daily-teams-${dateKey}`));
-  return shuffle(iconic, rng).slice(0, DRAFT_ROUNDS);
+  const traps = shuffle(trapCards, rng).slice(0, 2);
+  const icons = shuffle(dynasties, rng).slice(0, DRAFT_ROUNDS - traps.length);
+  return shuffle([...icons, ...traps], rng);
 }
 
 export function generateDailyRounds(

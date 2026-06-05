@@ -36,7 +36,7 @@ export function stagePassProbability(power: number, stage: StageId): number {
 }
 
 function jitter(power: number, stage: StageId, avgClutch: number, rng: () => number): number {
-  const spread = stage === 'champs' ? 2 + avgClutch / 35 : 1.5;
+  const spread = stage === 'champs' ? 3 + avgClutch / 28 : 2.2;
   return power + (rng() - 0.5) * spread;
 }
 
@@ -62,9 +62,11 @@ function failureChampsOutcome(roll: number, passChance: number): ChampsOutcome {
 export function ringProbability(picks: DraftPick[]): number {
   const players = simulationPlayers(picks);
   const chemistry = evaluateChemistry(picks);
+  const trapSlots = picks.filter((p) => p.team.tier === 'underdog').length;
+  const trapPenalty = trapSlots * 1.4 + Math.max(0, trapSlots - 1) * 1.0;
   let odds = 1;
   for (const stage of STAGES) {
-    const power = stageTeamPower(players, stage, chemistry.score);
+    const power = stageTeamPower(players, stage, chemistry.score) - trapPenalty;
     odds *= stagePassProbability(power, stage);
   }
   return Math.max(odds, MIN_RING_CHANCE);
@@ -81,17 +83,26 @@ export function simulateRingChase(
     : (Date.now() ^ (Math.random() * 1e9)) >>> 0;
   const rng = mulberry32(seed);
   const avgClutch = players.reduce((s, p) => s + p.ratings.clutch, 0) / players.length;
+  const trapSlots = picks.filter((p) => p.team.tier === 'underdog').length;
+  const trapPenalty = trapSlots * 1.4 + Math.max(0, trapSlots - 1) * 1.0;
 
   const stages: StageOutcome[] = [];
   let majorWins = 0;
+  let tableBroken = false;
   let failureStage: StageId | null = null;
   let failureMessageText = '';
 
   for (const stage of STAGES) {
-    const power = stageTeamPower(players, stage, chemistry.score);
+    const power = stageTeamPower(players, stage, chemistry.score) - trapPenalty;
     const effective = jitter(power, stage, avgClutch, rng);
-    const passChance = stagePassProbability(effective, stage);
+    let passChance = stagePassProbability(effective, stage);
     const roll = rng();
+
+    // 82-0 / 20-0 rule: miss any major and the table is broken — no Champs ring.
+    if (stage === 'champs' && tableBroken) {
+      passChance = 0;
+    }
+
     const passed = roll < passChance;
 
     let outcome: StageOutcomeLabel;
@@ -102,6 +113,7 @@ export function simulateRingChase(
       majorWins += 1;
     } else {
       outcome = failureMajorOutcome(roll, passChance);
+      tableBroken = true;
     }
 
     if (!passed && failureStage == null) {

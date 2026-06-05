@@ -49,7 +49,12 @@ export function stageTeamPower(players: CodPlayer[], stage: StageId, chemistryBo
       leadership * 0.05;
   }
 
-  return compress(raw + chemistryBonus);
+  const weakest = Math.min(...players.map((p) => p.ratings.overall));
+  // 82-0 / 20-0 weak-link drag: one trap-card pick tanks the whole run.
+  const weakDrag =
+    weakest < 80 ? (80 - weakest) * 0.7 : weakest < 84 ? (84 - weakest) * 0.35 : 0;
+
+  return compress(raw + chemistryBonus - weakDrag);
 }
 
 export function findMvp(players: CodPlayer[]): CodPlayer {

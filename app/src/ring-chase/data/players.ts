@@ -136,6 +136,10 @@ export const COD_PLAYERS: CodPlayer[] = [
   p('prolute', 'Prolute', 'smg', 'flex', 'OpTic', 0, 1, 'Major Winner', { overall: 84, slaying: 85 }),
   p('mack', 'Mack', 'smg', 'flex', 'NYSL', 0, 1, 'Major Winner', { overall: 85, slaying: 86 }),
   p('nexus', 'Nexus', 'flex', 'mainAR', 'London', 0, 0, 'Flex', { overall: 80, objective: 82 }),
+  p('havoc', 'Havoc', 'smg', 'flex', 'Mutineers', 0, 0, 'Flex SMG', { overall: 78, slaying: 80, pace: 79 }),
+  p('lacefield', 'Lacefield', 'smg', 'flex', 'Guerrillas', 0, 0, 'SMG', { overall: 76, slaying: 78, respawn: 75 }),
+  p('decemate', 'Decemate', 'flex', 'mainAR', 'Legion', 0, 0, 'Flex', { overall: 77, snd: 78, objective: 76 }),
+  p('assault', 'Assault', 'mainAR', 'flex', 'Guerrillas', 0, 0, 'AR', { overall: 79, snd: 80, consistency: 78 }),
 ];
 
 const playerMap = new Map<string, CodPlayer>();

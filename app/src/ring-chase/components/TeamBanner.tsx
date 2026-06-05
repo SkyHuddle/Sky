@@ -4,11 +4,11 @@ import type { HistoricalCodTeam } from '../core/types';
 import { cardCredentials } from '../engine/card-context';
 
 const TIER_LABEL: Record<HistoricalCodTeam['tier'], string> = {
-  legendary: 'Legendary',
+  legendary: 'Dynasty',
   elite: 'Elite',
   strong: 'Strong',
   solid: 'Solid',
-  underdog: 'Underdog',
+  underdog: 'Trap card',
 };
 
 interface TeamBannerProps {
@@ -45,7 +45,9 @@ export function TeamBanner({ team, rosterAvgOvr }: TeamBannerProps) {
               className={`text-[9px] uppercase px-2 py-0.5 rounded-full font-medium ${
                 team.tier === 'legendary'
                   ? 'bg-ring-gold/15 text-ring-gold border border-ring-gold/25'
-                  : 'bg-kb-glass text-kb-soft border border-kb-border'
+                  : team.tier === 'underdog'
+                    ? 'bg-kb-amber/12 text-kb-amber border border-kb-amber/25'
+                    : 'bg-kb-glass text-kb-soft border border-kb-border'
               }`}
             >
               {TIER_LABEL[team.tier]}

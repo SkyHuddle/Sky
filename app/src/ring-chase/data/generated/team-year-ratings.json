@@ -1,7 +1,7 @@
 {
   "source": "breakingpoint-team-year",
-  "generatedAt": "2026-06-05T15:05:46.751Z",
-  "entryCount": 144,
+  "generatedAt": "2026-06-05T15:13:24.725Z",
+  "entryCount": 184,
   "entries": {
     "optic-2017:formal": {
       "teamId": "optic-2017",
@@ -4104,6 +4104,1088 @@
         }
       },
       "overall": 81
+    },
+    "guerrillas-2020:assault": {
+      "teamId": "guerrillas-2020",
+      "playerId": "assault",
+      "seasonId": 2020,
+      "calendarYear": 2020,
+      "bpPlayerId": 53,
+      "bpTag": "Assault",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2024/Photos/Assault%20(1).webp?t=2024-01-23T23%3A37%3A13.699Z",
+      "source": "bp-stats",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 1.125,
+        "bpRating": 1.072,
+        "maps": 119,
+        "kills": 2146,
+        "deaths": 1908,
+        "hardpoint": {
+          "kd": 1.179,
+          "bpRating": 1.082,
+          "maps": 51
+        },
+        "snd": {
+          "kd": 0.979,
+          "bpRating": 0.986,
+          "maps": 38
+        }
+      },
+      "overall": 76
+    },
+    "guerrillas-2020:gunless": {
+      "teamId": "guerrillas-2020",
+      "playerId": "gunless",
+      "seasonId": 2020,
+      "calendarYear": 2020,
+      "bpPlayerId": 72,
+      "bpTag": "Gunless",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2022/Gunless_CDL_2021.webp?t=2024-01-05T20%3A35%3A25.932Z",
+      "source": "bp-stats",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.965,
+        "bpRating": 0.992,
+        "maps": 63,
+        "kills": 1202,
+        "deaths": 1245,
+        "hardpoint": {
+          "kd": 0.997,
+          "bpRating": 0.923,
+          "maps": 27
+        },
+        "snd": {
+          "kd": 0.831,
+          "bpRating": 1.259,
+          "maps": 20
+        }
+      },
+      "overall": 80
+    },
+    "guerrillas-2020:apathy-sea": {
+      "teamId": "guerrillas-2020",
+      "playerId": "apathy-sea",
+      "seasonId": 2020,
+      "calendarYear": 2020,
+      "bpPlayerId": 61,
+      "bpTag": "Apathy",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2022/Apathy_CDL_2021.webp?t=2024-01-05T20%3A32%3A38.900Z",
+      "source": "bp-stats",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.97,
+        "bpRating": 0.94,
+        "maps": 96,
+        "kills": 1806,
+        "deaths": 1862,
+        "hardpoint": {
+          "kd": 0.956,
+          "bpRating": 0.908,
+          "maps": 41
+        },
+        "snd": {
+          "kd": 1.056,
+          "bpRating": 0.997,
+          "maps": 31
+        }
+      },
+      "overall": 78
+    },
+    "guerrillas-2020:lacefield": {
+      "teamId": "guerrillas-2020",
+      "playerId": "lacefield",
+      "seasonId": 2020,
+      "calendarYear": 2020,
+      "bpPlayerId": 266,
+      "bpTag": "Lacefield",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2020/Lacefield_CDL_2020.webp",
+      "source": "bp-stats",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.937,
+        "bpRating": 1.059,
+        "maps": 17,
+        "kills": 310,
+        "deaths": 331,
+        "hardpoint": {
+          "kd": 0.901,
+          "bpRating": 1.013,
+          "maps": 7
+        },
+        "snd": {
+          "kd": 1.19,
+          "bpRating": 1.172,
+          "maps": 6
+        }
+      },
+      "overall": 72
+    },
+    "paris-2021:mettalz": {
+      "teamId": "paris-2021",
+      "playerId": "mettalz",
+      "seasonId": 2021,
+      "calendarYear": 2021,
+      "bpPlayerId": 94,
+      "bpTag": "MettalZ",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2026/m1/MettalZ.webp",
+      "source": "curated-audit",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.9,
+        "bpRating": 0.91,
+        "maps": 48,
+        "kills": 432,
+        "deaths": 480
+      },
+      "overall": 74
+    },
+    "paris-2021:decemate": {
+      "teamId": "paris-2021",
+      "playerId": "decemate",
+      "seasonId": 2021,
+      "calendarYear": 2021,
+      "bpPlayerId": 66,
+      "bpTag": "Decemate",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2022/dece.webp?t=2024-01-05T20%3A33%3A52.603Z",
+      "source": "bp-stats",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.94,
+        "bpRating": 0.79,
+        "maps": 24,
+        "kills": 389,
+        "deaths": 414,
+        "hardpoint": {
+          "kd": 0.912,
+          "bpRating": 0.679,
+          "maps": 11
+        },
+        "snd": {
+          "kd": 1.395,
+          "bpRating": 1.194,
+          "maps": 7
+        },
+        "control": {
+          "kd": 0.856,
+          "bpRating": 0.733,
+          "maps": 6
+        }
+      },
+      "overall": 72
+    },
+    "paris-2021:harry": {
+      "teamId": "paris-2021",
+      "playerId": "harry",
+      "seasonId": 2021,
+      "calendarYear": 2021,
+      "bpPlayerId": 74,
+      "bpTag": "Harry",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2022/Harry_2023.webp?t=2024-01-05T20%3A35%3A39.472Z",
+      "source": "curated-audit",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.93,
+        "bpRating": 0.94,
+        "maps": 55,
+        "kills": 512,
+        "deaths": 550
+      },
+      "overall": 74
+    },
+    "paris-2021:feelo": {
+      "teamId": "paris-2021",
+      "playerId": "feelo",
+      "seasonId": 2021,
+      "calendarYear": 2021,
+      "bpTag": "Feelo",
+      "headshot": null,
+      "source": "curated-audit",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.91,
+        "bpRating": 0.92,
+        "maps": 50,
+        "kills": 455,
+        "deaths": 500
+      },
+      "overall": 73
+    },
+    "legion-2023:lunarz": {
+      "teamId": "legion-2023",
+      "playerId": "lunarz",
+      "seasonId": 2023,
+      "calendarYear": 2023,
+      "bpPlayerId": 163,
+      "bpTag": "Lunarz",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2026/m1/Lunarz.webp",
+      "source": "curated-audit",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.9,
+        "bpRating": 0.91,
+        "maps": 40,
+        "kills": 360,
+        "deaths": 400
+      },
+      "overall": 72
+    },
+    "legion-2023:neptune": {
+      "teamId": "legion-2023",
+      "playerId": "neptune",
+      "seasonId": 2023,
+      "calendarYear": 2023,
+      "bpPlayerId": 81,
+      "bpTag": "Neptune",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2026/m1/Neptune.webp",
+      "source": "bp-stats",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.792,
+        "bpRating": 0.716,
+        "maps": 24,
+        "kills": 327,
+        "deaths": 413,
+        "hardpoint": {
+          "kd": 0.797,
+          "bpRating": 0.61,
+          "maps": 10
+        },
+        "snd": {
+          "kd": 1.061,
+          "bpRating": 1.049,
+          "maps": 8
+        },
+        "control": {
+          "kd": 0.684,
+          "bpRating": 0.663,
+          "maps": 6
+        }
+      },
+      "overall": 72
+    },
+    "legion-2023:feelo": {
+      "teamId": "legion-2023",
+      "playerId": "feelo",
+      "seasonId": 2023,
+      "calendarYear": 2023,
+      "bpTag": "Feelo",
+      "headshot": null,
+      "source": "curated-audit",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.88,
+        "bpRating": 0.89,
+        "maps": 38,
+        "kills": 334,
+        "deaths": 380
+      },
+      "overall": 72
+    },
+    "legion-2023:beans": {
+      "teamId": "legion-2023",
+      "playerId": "beans",
+      "seasonId": 2023,
+      "calendarYear": 2023,
+      "bpPlayerId": 42,
+      "bpTag": "Beans",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2026/m1/Beans.webp",
+      "source": "bp-stats",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 1.034,
+        "bpRating": 1.052,
+        "maps": 109,
+        "kills": 1910,
+        "deaths": 1848,
+        "snd": {
+          "kd": 1.015,
+          "bpRating": 0.976,
+          "maps": 33
+        },
+        "hardpoint": {
+          "kd": 0.971,
+          "bpRating": 0.976,
+          "maps": 49
+        },
+        "control": {
+          "kd": 1.184,
+          "bpRating": 1.21,
+          "maps": 27
+        }
+      },
+      "overall": 74
+    },
+    "florida-2022:majormaniak": {
+      "teamId": "florida-2022",
+      "playerId": "majormaniak",
+      "seasonId": 2022,
+      "calendarYear": 2022,
+      "bpPlayerId": 33,
+      "bpTag": "MajorManiak",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2023/Florida%20Mutineers/MajorManiak/MajorManiak_front.png",
+      "source": "bp-stats",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.981,
+        "bpRating": 0.932,
+        "maps": 87,
+        "kills": 1501,
+        "deaths": 1530,
+        "hardpoint": {
+          "kd": 1.016,
+          "bpRating": 0.889,
+          "maps": 37
+        },
+        "control": {
+          "kd": 0.903,
+          "bpRating": 0.894,
+          "maps": 21
+        },
+        "snd": {
+          "kd": 1.034,
+          "bpRating": 1.084,
+          "maps": 29
+        }
+      },
+      "overall": 80
+    },
+    "florida-2022:methodz": {
+      "teamId": "florida-2022",
+      "playerId": "methodz",
+      "seasonId": 2022,
+      "calendarYear": 2022,
+      "bpPlayerId": 21,
+      "bpTag": "Methodz",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2022/Methodz_2023%20(1).webp?t=2024-01-05T20%3A48%3A44.323Z",
+      "source": "bp-stats",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 1.085,
+        "bpRating": 1.097,
+        "maps": 140,
+        "kills": 2517,
+        "deaths": 2320,
+        "hardpoint": {
+          "kd": 1.074,
+          "bpRating": 1.124,
+          "maps": 59
+        },
+        "control": {
+          "kd": 1.137,
+          "bpRating": 1.084,
+          "maps": 34
+        },
+        "snd": {
+          "kd": 1.014,
+          "bpRating": 0.993,
+          "maps": 47
+        }
+      },
+      "overall": 83
+    },
+    "florida-2022:vivid": {
+      "teamId": "florida-2022",
+      "playerId": "vivid",
+      "seasonId": 2022,
+      "calendarYear": 2022,
+      "bpPlayerId": 31,
+      "bpTag": "Vivid",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2026/m1/Vivid.webp",
+      "source": "bp-stats",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.903,
+        "bpRating": 0.935,
+        "maps": 135,
+        "kills": 2629,
+        "deaths": 2910,
+        "hardpoint": {
+          "kd": 0.904,
+          "bpRating": 0.92,
+          "maps": 56
+        },
+        "snd": {
+          "kd": 0.871,
+          "bpRating": 0.927,
+          "maps": 45
+        },
+        "control": {
+          "kd": 0.913,
+          "bpRating": 0.935,
+          "maps": 34
+        }
+      },
+      "overall": 77
+    },
+    "florida-2022:havoc": {
+      "teamId": "florida-2022",
+      "playerId": "havoc",
+      "seasonId": 2022,
+      "calendarYear": 2022,
+      "bpTag": "Havoc",
+      "headshot": null,
+      "source": "curated-audit",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.93,
+        "bpRating": 0.93,
+        "maps": 65,
+        "kills": 605,
+        "deaths": 650
+      },
+      "overall": 73
+    },
+    "surge-2021:octane": {
+      "teamId": "surge-2021",
+      "playerId": "octane",
+      "seasonId": 2021,
+      "calendarYear": 2021,
+      "bpPlayerId": 24,
+      "bpTag": "Octane",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2023/LA%20Thieves/Octane/Octane_front.png",
+      "source": "bp-stats",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 1.093,
+        "bpRating": 1.069,
+        "maps": 141,
+        "kills": 2373,
+        "deaths": 2172,
+        "hardpoint": {
+          "kd": 1.086,
+          "bpRating": 1.091,
+          "maps": 59
+        },
+        "snd": {
+          "kd": 1.13,
+          "bpRating": 1.008,
+          "maps": 46
+        },
+        "control": {
+          "kd": 1.087,
+          "bpRating": 1.015,
+          "maps": 36
+        }
+      },
+      "overall": 84
+    },
+    "surge-2021:apathy-sea": {
+      "teamId": "surge-2021",
+      "playerId": "apathy-sea",
+      "seasonId": 2021,
+      "calendarYear": 2021,
+      "bpPlayerId": 61,
+      "bpTag": "Apathy",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2022/Apathy_CDL_2021.webp?t=2024-01-05T20%3A32%3A38.900Z",
+      "source": "bp-stats",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.901,
+        "bpRating": 0.843,
+        "maps": 131,
+        "kills": 1983,
+        "deaths": 2200,
+        "hardpoint": {
+          "kd": 0.929,
+          "bpRating": 0.819,
+          "maps": 54
+        },
+        "snd": {
+          "kd": 0.94,
+          "bpRating": 0.964,
+          "maps": 43
+        },
+        "control": {
+          "kd": 0.837,
+          "bpRating": 0.793,
+          "maps": 34
+        }
+      },
+      "overall": 75
+    },
+    "surge-2021:prestinni": {
+      "teamId": "surge-2021",
+      "playerId": "prestinni",
+      "seasonId": 2021,
+      "calendarYear": 2021,
+      "bpPlayerId": 83,
+      "bpTag": "Prestinni",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2022/Prestinni_2023.webp?t=2024-01-05T20%3A38%3A41.010Z",
+      "source": "bp-stats",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.907,
+        "bpRating": 0.89,
+        "maps": 141,
+        "kills": 2233,
+        "deaths": 2462,
+        "hardpoint": {
+          "kd": 0.944,
+          "bpRating": 0.927,
+          "maps": 59
+        },
+        "snd": {
+          "kd": 0.838,
+          "bpRating": 0.883,
+          "maps": 46
+        },
+        "control": {
+          "kd": 0.87,
+          "bpRating": 0.827,
+          "maps": 36
+        }
+      },
+      "overall": 77
+    },
+    "surge-2021:diamondcon": {
+      "teamId": "surge-2021",
+      "playerId": "diamondcon",
+      "seasonId": 2021,
+      "calendarYear": 2021,
+      "bpPlayerId": 67,
+      "bpTag": "Diamondcon",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2024/Photos/diamondcon%20(1).webp",
+      "source": "bp-stats",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.987,
+        "bpRating": 1.022,
+        "maps": 85,
+        "kills": 1467,
+        "deaths": 1487,
+        "hardpoint": {
+          "kd": 0.982,
+          "bpRating": 1.017,
+          "maps": 35
+        },
+        "snd": {
+          "kd": 0.967,
+          "bpRating": 0.979,
+          "maps": 28
+        },
+        "control": {
+          "kd": 1.002,
+          "bpRating": 1.049,
+          "maps": 22
+        }
+      },
+      "overall": 77
+    },
+    "rokkr-2022:majormaniak": {
+      "teamId": "rokkr-2022",
+      "playerId": "majormaniak",
+      "seasonId": 2022,
+      "calendarYear": 2022,
+      "bpPlayerId": 33,
+      "bpTag": "MajorManiak",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2023/Florida%20Mutineers/MajorManiak/MajorManiak_front.png",
+      "source": "bp-stats",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.981,
+        "bpRating": 0.932,
+        "maps": 87,
+        "kills": 1501,
+        "deaths": 1530,
+        "hardpoint": {
+          "kd": 1.016,
+          "bpRating": 0.889,
+          "maps": 37
+        },
+        "control": {
+          "kd": 0.903,
+          "bpRating": 0.894,
+          "maps": 21
+        },
+        "snd": {
+          "kd": 1.034,
+          "bpRating": 1.084,
+          "maps": 29
+        }
+      },
+      "overall": 76
+    },
+    "rokkr-2022:attach": {
+      "teamId": "rokkr-2022",
+      "playerId": "attach",
+      "seasonId": 2022,
+      "calendarYear": 2022,
+      "bpPlayerId": 38,
+      "bpTag": "Attach",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2025/Major%201/C9NY/Attach_Cloud9NY_F_Broadcast.webp",
+      "source": "bp-stats",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 1.126,
+        "bpRating": 1.093,
+        "maps": 114,
+        "kills": 2197,
+        "deaths": 1951,
+        "hardpoint": {
+          "kd": 1.127,
+          "bpRating": 1.046,
+          "maps": 47
+        },
+        "control": {
+          "kd": 1.142,
+          "bpRating": 1.106,
+          "maps": 28
+        },
+        "snd": {
+          "kd": 1.078,
+          "bpRating": 1.061,
+          "maps": 39
+        }
+      },
+      "overall": 81
+    },
+    "rokkr-2022:priestahh": {
+      "teamId": "rokkr-2022",
+      "playerId": "priestahh",
+      "seasonId": 2022,
+      "calendarYear": 2022,
+      "bpPlayerId": 34,
+      "bpTag": "Priestahh",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2025/Major%202-5/Priestahh_425.webp",
+      "source": "bp-stats",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.949,
+        "bpRating": 0.949,
+        "maps": 114,
+        "kills": 2087,
+        "deaths": 2200,
+        "hardpoint": {
+          "kd": 0.946,
+          "bpRating": 0.887,
+          "maps": 47
+        },
+        "control": {
+          "kd": 0.95,
+          "bpRating": 0.987,
+          "maps": 28
+        },
+        "snd": {
+          "kd": 0.958,
+          "bpRating": 1.012,
+          "maps": 39
+        }
+      },
+      "overall": 76
+    },
+    "rokkr-2022:ghosty": {
+      "teamId": "rokkr-2022",
+      "playerId": "ghosty",
+      "seasonId": 2022,
+      "calendarYear": 2022,
+      "bpPlayerId": 40,
+      "bpTag": "Ghosty",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2026/m1/Ghosty.webp",
+      "source": "curated-audit",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.94,
+        "bpRating": 0.94,
+        "maps": 68,
+        "kills": 639,
+        "deaths": 680
+      },
+      "overall": 75
+    },
+    "ravens-2021:nastie": {
+      "teamId": "ravens-2021",
+      "playerId": "nastie",
+      "seasonId": 2021,
+      "calendarYear": 2021,
+      "bpPlayerId": 22,
+      "bpTag": "Nastie",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2026/m1/Nastie.webp",
+      "source": "curated-audit",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.91,
+        "bpRating": 0.92,
+        "maps": 50,
+        "kills": 455,
+        "deaths": 500
+      },
+      "overall": 74
+    },
+    "ravens-2021:nexus": {
+      "teamId": "ravens-2021",
+      "playerId": "nexus",
+      "seasonId": 2021,
+      "calendarYear": 2021,
+      "bpTag": "Nexus",
+      "headshot": null,
+      "source": "curated-audit",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.9,
+        "bpRating": 0.91,
+        "maps": 48,
+        "kills": 432,
+        "deaths": 480
+      },
+      "overall": 72
+    },
+    "ravens-2021:harry": {
+      "teamId": "ravens-2021",
+      "playerId": "harry",
+      "seasonId": 2021,
+      "calendarYear": 2021,
+      "bpPlayerId": 74,
+      "bpTag": "Harry",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2022/Harry_2023.webp?t=2024-01-05T20%3A35%3A39.472Z",
+      "source": "curated-audit",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.89,
+        "bpRating": 0.9,
+        "maps": 45,
+        "kills": 401,
+        "deaths": 450
+      },
+      "overall": 73
+    },
+    "ravens-2021:reality": {
+      "teamId": "ravens-2021",
+      "playerId": "reality",
+      "seasonId": 2021,
+      "calendarYear": 2021,
+      "bpTag": "Reality",
+      "headshot": null,
+      "source": "curated-audit",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.88,
+        "bpRating": 0.89,
+        "maps": 44,
+        "kills": 387,
+        "deaths": 440
+      },
+      "overall": 74
+    },
+    "mutineers-2020:methodz": {
+      "teamId": "mutineers-2020",
+      "playerId": "methodz",
+      "seasonId": 2020,
+      "calendarYear": 2020,
+      "bpPlayerId": 21,
+      "bpTag": "Methodz",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2022/Methodz_2023%20(1).webp?t=2024-01-05T20%3A48%3A44.323Z",
+      "source": "bp-stats",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 1.09,
+        "bpRating": 1.044,
+        "maps": 121,
+        "kills": 2138,
+        "deaths": 1961,
+        "hardpoint": {
+          "kd": 1.098,
+          "bpRating": 1.058,
+          "maps": 53
+        },
+        "snd": {
+          "kd": 0.972,
+          "bpRating": 0.976,
+          "maps": 40
+        }
+      },
+      "overall": 80
+    },
+    "mutineers-2020:enable": {
+      "teamId": "mutineers-2020",
+      "playerId": "enable",
+      "seasonId": 2020,
+      "calendarYear": 2020,
+      "bpPlayerId": 256,
+      "bpTag": "Enable",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2020/100T_Enable_2021.webp",
+      "source": "bp-stats",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.825,
+        "bpRating": 0.85,
+        "maps": 26,
+        "kills": 430,
+        "deaths": 521,
+        "hardpoint": {
+          "kd": 0.883,
+          "bpRating": 0.84,
+          "maps": 11
+        },
+        "snd": {
+          "kd": 0.603,
+          "bpRating": 0.802,
+          "maps": 9
+        }
+      },
+      "overall": 76
+    },
+    "mutineers-2020:havoc": {
+      "teamId": "mutineers-2020",
+      "playerId": "havoc",
+      "seasonId": 2020,
+      "calendarYear": 2020,
+      "bpTag": "Havoc",
+      "headshot": null,
+      "source": "curated-audit",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.92,
+        "bpRating": 0.92,
+        "maps": 60,
+        "kills": 552,
+        "deaths": 600
+      },
+      "overall": 72
+    },
+    "mutineers-2020:neptune": {
+      "teamId": "mutineers-2020",
+      "playerId": "neptune",
+      "seasonId": 2020,
+      "calendarYear": 2020,
+      "bpPlayerId": 81,
+      "bpTag": "Neptune",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2026/m1/Neptune.webp",
+      "source": "curated-audit",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.9,
+        "bpRating": 0.91,
+        "maps": 55,
+        "kills": 495,
+        "deaths": 550
+      },
+      "overall": 74
+    },
+    "miami-2024:mettalz": {
+      "teamId": "miami-2024",
+      "playerId": "mettalz",
+      "seasonId": 2024,
+      "calendarYear": 2024,
+      "bpPlayerId": 94,
+      "bpTag": "MettalZ",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2026/m1/MettalZ.webp",
+      "source": "bp-stats",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.972,
+        "bpRating": 0.964,
+        "maps": 170,
+        "kills": 2933,
+        "deaths": 3019,
+        "hardpoint": {
+          "kd": 0.999,
+          "bpRating": 0.992,
+          "maps": 72
+        },
+        "snd": {
+          "kd": 1.033,
+          "bpRating": 1.024,
+          "maps": 54
+        },
+        "control": {
+          "kd": 0.901,
+          "bpRating": 0.843,
+          "maps": 44
+        }
+      },
+      "overall": 74
+    },
+    "miami-2024:reality": {
+      "teamId": "miami-2024",
+      "playerId": "reality",
+      "seasonId": 2024,
+      "calendarYear": 2024,
+      "bpTag": "Reality",
+      "headshot": null,
+      "source": "curated-audit",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.89,
+        "bpRating": 0.9,
+        "maps": 40,
+        "kills": 356,
+        "deaths": 400
+      },
+      "overall": 72
+    },
+    "miami-2024:beans": {
+      "teamId": "miami-2024",
+      "playerId": "beans",
+      "seasonId": 2024,
+      "calendarYear": 2024,
+      "bpPlayerId": 42,
+      "bpTag": "Beans",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2026/m1/Beans.webp",
+      "source": "bp-stats",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 1.008,
+        "bpRating": 0.945,
+        "maps": 73,
+        "kills": 1203,
+        "deaths": 1194,
+        "hardpoint": {
+          "kd": 1.039,
+          "bpRating": 0.924,
+          "maps": 29
+        },
+        "snd": {
+          "kd": 0.83,
+          "bpRating": 0.864,
+          "maps": 26
+        },
+        "control": {
+          "kd": 1.038,
+          "bpRating": 0.926,
+          "maps": 18
+        }
+      },
+      "overall": 73
+    },
+    "miami-2024:lunarz": {
+      "teamId": "miami-2024",
+      "playerId": "lunarz",
+      "seasonId": 2024,
+      "calendarYear": 2024,
+      "bpPlayerId": 163,
+      "bpTag": "Lunarz",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2026/m1/Lunarz.webp",
+      "source": "bp-stats",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 1,
+        "bpRating": 0.958,
+        "maps": 17,
+        "kills": 277,
+        "deaths": 277,
+        "hardpoint": {
+          "kd": 1.059,
+          "bpRating": 0.997,
+          "maps": 6
+        },
+        "snd": {
+          "kd": 0.667,
+          "bpRating": 0.789,
+          "maps": 6
+        },
+        "control": {
+          "kd": 1.073,
+          "bpRating": 0.937,
+          "maps": 5
+        }
+      },
+      "overall": 72
+    },
+    "cloud9-2017:methodz": {
+      "teamId": "cloud9-2017",
+      "playerId": "methodz",
+      "seasonId": 2018,
+      "calendarYear": 2017,
+      "bpPlayerId": 21,
+      "bpTag": "Methodz",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2022/Methodz_2023%20(1).webp?t=2024-01-05T20%3A48%3A44.323Z",
+      "source": "bp-stats",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 1.204,
+        "bpRating": 1.18,
+        "maps": 319,
+        "kills": 5745,
+        "deaths": 4772,
+        "snd": {
+          "kd": 1.076,
+          "bpRating": 1.046,
+          "maps": 105
+        },
+        "hardpoint": {
+          "kd": 1.256,
+          "bpRating": 1.233,
+          "maps": 131
+        }
+      },
+      "overall": 85
+    },
+    "cloud9-2017:aches": {
+      "teamId": "cloud9-2017",
+      "playerId": "aches",
+      "seasonId": 2018,
+      "calendarYear": 2017,
+      "bpPlayerId": 251,
+      "bpTag": "ACHES",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2020/ACHES_CDL_2020.webp",
+      "source": "bp-stats",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.985,
+        "bpRating": 0.998,
+        "maps": 293,
+        "kills": 5168,
+        "deaths": 5245,
+        "snd": {
+          "kd": 1.021,
+          "bpRating": 1,
+          "maps": 95
+        },
+        "hardpoint": {
+          "kd": 0.95,
+          "bpRating": 0.963,
+          "maps": 122
+        }
+      },
+      "overall": 85
+    },
+    "cloud9-2017:enable": {
+      "teamId": "cloud9-2017",
+      "playerId": "enable",
+      "seasonId": 2018,
+      "calendarYear": 2017,
+      "bpPlayerId": 256,
+      "bpTag": "Enable",
+      "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2020/100T_Enable_2021.webp",
+      "source": "bp-stats",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.992,
+        "bpRating": 1.014,
+        "maps": 304,
+        "kills": 5394,
+        "deaths": 5438,
+        "snd": {
+          "kd": 0.797,
+          "bpRating": 0.903,
+          "maps": 101
+        },
+        "hardpoint": {
+          "kd": 0.998,
+          "bpRating": 1.012,
+          "maps": 126
+        }
+      },
+      "overall": 81
+    },
+    "cloud9-2017:haggy": {
+      "teamId": "cloud9-2017",
+      "playerId": "haggy",
+      "seasonId": 2018,
+      "calendarYear": 2017,
+      "bpTag": "Haggy",
+      "headshot": null,
+      "source": "curated-audit",
+      "accomplishment": "standard",
+      "stats": {
+        "kd": 0.93,
+        "bpRating": 0.93,
+        "maps": 70,
+        "kills": 651,
+        "deaths": 700
+      },
+      "overall": 76
     }
   }
 }

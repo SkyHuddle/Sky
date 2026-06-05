@@ -4,6 +4,7 @@ import { SLOT_LABELS } from '../core/types';
 import { RingPath } from './RingPath';
 import { evaluateChemistry } from '../engine/chemistry';
 import { cardCredentials, cardOverall } from '../engine/card-context';
+import { estimateRingOdds } from '../engine/simulation';
 import { getPlayerHeadshot } from '../data/team-year-ratings';
 import { KbCard } from './KbCard';
 import { SisterCtaButton } from './SisterCtaButton';
@@ -27,6 +28,8 @@ export function ReadyScreen({ picks, isDaily, onAttempt, onEdit }: ReadyScreenPr
   const avgOvr =
     picks.reduce((s, p) => s + cardOverall(p.player, p.team), 0) / picks.length;
   const chemistry = evaluateChemistry(picks);
+  const ringOdds = estimateRingOdds(picks);
+  const ringPct = ringOdds < 0.01 ? '<1' : (ringOdds * 100).toFixed(0);
 
   return (
     <div className="flex flex-col min-h-[calc(100dvh-4rem)] px-5 py-8 max-w-lg mx-auto justify-between">
@@ -72,6 +75,9 @@ export function ReadyScreen({ picks, isDaily, onAttempt, onEdit }: ReadyScreenPr
                 {chemistry.issues[0]}
               </p>
             )}
+            <p className="text-[10px] text-kb-mute text-center mt-3 kb-mono">
+              Ring odds ~{ringPct}% · Perfect season is rare with trap cards in the mix
+            </p>
           </KbCard>
         </motion.div>
 
