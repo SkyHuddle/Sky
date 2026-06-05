@@ -78,8 +78,6 @@ export interface SlotSpin {
   yearSequence: number[];
   nameSequence: string[];
   regionSequence: string[];
-  /** Team accent per tick — decoys while spinning, final team on last frame */
-  accentSequence: string[];
 }
 
 export interface PlayerRatings {
