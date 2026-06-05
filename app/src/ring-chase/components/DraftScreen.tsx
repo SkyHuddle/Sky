@@ -109,6 +109,16 @@ export function DraftScreen({
           >
             <TeamBanner team={team} rosterAvgOvr={teamRosterAvgOvr(team)} />
 
+            {!isDaily && respinsLeft > 0 && (
+              <button
+                type="button"
+                onClick={onRespinTeam}
+                className="w-full mb-4 py-3 rounded-full border border-kb-gold/25 bg-kb-gold/[0.06] text-sm text-kb-soft hover:text-kb-fg hover:border-kb-gold/40 transition-colors font-medium"
+              >
+                Respin team ({respinsLeft} left)
+              </button>
+            )}
+
             {isDaily && dailyConstraint.id !== 'standard' && (
               <p className="text-[10px] text-kb-amber/80 mb-4 -mt-2 px-1 font-medium">{dailyConstraint.title}</p>
             )}
@@ -143,15 +153,6 @@ export function DraftScreen({
               ))}
             </div>
 
-            {!isDaily && respinsLeft > 0 && (
-              <button
-                type="button"
-                onClick={onRespinTeam}
-                className="w-full mt-6 py-3.5 rounded-full border border-kb-border text-sm text-kb-mute hover:text-kb-soft hover:border-kb-gold/30 transition-colors"
-              >
-                Respin team ({respinsLeft} left)
-              </button>
-            )}
             {isDaily && (
               <p className="text-center text-[10px] text-kb-faint mt-6">
                 Daily mode — fixed teams, no respins

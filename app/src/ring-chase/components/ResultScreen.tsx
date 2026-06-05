@@ -4,7 +4,6 @@ import { Home } from 'lucide-react';
 import type { DraftPick, GameMode, SimulationResult } from '../core/types';
 import { ShareCard } from './ShareCard';
 import { SeasonRecordCard } from './SeasonRecordCard';
-import { HistoricalCompare } from './HistoricalCompare';
 import { DailyLeaderboard } from './DailyLeaderboard';
 import { RingCtaButton } from './RingCtaButton';
 import { addShareHistory } from '../features/storage';
@@ -42,8 +41,8 @@ export function ResultScreen({
       rosterNames: picks.map((p) => p.player.gamertag),
     });
 
-    const { seasonSummary, historicalComparison } = result;
-    const text = `${seasonSummary.headline}\n${seasonSummary.narrative}\n\n${historicalComparison.anchorLine}\n\n${picks.map((p) => `${p.team.season} ${p.player.gamertag}`).join(' · ')}\nScore: ${result.rosterScore.toFixed(1)}`;
+    const { seasonSummary } = result;
+    const text = `${seasonSummary.headline}\n${seasonSummary.narrative}\n\n${picks.map((p) => `${p.team.season} ${p.player.gamertag}`).join(' · ')}\nScore: ${result.rosterScore.toFixed(1)}`;
 
     if (navigator.share) {
       try {
@@ -70,10 +69,6 @@ export function ResultScreen({
             perfectSeason={result.perfectSeason}
             ringWon={result.ringWon}
           />
-        </div>
-
-        <div className="mb-6">
-          <HistoricalCompare comparison={result.historicalComparison} />
         </div>
 
         <div ref={cardRef} className="flex justify-center">
