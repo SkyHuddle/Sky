@@ -12,15 +12,17 @@ export const RUN_BEAT_DELAY = 380;
 
 /**
  * Minimum team power (0–100 scale) to clear each stage.
- * Your roster power is compared: roll = power ± variance; pass if roll ≥ threshold.
+ * Roll = stage power ± variance; pass if roll ≥ threshold (+ small jitter).
  */
-/** Stage checks use team-year OVR from drafted cards */
 export const STAGE_THRESHOLDS = {
-  spring: 76,
-  msi: 82,
-  summer: 77,
-  worlds: 85,
+  spring: 72,
+  msi: 77,
+  summer: 73,
+  worlds: 80,
 } as const;
+
+/** Max random jitter added to each stage threshold */
+export const STAGE_THRESHOLD_JITTER = 2.5;
 
 export const WORLDS_FAILURE_LABELS = {
   groups: 'Lost in Worlds Groups',

@@ -5,7 +5,12 @@ import type {
   WorldsFailureDetail,
   DraftPick,
 } from '@/core/types';
-import { STAGE_THRESHOLDS, WORLDS_FAILURE_LABELS } from '@/core/constants';
+import { STAGES } from '@/core/types';
+import {
+  STAGE_THRESHOLDS,
+  STAGE_THRESHOLD_JITTER,
+  WORLDS_FAILURE_LABELS,
+} from '@/core/constants';
 import { computeRosterScore, countTitles, stageTeamPower } from './ratings';
 import { playersForSimulation } from './player-power';
 import { enrichStageWithRun } from './tournament-run';
@@ -21,7 +26,7 @@ function mulberry32(seed: number) {
 }
 
 function rollVariance(rng: () => number, clutch: number): number {
-  const spread = 13 - clutch / 12;
+  const spread = 11 - clutch / 14;
   return (rng() - 0.5) * spread;
 }
 
@@ -50,6 +55,29 @@ function failureMessage(stage: StageId, detail?: WorldsFailureDetail): string {
   return labels[stage];
 }
 
+export interface StagePreview {
+  stage: StageId;
+  label: string;
+  power: number;
+  needed: number;
+  edge: number;
+}
+
+export function rosterStagePreview(picks: DraftPick[]): StagePreview[] {
+  const players = playersForSimulation(picks);
+  return STAGES.map((stage) => {
+    const power = Math.round(stageTeamPower(players, stage) * 10) / 10;
+    const needed = STAGE_THRESHOLDS[stage];
+    return {
+      stage,
+      label: stage === 'spring' ? 'Spring' : stage === 'msi' ? 'MSI' : stage === 'summer' ? 'Summer' : 'Worlds',
+      power,
+      needed,
+      edge: Math.round((power - needed) * 10) / 10,
+    };
+  });
+}
+
 export function simulateGoldenRoad(
   picks: DraftPick[],
   options?: { seed?: string }
@@ -72,7 +100,8 @@ export function simulateGoldenRoad(
 
   for (const stage of stageOrder) {
     const stagePower = stageTeamPower(simPlayers, stage);
-    const threshold = STAGE_THRESHOLDS[stage] + rng() * 4 - 2;
+    const jitter = STAGE_THRESHOLD_JITTER;
+    const threshold = STAGE_THRESHOLDS[stage] + rng() * jitter * 2 - jitter;
     const variance = rollVariance(rng, avgClutch);
     const roll = stagePower + variance;
     const passed = roll >= threshold;
@@ -110,13 +139,18 @@ export function simulateGoldenRoad(
   };
 }
 
-/** Rough win chance estimate for UI/debug — not shown by default */
+/** Rough win chance for UI — tuned to match easier thresholds */
 export function estimateGoldenRoadOdds(picks: DraftPick[]): number {
-  const players = playersForSimulation(picks);
-  const avg = players.reduce((s, p) => s + p.ratings.overall, 0) / 5;
-  if (avg >= 88) return 0.12;
-  if (avg >= 84) return 0.06;
-  if (avg >= 80) return 0.025;
-  if (avg >= 76) return 0.01;
-  return 0.003;
+  const preview = rosterStagePreview(picks);
+  const avgEdge =
+    preview.reduce((s, p) => s + p.edge, 0) / preview.length;
+  const minEdge = Math.min(...preview.map((p) => p.edge));
+
+  if (minEdge >= 6) return 0.28;
+  if (minEdge >= 3) return 0.18;
+  if (avgEdge >= 4) return 0.14;
+  if (avgEdge >= 2) return 0.09;
+  if (avgEdge >= 0) return 0.05;
+  if (avgEdge >= -2) return 0.025;
+  return 0.01;
 }

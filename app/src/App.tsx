@@ -29,7 +29,6 @@ export default function App() {
   const handleBack = useCallback(() => game.resetToHome(), [game]);
   const handleAttempt = useCallback(() => {
     game.startSimulation();
-    game.setPhase('simulation');
   }, [game]);
   const handleSimulationComplete = useCallback(() => {
     game.finishSimulation();

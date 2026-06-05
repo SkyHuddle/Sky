@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Trophy, Flame, Target, Calendar, Sparkles } from 'lucide-react';
 import type { DailyConstraint, DailyRunResult, PlayerStats } from '@/core/types';
 import { Button } from '@/components/ui/button';
+import { GoldenRoadPath } from './GoldenRoadPath';
 import { getTeamYearMeta } from '@/data/merge-team-year-ratings';
 
 interface HomeScreenProps {
@@ -24,7 +25,7 @@ export function HomeScreen({
   return (
     <div className="flex flex-col min-h-[100dvh] px-5 pb-10 pt-14 max-w-lg mx-auto">
       <motion.header
-        className="text-center mb-10"
+        className="text-center mb-8"
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
@@ -43,7 +44,7 @@ export function HomeScreen({
         </h1>
 
         <p className="text-white/50 text-sm mt-5 max-w-[300px] mx-auto leading-relaxed">
-          Spin a team & year each round. Draft five pros. Win Spring, MSI, Summer, and Worlds.
+          Draft five pros across five rounds. Clear all four stages to complete the Golden Road.
         </p>
 
         {teamYearMeta && (
@@ -57,7 +58,22 @@ export function HomeScreen({
       </motion.header>
 
       <motion.div
-        className="space-y-3 mb-8"
+        className="rounded-2xl glass-panel p-4 mb-6 border-gold/10"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.1 }}
+      >
+        <p className="text-[10px] uppercase tracking-widest text-white/35 mb-3 text-center">
+          The path
+        </p>
+        <GoldenRoadPath variant="full" />
+        <p className="text-[10px] text-white/30 text-center mt-3 leading-relaxed">
+          Spring → MSI → Summer → Worlds
+        </p>
+      </motion.div>
+
+      <motion.div
+        className="space-y-3 mb-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.12, duration: 0.45 }}
@@ -86,7 +102,7 @@ export function HomeScreen({
         className="rounded-2xl glass-panel p-4 mb-6"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.22 }}
+        transition={{ delay: 0.2 }}
       >
         <p className="text-[10px] uppercase tracking-widest text-gold/70 mb-1.5">
           Today&apos;s challenge
@@ -113,9 +129,9 @@ export function HomeScreen({
 
 function HowItWorks() {
   const steps = [
-    { n: '1', text: 'Spin year & team each round' },
-    { n: '2', text: 'Pick one pro — highest OVR wins' },
-    { n: '3', text: 'Clear all four tournament stages' },
+    { n: '1', text: 'Spin a team & year — respin once if you want' },
+    { n: '2', text: 'Pick the highest OVR for open roles' },
+    { n: '3', text: 'Check stage preview, then run the road' },
   ];
 
   return (
@@ -136,7 +152,7 @@ function HowItWorks() {
           <span className="w-6 h-6 rounded-lg bg-gold/15 text-gold text-xs font-display flex items-center justify-center shrink-0">
             {n}
           </span>
-          <span className="text-xs text-white/50">{text}</span>
+          <span className="text-xs text-white/50 leading-relaxed">{text}</span>
         </div>
       ))}
     </motion.div>

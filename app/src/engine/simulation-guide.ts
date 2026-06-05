@@ -22,7 +22,7 @@ export const SIMULATION_GUIDE = {
     },
     {
       title: 'What to expect',
-      body: 'Stacked high-OVR legends can still fail Worlds most of the time. Weak rolls and near-misses are the sweet spot.',
+      body: 'Strong rosters win more often, but upsets still happen — that\'s what makes a Golden Road special. Stack high OVR picks and chase the ~10–25% runs.',
     },
   ],
 } as const;

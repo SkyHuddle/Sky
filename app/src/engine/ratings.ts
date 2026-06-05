@@ -58,7 +58,10 @@ export function stageTeamPower(
       ? players.reduce((s, p) => s + p.worldTitles * 0.8, 0)
       : 0;
 
-  return base * 0.4 + focused * 0.35 + intl * 0.2 + clutch * 0.05 + worldsBoost;
+  const rosterBoost =
+    base >= 82 ? 2 : base >= 78 ? 1.5 : base >= 74 ? 0.75 : 0;
+
+  return base * 0.4 + focused * 0.35 + intl * 0.2 + clutch * 0.05 + worldsBoost + rosterBoost;
 }
 
 export function countTitles(players: Player[]) {

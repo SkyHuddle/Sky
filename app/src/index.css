@@ -93,6 +93,20 @@
     background-size: 32px 32px;
     mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 20%, transparent 75%);
   }
+
+  .animate-pulse-subtle {
+    animation: pulse-subtle 2s ease-in-out infinite;
+  }
+}
+
+@keyframes pulse-subtle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.75;
+  }
 }
 
 @keyframes pulse-gold {

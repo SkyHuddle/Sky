@@ -181,8 +181,7 @@ export function useGame() {
     if (picks.length === 0) return;
     setPicks((prev) => prev.slice(0, -1));
     setRoundIndex(picks.length - 1);
-    setDraftSubphase('spin');
-    setSpinGeneration((g) => g + 1);
+    setDraftSubphase('pick');
     setPhase('draft');
   }, [picks]);
 

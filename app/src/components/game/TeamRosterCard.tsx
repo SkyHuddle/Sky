@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Sparkles } from 'lucide-react';
 import type { HistoricalTeam, Player, Role } from '@/core/types';
 import { ROLE_LABELS } from '@/core/types';
 import {
@@ -21,6 +21,7 @@ interface TeamRosterCardProps {
   onSelect: () => void;
   disabled?: boolean;
   roleTaken?: boolean;
+  recommended?: boolean;
 }
 
 export function TeamRosterCard({
@@ -30,6 +31,7 @@ export function TeamRosterCard({
   onSelect,
   disabled,
   roleTaken,
+  recommended,
 }: TeamRosterCardProps) {
   const [expanded, setExpanded] = useState(false);
   const kda = cardKda(player, team);
@@ -52,18 +54,31 @@ export function TeamRosterCard({
 
   return (
     <motion.div
+      layout
       className={cn(
-        'relative w-full rounded-2xl overflow-hidden border transition-all',
-        'border-white/[0.08]',
-        !disabled && 'hover:border-white/20',
+        'relative w-full rounded-2xl overflow-hidden border transition-all duration-200',
+        recommended && !disabled
+          ? 'border-gold/45 ring-1 ring-gold/20 shadow-lg shadow-gold/10'
+          : 'border-white/[0.08]',
+        !disabled && !recommended && 'hover:border-white/18',
         roleTaken && 'opacity-35',
         disabled && 'opacity-40 pointer-events-none'
       )}
       style={{
-        background: `linear-gradient(135deg, ${player.accent}12 0%, rgba(255,255,255,0.02) 50%, rgba(6,6,8,0.95) 100%)`,
-        boxShadow: !disabled ? `0 4px 24px ${player.accent}08` : undefined,
+        background: recommended
+          ? `linear-gradient(135deg, ${player.accent}18 0%, rgba(201,162,39,0.06) 40%, rgba(6,6,8,0.95) 100%)`
+          : `linear-gradient(135deg, ${player.accent}12 0%, rgba(255,255,255,0.02) 50%, rgba(6,6,8,0.95) 100%)`,
       }}
     >
+      {recommended && !disabled && (
+        <div className="absolute top-0 right-0 z-10">
+          <span className="inline-flex items-center gap-1 rounded-bl-xl rounded-tr-2xl bg-gold/90 text-black text-[9px] font-bold uppercase tracking-wider px-2.5 py-1">
+            <Sparkles className="w-3 h-3" />
+            Best pick
+          </span>
+        </div>
+      )}
+
       <div
         className="absolute inset-y-0 left-0 w-1 rounded-l-2xl"
         style={{ backgroundColor: player.accent }}
@@ -73,7 +88,7 @@ export function TeamRosterCard({
         type="button"
         onClick={onSelect}
         disabled={disabled}
-        className="w-full text-left p-3.5 pl-4 active:scale-[0.99] transition-transform"
+        className="w-full text-left p-3.5 pl-4 pt-3.5 active:scale-[0.99] transition-transform"
       >
         <div className="flex items-center gap-3">
           <div
@@ -87,7 +102,7 @@ export function TeamRosterCard({
             {initials}
           </div>
 
-          <div className="min-w-0 flex-1">
+          <div className="min-w-0 flex-1 pr-2">
             <div className="flex items-center gap-2 mb-0.5 flex-wrap">
               <span
                 className="text-[9px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded"
@@ -139,7 +154,7 @@ export function TeamRosterCard({
       </button>
 
       {stats && (
-        <div className="px-4 pb-3 -mt-1">
+        <div className="px-4 pb-3 -mt-0.5">
           <button
             type="button"
             onClick={handleExpand}
@@ -187,7 +202,7 @@ export function TeamBanner({ team, rosterAvgOvr }: TeamBannerProps) {
       key={team.id}
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      className="rounded-2xl p-5 mb-5 relative overflow-hidden"
+      className="rounded-2xl p-5 mb-4 relative overflow-hidden"
       style={{
         background: `linear-gradient(135deg, ${team.accent}22 0%, ${team.accent}06 45%, rgba(255,255,255,0.02) 100%)`,
         border: `1px solid ${team.accent}35`,
@@ -223,12 +238,12 @@ export function TeamBanner({ team, rosterAvgOvr }: TeamBannerProps) {
             {team.tagline}
           </p>
           {rosterAvgOvr != null && rosterAvgOvr > 0 && (
-            <div className="mt-3 flex items-center gap-2">
+            <div className="mt-3 inline-flex items-center gap-2 rounded-lg bg-black/20 border border-white/[0.06] px-2.5 py-1.5">
               <span className="text-[10px] uppercase tracking-wider text-white/35">
                 Roster avg
               </span>
               <span
-                className="font-display text-xl tabular-nums"
+                className="font-display text-xl tabular-nums leading-none"
                 style={{ color: ovrAccentColor(rosterAvgOvr) }}
               >
                 {Math.round(rosterAvgOvr)}
