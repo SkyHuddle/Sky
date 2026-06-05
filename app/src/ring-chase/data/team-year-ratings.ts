@@ -1,5 +1,6 @@
 import type { CodPlayer, HistoricalCodTeam, PlayerRatings } from '../core/types';
 import type { TeamYearAccomplishment } from './accomplishment';
+import { resolveTeamYearHeadshots } from './headshot-resolve';
 import teamYearBundle from './generated/team-year-ratings.json';
 import bpPlayers from './generated/bp-players-index.json';
 
@@ -87,16 +88,35 @@ export function getTeamYearOverall(
 }
 
 export function getPlayerHeadshot(player: CodPlayer, team?: HistoricalCodTeam): string | null {
-  if (team) {
-    const entry = getTeamYearEntry(team.id, player.id);
-    if (entry?.headshot) return entry.headshot;
-    if (entry?.bpTag) {
-      const fromTag = headshotByTag.get(entry.bpTag.toLowerCase());
-      if (fromTag) return fromTag;
-    }
-  }
-  const fromGamertag = headshotByTag.get(player.gamertag.toLowerCase());
-  return fromGamertag ?? null;
+  const entry = team ? getTeamYearEntry(team.id, player.id) : null;
+  const generic =
+    (entry?.bpTag ? headshotByTag.get(entry.bpTag.toLowerCase()) : null) ??
+    headshotByTag.get(player.gamertag.toLowerCase()) ??
+    null;
+
+  if (!team) return generic;
+
+  const urls = resolveTeamYearHeadshots(
+    player,
+    team,
+    entry?.headshot,
+    generic,
+    entry?.bpTag
+  );
+  return urls[0] ?? null;
+}
+
+export function getPlayerHeadshotCandidates(
+  player: CodPlayer,
+  team?: HistoricalCodTeam
+): string[] {
+  const entry = team ? getTeamYearEntry(team.id, player.id) : null;
+  const generic =
+    (entry?.bpTag ? headshotByTag.get(entry.bpTag.toLowerCase()) : null) ??
+    headshotByTag.get(player.gamertag.toLowerCase()) ??
+    null;
+  if (!team) return generic ? [generic] : [];
+  return resolveTeamYearHeadshots(player, team, entry?.headshot, generic, entry?.bpTag);
 }
 
 export function formatKd(kd: number): string {

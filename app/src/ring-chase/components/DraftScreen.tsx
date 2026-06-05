@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import type {
   CodPlayer,
@@ -15,6 +15,7 @@ import { TeamBanner } from './TeamBanner';
 import { TeamSlotMachine } from './TeamSlotMachine';
 import { playerPassesFilter } from '../features/daily';
 import { cardOverall, teamRosterAvgOvr } from '../engine/card-context';
+import { hapticTap } from '../utils/haptics';
 
 interface DraftScreenProps {
   currentRound: DraftRound;
@@ -45,6 +46,7 @@ export function DraftScreen({
   onSelectPlayer,
   onBack,
 }: DraftScreenProps) {
+  const [confirmExit, setConfirmExit] = useState(false);
   const pickedIds = new Set(picks.map((p) => p.player.id));
   const { team } = currentRound;
 
@@ -71,20 +73,49 @@ export function DraftScreen({
 
   const pickableCount = rosterEntries.filter((e) => !e.blocked).length;
 
+  const handleExit = () => {
+    if (picks.length === 0) {
+      onBack();
+      return;
+    }
+    setConfirmExit(true);
+  };
+
+  const handleRespin = () => {
+    hapticTap();
+    onRespinTeam();
+  };
+
+  const handleSelect = (player: CodPlayer, teamRole: RosterSlot) => {
+    hapticTap();
+    onSelectPlayer(player, teamRole);
+  };
+
   return (
     <div className="flex flex-col min-h-[100dvh] max-w-lg mx-auto">
       <header className="sticky top-0 z-20 px-5 pt-3 pb-3 kb-brand-bar">
-        <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center justify-between gap-2 mb-3">
           <button
             type="button"
-            onClick={onBack}
-            className="text-kb-mute text-sm hover:text-kb-soft transition-colors py-2"
+            onClick={handleExit}
+            className="text-kb-mute text-sm hover:text-kb-soft transition-colors py-2 shrink-0"
           >
             ← Exit
           </button>
           <span className="text-[10px] uppercase tracking-[0.2em] text-kb-mute">
             {picks.length + 1} / 4
           </span>
+          {!isDaily && respinsLeft > 0 && draftSubphase === 'pick' ? (
+            <button
+              type="button"
+              onClick={handleRespin}
+              className="shrink-0 text-[10px] uppercase tracking-wider font-semibold px-3 py-2 rounded-full border border-kb-gold/30 bg-kb-gold/10 text-kb-gold hover:bg-kb-gold/15 transition-colors"
+            >
+              Respin · {respinsLeft}
+            </button>
+          ) : (
+            <span className="w-[72px] shrink-0" aria-hidden />
+          )}
         </div>
         <RosterSlots picks={picks} openRoles={openRoles} />
       </header>
@@ -109,16 +140,6 @@ export function DraftScreen({
           >
             <TeamBanner team={team} rosterAvgOvr={teamRosterAvgOvr(team)} />
 
-            {!isDaily && respinsLeft > 0 && (
-              <button
-                type="button"
-                onClick={onRespinTeam}
-                className="w-full mb-4 py-3 rounded-full border border-kb-gold/25 bg-kb-gold/[0.06] text-sm text-kb-soft hover:text-kb-fg hover:border-kb-gold/40 transition-colors font-medium"
-              >
-                Respin team ({respinsLeft} left)
-              </button>
-            )}
-
             {isDaily && dailyConstraint.id !== 'standard' && (
               <p className="text-[10px] text-kb-amber/80 mb-4 -mt-2 px-1 font-medium">{dailyConstraint.title}</p>
             )}
@@ -136,8 +157,9 @@ export function DraftScreen({
                     player={player}
                     team={team}
                     teamSlot={teamRole}
+                    compact
                     disabled={blocked}
-                    onSelect={() => onSelectPlayer(player, teamRole)}
+                    onSelect={() => handleSelect(player, teamRole)}
                   />
                   {roleTaken && (
                     <p className="text-[10px] text-kb-faint mt-1.5 pl-1">
@@ -161,6 +183,34 @@ export function DraftScreen({
           </motion.div>
         )}
       </div>
+
+      {confirmExit && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-5 bg-black/70 backdrop-blur-sm">
+          <div className="kb-card w-full max-w-xs rounded-[var(--kb-r-lg)] p-5 border border-kb-border">
+            <p className="font-display text-lg text-kb-fg mb-2">Leave this run?</p>
+            <p className="text-sm text-kb-mute mb-5">Your draft progress won&apos;t be saved.</p>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => setConfirmExit(false)}
+                className="flex-1 py-3 rounded-full border border-kb-border text-sm text-kb-soft"
+              >
+                Stay
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setConfirmExit(false);
+                  onBack();
+                }}
+                className="flex-1 py-3 rounded-full bg-kb-crimson/20 border border-kb-crimson/30 text-sm text-kb-crimson"
+              >
+                Leave
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

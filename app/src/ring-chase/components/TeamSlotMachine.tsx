@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import type { HistoricalCodTeam, SlotSpin } from '../core/types';
 import { SPIN_TICK_MS } from '../core/constants';
+import { hapticTap } from '../utils/haptics';
 
 interface TeamSlotMachineProps {
   team: HistoricalCodTeam;
@@ -22,11 +23,25 @@ export function TeamSlotMachine({
   const [index, setIndex] = useState(0);
   const [done, setDone] = useState(false);
   const onCompleteRef = useRef(onComplete);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const finishTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   onCompleteRef.current = onComplete;
+
+  const finishSpin = useCallback(() => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = null;
+    const last = Math.max(0, spin.yearSequence.length - 1);
+    setIndex(last);
+    setDone(true);
+    hapticTap();
+    finishTimerRef.current = setTimeout(() => onCompleteRef.current(), 280);
+  }, [spin.yearSequence.length]);
 
   useEffect(() => {
     setIndex(0);
     setDone(false);
+    if (finishTimerRef.current) clearTimeout(finishTimerRef.current);
+    if (intervalRef.current) clearInterval(intervalRef.current);
   }, [spinKey, spin]);
 
   useEffect(() => {
@@ -36,23 +51,26 @@ export function TeamSlotMachine({
     let tick = 0;
     let cancelled = false;
 
-    const interval = setInterval(() => {
+    intervalRef.current = setInterval(() => {
       if (cancelled) return;
       tick += 1;
       setIndex(tick - 1);
 
       if (tick >= totalTicks) {
-        clearInterval(interval);
+        if (intervalRef.current) clearInterval(intervalRef.current);
+        intervalRef.current = null;
         setDone(true);
-        setTimeout(() => {
+        hapticTap();
+        finishTimerRef.current = setTimeout(() => {
           if (!cancelled) onCompleteRef.current();
-        }, 450);
+        }, 280);
       }
     }, SPIN_TICK_MS);
 
     return () => {
       cancelled = true;
-      clearInterval(interval);
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      if (finishTimerRef.current) clearTimeout(finishTimerRef.current);
     };
   }, [spinKey, spin.yearSequence.length]);
 
@@ -62,7 +80,14 @@ export function TeamSlotMachine({
   const progress = spin.yearSequence.length ? (index + 1) / spin.yearSequence.length : 1;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[54dvh] px-5 pb-10 relative">
+    <button
+      type="button"
+      className="flex flex-col items-center justify-center min-h-[54dvh] px-5 pb-10 relative w-full"
+      onClick={() => {
+        if (!done) finishSpin();
+      }}
+      aria-label={done ? undefined : 'Tap to skip spin'}
+    >
       <div
         className="absolute inset-x-8 top-1/4 h-48 rounded-full blur-3xl opacity-20 pointer-events-none"
         style={{ backgroundColor: team.accent }}
@@ -77,13 +102,13 @@ export function TeamSlotMachine({
         </p>
       </motion.div>
 
-      <div className="w-full max-w-sm grid grid-cols-2 gap-3 mb-6">
+      <div className="w-full max-w-sm grid grid-cols-2 gap-3 mb-6 pointer-events-none">
         <Reel label="Year" value={String(year)} highlight={done} accent={team.accent} />
         <Reel label="Team" value={name} sub={region} highlight={done} accent={team.accent} small />
       </div>
 
       <motion.div
-        className="kb-card w-full max-w-sm rounded-[var(--kb-r-lg)] border px-5 py-5 text-center relative overflow-hidden"
+        className="kb-card w-full max-w-sm rounded-[var(--kb-r-lg)] border px-5 py-5 text-center relative overflow-hidden pointer-events-none"
         style={{
           borderColor: done ? `${team.accent}55` : undefined,
           background: done
@@ -116,11 +141,11 @@ export function TeamSlotMachine({
       </motion.div>
 
       {!done && (
-        <p className="text-kb-faint text-[10px] uppercase tracking-[0.35em] mt-8 animate-pulse">
-          Spinning
+        <p className="text-kb-mute text-[10px] uppercase tracking-[0.3em] mt-8">
+          Tap to skip
         </p>
       )}
-    </div>
+    </button>
   );
 }
 

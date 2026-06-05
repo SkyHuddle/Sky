@@ -3,10 +3,11 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useRingChaseGame } from './hooks/useRingChaseGame';
 import { HomeScreen } from './components/HomeScreen';
 import { DraftScreen } from './components/DraftScreen';
-import { ReadyScreen } from './components/ReadyScreen';
 import { ResultScreen } from './components/ResultScreen';
+import { HowItWorksModal } from './components/HowItWorksModal';
 import { loadStats, loadDailyResult } from './features/storage';
 import { getDateKey } from './features/daily';
+import { hasSeenOnboarding, markOnboardingSeen, recordVisit } from './features/onboarding';
 import type { DailyRunResult, PlayerStats } from './core/types';
 
 const easeOut: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -17,6 +18,11 @@ export function RingChaseApp() {
   const [dailyPlayed, setDailyPlayed] = useState<DailyRunResult | null>(() =>
     loadDailyResult(getDateKey())
   );
+  const [showOnboarding, setShowOnboarding] = useState(() => !hasSeenOnboarding());
+
+  useEffect(() => {
+    recordVisit();
+  }, []);
 
   useEffect(() => {
     if (game.phase === 'home') {
@@ -24,6 +30,11 @@ export function RingChaseApp() {
       setDailyPlayed(loadDailyResult(getDateKey()));
     }
   }, [game.phase]);
+
+  const dismissOnboarding = () => {
+    markOnboardingSeen();
+    setShowOnboarding(false);
+  };
 
   return (
     <div className="kb-root min-h-[100dvh] antialiased relative overflow-x-hidden">
@@ -74,23 +85,6 @@ export function RingChaseApp() {
             </motion.div>
           )}
 
-          {game.phase === 'ready' && (
-            <motion.div
-              key="ready"
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ ease: easeOut }}
-            >
-              <ReadyScreen
-                picks={game.picks}
-                isDaily={game.mode === 'daily'}
-                onAttempt={game.startSimulation}
-                onEdit={game.redraftLast}
-              />
-            </motion.div>
-          )}
-
           {game.phase === 'result' && game.result && (
             <motion.div
               key="result"
@@ -112,6 +106,10 @@ export function RingChaseApp() {
           )}
         </AnimatePresence>
       </div>
+
+      <AnimatePresence>
+        {showOnboarding && <HowItWorksModal onDismiss={dismissOnboarding} />}
+      </AnimatePresence>
     </div>
   );
 }
