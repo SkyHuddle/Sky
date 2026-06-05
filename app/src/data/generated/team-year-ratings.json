@@ -1,8 +1,528 @@
 {
   "source": "gol.gg-team-year",
-  "generatedAt": "2026-06-05T05:26:27.499Z",
-  "entryCount": 265,
+  "generatedAt": "2026-06-05T06:01:09.805Z",
+  "entryCount": 285,
   "entries": {
+    "skt-2013:impact": {
+      "teamId": "skt-2013",
+      "playerId": "impact",
+      "golTeamId": 67,
+      "golPlayerId": 46,
+      "season": "S3",
+      "source": "team-roster",
+      "accomplishment": "worlds_champion",
+      "stats": {
+        "kda": 4.6,
+        "killParticipation": 57.1,
+        "damagePct": 0,
+        "goldPct": 0,
+        "winRate": 83.3,
+        "games": 18
+      },
+      "ratings": {
+        "overall": 74,
+        "peak": 75,
+        "international": 77,
+        "clutch": 75,
+        "consistency": 87,
+        "leadership": 57,
+        "synergy": 71
+      }
+    },
+    "skt-2013:bengi": {
+      "teamId": "skt-2013",
+      "playerId": "bengi",
+      "golTeamId": 67,
+      "golPlayerId": 47,
+      "season": "S3",
+      "source": "team-roster",
+      "accomplishment": "worlds_champion",
+      "stats": {
+        "kda": 6.2,
+        "killParticipation": 69.9,
+        "damagePct": 0,
+        "goldPct": 0,
+        "winRate": 83.3,
+        "games": 18
+      },
+      "ratings": {
+        "overall": 81,
+        "peak": 84,
+        "international": 85,
+        "clutch": 89,
+        "consistency": 87,
+        "leadership": 66,
+        "synergy": 88
+      }
+    },
+    "skt-2013:faker": {
+      "teamId": "skt-2013",
+      "playerId": "faker",
+      "golTeamId": 67,
+      "golPlayerId": 48,
+      "season": "S3",
+      "source": "team-roster",
+      "accomplishment": "worlds_champion",
+      "stats": {
+        "kda": 4.8,
+        "killParticipation": 62.3,
+        "damagePct": 0,
+        "goldPct": 0,
+        "winRate": 83.3,
+        "games": 18
+      },
+      "ratings": {
+        "overall": 75,
+        "peak": 76,
+        "international": 79,
+        "clutch": 78,
+        "consistency": 87,
+        "leadership": 58,
+        "synergy": 78
+      }
+    },
+    "skt-2013:piglet": {
+      "teamId": "skt-2013",
+      "playerId": "piglet",
+      "golTeamId": 67,
+      "golPlayerId": 49,
+      "season": "S3",
+      "source": "team-roster",
+      "accomplishment": "worlds_champion",
+      "stats": {
+        "kda": 9.7,
+        "killParticipation": 67.4,
+        "damagePct": 0,
+        "goldPct": 0,
+        "winRate": 83.3,
+        "games": 18
+      },
+      "ratings": {
+        "overall": 81,
+        "peak": 84,
+        "international": 85,
+        "clutch": 90,
+        "consistency": 87,
+        "leadership": 59,
+        "synergy": 84
+      }
+    },
+    "skt-2013:poohmandu": {
+      "teamId": "skt-2013",
+      "playerId": "poohmandu",
+      "golTeamId": 67,
+      "golPlayerId": 50,
+      "season": "S3",
+      "source": "team-roster",
+      "accomplishment": "worlds_champion",
+      "stats": {
+        "kda": 4,
+        "killParticipation": 61.7,
+        "damagePct": 0,
+        "goldPct": 0,
+        "winRate": 83.3,
+        "games": 18
+      },
+      "ratings": {
+        "overall": 79,
+        "peak": 80,
+        "international": 83,
+        "clutch": 82,
+        "consistency": 87,
+        "leadership": 64,
+        "synergy": 77
+      }
+    },
+    "ssw-2014:looper": {
+      "teamId": "ssw-2014",
+      "playerId": "looper",
+      "golTeamId": 17,
+      "golPlayerId": 81,
+      "season": "S4",
+      "source": "team-roster",
+      "accomplishment": "worlds_champion",
+      "stats": {
+        "kda": 12.1,
+        "killParticipation": 64.2,
+        "damagePct": 19.8,
+        "goldPct": 20.7,
+        "winRate": 88.2,
+        "games": 17
+      },
+      "ratings": {
+        "overall": 84,
+        "peak": 87,
+        "international": 88,
+        "clutch": 89,
+        "consistency": 87,
+        "leadership": 58,
+        "synergy": 80
+      }
+    },
+    "ssw-2014:dandy": {
+      "teamId": "ssw-2014",
+      "playerId": "dandy",
+      "golTeamId": 17,
+      "golPlayerId": 82,
+      "season": "S4",
+      "source": "team-roster",
+      "accomplishment": "worlds_champion",
+      "stats": {
+        "kda": 8.5,
+        "killParticipation": 71.8,
+        "damagePct": 17.4,
+        "goldPct": 19.4,
+        "winRate": 88.2,
+        "games": 17
+      },
+      "ratings": {
+        "overall": 85,
+        "peak": 88,
+        "international": 89,
+        "clutch": 91,
+        "consistency": 87,
+        "leadership": 66,
+        "synergy": 90
+      }
+    },
+    "ssw-2014:pawn": {
+      "teamId": "ssw-2014",
+      "playerId": "pawn",
+      "golTeamId": 17,
+      "golPlayerId": 83,
+      "season": "S4",
+      "source": "team-roster",
+      "accomplishment": "worlds_champion",
+      "stats": {
+        "kda": 9.9,
+        "killParticipation": 64,
+        "damagePct": 27.5,
+        "goldPct": 22.9,
+        "winRate": 88.2,
+        "games": 17
+      },
+      "ratings": {
+        "overall": 90,
+        "peak": 93,
+        "international": 94,
+        "clutch": 89,
+        "consistency": 87,
+        "leadership": 58,
+        "synergy": 80
+      }
+    },
+    "ssw-2014:imp": {
+      "teamId": "ssw-2014",
+      "playerId": "imp",
+      "golTeamId": 17,
+      "golPlayerId": 84,
+      "season": "S4",
+      "source": "team-roster",
+      "accomplishment": "worlds_champion",
+      "stats": {
+        "kda": 7.9,
+        "killParticipation": 62,
+        "damagePct": 28.9,
+        "goldPct": 21.8,
+        "winRate": 88.2,
+        "games": 17
+      },
+      "ratings": {
+        "overall": 90,
+        "peak": 93,
+        "international": 94,
+        "clutch": 89,
+        "consistency": 87,
+        "leadership": 57,
+        "synergy": 78
+      }
+    },
+    "ssw-2014:mata": {
+      "teamId": "ssw-2014",
+      "playerId": "mata",
+      "golTeamId": 17,
+      "golPlayerId": 85,
+      "season": "S4",
+      "source": "team-roster",
+      "accomplishment": "worlds_champion",
+      "stats": {
+        "kda": 10,
+        "killParticipation": 73.4,
+        "damagePct": 6.4,
+        "goldPct": 15.2,
+        "winRate": 88.2,
+        "games": 17
+      },
+      "ratings": {
+        "overall": 86,
+        "peak": 89,
+        "international": 90,
+        "clutch": 92,
+        "consistency": 87,
+        "leadership": 67,
+        "synergy": 92
+      }
+    },
+    "koo-2015:smeb": {
+      "teamId": "koo-2015",
+      "playerId": "smeb",
+      "golTeamId": 48,
+      "golPlayerId": 56,
+      "season": "S5",
+      "source": "team-roster",
+      "accomplishment": "worlds_finalist",
+      "stats": {
+        "kda": 4.4,
+        "killParticipation": 70.8,
+        "damagePct": 22.8,
+        "goldPct": 21.4,
+        "winRate": 65.8,
+        "games": 117
+      },
+      "ratings": {
+        "overall": 81,
+        "peak": 82,
+        "international": 84,
+        "clutch": 76,
+        "consistency": 88,
+        "leadership": 66,
+        "synergy": 87
+      }
+    },
+    "koo-2015:hojin": {
+      "teamId": "koo-2015",
+      "playerId": "hojin",
+      "golTeamId": 48,
+      "golPlayerId": 72,
+      "season": "S5",
+      "source": "team-roster",
+      "accomplishment": "worlds_finalist",
+      "stats": {
+        "kda": 5,
+        "killParticipation": 70.4,
+        "damagePct": 11.5,
+        "goldPct": 17.5,
+        "winRate": 69.6,
+        "games": 92
+      },
+      "ratings": {
+        "overall": 79,
+        "peak": 80,
+        "international": 83,
+        "clutch": 80,
+        "consistency": 91,
+        "leadership": 73,
+        "synergy": 87
+      }
+    },
+    "koo-2015:kuro": {
+      "teamId": "koo-2015",
+      "playerId": "kuro",
+      "golTeamId": 48,
+      "golPlayerId": 73,
+      "season": "S5",
+      "source": "team-roster",
+      "accomplishment": "worlds_finalist",
+      "stats": {
+        "kda": 5.4,
+        "killParticipation": 71.2,
+        "damagePct": 28.3,
+        "goldPct": 23.4,
+        "winRate": 65.8,
+        "games": 117
+      },
+      "ratings": {
+        "overall": 90,
+        "peak": 91,
+        "international": 93,
+        "clutch": 83,
+        "consistency": 88,
+        "leadership": 66,
+        "synergy": 88
+      }
+    },
+    "koo-2015:pray": {
+      "teamId": "koo-2015",
+      "playerId": "pray",
+      "golTeamId": 48,
+      "golPlayerId": 221,
+      "season": "S5",
+      "source": "team-roster",
+      "accomplishment": "worlds_finalist",
+      "stats": {
+        "kda": 5.2,
+        "killParticipation": 70.1,
+        "damagePct": 29.2,
+        "goldPct": 23.4,
+        "winRate": 65.8,
+        "games": 117
+      },
+      "ratings": {
+        "overall": 90,
+        "peak": 91,
+        "international": 93,
+        "clutch": 81,
+        "consistency": 88,
+        "leadership": 66,
+        "synergy": 86
+      }
+    },
+    "koo-2015:gorilla": {
+      "teamId": "koo-2015",
+      "playerId": "gorilla",
+      "golTeamId": 48,
+      "golPlayerId": 65,
+      "season": "S5",
+      "source": "team-roster",
+      "accomplishment": "worlds_finalist",
+      "stats": {
+        "kda": 4,
+        "killParticipation": 72.6,
+        "damagePct": 7.8,
+        "goldPct": 14,
+        "winRate": 65.8,
+        "games": 117
+      },
+      "ratings": {
+        "overall": 83,
+        "peak": 84,
+        "international": 86,
+        "clutch": 84,
+        "consistency": 88,
+        "leadership": 74,
+        "synergy": 90
+      }
+    },
+    "skt-2015:marin": {
+      "teamId": "skt-2015",
+      "playerId": "marin",
+      "golTeamId": 42,
+      "golPlayerId": 96,
+      "season": "S5",
+      "source": "team-roster",
+      "accomplishment": "standard",
+      "stats": {
+        "kda": 4.4,
+        "killParticipation": 60.8,
+        "damagePct": 24.6,
+        "goldPct": 22.2,
+        "winRate": 80.3,
+        "games": 122
+      },
+      "ratings": {
+        "overall": 78,
+        "peak": 79,
+        "international": 83,
+        "clutch": 73,
+        "consistency": 94,
+        "leadership": 64,
+        "synergy": 76
+      }
+    },
+    "skt-2015:bengi": {
+      "teamId": "skt-2015",
+      "playerId": "bengi",
+      "golTeamId": 42,
+      "golPlayerId": 47,
+      "season": "S5",
+      "source": "team-roster",
+      "accomplishment": "standard",
+      "stats": {
+        "kda": 4.5,
+        "killParticipation": 68.3,
+        "damagePct": 12.9,
+        "goldPct": 17.7,
+        "winRate": 79.6,
+        "games": 108
+      },
+      "ratings": {
+        "overall": 75,
+        "peak": 76,
+        "international": 80,
+        "clutch": 75,
+        "consistency": 94,
+        "leadership": 73,
+        "synergy": 86
+      }
+    },
+    "skt-2015:faker": {
+      "teamId": "skt-2015",
+      "playerId": "faker",
+      "golTeamId": 42,
+      "golPlayerId": 48,
+      "season": "S5",
+      "source": "team-roster",
+      "accomplishment": "standard",
+      "stats": {
+        "kda": 5.5,
+        "killParticipation": 68.5,
+        "damagePct": 30.4,
+        "goldPct": 23.1,
+        "winRate": 80.7,
+        "games": 83
+      },
+      "ratings": {
+        "overall": 89,
+        "peak": 90,
+        "international": 94,
+        "clutch": 82,
+        "consistency": 94,
+        "leadership": 66,
+        "synergy": 86
+      }
+    },
+    "skt-2015:bang": {
+      "teamId": "skt-2015",
+      "playerId": "bang",
+      "golTeamId": 42,
+      "golPlayerId": 100,
+      "season": "S5",
+      "source": "team-roster",
+      "accomplishment": "standard",
+      "stats": {
+        "kda": 6.5,
+        "killParticipation": 66.4,
+        "damagePct": 27.4,
+        "goldPct": 22.9,
+        "winRate": 80.8,
+        "games": 125
+      },
+      "ratings": {
+        "overall": 89,
+        "peak": 92,
+        "international": 94,
+        "clutch": 88,
+        "consistency": 94,
+        "leadership": 65,
+        "synergy": 83
+      }
+    },
+    "skt-2015:wolf": {
+      "teamId": "skt-2015",
+      "playerId": "wolf",
+      "golTeamId": 42,
+      "golPlayerId": 101,
+      "season": "S5",
+      "source": "team-roster",
+      "accomplishment": "standard",
+      "stats": {
+        "kda": 5.5,
+        "killParticipation": 69.4,
+        "damagePct": 5.7,
+        "goldPct": 13.8,
+        "winRate": 81.8,
+        "games": 110
+      },
+      "ratings": {
+        "overall": 82,
+        "peak": 85,
+        "international": 87,
+        "clutch": 89,
+        "consistency": 94,
+        "leadership": 73,
+        "synergy": 87
+      }
+    },
     "rox-2016:smeb": {
       "teamId": "rox-2016",
       "playerId": "smeb",
@@ -10,6 +530,7 @@
       "golPlayerId": 56,
       "season": "S6",
       "source": "team-roster",
+      "accomplishment": "worlds_semis",
       "stats": {
         "kda": 4.5,
         "killParticipation": 67.8,
@@ -26,8 +547,7 @@
         "consistency": 94,
         "leadership": 66,
         "synergy": 85
-      },
-      "accomplishment": "worlds_semis"
+      }
     },
     "rox-2016:peanut": {
       "teamId": "rox-2016",
@@ -36,6 +556,7 @@
       "golPlayerId": 392,
       "season": "S6",
       "source": "team-roster",
+      "accomplishment": "worlds_semis",
       "stats": {
         "kda": 5.7,
         "killParticipation": 72.9,
@@ -52,8 +573,7 @@
         "consistency": 94,
         "leadership": 74,
         "synergy": 91
-      },
-      "accomplishment": "worlds_semis"
+      }
     },
     "rox-2016:kuro": {
       "teamId": "rox-2016",
@@ -62,6 +582,7 @@
       "golPlayerId": 73,
       "season": "S6",
       "source": "team-roster",
+      "accomplishment": "worlds_semis",
       "stats": {
         "kda": 5.8,
         "killParticipation": 68.4,
@@ -78,8 +599,7 @@
         "consistency": 94,
         "leadership": 66,
         "synergy": 86
-      },
-      "accomplishment": "worlds_semis"
+      }
     },
     "rox-2016:pray": {
       "teamId": "rox-2016",
@@ -88,6 +608,7 @@
       "golPlayerId": 221,
       "season": "S6",
       "source": "team-roster",
+      "accomplishment": "worlds_semis",
       "stats": {
         "kda": 5.2,
         "killParticipation": 68.2,
@@ -104,8 +625,7 @@
         "consistency": 94,
         "leadership": 66,
         "synergy": 85
-      },
-      "accomplishment": "worlds_semis"
+      }
     },
     "rox-2016:gorilla": {
       "teamId": "rox-2016",
@@ -114,6 +634,7 @@
       "golPlayerId": 65,
       "season": "S6",
       "source": "team-roster",
+      "accomplishment": "worlds_semis",
       "stats": {
         "kda": 4.4,
         "killParticipation": 69.2,
@@ -130,8 +651,7 @@
         "consistency": 94,
         "leadership": 73,
         "synergy": 86
-      },
-      "accomplishment": "worlds_semis"
+      }
     },
     "skt-2016:duke": {
       "teamId": "skt-2016",
@@ -140,6 +660,7 @@
       "golPlayerId": 124,
       "season": "S6",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 4.3,
         "killParticipation": 62.5,
@@ -156,8 +677,7 @@
         "consistency": 91,
         "leadership": 65,
         "synergy": 77
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "skt-2016:blank": {
       "teamId": "skt-2016",
@@ -166,6 +686,7 @@
       "golPlayerId": 411,
       "season": "S6",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 4.7,
         "killParticipation": 69.3,
@@ -182,8 +703,7 @@
         "consistency": 92,
         "leadership": 73,
         "synergy": 86
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "skt-2016:faker": {
       "teamId": "skt-2016",
@@ -192,6 +712,7 @@
       "golPlayerId": 48,
       "season": "S6",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 4.3,
         "killParticipation": 67.6,
@@ -208,8 +729,7 @@
         "consistency": 91,
         "leadership": 66,
         "synergy": 84
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "skt-2016:bang": {
       "teamId": "skt-2016",
@@ -218,6 +738,7 @@
       "golPlayerId": 100,
       "season": "S6",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 6.5,
         "killParticipation": 69,
@@ -234,8 +755,7 @@
         "consistency": 91,
         "leadership": 66,
         "synergy": 86
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "skt-2016:wolf": {
       "teamId": "skt-2016",
@@ -244,6 +764,7 @@
       "golPlayerId": 101,
       "season": "S6",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 4.9,
         "killParticipation": 68.1,
@@ -260,8 +781,7 @@
         "consistency": 91,
         "leadership": 73,
         "synergy": 84
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "ssg-2017:cuvee": {
       "teamId": "ssg-2017",
@@ -270,6 +790,7 @@
       "golPlayerId": 216,
       "season": "S7",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 3.4,
         "killParticipation": 60.3,
@@ -286,8 +807,7 @@
         "consistency": 90,
         "leadership": 64,
         "synergy": 74
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "ssg-2017:ambition": {
       "teamId": "ssg-2017",
@@ -296,6 +816,7 @@
       "golPlayerId": 104,
       "season": "S7",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 3.8,
         "killParticipation": 67.7,
@@ -312,8 +833,7 @@
         "consistency": 93,
         "leadership": 73,
         "synergy": 84
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "ssg-2017:crown": {
       "teamId": "ssg-2017",
@@ -322,6 +842,7 @@
       "golPlayerId": 451,
       "season": "S7",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 3.7,
         "killParticipation": 64.3,
@@ -338,8 +859,7 @@
         "consistency": 90,
         "leadership": 65,
         "synergy": 80
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "ssg-2017:ruler": {
       "teamId": "ssg-2017",
@@ -348,6 +868,7 @@
       "golPlayerId": 685,
       "season": "S7",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 4.6,
         "killParticipation": 65.2,
@@ -364,8 +885,7 @@
         "consistency": 92,
         "leadership": 65,
         "synergy": 81
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "ssg-2017:corejj": {
       "teamId": "ssg-2017",
@@ -374,6 +894,7 @@
       "golPlayerId": 257,
       "season": "S7",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 5.1,
         "killParticipation": 70.5,
@@ -390,8 +911,7 @@
         "consistency": 91,
         "leadership": 73,
         "synergy": 88
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "t1-2017:khan": {
       "teamId": "t1-2017",
@@ -400,6 +920,7 @@
       "golPlayerId": 982,
       "season": "S7",
       "source": "season",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 4.1,
         "killParticipation": 60,
@@ -416,8 +937,7 @@
         "consistency": 89,
         "leadership": 61,
         "synergy": 74
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "t1-2017:blank": {
       "teamId": "t1-2017",
@@ -426,6 +946,7 @@
       "golPlayerId": 411,
       "season": "S7",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 4.5,
         "killParticipation": 73.7,
@@ -442,8 +963,7 @@
         "consistency": 90,
         "leadership": 69,
         "synergy": 92
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "t1-2017:faker": {
       "teamId": "t1-2017",
@@ -452,6 +972,7 @@
       "golPlayerId": 48,
       "season": "S7",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 4.1,
         "killParticipation": 66,
@@ -468,8 +989,7 @@
         "consistency": 91,
         "leadership": 65,
         "synergy": 82
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "t1-2017:bang": {
       "teamId": "t1-2017",
@@ -478,6 +998,7 @@
       "golPlayerId": 100,
       "season": "S7",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 5.6,
         "killParticipation": 63.4,
@@ -494,8 +1015,7 @@
         "consistency": 91,
         "leadership": 65,
         "synergy": 79
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "t1-2017:wolf": {
       "teamId": "t1-2017",
@@ -504,6 +1024,7 @@
       "golPlayerId": 101,
       "season": "S7",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 4.5,
         "killParticipation": 66.9,
@@ -520,8 +1041,7 @@
         "consistency": 91,
         "leadership": 72,
         "synergy": 83
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "we-2017:957": {
       "teamId": "we-2017",
@@ -530,6 +1050,7 @@
       "golPlayerId": 604,
       "season": "S7",
       "source": "team-roster",
+      "accomplishment": "worlds_semis",
       "stats": {
         "kda": 4.5,
         "killParticipation": 63,
@@ -546,8 +1067,7 @@
         "consistency": 87,
         "leadership": 65,
         "synergy": 77
-      },
-      "accomplishment": "worlds_semis"
+      }
     },
     "we-2017:condi": {
       "teamId": "we-2017",
@@ -556,6 +1076,7 @@
       "golPlayerId": 401,
       "season": "S7",
       "source": "team-roster",
+      "accomplishment": "worlds_semis",
       "stats": {
         "kda": 4.4,
         "killParticipation": 72.4,
@@ -572,8 +1093,7 @@
         "consistency": 87,
         "leadership": 73,
         "synergy": 89
-      },
-      "accomplishment": "worlds_semis"
+      }
     },
     "we-2017:xiye": {
       "teamId": "we-2017",
@@ -582,6 +1102,7 @@
       "golPlayerId": 405,
       "season": "S7",
       "source": "team-roster",
+      "accomplishment": "worlds_semis",
       "stats": {
         "kda": 5,
         "killParticipation": 71.9,
@@ -598,8 +1119,7 @@
         "consistency": 87,
         "leadership": 66,
         "synergy": 89
-      },
-      "accomplishment": "worlds_semis"
+      }
     },
     "we-2017:mystic": {
       "teamId": "we-2017",
@@ -608,6 +1128,7 @@
       "golPlayerId": 406,
       "season": "S7",
       "source": "team-roster",
+      "accomplishment": "worlds_semis",
       "stats": {
         "kda": 4.8,
         "killParticipation": 72.2,
@@ -624,8 +1145,7 @@
         "consistency": 87,
         "leadership": 66,
         "synergy": 89
-      },
-      "accomplishment": "worlds_semis"
+      }
     },
     "we-2017:ben": {
       "teamId": "we-2017",
@@ -634,6 +1154,7 @@
       "golPlayerId": 725,
       "season": "S7",
       "source": "team-roster",
+      "accomplishment": "worlds_semis",
       "stats": {
         "kda": 4,
         "killParticipation": 73.3,
@@ -650,8 +1171,7 @@
         "consistency": 88,
         "leadership": 74,
         "synergy": 91
-      },
-      "accomplishment": "worlds_semis"
+      }
     },
     "c9-2018:licorice": {
       "teamId": "c9-2018",
@@ -660,6 +1180,7 @@
       "golPlayerId": 852,
       "season": "S8",
       "source": "team-roster",
+      "accomplishment": "worlds_semis",
       "stats": {
         "kda": 3.2,
         "killParticipation": 60.8,
@@ -676,8 +1197,7 @@
         "consistency": 80,
         "leadership": 63,
         "synergy": 73
-      },
-      "accomplishment": "worlds_semis"
+      }
     },
     "c9-2018:blaber": {
       "teamId": "c9-2018",
@@ -686,6 +1206,7 @@
       "golPlayerId": 1634,
       "season": "S8",
       "source": "team-roster",
+      "accomplishment": "worlds_semis",
       "stats": {
         "kda": 3.6,
         "killParticipation": 76,
@@ -702,8 +1223,7 @@
         "consistency": 89,
         "leadership": 69,
         "synergy": 94
-      },
-      "accomplishment": "worlds_semis"
+      }
     },
     "c9-2018:jensen": {
       "teamId": "c9-2018",
@@ -712,6 +1232,7 @@
       "golPlayerId": 583,
       "season": "S8",
       "source": "team-roster",
+      "accomplishment": "worlds_semis",
       "stats": {
         "kda": 2.9,
         "killParticipation": 72.6,
@@ -728,8 +1249,7 @@
         "consistency": 81,
         "leadership": 65,
         "synergy": 89
-      },
-      "accomplishment": "worlds_semis"
+      }
     },
     "c9-2018:sneaky": {
       "teamId": "c9-2018",
@@ -738,6 +1258,7 @@
       "golPlayerId": 129,
       "season": "S8",
       "source": "team-roster",
+      "accomplishment": "worlds_semis",
       "stats": {
         "kda": 4.2,
         "killParticipation": 69.5,
@@ -754,8 +1275,7 @@
         "consistency": 85,
         "leadership": 65,
         "synergy": 85
-      },
-      "accomplishment": "worlds_semis"
+      }
     },
     "c9-2018:zeyzal": {
       "teamId": "c9-2018",
@@ -764,6 +1284,7 @@
       "golPlayerId": 854,
       "season": "S8",
       "source": "team-roster",
+      "accomplishment": "worlds_semis",
       "stats": {
         "kda": 3.7,
         "killParticipation": 70.5,
@@ -780,8 +1301,7 @@
         "consistency": 85,
         "leadership": 72,
         "synergy": 87
-      },
-      "accomplishment": "worlds_semis"
+      }
     },
     "fnc-2018:bwipo": {
       "teamId": "fnc-2018",
@@ -790,6 +1310,7 @@
       "golPlayerId": 795,
       "season": "S8",
       "source": "team-roster",
+      "accomplishment": "worlds_finalist",
       "stats": {
         "kda": 4.3,
         "killParticipation": 61.5,
@@ -806,8 +1327,7 @@
         "consistency": 85,
         "leadership": 62,
         "synergy": 76
-      },
-      "accomplishment": "worlds_finalist"
+      }
     },
     "fnc-2018:broxah": {
       "teamId": "fnc-2018",
@@ -816,6 +1336,7 @@
       "golPlayerId": 872,
       "season": "S8",
       "source": "team-roster",
+      "accomplishment": "worlds_finalist",
       "stats": {
         "kda": 0.5,
         "killParticipation": 66.7,
@@ -832,8 +1353,7 @@
         "consistency": 91,
         "leadership": 72,
         "synergy": 83
-      },
-      "accomplishment": "worlds_finalist"
+      }
     },
     "fnc-2018:caps": {
       "teamId": "fnc-2018",
@@ -842,6 +1362,7 @@
       "golPlayerId": 802,
       "season": "S8",
       "source": "team-roster",
+      "accomplishment": "worlds_finalist",
       "stats": {
         "kda": 0.5,
         "killParticipation": 66.7,
@@ -858,8 +1379,7 @@
         "consistency": 91,
         "leadership": 65,
         "synergy": 83
-      },
-      "accomplishment": "worlds_finalist"
+      }
     },
     "fnc-2018:rekkles": {
       "teamId": "fnc-2018",
@@ -868,6 +1388,7 @@
       "golPlayerId": 15,
       "season": "S8",
       "source": "team-roster",
+      "accomplishment": "worlds_finalist",
       "stats": {
         "kda": 8.3,
         "killParticipation": 70.3,
@@ -884,8 +1405,7 @@
         "consistency": 87,
         "leadership": 65,
         "synergy": 87
-      },
-      "accomplishment": "worlds_finalist"
+      }
     },
     "fnc-2018:hylissang": {
       "teamId": "fnc-2018",
@@ -894,6 +1414,7 @@
       "golPlayerId": 237,
       "season": "S8",
       "source": "team-roster",
+      "accomplishment": "worlds_finalist",
       "stats": {
         "kda": 3.1,
         "killParticipation": 64.8,
@@ -910,8 +1431,7 @@
         "consistency": 91,
         "leadership": 72,
         "synergy": 80
-      },
-      "accomplishment": "worlds_finalist"
+      }
     },
     "ig-2018:theshy": {
       "teamId": "ig-2018",
@@ -920,6 +1440,7 @@
       "golPlayerId": 1075,
       "season": "S8",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 3.5,
         "killParticipation": 53.8,
@@ -936,8 +1457,7 @@
         "consistency": 94,
         "leadership": 62,
         "synergy": 67
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "ig-2018:ning": {
       "teamId": "ig-2018",
@@ -946,6 +1466,7 @@
       "golPlayerId": 1056,
       "season": "S8",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 4,
         "killParticipation": 69.9,
@@ -962,8 +1483,7 @@
         "consistency": 94,
         "leadership": 73,
         "synergy": 87
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "ig-2018:rookie": {
       "teamId": "ig-2018",
@@ -972,6 +1492,7 @@
       "golPlayerId": 109,
       "season": "S8",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 5.5,
         "killParticipation": 73,
@@ -988,8 +1509,7 @@
         "consistency": 94,
         "leadership": 67,
         "synergy": 91
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "ig-2018:jackeylove": {
       "teamId": "ig-2018",
@@ -998,6 +1518,7 @@
       "golPlayerId": 1267,
       "season": "S8",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 4,
         "killParticipation": 57.1,
@@ -1014,8 +1535,7 @@
         "consistency": 94,
         "leadership": 63,
         "synergy": 71
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "ig-2018:baolan": {
       "teamId": "ig-2018",
@@ -1024,6 +1544,7 @@
       "golPlayerId": 727,
       "season": "S8",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 4.9,
         "killParticipation": 67.6,
@@ -1040,8 +1561,7 @@
         "consistency": 94,
         "leadership": 73,
         "synergy": 85
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "kt-2018:smeb": {
       "teamId": "kt-2018",
@@ -1050,6 +1570,7 @@
       "golPlayerId": 56,
       "season": "S8",
       "source": "team-roster",
+      "accomplishment": "domestic",
       "stats": {
         "kda": 4,
         "killParticipation": 65.2,
@@ -1066,8 +1587,7 @@
         "consistency": 89,
         "leadership": 65,
         "synergy": 80
-      },
-      "accomplishment": "domestic"
+      }
     },
     "kt-2018:score": {
       "teamId": "kt-2018",
@@ -1076,6 +1596,7 @@
       "golPlayerId": 69,
       "season": "S8",
       "source": "team-roster",
+      "accomplishment": "domestic",
       "stats": {
         "kda": 4.3,
         "killParticipation": 73.6,
@@ -1092,8 +1613,7 @@
         "consistency": 89,
         "leadership": 74,
         "synergy": 91
-      },
-      "accomplishment": "domestic"
+      }
     },
     "kt-2018:bdd": {
       "teamId": "kt-2018",
@@ -1102,6 +1622,7 @@
       "golPlayerId": 650,
       "season": "S8",
       "source": "season",
+      "accomplishment": "domestic",
       "stats": {
         "kda": 5.1,
         "killParticipation": 60,
@@ -1118,8 +1639,7 @@
         "consistency": 87,
         "leadership": 64,
         "synergy": 74
-      },
-      "accomplishment": "domestic"
+      }
     },
     "kt-2018:deft": {
       "teamId": "kt-2018",
@@ -1128,6 +1648,7 @@
       "golPlayerId": 44,
       "season": "S8",
       "source": "team-roster",
+      "accomplishment": "domestic",
       "stats": {
         "kda": 4.8,
         "killParticipation": 65.9,
@@ -1144,8 +1665,7 @@
         "consistency": 88,
         "leadership": 65,
         "synergy": 81
-      },
-      "accomplishment": "domestic"
+      }
     },
     "kt-2018:mata": {
       "teamId": "kt-2018",
@@ -1154,6 +1674,7 @@
       "golPlayerId": 85,
       "season": "S8",
       "source": "team-roster",
+      "accomplishment": "domestic",
       "stats": {
         "kda": 4.5,
         "killParticipation": 68.8,
@@ -1170,8 +1691,7 @@
         "consistency": 88,
         "leadership": 73,
         "synergy": 85
-      },
-      "accomplishment": "domestic"
+      }
     },
     "rng-2018:letme": {
       "teamId": "rng-2018",
@@ -1180,6 +1700,7 @@
       "golPlayerId": 346,
       "season": "S8",
       "source": "team-roster",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 4.4,
         "killParticipation": 59.3,
@@ -1196,8 +1717,7 @@
         "consistency": 87,
         "leadership": 64,
         "synergy": 73
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "rng-2018:mlxg": {
       "teamId": "rng-2018",
@@ -1206,6 +1726,7 @@
       "golPlayerId": 358,
       "season": "S8",
       "source": "team-roster",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 4.4,
         "killParticipation": 73.3,
@@ -1222,8 +1743,7 @@
         "consistency": 86,
         "leadership": 72,
         "synergy": 91
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "rng-2018:xiaohu": {
       "teamId": "rng-2018",
@@ -1232,6 +1752,7 @@
       "golPlayerId": 347,
       "season": "S8",
       "source": "team-roster",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 2.8,
         "killParticipation": 65.6,
@@ -1248,8 +1769,7 @@
         "consistency": 88,
         "leadership": 65,
         "synergy": 81
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "rng-2018:uzi": {
       "teamId": "rng-2018",
@@ -1258,6 +1778,7 @@
       "golPlayerId": 171,
       "season": "S8",
       "source": "team-roster",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 5.7,
         "killParticipation": 71,
@@ -1274,8 +1795,7 @@
         "consistency": 90,
         "leadership": 66,
         "synergy": 88
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "rng-2018:ming": {
       "teamId": "rng-2018",
@@ -1284,6 +1804,7 @@
       "golPlayerId": 804,
       "season": "S8",
       "source": "team-roster",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 4.5,
         "killParticipation": 72.3,
@@ -1300,8 +1821,7 @@
         "consistency": 88,
         "leadership": 73,
         "synergy": 89
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "cg-2019:huni": {
       "teamId": "cg-2019",
@@ -1310,6 +1830,7 @@
       "golPlayerId": 371,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.6,
         "killParticipation": 62.3,
@@ -1326,8 +1847,7 @@
         "consistency": 70,
         "leadership": 64,
         "synergy": 74
-      },
-      "accomplishment": "standard"
+      }
     },
     "cg-2019:lira": {
       "teamId": "cg-2019",
@@ -1336,6 +1856,7 @@
       "golPlayerId": 447,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 3.5,
         "killParticipation": 69.1,
@@ -1352,8 +1873,7 @@
         "consistency": 70,
         "leadership": 72,
         "synergy": 82
-      },
-      "accomplishment": "standard"
+      }
     },
     "cg-2019:damonte": {
       "teamId": "cg-2019",
@@ -1362,6 +1882,7 @@
       "golPlayerId": 855,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 3.5,
         "killParticipation": 63.6,
@@ -1378,8 +1899,7 @@
         "consistency": 71,
         "leadership": 64,
         "synergy": 75
-      },
-      "accomplishment": "standard"
+      }
     },
     "cg-2019:codysun": {
       "teamId": "cg-2019",
@@ -1388,6 +1908,7 @@
       "golPlayerId": 794,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 5.7,
         "killParticipation": 67,
@@ -1404,8 +1925,7 @@
         "consistency": 68,
         "leadership": 65,
         "synergy": 79
-      },
-      "accomplishment": "standard"
+      }
     },
     "cg-2019:vulcan": {
       "teamId": "cg-2019",
@@ -1414,6 +1934,7 @@
       "golPlayerId": 1301,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.9,
         "killParticipation": 70.9,
@@ -1430,8 +1951,7 @@
         "consistency": 70,
         "leadership": 73,
         "synergy": 85
-      },
-      "accomplishment": "standard"
+      }
     },
     "clg-2019:ruin": {
       "teamId": "clg-2019",
@@ -1440,6 +1960,7 @@
       "golPlayerId": 1084,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.3,
         "killParticipation": 55.8,
@@ -1456,8 +1977,7 @@
         "consistency": 89,
         "leadership": 62,
         "synergy": 69
-      },
-      "accomplishment": "standard"
+      }
     },
     "clg-2019:griffin": {
       "teamId": "clg-2019",
@@ -1466,6 +1986,7 @@
       "golPlayerId": 862,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.8,
         "killParticipation": 70.6,
@@ -1482,8 +2003,7 @@
         "consistency": 73,
         "leadership": 70,
         "synergy": 85
-      },
-      "accomplishment": "standard"
+      }
     },
     "clg-2019:powerofevil": {
       "teamId": "clg-2019",
@@ -1492,6 +2012,7 @@
       "golPlayerId": 235,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 3.7,
         "killParticipation": 70,
@@ -1508,8 +2029,7 @@
         "consistency": 71,
         "leadership": 63,
         "synergy": 84
-      },
-      "accomplishment": "standard"
+      }
     },
     "clg-2019:stixxay": {
       "teamId": "clg-2019",
@@ -1518,6 +2038,7 @@
       "golPlayerId": 580,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 3.9,
         "killParticipation": 61.7,
@@ -1534,8 +2055,7 @@
         "consistency": 74,
         "leadership": 62,
         "synergy": 74
-      },
-      "accomplishment": "standard"
+      }
     },
     "clg-2019:biofrost": {
       "teamId": "clg-2019",
@@ -1544,6 +2064,7 @@
       "golPlayerId": 706,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 3.7,
         "killParticipation": 68.6,
@@ -1560,8 +2081,7 @@
         "consistency": 71,
         "leadership": 70,
         "synergy": 82
-      },
-      "accomplishment": "standard"
+      }
     },
     "fpx-2019:gimgoon": {
       "teamId": "fpx-2019",
@@ -1570,6 +2090,7 @@
       "golPlayerId": 605,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 5,
         "killParticipation": 55.3,
@@ -1586,8 +2107,7 @@
         "consistency": 94,
         "leadership": 63,
         "synergy": 69
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "fpx-2019:tian": {
       "teamId": "fpx-2019",
@@ -1596,6 +2116,7 @@
       "golPlayerId": 1269,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 12,
         "killParticipation": 50,
@@ -1612,8 +2133,7 @@
         "consistency": 94,
         "leadership": 69,
         "synergy": 62
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "fpx-2019:doinb": {
       "teamId": "fpx-2019",
@@ -1622,6 +2142,7 @@
       "golPlayerId": 470,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 9,
         "killParticipation": 75,
@@ -1638,8 +2159,7 @@
         "consistency": 94,
         "leadership": 67,
         "synergy": 94
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "fpx-2019:lwx": {
       "teamId": "fpx-2019",
@@ -1648,6 +2168,7 @@
       "golPlayerId": 806,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 5.7,
         "killParticipation": 64,
@@ -1664,8 +2185,7 @@
         "consistency": 94,
         "leadership": 65,
         "synergy": 80
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "fpx-2019:crisp": {
       "teamId": "fpx-2019",
@@ -1674,6 +2194,7 @@
       "golPlayerId": 1169,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 4.7,
         "killParticipation": 66.6,
@@ -1690,8 +2211,7 @@
         "consistency": 94,
         "leadership": 72,
         "synergy": 83
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "g2-2019:wunder": {
       "teamId": "g2-2019",
@@ -1700,6 +2220,7 @@
       "golPlayerId": 596,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "worlds_finalist",
       "stats": {
         "kda": 3.3,
         "killParticipation": 49.2,
@@ -1716,8 +2237,7 @@
         "consistency": 91,
         "leadership": 62,
         "synergy": 61
-      },
-      "accomplishment": "worlds_finalist"
+      }
     },
     "g2-2019:jankos": {
       "teamId": "g2-2019",
@@ -1726,6 +2246,7 @@
       "golPlayerId": 34,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "worlds_finalist",
       "stats": {
         "kda": 4.3,
         "killParticipation": 65.6,
@@ -1742,8 +2263,7 @@
         "consistency": 91,
         "leadership": 72,
         "synergy": 81
-      },
-      "accomplishment": "worlds_finalist"
+      }
     },
     "g2-2019:caps": {
       "teamId": "g2-2019",
@@ -1752,6 +2272,7 @@
       "golPlayerId": 802,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "worlds_finalist",
       "stats": {
         "kda": 3.1,
         "killParticipation": 44.9,
@@ -1768,8 +2289,7 @@
         "consistency": 91,
         "leadership": 61,
         "synergy": 55
-      },
-      "accomplishment": "worlds_finalist"
+      }
     },
     "g2-2019:perkz": {
       "teamId": "g2-2019",
@@ -1778,6 +2298,7 @@
       "golPlayerId": 555,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "worlds_finalist",
       "stats": {
         "kda": 7.5,
         "killParticipation": 61.2,
@@ -1794,8 +2315,7 @@
         "consistency": 91,
         "leadership": 64,
         "synergy": 76
-      },
-      "accomplishment": "worlds_finalist"
+      }
     },
     "g2-2019:mikyx": {
       "teamId": "g2-2019",
@@ -1804,6 +2324,7 @@
       "golPlayerId": 698,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "worlds_finalist",
       "stats": {
         "kda": 3.6,
         "killParticipation": 51,
@@ -1820,8 +2341,7 @@
         "consistency": 92,
         "leadership": 69,
         "synergy": 63
-      },
-      "accomplishment": "worlds_finalist"
+      }
     },
     "gg-2019:hauntzer": {
       "teamId": "gg-2019",
@@ -1830,6 +2350,7 @@
       "golPlayerId": 323,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 3.1,
         "killParticipation": 58.6,
@@ -1846,8 +2367,7 @@
         "consistency": 63,
         "leadership": 60,
         "synergy": 69
-      },
-      "accomplishment": "standard"
+      }
     },
     "gg-2019:contractz": {
       "teamId": "gg-2019",
@@ -1856,6 +2376,7 @@
       "golPlayerId": 733,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.6,
         "killParticipation": 66.7,
@@ -1872,8 +2393,7 @@
         "consistency": 63,
         "leadership": 68,
         "synergy": 79
-      },
-      "accomplishment": "standard"
+      }
     },
     "gg-2019:froggen": {
       "teamId": "gg-2019",
@@ -1882,6 +2402,7 @@
       "golPlayerId": 3,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 3.4,
         "killParticipation": 70.3,
@@ -1898,8 +2419,7 @@
         "consistency": 63,
         "leadership": 62,
         "synergy": 83
-      },
-      "accomplishment": "standard"
+      }
     },
     "gg-2019:fbi": {
       "teamId": "gg-2019",
@@ -1908,6 +2428,7 @@
       "golPlayerId": 1138,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.6,
         "killParticipation": 74.4,
@@ -1924,8 +2445,7 @@
         "consistency": 85,
         "leadership": 63,
         "synergy": 92
-      },
-      "accomplishment": "standard"
+      }
     },
     "gg-2019:huhi": {
       "teamId": "gg-2019",
@@ -1934,6 +2454,7 @@
       "golPlayerId": 579,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.7,
         "killParticipation": 80.1,
@@ -1950,8 +2471,7 @@
         "consistency": 61,
         "leadership": 69,
         "synergy": 89
-      },
-      "accomplishment": "standard"
+      }
     },
     "griffin-2019:sword": {
       "teamId": "griffin-2019",
@@ -1960,6 +2480,7 @@
       "golPlayerId": 3539,
       "season": "S9",
       "source": "season",
+      "accomplishment": "domestic",
       "stats": {
         "kda": 2.5,
         "killParticipation": 60,
@@ -1976,8 +2497,7 @@
         "consistency": 64,
         "leadership": 56,
         "synergy": 71
-      },
-      "accomplishment": "domestic"
+      }
     },
     "griffin-2019:tarzan": {
       "teamId": "griffin-2019",
@@ -1986,6 +2506,7 @@
       "golPlayerId": 1226,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "domestic",
       "stats": {
         "kda": 6.3,
         "killParticipation": 72.4,
@@ -2002,8 +2523,7 @@
         "consistency": 92,
         "leadership": 73,
         "synergy": 90
-      },
-      "accomplishment": "domestic"
+      }
     },
     "griffin-2019:chovy": {
       "teamId": "griffin-2019",
@@ -2012,6 +2532,7 @@
       "golPlayerId": 1629,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "domestic",
       "stats": {
         "kda": 6.8,
         "killParticipation": 60.3,
@@ -2028,8 +2549,7 @@
         "consistency": 92,
         "leadership": 64,
         "synergy": 75
-      },
-      "accomplishment": "domestic"
+      }
     },
     "griffin-2019:viper": {
       "teamId": "griffin-2019",
@@ -2038,6 +2558,7 @@
       "golPlayerId": 1228,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "domestic",
       "stats": {
         "kda": 7.6,
         "killParticipation": 64.1,
@@ -2054,8 +2575,7 @@
         "consistency": 92,
         "leadership": 65,
         "synergy": 80
-      },
-      "accomplishment": "domestic"
+      }
     },
     "griffin-2019:lehends": {
       "teamId": "griffin-2019",
@@ -2064,6 +2584,7 @@
       "golPlayerId": 738,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "domestic",
       "stats": {
         "kda": 6.4,
         "killParticipation": 68.2,
@@ -2080,8 +2601,7 @@
         "consistency": 92,
         "leadership": 73,
         "synergy": 85
-      },
-      "accomplishment": "domestic"
+      }
     },
     "tl-2019:impact": {
       "teamId": "tl-2019",
@@ -2090,6 +2610,7 @@
       "golPlayerId": 46,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "msi_finalist",
       "stats": {
         "kda": 3.4,
         "killParticipation": 57.5,
@@ -2106,8 +2627,7 @@
         "consistency": 89,
         "leadership": 64,
         "synergy": 71
-      },
-      "accomplishment": "msi_finalist"
+      }
     },
     "tl-2019:xmithie": {
       "teamId": "tl-2019",
@@ -2116,6 +2636,7 @@
       "golPlayerId": 269,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "msi_finalist",
       "stats": {
         "kda": 3.9,
         "killParticipation": 69.7,
@@ -2132,8 +2653,7 @@
         "consistency": 89,
         "leadership": 73,
         "synergy": 86
-      },
-      "accomplishment": "msi_finalist"
+      }
     },
     "tl-2019:jensen": {
       "teamId": "tl-2019",
@@ -2142,6 +2662,7 @@
       "golPlayerId": 583,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "msi_finalist",
       "stats": {
         "kda": 4.5,
         "killParticipation": 65.4,
@@ -2158,8 +2679,7 @@
         "consistency": 89,
         "leadership": 65,
         "synergy": 81
-      },
-      "accomplishment": "msi_finalist"
+      }
     },
     "tl-2019:doublelift": {
       "teamId": "tl-2019",
@@ -2168,6 +2688,7 @@
       "golPlayerId": 149,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "msi_finalist",
       "stats": {
         "kda": 5.1,
         "killParticipation": 70.6,
@@ -2184,8 +2705,7 @@
         "consistency": 89,
         "leadership": 66,
         "synergy": 87
-      },
-      "accomplishment": "msi_finalist"
+      }
     },
     "tl-2019:corejj": {
       "teamId": "tl-2019",
@@ -2194,6 +2714,7 @@
       "golPlayerId": 257,
       "season": "S9",
       "source": "team-roster",
+      "accomplishment": "msi_finalist",
       "stats": {
         "kda": 4.5,
         "killParticipation": 71.9,
@@ -2210,8 +2731,7 @@
         "consistency": 89,
         "leadership": 73,
         "synergy": 89
-      },
-      "accomplishment": "msi_finalist"
+      }
     },
     "clg-2020:ruin": {
       "teamId": "clg-2020",
@@ -2220,6 +2740,7 @@
       "golPlayerId": 1084,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.1,
         "killParticipation": 69,
@@ -2236,8 +2757,7 @@
         "consistency": 54,
         "leadership": 61,
         "synergy": 80
-      },
-      "accomplishment": "standard"
+      }
     },
     "clg-2020:fragas": {
       "teamId": "clg-2020",
@@ -2246,6 +2766,7 @@
       "golPlayerId": 1977,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 0.6,
         "killParticipation": 56,
@@ -2262,8 +2783,7 @@
         "consistency": 55,
         "leadership": 66,
         "synergy": 64
-      },
-      "accomplishment": "standard"
+      }
     },
     "clg-2020:pobelter": {
       "teamId": "clg-2020",
@@ -2272,6 +2792,7 @@
       "golPlayerId": 330,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.3,
         "killParticipation": 69.9,
@@ -2288,8 +2809,7 @@
         "consistency": 53,
         "leadership": 60,
         "synergy": 82
-      },
-      "accomplishment": "standard"
+      }
     },
     "clg-2020:stixxay": {
       "teamId": "clg-2020",
@@ -2298,6 +2818,7 @@
       "golPlayerId": 580,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 3.1,
         "killParticipation": 64.5,
@@ -2314,8 +2835,7 @@
         "consistency": 55,
         "leadership": 61,
         "synergy": 75
-      },
-      "accomplishment": "standard"
+      }
     },
     "clg-2020:smoothie": {
       "teamId": "clg-2020",
@@ -2324,6 +2844,7 @@
       "golPlayerId": 501,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.5,
         "killParticipation": 69.2,
@@ -2340,8 +2861,7 @@
         "consistency": 54,
         "leadership": 68,
         "synergy": 81
-      },
-      "accomplishment": "standard"
+      }
     },
     "dk-2020:nuguri": {
       "teamId": "dk-2020",
@@ -2350,6 +2870,7 @@
       "golPlayerId": 1249,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 3.3,
         "killParticipation": 60.7,
@@ -2366,8 +2887,7 @@
         "consistency": 90,
         "leadership": 64,
         "synergy": 75
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "dk-2020:canyon": {
       "teamId": "dk-2020",
@@ -2376,6 +2896,7 @@
       "golPlayerId": 1909,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 4.5,
         "killParticipation": 68.5,
@@ -2392,8 +2913,7 @@
         "consistency": 90,
         "leadership": 73,
         "synergy": 85
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "dk-2020:showmaker": {
       "teamId": "dk-2020",
@@ -2402,6 +2922,7 @@
       "golPlayerId": 1250,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 6.8,
         "killParticipation": 68.8,
@@ -2418,8 +2939,7 @@
         "consistency": 90,
         "leadership": 66,
         "synergy": 85
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "dk-2020:ghost": {
       "teamId": "dk-2020",
@@ -2428,6 +2948,7 @@
       "golPlayerId": 717,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 7.1,
         "killParticipation": 75.5,
@@ -2444,8 +2965,7 @@
         "consistency": 94,
         "leadership": 67,
         "synergy": 94
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "dk-2020:beryl": {
       "teamId": "dk-2020",
@@ -2454,6 +2974,7 @@
       "golPlayerId": 2184,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 5.7,
         "killParticipation": 68.9,
@@ -2470,8 +2991,7 @@
         "consistency": 93,
         "leadership": 73,
         "synergy": 86
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "eg-2020:huni": {
       "teamId": "eg-2020",
@@ -2480,6 +3000,7 @@
       "golPlayerId": 371,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.6,
         "killParticipation": 68,
@@ -2496,8 +3017,7 @@
         "consistency": 65,
         "leadership": 62,
         "synergy": 81
-      },
-      "accomplishment": "standard"
+      }
     },
     "eg-2020:svenskeren": {
       "teamId": "eg-2020",
@@ -2506,6 +3026,7 @@
       "golPlayerId": 27,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.2,
         "killParticipation": 69.9,
@@ -2522,8 +3043,7 @@
         "consistency": 68,
         "leadership": 71,
         "synergy": 83
-      },
-      "accomplishment": "standard"
+      }
     },
     "eg-2020:goldenglue": {
       "teamId": "eg-2020",
@@ -2532,6 +3052,7 @@
       "golPlayerId": 502,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.8,
         "killParticipation": 70.4,
@@ -2548,8 +3069,7 @@
         "consistency": 60,
         "leadership": 62,
         "synergy": 83
-      },
-      "accomplishment": "standard"
+      }
     },
     "eg-2020:bang": {
       "teamId": "eg-2020",
@@ -2558,6 +3078,7 @@
       "golPlayerId": 100,
       "season": "S10",
       "source": "season",
+      "accomplishment": "standard",
       "stats": {
         "kda": 4.4,
         "killParticipation": 84.2,
@@ -2574,8 +3095,7 @@
         "consistency": 69,
         "leadership": 65,
         "synergy": 90
-      },
-      "accomplishment": "standard"
+      }
     },
     "eg-2020:zeyzal": {
       "teamId": "eg-2020",
@@ -2584,6 +3104,7 @@
       "golPlayerId": 854,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 4.3,
         "killParticipation": 67.5,
@@ -2600,8 +3121,7 @@
         "consistency": 69,
         "leadership": 70,
         "synergy": 80
-      },
-      "accomplishment": "standard"
+      }
     },
     "excel-2020:kryze": {
       "teamId": "excel-2020",
@@ -2610,6 +3130,7 @@
       "golPlayerId": 2577,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2,
         "killParticipation": 57.8,
@@ -2626,8 +3147,7 @@
         "consistency": 73,
         "leadership": 59,
         "synergy": 69
-      },
-      "accomplishment": "standard"
+      }
     },
     "excel-2020:caedrel": {
       "teamId": "excel-2020",
@@ -2636,6 +3156,7 @@
       "golPlayerId": 656,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.4,
         "killParticipation": 64.1,
@@ -2652,8 +3173,7 @@
         "consistency": 60,
         "leadership": 67,
         "synergy": 75
-      },
-      "accomplishment": "standard"
+      }
     },
     "excel-2020:special": {
       "teamId": "excel-2020",
@@ -2662,6 +3182,7 @@
       "golPlayerId": 1570,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.3,
         "killParticipation": 64.5,
@@ -2678,8 +3199,7 @@
         "consistency": 61,
         "leadership": 59,
         "synergy": 76
-      },
-      "accomplishment": "standard"
+      }
     },
     "excel-2020:patrik": {
       "teamId": "excel-2020",
@@ -2688,6 +3208,7 @@
       "golPlayerId": 1304,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 0.7,
         "killParticipation": 40,
@@ -2704,8 +3225,7 @@
         "consistency": 60,
         "leadership": 56,
         "synergy": 51
-      },
-      "accomplishment": "standard"
+      }
     },
     "excel-2020:tore": {
       "teamId": "excel-2020",
@@ -2714,6 +3234,7 @@
       "golPlayerId": 879,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 0.8,
         "killParticipation": 60,
@@ -2730,8 +3251,7 @@
         "consistency": 60,
         "leadership": 66,
         "synergy": 70
-      },
-      "accomplishment": "standard"
+      }
     },
     "fnc-2020:bwipo": {
       "teamId": "fnc-2020",
@@ -2740,6 +3260,7 @@
       "golPlayerId": 795,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 1.4,
         "killParticipation": 54.8,
@@ -2756,8 +3277,7 @@
         "consistency": 80,
         "leadership": 62,
         "synergy": 66
-      },
-      "accomplishment": "standard"
+      }
     },
     "fnc-2020:selfmade": {
       "teamId": "fnc-2020",
@@ -2766,6 +3286,7 @@
       "golPlayerId": 1465,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 3.7,
         "killParticipation": 69.2,
@@ -2782,8 +3303,7 @@
         "consistency": 80,
         "leadership": 72,
         "synergy": 84
-      },
-      "accomplishment": "standard"
+      }
     },
     "fnc-2020:nemesis": {
       "teamId": "fnc-2020",
@@ -2792,6 +3312,7 @@
       "golPlayerId": 1466,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 3.6,
         "killParticipation": 56.7,
@@ -2808,8 +3329,7 @@
         "consistency": 80,
         "leadership": 62,
         "synergy": 68
-      },
-      "accomplishment": "standard"
+      }
     },
     "fnc-2020:rekkles": {
       "teamId": "fnc-2020",
@@ -2818,6 +3338,7 @@
       "golPlayerId": 15,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 10.2,
         "killParticipation": 83.7,
@@ -2834,8 +3355,7 @@
         "consistency": 80,
         "leadership": 66,
         "synergy": 92
-      },
-      "accomplishment": "standard"
+      }
     },
     "fnc-2020:hylissang": {
       "teamId": "fnc-2020",
@@ -2844,6 +3364,7 @@
       "golPlayerId": 237,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.4,
         "killParticipation": 53.1,
@@ -2860,8 +3381,7 @@
         "consistency": 80,
         "leadership": 68,
         "synergy": 64
-      },
-      "accomplishment": "standard"
+      }
     },
     "immortals-2020:allorim": {
       "teamId": "immortals-2020",
@@ -2870,6 +3390,7 @@
       "golPlayerId": 857,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 1.6,
         "killParticipation": 58.8,
@@ -2886,8 +3407,7 @@
         "consistency": 56,
         "leadership": 59,
         "synergy": 68
-      },
-      "accomplishment": "standard"
+      }
     },
     "immortals-2020:xmithie": {
       "teamId": "immortals-2020",
@@ -2896,6 +3416,7 @@
       "golPlayerId": 269,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2,
         "killParticipation": 71.7,
@@ -2912,8 +3433,7 @@
         "consistency": 57,
         "leadership": 69,
         "synergy": 84
-      },
-      "accomplishment": "standard"
+      }
     },
     "immortals-2020:insanity": {
       "teamId": "immortals-2020",
@@ -2922,6 +3442,7 @@
       "golPlayerId": 1633,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 3,
         "killParticipation": 74.6,
@@ -2938,8 +3459,7 @@
         "consistency": 56,
         "leadership": 62,
         "synergy": 88
-      },
-      "accomplishment": "standard"
+      }
     },
     "immortals-2020:apollo": {
       "teamId": "immortals-2020",
@@ -2948,6 +3468,7 @@
       "golPlayerId": 315,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 3.4,
         "killParticipation": 71.2,
@@ -2964,8 +3485,7 @@
         "consistency": 60,
         "leadership": 62,
         "synergy": 84
-      },
-      "accomplishment": "standard"
+      }
     },
     "immortals-2020:hakuho": {
       "teamId": "immortals-2020",
@@ -2974,6 +3494,7 @@
       "golPlayerId": 644,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.6,
         "killParticipation": 69.4,
@@ -2990,8 +3511,7 @@
         "consistency": 57,
         "leadership": 68,
         "synergy": 81
-      },
-      "accomplishment": "standard"
+      }
     },
     "misfits-2020:dandan": {
       "teamId": "misfits-2020",
@@ -3000,6 +3520,7 @@
       "golPlayerId": 2050,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.8,
         "killParticipation": 60.1,
@@ -3016,8 +3537,7 @@
         "consistency": 63,
         "leadership": 60,
         "synergy": 71
-      },
-      "accomplishment": "standard"
+      }
     },
     "misfits-2020:razork": {
       "teamId": "misfits-2020",
@@ -3026,6 +3546,7 @@
       "golPlayerId": 1491,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.3,
         "killParticipation": 70.8,
@@ -3042,8 +3563,7 @@
         "consistency": 63,
         "leadership": 69,
         "synergy": 84
-      },
-      "accomplishment": "standard"
+      }
     },
     "misfits-2020:febiven": {
       "teamId": "misfits-2020",
@@ -3052,6 +3572,7 @@
       "golPlayerId": 373,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.9,
         "killParticipation": 64.6,
@@ -3068,8 +3589,7 @@
         "consistency": 63,
         "leadership": 60,
         "synergy": 76
-      },
-      "accomplishment": "standard"
+      }
     },
     "misfits-2020:kobbe": {
       "teamId": "misfits-2020",
@@ -3078,6 +3598,7 @@
       "golPlayerId": 598,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 3.9,
         "killParticipation": 64.2,
@@ -3094,8 +3615,7 @@
         "consistency": 65,
         "leadership": 61,
         "synergy": 76
-      },
-      "accomplishment": "standard"
+      }
     },
     "misfits-2020:denyk": {
       "teamId": "misfits-2020",
@@ -3104,6 +3624,7 @@
       "golPlayerId": 1660,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 3,
         "killParticipation": 65.7,
@@ -3120,8 +3641,7 @@
         "consistency": 64,
         "leadership": 66,
         "synergy": 78
-      },
-      "accomplishment": "standard"
+      }
     },
     "sn-2020:bin": {
       "teamId": "sn-2020",
@@ -3130,6 +3650,7 @@
       "golPlayerId": 2606,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "worlds_finalist",
       "stats": {
         "kda": 2.7,
         "killParticipation": 58.5,
@@ -3146,8 +3667,7 @@
         "consistency": 80,
         "leadership": 64,
         "synergy": 70
-      },
-      "accomplishment": "worlds_finalist"
+      }
     },
     "sn-2020:sofm": {
       "teamId": "sn-2020",
@@ -3156,6 +3676,7 @@
       "golPlayerId": 710,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "worlds_finalist",
       "stats": {
         "kda": 3.7,
         "killParticipation": 70.5,
@@ -3172,8 +3693,7 @@
         "consistency": 78,
         "leadership": 73,
         "synergy": 85
-      },
-      "accomplishment": "worlds_finalist"
+      }
     },
     "sn-2020:angel": {
       "teamId": "sn-2020",
@@ -3182,6 +3702,7 @@
       "golPlayerId": 1708,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "worlds_finalist",
       "stats": {
         "kda": 4.6,
         "killParticipation": 69.1,
@@ -3198,8 +3719,7 @@
         "consistency": 78,
         "leadership": 66,
         "synergy": 84
-      },
-      "accomplishment": "worlds_finalist"
+      }
     },
     "sn-2020:huanfeng": {
       "teamId": "sn-2020",
@@ -3208,6 +3728,7 @@
       "golPlayerId": 2904,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "worlds_finalist",
       "stats": {
         "kda": 4.4,
         "killParticipation": 68,
@@ -3224,8 +3745,7 @@
         "consistency": 80,
         "leadership": 66,
         "synergy": 83
-      },
-      "accomplishment": "worlds_finalist"
+      }
     },
     "sn-2020:swordart": {
       "teamId": "sn-2020",
@@ -3234,6 +3754,7 @@
       "golPlayerId": 288,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "worlds_finalist",
       "stats": {
         "kda": 3,
         "killParticipation": 66.6,
@@ -3250,8 +3771,7 @@
         "consistency": 78,
         "leadership": 72,
         "synergy": 80
-      },
-      "accomplishment": "worlds_finalist"
+      }
     },
     "tes-2020:369": {
       "teamId": "tes-2020",
@@ -3260,6 +3780,7 @@
       "golPlayerId": 1922,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "worlds_semis",
       "stats": {
         "kda": 3.6,
         "killParticipation": 57.2,
@@ -3276,8 +3797,7 @@
         "consistency": 89,
         "leadership": 63,
         "synergy": 70
-      },
-      "accomplishment": "worlds_semis"
+      }
     },
     "tes-2020:karsa": {
       "teamId": "tes-2020",
@@ -3286,6 +3806,7 @@
       "golPlayerId": 404,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "worlds_semis",
       "stats": {
         "kda": 4,
         "killParticipation": 65.5,
@@ -3302,8 +3823,7 @@
         "consistency": 89,
         "leadership": 72,
         "synergy": 81
-      },
-      "accomplishment": "worlds_semis"
+      }
     },
     "tes-2020:knight": {
       "teamId": "tes-2020",
@@ -3312,6 +3832,7 @@
       "golPlayerId": 1270,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "worlds_semis",
       "stats": {
         "kda": 6,
         "killParticipation": 73.1,
@@ -3328,8 +3849,7 @@
         "consistency": 89,
         "leadership": 67,
         "synergy": 90
-      },
-      "accomplishment": "worlds_semis"
+      }
     },
     "tes-2020:jackeylove": {
       "teamId": "tes-2020",
@@ -3338,6 +3858,7 @@
       "golPlayerId": 1267,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "worlds_semis",
       "stats": {
         "kda": 4.1,
         "killParticipation": 67.7,
@@ -3354,8 +3875,7 @@
         "consistency": 93,
         "leadership": 66,
         "synergy": 84
-      },
-      "accomplishment": "worlds_semis"
+      }
     },
     "tes-2020:yuyanjia": {
       "teamId": "tes-2020",
@@ -3364,6 +3884,7 @@
       "golPlayerId": 2624,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "worlds_semis",
       "stats": {
         "kda": 4,
         "killParticipation": 64.9,
@@ -3380,8 +3901,7 @@
         "consistency": 90,
         "leadership": 72,
         "synergy": 80
-      },
-      "accomplishment": "worlds_semis"
+      }
     },
     "tsm-2020:brokenblade": {
       "teamId": "tsm-2020",
@@ -3390,6 +3910,7 @@
       "golPlayerId": 1310,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 3.3,
         "killParticipation": 63.3,
@@ -3406,8 +3927,7 @@
         "consistency": 76,
         "leadership": 64,
         "synergy": 76
-      },
-      "accomplishment": "standard"
+      }
     },
     "tsm-2020:spica": {
       "teamId": "tsm-2020",
@@ -3416,6 +3936,7 @@
       "golPlayerId": 1785,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 3.9,
         "killParticipation": 71.8,
@@ -3432,8 +3953,7 @@
         "consistency": 78,
         "leadership": 73,
         "synergy": 87
-      },
-      "accomplishment": "standard"
+      }
     },
     "tsm-2020:bjergsen": {
       "teamId": "tsm-2020",
@@ -3442,6 +3962,7 @@
       "golPlayerId": 138,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 5.9,
         "killParticipation": 68.3,
@@ -3458,8 +3979,7 @@
         "consistency": 76,
         "leadership": 65,
         "synergy": 82
-      },
-      "accomplishment": "standard"
+      }
     },
     "tsm-2020:doublelift": {
       "teamId": "tsm-2020",
@@ -3468,6 +3988,7 @@
       "golPlayerId": 149,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 3.7,
         "killParticipation": 65.4,
@@ -3484,8 +4005,7 @@
         "consistency": 71,
         "leadership": 63,
         "synergy": 78
-      },
-      "accomplishment": "standard"
+      }
     },
     "tsm-2020:biofrost": {
       "teamId": "tsm-2020",
@@ -3494,6 +4014,7 @@
       "golPlayerId": 706,
       "season": "S10",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 3.5,
         "killParticipation": 65.1,
@@ -3510,8 +4031,7 @@
         "consistency": 73,
         "leadership": 71,
         "synergy": 78
-      },
-      "accomplishment": "standard"
+      }
     },
     "100t-2021:ssumday": {
       "teamId": "100t-2021",
@@ -3520,6 +4040,7 @@
       "golPlayerId": 107,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 3.1,
         "killParticipation": 57,
@@ -3536,8 +4057,7 @@
         "consistency": 84,
         "leadership": 63,
         "synergy": 69
-      },
-      "accomplishment": "standard"
+      }
     },
     "100t-2021:closer": {
       "teamId": "100t-2021",
@@ -3546,6 +4066,7 @@
       "golPlayerId": 1638,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 4.5,
         "killParticipation": 70.8,
@@ -3562,8 +4083,7 @@
         "consistency": 84,
         "leadership": 73,
         "synergy": 87
-      },
-      "accomplishment": "standard"
+      }
     },
     "100t-2021:abbedagge": {
       "teamId": "100t-2021",
@@ -3572,6 +4092,7 @@
       "golPlayerId": 1639,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 4.1,
         "killParticipation": 68.4,
@@ -3588,8 +4109,7 @@
         "consistency": 82,
         "leadership": 66,
         "synergy": 83
-      },
-      "accomplishment": "standard"
+      }
     },
     "100t-2021:fbi": {
       "teamId": "100t-2021",
@@ -3598,6 +4118,7 @@
       "golPlayerId": 1138,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 4.6,
         "killParticipation": 79.7,
@@ -3614,8 +4135,7 @@
         "consistency": 84,
         "leadership": 67,
         "synergy": 92
-      },
-      "accomplishment": "standard"
+      }
     },
     "100t-2021:huhi": {
       "teamId": "100t-2021",
@@ -3624,6 +4144,7 @@
       "golPlayerId": 579,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.6,
         "killParticipation": 55.5,
@@ -3640,8 +4161,7 @@
         "consistency": 84,
         "leadership": 70,
         "synergy": 67
-      },
-      "accomplishment": "standard"
+      }
     },
     "dig-2021:fakegod": {
       "teamId": "dig-2021",
@@ -3650,6 +4170,7 @@
       "golPlayerId": 1976,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 4.5,
         "killParticipation": 60,
@@ -3666,8 +4187,7 @@
         "consistency": 64,
         "leadership": 62,
         "synergy": 70
-      },
-      "accomplishment": "standard"
+      }
     },
     "dig-2021:akaadian": {
       "teamId": "dig-2021",
@@ -3676,6 +4196,7 @@
       "golPlayerId": 811,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 5,
         "killParticipation": 50,
@@ -3692,8 +4213,7 @@
         "consistency": 61,
         "leadership": 66,
         "synergy": 57
-      },
-      "accomplishment": "standard"
+      }
     },
     "dig-2021:yusui": {
       "teamId": "dig-2021",
@@ -3702,6 +4222,7 @@
       "golPlayerId": 1632,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.7,
         "killParticipation": 53.3,
@@ -3718,8 +4239,7 @@
         "consistency": 59,
         "leadership": 60,
         "synergy": 61
-      },
-      "accomplishment": "standard"
+      }
     },
     "dig-2021:neo": {
       "teamId": "dig-2021",
@@ -3728,6 +4248,7 @@
       "golPlayerId": 1126,
       "season": "S11",
       "source": "season",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.5,
         "killParticipation": 60,
@@ -3744,8 +4265,7 @@
         "consistency": 64,
         "leadership": 56,
         "synergy": 71
-      },
-      "accomplishment": "standard"
+      }
     },
     "dig-2021:aphromoo": {
       "teamId": "dig-2021",
@@ -3754,6 +4274,7 @@
       "golPlayerId": 150,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 7.7,
         "killParticipation": 45.5,
@@ -3770,8 +4291,7 @@
         "consistency": 64,
         "leadership": 66,
         "synergy": 52
-      },
-      "accomplishment": "standard"
+      }
     },
     "dk-2021:khan": {
       "teamId": "dk-2021",
@@ -3780,6 +4300,7 @@
       "golPlayerId": 982,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "worlds_finalist",
       "stats": {
         "kda": 3.6,
         "killParticipation": 61.2,
@@ -3796,8 +4317,7 @@
         "consistency": 94,
         "leadership": 64,
         "synergy": 76
-      },
-      "accomplishment": "worlds_finalist"
+      }
     },
     "dk-2021:canyon": {
       "teamId": "dk-2021",
@@ -3806,6 +4326,7 @@
       "golPlayerId": 1909,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "worlds_finalist",
       "stats": {
         "kda": 4.6,
         "killParticipation": 67.2,
@@ -3822,8 +4343,7 @@
         "consistency": 94,
         "leadership": 72,
         "synergy": 84
-      },
-      "accomplishment": "worlds_finalist"
+      }
     },
     "dk-2021:showmaker": {
       "teamId": "dk-2021",
@@ -3832,6 +4352,7 @@
       "golPlayerId": 1250,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "worlds_finalist",
       "stats": {
         "kda": 5.4,
         "killParticipation": 64.1,
@@ -3848,8 +4369,7 @@
         "consistency": 94,
         "leadership": 65,
         "synergy": 80
-      },
-      "accomplishment": "worlds_finalist"
+      }
     },
     "dk-2021:ghost": {
       "teamId": "dk-2021",
@@ -3858,6 +4378,7 @@
       "golPlayerId": 717,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "worlds_finalist",
       "stats": {
         "kda": 7.7,
         "killParticipation": 82.5,
@@ -3874,8 +4395,7 @@
         "consistency": 94,
         "leadership": 67,
         "synergy": 94
-      },
-      "accomplishment": "worlds_finalist"
+      }
     },
     "dk-2021:beryl": {
       "teamId": "dk-2021",
@@ -3884,6 +4404,7 @@
       "golPlayerId": 2184,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "worlds_finalist",
       "stats": {
         "kda": 3.3,
         "killParticipation": 62.2,
@@ -3900,8 +4421,7 @@
         "consistency": 94,
         "leadership": 71,
         "synergy": 78
-      },
-      "accomplishment": "worlds_finalist"
+      }
     },
     "edg-2021:flandre": {
       "teamId": "edg-2021",
@@ -3910,6 +4430,7 @@
       "golPlayerId": 341,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 3.5,
         "killParticipation": 56.7,
@@ -3926,8 +4447,7 @@
         "consistency": 91,
         "leadership": 63,
         "synergy": 70
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "edg-2021:jiejie": {
       "teamId": "edg-2021",
@@ -3936,6 +4456,7 @@
       "golPlayerId": 2324,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 5.3,
         "killParticipation": 72.7,
@@ -3952,8 +4473,7 @@
         "consistency": 92,
         "leadership": 74,
         "synergy": 90
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "edg-2021:scout": {
       "teamId": "edg-2021",
@@ -3962,6 +4482,7 @@
       "golPlayerId": 610,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 5.3,
         "killParticipation": 70.5,
@@ -3978,8 +4499,7 @@
         "consistency": 91,
         "leadership": 66,
         "synergy": 87
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "edg-2021:viper": {
       "teamId": "edg-2021",
@@ -3988,6 +4508,7 @@
       "golPlayerId": 1228,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 7,
         "killParticipation": 79.5,
@@ -4004,8 +4525,7 @@
         "consistency": 91,
         "leadership": 67,
         "synergy": 93
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "edg-2021:meiko": {
       "teamId": "edg-2021",
@@ -4014,6 +4534,7 @@
       "golPlayerId": 386,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 6,
         "killParticipation": 66.9,
@@ -4030,8 +4551,7 @@
         "consistency": 91,
         "leadership": 72,
         "synergy": 83
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "fly-2021:kumo": {
       "teamId": "fly-2021",
@@ -4040,6 +4560,7 @@
       "golPlayerId": 1974,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 1.8,
         "killParticipation": 48.5,
@@ -4056,8 +4577,7 @@
         "consistency": 79,
         "leadership": 59,
         "synergy": 58
-      },
-      "accomplishment": "standard"
+      }
     },
     "fly-2021:josedeodo": {
       "teamId": "fly-2021",
@@ -4066,6 +4586,7 @@
       "golPlayerId": 1364,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 3,
         "killParticipation": 68.4,
@@ -4082,8 +4603,7 @@
         "consistency": 63,
         "leadership": 70,
         "synergy": 81
-      },
-      "accomplishment": "standard"
+      }
     },
     "fly-2021:palafox": {
       "teamId": "fly-2021",
@@ -4092,6 +4612,7 @@
       "golPlayerId": 1282,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.4,
         "killParticipation": 58.8,
@@ -4108,8 +4629,7 @@
         "consistency": 62,
         "leadership": 61,
         "synergy": 68
-      },
-      "accomplishment": "standard"
+      }
     },
     "fly-2021:tomo": {
       "teamId": "fly-2021",
@@ -4118,6 +4638,7 @@
       "golPlayerId": 3060,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.7,
         "killParticipation": 66.2,
@@ -4134,8 +4655,7 @@
         "consistency": 76,
         "leadership": 62,
         "synergy": 80
-      },
-      "accomplishment": "standard"
+      }
     },
     "fly-2021:diamond": {
       "teamId": "fly-2021",
@@ -4144,6 +4664,7 @@
       "golPlayerId": 1975,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 1.6,
         "killParticipation": 36.7,
@@ -4160,8 +4681,7 @@
         "consistency": 69,
         "leadership": 65,
         "synergy": 52
-      },
-      "accomplishment": "standard"
+      }
     },
     "mad-2021:armut": {
       "teamId": "mad-2021",
@@ -4170,6 +4690,7 @@
       "golPlayerId": 1308,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "worlds_semis",
       "stats": {
         "kda": 2.6,
         "killParticipation": 76.5,
@@ -4186,8 +4707,7 @@
         "consistency": 83,
         "leadership": 67,
         "synergy": 92
-      },
-      "accomplishment": "worlds_semis"
+      }
     },
     "mad-2021:elyoya": {
       "teamId": "mad-2021",
@@ -4196,6 +4716,7 @@
       "golPlayerId": 2719,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "worlds_semis",
       "stats": {
         "kda": 1.8,
         "killParticipation": 64.7,
@@ -4212,8 +4733,7 @@
         "consistency": 83,
         "leadership": 72,
         "synergy": 79
-      },
-      "accomplishment": "worlds_semis"
+      }
     },
     "mad-2021:humanoid": {
       "teamId": "mad-2021",
@@ -4222,6 +4742,7 @@
       "golPlayerId": 1716,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "worlds_semis",
       "stats": {
         "kda": 2.2,
         "killParticipation": 76.5,
@@ -4238,8 +4759,7 @@
         "consistency": 83,
         "leadership": 67,
         "synergy": 92
-      },
-      "accomplishment": "worlds_semis"
+      }
     },
     "mad-2021:carzzy": {
       "teamId": "mad-2021",
@@ -4248,6 +4768,7 @@
       "golPlayerId": 1584,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "worlds_semis",
       "stats": {
         "kda": 3.1,
         "killParticipation": 80.9,
@@ -4264,8 +4785,7 @@
         "consistency": 83,
         "leadership": 67,
         "synergy": 92
-      },
-      "accomplishment": "worlds_semis"
+      }
     },
     "mad-2021:kaiser": {
       "teamId": "mad-2021",
@@ -4274,6 +4794,7 @@
       "golPlayerId": 2704,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "worlds_semis",
       "stats": {
         "kda": 5.6,
         "killParticipation": 75.3,
@@ -4290,8 +4811,7 @@
         "consistency": 83,
         "leadership": 74,
         "synergy": 92
-      },
-      "accomplishment": "worlds_semis"
+      }
     },
     "rng-2021:xiaobai": {
       "teamId": "rng-2021",
@@ -4300,6 +4820,7 @@
       "golPlayerId": 2674,
       "season": "S11",
       "source": "season",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 0,
         "killParticipation": 45.5,
@@ -4316,8 +4837,7 @@
         "consistency": 86,
         "leadership": 53,
         "synergy": 57
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "rng-2021:wei": {
       "teamId": "rng-2021",
@@ -4326,6 +4846,7 @@
       "golPlayerId": 388,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 4.4,
         "killParticipation": 70.3,
@@ -4342,8 +4863,7 @@
         "consistency": 90,
         "leadership": 73,
         "synergy": 87
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "rng-2021:xiaohu": {
       "teamId": "rng-2021",
@@ -4352,6 +4872,7 @@
       "golPlayerId": 347,
       "season": "S11",
       "source": "season",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 3.9,
         "killParticipation": 72.7,
@@ -4368,8 +4889,7 @@
         "consistency": 90,
         "leadership": 67,
         "synergy": 90
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "rng-2021:gala": {
       "teamId": "rng-2021",
@@ -4378,6 +4898,7 @@
       "golPlayerId": 1931,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 1.3,
         "killParticipation": 62.5,
@@ -4394,8 +4915,7 @@
         "consistency": 90,
         "leadership": 65,
         "synergy": 77
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "rng-2021:ming": {
       "teamId": "rng-2021",
@@ -4404,6 +4924,7 @@
       "golPlayerId": 804,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 0.7,
         "killParticipation": 50,
@@ -4420,8 +4941,7 @@
         "consistency": 90,
         "leadership": 69,
         "synergy": 61
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "liquid-2021:alphari": {
       "teamId": "liquid-2021",
@@ -4430,6 +4950,7 @@
       "golPlayerId": 730,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "domestic",
       "stats": {
         "kda": 4.2,
         "killParticipation": 65.8,
@@ -4446,8 +4967,7 @@
         "consistency": 82,
         "leadership": 65,
         "synergy": 80
-      },
-      "accomplishment": "domestic"
+      }
     },
     "liquid-2021:santorin": {
       "teamId": "liquid-2021",
@@ -4456,6 +4976,7 @@
       "golPlayerId": 227,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "domestic",
       "stats": {
         "kda": 4.4,
         "killParticipation": 71.4,
@@ -4472,8 +4993,7 @@
         "consistency": 82,
         "leadership": 72,
         "synergy": 87
-      },
-      "accomplishment": "domestic"
+      }
     },
     "liquid-2021:jensen": {
       "teamId": "liquid-2021",
@@ -4482,6 +5002,7 @@
       "golPlayerId": 583,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "domestic",
       "stats": {
         "kda": 4.9,
         "killParticipation": 70.2,
@@ -4498,8 +5019,7 @@
         "consistency": 82,
         "leadership": 66,
         "synergy": 86
-      },
-      "accomplishment": "domestic"
+      }
     },
     "liquid-2021:tactical": {
       "teamId": "liquid-2021",
@@ -4508,6 +5028,7 @@
       "golPlayerId": 1979,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "domestic",
       "stats": {
         "kda": 4.3,
         "killParticipation": 71.1,
@@ -4524,8 +5045,7 @@
         "consistency": 82,
         "leadership": 66,
         "synergy": 87
-      },
-      "accomplishment": "domestic"
+      }
     },
     "liquid-2021:corejj": {
       "teamId": "liquid-2021",
@@ -4534,6 +5054,7 @@
       "golPlayerId": 257,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "domestic",
       "stats": {
         "kda": 6.7,
         "killParticipation": 53.7,
@@ -4550,8 +5071,7 @@
         "consistency": 82,
         "leadership": 70,
         "synergy": 65
-      },
-      "accomplishment": "domestic"
+      }
     },
     "vit-2021:szygenda": {
       "teamId": "vit-2021",
@@ -4560,6 +5080,7 @@
       "golPlayerId": 2130,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.7,
         "killParticipation": 57.3,
@@ -4576,8 +5097,7 @@
         "consistency": 74,
         "leadership": 60,
         "synergy": 69
-      },
-      "accomplishment": "standard"
+      }
     },
     "vit-2021:selfmade": {
       "teamId": "vit-2021",
@@ -4586,6 +5106,7 @@
       "golPlayerId": 1465,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 3.2,
         "killParticipation": 71.2,
@@ -4602,8 +5123,7 @@
         "consistency": 65,
         "leadership": 70,
         "synergy": 85
-      },
-      "accomplishment": "standard"
+      }
     },
     "vit-2021:lider": {
       "teamId": "vit-2021",
@@ -4612,6 +5132,7 @@
       "golPlayerId": 2052,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.8,
         "killParticipation": 63.9,
@@ -4628,8 +5149,7 @@
         "consistency": 76,
         "leadership": 62,
         "synergy": 77
-      },
-      "accomplishment": "standard"
+      }
     },
     "vit-2021:crownie": {
       "teamId": "vit-2021",
@@ -4638,6 +5158,7 @@
       "golPlayerId": 1209,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 4.6,
         "killParticipation": 64.7,
@@ -4654,8 +5175,7 @@
         "consistency": 59,
         "leadership": 60,
         "synergy": 76
-      },
-      "accomplishment": "standard"
+      }
     },
     "vit-2021:labrov": {
       "teamId": "vit-2021",
@@ -4664,6 +5184,7 @@
       "golPlayerId": 2887,
       "season": "S11",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.3,
         "killParticipation": 71.7,
@@ -4680,8 +5201,7 @@
         "consistency": 56,
         "leadership": 69,
         "synergy": 84
-      },
-      "accomplishment": "standard"
+      }
     },
     "astralis-2022:vizicsacsi": {
       "teamId": "astralis-2022",
@@ -4690,6 +5210,7 @@
       "golPlayerId": 233,
       "season": "S12",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.5,
         "killParticipation": 60.5,
@@ -4706,8 +5227,7 @@
         "consistency": 59,
         "leadership": 60,
         "synergy": 70
-      },
-      "accomplishment": "standard"
+      }
     },
     "astralis-2022:xerxe": {
       "teamId": "astralis-2022",
@@ -4716,6 +5236,7 @@
       "golPlayerId": 809,
       "season": "S12",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 4.4,
         "killParticipation": 76.4,
@@ -4732,8 +5253,7 @@
         "consistency": 54,
         "leadership": 69,
         "synergy": 88
-      },
-      "accomplishment": "standard"
+      }
     },
     "astralis-2022:dajor": {
       "teamId": "astralis-2022",
@@ -4742,6 +5262,7 @@
       "golPlayerId": 4107,
       "season": "S12",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.6,
         "killParticipation": 67,
@@ -4758,8 +5279,7 @@
         "consistency": 54,
         "leadership": 61,
         "synergy": 78
-      },
-      "accomplishment": "standard"
+      }
     },
     "astralis-2022:kobbe": {
       "teamId": "astralis-2022",
@@ -4768,6 +5288,7 @@
       "golPlayerId": 598,
       "season": "S12",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 3.9,
         "killParticipation": 67.2,
@@ -4784,8 +5305,7 @@
         "consistency": 54,
         "leadership": 61,
         "synergy": 78
-      },
-      "accomplishment": "standard"
+      }
     },
     "astralis-2022:execute": {
       "teamId": "astralis-2022",
@@ -4794,6 +5314,7 @@
       "golPlayerId": 2657,
       "season": "S12",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.8,
         "killParticipation": 74.9,
@@ -4810,8 +5331,7 @@
         "consistency": 55,
         "leadership": 67,
         "synergy": 88
-      },
-      "accomplishment": "standard"
+      }
     },
     "drx-2022:kingen": {
       "teamId": "drx-2022",
@@ -4820,6 +5340,7 @@
       "golPlayerId": 1229,
       "season": "S12",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 3,
         "killParticipation": 58.4,
@@ -4836,8 +5357,7 @@
         "consistency": 78,
         "leadership": 64,
         "synergy": 70
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "drx-2022:pyosik": {
       "teamId": "drx-2022",
@@ -4846,6 +5366,7 @@
       "golPlayerId": 2664,
       "season": "S12",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 3.4,
         "killParticipation": 70,
@@ -4862,8 +5383,7 @@
         "consistency": 77,
         "leadership": 73,
         "synergy": 84
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "drx-2022:zeka": {
       "teamId": "drx-2022",
@@ -4872,6 +5392,7 @@
       "golPlayerId": 2906,
       "season": "S12",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 4.4,
         "killParticipation": 66.4,
@@ -4888,8 +5409,7 @@
         "consistency": 78,
         "leadership": 65,
         "synergy": 80
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "drx-2022:deft": {
       "teamId": "drx-2022",
@@ -4898,6 +5418,7 @@
       "golPlayerId": 44,
       "season": "S12",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 3.4,
         "killParticipation": 81.8,
@@ -4914,8 +5435,7 @@
         "consistency": 78,
         "leadership": 67,
         "synergy": 91
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "drx-2022:beryl": {
       "teamId": "drx-2022",
@@ -4924,6 +5444,7 @@
       "golPlayerId": 2184,
       "season": "S12",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 2.4,
         "killParticipation": 75.5,
@@ -4940,8 +5461,7 @@
         "consistency": 78,
         "leadership": 74,
         "synergy": 91
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "lcs-2022-eg:impact": {
       "teamId": "lcs-2022-eg",
@@ -4950,6 +5470,7 @@
       "golPlayerId": 46,
       "season": "S12",
       "source": "team-roster",
+      "accomplishment": "domestic",
       "stats": {
         "kda": 3.3,
         "killParticipation": 57.8,
@@ -4966,8 +5487,7 @@
         "consistency": 83,
         "leadership": 64,
         "synergy": 70
-      },
-      "accomplishment": "domestic"
+      }
     },
     "lcs-2022-eg:inspired": {
       "teamId": "lcs-2022-eg",
@@ -4976,6 +5496,7 @@
       "golPlayerId": 1501,
       "season": "S12",
       "source": "team-roster",
+      "accomplishment": "domestic",
       "stats": {
         "kda": 6,
         "killParticipation": 70.5,
@@ -4992,8 +5513,7 @@
         "consistency": 83,
         "leadership": 73,
         "synergy": 86
-      },
-      "accomplishment": "domestic"
+      }
     },
     "lcs-2022-eg:jojopyun": {
       "teamId": "lcs-2022-eg",
@@ -5002,6 +5522,7 @@
       "golPlayerId": 3544,
       "season": "S12",
       "source": "team-roster",
+      "accomplishment": "domestic",
       "stats": {
         "kda": 3.7,
         "killParticipation": 65.6,
@@ -5018,8 +5539,7 @@
         "consistency": 83,
         "leadership": 65,
         "synergy": 80
-      },
-      "accomplishment": "domestic"
+      }
     },
     "lcs-2022-eg:kaori": {
       "teamId": "lcs-2022-eg",
@@ -5028,6 +5548,7 @@
       "golPlayerId": 2242,
       "season": "S12",
       "source": "team-roster",
+      "accomplishment": "domestic",
       "stats": {
         "kda": 3.9,
         "killParticipation": 62.5,
@@ -5044,8 +5565,7 @@
         "consistency": 67,
         "leadership": 65,
         "synergy": 73
-      },
-      "accomplishment": "domestic"
+      }
     },
     "lcs-2022-eg:vulcan": {
       "teamId": "lcs-2022-eg",
@@ -5054,6 +5574,7 @@
       "golPlayerId": 1301,
       "season": "S12",
       "source": "team-roster",
+      "accomplishment": "domestic",
       "stats": {
         "kda": 16.5,
         "killParticipation": 62,
@@ -5070,8 +5591,7 @@
         "consistency": 83,
         "leadership": 71,
         "synergy": 75
-      },
-      "accomplishment": "domestic"
+      }
     },
     "g2-2022:wunder": {
       "teamId": "g2-2022",
@@ -5080,6 +5600,7 @@
       "golPlayerId": 596,
       "season": "S12",
       "source": "season",
+      "accomplishment": "msi_finalist",
       "stats": {
         "kda": 2.4,
         "killParticipation": 60,
@@ -5096,8 +5617,7 @@
         "consistency": 80,
         "leadership": 64,
         "synergy": 72
-      },
-      "accomplishment": "msi_finalist"
+      }
     },
     "g2-2022:jankos": {
       "teamId": "g2-2022",
@@ -5106,6 +5626,7 @@
       "golPlayerId": 34,
       "season": "S12",
       "source": "team-roster",
+      "accomplishment": "msi_finalist",
       "stats": {
         "kda": 3.5,
         "killParticipation": 68.8,
@@ -5122,8 +5643,7 @@
         "consistency": 85,
         "leadership": 73,
         "synergy": 84
-      },
-      "accomplishment": "msi_finalist"
+      }
     },
     "g2-2022:caps": {
       "teamId": "g2-2022",
@@ -5132,6 +5652,7 @@
       "golPlayerId": 802,
       "season": "S12",
       "source": "team-roster",
+      "accomplishment": "msi_finalist",
       "stats": {
         "kda": 3.8,
         "killParticipation": 68,
@@ -5148,8 +5669,7 @@
         "consistency": 85,
         "leadership": 66,
         "synergy": 83
-      },
-      "accomplishment": "msi_finalist"
+      }
     },
     "g2-2022:hans-sama": {
       "teamId": "g2-2022",
@@ -5158,6 +5678,7 @@
       "golPlayerId": 732,
       "season": "S12",
       "source": "season",
+      "accomplishment": "msi_finalist",
       "stats": {
         "kda": 5.1,
         "killParticipation": 60,
@@ -5174,8 +5695,7 @@
         "consistency": 87,
         "leadership": 64,
         "synergy": 73
-      },
-      "accomplishment": "msi_finalist"
+      }
     },
     "g2-2022:mikyx": {
       "teamId": "g2-2022",
@@ -5184,6 +5704,7 @@
       "golPlayerId": 698,
       "season": "S12",
       "source": "season",
+      "accomplishment": "msi_finalist",
       "stats": {
         "kda": 2.5,
         "killParticipation": 60,
@@ -5200,8 +5721,7 @@
         "consistency": 68,
         "leadership": 67,
         "synergy": 71
-      },
-      "accomplishment": "msi_finalist"
+      }
     },
     "hle-2022:kingen": {
       "teamId": "hle-2022",
@@ -5210,6 +5730,7 @@
       "golPlayerId": 1229,
       "season": "S12",
       "source": "season",
+      "accomplishment": "worlds_semis",
       "stats": {
         "kda": 3,
         "killParticipation": 60,
@@ -5226,8 +5747,7 @@
         "consistency": 78,
         "leadership": 64,
         "synergy": 72
-      },
-      "accomplishment": "worlds_semis"
+      }
     },
     "hle-2022:peanut": {
       "teamId": "hle-2022",
@@ -5236,6 +5756,7 @@
       "golPlayerId": 392,
       "season": "S12",
       "source": "season",
+      "accomplishment": "worlds_semis",
       "stats": {
         "kda": 5.2,
         "killParticipation": 60,
@@ -5252,8 +5773,7 @@
         "consistency": 94,
         "leadership": 71,
         "synergy": 75
-      },
-      "accomplishment": "worlds_semis"
+      }
     },
     "hle-2022:chovy": {
       "teamId": "hle-2022",
@@ -5262,6 +5782,7 @@
       "golPlayerId": 1629,
       "season": "S12",
       "source": "season",
+      "accomplishment": "worlds_semis",
       "stats": {
         "kda": 6.8,
         "killParticipation": 60,
@@ -5278,8 +5799,7 @@
         "consistency": 94,
         "leadership": 64,
         "synergy": 75
-      },
-      "accomplishment": "worlds_semis"
+      }
     },
     "hle-2022:deft": {
       "teamId": "hle-2022",
@@ -5288,6 +5808,7 @@
       "golPlayerId": 44,
       "season": "S12",
       "source": "season",
+      "accomplishment": "worlds_semis",
       "stats": {
         "kda": 4,
         "killParticipation": 60,
@@ -5304,8 +5825,7 @@
         "consistency": 78,
         "leadership": 64,
         "synergy": 72
-      },
-      "accomplishment": "worlds_semis"
+      }
     },
     "hle-2022:delight": {
       "teamId": "hle-2022",
@@ -5314,6 +5834,7 @@
       "golPlayerId": 3411,
       "season": "S12",
       "source": "season",
+      "accomplishment": "worlds_semis",
       "stats": {
         "kda": 2.5,
         "killParticipation": 60,
@@ -5330,8 +5851,7 @@
         "consistency": 62,
         "leadership": 71,
         "synergy": 69
-      },
-      "accomplishment": "worlds_semis"
+      }
     },
     "rng-2022:bin": {
       "teamId": "rng-2022",
@@ -5340,6 +5860,7 @@
       "golPlayerId": 2606,
       "season": "S12",
       "source": "team-roster",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 3.3,
         "killParticipation": 50.9,
@@ -5356,8 +5877,7 @@
         "consistency": 81,
         "leadership": 62,
         "synergy": 61
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "rng-2022:wei": {
       "teamId": "rng-2022",
@@ -5366,6 +5886,7 @@
       "golPlayerId": 388,
       "season": "S12",
       "source": "team-roster",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 4.1,
         "killParticipation": 65.5,
@@ -5382,8 +5903,7 @@
         "consistency": 87,
         "leadership": 72,
         "synergy": 80
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "rng-2022:xiaohu": {
       "teamId": "rng-2022",
@@ -5392,6 +5912,7 @@
       "golPlayerId": 347,
       "season": "S12",
       "source": "team-roster",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 4.9,
         "killParticipation": 69.5,
@@ -5408,8 +5929,7 @@
         "consistency": 87,
         "leadership": 66,
         "synergy": 85
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "rng-2022:gala": {
       "teamId": "rng-2022",
@@ -5418,6 +5938,7 @@
       "golPlayerId": 1931,
       "season": "S12",
       "source": "team-roster",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 3.5,
         "killParticipation": 83.1,
@@ -5434,8 +5955,7 @@
         "consistency": 87,
         "leadership": 67,
         "synergy": 92
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "rng-2022:ming": {
       "teamId": "rng-2022",
@@ -5444,6 +5964,7 @@
       "golPlayerId": 804,
       "season": "S12",
       "source": "team-roster",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 2.6,
         "killParticipation": 65.6,
@@ -5460,8 +5981,7 @@
         "consistency": 88,
         "leadership": 72,
         "synergy": 81
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "sk-2022:jenax": {
       "teamId": "sk-2022",
@@ -5470,6 +5990,7 @@
       "golPlayerId": 1817,
       "season": "S12",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.7,
         "killParticipation": 62.8,
@@ -5486,8 +6007,7 @@
         "consistency": 57,
         "leadership": 60,
         "synergy": 73
-      },
-      "accomplishment": "standard"
+      }
     },
     "sk-2022:gilius": {
       "teamId": "sk-2022",
@@ -5496,6 +6016,7 @@
       "golPlayerId": 214,
       "season": "S12",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2,
         "killParticipation": 63.8,
@@ -5512,8 +6033,7 @@
         "consistency": 57,
         "leadership": 67,
         "synergy": 74
-      },
-      "accomplishment": "standard"
+      }
     },
     "sk-2022:sertuss": {
       "teamId": "sk-2022",
@@ -5522,6 +6042,7 @@
       "golPlayerId": 1620,
       "season": "S12",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 3.4,
         "killParticipation": 69.6,
@@ -5538,8 +6059,7 @@
         "consistency": 57,
         "leadership": 61,
         "synergy": 82
-      },
-      "accomplishment": "standard"
+      }
     },
     "sk-2022:jezu": {
       "teamId": "sk-2022",
@@ -5548,6 +6068,7 @@
       "golPlayerId": 2678,
       "season": "S12",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 4,
         "killParticipation": 65.6,
@@ -5564,8 +6085,7 @@
         "consistency": 59,
         "leadership": 60,
         "synergy": 77
-      },
-      "accomplishment": "standard"
+      }
     },
     "sk-2022:treatz": {
       "teamId": "sk-2022",
@@ -5574,6 +6094,7 @@
       "golPlayerId": 1496,
       "season": "S12",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.7,
         "killParticipation": 69.4,
@@ -5590,8 +6111,7 @@
         "consistency": 57,
         "leadership": 68,
         "synergy": 81
-      },
-      "accomplishment": "standard"
+      }
     },
     "blg-2023:bin": {
       "teamId": "blg-2023",
@@ -5600,6 +6120,7 @@
       "golPlayerId": 2606,
       "season": "S13",
       "source": "team-roster",
+      "accomplishment": "worlds_finalist",
       "stats": {
         "kda": 7,
         "killParticipation": 63.6,
@@ -5616,8 +6137,7 @@
         "consistency": 85,
         "leadership": 65,
         "synergy": 78
-      },
-      "accomplishment": "worlds_finalist"
+      }
     },
     "blg-2023:xun": {
       "teamId": "blg-2023",
@@ -5626,6 +6146,7 @@
       "golPlayerId": 3330,
       "season": "S13",
       "source": "team-roster",
+      "accomplishment": "worlds_finalist",
       "stats": {
         "kda": 4,
         "killParticipation": 71,
@@ -5642,8 +6163,7 @@
         "consistency": 85,
         "leadership": 73,
         "synergy": 87
-      },
-      "accomplishment": "worlds_finalist"
+      }
     },
     "blg-2023:knight": {
       "teamId": "blg-2023",
@@ -5652,6 +6172,7 @@
       "golPlayerId": 1270,
       "season": "S13",
       "source": "season",
+      "accomplishment": "worlds_finalist",
       "stats": {
         "kda": 5.4,
         "killParticipation": 60,
@@ -5668,8 +6189,7 @@
         "consistency": 94,
         "leadership": 64,
         "synergy": 75
-      },
-      "accomplishment": "worlds_finalist"
+      }
     },
     "blg-2023:elk": {
       "teamId": "blg-2023",
@@ -5678,6 +6198,7 @@
       "golPlayerId": 2376,
       "season": "S13",
       "source": "team-roster",
+      "accomplishment": "worlds_finalist",
       "stats": {
         "kda": 12,
         "killParticipation": 85.7,
@@ -5694,8 +6215,7 @@
         "consistency": 85,
         "leadership": 67,
         "synergy": 92
-      },
-      "accomplishment": "worlds_finalist"
+      }
     },
     "blg-2023:on": {
       "teamId": "blg-2023",
@@ -5704,6 +6224,7 @@
       "golPlayerId": 3353,
       "season": "S13",
       "source": "season",
+      "accomplishment": "worlds_finalist",
       "stats": {
         "kda": 3.8,
         "killParticipation": 78.6,
@@ -5720,8 +6241,7 @@
         "consistency": 85,
         "leadership": 74,
         "synergy": 92
-      },
-      "accomplishment": "worlds_finalist"
+      }
     },
     "jdg-2023:369": {
       "teamId": "jdg-2023",
@@ -5730,6 +6250,7 @@
       "golPlayerId": 1922,
       "season": "S13",
       "source": "team-roster",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 4.1,
         "killParticipation": 55.3,
@@ -5746,8 +6267,7 @@
         "consistency": 94,
         "leadership": 63,
         "synergy": 69
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "jdg-2023:kanavi": {
       "teamId": "jdg-2023",
@@ -5756,6 +6276,7 @@
       "golPlayerId": 2360,
       "season": "S13",
       "source": "team-roster",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 4.8,
         "killParticipation": 71.9,
@@ -5772,8 +6293,7 @@
         "consistency": 94,
         "leadership": 73,
         "synergy": 90
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "jdg-2023:knight": {
       "teamId": "jdg-2023",
@@ -5782,6 +6302,7 @@
       "golPlayerId": 1270,
       "season": "S13",
       "source": "team-roster",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 5.4,
         "killParticipation": 66.9,
@@ -5798,8 +6319,7 @@
         "consistency": 94,
         "leadership": 65,
         "synergy": 84
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "jdg-2023:ruler": {
       "teamId": "jdg-2023",
@@ -5808,6 +6328,7 @@
       "golPlayerId": 685,
       "season": "S13",
       "source": "team-roster",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 7.4,
         "killParticipation": 66,
@@ -5824,8 +6345,7 @@
         "consistency": 94,
         "leadership": 65,
         "synergy": 83
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "jdg-2023:missing": {
       "teamId": "jdg-2023",
@@ -5834,6 +6354,7 @@
       "golPlayerId": 1647,
       "season": "S13",
       "source": "team-roster",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 4.9,
         "killParticipation": 73.9,
@@ -5850,8 +6371,7 @@
         "consistency": 94,
         "leadership": 74,
         "synergy": 93
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "t1-2023:zeus": {
       "teamId": "t1-2023",
@@ -5860,6 +6380,7 @@
       "golPlayerId": 3658,
       "season": "S13",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 3.2,
         "killParticipation": 56.5,
@@ -5876,8 +6397,7 @@
         "consistency": 85,
         "leadership": 63,
         "synergy": 69
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "t1-2023:oner": {
       "teamId": "t1-2023",
@@ -5886,6 +6406,7 @@
       "golPlayerId": 3741,
       "season": "S13",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 3.9,
         "killParticipation": 75.7,
@@ -5902,8 +6423,7 @@
         "consistency": 85,
         "leadership": 74,
         "synergy": 92
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "t1-2023:faker": {
       "teamId": "t1-2023",
@@ -5912,6 +6432,7 @@
       "golPlayerId": 48,
       "season": "S13",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 3.5,
         "killParticipation": 62.6,
@@ -5928,8 +6449,7 @@
         "consistency": 90,
         "leadership": 65,
         "synergy": 77
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "t1-2023:gumayusi": {
       "teamId": "t1-2023",
@@ -5938,6 +6458,7 @@
       "golPlayerId": 3247,
       "season": "S13",
       "source": "season",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 4.7,
         "killParticipation": 61.5,
@@ -5954,8 +6475,7 @@
         "consistency": 85,
         "leadership": 64,
         "synergy": 75
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "t1-2023:keria": {
       "teamId": "t1-2023",
@@ -5964,6 +6484,7 @@
       "golPlayerId": 1258,
       "season": "S13",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 10,
         "killParticipation": 76.9,
@@ -5980,8 +6501,7 @@
         "consistency": 85,
         "leadership": 74,
         "synergy": 92
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "heretics-2023:evi": {
       "teamId": "heretics-2023",
@@ -5990,6 +6510,7 @@
       "golPlayerId": 969,
       "season": "S13",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 2.2,
         "killParticipation": 53.5,
@@ -6006,8 +6527,7 @@
         "consistency": 62,
         "leadership": 59,
         "synergy": 62
-      },
-      "accomplishment": "standard"
+      }
     },
     "heretics-2023:jankos": {
       "teamId": "heretics-2023",
@@ -6016,6 +6536,7 @@
       "golPlayerId": 34,
       "season": "S13",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 3.5,
         "killParticipation": 72.6,
@@ -6032,8 +6553,7 @@
         "consistency": 62,
         "leadership": 70,
         "synergy": 86
-      },
-      "accomplishment": "standard"
+      }
     },
     "heretics-2023:vetheo": {
       "teamId": "heretics-2023",
@@ -6042,6 +6562,7 @@
       "golPlayerId": 2685,
       "season": "S13",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 4.6,
         "killParticipation": 73.7,
@@ -6058,8 +6579,7 @@
         "consistency": 58,
         "leadership": 62,
         "synergy": 87
-      },
-      "accomplishment": "standard"
+      }
     },
     "heretics-2023:flakked": {
       "teamId": "heretics-2023",
@@ -6068,6 +6588,7 @@
       "golPlayerId": 2206,
       "season": "S13",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 4.3,
         "killParticipation": 64.5,
@@ -6084,8 +6605,7 @@
         "consistency": 78,
         "leadership": 63,
         "synergy": 78
-      },
-      "accomplishment": "standard"
+      }
     },
     "heretics-2023:mersa": {
       "teamId": "heretics-2023",
@@ -6094,6 +6614,7 @@
       "golPlayerId": 3231,
       "season": "S13",
       "source": "team-roster",
+      "accomplishment": "standard",
       "stats": {
         "kda": 3.9,
         "killParticipation": 72.8,
@@ -6110,8 +6631,7 @@
         "consistency": 62,
         "leadership": 70,
         "synergy": 86
-      },
-      "accomplishment": "standard"
+      }
     },
     "wbg-2023:theshy": {
       "teamId": "wbg-2023",
@@ -6120,6 +6640,7 @@
       "golPlayerId": 1075,
       "season": "S13",
       "source": "team-roster",
+      "accomplishment": "worlds_finalist",
       "stats": {
         "kda": 2.3,
         "killParticipation": 48.1,
@@ -6136,8 +6657,7 @@
         "consistency": 83,
         "leadership": 62,
         "synergy": 58
-      },
-      "accomplishment": "worlds_finalist"
+      }
     },
     "wbg-2023:wei": {
       "teamId": "wbg-2023",
@@ -6146,6 +6666,7 @@
       "golPlayerId": 388,
       "season": "S13",
       "source": "season",
+      "accomplishment": "worlds_finalist",
       "stats": {
         "kda": 3.3,
         "killParticipation": 60,
@@ -6162,8 +6683,7 @@
         "consistency": 74,
         "leadership": 71,
         "synergy": 71
-      },
-      "accomplishment": "worlds_finalist"
+      }
     },
     "wbg-2023:xiaohu": {
       "teamId": "wbg-2023",
@@ -6172,6 +6692,7 @@
       "golPlayerId": 347,
       "season": "S13",
       "source": "team-roster",
+      "accomplishment": "worlds_finalist",
       "stats": {
         "kda": 4.1,
         "killParticipation": 69.2,
@@ -6188,8 +6709,7 @@
         "consistency": 83,
         "leadership": 66,
         "synergy": 85
-      },
-      "accomplishment": "worlds_finalist"
+      }
     },
     "wbg-2023:light": {
       "teamId": "wbg-2023",
@@ -6198,6 +6718,7 @@
       "golPlayerId": 1256,
       "season": "S13",
       "source": "season",
+      "accomplishment": "worlds_finalist",
       "stats": {
         "kda": 2.5,
         "killParticipation": 60,
@@ -6214,8 +6735,7 @@
         "consistency": 64,
         "leadership": 56,
         "synergy": 71
-      },
-      "accomplishment": "worlds_finalist"
+      }
     },
     "wbg-2023:crisp": {
       "teamId": "wbg-2023",
@@ -6224,6 +6744,7 @@
       "golPlayerId": 1169,
       "season": "S13",
       "source": "team-roster",
+      "accomplishment": "worlds_finalist",
       "stats": {
         "kda": 0.3,
         "killParticipation": 20,
@@ -6240,8 +6761,7 @@
         "consistency": 83,
         "leadership": 68,
         "synergy": 54
-      },
-      "accomplishment": "worlds_finalist"
+      }
     },
     "blg-2024:bin": {
       "teamId": "blg-2024",
@@ -6250,6 +6770,7 @@
       "golPlayerId": 2606,
       "season": "S14",
       "source": "team-roster",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 3.9,
         "killParticipation": 52.3,
@@ -6266,8 +6787,7 @@
         "consistency": 94,
         "leadership": 62,
         "synergy": 65
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "blg-2024:xun": {
       "teamId": "blg-2024",
@@ -6276,6 +6796,7 @@
       "golPlayerId": 3330,
       "season": "S14",
       "source": "team-roster",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 4.7,
         "killParticipation": 68.6,
@@ -6292,8 +6813,7 @@
         "consistency": 93,
         "leadership": 73,
         "synergy": 85
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "blg-2024:knight": {
       "teamId": "blg-2024",
@@ -6302,6 +6822,7 @@
       "golPlayerId": 1270,
       "season": "S14",
       "source": "team-roster",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 5.5,
         "killParticipation": 66.4,
@@ -6318,8 +6839,7 @@
         "consistency": 94,
         "leadership": 65,
         "synergy": 83
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "blg-2024:elk": {
       "teamId": "blg-2024",
@@ -6328,6 +6848,7 @@
       "golPlayerId": 2376,
       "season": "S14",
       "source": "team-roster",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 5.6,
         "killParticipation": 69.5,
@@ -6344,8 +6865,7 @@
         "consistency": 94,
         "leadership": 66,
         "synergy": 87
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "blg-2024:on": {
       "teamId": "blg-2024",
@@ -6354,6 +6874,7 @@
       "golPlayerId": 3353,
       "season": "S14",
       "source": "team-roster",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 3.9,
         "killParticipation": 70.2,
@@ -6370,8 +6891,7 @@
         "consistency": 94,
         "leadership": 73,
         "synergy": 88
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "g2-2024:brokenblade": {
       "teamId": "g2-2024",
@@ -6380,6 +6900,7 @@
       "golPlayerId": 1310,
       "season": "S14",
       "source": "team-roster",
+      "accomplishment": "domestic",
       "stats": {
         "kda": 3.8,
         "killParticipation": 55.1,
@@ -6396,8 +6917,7 @@
         "consistency": 90,
         "leadership": 63,
         "synergy": 68
-      },
-      "accomplishment": "domestic"
+      }
     },
     "g2-2024:yike": {
       "teamId": "g2-2024",
@@ -6406,6 +6926,7 @@
       "golPlayerId": 3406,
       "season": "S14",
       "source": "team-roster",
+      "accomplishment": "domestic",
       "stats": {
         "kda": 4.7,
         "killParticipation": 73.7,
@@ -6422,8 +6943,7 @@
         "consistency": 90,
         "leadership": 74,
         "synergy": 91
-      },
-      "accomplishment": "domestic"
+      }
     },
     "g2-2024:caps": {
       "teamId": "g2-2024",
@@ -6432,6 +6952,7 @@
       "golPlayerId": 802,
       "season": "S14",
       "source": "team-roster",
+      "accomplishment": "domestic",
       "stats": {
         "kda": 4.4,
         "killParticipation": 65.4,
@@ -6448,8 +6969,7 @@
         "consistency": 90,
         "leadership": 65,
         "synergy": 81
-      },
-      "accomplishment": "domestic"
+      }
     },
     "g2-2024:hans-sama": {
       "teamId": "g2-2024",
@@ -6458,6 +6978,7 @@
       "golPlayerId": 732,
       "season": "S14",
       "source": "team-roster",
+      "accomplishment": "domestic",
       "stats": {
         "kda": 5.1,
         "killParticipation": 65.7,
@@ -6474,8 +6995,7 @@
         "consistency": 90,
         "leadership": 65,
         "synergy": 81
-      },
-      "accomplishment": "domestic"
+      }
     },
     "g2-2024:mikyx": {
       "teamId": "g2-2024",
@@ -6484,6 +7004,7 @@
       "golPlayerId": 698,
       "season": "S14",
       "source": "team-roster",
+      "accomplishment": "domestic",
       "stats": {
         "kda": 2.7,
         "killParticipation": 69.5,
@@ -6500,8 +7021,7 @@
         "consistency": 90,
         "leadership": 73,
         "synergy": 86
-      },
-      "accomplishment": "domestic"
+      }
     },
     "gen-2024:kiin": {
       "teamId": "gen-2024",
@@ -6510,6 +7030,7 @@
       "golPlayerId": 1115,
       "season": "S14",
       "source": "season",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 4,
         "killParticipation": 60,
@@ -6526,8 +7047,7 @@
         "consistency": 94,
         "leadership": 64,
         "synergy": 75
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "gen-2024:canyon": {
       "teamId": "gen-2024",
@@ -6536,6 +7056,7 @@
       "golPlayerId": 1909,
       "season": "S14",
       "source": "season",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 5.7,
         "killParticipation": 60,
@@ -6552,8 +7073,7 @@
         "consistency": 94,
         "leadership": 71,
         "synergy": 75
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "gen-2024:chovy": {
       "teamId": "gen-2024",
@@ -6562,6 +7082,7 @@
       "golPlayerId": 1629,
       "season": "S14",
       "source": "season",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 6.1,
         "killParticipation": 60,
@@ -6578,8 +7099,7 @@
         "consistency": 94,
         "leadership": 64,
         "synergy": 75
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "gen-2024:ruler": {
       "teamId": "gen-2024",
@@ -6588,6 +7108,7 @@
       "golPlayerId": 685,
       "season": "S14",
       "source": "season",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 5.1,
         "killParticipation": 60,
@@ -6604,8 +7125,7 @@
         "consistency": 83,
         "leadership": 64,
         "synergy": 73
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "gen-2024:delight": {
       "teamId": "gen-2024",
@@ -6614,6 +7134,7 @@
       "golPlayerId": 3411,
       "season": "S14",
       "source": "season",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 4.6,
         "killParticipation": 60,
@@ -6630,8 +7151,7 @@
         "consistency": 89,
         "leadership": 71,
         "synergy": 74
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "jdg-2024:369": {
       "teamId": "jdg-2024",
@@ -6640,6 +7160,7 @@
       "golPlayerId": 1922,
       "season": "S14",
       "source": "season",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 3.4,
         "killParticipation": 60,
@@ -6656,8 +7177,7 @@
         "consistency": 90,
         "leadership": 64,
         "synergy": 74
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "jdg-2024:kanavi": {
       "teamId": "jdg-2024",
@@ -6666,6 +7186,7 @@
       "golPlayerId": 2360,
       "season": "S14",
       "source": "team-roster",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 4.2,
         "killParticipation": 75,
@@ -6682,8 +7203,7 @@
         "consistency": 84,
         "leadership": 74,
         "synergy": 92
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "jdg-2024:knight": {
       "teamId": "jdg-2024",
@@ -6692,6 +7212,7 @@
       "golPlayerId": 1270,
       "season": "S14",
       "source": "season",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 5.5,
         "killParticipation": 60,
@@ -6708,8 +7229,7 @@
         "consistency": 94,
         "leadership": 64,
         "synergy": 75
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "jdg-2024:ruler": {
       "teamId": "jdg-2024",
@@ -6718,6 +7238,7 @@
       "golPlayerId": 685,
       "season": "S14",
       "source": "team-roster",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 5.1,
         "killParticipation": 65.2,
@@ -6734,8 +7255,7 @@
         "consistency": 83,
         "leadership": 65,
         "synergy": 80
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "jdg-2024:missing": {
       "teamId": "jdg-2024",
@@ -6744,6 +7264,7 @@
       "golPlayerId": 1647,
       "season": "S14",
       "source": "team-roster",
+      "accomplishment": "msi_champion",
       "stats": {
         "kda": 3.3,
         "killParticipation": 71.1,
@@ -6760,8 +7281,7 @@
         "consistency": 83,
         "leadership": 73,
         "synergy": 87
-      },
-      "accomplishment": "msi_champion"
+      }
     },
     "t1-2024:zeus": {
       "teamId": "t1-2024",
@@ -6770,6 +7290,7 @@
       "golPlayerId": 3658,
       "season": "S14",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 3,
         "killParticipation": 57.4,
@@ -6786,8 +7307,7 @@
         "consistency": 86,
         "leadership": 63,
         "synergy": 70
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "t1-2024:oner": {
       "teamId": "t1-2024",
@@ -6796,6 +7316,7 @@
       "golPlayerId": 3741,
       "season": "S14",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 4.1,
         "killParticipation": 69.9,
@@ -6812,8 +7333,7 @@
         "consistency": 86,
         "leadership": 73,
         "synergy": 86
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "t1-2024:faker": {
       "teamId": "t1-2024",
@@ -6822,6 +7342,7 @@
       "golPlayerId": 48,
       "season": "S14",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 3.9,
         "killParticipation": 64.1,
@@ -6838,8 +7359,7 @@
         "consistency": 86,
         "leadership": 65,
         "synergy": 79
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "t1-2024:gumayusi": {
       "teamId": "t1-2024",
@@ -6848,6 +7368,7 @@
       "golPlayerId": 3247,
       "season": "S14",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 4.7,
         "killParticipation": 66.6,
@@ -6864,8 +7385,7 @@
         "consistency": 86,
         "leadership": 65,
         "synergy": 82
-      },
-      "accomplishment": "worlds_champion"
+      }
     },
     "t1-2024:keria": {
       "teamId": "t1-2024",
@@ -6874,6 +7394,7 @@
       "golPlayerId": 1258,
       "season": "S14",
       "source": "team-roster",
+      "accomplishment": "worlds_champion",
       "stats": {
         "kda": 4.2,
         "killParticipation": 70.4,
@@ -6890,8 +7411,7 @@
         "consistency": 86,
         "leadership": 73,
         "synergy": 87
-      },
-      "accomplishment": "worlds_champion"
+      }
     }
   }
 }

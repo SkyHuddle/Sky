@@ -15,14 +15,14 @@ export const RUN_BEAT_DELAY = 380;
  * Roll = stage power ± variance; pass if roll ≥ threshold (+ small jitter).
  */
 export const STAGE_THRESHOLDS = {
-  spring: 72,
-  msi: 77,
-  summer: 73,
+  spring: 73,
+  msi: 76,
+  summer: 74,
   worlds: 80,
 } as const;
 
 /** Max random jitter added to each stage threshold */
-export const STAGE_THRESHOLD_JITTER = 2.5;
+export const STAGE_THRESHOLD_JITTER = 3;
 
 export const WORLDS_FAILURE_LABELS = {
   groups: 'Lost in Worlds Groups',

@@ -4,6 +4,10 @@ import { DRAFT_PHASE_ORDER } from '@/core/types';
 const ALL = [...DRAFT_PHASE_ORDER];
 
 const LEGEND_IDS = new Set([
+  'skt-2013',
+  'ssw-2014',
+  'skt-2015',
+  'koo-2015',
   'skt-2016',
   't1-2017',
   't1-2023',

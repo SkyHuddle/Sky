@@ -26,7 +26,7 @@ function mulberry32(seed: number) {
 }
 
 function rollVariance(rng: () => number, clutch: number): number {
-  const spread = 11 - clutch / 14;
+  const spread = 12 - clutch / 12;
   return (rng() - 0.5) * spread;
 }
 
@@ -139,18 +139,32 @@ export function simulateGoldenRoad(
   };
 }
 
-/** Rough win chance for UI — tuned to match easier thresholds */
-export function estimateGoldenRoadOdds(picks: DraftPick[]): number {
-  const preview = rosterStagePreview(picks);
-  const avgEdge =
-    preview.reduce((s, p) => s + p.edge, 0) / preview.length;
-  const minEdge = Math.min(...preview.map((p) => p.edge));
+const ODDS_SAMPLES = 384;
+const oddsCache = new Map<string, number>();
 
-  if (minEdge >= 6) return 0.28;
-  if (minEdge >= 3) return 0.18;
-  if (avgEdge >= 4) return 0.14;
-  if (avgEdge >= 2) return 0.09;
-  if (avgEdge >= 0) return 0.05;
-  if (avgEdge >= -2) return 0.025;
-  return 0.01;
+function rosterOddsKey(picks: DraftPick[]): string {
+  return picks
+    .map((p) => `${p.player.id}@${p.team.id}`)
+    .sort()
+    .join('|');
+}
+
+/** Monte Carlo win chance — matches simulateGoldenRoad mechanics */
+export function estimateGoldenRoadOdds(picks: DraftPick[]): number {
+  if (picks.length === 0) return 0;
+
+  const key = rosterOddsKey(picks);
+  const cached = oddsCache.get(key);
+  if (cached != null) return cached;
+
+  const seed = hashString(key);
+  let wins = 0;
+  for (let i = 0; i < ODDS_SAMPLES; i++) {
+    if (simulateGoldenRoad(picks, { seed: `odds-${seed}-${i}` }).goldenRoad) {
+      wins++;
+    }
+  }
+  const rate = wins / ODDS_SAMPLES;
+  oddsCache.set(key, rate);
+  return rate;
 }
