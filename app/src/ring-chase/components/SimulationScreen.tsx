@@ -79,17 +79,22 @@ export function SimulationScreen({ result, onComplete }: SimulationScreenProps) 
                     : 'border-red-500/25 bg-red-500/[0.06]'
               }`}
             >
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-3">
                 <span className="font-display text-lg text-white/90">{STAGE_LABELS[stageId]}</span>
                 {revealed ? (
-                  <span
-                    className={`flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider ${
-                      outcome.passed ? 'text-ring-gold' : 'text-red-400'
-                    }`}
-                  >
-                    {outcome.passed ? <Check className="w-3.5 h-3.5" /> : <X className="w-3.5 h-3.5" />}
-                    {outcomeLabel(stageId, outcome.outcome)}
-                  </span>
+                  <div className="text-right">
+                    <span
+                      className={`flex items-center justify-end gap-1.5 text-[10px] font-semibold uppercase tracking-wider ${
+                        outcome.passed ? 'text-ring-gold' : 'text-red-400'
+                      }`}
+                    >
+                      {outcome.passed ? <Check className="w-3.5 h-3.5" /> : <X className="w-3.5 h-3.5" />}
+                      {outcomeLabel(stageId, outcome.outcome)}
+                    </span>
+                    <p className="text-[9px] text-white/30 mt-1 tabular-nums">
+                      {outcome.passChance}% advance chance
+                    </p>
+                  </div>
                 ) : isCurrent ? (
                   <span className="text-[10px] text-ring-gold/70 uppercase animate-pulse">Live</span>
                 ) : (

@@ -146,7 +146,18 @@ const DAILY_CONSTRAINTS: DailyConstraint[] = [
     id: 'dynasty',
     title: 'Dynasty Era',
     description: 'OpTic, FaZe, or Empire championship teams.',
-    filter: (ctx) => ['optic-2017', 'faze-2021', 'empire-2020', 'optic-2016', 'faze-2022', 'lg-2016'].includes(ctx.team.id),
+    filter: (ctx) =>
+      [
+        'optic-2017',
+        'faze-2021',
+        'empire-2020',
+        'optic-2016',
+        'faze-2022',
+        'lg-2016',
+        'lg-2017',
+        'lg-2018',
+        'lg-2019',
+      ].includes(ctx.team.id),
   },
   {
     id: 'smg-only-picks',

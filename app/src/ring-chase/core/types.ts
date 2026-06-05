@@ -158,6 +158,7 @@ export interface SimulationResult {
   perfectSeason: boolean;
   majorWins: number;
   champsOutcome: ChampsOutcome;
+  failureStage: StageId | null;
   rosterScore: number;
   ringOdds: number;
   chemistry: ChemistryReport;

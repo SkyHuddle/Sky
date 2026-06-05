@@ -1,29 +1,51 @@
-import type { CodPlayer, SimulationResult } from '../core/types';
+import type { CodPlayer, DraftPick, SimulationResult, StageId } from '../core/types';
+import { STAGE_LABELS } from '../core/types';
+import { STAGE_FAILURE_LABELS } from '../core/constants';
 
-const WIN_LINES = [
-  'Perfect role balance.',
-  'Elite SMG pressure carried the season.',
-  'SnD closed every bracket.',
-  'LAN nerves never showed.',
-  'Championship DNA won out.',
-];
+function avgStat(players: CodPlayer[], key: keyof CodPlayer['ratings']): number {
+  if (players.length === 0) return 0;
+  return players.reduce((sum, p) => sum + p.ratings[key], 0) / players.length;
+}
 
-const LOSS_LINES = [
-  'SnD sold the run.',
-  'Too many stars, not enough dirty work.',
-  'No true leader.',
-  'Champs pressure exposed the roster.',
-  'Main AR gap won the Grand Final.',
-  'Too many role conflicts.',
-  'Respawn maps buried you.',
-  'One map away from a ring.',
-];
+function isCloseLoss(outcome: string): boolean {
+  return outcome === 'runner_up' || outcome === 'grand_final';
+}
 
-export function buildExplanation(result: Omit<SimulationResult, 'explanation' | 'footer'>): {
-  explanation: string;
-  footer: string;
-} {
-  const { ringWon, perfectSeason, chemistry, champsOutcome, majorWins } = result;
+function stageStatWeakness(stage: StageId, players: CodPlayer[]): string | null {
+  const snd = avgStat(players, 'snd');
+  const respawn = avgStat(players, 'respawn');
+  const lan = avgStat(players, 'lan');
+  const leadership = avgStat(players, 'leadership');
+
+  if (stage === 'champs') {
+    if (snd < 86) return 'SnD maps fell apart at Champs.';
+    if (lan < 84) return 'LAN pressure cracked the squad at Champs.';
+    if (leadership < 85) return 'No one took control when Champs got loud.';
+    return null;
+  }
+
+  const respawnMajor = stage === 'major2' || stage === 'major4';
+  if (respawnMajor && respawn < 86) {
+    return `Respawn maps cost you at ${STAGE_FAILURE_LABELS[stage]}.`;
+  }
+
+  if (!respawnMajor && snd < 85) {
+    return `Search & Destroy slipped at ${STAGE_FAILURE_LABELS[stage]}.`;
+  }
+
+  if (leadership < 84) {
+    return `No IGL stepped up at ${STAGE_FAILURE_LABELS[stage]}.`;
+  }
+
+  return null;
+}
+
+export function buildExplanation(
+  result: Omit<SimulationResult, 'explanation' | 'footer'>,
+  picks: DraftPick[]
+): { explanation: string; footer: string } {
+  const players = picks.map((p) => p.player);
+  const { ringWon, perfectSeason, majorWins, failureStage, weakLink, chemistry, stages } = result;
 
   if (perfectSeason) {
     return {
@@ -33,42 +55,67 @@ export function buildExplanation(result: Omit<SimulationResult, 'explanation' | 
   }
 
   if (ringWon) {
-    const line = chemistry.modifiers.length > 0 ? chemistry.modifiers[0] : WIN_LINES[0];
+    const line = chemistry.modifiers[0] ?? 'Championship DNA won out.';
     return { explanation: line, footer: 'RING WON' };
   }
 
-  if (champsOutcome === 'grand_final') {
+  const failedStage = failureStage ? stages.find((s) => s.stage === failureStage) : null;
+
+  if (!failedStage) {
     return {
-      explanation: chemistry.issues[0] ?? 'One map away from a ring.',
-      footer: 'One map away.',
+      explanation: 'The run ended short of a ring.',
+      footer: `Major wins: ${majorWins}`,
     };
   }
 
-  if (chemistry.issues.includes('No SnD presence') || chemistry.issues.includes('SnD sold the run')) {
-    return { explanation: 'SnD sold the run.', footer: `Major wins: ${majorWins}` };
-  }
+  const stageLabel = STAGE_FAILURE_LABELS[failedStage.stage];
+  const close = isCloseLoss(failedStage.outcome);
+  const coinFlip = failedStage.passChance >= 42 && failedStage.passChance <= 58;
 
-  if (chemistry.issues.includes('Too many role conflicts') || chemistry.issues.includes('Too many Main ARs')) {
-    return { explanation: 'Too many role conflicts.', footer: `Major wins: ${majorWins}` };
-  }
-
-  if (chemistry.issues.includes('No leader')) {
-    return { explanation: 'No true leader.', footer: `Major wins: ${majorWins}` };
-  }
-
-  if (chemistry.issues.includes('No true SMG duo')) {
-    return { explanation: 'Elite SMG pressure never showed up.', footer: `Major wins: ${majorWins}` };
-  }
-
-  if (majorWins >= 2) {
+  if (close && coinFlip) {
     return {
-      explanation: chemistry.issues[0] ?? 'Champs pressure exposed the roster.',
-      footer: 'One map away.',
+      explanation: `Coin-flip series at ${stageLabel} didn't break your way (${failedStage.passChance}% win chance).`,
+      footer: failedStage.outcome === 'grand_final' ? 'One map away.' : `Major wins: ${majorWins}`,
     };
   }
 
-  const lossLine = chemistry.issues[0] ?? LOSS_LINES[Math.floor(majorWins) % LOSS_LINES.length];
-  return { explanation: lossLine, footer: `Major wins: ${majorWins}` };
+  if (close && weakLink) {
+    return {
+      explanation: `${weakLink.gamertag} got exposed in the ${stageLabel} finals.`,
+      footer: failedStage.outcome === 'grand_final' ? 'One map away.' : `Major wins: ${majorWins}`,
+    };
+  }
+
+  if (close) {
+    return {
+      explanation: `Fell one series short at ${stageLabel}.`,
+      footer: failedStage.outcome === 'grand_final' ? 'One map away.' : `Major wins: ${majorWins}`,
+    };
+  }
+
+  const statReason = stageStatWeakness(failedStage.stage, players);
+  if (statReason) {
+    return { explanation: statReason, footer: `Fell at ${stageLabel}` };
+  }
+
+  if (weakLink && failedStage.passChance < 40) {
+    return {
+      explanation: `${weakLink.gamertag} wasn't built for ${stageLabel} pressure.`,
+      footer: `Fell at ${stageLabel}`,
+    };
+  }
+
+  if (failedStage.passChance < 30) {
+    return {
+      explanation: `Roster rating wasn't high enough to hang at ${stageLabel}.`,
+      footer: `Fell at ${stageLabel}`,
+    };
+  }
+
+  return {
+    explanation: `Lost at ${STAGE_LABELS[failedStage.stage]} with a ${failedStage.passChance}% advance chance.`,
+    footer: `Major wins: ${majorWins}`,
+  };
 }
 
 export function formatPickLine(player: CodPlayer, teamName: string, season: number): string {

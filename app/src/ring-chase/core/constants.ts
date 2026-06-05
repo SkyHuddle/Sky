@@ -33,6 +33,14 @@ export const STAGE_PASS_MIN = 0.08;
 export const STAGE_PASS_MAX = 0.9;
 export const MIN_RING_CHANCE = 0.005;
 
+export const STAGE_FAILURE_LABELS: Record<StageId, string> = {
+  major1: 'Major I',
+  major2: 'Major II',
+  major3: 'Major III',
+  major4: 'Major IV',
+  champs: 'Champs',
+};
+
 /** Tier weights for random team selection */
 export const TIER_WEIGHTS: Record<string, number> = {
   legendary: 28,

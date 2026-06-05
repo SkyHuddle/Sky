@@ -31,39 +31,28 @@ export function stagePassProbability(power: number, stage: StageId): number {
   return clampPass(logistic);
 }
 
-function jitter(power: number, stage: StageId, rng: () => number): number {
-  const spread = stage === 'champs' ? 2.5 : 1.8;
+function jitter(power: number, stage: StageId, avgClutch: number, rng: () => number): number {
+  const spread = stage === 'champs' ? 2 + avgClutch / 35 : 1.5;
   return power + (rng() - 0.5) * spread;
 }
 
-function rollMajorOutcome(passChance: number, rng: () => number): MajorOutcome {
-  const roll = rng();
-  if (roll < passChance * 0.55) return 'won';
-  if (roll < passChance * 0.75) return 'runner_up';
-  if (roll < passChance * 0.85) return 'top3';
-  if (roll < passChance * 0.92) return 'top4';
-  if (roll < passChance * 0.97) return 'top6';
-  if (roll < passChance + 0.05) return 'top8';
+/** How far past the pass line the roll landed — drives believable placement labels */
+function failureMajorOutcome(roll: number, passChance: number): MajorOutcome {
+  const gap = roll - passChance;
+  if (gap < 0.08) return 'runner_up';
+  if (gap < 0.16) return 'top4';
+  if (gap < 0.24) return 'top6';
+  if (gap < 0.34) return 'top8';
   return 'eliminated';
 }
 
-function rollChampsOutcome(passChance: number, rng: () => number): ChampsOutcome {
-  const roll = rng();
-  if (roll < passChance * 0.35) return 'champion';
-  if (roll < passChance * 0.55) return 'grand_final';
-  if (roll < passChance * 0.7) return 'top3';
-  if (roll < passChance * 0.82) return 'top4';
-  if (roll < passChance * 0.9) return 'top6';
-  if (roll < passChance + 0.06) return 'top8';
+function failureChampsOutcome(roll: number, passChance: number): ChampsOutcome {
+  const gap = roll - passChance;
+  if (gap < 0.08) return 'grand_final';
+  if (gap < 0.16) return 'top4';
+  if (gap < 0.24) return 'top6';
+  if (gap < 0.34) return 'top8';
   return 'missed';
-}
-
-function isMajorPass(outcome: MajorOutcome): boolean {
-  return outcome === 'won';
-}
-
-function isChampsPass(outcome: ChampsOutcome): boolean {
-  return outcome === 'champion';
 }
 
 export function ringProbability(picks: DraftPick[]): number {
@@ -87,24 +76,32 @@ export function simulateRingChase(
     ? hashString(options.seed)
     : (Date.now() ^ (Math.random() * 1e9)) >>> 0;
   const rng = mulberry32(seed);
+  const avgClutch = players.reduce((s, p) => s + p.ratings.clutch, 0) / players.length;
 
   const stages: StageOutcome[] = [];
   let majorWins = 0;
+  let failureStage: StageId | null = null;
 
   for (const stage of STAGES) {
     const power = stageTeamPower(players, stage, chemistry.score);
-    const effective = jitter(power, stage, rng);
+    const effective = jitter(power, stage, avgClutch, rng);
     const passChance = stagePassProbability(effective, stage);
+    const roll = rng();
+    const passed = roll < passChance;
 
     let outcome: StageOutcomeLabel;
     if (stage === 'champs') {
-      outcome = rollChampsOutcome(passChance, rng);
+      outcome = passed ? 'champion' : failureChampsOutcome(roll, passChance);
+    } else if (passed) {
+      outcome = 'won';
+      majorWins += 1;
     } else {
-      outcome = rollMajorOutcome(passChance, rng);
-      if (isMajorPass(outcome as MajorOutcome)) majorWins += 1;
+      outcome = failureMajorOutcome(roll, passChance);
     }
 
-    const passed = stage === 'champs' ? isChampsPass(outcome as ChampsOutcome) : isMajorPass(outcome as MajorOutcome);
+    if (!passed && failureStage == null) {
+      failureStage = stage;
+    }
 
     stages.push({
       stage,
@@ -131,6 +128,7 @@ export function simulateRingChase(
     perfectSeason,
     majorWins,
     champsOutcome,
+    failureStage: ringWon ? null : failureStage,
     rosterScore,
     ringOdds,
     chemistry,
@@ -138,7 +136,7 @@ export function simulateRingChase(
     weakLink,
   };
 
-  const { explanation, footer } = buildExplanation(partial);
+  const { explanation, footer } = buildExplanation(partial, picks);
 
   return { ...partial, explanation, footer };
 }

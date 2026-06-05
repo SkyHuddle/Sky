@@ -124,6 +124,11 @@ export function getDailyTeams(dateKey: string): string[] {
     'eunited-2019',
     'faze-2023',
     'lg-2016',
+    'lg-2017',
+    'lg-2018',
+    'lg-2019',
+    'rise-2016',
+    'seattle-2020',
   ];
   const rng = mulberry32(hashString(`daily-teams-${dateKey}`));
   return shuffle(iconic, rng).slice(0, DRAFT_ROUNDS);
