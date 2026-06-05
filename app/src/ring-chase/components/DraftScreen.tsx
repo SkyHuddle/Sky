@@ -143,7 +143,7 @@ export function DraftScreen({
               <p className="text-[10px] text-kb-amber/80 mb-4 -mt-2 px-1 font-medium">{dailyConstraint.title}</p>
             )}
 
-            {pickableCount === 0 && (
+            {isDaily && pickableCount === 0 && (
               <p className="text-sm text-kb-crimson/90 mb-4 rounded-[var(--kb-r-md)] border border-kb-crimson/20 bg-kb-crimson/10 px-4 py-3">
                 No eligible players for today&apos;s rule on this team. Respin or try Daily tomorrow.
               </p>
