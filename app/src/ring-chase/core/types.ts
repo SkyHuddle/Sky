@@ -56,7 +56,13 @@ export const CHAMPS_OUTCOME_LABELS: Record<ChampsOutcome, string> = {
 
 export type GamePhase = 'home' | 'draft' | 'ready' | 'simulation' | 'result';
 export type GameMode = 'free' | 'daily';
-export type DraftSubphase = 'reveal' | 'pick';
+export type DraftSubphase = 'spin' | 'pick';
+
+export interface SlotSpin {
+  yearSequence: number[];
+  nameSequence: string[];
+  regionSequence: string[];
+}
 
 export interface PlayerRatings {
   overall: number;
@@ -116,6 +122,7 @@ export interface DraftRound {
   roundIndex: number;
   team: HistoricalCodTeam;
   roster: CodPlayer[];
+  spin: SlotSpin;
 }
 
 export interface DraftPick {

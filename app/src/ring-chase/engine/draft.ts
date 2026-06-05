@@ -1,5 +1,5 @@
-import type { DraftRound, HistoricalCodTeam } from '../core/types';
-import { DRAFT_ROUNDS, TIER_WEIGHTS } from '../core/constants';
+import type { DraftRound, HistoricalCodTeam, SlotSpin } from '../core/types';
+import { DRAFT_ROUNDS, TIER_WEIGHTS, SPIN_DURATION_MS, SPIN_TICK_MS } from '../core/constants';
 import { getTeamPool, resolveTeamRoster } from '../data';
 import { hashString, mulberry32 } from './rng';
 
@@ -28,6 +28,54 @@ function shuffle<T>(arr: T[], rng: () => number): T[] {
   return copy;
 }
 
+/** Year + team reels spin independently, then land on the final card */
+export function buildDualSpin(
+  finalTeam: HistoricalCodTeam,
+  seed: string,
+  roundIndex: number,
+  durationMs = SPIN_DURATION_MS,
+  tickMs = SPIN_TICK_MS
+): SlotSpin {
+  const rng = mulberry32(hashString(`${seed}-spin-${roundIndex}`));
+  const ticks = Math.floor(durationMs / tickMs);
+  const pool = shuffle(getTeamPool(), rng);
+  const years = pool.map((t) => t.season);
+  const names = pool.map((t) => t.teamName);
+  const regions = pool.map((t) => t.region);
+
+  const yearSequence: number[] = [];
+  const nameSequence: string[] = [];
+  const regionSequence: string[] = [];
+
+  for (let i = 0; i < ticks - 1; i++) {
+    const decoy = pool[Math.floor(rng() * pool.length)];
+    yearSequence.push(years[Math.floor(rng() * years.length)] ?? decoy.season);
+    nameSequence.push(names[Math.floor(rng() * names.length)] ?? decoy.teamName);
+    regionSequence.push(regions[Math.floor(rng() * regions.length)] ?? decoy.region);
+  }
+
+  yearSequence.push(finalTeam.season);
+  nameSequence.push(finalTeam.teamName);
+  regionSequence.push(finalTeam.region);
+
+  return { yearSequence, nameSequence, regionSequence };
+}
+
+function buildRound(
+  roundIndex: number,
+  team: HistoricalCodTeam,
+  seed: string,
+  rng: () => number
+): DraftRound {
+  const roster = shuffle(resolveTeamRoster(team), rng);
+  return {
+    roundIndex,
+    team,
+    roster,
+    spin: buildDualSpin(team, seed, roundIndex),
+  };
+}
+
 export function generateDraftRounds(
   seed: string,
   filter?: (team: HistoricalCodTeam) => boolean
@@ -43,12 +91,23 @@ export function generateDraftRounds(
 
     const team = weightedPick(available, rng);
     usedTeamIds.add(team.id);
-    const roster = shuffle(resolveTeamRoster(team), rng).slice(0, Math.min(5, team.roster.length));
-
-    rounds.push({ roundIndex: i, team, roster });
+    rounds.push(buildRound(i, team, seed, rng));
   }
 
   return rounds;
+}
+
+export function rerollRound(
+  seed: string,
+  roundIndex: number,
+  usedTeamIds: string[],
+  filter?: (team: HistoricalCodTeam) => boolean
+): DraftRound {
+  const rng = mulberry32(hashString(`${seed}-respin-${roundIndex}-${Date.now()}`));
+  const used = new Set(usedTeamIds);
+  const pool = getTeamPool(filter).filter((t) => !used.has(t.id));
+  const team = pool.length > 0 ? weightedPick(pool, rng) : weightedPick(getTeamPool(), rng);
+  return buildRound(roundIndex, team, seed, rng);
 }
 
 /** Daily mode: fixed iconic teams for deterministic global challenge */
@@ -73,16 +132,16 @@ export function generateDailyRounds(
   dateKey: string,
   filter?: (team: HistoricalCodTeam) => boolean
 ): DraftRound[] {
-  const teamIds = getDailyTeams(dateKey);
-  const rng = mulberry32(hashString(`ring-daily-${dateKey}`));
+  const seed = `ring-daily-${dateKey}`;
+  const rng = mulberry32(hashString(seed));
   const rounds: DraftRound[] = [];
+  const pool = getTeamPool(filter);
 
-  for (let i = 0; i < teamIds.length; i++) {
-    const pool = getTeamPool(filter);
+  for (let i = 0; i < DRAFT_ROUNDS; i++) {
+    const teamIds = getDailyTeams(dateKey);
     const team = pool.find((t) => t.id === teamIds[i]);
     if (!team) continue;
-    const roster = shuffle(resolveTeamRoster(team), rng);
-    rounds.push({ roundIndex: i, team, roster });
+    rounds.push(buildRound(i, team, seed, rng));
   }
 
   return rounds;

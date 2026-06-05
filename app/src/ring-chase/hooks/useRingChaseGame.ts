@@ -8,7 +8,12 @@ import type {
   GamePhase,
   SimulationResult,
 } from '../core/types';
-import { createRunSeed, generateDailyRounds, generateDraftRounds } from '../engine/draft';
+import {
+  createRunSeed,
+  generateDailyRounds,
+  generateDraftRounds,
+  rerollRound,
+} from '../engine/draft';
 import { simulateRingChase } from '../engine/simulation';
 import {
   getDailyConstraint,
@@ -27,8 +32,9 @@ export function useRingChaseGame() {
   const [picks, setPicks] = useState<DraftPick[]>([]);
   const [roundIndex, setRoundIndex] = useState(0);
   const [draftRounds, setDraftRounds] = useState<DraftRound[]>([]);
-  const [draftSubphase, setDraftSubphase] = useState<DraftSubphase>('reveal');
-  const [revealKey, setRevealKey] = useState(0);
+  const [draftSubphase, setDraftSubphase] = useState<DraftSubphase>('spin');
+  const [spinGeneration, setSpinGeneration] = useState(0);
+  const [respinsLeft, setRespinsLeft] = useState(1);
   const [result, setResult] = useState<SimulationResult | null>(null);
   const [dailyPercentile, setDailyPercentile] = useState<number | null>(null);
 
@@ -37,15 +43,14 @@ export function useRingChaseGame() {
 
   const currentRound: DraftRound | null = draftRounds[roundIndex] ?? null;
 
-  const pickedPlayerIds = useMemo(() => new Set(picks.map((p) => p.player.id)), [picks]);
-
   const startGame = useCallback(
     (gameMode: GameMode) => {
       const constraint = getDailyConstraint();
-      const teamFilter = constraint.filter
-        ? (team: Parameters<typeof teamPassesFilter>[0]) =>
-            teamPassesFilter(team, resolveTeamRoster(team), constraint)
-        : undefined;
+      const teamFilter =
+        gameMode === 'daily' && constraint.filter
+          ? (team: Parameters<typeof teamPassesFilter>[0]) =>
+              teamPassesFilter(team, resolveTeamRoster(team), constraint)
+          : undefined;
 
       const seed = createRunSeed(gameMode, gameMode === 'daily' ? dateKey : undefined);
       const rounds =
@@ -58,8 +63,9 @@ export function useRingChaseGame() {
       setDraftRounds(rounds);
       setPicks([]);
       setRoundIndex(0);
-      setDraftSubphase('reveal');
-      setRevealKey(0);
+      setDraftSubphase('spin');
+      setSpinGeneration(0);
+      setRespinsLeft(1);
       setResult(null);
       setDailyPercentile(null);
       setPhase('draft');
@@ -67,22 +73,41 @@ export function useRingChaseGame() {
     [dateKey]
   );
 
-  const finishReveal = useCallback(() => {
+  const finishSpin = useCallback(() => {
     setDraftSubphase('pick');
   }, []);
 
+  const respinTeam = useCallback(() => {
+    if (respinsLeft <= 0 || draftSubphase !== 'pick') return;
+
+    const usedIds = draftRounds
+      .filter((_, i) => i !== roundIndex)
+      .map((r) => r.team.id);
+    const teamFilter =
+      mode === 'daily' && dailyConstraint.filter
+        ? (team: Parameters<typeof teamPassesFilter>[0]) =>
+            teamPassesFilter(team, resolveTeamRoster(team), dailyConstraint)
+        : undefined;
+
+    const next = rerollRound(runSeed, roundIndex, usedIds, teamFilter);
+    setDraftRounds((prev) => {
+      const copy = [...prev];
+      copy[roundIndex] = next;
+      return copy;
+    });
+    setRespinsLeft((s) => s - 1);
+    setSpinGeneration((g) => g + 1);
+    setDraftSubphase('spin');
+  }, [respinsLeft, draftSubphase, draftRounds, roundIndex, runSeed, mode, dailyConstraint]);
+
   const selectPlayer = useCallback(
     (player: CodPlayer) => {
-      if (!currentRound) return;
-      if (pickedPlayerIds.has(player.id)) return;
-      if (!playerPassesFilter(player, picks, dailyConstraint)) return;
+      const round = draftRounds[roundIndex];
+      if (!round) return;
+      if (picks.some((p) => p.player.id === player.id)) return;
+      if (mode === 'daily' && !playerPassesFilter(player, picks, dailyConstraint)) return;
 
-      const pick: DraftPick = {
-        roundIndex,
-        player,
-        team: currentRound.team,
-      };
-
+      const pick: DraftPick = { roundIndex, player, team: round.team };
       const nextPicks = [...picks, pick];
       setPicks(nextPicks);
 
@@ -90,11 +115,11 @@ export function useRingChaseGame() {
         setPhase('ready');
       } else {
         setRoundIndex((i) => i + 1);
-        setDraftSubphase('reveal');
-        setRevealKey((k) => k + 1);
+        setDraftSubphase('spin');
+        setSpinGeneration((g) => g + 1);
       }
     },
-    [currentRound, pickedPlayerIds, picks, roundIndex, dailyConstraint]
+    [draftRounds, roundIndex, picks, mode, dailyConstraint]
   );
 
   const startSimulation = useCallback(() => {
@@ -130,8 +155,9 @@ export function useRingChaseGame() {
     setDraftRounds([]);
     setRunSeed('');
     setResult(null);
-    setDraftSubphase('reveal');
-    setRevealKey(0);
+    setDraftSubphase('spin');
+    setSpinGeneration(0);
+    setRespinsLeft(1);
   }, []);
 
   const playAgain = useCallback(() => startGame(mode), [mode, startGame]);
@@ -151,14 +177,16 @@ export function useRingChaseGame() {
     roundIndex,
     currentRound,
     draftSubphase,
-    revealKey,
+    spinGeneration,
+    respinsLeft,
     result,
     dailyConstraint,
     dailyPercentile,
     dateKey,
     runSeed,
     startGame,
-    finishReveal,
+    finishSpin,
+    respinTeam,
     selectPlayer,
     startSimulation,
     finishSimulation,

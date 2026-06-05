@@ -48,10 +48,12 @@ export function RingChaseApp() {
               currentRound={game.currentRound}
               draftSubphase={game.draftSubphase}
               picks={game.picks}
-              revealKey={game.revealKey}
+              spinGeneration={game.spinGeneration}
+              respinsLeft={game.respinsLeft}
               dailyConstraint={game.dailyConstraint}
               isDaily={game.mode === 'daily'}
-              onRevealComplete={game.finishReveal}
+              onSpinComplete={game.finishSpin}
+              onRespinTeam={game.respinTeam}
               onSelectPlayer={game.selectPlayer}
               onBack={game.resetToHome}
             />

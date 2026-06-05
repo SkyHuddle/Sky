@@ -6,8 +6,9 @@ export const DRAFT_ROUNDS = 4;
 export const STAGE_REVEAL_DELAY = 1100;
 export const STAGE_PAUSE = 350;
 
-/** Team reveal before pick */
-export const TEAM_REVEAL_MS = 900;
+/** Slot machine timing */
+export const SPIN_DURATION_MS = 2600;
+export const SPIN_TICK_MS = 75;
 
 /** Logistic midpoints for per-stage pass probability */
 export const STAGE_PASS_MIDPOINTS: Record<StageId, number> = {

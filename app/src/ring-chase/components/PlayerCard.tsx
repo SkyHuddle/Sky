@@ -10,12 +10,17 @@ interface PlayerCardProps {
 }
 
 export function PlayerCard({ player, selected, disabled, onSelect }: PlayerCardProps) {
+  const handleSelect = () => {
+    if (!disabled) onSelect();
+  };
+
   return (
     <motion.button
       type="button"
       disabled={disabled}
-      onClick={onSelect}
+      onClick={handleSelect}
       whileTap={disabled ? undefined : { scale: 0.97 }}
+      style={{ touchAction: 'manipulation' }}
       className={`w-full text-left rounded-2xl p-4 border transition-all ${
         selected
           ? 'border-ring-gold bg-ring-gold/15 shadow-lg shadow-ring-gold/10'
