@@ -119,7 +119,7 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
           </div>
 
           <p className="text-center text-[9px] uppercase tracking-[0.35em] text-kb-faint">
-            skylercamper.com · sister to knowball.us
+            Ring Chase · CoD Esports
           </p>
         </div>
       </div>

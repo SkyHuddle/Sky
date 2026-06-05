@@ -93,7 +93,7 @@ export function SimulationScreen({ result, picks, simSeed, onComplete }: Simulat
   }, [stageIndex, result.stages, picks, simSeed]);
 
   return (
-    <div className="flex flex-col min-h-[calc(100dvh-4rem)] items-center justify-center px-5 max-w-lg mx-auto py-10">
+    <div className="flex flex-col min-h-[100dvh] items-center justify-center px-5 max-w-lg mx-auto py-10">
       <motion.p
         className="text-[10px] uppercase tracking-[0.45em] text-kb-gold/70 mb-2 font-semibold"
         initial={{ opacity: 0 }}

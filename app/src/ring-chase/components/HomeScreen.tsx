@@ -3,7 +3,7 @@ import { Trophy, Flame, Target, Calendar, Lock } from 'lucide-react';
 import type { DailyConstraint, DailyRunResult, PlayerStats } from '../core/types';
 import { RingPath } from './RingPath';
 import { DailyLeaderboard } from './DailyLeaderboard';
-import { SisterCtaButton } from './SisterCtaButton';
+import { RingCtaButton } from './RingCtaButton';
 import { KbCard } from './KbCard';
 import { getDailyChallengeNumber } from '../features/daily';
 import { getDataSourceLabel } from '../engine/card-context';
@@ -18,7 +18,7 @@ interface HomeScreenProps {
   onStartDaily: () => void;
 }
 
-const easeSkyler: [number, number, number, number] = [0.16, 1, 0.3, 1];
+const easeOut: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export function HomeScreen({
   stats,
@@ -34,12 +34,12 @@ export function HomeScreen({
   const board = loadDailyBoard(dateKey);
 
   return (
-    <div className="flex flex-col min-h-[calc(100dvh-4rem)] px-5 pb-10 pt-2 max-w-lg mx-auto">
+    <div className="flex flex-col min-h-[100dvh] px-5 pb-10 pt-8 max-w-lg mx-auto">
       <motion.header
         className="text-center mb-8"
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.55, ease: easeSkyler }}
+        transition={{ duration: 0.55, ease: easeOut }}
       >
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-kb-gold/25 bg-kb-gold/10 mb-6">
           <span className="w-2 h-2 rounded-full bg-kb-amber kb-live-dot" />
@@ -55,14 +55,10 @@ export function HomeScreen({
         </h1>
 
         <p className="text-kb-soft text-sm mt-5 max-w-[320px] mx-auto leading-relaxed">
-          82-0 energy for CoD — spin dynasties and trap cards, draft four team-years, chase a perfect 4 majors + ring season.
+          Spin team-years, draft four cards, run the CDL gauntlet. Chase 20-0 or bomb out at 0-20.
         </p>
         <p className="text-[10px] text-kb-mute mt-3 max-w-[320px] mx-auto leading-relaxed">
-          {getDataSourceLabel()}. Same vibe as{' '}
-          <a href="https://knowball.us" className="text-kb-amber hover:text-kb-amber-hot transition-colors">
-            KnowBall
-          </a>
-          , built for esports.
+          {getDataSourceLabel()}
         </p>
       </motion.header>
 
@@ -84,13 +80,13 @@ export function HomeScreen({
         className="space-y-3 mb-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.12, ease: easeSkyler }}
+        transition={{ delay: 0.12, ease: easeOut }}
       >
-        <SisterCtaButton onClick={onStartFree} variant="gold" className="h-14 animate-pulse-ring">
+        <RingCtaButton onClick={onStartFree} variant="gold" className="h-14 animate-pulse-ring">
           Run the Table
-        </SisterCtaButton>
+        </RingCtaButton>
 
-        <SisterCtaButton
+        <RingCtaButton
           onClick={dailyOpen ? onStartDaily : undefined}
           disabled={!dailyOpen}
           variant={dailyOpen ? 'amber' : 'glass'}
@@ -102,7 +98,7 @@ export function HomeScreen({
             Daily Ring Chase #{dailyNum}
             {!dailyOpen && ' · Done'}
           </span>
-        </SisterCtaButton>
+        </RingCtaButton>
         {dailyOpen && (
           <p className="text-center text-[10px] text-kb-mute -mt-1">{dailyConstraint.title}</p>
         )}

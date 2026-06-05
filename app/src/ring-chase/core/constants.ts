@@ -41,10 +41,7 @@ export const STAGE_FAILURE_LABELS: Record<StageId, string> = {
   champs: 'Champs',
 };
 
-/**
- * Tier weights for random team selection — 82-0 / 20-0 style mix.
- * Equal per-tier weight so trap (underdog) cards spin often; dynasties still show up.
- */
+/** Tier weights for random team selection — dynasties and trap cards spin at equal rates per tier. */
 export const TIER_WEIGHTS: Record<string, number> = {
   legendary: 22,
   elite: 22,

@@ -7,7 +7,7 @@ import { cardCredentials, cardOverall } from '../engine/card-context';
 import { estimateRingOdds } from '../engine/simulation';
 import { getPlayerHeadshot } from '../data/team-year-ratings';
 import { KbCard } from './KbCard';
-import { SisterCtaButton } from './SisterCtaButton';
+import { RingCtaButton } from './RingCtaButton';
 
 interface ReadyScreenProps {
   picks: DraftPick[];
@@ -22,7 +22,7 @@ function ovrColor(ovr: number): string {
   return 'var(--kb-fg-soft)';
 }
 
-const easeSkyler: [number, number, number, number] = [0.16, 1, 0.3, 1];
+const easeOut: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export function ReadyScreen({ picks, isDaily, onAttempt, onEdit }: ReadyScreenProps) {
   const avgOvr =
@@ -32,25 +32,25 @@ export function ReadyScreen({ picks, isDaily, onAttempt, onEdit }: ReadyScreenPr
   const ringPct = ringOdds < 0.01 ? '<1' : (ringOdds * 100).toFixed(0);
 
   return (
-    <div className="flex flex-col min-h-[calc(100dvh-4rem)] px-5 py-8 max-w-lg mx-auto justify-between">
+    <div className="flex flex-col min-h-[100dvh] px-5 py-10 max-w-lg mx-auto justify-between">
       <div>
         <motion.div
           className="text-center"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ ease: easeSkyler }}
+          transition={{ ease: easeOut }}
         >
           <p className="text-[10px] uppercase tracking-[0.35em] text-kb-gold/80">Roster locked</p>
           <h2 className="font-display text-4xl text-kb-fg mt-2">RUN THE TABLE</h2>
           <p className="text-kb-mute text-xs mt-2 max-w-[260px] mx-auto leading-relaxed">
-            Win Major I–IV, then Champs. Your season record is on the line.
+            Win Major I–IV, then Champs. Chase 20-0 or risk 0-20.
           </p>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.08, ease: easeSkyler }}
+          transition={{ delay: 0.08, ease: easeOut }}
         >
           <KbCard accent="gold" className="mt-5 p-5">
             <div className="mb-4 text-center">
@@ -76,7 +76,7 @@ export function ReadyScreen({ picks, isDaily, onAttempt, onEdit }: ReadyScreenPr
               </p>
             )}
             <p className="text-[10px] text-kb-mute text-center mt-3 kb-mono">
-              Ring odds ~{ringPct}% · Perfect season is rare with trap cards in the mix
+              Ring odds ~{ringPct}% · 20-0 needs a clean board and a hot run
             </p>
           </KbCard>
         </motion.div>
@@ -141,11 +141,11 @@ export function ReadyScreen({ picks, isDaily, onAttempt, onEdit }: ReadyScreenPr
         className="space-y-3 pb-4 pt-4"
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, ease: easeSkyler }}
+        transition={{ delay: 0.3, ease: easeOut }}
       >
-        <SisterCtaButton onClick={onAttempt} variant="gold" className="h-14 text-base animate-pulse-ring">
+        <RingCtaButton onClick={onAttempt} variant="gold" className="h-14 text-base animate-pulse-ring">
           Start the Run
-        </SisterCtaButton>
+        </RingCtaButton>
         {!isDaily && (
           <button
             type="button"

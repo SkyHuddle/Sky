@@ -1,8 +1,10 @@
-import type { ChampsOutcome, DraftPick, SeasonSummary, SimulationResult, StageOutcome } from '../core/types';
+import type { ChampsOutcome, DraftPick, SeasonSummary, SimulationResult, StageId, StageOutcome } from '../core/types';
 import { CHAMPS_OUTCOME_LABELS } from '../core/types';
 import { hashString } from './rng';
 
 export type { SeasonSummary };
+
+const REGULAR_SEASON_GAMES = 20;
 
 function bracketRecord(stages: StageOutcome[]): { wins: number; losses: number } {
   let wins = 0;
@@ -71,28 +73,75 @@ function buildNarrative(
   return `You went ${record} but the run ended before a ring.`;
 }
 
-/** Deterministic regular-season record from roster strength + run outcome */
+function champsRegularSeasonBonus(outcome: ChampsOutcome, ringWon: boolean): number {
+  if (ringWon) return 0;
+  if (outcome === 'grand_final') return 2;
+  if (outcome === 'top4') return 1;
+  if (outcome === 'top6') return 0;
+  return 0;
+}
+
+function failureCeiling(stage: StageId | null): number {
+  if (!stage) return REGULAR_SEASON_GAMES - 1;
+  const caps: Record<StageId, number> = {
+    major1: 2,
+    major2: 7,
+    major3: 11,
+    major4: 14,
+    champs: 17,
+  };
+  return caps[stage];
+}
+
+/**
+ * Maps bracket outcome → CDL-style 20-game regular season record.
+ * Full range: 20-0 (perfect) through 0-20 (bombed out).
+ */
 function regularSeasonRecord(
   picks: DraftPick[],
   result: Pick<
     SimulationResult,
-    'majorWins' | 'ringWon' | 'champsOutcome' | 'rosterScore' | 'perfectSeason'
+    | 'majorWins'
+    | 'ringWon'
+    | 'champsOutcome'
+    | 'rosterScore'
+    | 'perfectSeason'
+    | 'failureStage'
+    | 'stages'
   >
 ): { wins: number; losses: number } {
-  const games = 20;
+  if (result.perfectSeason) {
+    return { wins: REGULAR_SEASON_GAMES, losses: 0 };
+  }
+
   const pickKey = picks.map((p) => `${p.team.id}:${p.player.id}`).join('|');
-  const noise = (hashString(pickKey) % 5) - 2;
+  const noise = (hashString(`${pickKey}-reg`) % 5) - 2;
+  const trapSlots = picks.filter((p) => p.team.tier === 'underdog').length;
 
-  let wins = Math.round(
-    7 +
-      result.majorWins * 2.2 +
-      (result.rosterScore - 84) * 0.22 +
-      (result.ringWon ? 3.5 : result.champsOutcome === 'grand_final' ? 2 : result.champsOutcome === 'top4' ? 0.8 : 0) +
-      noise * 0.35
-  );
+  let wins =
+    result.majorWins * 4 +
+    (result.ringWon ? 4 : 0) +
+    champsRegularSeasonBonus(result.champsOutcome, result.ringWon);
 
-  wins = Math.min(games - 2, Math.max(5, wins));
-  return { wins, losses: games - wins };
+  wins += Math.round((result.rosterScore - 82) * 0.22);
+  wins -= Math.round(trapSlots * 1.25);
+  wins += noise;
+
+  if (!result.ringWon && result.failureStage) {
+    wins = Math.min(wins, failureCeiling(result.failureStage));
+  }
+
+  const firstMajor = result.stages.find((s) => s.stage === 'major1');
+  if (
+    result.majorWins === 0 &&
+    result.failureStage === 'major1' &&
+    firstMajor?.outcome === 'eliminated'
+  ) {
+    wins = Math.min(wins, Math.max(0, Math.round((result.rosterScore - 74) * 0.15)));
+  }
+
+  wins = Math.max(0, Math.min(REGULAR_SEASON_GAMES - 1, Math.round(wins)));
+  return { wins, losses: REGULAR_SEASON_GAMES - wins };
 }
 
 export function buildSeasonSummary(

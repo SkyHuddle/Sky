@@ -243,7 +243,7 @@ export const COD_TEAMS: HistoricalCodTeam[] = [
       tier: 'solid',
     }
   ),
-  // Trap cards — bottom-tier seasons (82-0 / 20-0 style variance)
+  // Trap cards — bottom-tier seasons
   team('guerrillas-2020', 'Los Angeles Guerrillas', 2020, 'Modern Warfare', 'CDL inaugural flop', 'NA', {
     mainAR: 'assault',
     flex: 'gunless',

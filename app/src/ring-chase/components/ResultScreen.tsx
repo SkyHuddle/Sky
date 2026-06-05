@@ -6,7 +6,7 @@ import { ShareCard } from './ShareCard';
 import { SeasonRecordCard } from './SeasonRecordCard';
 import { HistoricalCompare } from './HistoricalCompare';
 import { DailyLeaderboard } from './DailyLeaderboard';
-import { SisterCtaButton } from './SisterCtaButton';
+import { RingCtaButton } from './RingCtaButton';
 import { KbCard } from './KbCard';
 import { addShareHistory } from '../features/storage';
 import { loadDailyBoard } from '../features/daily-board';
@@ -58,7 +58,7 @@ export function ResultScreen({
   }, [picks, result]);
 
   return (
-    <div className="min-h-[calc(100dvh-4rem)] px-4 py-8 pb-14 max-w-lg mx-auto overflow-y-auto">
+    <div className="min-h-[100dvh] px-4 py-10 pb-14 max-w-lg mx-auto overflow-y-auto">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
         <p className="text-center text-[10px] uppercase tracking-[0.35em] text-kb-mute mb-4">
           Final standings
@@ -105,13 +105,13 @@ export function ResultScreen({
           )}
         </KbCard>
 
-        <SisterCtaButton onClick={handleShare} variant="glass">
+        <RingCtaButton onClick={handleShare} variant="glass">
           Share Result
-        </SisterCtaButton>
+        </RingCtaButton>
         {mode === 'free' ? (
-          <SisterCtaButton onClick={onPlayAgain} variant="gold">
+          <RingCtaButton onClick={onPlayAgain} variant="gold">
             Run It Back
-          </SisterCtaButton>
+          </RingCtaButton>
         ) : (
           <p className="text-center text-[11px] text-kb-mute py-2">
             Daily locked — one official attempt per day

@@ -1,7 +1,7 @@
 import { ArrowUpRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-interface SisterCtaButtonProps {
+interface RingCtaButtonProps {
   children: React.ReactNode;
   onClick?: () => void;
   disabled?: boolean;
@@ -11,7 +11,7 @@ interface SisterCtaButtonProps {
   type?: 'button' | 'submit';
 }
 
-export function SisterCtaButton({
+export function RingCtaButton({
   children,
   onClick,
   disabled,
@@ -19,7 +19,7 @@ export function SisterCtaButton({
   className,
   showArrow = true,
   type = 'button',
-}: SisterCtaButtonProps) {
+}: RingCtaButtonProps) {
   return (
     <button
       type={type}

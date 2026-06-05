@@ -6,12 +6,11 @@ import { DraftScreen } from './components/DraftScreen';
 import { ReadyScreen } from './components/ReadyScreen';
 import { SimulationScreen } from './components/SimulationScreen';
 import { ResultScreen } from './components/ResultScreen';
-import { SisterBrandBar } from './components/SisterBrandBar';
 import { loadStats, loadDailyResult } from './features/storage';
 import { getDateKey } from './features/daily';
 import type { DailyRunResult, PlayerStats } from './core/types';
 
-const easeSkyler: [number, number, number, number] = [0.16, 1, 0.3, 1];
+const easeOut: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export function RingChaseApp() {
   const game = useRingChaseGame();
@@ -27,19 +26,12 @@ export function RingChaseApp() {
     }
   }, [game.phase]);
 
-  const barSubtitle =
-    game.mode === 'daily' && game.phase !== 'home'
-      ? "Today's board · One attempt"
-      : 'CoD Esports · Sister to KnowBall';
-
   return (
     <div className="kb-root min-h-[100dvh] antialiased relative overflow-x-hidden">
       <div className="fixed inset-0 mesh-bg-ring pointer-events-none z-0" />
       <div className="fixed inset-0 grid-bg pointer-events-none z-0 opacity-50" />
 
       <div className="relative z-10">
-        <SisterBrandBar subtitle={game.phase === 'home' ? 'CoD Esports · Sister to KnowBall' : barSubtitle} />
-
         <AnimatePresence mode="wait">
           {game.phase === 'home' && (
             <motion.div
@@ -47,7 +39,7 @@ export function RingChaseApp() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.45, ease: easeSkyler }}
+              transition={{ duration: 0.45, ease: easeOut }}
             >
               <HomeScreen
                 stats={stats}
@@ -89,7 +81,7 @@ export function RingChaseApp() {
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ ease: easeSkyler }}
+              transition={{ ease: easeOut }}
             >
               <ReadyScreen
                 picks={game.picks}
@@ -120,7 +112,7 @@ export function RingChaseApp() {
               key="result"
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ ease: easeSkyler }}
+              transition={{ ease: easeOut }}
             >
               <ResultScreen
                 picks={game.picks}

@@ -50,7 +50,7 @@ export function stageTeamPower(players: CodPlayer[], stage: StageId, chemistryBo
   }
 
   const weakest = Math.min(...players.map((p) => p.ratings.overall));
-  // 82-0 / 20-0 weak-link drag: one trap-card pick tanks the whole run.
+  // Weak-link drag: one low OVR pick tanks the whole run.
   const weakDrag =
     weakest < 80 ? (80 - weakest) * 0.7 : weakest < 84 ? (84 - weakest) * 0.35 : 0;
 

@@ -1,10 +1,9 @@
 /**
- * Shared Skyler / KnowBall sister-site design tokens.
- * Sourced from knowball.us/tokens.css — Ring Chase uses gold accent; KnowBall uses amber.
+ * Ring Chase design tokens — dark esports UI palette.
  */
 :root {
   --kb-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-  --kb-ease-skyler: cubic-bezier(0.16, 1, 0.3, 1);
+  --kb-ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
 
   --kb-bg-deep: #07060a;
   --kb-bg-base: #0d0b12;
@@ -43,6 +42,5 @@
   --kb-shadow-gold: 0 14px 40px -6px rgba(232, 184, 66, 0.28);
   --kb-shadow-amber: 0 14px 40px -6px rgba(255, 106, 31, 0.35);
 
-  /* Ring Chase maps onto sister gold */
   --ring-gold: var(--kb-gold);
 }

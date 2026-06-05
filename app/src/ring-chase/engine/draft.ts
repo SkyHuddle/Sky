@@ -110,7 +110,7 @@ export function rerollRound(
   return buildRound(roundIndex, team, seed, rng);
 }
 
-/** Daily mode: mixed dynasties + trap cards (82-0 / 20-0 style board) */
+/** Daily mode: mixed dynasties + trap cards */
 export function getDailyTeams(dateKey: string): string[] {
   const dynasties = [
     'optic-2017',

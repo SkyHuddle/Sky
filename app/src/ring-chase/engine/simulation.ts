@@ -98,7 +98,7 @@ export function simulateRingChase(
     let passChance = stagePassProbability(effective, stage);
     const roll = rng();
 
-    // 82-0 / 20-0 rule: miss any major and the table is broken — no Champs ring.
+    // Run-the-table: miss any major and Champs ring is off the table.
     if (stage === 'champs' && tableBroken) {
       passChance = 0;
     }
