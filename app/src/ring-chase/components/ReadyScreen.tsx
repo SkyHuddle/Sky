@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { RingPath } from './RingPath';
 import { estimateRingOdds } from '../engine/simulation';
 import { evaluateChemistry } from '../engine/chemistry';
+import { cardCredentials, cardOverall } from '../engine/card-context';
 
 interface ReadyScreenProps {
   picks: DraftPick[];
@@ -14,7 +15,7 @@ interface ReadyScreenProps {
 
 export function ReadyScreen({ picks, onAttempt, onEdit }: ReadyScreenProps) {
   const avgOvr =
-    picks.reduce((s, p) => s + p.player.ratings.overall, 0) / picks.length;
+    picks.reduce((s, p) => s + cardOverall(p.player, p.team), 0) / picks.length;
   const odds = estimateRingOdds(picks);
   const oddsPct = Math.max(1, Math.round(odds * 100));
   const chemistry = evaluateChemistry(picks);
@@ -55,7 +56,10 @@ export function ReadyScreen({ picks, onAttempt, onEdit }: ReadyScreenProps) {
         </motion.div>
 
         <motion.div className="mt-5 space-y-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.16 }}>
-          {picks.map(({ player, team, role }, i) => (
+          {picks.map(({ player, team, role }, i) => {
+            const creds = cardCredentials(team);
+            const ovr = cardOverall(player, team);
+            return (
             <motion.div
               key={`${team.id}-${player.id}`}
               className="flex items-center gap-3.5 p-3 rounded-2xl glass-panel"
@@ -73,15 +77,12 @@ export function ReadyScreen({ picks, onAttempt, onEdit }: ReadyScreenProps) {
               <div className="flex-1 min-w-0">
                 <p className="text-[9px] text-white/35 uppercase tracking-wider">{SLOT_LABELS[role]}</p>
                 <p className="font-display text-base text-white truncate">{player.gamertag}</p>
-                <p className="text-[10px] text-white/30 truncate">
-                  {team.season} {team.teamName}
-                </p>
+                <p className="text-[10px] text-white/30 truncate">{creds.headline}</p>
               </div>
-              <span className="font-display text-xl text-ring-gold tabular-nums">
-                {Math.round(player.ratings.overall)}
-              </span>
+              <span className="font-display text-xl text-ring-gold tabular-nums">{ovr}</span>
             </motion.div>
-          ))}
+            );
+          })}
         </motion.div>
       </div>
 

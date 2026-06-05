@@ -13,6 +13,7 @@ import { SLOT_ORDER } from '../core/constants';
 import { PlayerCard } from './PlayerCard';
 import { TeamSlotMachine } from './TeamSlotMachine';
 import { playerPassesFilter } from '../features/daily';
+import { cardOverall, teamRosterAvgOvr } from '../engine/card-context';
 
 interface DraftScreenProps {
   currentRound: DraftRound;
@@ -63,17 +64,17 @@ export function DraftScreen({
       .filter((entry): entry is NonNullable<typeof entry> => entry != null)
       .sort((a, b) => {
         if (a.blocked !== b.blocked) return a.blocked ? 1 : -1;
-        return b.player.ratings.overall - a.player.ratings.overall;
+        return cardOverall(b.player, team) - cardOverall(a.player, team);
       });
-  }, [currentRound, openRoles, pickedIds, isDaily, picks, dailyConstraint]);
+  }, [currentRound, openRoles, pickedIds, isDaily, picks, dailyConstraint, team]);
 
   const bestPickId = useMemo(() => {
     const pickable = rosterEntries.filter((e) => !e.blocked);
     if (pickable.length === 0) return null;
     return pickable.reduce((best, e) =>
-      e.player.ratings.overall > best.player.ratings.overall ? e : best
+      cardOverall(e.player, team) > cardOverall(best.player, team) ? e : best
     ).player.id;
-  }, [rosterEntries]);
+  }, [rosterEntries, team]);
 
   const pickableCount = rosterEntries.filter((e) => !e.blocked).length;
 
@@ -119,6 +120,9 @@ export function DraftScreen({
               <h2 className="font-display text-xl text-white mt-1">
                 {team.teamName} <span className="text-white/40">{team.season}</span>
               </h2>
+              <p className="text-[10px] text-white/35 mt-1">
+                Card avg {teamRosterAvgOvr(team)} OVR · {team.placement}
+              </p>
               {isDaily && dailyConstraint.id !== 'standard' && (
                 <p className="text-[10px] text-ring-gold/60 mt-1">{dailyConstraint.title}</p>
               )}
@@ -156,6 +160,7 @@ export function DraftScreen({
                 <div key={player.id}>
                   <PlayerCard
                     player={player}
+                    team={team}
                     teamSlot={teamRole}
                     disabled={blocked}
                     recommended={!blocked && player.id === bestPickId}
@@ -201,7 +206,7 @@ function RosterSlots({
   const teamOvr =
     picks.length > 0
       ? Math.round(
-          picks.reduce((sum, pick) => sum + pick.player.ratings.overall, 0) / picks.length
+          picks.reduce((sum, pick) => sum + cardOverall(pick.player, pick.team), 0) / picks.length
         )
       : null;
 
@@ -211,7 +216,7 @@ function RosterSlots({
         {SLOT_ORDER.map((slot) => {
           const pick = picks.find((p) => p.role === slot);
           const open = openRoles.includes(slot);
-          const ovr = pick ? Math.round(pick.player.ratings.overall) : null;
+          const ovr = pick ? cardOverall(pick.player, pick.team) : null;
 
           return (
             <div

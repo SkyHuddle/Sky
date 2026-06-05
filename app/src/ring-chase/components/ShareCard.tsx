@@ -2,6 +2,7 @@ import { forwardRef } from 'react';
 import type { DraftPick, GameMode, SimulationResult } from '../core/types';
 import { CHAMPS_OUTCOME_LABELS } from '../core/types';
 import { formatPickLine } from '../engine/explanations';
+import { cardOverall } from '../engine/card-context';
 
 interface ShareCardProps {
   picks: DraftPick[];
@@ -57,7 +58,7 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
                   {formatPickLine(pick.player, pick.team.teamName, pick.team.season)}
                 </span>
                 <span className="text-ring-gold/80 tabular-nums shrink-0">
-                  {Math.round(pick.player.ratings.overall)}
+                  {cardOverall(pick.player, pick.team)}
                 </span>
               </div>
             ))}

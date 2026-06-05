@@ -1,9 +1,12 @@
 import { motion } from 'framer-motion';
-import type { CodPlayer, RosterSlot } from '../core/types';
+import { Trophy } from 'lucide-react';
+import type { CodPlayer, HistoricalCodTeam, RosterSlot } from '../core/types';
 import { SLOT_LABELS } from '../core/types';
+import { cardCredentials, cardOverall } from '../engine/card-context';
 
 interface PlayerCardProps {
   player: CodPlayer;
+  team: HistoricalCodTeam;
   teamSlot: RosterSlot;
   selected?: boolean;
   disabled?: boolean;
@@ -13,6 +16,7 @@ interface PlayerCardProps {
 
 export function PlayerCard({
   player,
+  team,
   teamSlot,
   selected,
   disabled,
@@ -22,6 +26,9 @@ export function PlayerCard({
   const handleSelect = () => {
     if (!disabled) onSelect();
   };
+
+  const overall = cardOverall(player, team);
+  const creds = cardCredentials(team);
 
   return (
     <motion.button
@@ -50,9 +57,9 @@ export function PlayerCard({
         <div
           className="w-12 h-12 rounded-xl flex items-center justify-center text-sm font-bold shrink-0"
           style={{
-            background: `${player.accent}18`,
-            color: player.accent,
-            border: `1px solid ${player.accent}30`,
+            background: `${team.accent}18`,
+            color: team.accent,
+            border: `1px solid ${team.accent}30`,
           }}
         >
           {player.gamertag.slice(0, 2).toUpperCase()}
@@ -62,16 +69,26 @@ export function PlayerCard({
             {SLOT_LABELS[teamSlot]}
           </p>
           <p className="font-display text-lg text-white truncate">{player.gamertag}</p>
-          {player.badge && (
-            <span className="inline-block mt-1.5 text-[9px] px-2 py-0.5 rounded-full bg-ring-gold/15 text-ring-gold/90">
-              {player.badge}
-            </span>
-          )}
+          <p className="text-[10px] text-white/40 mt-0.5 truncate">{creds.headline}</p>
+          <div className="flex flex-wrap items-center gap-1.5 mt-1.5">
+            {creds.ringsThisYear > 0 && (
+              <span className="inline-flex items-center gap-1 text-[9px] px-2 py-0.5 rounded-full bg-ring-gold/15 text-ring-gold/90">
+                <Trophy className="w-3 h-3" />
+                Ring
+              </span>
+            )}
+            {creds.majorsThisYear > 0 && creds.ringsThisYear === 0 && (
+              <span className="inline-block text-[9px] px-2 py-0.5 rounded-full bg-white/[0.06] text-white/55">
+                {creds.majorsThisYear} Major{creds.majorsThisYear > 1 ? 's' : ''}
+              </span>
+            )}
+            <span className="text-[9px] text-white/30 truncate">{creds.detail}</span>
+          </div>
         </div>
         <div className="text-right shrink-0">
-          <span className="font-display text-2xl tabular-nums text-ring-gold">
-            {Math.round(player.ratings.overall)}
-          </span>
+          <p className="text-[9px] uppercase tracking-[0.2em] text-white/30 mb-0.5">OVR</p>
+          <span className="font-display text-2xl tabular-nums text-ring-gold">{overall}</span>
+          <p className="text-[9px] text-white/25 mt-0.5">{team.season}</p>
         </div>
       </div>
     </motion.button>

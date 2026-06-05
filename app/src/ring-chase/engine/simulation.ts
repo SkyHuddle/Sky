@@ -15,6 +15,7 @@ import {
   STAGE_PASS_MAX,
   MIN_RING_CHANCE,
 } from '../core/constants';
+import { simulationPlayers } from './card-context';
 import { evaluateChemistry } from './chemistry';
 import { computeRosterScore, stageTeamPower, findMvp, findWeakLink } from './ratings';
 import { buildExplanation } from './explanations';
@@ -57,7 +58,7 @@ function failureChampsOutcome(roll: number, passChance: number): ChampsOutcome {
 }
 
 export function ringProbability(picks: DraftPick[]): number {
-  const players = picks.map((p) => p.player);
+  const players = simulationPlayers(picks);
   const chemistry = evaluateChemistry(picks);
   let odds = 1;
   for (const stage of STAGES) {
@@ -71,7 +72,7 @@ export function simulateRingChase(
   picks: DraftPick[],
   options?: { seed?: string }
 ): SimulationResult {
-  const players = picks.map((p) => p.player);
+  const players = simulationPlayers(picks);
   const chemistry = evaluateChemistry(picks);
   const seed = options?.seed
     ? hashString(options.seed)
