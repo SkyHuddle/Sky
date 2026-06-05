@@ -65,7 +65,11 @@ export function TeamSlotMachine({
   const progress = spin.yearSequence.length ? (index + 1) / spin.yearSequence.length : 1;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[54dvh] px-5 pb-10">
+    <div className="flex flex-col items-center justify-center min-h-[54dvh] px-5 pb-10 relative">
+      <div
+        className="absolute inset-x-8 top-1/4 h-48 rounded-full blur-3xl opacity-20 pointer-events-none"
+        style={{ backgroundColor: team.accent }}
+      />
       <motion.div
         className="text-center mb-10"
         initial={{ opacity: 0, y: 8 }}

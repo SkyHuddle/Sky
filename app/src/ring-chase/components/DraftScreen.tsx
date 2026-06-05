@@ -11,6 +11,7 @@ import type {
 import { DRAFT_ROUND_LABELS, SLOT_LABELS } from '../core/types';
 import { SLOT_ORDER } from '../core/constants';
 import { PlayerCard } from './PlayerCard';
+import { TeamBanner } from './TeamBanner';
 import { TeamSlotMachine } from './TeamSlotMachine';
 import { playerPassesFilter } from '../features/daily';
 import { cardOverall, teamRosterAvgOvr } from '../engine/card-context';
@@ -107,18 +108,11 @@ export function DraftScreen({
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <div className="mb-5">
-              <p className="text-[10px] uppercase tracking-widest text-white/35">Choose one</p>
-              <h2 className="font-display text-xl text-white mt-1">
-                {team.teamName} <span className="text-white/40">{team.season}</span>
-              </h2>
-              <p className="text-[10px] text-white/35 mt-1">
-                Card avg {teamRosterAvgOvr(team)} OVR · {team.placement}
-              </p>
-              {isDaily && dailyConstraint.id !== 'standard' && (
-                <p className="text-[10px] text-ring-gold/60 mt-1">{dailyConstraint.title}</p>
-              )}
-            </div>
+            <TeamBanner team={team} rosterAvgOvr={teamRosterAvgOvr(team)} />
+
+            {isDaily && dailyConstraint.id !== 'standard' && (
+              <p className="text-[10px] text-ring-gold/60 mb-4 -mt-2 px-1">{dailyConstraint.title}</p>
+            )}
 
             <div className="mb-4 rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3.5">
               <p className="text-xs text-white/55 leading-relaxed">

@@ -5,6 +5,7 @@ import type { DailyConstraint, DailyRunResult, PlayerStats } from '../core/types
 import { Button } from '@/components/ui/button';
 import { RingPath } from './RingPath';
 import { getDailyChallengeNumber } from '../features/daily';
+import { getDataSourceLabel } from '../engine/card-context';
 
 interface HomeScreenProps {
   stats: PlayerStats;
@@ -45,7 +46,7 @@ export function HomeScreen({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
       >
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-ring-gold/25 bg-ring-gold/8 mb-7">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-ring-gold/30 bg-gradient-to-r from-ring-gold/12 to-transparent mb-7 shadow-sm shadow-ring-gold/10">
           <Circle className="w-3.5 h-3.5 text-ring-gold fill-ring-gold/30" />
           <span className="text-[10px] uppercase tracking-[0.22em] text-ring-gold/90 font-medium">
             Call of Duty Esports
@@ -61,13 +62,13 @@ export function HomeScreen({
         <p className="text-white/50 text-sm mt-5 max-w-[320px] mx-auto leading-relaxed">
           Draft four pros across four majors. Win them all, then Champs — run the table.
         </p>
-        <p className="text-[10px] text-white/30 mt-3 max-w-[300px] mx-auto leading-relaxed">
-          Curated team-year cards — not live API. OVR and rings are for that season only.
+        <p className="text-[10px] text-white/30 mt-3 max-w-[320px] mx-auto leading-relaxed">
+          {getDataSourceLabel()}. OVR and rings are for that season only — tap scout report on draft cards.
         </p>
       </motion.header>
 
       <motion.div
-        className="rounded-2xl glass-panel p-4 mb-6 border-ring-gold/10"
+        className="rounded-2xl glass-panel p-4 mb-6 border border-ring-gold/15 shadow-lg shadow-black/20"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.1 }}
