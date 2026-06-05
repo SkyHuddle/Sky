@@ -1,6 +1,6 @@
 {
   "source": "gol.gg-team-year",
-  "generatedAt": "2026-06-05T04:36:21.949Z",
+  "generatedAt": "2026-06-05T05:26:27.499Z",
   "entryCount": 265,
   "entries": {
     "rox-2016:smeb": {
@@ -19,14 +19,15 @@
         "games": 106
       },
       "ratings": {
-        "overall": 79,
-        "peak": 80,
-        "international": 84,
+        "overall": 80,
+        "peak": 81,
+        "international": 86,
         "clutch": 75,
         "consistency": 94,
         "leadership": 66,
         "synergy": 85
-      }
+      },
+      "accomplishment": "worlds_semis"
     },
     "rox-2016:peanut": {
       "teamId": "rox-2016",
@@ -44,14 +45,15 @@
         "games": 106
       },
       "ratings": {
-        "overall": 81,
-        "peak": 84,
-        "international": 86,
+        "overall": 82,
+        "peak": 85,
+        "international": 88,
         "clutch": 84,
         "consistency": 94,
         "leadership": 74,
         "synergy": 91
-      }
+      },
+      "accomplishment": "worlds_semis"
     },
     "rox-2016:kuro": {
       "teamId": "rox-2016",
@@ -69,14 +71,15 @@
         "games": 94
       },
       "ratings": {
-        "overall": 86,
-        "peak": 89,
-        "international": 91,
+        "overall": 87,
+        "peak": 90,
+        "international": 93,
         "clutch": 84,
         "consistency": 94,
         "leadership": 66,
         "synergy": 86
-      }
+      },
+      "accomplishment": "worlds_semis"
     },
     "rox-2016:pray": {
       "teamId": "rox-2016",
@@ -94,14 +97,15 @@
         "games": 106
       },
       "ratings": {
-        "overall": 86,
-        "peak": 87,
-        "international": 91,
+        "overall": 87,
+        "peak": 88,
+        "international": 93,
         "clutch": 80,
         "consistency": 94,
         "leadership": 66,
         "synergy": 85
-      }
+      },
+      "accomplishment": "worlds_semis"
     },
     "rox-2016:gorilla": {
       "teamId": "rox-2016",
@@ -119,14 +123,15 @@
         "games": 106
       },
       "ratings": {
-        "overall": 77,
-        "peak": 78,
-        "international": 82,
-        "clutch": 75,
+        "overall": 82,
+        "peak": 85,
+        "international": 88,
+        "clutch": 85,
         "consistency": 94,
         "leadership": 73,
         "synergy": 86
-      }
+      },
+      "accomplishment": "worlds_semis"
     },
     "skt-2016:duke": {
       "teamId": "skt-2016",
@@ -144,14 +149,15 @@
         "games": 142
       },
       "ratings": {
-        "overall": 75,
-        "peak": 76,
-        "international": 79,
-        "clutch": 73,
+        "overall": 80,
+        "peak": 81,
+        "international": 83,
+        "clutch": 75,
         "consistency": 91,
         "leadership": 65,
         "synergy": 77
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "skt-2016:blank": {
       "teamId": "skt-2016",
@@ -169,14 +175,15 @@
         "games": 101
       },
       "ratings": {
-        "overall": 76,
-        "peak": 77,
-        "international": 80,
-        "clutch": 77,
+        "overall": 81,
+        "peak": 82,
+        "international": 84,
+        "clutch": 79,
         "consistency": 92,
         "leadership": 73,
         "synergy": 86
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "skt-2016:faker": {
       "teamId": "skt-2016",
@@ -194,14 +201,15 @@
         "games": 141
       },
       "ratings": {
-        "overall": 84,
-        "peak": 85,
-        "international": 88,
-        "clutch": 74,
+        "overall": 89,
+        "peak": 90,
+        "international": 92,
+        "clutch": 76,
         "consistency": 91,
         "leadership": 66,
         "synergy": 84
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "skt-2016:bang": {
       "teamId": "skt-2016",
@@ -219,14 +227,15 @@
         "games": 142
       },
       "ratings": {
-        "overall": 90,
-        "peak": 93,
-        "international": 94,
-        "clutch": 88,
+        "overall": 95,
+        "peak": 98,
+        "international": 96,
+        "clutch": 90,
         "consistency": 91,
         "leadership": 66,
         "synergy": 86
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "skt-2016:wolf": {
       "teamId": "skt-2016",
@@ -244,14 +253,15 @@
         "games": 142
       },
       "ratings": {
-        "overall": 77,
-        "peak": 78,
-        "international": 81,
-        "clutch": 78,
+        "overall": 86,
+        "peak": 89,
+        "international": 89,
+        "clutch": 90,
         "consistency": 91,
         "leadership": 73,
         "synergy": 84
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "ssg-2017:cuvee": {
       "teamId": "ssg-2017",
@@ -269,14 +279,15 @@
         "games": 128
       },
       "ratings": {
-        "overall": 73,
-        "peak": 74,
-        "international": 76,
-        "clutch": 66,
+        "overall": 78,
+        "peak": 79,
+        "international": 80,
+        "clutch": 68,
         "consistency": 90,
         "leadership": 64,
         "synergy": 74
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "ssg-2017:ambition": {
       "teamId": "ssg-2017",
@@ -294,14 +305,15 @@
         "games": 84
       },
       "ratings": {
-        "overall": 73,
-        "peak": 74,
-        "international": 77,
-        "clutch": 71,
+        "overall": 78,
+        "peak": 79,
+        "international": 81,
+        "clutch": 73,
         "consistency": 93,
         "leadership": 73,
         "synergy": 84
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "ssg-2017:crown": {
       "teamId": "ssg-2017",
@@ -319,14 +331,15 @@
         "games": 128
       },
       "ratings": {
-        "overall": 80,
-        "peak": 81,
-        "international": 83,
-        "clutch": 69,
+        "overall": 85,
+        "peak": 86,
+        "international": 87,
+        "clutch": 71,
         "consistency": 90,
         "leadership": 65,
         "synergy": 80
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "ssg-2017:ruler": {
       "teamId": "ssg-2017",
@@ -344,14 +357,15 @@
         "games": 118
       },
       "ratings": {
-        "overall": 84,
-        "peak": 85,
-        "international": 88,
-        "clutch": 75,
+        "overall": 89,
+        "peak": 90,
+        "international": 92,
+        "clutch": 77,
         "consistency": 92,
         "leadership": 65,
         "synergy": 81
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "ssg-2017:corejj": {
       "teamId": "ssg-2017",
@@ -369,14 +383,15 @@
         "games": 119
       },
       "ratings": {
-        "overall": 79,
-        "peak": 80,
-        "international": 83,
-        "clutch": 80,
+        "overall": 87,
+        "peak": 90,
+        "international": 90,
+        "clutch": 91,
         "consistency": 91,
         "leadership": 73,
         "synergy": 88
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "t1-2017:khan": {
       "teamId": "t1-2017",
@@ -394,14 +409,15 @@
         "games": 55
       },
       "ratings": {
-        "overall": 73,
-        "peak": 74,
-        "international": 77,
-        "clutch": 71,
+        "overall": 78,
+        "peak": 79,
+        "international": 81,
+        "clutch": 73,
         "consistency": 89,
         "leadership": 61,
         "synergy": 74
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "t1-2017:blank": {
       "teamId": "t1-2017",
@@ -419,14 +435,15 @@
         "games": 39
       },
       "ratings": {
-        "overall": 75,
-        "peak": 76,
-        "international": 80,
-        "clutch": 77,
+        "overall": 80,
+        "peak": 81,
+        "international": 84,
+        "clutch": 79,
         "consistency": 90,
         "leadership": 69,
         "synergy": 92
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "t1-2017:faker": {
       "teamId": "t1-2017",
@@ -444,14 +461,15 @@
         "games": 139
       },
       "ratings": {
-        "overall": 81,
-        "peak": 82,
-        "international": 85,
-        "clutch": 72,
+        "overall": 86,
+        "peak": 87,
+        "international": 89,
+        "clutch": 74,
         "consistency": 91,
         "leadership": 65,
         "synergy": 82
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "t1-2017:bang": {
       "teamId": "t1-2017",
@@ -469,14 +487,15 @@
         "games": 139
       },
       "ratings": {
-        "overall": 86,
-        "peak": 89,
-        "international": 90,
-        "clutch": 81,
+        "overall": 91,
+        "peak": 94,
+        "international": 94,
+        "clutch": 83,
         "consistency": 91,
         "leadership": 65,
         "synergy": 79
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "t1-2017:wolf": {
       "teamId": "t1-2017",
@@ -494,14 +513,15 @@
         "games": 139
       },
       "ratings": {
-        "overall": 76,
-        "peak": 77,
-        "international": 80,
-        "clutch": 75,
+        "overall": 85,
+        "peak": 88,
+        "international": 88,
+        "clutch": 87,
         "consistency": 91,
         "leadership": 72,
         "synergy": 83
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "we-2017:957": {
       "teamId": "we-2017",
@@ -519,14 +539,15 @@
         "games": 143
       },
       "ratings": {
-        "overall": 75,
-        "peak": 76,
-        "international": 78,
+        "overall": 76,
+        "peak": 77,
+        "international": 80,
         "clutch": 74,
         "consistency": 87,
         "leadership": 65,
         "synergy": 77
-      }
+      },
+      "accomplishment": "worlds_semis"
     },
     "we-2017:condi": {
       "teamId": "we-2017",
@@ -544,14 +565,15 @@
         "games": 143
       },
       "ratings": {
-        "overall": 75,
-        "peak": 76,
-        "international": 78,
+        "overall": 76,
+        "peak": 77,
+        "international": 80,
         "clutch": 76,
         "consistency": 87,
         "leadership": 73,
         "synergy": 89
-      }
+      },
+      "accomplishment": "worlds_semis"
     },
     "we-2017:xiye": {
       "teamId": "we-2017",
@@ -569,14 +591,15 @@
         "games": 143
       },
       "ratings": {
-        "overall": 85,
-        "peak": 86,
-        "international": 88,
+        "overall": 86,
+        "peak": 87,
+        "international": 90,
         "clutch": 80,
         "consistency": 87,
         "leadership": 66,
         "synergy": 89
-      }
+      },
+      "accomplishment": "worlds_semis"
     },
     "we-2017:mystic": {
       "teamId": "we-2017",
@@ -594,14 +617,15 @@
         "games": 143
       },
       "ratings": {
-        "overall": 88,
-        "peak": 89,
-        "international": 91,
+        "overall": 89,
+        "peak": 90,
+        "international": 93,
         "clutch": 78,
         "consistency": 87,
         "leadership": 66,
         "synergy": 89
-      }
+      },
+      "accomplishment": "worlds_semis"
     },
     "we-2017:ben": {
       "teamId": "we-2017",
@@ -619,14 +643,15 @@
         "games": 124
       },
       "ratings": {
-        "overall": 77,
-        "peak": 78,
-        "international": 80,
-        "clutch": 74,
+        "overall": 81,
+        "peak": 82,
+        "international": 85,
+        "clutch": 83,
         "consistency": 88,
         "leadership": 74,
         "synergy": 91
-      }
+      },
+      "accomplishment": "worlds_semis"
     },
     "c9-2018:licorice": {
       "teamId": "c9-2018",
@@ -644,14 +669,15 @@
         "games": 74
       },
       "ratings": {
-        "overall": 71,
-        "peak": 72,
-        "international": 72,
+        "overall": 72,
+        "peak": 73,
+        "international": 74,
         "clutch": 65,
         "consistency": 80,
         "leadership": 63,
         "synergy": 73
-      }
+      },
+      "accomplishment": "worlds_semis"
     },
     "c9-2018:blaber": {
       "teamId": "c9-2018",
@@ -669,14 +695,15 @@
         "games": 32
       },
       "ratings": {
-        "overall": 74,
-        "peak": 75,
-        "international": 79,
+        "overall": 75,
+        "peak": 76,
+        "international": 81,
         "clutch": 71,
         "consistency": 89,
         "leadership": 69,
         "synergy": 94
-      }
+      },
+      "accomplishment": "worlds_semis"
     },
     "c9-2018:jensen": {
       "teamId": "c9-2018",
@@ -694,14 +721,15 @@
         "games": 70
       },
       "ratings": {
-        "overall": 74,
-        "peak": 75,
-        "international": 75,
+        "overall": 75,
+        "peak": 76,
+        "international": 77,
         "clutch": 66,
         "consistency": 81,
         "leadership": 65,
         "synergy": 89
-      }
+      },
+      "accomplishment": "worlds_semis"
     },
     "c9-2018:sneaky": {
       "teamId": "c9-2018",
@@ -719,14 +747,15 @@
         "games": 75
       },
       "ratings": {
-        "overall": 84,
-        "peak": 85,
-        "international": 86,
+        "overall": 85,
+        "peak": 86,
+        "international": 88,
         "clutch": 74,
         "consistency": 85,
         "leadership": 65,
         "synergy": 85
-      }
+      },
+      "accomplishment": "worlds_semis"
     },
     "c9-2018:zeyzal": {
       "teamId": "c9-2018",
@@ -744,14 +773,15 @@
         "games": 74
       },
       "ratings": {
-        "overall": 74,
-        "peak": 75,
-        "international": 76,
-        "clutch": 71,
+        "overall": 78,
+        "peak": 79,
+        "international": 81,
+        "clutch": 80,
         "consistency": 85,
         "leadership": 72,
         "synergy": 87
-      }
+      },
+      "accomplishment": "worlds_semis"
     },
     "fnc-2018:bwipo": {
       "teamId": "fnc-2018",
@@ -769,14 +799,15 @@
         "games": 59
       },
       "ratings": {
-        "overall": 77,
-        "peak": 78,
-        "international": 80,
-        "clutch": 72,
+        "overall": 80,
+        "peak": 81,
+        "international": 83,
+        "clutch": 73,
         "consistency": 85,
         "leadership": 62,
         "synergy": 76
-      }
+      },
+      "accomplishment": "worlds_finalist"
     },
     "fnc-2018:broxah": {
       "teamId": "fnc-2018",
@@ -794,14 +825,15 @@
         "games": 87
       },
       "ratings": {
-        "overall": 66,
-        "peak": 67,
-        "international": 70,
-        "clutch": 58,
+        "overall": 72,
+        "peak": 73,
+        "international": 73,
+        "clutch": 59,
         "consistency": 91,
         "leadership": 72,
         "synergy": 83
-      }
+      },
+      "accomplishment": "worlds_finalist"
     },
     "fnc-2018:caps": {
       "teamId": "fnc-2018",
@@ -819,14 +851,15 @@
         "games": 87
       },
       "ratings": {
-        "overall": 80,
-        "peak": 81,
-        "international": 84,
-        "clutch": 58,
+        "overall": 83,
+        "peak": 84,
+        "international": 87,
+        "clutch": 59,
         "consistency": 91,
         "leadership": 65,
         "synergy": 83
-      }
+      },
+      "accomplishment": "worlds_finalist"
     },
     "fnc-2018:rekkles": {
       "teamId": "fnc-2018",
@@ -844,14 +877,15 @@
         "games": 69
       },
       "ratings": {
-        "overall": 91,
-        "peak": 94,
-        "international": 94,
-        "clutch": 89,
+        "overall": 94,
+        "peak": 97,
+        "international": 96,
+        "clutch": 90,
         "consistency": 87,
         "leadership": 65,
         "synergy": 87
-      }
+      },
+      "accomplishment": "worlds_finalist"
     },
     "fnc-2018:hylissang": {
       "teamId": "fnc-2018",
@@ -869,14 +903,15 @@
         "games": 87
       },
       "ratings": {
-        "overall": 71,
-        "peak": 72,
-        "international": 75,
-        "clutch": 66,
+        "overall": 77,
+        "peak": 78,
+        "international": 81,
+        "clutch": 74,
         "consistency": 91,
         "leadership": 72,
         "synergy": 80
-      }
+      },
+      "accomplishment": "worlds_finalist"
     },
     "ig-2018:theshy": {
       "teamId": "ig-2018",
@@ -894,14 +929,15 @@
         "games": 73
       },
       "ratings": {
-        "overall": 73,
-        "peak": 74,
-        "international": 78,
-        "clutch": 65,
+        "overall": 78,
+        "peak": 79,
+        "international": 82,
+        "clutch": 67,
         "consistency": 94,
         "leadership": 62,
         "synergy": 67
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "ig-2018:ning": {
       "teamId": "ig-2018",
@@ -919,14 +955,15 @@
         "games": 130
       },
       "ratings": {
-        "overall": 75,
-        "peak": 76,
-        "international": 80,
-        "clutch": 73,
+        "overall": 80,
+        "peak": 81,
+        "international": 84,
+        "clutch": 75,
         "consistency": 94,
         "leadership": 73,
         "synergy": 87
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "ig-2018:rookie": {
       "teamId": "ig-2018",
@@ -944,14 +981,15 @@
         "games": 131
       },
       "ratings": {
-        "overall": 88,
-        "peak": 89,
-        "international": 93,
-        "clutch": 83,
+        "overall": 93,
+        "peak": 94,
+        "international": 96,
+        "clutch": 85,
         "consistency": 94,
         "leadership": 67,
         "synergy": 91
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "ig-2018:jackeylove": {
       "teamId": "ig-2018",
@@ -969,14 +1007,15 @@
         "games": 128
       },
       "ratings": {
-        "overall": 70,
-        "peak": 71,
-        "international": 75,
-        "clutch": 69,
+        "overall": 75,
+        "peak": 76,
+        "international": 79,
+        "clutch": 71,
         "consistency": 94,
         "leadership": 63,
         "synergy": 71
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "ig-2018:baolan": {
       "teamId": "ig-2018",
@@ -994,14 +1033,15 @@
         "games": 130
       },
       "ratings": {
-        "overall": 78,
-        "peak": 79,
-        "international": 83,
-        "clutch": 78,
+        "overall": 86,
+        "peak": 89,
+        "international": 90,
+        "clutch": 90,
         "consistency": 94,
         "leadership": 73,
         "synergy": 85
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "kt-2018:smeb": {
       "teamId": "kt-2018",
@@ -1026,7 +1066,8 @@
         "consistency": 89,
         "leadership": 65,
         "synergy": 80
-      }
+      },
+      "accomplishment": "domestic"
     },
     "kt-2018:score": {
       "teamId": "kt-2018",
@@ -1051,7 +1092,8 @@
         "consistency": 89,
         "leadership": 74,
         "synergy": 91
-      }
+      },
+      "accomplishment": "domestic"
     },
     "kt-2018:bdd": {
       "teamId": "kt-2018",
@@ -1076,7 +1118,8 @@
         "consistency": 87,
         "leadership": 64,
         "synergy": 74
-      }
+      },
+      "accomplishment": "domestic"
     },
     "kt-2018:deft": {
       "teamId": "kt-2018",
@@ -1101,7 +1144,8 @@
         "consistency": 88,
         "leadership": 65,
         "synergy": 81
-      }
+      },
+      "accomplishment": "domestic"
     },
     "kt-2018:mata": {
       "teamId": "kt-2018",
@@ -1119,14 +1163,15 @@
         "games": 124
       },
       "ratings": {
-        "overall": 76,
-        "peak": 77,
-        "international": 79,
-        "clutch": 76,
+        "overall": 80,
+        "peak": 83,
+        "international": 83,
+        "clutch": 86,
         "consistency": 88,
         "leadership": 73,
         "synergy": 85
-      }
+      },
+      "accomplishment": "domestic"
     },
     "rng-2018:letme": {
       "teamId": "rng-2018",
@@ -1144,14 +1189,15 @@
         "games": 110
       },
       "ratings": {
-        "overall": 74,
-        "peak": 75,
-        "international": 77,
-        "clutch": 72,
+        "overall": 76,
+        "peak": 77,
+        "international": 79,
+        "clutch": 73,
         "consistency": 87,
         "leadership": 64,
         "synergy": 73
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "rng-2018:mlxg": {
       "teamId": "rng-2018",
@@ -1169,14 +1215,15 @@
         "games": 68
       },
       "ratings": {
-        "overall": 75,
-        "peak": 76,
-        "international": 78,
-        "clutch": 76,
+        "overall": 77,
+        "peak": 78,
+        "international": 80,
+        "clutch": 77,
         "consistency": 86,
         "leadership": 72,
         "synergy": 91
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "rng-2018:xiaohu": {
       "teamId": "rng-2018",
@@ -1194,14 +1241,15 @@
         "games": 154
       },
       "ratings": {
-        "overall": 77,
-        "peak": 78,
-        "international": 80,
-        "clutch": 64,
+        "overall": 79,
+        "peak": 80,
+        "international": 82,
+        "clutch": 65,
         "consistency": 88,
         "leadership": 65,
         "synergy": 81
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "rng-2018:uzi": {
       "teamId": "rng-2018",
@@ -1219,14 +1267,15 @@
         "games": 114
       },
       "ratings": {
-        "overall": 91,
-        "peak": 94,
-        "international": 94,
-        "clutch": 84,
+        "overall": 93,
+        "peak": 96,
+        "international": 96,
+        "clutch": 85,
         "consistency": 90,
         "leadership": 66,
         "synergy": 88
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "rng-2018:ming": {
       "teamId": "rng-2018",
@@ -1244,14 +1293,15 @@
         "games": 154
       },
       "ratings": {
-        "overall": 77,
-        "peak": 78,
-        "international": 80,
-        "clutch": 77,
+        "overall": 83,
+        "peak": 86,
+        "international": 86,
+        "clutch": 88,
         "consistency": 88,
         "leadership": 73,
         "synergy": 89
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "cg-2019:huni": {
       "teamId": "cg-2019",
@@ -1276,7 +1326,8 @@
         "consistency": 70,
         "leadership": 64,
         "synergy": 74
-      }
+      },
+      "accomplishment": "standard"
     },
     "cg-2019:lira": {
       "teamId": "cg-2019",
@@ -1301,7 +1352,8 @@
         "consistency": 70,
         "leadership": 72,
         "synergy": 82
-      }
+      },
+      "accomplishment": "standard"
     },
     "cg-2019:damonte": {
       "teamId": "cg-2019",
@@ -1326,7 +1378,8 @@
         "consistency": 71,
         "leadership": 64,
         "synergy": 75
-      }
+      },
+      "accomplishment": "standard"
     },
     "cg-2019:codysun": {
       "teamId": "cg-2019",
@@ -1351,7 +1404,8 @@
         "consistency": 68,
         "leadership": 65,
         "synergy": 79
-      }
+      },
+      "accomplishment": "standard"
     },
     "cg-2019:vulcan": {
       "teamId": "cg-2019",
@@ -1369,14 +1423,15 @@
         "games": 77
       },
       "ratings": {
-        "overall": 70,
-        "peak": 71,
-        "international": 68,
-        "clutch": 66,
+        "overall": 73,
+        "peak": 74,
+        "international": 71,
+        "clutch": 73,
         "consistency": 70,
         "leadership": 73,
         "synergy": 85
-      }
+      },
+      "accomplishment": "standard"
     },
     "clg-2019:ruin": {
       "teamId": "clg-2019",
@@ -1401,7 +1456,8 @@
         "consistency": 89,
         "leadership": 62,
         "synergy": 69
-      }
+      },
+      "accomplishment": "standard"
     },
     "clg-2019:griffin": {
       "teamId": "clg-2019",
@@ -1426,7 +1482,8 @@
         "consistency": 73,
         "leadership": 70,
         "synergy": 85
-      }
+      },
+      "accomplishment": "standard"
     },
     "clg-2019:powerofevil": {
       "teamId": "clg-2019",
@@ -1451,7 +1508,8 @@
         "consistency": 71,
         "leadership": 63,
         "synergy": 84
-      }
+      },
+      "accomplishment": "standard"
     },
     "clg-2019:stixxay": {
       "teamId": "clg-2019",
@@ -1476,7 +1534,8 @@
         "consistency": 74,
         "leadership": 62,
         "synergy": 74
-      }
+      },
+      "accomplishment": "standard"
     },
     "clg-2019:biofrost": {
       "teamId": "clg-2019",
@@ -1494,14 +1553,15 @@
         "games": 53
       },
       "ratings": {
-        "overall": 71,
-        "peak": 72,
-        "international": 70,
-        "clutch": 70,
+        "overall": 74,
+        "peak": 75,
+        "international": 73,
+        "clutch": 79,
         "consistency": 71,
         "leadership": 70,
         "synergy": 82
-      }
+      },
+      "accomplishment": "standard"
     },
     "fpx-2019:gimgoon": {
       "teamId": "fpx-2019",
@@ -1519,14 +1579,15 @@
         "games": 110
       },
       "ratings": {
-        "overall": 76,
-        "peak": 77,
-        "international": 81,
-        "clutch": 75,
+        "overall": 81,
+        "peak": 82,
+        "international": 85,
+        "clutch": 77,
         "consistency": 94,
         "leadership": 63,
         "synergy": 69
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "fpx-2019:tian": {
       "teamId": "fpx-2019",
@@ -1544,14 +1605,15 @@
         "games": 109
       },
       "ratings": {
-        "overall": 77,
-        "peak": 80,
-        "international": 82,
-        "clutch": 83,
+        "overall": 82,
+        "peak": 85,
+        "international": 86,
+        "clutch": 85,
         "consistency": 94,
         "leadership": 69,
         "synergy": 62
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "fpx-2019:doinb": {
       "teamId": "fpx-2019",
@@ -1569,14 +1631,15 @@
         "games": 110
       },
       "ratings": {
-        "overall": 83,
-        "peak": 86,
-        "international": 88,
-        "clutch": 90,
+        "overall": 88,
+        "peak": 91,
+        "international": 92,
+        "clutch": 92,
         "consistency": 94,
         "leadership": 67,
         "synergy": 94
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "fpx-2019:lwx": {
       "teamId": "fpx-2019",
@@ -1594,14 +1657,15 @@
         "games": 110
       },
       "ratings": {
-        "overall": 86,
-        "peak": 89,
-        "international": 91,
-        "clutch": 82,
+        "overall": 91,
+        "peak": 94,
+        "international": 95,
+        "clutch": 84,
         "consistency": 94,
         "leadership": 65,
         "synergy": 80
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "fpx-2019:crisp": {
       "teamId": "fpx-2019",
@@ -1619,14 +1683,15 @@
         "games": 110
       },
       "ratings": {
-        "overall": 77,
-        "peak": 78,
-        "international": 82,
-        "clutch": 76,
+        "overall": 86,
+        "peak": 89,
+        "international": 90,
+        "clutch": 89,
         "consistency": 94,
         "leadership": 72,
         "synergy": 83
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "g2-2019:wunder": {
       "teamId": "g2-2019",
@@ -1644,14 +1709,15 @@
         "games": 92
       },
       "ratings": {
-        "overall": 70,
-        "peak": 71,
-        "international": 74,
-        "clutch": 63,
+        "overall": 73,
+        "peak": 74,
+        "international": 77,
+        "clutch": 64,
         "consistency": 91,
         "leadership": 62,
         "synergy": 61
-      }
+      },
+      "accomplishment": "worlds_finalist"
     },
     "g2-2019:jankos": {
       "teamId": "g2-2019",
@@ -1669,14 +1735,15 @@
         "games": 92
       },
       "ratings": {
-        "overall": 74,
-        "peak": 75,
-        "international": 78,
-        "clutch": 73,
+        "overall": 77,
+        "peak": 78,
+        "international": 81,
+        "clutch": 74,
         "consistency": 91,
         "leadership": 72,
         "synergy": 81
-      }
+      },
+      "accomplishment": "worlds_finalist"
     },
     "g2-2019:caps": {
       "teamId": "g2-2019",
@@ -1694,14 +1761,15 @@
         "games": 92
       },
       "ratings": {
-        "overall": 73,
-        "peak": 74,
-        "international": 77,
-        "clutch": 60,
+        "overall": 76,
+        "peak": 77,
+        "international": 80,
+        "clutch": 61,
         "consistency": 91,
         "leadership": 61,
         "synergy": 55
-      }
+      },
+      "accomplishment": "worlds_finalist"
     },
     "g2-2019:perkz": {
       "teamId": "g2-2019",
@@ -1719,14 +1787,15 @@
         "games": 92
       },
       "ratings": {
-        "overall": 76,
-        "peak": 79,
-        "international": 80,
-        "clutch": 86,
+        "overall": 79,
+        "peak": 82,
+        "international": 83,
+        "clutch": 87,
         "consistency": 91,
         "leadership": 64,
         "synergy": 76
-      }
+      },
+      "accomplishment": "worlds_finalist"
     },
     "g2-2019:mikyx": {
       "teamId": "g2-2019",
@@ -1744,14 +1813,15 @@
         "games": 90
       },
       "ratings": {
-        "overall": 68,
-        "peak": 69,
-        "international": 72,
-        "clutch": 65,
+        "overall": 74,
+        "peak": 75,
+        "international": 78,
+        "clutch": 75,
         "consistency": 92,
         "leadership": 69,
         "synergy": 63
-      }
+      },
+      "accomplishment": "worlds_finalist"
     },
     "gg-2019:hauntzer": {
       "teamId": "gg-2019",
@@ -1776,7 +1846,8 @@
         "consistency": 63,
         "leadership": 60,
         "synergy": 69
-      }
+      },
+      "accomplishment": "standard"
     },
     "gg-2019:contractz": {
       "teamId": "gg-2019",
@@ -1801,7 +1872,8 @@
         "consistency": 63,
         "leadership": 68,
         "synergy": 79
-      }
+      },
+      "accomplishment": "standard"
     },
     "gg-2019:froggen": {
       "teamId": "gg-2019",
@@ -1826,7 +1898,8 @@
         "consistency": 63,
         "leadership": 62,
         "synergy": 83
-      }
+      },
+      "accomplishment": "standard"
     },
     "gg-2019:fbi": {
       "teamId": "gg-2019",
@@ -1851,7 +1924,8 @@
         "consistency": 85,
         "leadership": 63,
         "synergy": 92
-      }
+      },
+      "accomplishment": "standard"
     },
     "gg-2019:huhi": {
       "teamId": "gg-2019",
@@ -1869,14 +1943,15 @@
         "games": 37
       },
       "ratings": {
-        "overall": 69,
-        "peak": 70,
-        "international": 66,
-        "clutch": 66,
+        "overall": 72,
+        "peak": 73,
+        "international": 69,
+        "clutch": 73,
         "consistency": 61,
         "leadership": 69,
         "synergy": 89
-      }
+      },
+      "accomplishment": "standard"
     },
     "griffin-2019:sword": {
       "teamId": "griffin-2019",
@@ -1894,14 +1969,15 @@
         "games": 0
       },
       "ratings": {
-        "overall": 64,
-        "peak": 65,
+        "overall": 65,
+        "peak": 66,
         "international": 63,
         "clutch": 60,
         "consistency": 64,
         "leadership": 56,
         "synergy": 71
-      }
+      },
+      "accomplishment": "domestic"
     },
     "griffin-2019:tarzan": {
       "teamId": "griffin-2019",
@@ -1926,7 +2002,8 @@
         "consistency": 92,
         "leadership": 73,
         "synergy": 90
-      }
+      },
+      "accomplishment": "domestic"
     },
     "griffin-2019:chovy": {
       "teamId": "griffin-2019",
@@ -1951,7 +2028,8 @@
         "consistency": 92,
         "leadership": 64,
         "synergy": 75
-      }
+      },
+      "accomplishment": "domestic"
     },
     "griffin-2019:viper": {
       "teamId": "griffin-2019",
@@ -1976,7 +2054,8 @@
         "consistency": 92,
         "leadership": 65,
         "synergy": 80
-      }
+      },
+      "accomplishment": "domestic"
     },
     "griffin-2019:lehends": {
       "teamId": "griffin-2019",
@@ -2001,7 +2080,8 @@
         "consistency": 92,
         "leadership": 73,
         "synergy": 85
-      }
+      },
+      "accomplishment": "domestic"
     },
     "tl-2019:impact": {
       "teamId": "tl-2019",
@@ -2019,14 +2099,15 @@
         "games": 84
       },
       "ratings": {
-        "overall": 73,
-        "peak": 74,
-        "international": 76,
+        "overall": 74,
+        "peak": 75,
+        "international": 77,
         "clutch": 66,
         "consistency": 89,
         "leadership": 64,
         "synergy": 71
-      }
+      },
+      "accomplishment": "msi_finalist"
     },
     "tl-2019:xmithie": {
       "teamId": "tl-2019",
@@ -2044,14 +2125,15 @@
         "games": 84
       },
       "ratings": {
-        "overall": 73,
-        "peak": 74,
-        "international": 76,
+        "overall": 74,
+        "peak": 75,
+        "international": 77,
         "clutch": 72,
         "consistency": 89,
         "leadership": 73,
         "synergy": 86
-      }
+      },
+      "accomplishment": "msi_finalist"
     },
     "tl-2019:jensen": {
       "teamId": "tl-2019",
@@ -2069,14 +2151,15 @@
         "games": 84
       },
       "ratings": {
-        "overall": 82,
-        "peak": 83,
-        "international": 85,
+        "overall": 83,
+        "peak": 84,
+        "international": 86,
         "clutch": 75,
         "consistency": 89,
         "leadership": 65,
         "synergy": 81
-      }
+      },
+      "accomplishment": "msi_finalist"
     },
     "tl-2019:doublelift": {
       "teamId": "tl-2019",
@@ -2094,14 +2177,15 @@
         "games": 84
       },
       "ratings": {
-        "overall": 87,
-        "peak": 88,
-        "international": 90,
+        "overall": 88,
+        "peak": 89,
+        "international": 91,
         "clutch": 80,
         "consistency": 89,
         "leadership": 66,
         "synergy": 87
-      }
+      },
+      "accomplishment": "msi_finalist"
     },
     "tl-2019:corejj": {
       "teamId": "tl-2019",
@@ -2119,14 +2203,15 @@
         "games": 84
       },
       "ratings": {
-        "overall": 77,
-        "peak": 78,
-        "international": 80,
-        "clutch": 76,
+        "overall": 82,
+        "peak": 85,
+        "international": 85,
+        "clutch": 87,
         "consistency": 89,
         "leadership": 73,
         "synergy": 89
-      }
+      },
+      "accomplishment": "msi_finalist"
     },
     "clg-2020:ruin": {
       "teamId": "clg-2020",
@@ -2151,7 +2236,8 @@
         "consistency": 54,
         "leadership": 61,
         "synergy": 80
-      }
+      },
+      "accomplishment": "standard"
     },
     "clg-2020:fragas": {
       "teamId": "clg-2020",
@@ -2176,7 +2262,8 @@
         "consistency": 55,
         "leadership": 66,
         "synergy": 64
-      }
+      },
+      "accomplishment": "standard"
     },
     "clg-2020:pobelter": {
       "teamId": "clg-2020",
@@ -2201,7 +2288,8 @@
         "consistency": 53,
         "leadership": 60,
         "synergy": 82
-      }
+      },
+      "accomplishment": "standard"
     },
     "clg-2020:stixxay": {
       "teamId": "clg-2020",
@@ -2226,7 +2314,8 @@
         "consistency": 55,
         "leadership": 61,
         "synergy": 75
-      }
+      },
+      "accomplishment": "standard"
     },
     "clg-2020:smoothie": {
       "teamId": "clg-2020",
@@ -2244,14 +2333,15 @@
         "games": 37
       },
       "ratings": {
-        "overall": 65,
-        "peak": 66,
-        "international": 60,
-        "clutch": 63,
+        "overall": 67,
+        "peak": 68,
+        "international": 62,
+        "clutch": 69,
         "consistency": 54,
         "leadership": 68,
         "synergy": 81
-      }
+      },
+      "accomplishment": "standard"
     },
     "dk-2020:nuguri": {
       "teamId": "dk-2020",
@@ -2269,14 +2359,15 @@
         "games": 115
       },
       "ratings": {
-        "overall": 75,
-        "peak": 76,
-        "international": 78,
-        "clutch": 66,
+        "overall": 80,
+        "peak": 81,
+        "international": 82,
+        "clutch": 68,
         "consistency": 90,
         "leadership": 64,
         "synergy": 75
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "dk-2020:canyon": {
       "teamId": "dk-2020",
@@ -2294,14 +2385,15 @@
         "games": 115
       },
       "ratings": {
-        "overall": 75,
-        "peak": 76,
-        "international": 78,
-        "clutch": 76,
+        "overall": 80,
+        "peak": 81,
+        "international": 82,
+        "clutch": 78,
         "consistency": 90,
         "leadership": 73,
         "synergy": 85
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "dk-2020:showmaker": {
       "teamId": "dk-2020",
@@ -2319,14 +2411,15 @@
         "games": 115
       },
       "ratings": {
-        "overall": 87,
-        "peak": 90,
-        "international": 90,
-        "clutch": 88,
+        "overall": 92,
+        "peak": 95,
+        "international": 94,
+        "clutch": 90,
         "consistency": 90,
         "leadership": 66,
         "synergy": 85
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "dk-2020:ghost": {
       "teamId": "dk-2020",
@@ -2344,14 +2437,15 @@
         "games": 87
       },
       "ratings": {
-        "overall": 82,
-        "peak": 85,
-        "international": 87,
-        "clutch": 90,
+        "overall": 87,
+        "peak": 90,
+        "international": 91,
+        "clutch": 92,
         "consistency": 94,
         "leadership": 67,
         "synergy": 94
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "dk-2020:beryl": {
       "teamId": "dk-2020",
@@ -2369,14 +2463,15 @@
         "games": 102
       },
       "ratings": {
-        "overall": 82,
-        "peak": 85,
-        "international": 86,
-        "clutch": 83,
+        "overall": 89,
+        "peak": 92,
+        "international": 92,
+        "clutch": 90,
         "consistency": 93,
         "leadership": 73,
         "synergy": 86
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "eg-2020:huni": {
       "teamId": "eg-2020",
@@ -2401,7 +2496,8 @@
         "consistency": 65,
         "leadership": 62,
         "synergy": 81
-      }
+      },
+      "accomplishment": "standard"
     },
     "eg-2020:svenskeren": {
       "teamId": "eg-2020",
@@ -2426,7 +2522,8 @@
         "consistency": 68,
         "leadership": 71,
         "synergy": 83
-      }
+      },
+      "accomplishment": "standard"
     },
     "eg-2020:goldenglue": {
       "teamId": "eg-2020",
@@ -2451,7 +2548,8 @@
         "consistency": 60,
         "leadership": 62,
         "synergy": 83
-      }
+      },
+      "accomplishment": "standard"
     },
     "eg-2020:bang": {
       "teamId": "eg-2020",
@@ -2476,7 +2574,8 @@
         "consistency": 69,
         "leadership": 65,
         "synergy": 90
-      }
+      },
+      "accomplishment": "standard"
     },
     "eg-2020:zeyzal": {
       "teamId": "eg-2020",
@@ -2494,14 +2593,15 @@
         "games": 60
       },
       "ratings": {
-        "overall": 73,
-        "peak": 74,
-        "international": 71,
-        "clutch": 74,
+        "overall": 77,
+        "peak": 80,
+        "international": 75,
+        "clutch": 84,
         "consistency": 69,
         "leadership": 70,
         "synergy": 80
-      }
+      },
+      "accomplishment": "standard"
     },
     "excel-2020:kryze": {
       "teamId": "excel-2020",
@@ -2526,7 +2626,8 @@
         "consistency": 73,
         "leadership": 59,
         "synergy": 69
-      }
+      },
+      "accomplishment": "standard"
     },
     "excel-2020:caedrel": {
       "teamId": "excel-2020",
@@ -2551,7 +2652,8 @@
         "consistency": 60,
         "leadership": 67,
         "synergy": 75
-      }
+      },
+      "accomplishment": "standard"
     },
     "excel-2020:special": {
       "teamId": "excel-2020",
@@ -2576,7 +2678,8 @@
         "consistency": 61,
         "leadership": 59,
         "synergy": 76
-      }
+      },
+      "accomplishment": "standard"
     },
     "excel-2020:patrik": {
       "teamId": "excel-2020",
@@ -2601,7 +2704,8 @@
         "consistency": 60,
         "leadership": 56,
         "synergy": 51
-      }
+      },
+      "accomplishment": "standard"
     },
     "excel-2020:tore": {
       "teamId": "excel-2020",
@@ -2626,7 +2730,8 @@
         "consistency": 60,
         "leadership": 66,
         "synergy": 70
-      }
+      },
+      "accomplishment": "standard"
     },
     "fnc-2020:bwipo": {
       "teamId": "fnc-2020",
@@ -2651,7 +2756,8 @@
         "consistency": 80,
         "leadership": 62,
         "synergy": 66
-      }
+      },
+      "accomplishment": "standard"
     },
     "fnc-2020:selfmade": {
       "teamId": "fnc-2020",
@@ -2676,7 +2782,8 @@
         "consistency": 80,
         "leadership": 72,
         "synergy": 84
-      }
+      },
+      "accomplishment": "standard"
     },
     "fnc-2020:nemesis": {
       "teamId": "fnc-2020",
@@ -2701,7 +2808,8 @@
         "consistency": 80,
         "leadership": 62,
         "synergy": 68
-      }
+      },
+      "accomplishment": "standard"
     },
     "fnc-2020:rekkles": {
       "teamId": "fnc-2020",
@@ -2726,7 +2834,8 @@
         "consistency": 80,
         "leadership": 66,
         "synergy": 92
-      }
+      },
+      "accomplishment": "standard"
     },
     "fnc-2020:hylissang": {
       "teamId": "fnc-2020",
@@ -2744,14 +2853,15 @@
         "games": 68
       },
       "ratings": {
-        "overall": 64,
-        "peak": 65,
-        "international": 65,
-        "clutch": 58,
+        "overall": 67,
+        "peak": 68,
+        "international": 68,
+        "clutch": 64,
         "consistency": 80,
         "leadership": 68,
         "synergy": 64
-      }
+      },
+      "accomplishment": "standard"
     },
     "immortals-2020:allorim": {
       "teamId": "immortals-2020",
@@ -2776,7 +2886,8 @@
         "consistency": 56,
         "leadership": 59,
         "synergy": 68
-      }
+      },
+      "accomplishment": "standard"
     },
     "immortals-2020:xmithie": {
       "teamId": "immortals-2020",
@@ -2801,7 +2912,8 @@
         "consistency": 57,
         "leadership": 69,
         "synergy": 84
-      }
+      },
+      "accomplishment": "standard"
     },
     "immortals-2020:insanity": {
       "teamId": "immortals-2020",
@@ -2826,7 +2938,8 @@
         "consistency": 56,
         "leadership": 62,
         "synergy": 88
-      }
+      },
+      "accomplishment": "standard"
     },
     "immortals-2020:apollo": {
       "teamId": "immortals-2020",
@@ -2851,7 +2964,8 @@
         "consistency": 60,
         "leadership": 62,
         "synergy": 84
-      }
+      },
+      "accomplishment": "standard"
     },
     "immortals-2020:hakuho": {
       "teamId": "immortals-2020",
@@ -2869,14 +2983,15 @@
         "games": 39
       },
       "ratings": {
-        "overall": 66,
-        "peak": 67,
-        "international": 62,
-        "clutch": 64,
+        "overall": 68,
+        "peak": 69,
+        "international": 64,
+        "clutch": 70,
         "consistency": 57,
         "leadership": 68,
         "synergy": 81
-      }
+      },
+      "accomplishment": "standard"
     },
     "misfits-2020:dandan": {
       "teamId": "misfits-2020",
@@ -2901,7 +3016,8 @@
         "consistency": 63,
         "leadership": 60,
         "synergy": 71
-      }
+      },
+      "accomplishment": "standard"
     },
     "misfits-2020:razork": {
       "teamId": "misfits-2020",
@@ -2926,7 +3042,8 @@
         "consistency": 63,
         "leadership": 69,
         "synergy": 84
-      }
+      },
+      "accomplishment": "standard"
     },
     "misfits-2020:febiven": {
       "teamId": "misfits-2020",
@@ -2951,7 +3068,8 @@
         "consistency": 63,
         "leadership": 60,
         "synergy": 76
-      }
+      },
+      "accomplishment": "standard"
     },
     "misfits-2020:kobbe": {
       "teamId": "misfits-2020",
@@ -2976,7 +3094,8 @@
         "consistency": 65,
         "leadership": 61,
         "synergy": 76
-      }
+      },
+      "accomplishment": "standard"
     },
     "misfits-2020:denyk": {
       "teamId": "misfits-2020",
@@ -2994,14 +3113,15 @@
         "games": 27
       },
       "ratings": {
-        "overall": 66,
-        "peak": 67,
-        "international": 64,
-        "clutch": 65,
+        "overall": 69,
+        "peak": 70,
+        "international": 67,
+        "clutch": 73,
         "consistency": 64,
         "leadership": 66,
         "synergy": 78
-      }
+      },
+      "accomplishment": "standard"
     },
     "sn-2020:bin": {
       "teamId": "sn-2020",
@@ -3019,14 +3139,15 @@
         "games": 97
       },
       "ratings": {
-        "overall": 70,
-        "peak": 71,
-        "international": 70,
-        "clutch": 61,
+        "overall": 73,
+        "peak": 74,
+        "international": 73,
+        "clutch": 62,
         "consistency": 80,
         "leadership": 64,
         "synergy": 70
-      }
+      },
+      "accomplishment": "worlds_finalist"
     },
     "sn-2020:sofm": {
       "teamId": "sn-2020",
@@ -3044,14 +3165,15 @@
         "games": 119
       },
       "ratings": {
-        "overall": 72,
-        "peak": 73,
-        "international": 72,
-        "clutch": 71,
+        "overall": 75,
+        "peak": 76,
+        "international": 75,
+        "clutch": 72,
         "consistency": 78,
         "leadership": 73,
         "synergy": 85
-      }
+      },
+      "accomplishment": "worlds_finalist"
     },
     "sn-2020:angel": {
       "teamId": "sn-2020",
@@ -3069,14 +3191,15 @@
         "games": 119
       },
       "ratings": {
-        "overall": 81,
-        "peak": 82,
-        "international": 81,
-        "clutch": 76,
+        "overall": 84,
+        "peak": 85,
+        "international": 84,
+        "clutch": 77,
         "consistency": 78,
         "leadership": 66,
         "synergy": 84
-      }
+      },
+      "accomplishment": "worlds_finalist"
     },
     "sn-2020:huanfeng": {
       "teamId": "sn-2020",
@@ -3094,14 +3217,15 @@
         "games": 113
       },
       "ratings": {
-        "overall": 84,
-        "peak": 85,
-        "international": 85,
-        "clutch": 75,
+        "overall": 87,
+        "peak": 88,
+        "international": 88,
+        "clutch": 76,
         "consistency": 80,
         "leadership": 66,
         "synergy": 83
-      }
+      },
+      "accomplishment": "worlds_finalist"
     },
     "sn-2020:swordart": {
       "teamId": "sn-2020",
@@ -3119,14 +3243,15 @@
         "games": 119
       },
       "ratings": {
-        "overall": 70,
-        "peak": 71,
-        "international": 70,
-        "clutch": 65,
+        "overall": 76,
+        "peak": 77,
+        "international": 76,
+        "clutch": 74,
         "consistency": 78,
         "leadership": 72,
         "synergy": 80
-      }
+      },
+      "accomplishment": "worlds_finalist"
     },
     "tes-2020:369": {
       "teamId": "tes-2020",
@@ -3144,14 +3269,15 @@
         "games": 129
       },
       "ratings": {
-        "overall": 73,
-        "peak": 74,
-        "international": 76,
+        "overall": 74,
+        "peak": 75,
+        "international": 78,
         "clutch": 67,
         "consistency": 89,
         "leadership": 63,
         "synergy": 70
-      }
+      },
+      "accomplishment": "worlds_semis"
     },
     "tes-2020:karsa": {
       "teamId": "tes-2020",
@@ -3169,14 +3295,15 @@
         "games": 129
       },
       "ratings": {
-        "overall": 72,
-        "peak": 73,
-        "international": 75,
+        "overall": 73,
+        "peak": 74,
+        "international": 77,
         "clutch": 72,
         "consistency": 89,
         "leadership": 72,
         "synergy": 81
-      }
+      },
+      "accomplishment": "worlds_semis"
     },
     "tes-2020:knight": {
       "teamId": "tes-2020",
@@ -3194,14 +3321,15 @@
         "games": 129
       },
       "ratings": {
-        "overall": 89,
-        "peak": 92,
-        "international": 92,
+        "overall": 90,
+        "peak": 93,
+        "international": 94,
         "clutch": 86,
         "consistency": 89,
         "leadership": 67,
         "synergy": 90
-      }
+      },
+      "accomplishment": "worlds_semis"
     },
     "tes-2020:jackeylove": {
       "teamId": "tes-2020",
@@ -3219,14 +3347,15 @@
         "games": 87
       },
       "ratings": {
-        "overall": 85,
-        "peak": 86,
-        "international": 89,
+        "overall": 86,
+        "peak": 87,
+        "international": 91,
         "clutch": 73,
         "consistency": 93,
         "leadership": 66,
         "synergy": 84
-      }
+      },
+      "accomplishment": "worlds_semis"
     },
     "tes-2020:yuyanjia": {
       "teamId": "tes-2020",
@@ -3244,14 +3373,15 @@
         "games": 98
       },
       "ratings": {
-        "overall": 73,
-        "peak": 74,
-        "international": 76,
-        "clutch": 71,
+        "overall": 78,
+        "peak": 79,
+        "international": 82,
+        "clutch": 81,
         "consistency": 90,
         "leadership": 72,
         "synergy": 80
-      }
+      },
+      "accomplishment": "worlds_semis"
     },
     "tsm-2020:brokenblade": {
       "teamId": "tsm-2020",
@@ -3276,7 +3406,8 @@
         "consistency": 76,
         "leadership": 64,
         "synergy": 76
-      }
+      },
+      "accomplishment": "standard"
     },
     "tsm-2020:spica": {
       "teamId": "tsm-2020",
@@ -3301,7 +3432,8 @@
         "consistency": 78,
         "leadership": 73,
         "synergy": 87
-      }
+      },
+      "accomplishment": "standard"
     },
     "tsm-2020:bjergsen": {
       "teamId": "tsm-2020",
@@ -3326,7 +3458,8 @@
         "consistency": 76,
         "leadership": 65,
         "synergy": 82
-      }
+      },
+      "accomplishment": "standard"
     },
     "tsm-2020:doublelift": {
       "teamId": "tsm-2020",
@@ -3351,7 +3484,8 @@
         "consistency": 71,
         "leadership": 63,
         "synergy": 78
-      }
+      },
+      "accomplishment": "standard"
     },
     "tsm-2020:biofrost": {
       "teamId": "tsm-2020",
@@ -3369,14 +3503,15 @@
         "games": 71
       },
       "ratings": {
-        "overall": 70,
-        "peak": 71,
-        "international": 69,
-        "clutch": 68,
+        "overall": 73,
+        "peak": 74,
+        "international": 72,
+        "clutch": 77,
         "consistency": 73,
         "leadership": 71,
         "synergy": 78
-      }
+      },
+      "accomplishment": "standard"
     },
     "100t-2021:ssumday": {
       "teamId": "100t-2021",
@@ -3401,7 +3536,8 @@
         "consistency": 84,
         "leadership": 63,
         "synergy": 69
-      }
+      },
+      "accomplishment": "standard"
     },
     "100t-2021:closer": {
       "teamId": "100t-2021",
@@ -3426,7 +3562,8 @@
         "consistency": 84,
         "leadership": 73,
         "synergy": 87
-      }
+      },
+      "accomplishment": "standard"
     },
     "100t-2021:abbedagge": {
       "teamId": "100t-2021",
@@ -3451,7 +3588,8 @@
         "consistency": 82,
         "leadership": 66,
         "synergy": 83
-      }
+      },
+      "accomplishment": "standard"
     },
     "100t-2021:fbi": {
       "teamId": "100t-2021",
@@ -3476,7 +3614,8 @@
         "consistency": 84,
         "leadership": 67,
         "synergy": 92
-      }
+      },
+      "accomplishment": "standard"
     },
     "100t-2021:huhi": {
       "teamId": "100t-2021",
@@ -3494,14 +3633,15 @@
         "games": 88
       },
       "ratings": {
-        "overall": 66,
-        "peak": 67,
-        "international": 68,
-        "clutch": 60,
+        "overall": 69,
+        "peak": 70,
+        "international": 71,
+        "clutch": 66,
         "consistency": 84,
         "leadership": 70,
         "synergy": 67
-      }
+      },
+      "accomplishment": "standard"
     },
     "dig-2021:fakegod": {
       "teamId": "dig-2021",
@@ -3526,7 +3666,8 @@
         "consistency": 64,
         "leadership": 62,
         "synergy": 70
-      }
+      },
+      "accomplishment": "standard"
     },
     "dig-2021:akaadian": {
       "teamId": "dig-2021",
@@ -3551,7 +3692,8 @@
         "consistency": 61,
         "leadership": 66,
         "synergy": 57
-      }
+      },
+      "accomplishment": "standard"
     },
     "dig-2021:yusui": {
       "teamId": "dig-2021",
@@ -3576,7 +3718,8 @@
         "consistency": 59,
         "leadership": 60,
         "synergy": 61
-      }
+      },
+      "accomplishment": "standard"
     },
     "dig-2021:neo": {
       "teamId": "dig-2021",
@@ -3601,7 +3744,8 @@
         "consistency": 64,
         "leadership": 56,
         "synergy": 71
-      }
+      },
+      "accomplishment": "standard"
     },
     "dig-2021:aphromoo": {
       "teamId": "dig-2021",
@@ -3626,7 +3770,8 @@
         "consistency": 64,
         "leadership": 66,
         "synergy": 52
-      }
+      },
+      "accomplishment": "standard"
     },
     "dk-2021:khan": {
       "teamId": "dk-2021",
@@ -3644,14 +3789,15 @@
         "games": 155
       },
       "ratings": {
-        "overall": 75,
-        "peak": 76,
-        "international": 80,
-        "clutch": 68,
+        "overall": 78,
+        "peak": 79,
+        "international": 83,
+        "clutch": 69,
         "consistency": 94,
         "leadership": 64,
         "synergy": 76
-      }
+      },
+      "accomplishment": "worlds_finalist"
     },
     "dk-2021:canyon": {
       "teamId": "dk-2021",
@@ -3669,14 +3815,15 @@
         "games": 155
       },
       "ratings": {
-        "overall": 78,
-        "peak": 79,
-        "international": 83,
-        "clutch": 76,
+        "overall": 81,
+        "peak": 82,
+        "international": 86,
+        "clutch": 77,
         "consistency": 94,
         "leadership": 72,
         "synergy": 84
-      }
+      },
+      "accomplishment": "worlds_finalist"
     },
     "dk-2021:showmaker": {
       "teamId": "dk-2021",
@@ -3694,14 +3841,15 @@
         "games": 155
       },
       "ratings": {
-        "overall": 87,
-        "peak": 88,
-        "international": 92,
-        "clutch": 80,
+        "overall": 90,
+        "peak": 91,
+        "international": 95,
+        "clutch": 81,
         "consistency": 94,
         "leadership": 65,
         "synergy": 80
-      }
+      },
+      "accomplishment": "worlds_finalist"
     },
     "dk-2021:ghost": {
       "teamId": "dk-2021",
@@ -3719,14 +3867,15 @@
         "games": 145
       },
       "ratings": {
-        "overall": 86,
-        "peak": 89,
-        "international": 91,
-        "clutch": 90,
+        "overall": 89,
+        "peak": 92,
+        "international": 94,
+        "clutch": 91,
         "consistency": 94,
         "leadership": 67,
         "synergy": 94
-      }
+      },
+      "accomplishment": "worlds_finalist"
     },
     "dk-2021:beryl": {
       "teamId": "dk-2021",
@@ -3744,14 +3893,15 @@
         "games": 155
       },
       "ratings": {
-        "overall": 73,
-        "peak": 74,
-        "international": 78,
-        "clutch": 66,
+        "overall": 79,
+        "peak": 80,
+        "international": 84,
+        "clutch": 75,
         "consistency": 94,
         "leadership": 71,
         "synergy": 78
-      }
+      },
+      "accomplishment": "worlds_finalist"
     },
     "edg-2021:flandre": {
       "teamId": "edg-2021",
@@ -3769,14 +3919,15 @@
         "games": 121
       },
       "ratings": {
-        "overall": 73,
-        "peak": 74,
-        "international": 77,
-        "clutch": 66,
+        "overall": 78,
+        "peak": 79,
+        "international": 81,
+        "clutch": 68,
         "consistency": 91,
         "leadership": 63,
         "synergy": 70
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "edg-2021:jiejie": {
       "teamId": "edg-2021",
@@ -3794,14 +3945,15 @@
         "games": 119
       },
       "ratings": {
-        "overall": 78,
-        "peak": 79,
-        "international": 82,
-        "clutch": 82,
+        "overall": 83,
+        "peak": 84,
+        "international": 86,
+        "clutch": 84,
         "consistency": 92,
         "leadership": 74,
         "synergy": 90
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "edg-2021:scout": {
       "teamId": "edg-2021",
@@ -3819,14 +3971,15 @@
         "games": 121
       },
       "ratings": {
-        "overall": 85,
-        "peak": 86,
-        "international": 89,
-        "clutch": 81,
+        "overall": 90,
+        "peak": 91,
+        "international": 93,
+        "clutch": 83,
         "consistency": 91,
         "leadership": 66,
         "synergy": 87
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "edg-2021:viper": {
       "teamId": "edg-2021",
@@ -3844,14 +3997,15 @@
         "games": 121
       },
       "ratings": {
-        "overall": 87,
-        "peak": 90,
-        "international": 91,
-        "clutch": 90,
+        "overall": 92,
+        "peak": 95,
+        "international": 95,
+        "clutch": 92,
         "consistency": 91,
         "leadership": 67,
         "synergy": 93
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "edg-2021:meiko": {
       "teamId": "edg-2021",
@@ -3869,14 +4023,15 @@
         "games": 121
       },
       "ratings": {
-        "overall": 80,
-        "peak": 83,
-        "international": 84,
-        "clutch": 85,
+        "overall": 87,
+        "peak": 90,
+        "international": 90,
+        "clutch": 90,
         "consistency": 91,
         "leadership": 72,
         "synergy": 83
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "fly-2021:kumo": {
       "teamId": "fly-2021",
@@ -3901,7 +4056,8 @@
         "consistency": 79,
         "leadership": 59,
         "synergy": 58
-      }
+      },
+      "accomplishment": "standard"
     },
     "fly-2021:josedeodo": {
       "teamId": "fly-2021",
@@ -3926,7 +4082,8 @@
         "consistency": 63,
         "leadership": 70,
         "synergy": 81
-      }
+      },
+      "accomplishment": "standard"
     },
     "fly-2021:palafox": {
       "teamId": "fly-2021",
@@ -3951,7 +4108,8 @@
         "consistency": 62,
         "leadership": 61,
         "synergy": 68
-      }
+      },
+      "accomplishment": "standard"
     },
     "fly-2021:tomo": {
       "teamId": "fly-2021",
@@ -3976,7 +4134,8 @@
         "consistency": 76,
         "leadership": 62,
         "synergy": 80
-      }
+      },
+      "accomplishment": "standard"
     },
     "fly-2021:diamond": {
       "teamId": "fly-2021",
@@ -3994,14 +4153,15 @@
         "games": 56
       },
       "ratings": {
-        "overall": 57,
-        "peak": 58,
-        "international": 55,
-        "clutch": 52,
+        "overall": 58,
+        "peak": 59,
+        "international": 56,
+        "clutch": 55,
         "consistency": 69,
         "leadership": 65,
         "synergy": 52
-      }
+      },
+      "accomplishment": "standard"
     },
     "mad-2021:armut": {
       "teamId": "mad-2021",
@@ -4019,14 +4179,15 @@
         "games": 92
       },
       "ratings": {
-        "overall": 73,
-        "peak": 74,
-        "international": 74,
+        "overall": 74,
+        "peak": 75,
+        "international": 76,
         "clutch": 65,
         "consistency": 83,
         "leadership": 67,
         "synergy": 92
-      }
+      },
+      "accomplishment": "worlds_semis"
     },
     "mad-2021:elyoya": {
       "teamId": "mad-2021",
@@ -4044,14 +4205,15 @@
         "games": 92
       },
       "ratings": {
-        "overall": 71,
-        "peak": 72,
-        "international": 72,
+        "overall": 72,
+        "peak": 73,
+        "international": 74,
         "clutch": 57,
         "consistency": 83,
         "leadership": 72,
         "synergy": 79
-      }
+      },
+      "accomplishment": "worlds_semis"
     },
     "mad-2021:humanoid": {
       "teamId": "mad-2021",
@@ -4069,14 +4231,15 @@
         "games": 92
       },
       "ratings": {
-        "overall": 77,
-        "peak": 78,
-        "international": 78,
+        "overall": 78,
+        "peak": 79,
+        "international": 80,
         "clutch": 63,
         "consistency": 83,
         "leadership": 67,
         "synergy": 92
-      }
+      },
+      "accomplishment": "worlds_semis"
     },
     "mad-2021:carzzy": {
       "teamId": "mad-2021",
@@ -4094,14 +4257,15 @@
         "games": 92
       },
       "ratings": {
-        "overall": 76,
-        "peak": 77,
-        "international": 77,
+        "overall": 77,
+        "peak": 78,
+        "international": 79,
         "clutch": 68,
         "consistency": 83,
         "leadership": 67,
         "synergy": 92
-      }
+      },
+      "accomplishment": "worlds_semis"
     },
     "mad-2021:kaiser": {
       "teamId": "mad-2021",
@@ -4119,14 +4283,15 @@
         "games": 92
       },
       "ratings": {
-        "overall": 81,
-        "peak": 84,
-        "international": 82,
-        "clutch": 84,
+        "overall": 84,
+        "peak": 87,
+        "international": 86,
+        "clutch": 90,
         "consistency": 83,
         "leadership": 74,
         "synergy": 92
-      }
+      },
+      "accomplishment": "worlds_semis"
     },
     "rng-2021:xiaobai": {
       "teamId": "rng-2021",
@@ -4144,14 +4309,15 @@
         "games": 1
       },
       "ratings": {
-        "overall": 60,
-        "peak": 61,
-        "international": 65,
-        "clutch": 52,
+        "overall": 71,
+        "peak": 72,
+        "international": 67,
+        "clutch": 53,
         "consistency": 86,
         "leadership": 53,
         "synergy": 57
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "rng-2021:wei": {
       "teamId": "rng-2021",
@@ -4169,14 +4335,15 @@
         "games": 143
       },
       "ratings": {
-        "overall": 76,
-        "peak": 77,
-        "international": 79,
-        "clutch": 75,
+        "overall": 78,
+        "peak": 79,
+        "international": 81,
+        "clutch": 76,
         "consistency": 90,
         "leadership": 73,
         "synergy": 87
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "rng-2021:xiaohu": {
       "teamId": "rng-2021",
@@ -4194,14 +4361,15 @@
         "games": 143
       },
       "ratings": {
-        "overall": 87,
-        "peak": 88,
-        "international": 90,
-        "clutch": 73,
+        "overall": 89,
+        "peak": 90,
+        "international": 92,
+        "clutch": 74,
         "consistency": 90,
         "leadership": 67,
         "synergy": 90
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "rng-2021:gala": {
       "teamId": "rng-2021",
@@ -4219,14 +4387,15 @@
         "games": 143
       },
       "ratings": {
-        "overall": 71,
-        "peak": 72,
-        "international": 74,
-        "clutch": 57,
+        "overall": 73,
+        "peak": 74,
+        "international": 76,
+        "clutch": 58,
         "consistency": 90,
         "leadership": 65,
         "synergy": 77
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "rng-2021:ming": {
       "teamId": "rng-2021",
@@ -4244,14 +4413,15 @@
         "games": 143
       },
       "ratings": {
-        "overall": 63,
-        "peak": 64,
-        "international": 66,
-        "clutch": 53,
+        "overall": 71,
+        "peak": 72,
+        "international": 68,
+        "clutch": 54,
         "consistency": 90,
         "leadership": 69,
         "synergy": 61
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "liquid-2021:alphari": {
       "teamId": "liquid-2021",
@@ -4276,7 +4446,8 @@
         "consistency": 82,
         "leadership": 65,
         "synergy": 80
-      }
+      },
+      "accomplishment": "domestic"
     },
     "liquid-2021:santorin": {
       "teamId": "liquid-2021",
@@ -4301,7 +4472,8 @@
         "consistency": 82,
         "leadership": 72,
         "synergy": 87
-      }
+      },
+      "accomplishment": "domestic"
     },
     "liquid-2021:jensen": {
       "teamId": "liquid-2021",
@@ -4326,7 +4498,8 @@
         "consistency": 82,
         "leadership": 66,
         "synergy": 86
-      }
+      },
+      "accomplishment": "domestic"
     },
     "liquid-2021:tactical": {
       "teamId": "liquid-2021",
@@ -4351,7 +4524,8 @@
         "consistency": 82,
         "leadership": 66,
         "synergy": 87
-      }
+      },
+      "accomplishment": "domestic"
     },
     "liquid-2021:corejj": {
       "teamId": "liquid-2021",
@@ -4376,7 +4550,8 @@
         "consistency": 82,
         "leadership": 70,
         "synergy": 65
-      }
+      },
+      "accomplishment": "domestic"
     },
     "vit-2021:szygenda": {
       "teamId": "vit-2021",
@@ -4401,7 +4576,8 @@
         "consistency": 74,
         "leadership": 60,
         "synergy": 69
-      }
+      },
+      "accomplishment": "standard"
     },
     "vit-2021:selfmade": {
       "teamId": "vit-2021",
@@ -4426,7 +4602,8 @@
         "consistency": 65,
         "leadership": 70,
         "synergy": 85
-      }
+      },
+      "accomplishment": "standard"
     },
     "vit-2021:lider": {
       "teamId": "vit-2021",
@@ -4451,7 +4628,8 @@
         "consistency": 76,
         "leadership": 62,
         "synergy": 77
-      }
+      },
+      "accomplishment": "standard"
     },
     "vit-2021:crownie": {
       "teamId": "vit-2021",
@@ -4476,7 +4654,8 @@
         "consistency": 59,
         "leadership": 60,
         "synergy": 76
-      }
+      },
+      "accomplishment": "standard"
     },
     "vit-2021:labrov": {
       "teamId": "vit-2021",
@@ -4494,14 +4673,15 @@
         "games": 41
       },
       "ratings": {
-        "overall": 66,
-        "peak": 67,
-        "international": 61,
-        "clutch": 62,
+        "overall": 68,
+        "peak": 69,
+        "international": 63,
+        "clutch": 68,
         "consistency": 56,
         "leadership": 69,
         "synergy": 84
-      }
+      },
+      "accomplishment": "standard"
     },
     "astralis-2022:vizicsacsi": {
       "teamId": "astralis-2022",
@@ -4526,7 +4706,8 @@
         "consistency": 59,
         "leadership": 60,
         "synergy": 70
-      }
+      },
+      "accomplishment": "standard"
     },
     "astralis-2022:xerxe": {
       "teamId": "astralis-2022",
@@ -4551,7 +4732,8 @@
         "consistency": 54,
         "leadership": 69,
         "synergy": 88
-      }
+      },
+      "accomplishment": "standard"
     },
     "astralis-2022:dajor": {
       "teamId": "astralis-2022",
@@ -4576,7 +4758,8 @@
         "consistency": 54,
         "leadership": 61,
         "synergy": 78
-      }
+      },
+      "accomplishment": "standard"
     },
     "astralis-2022:kobbe": {
       "teamId": "astralis-2022",
@@ -4601,7 +4784,8 @@
         "consistency": 54,
         "leadership": 61,
         "synergy": 78
-      }
+      },
+      "accomplishment": "standard"
     },
     "astralis-2022:execute": {
       "teamId": "astralis-2022",
@@ -4619,14 +4803,15 @@
         "games": 18
       },
       "ratings": {
-        "overall": 68,
-        "peak": 69,
-        "international": 64,
-        "clutch": 66,
+        "overall": 70,
+        "peak": 71,
+        "international": 66,
+        "clutch": 73,
         "consistency": 55,
         "leadership": 67,
         "synergy": 88
-      }
+      },
+      "accomplishment": "standard"
     },
     "drx-2022:kingen": {
       "teamId": "drx-2022",
@@ -4644,14 +4829,15 @@
         "games": 130
       },
       "ratings": {
-        "overall": 70,
-        "peak": 71,
-        "international": 70,
-        "clutch": 63,
+        "overall": 75,
+        "peak": 76,
+        "international": 74,
+        "clutch": 65,
         "consistency": 78,
         "leadership": 64,
         "synergy": 70
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "drx-2022:pyosik": {
       "teamId": "drx-2022",
@@ -4669,14 +4855,15 @@
         "games": 118
       },
       "ratings": {
-        "overall": 70,
-        "peak": 71,
-        "international": 70,
-        "clutch": 69,
+        "overall": 75,
+        "peak": 76,
+        "international": 74,
+        "clutch": 71,
         "consistency": 77,
         "leadership": 73,
         "synergy": 84
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "drx-2022:zeka": {
       "teamId": "drx-2022",
@@ -4694,14 +4881,15 @@
         "games": 130
       },
       "ratings": {
-        "overall": 80,
-        "peak": 81,
-        "international": 80,
-        "clutch": 74,
+        "overall": 85,
+        "peak": 86,
+        "international": 84,
+        "clutch": 76,
         "consistency": 78,
         "leadership": 65,
         "synergy": 80
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "drx-2022:deft": {
       "teamId": "drx-2022",
@@ -4719,14 +4907,15 @@
         "games": 130
       },
       "ratings": {
-        "overall": 76,
-        "peak": 77,
-        "international": 76,
-        "clutch": 70,
+        "overall": 81,
+        "peak": 82,
+        "international": 80,
+        "clutch": 72,
         "consistency": 78,
         "leadership": 67,
         "synergy": 91
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "drx-2022:beryl": {
       "teamId": "drx-2022",
@@ -4744,14 +4933,15 @@
         "games": 130
       },
       "ratings": {
-        "overall": 73,
-        "peak": 74,
-        "international": 73,
-        "clutch": 64,
+        "overall": 80,
+        "peak": 81,
+        "international": 79,
+        "clutch": 72,
         "consistency": 78,
         "leadership": 74,
         "synergy": 91
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "lcs-2022-eg:impact": {
       "teamId": "lcs-2022-eg",
@@ -4776,7 +4966,8 @@
         "consistency": 83,
         "leadership": 64,
         "synergy": 70
-      }
+      },
+      "accomplishment": "domestic"
     },
     "lcs-2022-eg:inspired": {
       "teamId": "lcs-2022-eg",
@@ -4801,7 +4992,8 @@
         "consistency": 83,
         "leadership": 73,
         "synergy": 86
-      }
+      },
+      "accomplishment": "domestic"
     },
     "lcs-2022-eg:jojopyun": {
       "teamId": "lcs-2022-eg",
@@ -4826,7 +5018,8 @@
         "consistency": 83,
         "leadership": 65,
         "synergy": 80
-      }
+      },
+      "accomplishment": "domestic"
     },
     "lcs-2022-eg:kaori": {
       "teamId": "lcs-2022-eg",
@@ -4851,7 +5044,8 @@
         "consistency": 67,
         "leadership": 65,
         "synergy": 73
-      }
+      },
+      "accomplishment": "domestic"
     },
     "lcs-2022-eg:vulcan": {
       "teamId": "lcs-2022-eg",
@@ -4876,7 +5070,8 @@
         "consistency": 83,
         "leadership": 71,
         "synergy": 75
-      }
+      },
+      "accomplishment": "domestic"
     },
     "g2-2022:wunder": {
       "teamId": "g2-2022",
@@ -4894,14 +5089,15 @@
         "games": 76
       },
       "ratings": {
-        "overall": 68,
-        "peak": 69,
-        "international": 69,
+        "overall": 69,
+        "peak": 70,
+        "international": 70,
         "clutch": 60,
         "consistency": 80,
         "leadership": 64,
         "synergy": 72
-      }
+      },
+      "accomplishment": "msi_finalist"
     },
     "g2-2022:jankos": {
       "teamId": "g2-2022",
@@ -4919,14 +5115,15 @@
         "games": 89
       },
       "ratings": {
-        "overall": 72,
-        "peak": 73,
-        "international": 74,
+        "overall": 73,
+        "peak": 74,
+        "international": 75,
         "clutch": 69,
         "consistency": 85,
         "leadership": 73,
         "synergy": 84
-      }
+      },
+      "accomplishment": "msi_finalist"
     },
     "g2-2022:caps": {
       "teamId": "g2-2022",
@@ -4944,14 +5141,15 @@
         "games": 89
       },
       "ratings": {
-        "overall": 80,
-        "peak": 81,
-        "international": 82,
+        "overall": 81,
+        "peak": 82,
+        "international": 83,
         "clutch": 71,
         "consistency": 85,
         "leadership": 66,
         "synergy": 83
-      }
+      },
+      "accomplishment": "msi_finalist"
     },
     "g2-2022:hans-sama": {
       "teamId": "g2-2022",
@@ -4969,14 +5167,15 @@
         "games": 79
       },
       "ratings": {
-        "overall": 77,
-        "peak": 78,
-        "international": 79,
+        "overall": 78,
+        "peak": 79,
+        "international": 80,
         "clutch": 77,
         "consistency": 87,
         "leadership": 64,
         "synergy": 73
-      }
+      },
+      "accomplishment": "msi_finalist"
     },
     "g2-2022:mikyx": {
       "teamId": "g2-2022",
@@ -4994,14 +5193,15 @@
         "games": 42
       },
       "ratings": {
-        "overall": 65,
-        "peak": 66,
-        "international": 64,
-        "clutch": 60,
+        "overall": 69,
+        "peak": 70,
+        "international": 68,
+        "clutch": 67,
         "consistency": 68,
         "leadership": 67,
         "synergy": 71
-      }
+      },
+      "accomplishment": "msi_finalist"
     },
     "hle-2022:kingen": {
       "teamId": "hle-2022",
@@ -5019,14 +5219,15 @@
         "games": 130
       },
       "ratings": {
-        "overall": 69,
-        "peak": 70,
-        "international": 69,
+        "overall": 70,
+        "peak": 71,
+        "international": 71,
         "clutch": 64,
         "consistency": 78,
         "leadership": 64,
         "synergy": 72
-      }
+      },
+      "accomplishment": "worlds_semis"
     },
     "hle-2022:peanut": {
       "teamId": "hle-2022",
@@ -5044,14 +5245,15 @@
         "games": 107
       },
       "ratings": {
-        "overall": 77,
-        "peak": 78,
-        "international": 82,
+        "overall": 78,
+        "peak": 79,
+        "international": 84,
         "clutch": 78,
         "consistency": 94,
         "leadership": 71,
         "synergy": 75
-      }
+      },
+      "accomplishment": "worlds_semis"
     },
     "hle-2022:chovy": {
       "teamId": "hle-2022",
@@ -5069,14 +5271,15 @@
         "games": 106
       },
       "ratings": {
-        "overall": 82,
-        "peak": 85,
-        "international": 87,
+        "overall": 83,
+        "peak": 86,
+        "international": 89,
         "clutch": 86,
         "consistency": 94,
         "leadership": 64,
         "synergy": 75
-      }
+      },
+      "accomplishment": "worlds_semis"
     },
     "hle-2022:deft": {
       "teamId": "hle-2022",
@@ -5094,14 +5297,15 @@
         "games": 130
       },
       "ratings": {
-        "overall": 73,
-        "peak": 74,
-        "international": 73,
+        "overall": 74,
+        "peak": 75,
+        "international": 75,
         "clutch": 70,
         "consistency": 78,
         "leadership": 64,
         "synergy": 72
-      }
+      },
+      "accomplishment": "worlds_semis"
     },
     "hle-2022:delight": {
       "teamId": "hle-2022",
@@ -5119,14 +5323,15 @@
         "games": 87
       },
       "ratings": {
-        "overall": 65,
-        "peak": 66,
-        "international": 60,
-        "clutch": 60,
+        "overall": 69,
+        "peak": 70,
+        "international": 65,
+        "clutch": 67,
         "consistency": 62,
         "leadership": 71,
         "synergy": 69
-      }
+      },
+      "accomplishment": "worlds_semis"
     },
     "rng-2022:bin": {
       "teamId": "rng-2022",
@@ -5144,14 +5349,15 @@
         "games": 126
       },
       "ratings": {
-        "overall": 69,
-        "peak": 70,
-        "international": 70,
-        "clutch": 63,
+        "overall": 71,
+        "peak": 72,
+        "international": 72,
+        "clutch": 64,
         "consistency": 81,
         "leadership": 62,
         "synergy": 61
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "rng-2022:wei": {
       "teamId": "rng-2022",
@@ -5169,14 +5375,15 @@
         "games": 156
       },
       "ratings": {
-        "overall": 72,
-        "peak": 73,
-        "international": 74,
-        "clutch": 72,
+        "overall": 74,
+        "peak": 75,
+        "international": 76,
+        "clutch": 73,
         "consistency": 87,
         "leadership": 72,
         "synergy": 80
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "rng-2022:xiaohu": {
       "teamId": "rng-2022",
@@ -5194,14 +5401,15 @@
         "games": 156
       },
       "ratings": {
-        "overall": 84,
-        "peak": 85,
-        "international": 86,
-        "clutch": 78,
+        "overall": 86,
+        "peak": 87,
+        "international": 88,
+        "clutch": 79,
         "consistency": 87,
         "leadership": 66,
         "synergy": 85
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "rng-2022:gala": {
       "teamId": "rng-2022",
@@ -5219,14 +5427,15 @@
         "games": 156
       },
       "ratings": {
-        "overall": 78,
-        "peak": 79,
-        "international": 80,
-        "clutch": 71,
+        "overall": 80,
+        "peak": 81,
+        "international": 82,
+        "clutch": 72,
         "consistency": 87,
         "leadership": 67,
         "synergy": 92
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "rng-2022:ming": {
       "teamId": "rng-2022",
@@ -5244,14 +5453,15 @@
         "games": 153
       },
       "ratings": {
-        "overall": 71,
-        "peak": 72,
-        "international": 74,
-        "clutch": 63,
+        "overall": 75,
+        "peak": 76,
+        "international": 78,
+        "clutch": 70,
         "consistency": 88,
         "leadership": 72,
         "synergy": 81
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "sk-2022:jenax": {
       "teamId": "sk-2022",
@@ -5276,7 +5486,8 @@
         "consistency": 57,
         "leadership": 60,
         "synergy": 73
-      }
+      },
+      "accomplishment": "standard"
     },
     "sk-2022:gilius": {
       "teamId": "sk-2022",
@@ -5301,7 +5512,8 @@
         "consistency": 57,
         "leadership": 67,
         "synergy": 74
-      }
+      },
+      "accomplishment": "standard"
     },
     "sk-2022:sertuss": {
       "teamId": "sk-2022",
@@ -5326,7 +5538,8 @@
         "consistency": 57,
         "leadership": 61,
         "synergy": 82
-      }
+      },
+      "accomplishment": "standard"
     },
     "sk-2022:jezu": {
       "teamId": "sk-2022",
@@ -5351,7 +5564,8 @@
         "consistency": 59,
         "leadership": 60,
         "synergy": 77
-      }
+      },
+      "accomplishment": "standard"
     },
     "sk-2022:treatz": {
       "teamId": "sk-2022",
@@ -5369,14 +5583,15 @@
         "games": 36
       },
       "ratings": {
-        "overall": 66,
-        "peak": 67,
-        "international": 62,
-        "clutch": 64,
+        "overall": 69,
+        "peak": 70,
+        "international": 65,
+        "clutch": 71,
         "consistency": 57,
         "leadership": 68,
         "synergy": 81
-      }
+      },
+      "accomplishment": "standard"
     },
     "blg-2023:bin": {
       "teamId": "blg-2023",
@@ -5394,14 +5609,15 @@
         "games": 160
       },
       "ratings": {
-        "overall": 83,
-        "peak": 86,
-        "international": 85,
-        "clutch": 87,
+        "overall": 86,
+        "peak": 89,
+        "international": 88,
+        "clutch": 88,
         "consistency": 85,
         "leadership": 65,
         "synergy": 78
-      }
+      },
+      "accomplishment": "worlds_finalist"
     },
     "blg-2023:xun": {
       "teamId": "blg-2023",
@@ -5419,14 +5635,15 @@
         "games": 160
       },
       "ratings": {
-        "overall": 74,
-        "peak": 75,
-        "international": 76,
-        "clutch": 73,
+        "overall": 77,
+        "peak": 78,
+        "international": 79,
+        "clutch": 74,
         "consistency": 85,
         "leadership": 73,
         "synergy": 87
-      }
+      },
+      "accomplishment": "worlds_finalist"
     },
     "blg-2023:knight": {
       "teamId": "blg-2023",
@@ -5444,14 +5661,15 @@
         "games": 124
       },
       "ratings": {
-        "overall": 79,
-        "peak": 80,
-        "international": 84,
-        "clutch": 79,
+        "overall": 82,
+        "peak": 83,
+        "international": 87,
+        "clutch": 80,
         "consistency": 94,
         "leadership": 64,
         "synergy": 75
-      }
+      },
+      "accomplishment": "worlds_finalist"
     },
     "blg-2023:elk": {
       "teamId": "blg-2023",
@@ -5469,14 +5687,15 @@
         "games": 160
       },
       "ratings": {
-        "overall": 87,
-        "peak": 90,
-        "international": 89,
-        "clutch": 90,
+        "overall": 90,
+        "peak": 93,
+        "international": 92,
+        "clutch": 91,
         "consistency": 85,
         "leadership": 67,
         "synergy": 92
-      }
+      },
+      "accomplishment": "worlds_finalist"
     },
     "blg-2023:on": {
       "teamId": "blg-2023",
@@ -5494,14 +5713,15 @@
         "games": 160
       },
       "ratings": {
-        "overall": 78,
-        "peak": 79,
-        "international": 80,
-        "clutch": 73,
+        "overall": 84,
+        "peak": 85,
+        "international": 86,
+        "clutch": 83,
         "consistency": 85,
         "leadership": 74,
         "synergy": 92
-      }
+      },
+      "accomplishment": "worlds_finalist"
     },
     "jdg-2023:369": {
       "teamId": "jdg-2023",
@@ -5519,14 +5739,15 @@
         "games": 125
       },
       "ratings": {
-        "overall": 73,
-        "peak": 74,
-        "international": 78,
-        "clutch": 69,
+        "overall": 75,
+        "peak": 76,
+        "international": 80,
+        "clutch": 70,
         "consistency": 94,
         "leadership": 63,
         "synergy": 69
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "jdg-2023:kanavi": {
       "teamId": "jdg-2023",
@@ -5544,14 +5765,15 @@
         "games": 125
       },
       "ratings": {
-        "overall": 79,
-        "peak": 80,
-        "international": 84,
-        "clutch": 78,
+        "overall": 81,
+        "peak": 82,
+        "international": 86,
+        "clutch": 79,
         "consistency": 94,
         "leadership": 73,
         "synergy": 90
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "jdg-2023:knight": {
       "teamId": "jdg-2023",
@@ -5569,14 +5791,15 @@
         "games": 124
       },
       "ratings": {
-        "overall": 85,
-        "peak": 86,
-        "international": 90,
-        "clutch": 81,
+        "overall": 87,
+        "peak": 88,
+        "international": 92,
+        "clutch": 82,
         "consistency": 94,
         "leadership": 65,
         "synergy": 84
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "jdg-2023:ruler": {
       "teamId": "jdg-2023",
@@ -5594,14 +5817,15 @@
         "games": 125
       },
       "ratings": {
-        "overall": 89,
-        "peak": 92,
-        "international": 94,
-        "clutch": 88,
+        "overall": 91,
+        "peak": 94,
+        "international": 96,
+        "clutch": 89,
         "consistency": 94,
         "leadership": 65,
         "synergy": 83
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "jdg-2023:missing": {
       "teamId": "jdg-2023",
@@ -5619,14 +5843,15 @@
         "games": 125
       },
       "ratings": {
-        "overall": 80,
-        "peak": 81,
-        "international": 85,
-        "clutch": 79,
+        "overall": 86,
+        "peak": 89,
+        "international": 91,
+        "clutch": 91,
         "consistency": 94,
         "leadership": 74,
         "synergy": 93
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "t1-2023:zeus": {
       "teamId": "t1-2023",
@@ -5644,14 +5869,15 @@
         "games": 152
       },
       "ratings": {
-        "overall": 71,
-        "peak": 72,
-        "international": 73,
-        "clutch": 64,
+        "overall": 76,
+        "peak": 77,
+        "international": 77,
+        "clutch": 66,
         "consistency": 85,
         "leadership": 63,
         "synergy": 69
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "t1-2023:oner": {
       "teamId": "t1-2023",
@@ -5669,14 +5895,15 @@
         "games": 152
       },
       "ratings": {
-        "overall": 75,
-        "peak": 76,
-        "international": 77,
-        "clutch": 73,
+        "overall": 80,
+        "peak": 81,
+        "international": 81,
+        "clutch": 75,
         "consistency": 85,
         "leadership": 74,
         "synergy": 92
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "t1-2023:faker": {
       "teamId": "t1-2023",
@@ -5694,14 +5921,15 @@
         "games": 134
       },
       "ratings": {
-        "overall": 77,
-        "peak": 78,
-        "international": 80,
-        "clutch": 68,
+        "overall": 82,
+        "peak": 83,
+        "international": 84,
+        "clutch": 70,
         "consistency": 90,
         "leadership": 65,
         "synergy": 77
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "t1-2023:gumayusi": {
       "teamId": "t1-2023",
@@ -5719,14 +5947,15 @@
         "games": 152
       },
       "ratings": {
-        "overall": 76,
-        "peak": 77,
-        "international": 78,
-        "clutch": 75,
+        "overall": 81,
+        "peak": 82,
+        "international": 82,
+        "clutch": 77,
         "consistency": 85,
         "leadership": 64,
         "synergy": 75
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "t1-2023:keria": {
       "teamId": "t1-2023",
@@ -5744,14 +5973,15 @@
         "games": 152
       },
       "ratings": {
-        "overall": 84,
-        "peak": 87,
-        "international": 86,
-        "clutch": 90,
+        "overall": 89,
+        "peak": 92,
+        "international": 90,
+        "clutch": 92,
         "consistency": 85,
         "leadership": 74,
         "synergy": 92
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "heretics-2023:evi": {
       "teamId": "heretics-2023",
@@ -5776,7 +6006,8 @@
         "consistency": 62,
         "leadership": 59,
         "synergy": 62
-      }
+      },
+      "accomplishment": "standard"
     },
     "heretics-2023:jankos": {
       "teamId": "heretics-2023",
@@ -5801,7 +6032,8 @@
         "consistency": 62,
         "leadership": 70,
         "synergy": 86
-      }
+      },
+      "accomplishment": "standard"
     },
     "heretics-2023:vetheo": {
       "teamId": "heretics-2023",
@@ -5826,7 +6058,8 @@
         "consistency": 58,
         "leadership": 62,
         "synergy": 87
-      }
+      },
+      "accomplishment": "standard"
     },
     "heretics-2023:flakked": {
       "teamId": "heretics-2023",
@@ -5851,7 +6084,8 @@
         "consistency": 78,
         "leadership": 63,
         "synergy": 78
-      }
+      },
+      "accomplishment": "standard"
     },
     "heretics-2023:mersa": {
       "teamId": "heretics-2023",
@@ -5869,14 +6103,15 @@
         "games": 44
       },
       "ratings": {
-        "overall": 71,
-        "peak": 72,
-        "international": 68,
-        "clutch": 73,
+        "overall": 75,
+        "peak": 76,
+        "international": 72,
+        "clutch": 82,
         "consistency": 62,
         "leadership": 70,
         "synergy": 86
-      }
+      },
+      "accomplishment": "standard"
     },
     "wbg-2023:theshy": {
       "teamId": "wbg-2023",
@@ -5894,14 +6129,15 @@
         "games": 118
       },
       "ratings": {
-        "overall": 67,
-        "peak": 68,
-        "international": 69,
-        "clutch": 56,
+        "overall": 72,
+        "peak": 73,
+        "international": 72,
+        "clutch": 57,
         "consistency": 83,
         "leadership": 62,
         "synergy": 58
-      }
+      },
+      "accomplishment": "worlds_finalist"
     },
     "wbg-2023:wei": {
       "teamId": "wbg-2023",
@@ -5919,14 +6155,15 @@
         "games": 89
       },
       "ratings": {
-        "overall": 69,
-        "peak": 70,
-        "international": 68,
-        "clutch": 66,
+        "overall": 72,
+        "peak": 73,
+        "international": 71,
+        "clutch": 67,
         "consistency": 74,
         "leadership": 71,
         "synergy": 71
-      }
+      },
+      "accomplishment": "worlds_finalist"
     },
     "wbg-2023:xiaohu": {
       "teamId": "wbg-2023",
@@ -5944,14 +6181,15 @@
         "games": 118
       },
       "ratings": {
-        "overall": 81,
-        "peak": 82,
-        "international": 83,
-        "clutch": 73,
+        "overall": 84,
+        "peak": 85,
+        "international": 86,
+        "clutch": 74,
         "consistency": 83,
         "leadership": 66,
         "synergy": 85
-      }
+      },
+      "accomplishment": "worlds_finalist"
     },
     "wbg-2023:light": {
       "teamId": "wbg-2023",
@@ -5969,14 +6207,15 @@
         "games": 0
       },
       "ratings": {
-        "overall": 65,
-        "peak": 66,
-        "international": 64,
-        "clutch": 60,
+        "overall": 72,
+        "peak": 73,
+        "international": 67,
+        "clutch": 61,
         "consistency": 64,
         "leadership": 56,
         "synergy": 71
-      }
+      },
+      "accomplishment": "worlds_finalist"
     },
     "wbg-2023:crisp": {
       "teamId": "wbg-2023",
@@ -5994,14 +6233,15 @@
         "games": 118
       },
       "ratings": {
-        "overall": 59,
-        "peak": 60,
-        "international": 61,
-        "clutch": 52,
+        "overall": 72,
+        "peak": 73,
+        "international": 64,
+        "clutch": 53,
         "consistency": 83,
         "leadership": 68,
         "synergy": 54
-      }
+      },
+      "accomplishment": "worlds_finalist"
     },
     "blg-2024:bin": {
       "teamId": "blg-2024",
@@ -6019,14 +6259,15 @@
         "games": 149
       },
       "ratings": {
-        "overall": 72,
-        "peak": 73,
-        "international": 76,
-        "clutch": 67,
+        "overall": 74,
+        "peak": 75,
+        "international": 78,
+        "clutch": 68,
         "consistency": 94,
         "leadership": 62,
         "synergy": 65
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "blg-2024:xun": {
       "teamId": "blg-2024",
@@ -6044,14 +6285,15 @@
         "games": 123
       },
       "ratings": {
-        "overall": 76,
-        "peak": 77,
-        "international": 80,
-        "clutch": 77,
+        "overall": 78,
+        "peak": 79,
+        "international": 82,
+        "clutch": 78,
         "consistency": 93,
         "leadership": 73,
         "synergy": 85
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "blg-2024:knight": {
       "teamId": "blg-2024",
@@ -6069,14 +6311,15 @@
         "games": 149
       },
       "ratings": {
-        "overall": 85,
-        "peak": 86,
-        "international": 89,
-        "clutch": 81,
+        "overall": 87,
+        "peak": 88,
+        "international": 91,
+        "clutch": 82,
         "consistency": 94,
         "leadership": 65,
         "synergy": 83
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "blg-2024:elk": {
       "teamId": "blg-2024",
@@ -6094,14 +6337,15 @@
         "games": 149
       },
       "ratings": {
-        "overall": 88,
-        "peak": 91,
-        "international": 92,
-        "clutch": 83,
+        "overall": 90,
+        "peak": 93,
+        "international": 94,
+        "clutch": 84,
         "consistency": 94,
         "leadership": 66,
         "synergy": 87
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "blg-2024:on": {
       "teamId": "blg-2024",
@@ -6119,14 +6363,15 @@
         "games": 149
       },
       "ratings": {
-        "overall": 76,
-        "peak": 77,
-        "international": 80,
-        "clutch": 72,
+        "overall": 81,
+        "peak": 82,
+        "international": 85,
+        "clutch": 82,
         "consistency": 94,
         "leadership": 73,
         "synergy": 88
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "g2-2024:brokenblade": {
       "teamId": "g2-2024",
@@ -6151,7 +6396,8 @@
         "consistency": 90,
         "leadership": 63,
         "synergy": 68
-      }
+      },
+      "accomplishment": "domestic"
     },
     "g2-2024:yike": {
       "teamId": "g2-2024",
@@ -6176,7 +6422,8 @@
         "consistency": 90,
         "leadership": 74,
         "synergy": 91
-      }
+      },
+      "accomplishment": "domestic"
     },
     "g2-2024:caps": {
       "teamId": "g2-2024",
@@ -6201,7 +6448,8 @@
         "consistency": 90,
         "leadership": 65,
         "synergy": 81
-      }
+      },
+      "accomplishment": "domestic"
     },
     "g2-2024:hans-sama": {
       "teamId": "g2-2024",
@@ -6226,7 +6474,8 @@
         "consistency": 90,
         "leadership": 65,
         "synergy": 81
-      }
+      },
+      "accomplishment": "domestic"
     },
     "g2-2024:mikyx": {
       "teamId": "g2-2024",
@@ -6244,14 +6493,15 @@
         "games": 115
       },
       "ratings": {
-        "overall": 72,
-        "peak": 73,
-        "international": 75,
-        "clutch": 64,
+        "overall": 75,
+        "peak": 76,
+        "international": 78,
+        "clutch": 71,
         "consistency": 90,
         "leadership": 73,
         "synergy": 86
-      }
+      },
+      "accomplishment": "domestic"
     },
     "gen-2024:kiin": {
       "teamId": "gen-2024",
@@ -6269,14 +6519,15 @@
         "games": 135
       },
       "ratings": {
-        "overall": 74,
-        "peak": 75,
-        "international": 79,
-        "clutch": 70,
+        "overall": 76,
+        "peak": 77,
+        "international": 81,
+        "clutch": 71,
         "consistency": 94,
         "leadership": 64,
         "synergy": 75
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "gen-2024:canyon": {
       "teamId": "gen-2024",
@@ -6294,14 +6545,15 @@
         "games": 135
       },
       "ratings": {
-        "overall": 78,
-        "peak": 81,
-        "international": 83,
-        "clutch": 81,
+        "overall": 80,
+        "peak": 83,
+        "international": 85,
+        "clutch": 82,
         "consistency": 94,
         "leadership": 71,
         "synergy": 75
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "gen-2024:chovy": {
       "teamId": "gen-2024",
@@ -6319,14 +6571,15 @@
         "games": 135
       },
       "ratings": {
-        "overall": 81,
-        "peak": 84,
-        "international": 86,
-        "clutch": 83,
+        "overall": 83,
+        "peak": 86,
+        "international": 88,
+        "clutch": 84,
         "consistency": 94,
         "leadership": 64,
         "synergy": 75
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "gen-2024:ruler": {
       "teamId": "gen-2024",
@@ -6344,14 +6597,15 @@
         "games": 113
       },
       "ratings": {
-        "overall": 76,
-        "peak": 77,
-        "international": 78,
-        "clutch": 77,
+        "overall": 78,
+        "peak": 79,
+        "international": 80,
+        "clutch": 78,
         "consistency": 83,
         "leadership": 64,
         "synergy": 73
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "gen-2024:delight": {
       "teamId": "gen-2024",
@@ -6369,14 +6623,15 @@
         "games": 124
       },
       "ratings": {
-        "overall": 75,
-        "peak": 76,
-        "international": 78,
-        "clutch": 74,
+        "overall": 81,
+        "peak": 84,
+        "international": 84,
+        "clutch": 85,
         "consistency": 89,
         "leadership": 71,
         "synergy": 74
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "jdg-2024:369": {
       "teamId": "jdg-2024",
@@ -6394,14 +6649,15 @@
         "games": 139
       },
       "ratings": {
-        "overall": 72,
-        "peak": 73,
-        "international": 75,
-        "clutch": 66,
+        "overall": 74,
+        "peak": 75,
+        "international": 77,
+        "clutch": 67,
         "consistency": 90,
         "leadership": 64,
         "synergy": 74
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "jdg-2024:kanavi": {
       "teamId": "jdg-2024",
@@ -6419,14 +6675,15 @@
         "games": 102
       },
       "ratings": {
-        "overall": 77,
-        "peak": 78,
-        "international": 79,
-        "clutch": 75,
+        "overall": 79,
+        "peak": 80,
+        "international": 81,
+        "clutch": 76,
         "consistency": 84,
         "leadership": 74,
         "synergy": 92
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "jdg-2024:knight": {
       "teamId": "jdg-2024",
@@ -6444,14 +6701,15 @@
         "games": 149
       },
       "ratings": {
-        "overall": 79,
-        "peak": 80,
-        "international": 83,
-        "clutch": 80,
+        "overall": 81,
+        "peak": 82,
+        "international": 85,
+        "clutch": 81,
         "consistency": 94,
         "leadership": 64,
         "synergy": 75
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "jdg-2024:ruler": {
       "teamId": "jdg-2024",
@@ -6469,14 +6727,15 @@
         "games": 113
       },
       "ratings": {
-        "overall": 84,
-        "peak": 85,
-        "international": 86,
-        "clutch": 78,
+        "overall": 86,
+        "peak": 87,
+        "international": 88,
+        "clutch": 79,
         "consistency": 83,
         "leadership": 65,
         "synergy": 80
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "jdg-2024:missing": {
       "teamId": "jdg-2024",
@@ -6494,14 +6753,15 @@
         "games": 113
       },
       "ratings": {
-        "overall": 73,
-        "peak": 74,
-        "international": 75,
-        "clutch": 69,
+        "overall": 78,
+        "peak": 79,
+        "international": 80,
+        "clutch": 77,
         "consistency": 83,
         "leadership": 73,
         "synergy": 87
-      }
+      },
+      "accomplishment": "msi_champion"
     },
     "t1-2024:zeus": {
       "teamId": "t1-2024",
@@ -6519,14 +6779,15 @@
         "games": 176
       },
       "ratings": {
-        "overall": 71,
-        "peak": 72,
-        "international": 73,
-        "clutch": 63,
+        "overall": 76,
+        "peak": 77,
+        "international": 77,
+        "clutch": 65,
         "consistency": 86,
         "leadership": 63,
         "synergy": 70
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "t1-2024:oner": {
       "teamId": "t1-2024",
@@ -6544,14 +6805,15 @@
         "games": 174
       },
       "ratings": {
-        "overall": 74,
-        "peak": 75,
-        "international": 76,
-        "clutch": 73,
+        "overall": 79,
+        "peak": 80,
+        "international": 80,
+        "clutch": 75,
         "consistency": 86,
         "leadership": 73,
         "synergy": 86
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "t1-2024:faker": {
       "teamId": "t1-2024",
@@ -6569,14 +6831,15 @@
         "games": 176
       },
       "ratings": {
-        "overall": 79,
-        "peak": 80,
-        "international": 81,
-        "clutch": 70,
+        "overall": 84,
+        "peak": 85,
+        "international": 85,
+        "clutch": 72,
         "consistency": 86,
         "leadership": 65,
         "synergy": 79
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "t1-2024:gumayusi": {
       "teamId": "t1-2024",
@@ -6594,14 +6857,15 @@
         "games": 176
       },
       "ratings": {
-        "overall": 82,
-        "peak": 83,
-        "international": 84,
-        "clutch": 76,
+        "overall": 87,
+        "peak": 88,
+        "international": 88,
+        "clutch": 78,
         "consistency": 86,
         "leadership": 65,
         "synergy": 82
-      }
+      },
+      "accomplishment": "worlds_champion"
     },
     "t1-2024:keria": {
       "teamId": "t1-2024",
@@ -6619,14 +6883,15 @@
         "games": 176
       },
       "ratings": {
-        "overall": 76,
-        "peak": 77,
-        "international": 78,
-        "clutch": 74,
+        "overall": 84,
+        "peak": 87,
+        "international": 85,
+        "clutch": 86,
         "consistency": 86,
         "leadership": 73,
         "synergy": 87
-      }
+      },
+      "accomplishment": "worlds_champion"
     }
   }
 }

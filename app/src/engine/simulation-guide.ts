@@ -2,11 +2,11 @@
 export const SIMULATION_GUIDE = {
   headline: 'How OVR & the Golden Road work',
   intro:
-    'Each card shows an overall rating (OVR) for that pro on that team and year — built from KDA, kill participation, damage share, gold share, win rate, and games played.',
+    'Each card shows an overall rating (OVR) for that pro on that team and year — built from split stats plus what the team actually achieved that season (Worlds, MSI, etc.).',
   sections: [
     {
       title: 'What OVR means',
-      body: 'Higher OVR means stronger performance on that specific roster that split. KDA is shown underneath as a quick reference, but OVR weighs every stat together.',
+      body: 'OVR blends KDA, KP%, damage share, win rate, and games played — then adjusts for team results. World Champions have a rating floor so every starter reflects a title-winning roster.',
     },
     {
       title: 'Exact vs estimated',

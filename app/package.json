@@ -11,7 +11,8 @@
     "etl:gol:resolve": "tsx scripts/etl/resolve-gol-ids.ts",
     "etl:gol": "tsx scripts/etl/run-gol-etl.ts",
     "etl:gol:teams:resolve": "tsx scripts/etl/resolve-gol-teams.ts",
-    "etl:gol:team-year": "tsx scripts/etl/run-team-year-etl.ts"
+    "etl:gol:team-year": "tsx scripts/etl/run-team-year-etl.ts",
+    "etl:gol:patch-accomplishments": "tsx scripts/etl/patch-accomplishment-ratings.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

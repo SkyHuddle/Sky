@@ -11,6 +11,7 @@ import { parseGolTeamRoster, GOL_TEAM_STATS_URL } from './parse-gol-team-html';
 import { parseGolPlayerHtml, GOL_PLAYER_SEASON_URL } from './parse-gol-html';
 import { computeRatingsFromTeamYear } from './compute-ratings';
 import { yearToGolSeason } from './gol-season';
+import { accomplishmentFromTagline } from '../../src/data/teams/accomplishment';
 import type { GolIdMap, GolTeamYearStats, TeamYearRatingsBundle } from './types';
 
 const __dir = dirname(fileURLToPath(import.meta.url));
@@ -83,6 +84,7 @@ async function main() {
     }
 
     const season = yearToGolSeason(team.year);
+    const accomplishment = accomplishmentFromTagline(team.tagline);
 
     try {
       console.log(`Team ${team.name} ${team.year} (${team.id})`);
@@ -113,7 +115,7 @@ async function main() {
           games: extra.games,
         };
 
-        const ratings = computeRatingsFromTeamYear(stats, player.role);
+        const ratings = computeRatingsFromTeamYear(stats, player.role, accomplishment);
         bundle.entries[entryKey(team.id, playerId)] = {
           teamId: team.id,
           playerId,
@@ -121,6 +123,7 @@ async function main() {
           golPlayerId,
           season,
           source,
+          accomplishment,
           stats,
           ratings,
         };

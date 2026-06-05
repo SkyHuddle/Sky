@@ -1,5 +1,7 @@
 import type { PlayerRatings, Role } from '../../src/core/types';
 import type { GolPlayerStats, GolTeamYearStats } from './types';
+import type { TeamYearAccomplishment } from '../../src/data/teams/accomplishment';
+import { applyAccomplishmentToRatings } from '../../src/data/teams/accomplishment-apply';
 
 function clamp(n: number, min: number, max: number): number {
   return Math.round(Math.min(max, Math.max(min, n)));
@@ -78,20 +80,23 @@ export function computeRatingsFromKda(kda: number, role: Role): PlayerRatings {
   };
 }
 
-/** Team-season slice from Gol team roster table (+ season WR when available). */
-export function computeRatingsFromTeamYear(
+function baseRatingsFromTeamYearStats(
   stats: GolTeamYearStats,
   role: Role
 ): PlayerRatings {
-  const kda = norm(stats.kda, 1.8, 6.5);
+  const isSupport = role === 'support';
+  const isCarry = role === 'adc' || role === 'mid';
+
+  const kda = norm(
+    stats.kda,
+    isSupport ? 1.2 : 1.8,
+    isSupport ? 4.8 : 6.5
+  );
   const kp = norm(stats.killParticipation, 45, 75);
   const dmg = norm(stats.damagePct, 14, 32);
   const gold = norm(stats.goldPct, 16, 26);
   const wr = norm(stats.winRate, 35, 75);
   const sample = norm(Math.min(stats.games, 120), 8, 80);
-
-  const isSupport = role === 'support';
-  const isCarry = role === 'adc' || role === 'mid';
 
   const impact =
     kda * 0.26 +
@@ -122,4 +127,14 @@ export function computeRatingsFromTeamYear(
     leadership,
     synergy,
   };
+}
+
+/** Team-season stats + that year's team accomplishment */
+export function computeRatingsFromTeamYear(
+  stats: GolTeamYearStats,
+  role: Role,
+  accomplishment: TeamYearAccomplishment = 'standard'
+): PlayerRatings {
+  const base = baseRatingsFromTeamYearStats(stats, role);
+  return applyAccomplishmentToRatings(base, accomplishment);
 }

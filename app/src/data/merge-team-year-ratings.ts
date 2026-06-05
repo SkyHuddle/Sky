@@ -6,6 +6,7 @@ export interface TeamYearRatingsEntry {
   playerId: string;
   season: string;
   source?: 'team-roster' | 'season';
+  accomplishment?: string;
   stats: {
     kda: number;
     killParticipation: number;

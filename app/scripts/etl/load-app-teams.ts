@@ -10,6 +10,7 @@ export interface AppTeamRef {
   name: string;
   year: number;
   region: string;
+  tagline: string;
   roster: Record<string, string>;
 }
 
@@ -17,10 +18,10 @@ function parseTeamsFromFile(file: string): AppTeamRef[] {
   const text = readFileSync(join(ROOT, 'src/data/teams', file), 'utf8');
   const teams: AppTeamRef[] = [];
   const blockRe =
-    /\{\s*id:\s*'([^']+)',\s*esport:\s*'lol',\s*name:\s*'([^']+)',\s*year:\s*(\d+),\s*region:\s*'([^']+)'[\s\S]*?roster:\s*R\(([^)]+)\)/g;
+    /\{\s*id:\s*'([^']+)',\s*esport:\s*'lol',\s*name:\s*'([^']+)',\s*year:\s*(\d+),\s*region:\s*'([^']+)',\s*tagline:\s*'([^']+)'[\s\S]*?roster:\s*R\(([^)]+)\)/g;
   let m: RegExpExecArray | null;
   while ((m = blockRe.exec(text))) {
-    const rosterArgs = m[5].split(',').map((s) => s.trim().replace(/'/g, ''));
+    const rosterArgs = m[6].split(',').map((s) => s.trim().replace(/'/g, ''));
     const roles = ['top', 'jungle', 'mid', 'adc', 'support'];
     const roster: Record<string, string> = {};
     roles.forEach((role, i) => {
@@ -31,6 +32,7 @@ function parseTeamsFromFile(file: string): AppTeamRef[] {
       name: m[2],
       year: parseInt(m[3], 10),
       region: m[4],
+      tagline: m[5],
       roster,
     });
   }

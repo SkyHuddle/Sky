@@ -11,6 +11,7 @@ import {
   formatKda,
 } from '@/engine/player-power';
 import { getOvrTier, ovrAccentColor } from '@/engine/ovr-display';
+import { accomplishmentFromTagline, ACCOMPLISHMENT_LABEL } from '@/data/teams/accomplishment';
 import { StatBreakdown } from './StatBreakdown';
 import { cn } from '@/lib/utils';
 
@@ -197,6 +198,9 @@ const TIER_BADGE: Record<string, string> = {
 };
 
 export function TeamBanner({ team, rosterAvgOvr }: TeamBannerProps) {
+  const accomplishment = accomplishmentFromTagline(team.tagline);
+  const accomplishmentLabel = ACCOMPLISHMENT_LABEL[accomplishment];
+
   return (
     <motion.div
       key={team.id}
@@ -230,6 +234,11 @@ export function TeamBanner({ team, rosterAvgOvr }: TeamBannerProps) {
             >
               {TIER_BADGE[team.tier]}
             </span>
+            {accomplishmentLabel && (
+              <span className="text-[9px] uppercase px-2 py-0.5 rounded-full font-medium bg-gold/10 text-gold/90 border border-gold/20">
+                {accomplishmentLabel}
+              </span>
+            )}
           </div>
           <h3 className="font-display text-3xl text-white tracking-wide leading-none truncate">
             {team.name}

@@ -63,6 +63,7 @@ export interface TeamYearRatingsEntry {
   golPlayerId: number;
   season: string;
   source: 'team-roster' | 'season';
+  accomplishment?: string;
   stats: GolTeamYearStats;
   ratings: PlayerRatings;
 }
