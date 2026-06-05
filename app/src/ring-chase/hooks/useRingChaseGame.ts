@@ -154,7 +154,7 @@ export function useRingChaseGame() {
         : undefined;
     const sim = simulateRingChase(picks, { seed: simSeed });
     setResult(sim);
-    setPhase('simulation');
+    setPhase('result');
 
     recordAttempt(sim.ringWon, sim.perfectSeason, sim.rosterScore, mode === 'daily');
 
@@ -188,8 +188,6 @@ export function useRingChaseGame() {
       setDailyBoardEntryId(`you-${dateKey}`);
     }
   }, [picks, mode, dateKey]);
-
-  const finishSimulation = useCallback(() => setPhase('result'), []);
 
   const resetToHome = useCallback(() => {
     setPhase('home');
@@ -241,7 +239,6 @@ export function useRingChaseGame() {
     respinTeam,
     selectPlayer,
     startSimulation,
-    finishSimulation,
     resetToHome,
     playAgain,
     redraftLast,

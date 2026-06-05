@@ -144,7 +144,7 @@ export function ReadyScreen({ picks, isDaily, onAttempt, onEdit }: ReadyScreenPr
         transition={{ delay: 0.3, ease: easeOut }}
       >
         <RingCtaButton onClick={onAttempt} variant="gold" className="h-14 text-base animate-pulse-ring">
-          Start the Run
+          Run Season
         </RingCtaButton>
         {!isDaily && (
           <button

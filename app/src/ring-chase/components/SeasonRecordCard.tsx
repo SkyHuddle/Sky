@@ -64,11 +64,6 @@ export function SeasonRecordCard({
         </p>
       )}
 
-      {variant !== 'sim' && (
-        <p className="text-[10px] text-kb-faint mt-3 tabular-nums kb-mono relative">
-          Bracket {summary.bracketWins}-{summary.bracketLosses} · Regular season {summary.record}
-        </p>
-      )}
     </motion.div>
   );
 }
