@@ -1,11 +1,12 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import type { HistoricalCodTeam, SlotSpin } from '../core/types';
+import type { SlotSpin } from '../core/types';
 import { SPIN_TICK_MS } from '../core/constants';
 import { hapticTap } from '../utils/haptics';
 
+const NEUTRAL_GLOW = 'rgba(232, 184, 66, 0.12)';
+
 interface TeamSlotMachineProps {
-  team: HistoricalCodTeam;
   spin: SlotSpin;
   spinKey: number;
   roundIndex: number;
@@ -13,7 +14,6 @@ interface TeamSlotMachineProps {
 }
 
 export function TeamSlotMachine({
-  team,
   spin,
   spinKey,
   roundIndex,
@@ -21,77 +21,55 @@ export function TeamSlotMachine({
 }: TeamSlotMachineProps) {
   const pickNumber = roundIndex + 1;
   const [index, setIndex] = useState(0);
-  const [done, setDone] = useState(false);
   const onCompleteRef = useRef(onComplete);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const finishTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   onCompleteRef.current = onComplete;
-
-  const finishSpin = useCallback(() => {
-    if (intervalRef.current) clearInterval(intervalRef.current);
-    intervalRef.current = null;
-    const last = Math.max(0, spin.yearSequence.length - 1);
-    setIndex(last);
-    setDone(true);
-    hapticTap();
-    finishTimerRef.current = setTimeout(() => onCompleteRef.current(), 280);
-  }, [spin.yearSequence.length]);
 
   useEffect(() => {
     setIndex(0);
-    setDone(false);
-    if (finishTimerRef.current) clearTimeout(finishTimerRef.current);
-    if (intervalRef.current) clearInterval(intervalRef.current);
   }, [spinKey, spin]);
 
   useEffect(() => {
     const totalTicks = spin.yearSequence.length;
-    if (totalTicks === 0) return;
+    if (totalTicks === 0) {
+      onCompleteRef.current();
+      return;
+    }
 
     let tick = 0;
     let cancelled = false;
+    let interval: ReturnType<typeof setInterval> | null = null;
 
-    intervalRef.current = setInterval(() => {
+    interval = setInterval(() => {
       if (cancelled) return;
       tick += 1;
       setIndex(tick - 1);
 
       if (tick >= totalTicks) {
-        if (intervalRef.current) clearInterval(intervalRef.current);
-        intervalRef.current = null;
-        setDone(true);
+        if (interval) clearInterval(interval);
         hapticTap();
-        finishTimerRef.current = setTimeout(() => {
-          if (!cancelled) onCompleteRef.current();
-        }, 280);
+        onCompleteRef.current();
       }
     }, SPIN_TICK_MS);
 
     return () => {
       cancelled = true;
-      if (intervalRef.current) clearInterval(intervalRef.current);
-      if (finishTimerRef.current) clearTimeout(finishTimerRef.current);
+      if (interval) clearInterval(interval);
     };
   }, [spinKey, spin.yearSequence.length]);
 
-  const year = spin.yearSequence[index] ?? team.season;
-  const name = spin.nameSequence[index] ?? team.teamName;
-  const region = spin.regionSequence[index] ?? team.region;
+  const year = spin.yearSequence[index] ?? spin.yearSequence.at(-1) ?? '';
+  const name = spin.nameSequence[index] ?? '';
+  const region = spin.regionSequence[index] ?? '';
+  const tickAccent = spin.accentSequence[index] ?? NEUTRAL_GLOW;
   const progress = spin.yearSequence.length ? (index + 1) / spin.yearSequence.length : 1;
 
   return (
-    <button
-      type="button"
-      className="flex flex-col items-center justify-center min-h-[54dvh] px-5 pb-10 relative w-full"
-      onClick={() => {
-        if (!done) finishSpin();
-      }}
-      aria-label={done ? undefined : 'Tap to skip spin'}
-    >
+    <div className="flex flex-col items-center justify-center min-h-[54dvh] px-5 pb-10 relative w-full">
       <div
-        className="absolute inset-x-8 top-1/4 h-48 rounded-full blur-3xl opacity-20 pointer-events-none"
-        style={{ backgroundColor: team.accent }}
+        className="absolute inset-x-8 top-1/4 h-48 rounded-full blur-3xl opacity-30 pointer-events-none transition-colors duration-75"
+        style={{ backgroundColor: tickAccent }}
       />
+
       <motion.div
         className="text-center mb-10"
         initial={{ opacity: 0, y: 8 }}
@@ -102,50 +80,23 @@ export function TeamSlotMachine({
         </p>
       </motion.div>
 
-      <div className="w-full max-w-sm grid grid-cols-2 gap-3 mb-6 pointer-events-none">
-        <Reel label="Year" value={String(year)} highlight={done} accent={team.accent} />
-        <Reel label="Team" value={name} sub={region} highlight={done} accent={team.accent} small />
+      <div className="w-full max-w-sm grid grid-cols-2 gap-3 mb-6">
+        <Reel label="Year" value={String(year)} accent={tickAccent} />
+        <Reel label="Team" value={name} sub={region} accent={tickAccent} small />
       </div>
 
-      <motion.div
-        className="kb-card w-full max-w-sm rounded-[var(--kb-r-lg)] border px-5 py-5 text-center relative overflow-hidden pointer-events-none"
-        style={{
-          borderColor: done ? `${team.accent}55` : undefined,
-          background: done
-            ? `linear-gradient(180deg, ${team.accent}18 0%, var(--kb-bg-card) 100%)`
-            : undefined,
-          boxShadow: done ? `0 16px 48px ${team.accent}15` : undefined,
-        }}
-        animate={done ? { scale: [1, 1.015, 1] } : {}}
-        transition={{ duration: 0.4 }}
-      >
-        {!done ? (
-          <div className="h-1.5 rounded-full bg-kb-glass-strong overflow-hidden">
-            <motion.div
-              className="h-full rounded-full"
-              style={{
-                width: `${progress * 100}%`,
-                background: `linear-gradient(90deg, ${team.accent}, var(--kb-gold))`,
-              }}
-            />
-          </div>
-        ) : (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            <p className="text-[10px] uppercase tracking-widest text-kb-mute mb-1">You landed</p>
-            <p className="text-base font-medium" style={{ color: team.accent }}>
-              {team.eventContext}
-            </p>
-            <p className="text-[10px] text-kb-faint mt-1">{team.gameTitle}</p>
-          </motion.div>
-        )}
-      </motion.div>
-
-      {!done && (
-        <p className="text-kb-mute text-[10px] uppercase tracking-[0.3em] mt-8">
-          Tap to skip
-        </p>
-      )}
-    </button>
+      <div className="kb-card w-full max-w-sm rounded-[var(--kb-r-lg)] border border-kb-border px-5 py-5">
+        <div className="h-1.5 rounded-full bg-kb-glass-strong overflow-hidden">
+          <motion.div
+            className="h-full rounded-full"
+            style={{
+              width: `${progress * 100}%`,
+              background: `linear-gradient(90deg, ${tickAccent}, var(--kb-gold))`,
+            }}
+          />
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -153,38 +104,32 @@ function Reel({
   label,
   value,
   sub,
-  highlight,
   accent,
   small,
 }: {
   label: string;
   value: string;
   sub?: string;
-  highlight: boolean;
   accent: string;
   small?: boolean;
 }) {
   return (
     <motion.div
-      className="kb-card rounded-[var(--kb-r-md)] border p-4 text-center overflow-hidden min-h-[112px] flex flex-col justify-center"
+      className="kb-card rounded-[var(--kb-r-md)] border border-kb-border p-4 text-center overflow-hidden min-h-[112px] flex flex-col justify-center"
       style={{
-        borderColor: highlight ? `${accent}60` : undefined,
-        background: highlight
-          ? `linear-gradient(160deg, ${accent}22 0%, var(--kb-bg-card) 100%)`
-          : undefined,
-        boxShadow: highlight ? `0 0 32px ${accent}12` : undefined,
+        borderColor: `${accent}35`,
+        background: `linear-gradient(160deg, ${accent}14 0%, var(--kb-bg-card) 100%)`,
       }}
     >
       <p className="text-[9px] uppercase tracking-[0.3em] text-kb-mute mb-2 font-semibold">{label}</p>
       <motion.p
         key={value}
-        initial={{ opacity: 0.3, y: 10 }}
+        initial={{ opacity: 0.35, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.05 }}
-        className={`font-display tracking-wide leading-tight ${
+        className={`font-display tracking-wide leading-tight text-kb-fg ${
           small ? 'text-[0.95rem] px-1' : 'text-4xl'
-        } ${highlight ? '' : 'text-kb-fg'}`}
-        style={highlight ? { color: accent } : undefined}
+        }`}
       >
         {value}
       </motion.p>

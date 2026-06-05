@@ -46,19 +46,22 @@ export function buildDualSpin(
   const yearSequence: number[] = [];
   const nameSequence: string[] = [];
   const regionSequence: string[] = [];
+  const accentSequence: string[] = [];
 
   for (let i = 0; i < ticks - 1; i++) {
     const decoy = pool[Math.floor(rng() * pool.length)];
     yearSequence.push(years[Math.floor(rng() * years.length)] ?? decoy.season);
     nameSequence.push(names[Math.floor(rng() * names.length)] ?? decoy.teamName);
     regionSequence.push(regions[Math.floor(rng() * regions.length)] ?? decoy.region);
+    accentSequence.push(decoy.accent);
   }
 
   yearSequence.push(finalTeam.season);
   nameSequence.push(finalTeam.teamName);
   regionSequence.push(finalTeam.region);
+  accentSequence.push(finalTeam.accent);
 
-  return { yearSequence, nameSequence, regionSequence };
+  return { yearSequence, nameSequence, regionSequence, accentSequence };
 }
 
 function buildRound(

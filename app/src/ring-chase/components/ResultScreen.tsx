@@ -39,7 +39,7 @@ export function ResultScreen({
   useEffect(() => {
     setRevealed(false);
     hapticSuccess();
-    const t = setTimeout(() => setRevealed(true), 900);
+    const t = setTimeout(() => setRevealed(true), 750);
     return () => clearTimeout(t);
   }, [result]);
 
@@ -75,11 +75,9 @@ export function ResultScreen({
     <div className="min-h-[100dvh] px-4 py-10 pb-14 max-w-lg mx-auto overflow-y-auto">
       <AnimatePresence mode="wait">
         {!revealed ? (
-          <motion.button
+          <motion.div
             key="reveal"
-            type="button"
             className="min-h-[70dvh] flex flex-col items-center justify-center w-full"
-            onClick={() => setRevealed(true)}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, scale: 0.96 }}
@@ -98,8 +96,7 @@ export function ResultScreen({
             <p className="text-kb-soft text-sm mt-4 text-center max-w-[260px]">
               {result.seasonSummary.headline}
             </p>
-            <p className="text-kb-faint text-[10px] uppercase tracking-widest mt-8">Tap to continue</p>
-          </motion.button>
+          </motion.div>
         ) : (
           <motion.div
             key="full"
