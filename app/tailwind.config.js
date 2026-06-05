@@ -38,6 +38,7 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        "ring-gold": "#c9a227",
         ink: {
           DEFAULT: "#2A2520",
           light: "#4A4540",

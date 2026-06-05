@@ -1,0 +1,190 @@
+/** Ring Chase — Call of Duty esports roster game */
+
+export type CodRole = 'mainAR' | 'flex' | 'smg';
+
+export type StageId = 'major1' | 'major2' | 'major3' | 'major4' | 'champs';
+
+export const STAGES: StageId[] = ['major1', 'major2', 'major3', 'major4', 'champs'];
+
+export const STAGE_LABELS: Record<StageId, string> = {
+  major1: 'Major I',
+  major2: 'Major II',
+  major3: 'Major III',
+  major4: 'Major IV',
+  champs: 'Champs',
+};
+
+export type MajorOutcome =
+  | 'won'
+  | 'runner_up'
+  | 'top3'
+  | 'top4'
+  | 'top6'
+  | 'top8'
+  | 'eliminated';
+
+export type ChampsOutcome =
+  | 'champion'
+  | 'grand_final'
+  | 'top3'
+  | 'top4'
+  | 'top6'
+  | 'top8'
+  | 'missed';
+
+export type StageOutcomeLabel = MajorOutcome | ChampsOutcome;
+
+export const MAJOR_OUTCOME_LABELS: Record<MajorOutcome, string> = {
+  won: 'Won',
+  runner_up: 'Runner-Up',
+  top3: 'Top 3',
+  top4: 'Top 4',
+  top6: 'Top 6',
+  top8: 'Top 8',
+  eliminated: 'Eliminated',
+};
+
+export const CHAMPS_OUTCOME_LABELS: Record<ChampsOutcome, string> = {
+  champion: 'Champion',
+  grand_final: 'Lost Grand Final',
+  top3: 'Top 3',
+  top4: 'Top 4',
+  top6: 'Top 6',
+  top8: 'Top 8',
+  missed: 'Missed Champs',
+};
+
+export type GamePhase = 'home' | 'draft' | 'ready' | 'simulation' | 'result';
+export type GameMode = 'free' | 'daily';
+export type DraftSubphase = 'reveal' | 'pick';
+
+export interface PlayerRatings {
+  overall: number;
+  slaying: number;
+  objective: number;
+  snd: number;
+  respawn: number;
+  clutch: number;
+  lan: number;
+  consistency: number;
+  leadership: number;
+  pace: number;
+  roleFit: number;
+  championshipFactor: number;
+  peakForm: number;
+}
+
+export interface CodPlayer {
+  id: string;
+  gamertag: string;
+  realName?: string;
+  primaryRole: CodRole;
+  secondaryRole: CodRole;
+  country: string;
+  organization: string;
+  rings: number;
+  majorWins: number;
+  mvpAwards: number;
+  notableAchievement: string;
+  badge?: string;
+  ratings: PlayerRatings;
+  accent: string;
+}
+
+export type TeamTier = 'legendary' | 'elite' | 'strong' | 'solid' | 'underdog';
+
+export interface HistoricalCodTeam {
+  id: string;
+  teamName: string;
+  season: number;
+  gameTitle: string;
+  eventContext: string;
+  region: string;
+  roster: string[];
+  teamRating: number;
+  placement: string;
+  majorWins: number;
+  champsPlacement: string;
+  isChampsWinner: boolean;
+  isIconicRoster: boolean;
+  era: 'pre-cdl' | 'cdl';
+  accent: string;
+  tier: TeamTier;
+}
+
+export interface DraftRound {
+  roundIndex: number;
+  team: HistoricalCodTeam;
+  roster: CodPlayer[];
+}
+
+export interface DraftPick {
+  roundIndex: number;
+  player: CodPlayer;
+  team: HistoricalCodTeam;
+}
+
+export interface StageOutcome {
+  stage: StageId;
+  outcome: StageOutcomeLabel;
+  passed: boolean;
+  passChance: number;
+  power: number;
+}
+
+export interface ChemistryReport {
+  score: number;
+  modifiers: string[];
+  issues: string[];
+}
+
+export interface SimulationResult {
+  stages: StageOutcome[];
+  ringWon: boolean;
+  perfectSeason: boolean;
+  majorWins: number;
+  champsOutcome: ChampsOutcome;
+  rosterScore: number;
+  ringOdds: number;
+  chemistry: ChemistryReport;
+  mvp: CodPlayer;
+  weakLink: CodPlayer | null;
+  explanation: string;
+  footer: string;
+}
+
+export interface DailyConstraint {
+  id: string;
+  title: string;
+  description: string;
+  filter?: (ctx: DailyFilterContext) => boolean;
+  pickFilter?: (player: CodPlayer, picks: DraftPick[]) => boolean;
+}
+
+export interface DailyFilterContext {
+  team: HistoricalCodTeam;
+  roster: CodPlayer[];
+}
+
+export interface PlayerStats {
+  ringsWon: number;
+  perfectSeasons: number;
+  winStreak: number;
+  bestRosterScore: number;
+  attempts: number;
+  dailyCompletions: number;
+}
+
+export interface DailyRunResult {
+  date: string;
+  score: number;
+  ringWon: boolean;
+  perfectSeason: boolean;
+  percentile: number | null;
+}
+
+export const ROLE_LABELS: Record<CodRole, string> = {
+  mainAR: 'Main AR',
+  flex: 'Flex',
+  smg: 'SMG',
+};
