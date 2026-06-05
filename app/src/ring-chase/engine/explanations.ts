@@ -41,7 +41,7 @@ function stageStatWeakness(stage: StageId, players: CodPlayer[]): string | null 
 }
 
 export function buildExplanation(
-  result: Omit<SimulationResult, 'explanation' | 'footer'>,
+  result: Omit<SimulationResult, 'explanation' | 'footer' | 'seasonSummary'>,
   picks: DraftPick[]
 ): { explanation: string; footer: string } {
   const players = picks.map((p) => p.player);
@@ -64,7 +64,7 @@ export function buildExplanation(
   if (!failedStage) {
     return {
       explanation: 'The run ended short of a ring.',
-      footer: `Major wins: ${majorWins}`,
+      footer: `${majorWins} major${majorWins === 1 ? '' : 's'} won`,
     };
   }
 

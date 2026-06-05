@@ -166,7 +166,7 @@ export function PlayerCard({
                 transition={{ duration: 0.2 }}
                 className="overflow-hidden"
               >
-                <CardStatBreakdown stats={stats} />
+                <CardStatBreakdown stats={stats} team={team} />
               </motion.div>
             )}
           </AnimatePresence>

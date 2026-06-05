@@ -60,10 +60,10 @@ export function HomeScreen({
         </h1>
 
         <p className="text-white/50 text-sm mt-5 max-w-[320px] mx-auto leading-relaxed">
-          Draft four pros across four majors. Win them all, then Champs — run the table.
+          Build a CDL superteam from real team-year cards. Run the table or walk away 16-4 with no ring.
         </p>
         <p className="text-[10px] text-white/30 mt-3 max-w-[320px] mx-auto leading-relaxed">
-          {getDataSourceLabel()}. OVR and rings are for that season only — tap scout report on draft cards.
+          {getDataSourceLabel()}. Stats and rings are that season only — scout before you draft.
         </p>
       </motion.header>
 

@@ -167,6 +167,21 @@ export interface ChemistryReport {
   issues: string[];
 }
 
+export interface SeasonSummary {
+  record: string;
+  regularSeasonWins: number;
+  regularSeasonLosses: number;
+  bracketWins: number;
+  bracketLosses: number;
+  majorWins: number;
+  majorsLine: string;
+  champsLine: string;
+  ringLine: string;
+  headline: string;
+  tagline: string;
+  narrative: string;
+}
+
 export interface SimulationResult {
   stages: StageOutcome[];
   ringWon: boolean;
@@ -180,6 +195,7 @@ export interface SimulationResult {
   chemistry: ChemistryReport;
   mvp: CodPlayer;
   weakLink: CodPlayer | null;
+  seasonSummary: SeasonSummary;
   explanation: string;
   footer: string;
 }

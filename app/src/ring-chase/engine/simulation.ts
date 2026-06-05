@@ -19,6 +19,7 @@ import { simulationPlayers } from './card-context';
 import { evaluateChemistry } from './chemistry';
 import { computeRosterScore, stageTeamPower, findMvp, findWeakLink } from './ratings';
 import { buildExplanation } from './explanations';
+import { buildSeasonSummary } from './season-summary';
 import { enrichStageWithRun, stageFailureHeadline } from './tournament-run';
 import { hashString, mulberry32 } from './rng';
 
@@ -131,7 +132,7 @@ export function simulateRingChase(
   const mvp = findMvp(players);
   const weakLink = findWeakLink(players);
 
-  const partial: Omit<SimulationResult, 'explanation' | 'footer'> = {
+  const partial: Omit<SimulationResult, 'explanation' | 'footer' | 'seasonSummary'> = {
     stages,
     ringWon,
     perfectSeason,
@@ -150,9 +151,10 @@ export function simulateRingChase(
     weakLink,
   };
 
+  const seasonSummary = buildSeasonSummary(partial, picks);
   const { explanation, footer } = buildExplanation(partial, picks);
 
-  return { ...partial, explanation, footer };
+  return { ...partial, seasonSummary, explanation, footer };
 }
 
 const oddsCache = new Map<string, number>();

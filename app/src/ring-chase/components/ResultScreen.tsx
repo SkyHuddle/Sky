@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Share2, RotateCcw, Home } from 'lucide-react';
 import type { DraftPick, GameMode, SimulationResult } from '../core/types';
 import { ShareCard } from './ShareCard';
+import { SeasonRecordCard } from './SeasonRecordCard';
 import { Button } from '@/components/ui/button';
 import { addShareHistory } from '../features/storage';
 
@@ -34,8 +35,8 @@ export function ResultScreen({
       rosterNames: picks.map((p) => p.player.gamertag),
     });
 
-    const headline = result.perfectSeason ? 'PERFECT SEASON' : result.ringWon ? 'RING WON' : 'NO RING';
-    const text = `${headline}\n${picks.map((p) => `${p.team.season} ${p.player.gamertag}`).join('\n')}\n${result.explanation}\nScore: ${result.rosterScore}`;
+    const { seasonSummary } = result;
+    const text = `${seasonSummary.headline}\n${seasonSummary.narrative}\n\n${picks.map((p) => `${p.team.season} ${p.player.gamertag}`).join(' · ')}\nScore: ${result.rosterScore.toFixed(1)}`;
 
     if (navigator.share) {
       try {
@@ -51,9 +52,19 @@ export function ResultScreen({
   return (
     <div className="min-h-[100dvh] px-4 py-10 pb-14 max-w-lg mx-auto overflow-y-auto">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-        <p className="text-center text-[10px] uppercase tracking-[0.35em] text-white/30 mb-5">
-          Your result
+        <p className="text-center text-[10px] uppercase tracking-[0.35em] text-white/30 mb-4">
+          Final standings
         </p>
+
+        <div className="mb-6">
+          <SeasonRecordCard
+            summary={result.seasonSummary}
+            variant="result"
+            perfectSeason={result.perfectSeason}
+            ringWon={result.ringWon}
+          />
+        </div>
+
         <div ref={cardRef} className="flex justify-center">
           <ShareCard picks={picks} result={result} mode={mode} dailyTitle={dailyTitle} />
         </div>
@@ -64,7 +75,7 @@ export function ResultScreen({
 
       {mode === 'daily' && (
         <motion.div
-          className="mt-6 rounded-2xl glass-panel p-4 text-center"
+          className="mt-6 rounded-2xl glass-panel p-4 text-center border border-ring-gold/10"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.15 }}
@@ -76,11 +87,18 @@ export function ResultScreen({
         </motion.div>
       )}
 
-      <motion.div className="space-y-2.5 mt-8" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-        <div className="rounded-2xl glass-panel p-4 mb-2">
-          <p className="text-[10px] uppercase tracking-widest text-white/35 mb-2">Why</p>
-          <p className="text-sm text-white/70">{result.explanation}</p>
-          <p className="text-xs text-ring-gold/60 mt-2">{result.footer}</p>
+      <motion.div
+        className="space-y-2.5 mt-8"
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+      >
+        <div className="rounded-2xl glass-panel p-4 mb-2 border border-white/[0.06]">
+          <p className="text-[10px] uppercase tracking-widest text-white/35 mb-2">Tape review</p>
+          <p className="text-sm text-white/70 leading-relaxed">{result.explanation}</p>
+          {result.chemistry.modifiers[0] && (
+            <p className="text-xs text-white/40 mt-2">{result.chemistry.modifiers[0]}</p>
+          )}
         </div>
 
         <Button
@@ -93,10 +111,10 @@ export function ResultScreen({
         </Button>
         <Button
           onClick={onPlayAgain}
-          className="w-full h-12 rounded-2xl bg-ring-gold text-black hover:bg-ring-gold/90 border-0"
+          className="w-full h-12 rounded-2xl bg-ring-gold text-black hover:bg-ring-gold/90 border-0 shadow-lg shadow-ring-gold/15"
         >
           <RotateCcw className="w-4 h-4 mr-2" />
-          One More Run
+          Run It Back
         </Button>
         <button
           type="button"

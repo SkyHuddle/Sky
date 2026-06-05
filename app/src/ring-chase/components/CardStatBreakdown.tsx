@@ -1,6 +1,8 @@
-import { Trophy } from 'lucide-react';
+import { Trophy, Calendar } from 'lucide-react';
 import type { CardStatBreakdown as Stats } from '../data/team-year-ratings';
 import { formatKd } from '../data/team-year-ratings';
+import type { HistoricalCodTeam } from '../core/types';
+import { cardCredentials } from '../engine/card-context';
 const ACCOMPLISHMENT_LABEL: Record<Stats['accomplishment'], string> = {
   champs_winner: 'Champs Winner',
   champs_finalist: 'Champs Finalist',
@@ -12,6 +14,7 @@ const ACCOMPLISHMENT_LABEL: Record<Stats['accomplishment'], string> = {
 
 interface CardStatBreakdownProps {
   stats: Stats;
+  team?: HistoricalCodTeam;
   compact?: boolean;
 }
 
@@ -26,7 +29,8 @@ function ModeChip({ label, kd, rating, maps }: { label: string; kd: number; rati
   );
 }
 
-export function CardStatBreakdown({ stats, compact }: CardStatBreakdownProps) {
+export function CardStatBreakdown({ stats, team, compact }: CardStatBreakdownProps) {
+  const creds = team ? cardCredentials(team) : null;
   const chips = [
     { label: 'K/D', value: formatKd(stats.kd) },
     { label: 'BP', value: stats.bpRating.toFixed(2) },
@@ -35,6 +39,16 @@ export function CardStatBreakdown({ stats, compact }: CardStatBreakdownProps) {
 
   return (
     <div className={compact ? '' : 'pt-3 border-t border-white/[0.06] mt-2'}>
+      {creds && (
+        <div className="mb-2.5 rounded-lg bg-white/[0.03] border border-white/[0.06] px-2.5 py-2">
+          <div className="flex items-center gap-1.5 text-[9px] uppercase tracking-wider text-white/35 mb-1">
+            <Calendar className="w-3 h-3" />
+            {team!.season} team-year
+          </div>
+          <p className="text-[11px] text-white/70 leading-snug">{creds.headline}</p>
+          <p className="text-[10px] text-white/40 mt-0.5">{creds.detail}</p>
+        </div>
+      )}
       <div className="flex flex-wrap gap-1.5 mb-2.5">
         {chips.map(({ label, value }) => (
           <span

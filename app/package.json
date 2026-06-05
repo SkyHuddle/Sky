@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "etl:breakingpoint": "tsx scripts/etl/breakingpoint-sync.ts",
-    "etl:ring-chase-team-year": "tsx scripts/etl/ring-chase-team-year.ts"
+    "etl:ring-chase-team-year": "tsx scripts/etl/ring-chase-team-year.ts",
+    "validate:ring-chase-data": "tsx scripts/etl/validate-ring-chase-data.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

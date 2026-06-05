@@ -4,6 +4,7 @@ import type { SimulationResult, StageId, StageOutcome } from '../core/types';
 import { STAGES, STAGE_LABELS } from '../core/types';
 import { STAGE_PAUSE, RUN_BEAT_DELAY } from '../core/constants';
 import { Check, X, Minus } from 'lucide-react';
+import { SeasonRecordCard } from './SeasonRecordCard';
 
 interface SimulationScreenProps {
   result: SimulationResult;
@@ -50,7 +51,7 @@ export function SimulationScreen({ result, onComplete }: SimulationScreenProps) 
           setShowFinal(true);
           schedule(() => {
             if (!cancelled) onCompleteRef.current();
-          }, 1100);
+          }, 2200);
         }
       }, STAGE_PAUSE);
     };
@@ -123,25 +124,20 @@ export function SimulationScreen({ result, onComplete }: SimulationScreenProps) 
       <AnimatePresence>
         {showFinal && (
           <motion.div
-            className="mt-10 text-center px-4"
-            initial={{ opacity: 0, scale: 0.92, y: 8 }}
+            className="mt-8 w-full px-1"
+            initial={{ opacity: 0, scale: 0.94, y: 12 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ type: 'spring', stiffness: 280, damping: 24 }}
           >
-            <h2
-              className={`font-display text-3xl sm:text-4xl tracking-wide leading-tight ${
-                result.perfectSeason || result.ringWon ? 'text-ring-gold glow-ring' : 'text-white/90'
-              }`}
-            >
-              {result.perfectSeason
-                ? 'PERFECT SEASON'
-                : result.ringWon
-                  ? 'RING WON'
-                  : result.failureMessage.toUpperCase()}
-            </h2>
-            {!result.ringWon && (
-              <p className="text-white/35 text-xs mt-2">So close — run it back</p>
-            )}
+            <SeasonRecordCard
+              summary={result.seasonSummary}
+              variant="sim"
+              perfectSeason={result.perfectSeason}
+              ringWon={result.ringWon}
+            />
+            <p className="text-center text-white/40 text-xs mt-4 leading-relaxed px-2">
+              {result.seasonSummary.narrative}
+            </p>
           </motion.div>
         )}
       </AnimatePresence>
