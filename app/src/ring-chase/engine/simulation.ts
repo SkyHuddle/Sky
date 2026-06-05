@@ -18,6 +18,7 @@ import {
 import { evaluateChemistry } from './chemistry';
 import { computeRosterScore, stageTeamPower, findMvp, findWeakLink } from './ratings';
 import { buildExplanation } from './explanations';
+import { enrichStageWithRun, stageFailureHeadline } from './tournament-run';
 import { hashString, mulberry32 } from './rng';
 
 function clampPass(chance: number): number {
@@ -81,6 +82,7 @@ export function simulateRingChase(
   const stages: StageOutcome[] = [];
   let majorWins = 0;
   let failureStage: StageId | null = null;
+  let failureMessageText = '';
 
   for (const stage of STAGES) {
     const power = stageTeamPower(players, stage, chemistry.score);
@@ -101,15 +103,21 @@ export function simulateRingChase(
 
     if (!passed && failureStage == null) {
       failureStage = stage;
+      failureMessageText = stageFailureHeadline(stage, outcome);
     }
 
-    stages.push({
-      stage,
-      outcome,
-      passed,
-      passChance: Math.round(passChance * 1000) / 10,
-      power: Math.round(effective * 10) / 10,
-    });
+    stages.push(
+      enrichStageWithRun(
+        {
+          stage,
+          outcome,
+          passed,
+          passChance: Math.round(passChance * 1000) / 10,
+          power: Math.round(effective * 10) / 10,
+        },
+        rng
+      )
+    );
   }
 
   const champsStage = stages.find((s) => s.stage === 'champs')!;
@@ -129,6 +137,11 @@ export function simulateRingChase(
     majorWins,
     champsOutcome,
     failureStage: ringWon ? null : failureStage,
+    failureMessage: perfectSeason
+      ? 'Perfect Season'
+      : ringWon
+        ? 'Ring Won'
+        : failureMessageText || 'Run ended',
     rosterScore,
     ringOdds,
     chemistry,

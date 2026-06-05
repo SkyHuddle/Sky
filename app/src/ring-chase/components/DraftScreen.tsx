@@ -8,7 +8,7 @@ import type {
   DraftSubphase,
   RosterSlot,
 } from '../core/types';
-import { SLOT_LABELS } from '../core/types';
+import { DRAFT_ROUND_LABELS, SLOT_LABELS } from '../core/types';
 import { SLOT_ORDER } from '../core/constants';
 import { PlayerCard } from './PlayerCard';
 import { TeamSlotMachine } from './TeamSlotMachine';
@@ -89,7 +89,7 @@ export function DraftScreen({
             ← Exit
           </button>
           <span className="text-[10px] uppercase tracking-[0.2em] text-white/35">
-            Pick {picks.length + 1} / 4
+            {DRAFT_ROUND_LABELS[picks.length] ?? `Pick ${picks.length + 1}`} · {SLOT_LABELS[openRoles[0] ?? 'mainAR']}
           </span>
         </div>
         <RosterSlots picks={picks} openRoles={openRoles} />
@@ -103,6 +103,7 @@ export function DraftScreen({
             spin={currentRound.spin}
             spinKey={spinGeneration}
             roundIndex={currentRound.roundIndex}
+            draftSlot={openRoles[0] ?? 'mainAR'}
             onComplete={onSpinComplete}
           />
         )}

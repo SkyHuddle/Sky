@@ -23,8 +23,9 @@ export function ReadyScreen({ picks, onAttempt, onEdit }: ReadyScreenProps) {
     <div className="flex flex-col min-h-[100dvh] px-5 py-10 max-w-lg mx-auto justify-between">
       <div>
         <motion.div className="text-center" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
-          <p className="text-[10px] uppercase tracking-[0.35em] text-ring-gold/70">Roster Complete</p>
-          <h2 className="font-display text-4xl text-white mt-2">YOUR SQUAD</h2>
+          <p className="text-[10px] uppercase tracking-[0.35em] text-ring-gold/70">Roster locked</p>
+          <h2 className="font-display text-4xl text-white mt-2">RUN THE TABLE</h2>
+          <p className="text-white/40 text-xs mt-2">4 majors. 1 Champs. No losses.</p>
         </motion.div>
 
         <motion.div
@@ -94,7 +95,7 @@ export function ReadyScreen({ picks, onAttempt, onEdit }: ReadyScreenProps) {
           onClick={onAttempt}
           className="w-full h-16 text-lg font-semibold rounded-2xl bg-ring-gold text-black hover:bg-ring-gold/90 shadow-xl shadow-ring-gold/20 border-0 animate-pulse-ring"
         >
-          Chase the Ring
+          Start the Run
         </Button>
         <button
           type="button"

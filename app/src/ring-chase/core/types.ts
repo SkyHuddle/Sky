@@ -17,6 +17,19 @@ export const STAGE_LABELS: Record<StageId, string> = {
   champs: 'Champs',
 };
 
+/** Draft round mirrors the undefeated run — one pick per leg of the chase */
+export const DRAFT_ROUND_LABELS: Record<number, string> = {
+  0: 'Major I',
+  1: 'Major II',
+  2: 'Major III',
+  3: 'Major IV',
+};
+
+export interface TournamentRunStep {
+  label: string;
+  passed: boolean;
+}
+
 export type MajorOutcome =
   | 'won'
   | 'runner_up'
@@ -144,6 +157,8 @@ export interface StageOutcome {
   passed: boolean;
   passChance: number;
   power: number;
+  /** Bracket beats revealed during simulation */
+  run: TournamentRunStep[];
 }
 
 export interface ChemistryReport {
@@ -159,6 +174,7 @@ export interface SimulationResult {
   majorWins: number;
   champsOutcome: ChampsOutcome;
   failureStage: StageId | null;
+  failureMessage: string;
   rosterScore: number;
   ringOdds: number;
   chemistry: ChemistryReport;

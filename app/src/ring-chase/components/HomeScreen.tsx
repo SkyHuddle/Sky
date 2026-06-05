@@ -58,8 +58,8 @@ export function HomeScreen({
           <span className="text-ring-gold glow-ring">CHASE</span>
         </h1>
 
-        <p className="text-white/50 text-sm mt-5 max-w-[300px] mx-auto leading-relaxed">
-          Draft history. Chase the ring. Can your roster win Champs?
+        <p className="text-white/50 text-sm mt-5 max-w-[320px] mx-auto leading-relaxed">
+          Draft four pros across four majors. Win them all, then Champs — run the table.
         </p>
       </motion.header>
 
@@ -73,8 +73,10 @@ export function HomeScreen({
           The path
         </p>
         <RingPath variant="full" />
-        <p className="text-[10px] text-white/30 text-center mt-3">
+        <p className="text-[10px] text-white/30 text-center mt-3 leading-relaxed">
           Major I → II → III → IV → Champs
+          <br />
+          <span className="text-ring-gold/50">Perfect Season = 4 majors + ring</span>
         </p>
       </motion.div>
 
@@ -88,7 +90,7 @@ export function HomeScreen({
           onClick={onStartFree}
           className="w-full h-[3.75rem] text-base font-semibold rounded-2xl bg-ring-gold text-black hover:bg-ring-gold/90 shadow-xl shadow-ring-gold/20 border-0 animate-pulse-ring"
         >
-          Start Ring Chase
+          Run the Table
         </Button>
 
         <button

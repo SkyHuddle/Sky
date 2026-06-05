@@ -87,7 +87,7 @@ export const COD_PLAYERS: CodPlayer[] = [
   p('slasher', 'Slasher', 'flex', 'mainAR', 'Luminosity', 1, 2, 'Champs · IGL', { overall: 89, leadership: 92, snd: 90 }, { badge: 'Champs' }),
   p('classic', 'Classic', 'mainAR', 'flex', 'Luminosity', 1, 2, 'Champs Winner', { overall: 90, leadership: 91, lan: 90, snd: 89 }, { badge: 'Champs' }),
   p('tjhaly', 'TJHaLy', 'smg', 'flex', 'Luminosity', 1, 1, 'Champs Winner', { overall: 88, slaying: 90, pace: 91 }),
-  p('slacked', 'Slacked', 'smg', 'flex', 'Luminosity', 1, 2, 'Champs Winner', { overall: 89, objective: 90, respawn: 91 }, { badge: 'Champs' }),
+  p('slacked', 'Slacked', 'smg', 'flex', 'Luminosity', 0, 2, 'Major winner · LG', { overall: 85, slaying: 86, respawn: 87, objective: 86 }),
   p('ghosty', 'Ghosty', 'smg', 'flex', '100T', 0, 1, 'Rising Star', { overall: 85, slaying: 87, pace: 88 }),
   p('aches', 'Aches', 'mainAR', 'flex', 'compLexity', 2, 6, '2 Rings · Legend', { overall: 90, leadership: 92, lan: 91, championshipFactor: 94 }, { badge: 'Legend' }),
   p('teepee', 'TeePee', 'flex', 'mainAR', 'compLexity', 2, 5, '2 Rings', { overall: 89, objective: 91, leadership: 88 }),

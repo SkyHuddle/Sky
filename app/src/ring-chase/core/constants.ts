@@ -5,8 +5,8 @@ export const DRAFT_ROUNDS = 4;
 export const SLOT_ORDER: RosterSlot[] = ['mainAR', 'flex', 'smg', 'smg2'];
 
 /** Stage reveal timing (ms) */
-export const STAGE_REVEAL_DELAY = 1100;
 export const STAGE_PAUSE = 350;
+export const RUN_BEAT_DELAY = 380;
 
 /** Slot machine timing */
 export const SPIN_DURATION_MS = 2600;

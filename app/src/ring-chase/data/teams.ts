@@ -157,7 +157,7 @@ export const COD_TEAMS: HistoricalCodTeam[] = [
     'Rise Nation',
     2016,
     'Black Ops III',
-    'Slacked era',
+    'UMG South Carolina winners',
     'NA',
     { mainAR: 'gunless', flex: 'loony', smg: 'slacked', smg2: 'ricky' },
     {
@@ -229,7 +229,7 @@ export const COD_TEAMS: HistoricalCodTeam[] = [
     'Seattle Surge',
     2020,
     'Modern Warfare',
-    'Slacked · inaugural CDL roster',
+    'CDL inaugural season',
     'NA',
     { mainAR: 'octane', flex: 'apathy-sea', smg: 'slacked', smg2: 'prestinni' },
     {

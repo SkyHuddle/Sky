@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import type { HistoricalCodTeam, SlotSpin } from '../core/types';
+import type { HistoricalCodTeam, RosterSlot, SlotSpin } from '../core/types';
+import { DRAFT_ROUND_LABELS, SLOT_LABELS } from '../core/types';
 import { SPIN_TICK_MS } from '../core/constants';
 
 interface TeamSlotMachineProps {
@@ -8,6 +9,7 @@ interface TeamSlotMachineProps {
   spin: SlotSpin;
   spinKey: number;
   roundIndex: number;
+  draftSlot: RosterSlot;
   onComplete: () => void;
 }
 
@@ -16,8 +18,10 @@ export function TeamSlotMachine({
   spin,
   spinKey,
   roundIndex,
+  draftSlot,
   onComplete,
 }: TeamSlotMachineProps) {
+  const phaseLabel = DRAFT_ROUND_LABELS[roundIndex] ?? `Round ${roundIndex + 1}`;
   const [index, setIndex] = useState(0);
   const [done, setDone] = useState(false);
   const onCompleteRef = useRef(onComplete);
@@ -68,9 +72,11 @@ export function TeamSlotMachine({
         animate={{ opacity: 1, y: 0 }}
       >
         <p className="text-[10px] uppercase tracking-[0.45em] text-ring-gold/80 mb-2 font-medium">
-          Round {roundIndex + 1} of 4
+          {phaseLabel}
         </p>
-        <p className="text-white/45 text-sm">Rolling your team…</p>
+        <p className="text-white/45 text-sm">
+          Draft your {SLOT_LABELS[draftSlot]} · Rolling team…
+        </p>
       </motion.div>
 
       <div className="w-full max-w-sm grid grid-cols-2 gap-3 mb-6">
