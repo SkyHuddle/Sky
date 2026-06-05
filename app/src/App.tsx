@@ -67,7 +67,7 @@ export default function App() {
           </motion.div>
         )}
 
-        {game.phase === 'draft' && game.currentRole && (
+        {game.phase === 'draft' && game.currentRole && game.currentRound && (
           <motion.div
             key="draft"
             initial={{ opacity: 0, x: 40 }}
@@ -78,7 +78,7 @@ export default function App() {
             <DraftScreen
               currentRole={game.currentRole}
               currentRoleIndex={game.currentRoleIndex}
-              draftPool={game.draftPool}
+              currentRound={game.currentRound}
               picks={game.picks}
               dailyConstraint={game.dailyConstraint}
               isDaily={game.mode === 'daily'}

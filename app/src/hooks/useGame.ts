@@ -1,6 +1,7 @@
 import { useCallback, useMemo, useState } from 'react';
 import type {
   DraftPick,
+  DraftRound,
   GameMode,
   GamePhase,
   Player,
@@ -8,7 +9,7 @@ import type {
   SimulationResult,
 } from '@/core/types';
 import { ROLE_ORDER } from '@/core/constants';
-import { generateDraftPool, createRunSeed } from '@/engine/draft';
+import { generateDraftRounds, createRunSeed } from '@/engine/draft';
 import { simulateGoldenRoad } from '@/engine/simulation';
 import {
   getDailyConstraint,
@@ -24,7 +25,7 @@ export function useGame() {
   const [mode, setMode] = useState<GameMode>('free');
   const [picks, setPicks] = useState<DraftPick[]>([]);
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
-  const [runSeed, setRunSeed] = useState('');
+  const [draftRounds, setDraftRounds] = useState<DraftRound[]>([]);
   const [result, setResult] = useState<SimulationResult | null>(null);
   const [dailyPercentile, setDailyPercentile] = useState<number | null>(null);
 
@@ -34,23 +35,13 @@ export function useGame() {
   const currentRole: Role | null =
     currentRoleIndex < ROLE_ORDER.length ? ROLE_ORDER[currentRoleIndex] : null;
 
-  const filter = mode === 'daily' ? dailyConstraint.filter : undefined;
-
-  const draftPool = useMemo(() => {
-    if (!currentRole || !runSeed) return [];
-    return generateDraftPool(
-      currentRole,
-      runSeed,
-      currentRoleIndex,
-      filter,
-      picks.map((p) => p.player.id)
-    );
-  }, [currentRole, runSeed, currentRoleIndex, filter, picks]);
+  const currentRound: DraftRound | null = draftRounds[currentRoleIndex] ?? null;
 
   const startGame = useCallback((gameMode: GameMode) => {
     const seed = createRunSeed(gameMode, gameMode === 'daily' ? dateKey : undefined);
+    const rounds = generateDraftRounds(seed, gameMode === 'daily' ? getDailyConstraint().filter : undefined);
     setMode(gameMode);
-    setRunSeed(seed);
+    setDraftRounds(rounds);
     setPicks([]);
     setCurrentRoleIndex(0);
     setResult(null);
@@ -60,7 +51,7 @@ export function useGame() {
 
   const selectPlayer = useCallback(
     (player: Player) => {
-      if (!currentRole) return;
+      if (!currentRole || !currentRound) return;
 
       if (
         mode === 'daily' &&
@@ -73,7 +64,11 @@ export function useGame() {
         return;
       }
 
-      const pick: DraftPick = { role: currentRole, player };
+      const pick: DraftPick = {
+        role: currentRole,
+        player,
+        team: currentRound.team,
+      };
       const nextPicks = [...picks, pick];
       setPicks(nextPicks);
 
@@ -83,7 +78,7 @@ export function useGame() {
         setCurrentRoleIndex((i) => i + 1);
       }
     },
-    [currentRole, currentRoleIndex, picks, mode, dailyConstraint.id]
+    [currentRole, currentRoleIndex, currentRound, picks, mode, dailyConstraint.id]
   );
 
   const startSimulation = useCallback(() => {
@@ -96,7 +91,7 @@ export function useGame() {
     setResult(sim);
     setPhase('simulation');
 
-    const stats = recordAttempt(sim.goldenRoad, sim.rosterScore, mode === 'daily');
+    recordAttempt(sim.goldenRoad, sim.rosterScore, mode === 'daily');
 
     if (mode === 'daily') {
       const percentile = estimatePercentile(sim.rosterScore, sim.goldenRoad);
@@ -108,8 +103,6 @@ export function useGame() {
         percentile,
       });
     }
-
-    return { sim, stats };
   }, [picks, mode, dateKey]);
 
   const finishSimulation = useCallback(() => {
@@ -120,8 +113,8 @@ export function useGame() {
     setPhase('home');
     setPicks([]);
     setCurrentRoleIndex(0);
+    setDraftRounds([]);
     setResult(null);
-    setRunSeed('');
   }, []);
 
   const playAgain = useCallback(() => {
@@ -141,7 +134,8 @@ export function useGame() {
     picks,
     currentRole,
     currentRoleIndex,
-    draftPool,
+    currentRound,
+    draftRounds,
     result,
     dailyConstraint,
     dailyPercentile,

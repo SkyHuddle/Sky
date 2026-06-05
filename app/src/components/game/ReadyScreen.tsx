@@ -37,7 +37,7 @@ export function ReadyScreen({ picks, onAttempt, onEdit }: ReadyScreenProps) {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1 }}
         >
-          {picks.map(({ role, player }, i) => (
+          {picks.map(({ role, player, team }, i) => (
             <motion.div
               key={role}
               className="flex items-center gap-4 p-3 rounded-xl border border-white/[0.06] bg-white/[0.03]"
@@ -48,16 +48,16 @@ export function ReadyScreen({ picks, onAttempt, onEdit }: ReadyScreenProps) {
               <div
                 className="w-12 h-12 rounded-lg flex items-center justify-center text-sm font-bold"
                 style={{
-                  background: `${player.accent}25`,
-                  color: player.accent,
-                  border: `1px solid ${player.accent}40`,
+                  background: `${team.accent}25`,
+                  color: team.accent,
+                  border: `1px solid ${team.accent}40`,
                 }}
               >
                 {player.name.slice(0, 2).toUpperCase()}
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-[10px] text-white/35 uppercase tracking-widest">
-                  {ROLE_LABELS[role]}
+                  {ROLE_LABELS[role]} · {team.year} {team.name}
                 </p>
                 <p className="font-display text-lg text-white truncate">{player.name}</p>
               </div>

@@ -47,24 +47,29 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
             )}
           </div>
 
-          <div className="flex-1 space-y-3">
-            {picks.map(({ role, player }) => (
+          <div className="flex-1 space-y-2.5">
+            {picks.map(({ role, player, team }) => (
               <div
                 key={role}
-                className="flex items-center justify-between gap-3 py-2 border-b border-white/[0.06] last:border-0"
+                className="py-2 border-b border-white/[0.06] last:border-0"
               >
-                <span className="text-[10px] uppercase tracking-widest text-white/35 w-16 shrink-0">
-                  {ROLE_LABELS[role]}
-                </span>
-                <span className="font-display text-lg text-white flex-1 truncate">
-                  {player.name}
-                </span>
-                <span
-                  className="text-xs font-medium tabular-nums shrink-0"
-                  style={{ color: player.accent }}
-                >
-                  {player.ratings.overall}
-                </span>
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-[10px] uppercase tracking-widest text-white/35 w-14 shrink-0">
+                    {ROLE_LABELS[role]}
+                  </span>
+                  <span className="font-display text-base text-white flex-1 truncate">
+                    {player.name}
+                  </span>
+                  <span
+                    className="text-xs font-medium tabular-nums shrink-0"
+                    style={{ color: player.accent }}
+                  >
+                    {player.ratings.overall}
+                  </span>
+                </div>
+                <p className="text-[10px] text-white/30 mt-0.5 pl-14">
+                  {team.name} · {team.year}
+                </p>
               </div>
             ))}
           </div>

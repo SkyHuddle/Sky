@@ -1,6 +1,6 @@
-import type { Player, Role } from '@/core/types';
-import { DRAFT_POOL_SIZE, ROLE_ORDER } from '@/core/constants';
-import { getPlayersByRole } from '@/data';
+import type { DraftRound, HistoricalTeam, Player, Role } from '@/core/types';
+import { ROLE_ORDER } from '@/core/constants';
+import { getValidTeams, resolveTeamRoster } from '@/data/teams';
 
 function mulberry32(seed: number) {
   return () => {
@@ -29,25 +29,67 @@ function shuffle<T>(arr: T[], rng: () => number): T[] {
   return copy;
 }
 
-export function generateDraftPool(
+function teamPassesFilter(
+  team: HistoricalTeam,
   role: Role,
-  seed: string,
-  roundIndex: number,
   filter?: (p: Player) => boolean,
-  excludeIds: string[] = []
-): Player[] {
-  const pool = getPlayersByRole(role, 'lol', (p) => {
-    if (excludeIds.includes(p.id)) return false;
-    return filter ? filter(p) : true;
-  });
+  usedPlayerIds: string[] = []
+): boolean {
+  const roster = resolveTeamRoster(team);
+  if (!roster) return false;
 
-  if (pool.length === 0) {
-    return getPlayersByRole(role).slice(0, DRAFT_POOL_SIZE);
+  const rolePlayer = roster.find((p) => p.id === team.roster[role]);
+  if (!rolePlayer || usedPlayerIds.includes(rolePlayer.id)) return false;
+  if (filter && !filter(rolePlayer)) return false;
+
+  return true;
+}
+
+/** Build all 5 draft rounds up front — same teams for a given seed (daily parity) */
+export function generateDraftRounds(
+  seed: string,
+  filter?: (p: Player) => boolean,
+  usedPlayerIds: string[] = []
+): DraftRound[] {
+  const rng = mulberry32(hashString(seed));
+  const available = shuffle(getValidTeams('lol'), rng);
+  const rounds: DraftRound[] = [];
+  const usedTeamIds = new Set<string>();
+  const pickedPlayerIds = new Set(usedPlayerIds);
+
+  for (let i = 0; i < ROLE_ORDER.length; i++) {
+    const role = ROLE_ORDER[i];
+    let team =
+      available.find(
+        (t) =>
+          !usedTeamIds.has(t.id) &&
+          teamPassesFilter(t, role, filter, [...pickedPlayerIds])
+      ) ?? null;
+
+    if (!team) {
+      team =
+        available.find(
+          (t) =>
+            !usedTeamIds.has(t.id) &&
+            teamPassesFilter(t, role, undefined, [...pickedPlayerIds])
+        ) ?? null;
+    }
+
+    if (!team) {
+      team = available.find((t) => !usedTeamIds.has(t.id)) ?? available[i % available.length];
+    }
+
+    const roster = resolveTeamRoster(team);
+    if (!roster) continue;
+
+    usedTeamIds.add(team.id);
+    const rolePlayerId = team.roster[role];
+    pickedPlayerIds.add(rolePlayerId);
+
+    rounds.push({ team, roster });
   }
 
-  const rng = mulberry32(hashString(`${seed}-${role}-${roundIndex}`));
-  const shuffled = shuffle(pool, rng);
-  return shuffled.slice(0, Math.min(DRAFT_POOL_SIZE, shuffled.length));
+  return rounds;
 }
 
 export function createRunSeed(mode: 'free' | 'daily', dateKey?: string): string {

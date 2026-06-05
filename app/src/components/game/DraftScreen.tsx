@@ -1,14 +1,14 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import type { DailyConstraint, DraftPick, Player, Role } from '@/core/types';
+import type { DailyConstraint, DraftPick, DraftRound, Player, Role } from '@/core/types';
 import { ROLE_LABELS } from '@/core/types';
 import { ROLE_ORDER } from '@/core/constants';
-import { PlayerCard } from './PlayerCard';
+import { TeamBanner, TeamRosterCard } from './TeamRosterCard';
 import { isOnePerOrgDay, orgConstraintViolated } from '@/features/daily';
 
 interface DraftScreenProps {
   currentRole: Role;
   currentRoleIndex: number;
-  draftPool: Player[];
+  currentRound: DraftRound;
   picks: DraftPick[];
   dailyConstraint?: DailyConstraint;
   isDaily: boolean;
@@ -19,7 +19,7 @@ interface DraftScreenProps {
 export function DraftScreen({
   currentRole,
   currentRoleIndex,
-  draftPool,
+  currentRound,
   picks,
   dailyConstraint,
   isDaily,
@@ -28,6 +28,8 @@ export function DraftScreen({
 }: DraftScreenProps) {
   const orgLock =
     isDaily && dailyConstraint && isOnePerOrgDay(dailyConstraint.id);
+
+  const roleOrder: Role[] = ['top', 'jungle', 'mid', 'adc', 'support'];
 
   return (
     <div className="flex flex-col min-h-[100dvh] max-w-lg mx-auto">
@@ -53,60 +55,80 @@ export function DraftScreen({
           animate={{ opacity: 1, x: 0 }}
           className="mt-4"
         >
-          <p className="text-[10px] uppercase tracking-[0.35em] text-gold/70">Draft</p>
-          <h2 className="font-display text-4xl text-white tracking-wide">
-            {ROLE_LABELS[currentRole]}
+          <p className="text-[10px] uppercase tracking-[0.35em] text-gold/70">
+            Pick your {ROLE_LABELS[currentRole]}
+          </p>
+          <h2 className="font-display text-3xl text-white tracking-wide mt-1">
+            From this roster
           </h2>
-          {isDaily && dailyConstraint && (
-            <p className="text-white/40 text-xs mt-1">{dailyConstraint.description}</p>
-          )}
         </motion.div>
       </header>
 
-      <div className="flex-1 px-5 py-4 space-y-3 overflow-y-auto pb-6">
-        <AnimatePresence mode="popLayout">
-          {draftPool.map((player, i) => {
-            const blocked =
-              orgLock &&
-              orgConstraintViolated(
-                picks.map((p) => p.player),
-                player
-              );
+      <div className="flex-1 px-5 py-4 overflow-y-auto pb-6">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentRound.team.id}
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -30 }}
+            transition={{ duration: 0.25 }}
+          >
+            <TeamBanner team={currentRound.team} />
 
-            return (
-              <motion.div
-                key={player.id}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ delay: i * 0.06 }}
-              >
-                <PlayerCard
-                  player={player}
-                  onSelect={() => onSelect(player)}
-                  disabled={blocked}
-                />
-                {blocked && (
-                  <p className="text-[10px] text-red-400/80 mt-1 pl-1">
-                    Org already used
-                  </p>
-                )}
-              </motion.div>
-            );
-          })}
+            <p className="text-white/40 text-xs mb-3 leading-relaxed">
+              Tap a player to fill your {ROLE_LABELS[currentRole]} slot. Their {ROLE_LABELS[currentRole]} is highlighted.
+            </p>
+
+            <div className="space-y-2">
+              {roleOrder.map((teamRole, i) => {
+                const playerId = currentRound.team.roster[teamRole];
+                const player = currentRound.roster.find((p) => p.id === playerId);
+                if (!player) return null;
+
+                const blocked =
+                  orgLock &&
+                  orgConstraintViolated(
+                    picks.map((p) => p.player),
+                    player
+                  );
+
+                return (
+                  <motion.div
+                    key={player.id}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.05 }}
+                  >
+                    <TeamRosterCard
+                      player={player}
+                      teamRole={teamRole}
+                      draftRole={currentRole}
+                      onSelect={() => onSelect(player)}
+                      disabled={blocked}
+                    />
+                    {blocked && (
+                      <p className="text-[10px] text-red-400/80 mt-1 pl-1">
+                        Org already used
+                      </p>
+                    )}
+                  </motion.div>
+                );
+              })}
+            </div>
+          </motion.div>
         </AnimatePresence>
       </div>
 
       {picks.length > 0 && (
-        <div className="px-5 pb-4">
-          <p className="text-[10px] uppercase tracking-widest text-white/30 mb-2">Roster</p>
+        <div className="px-5 pb-4 border-t border-white/[0.04] pt-3">
+          <p className="text-[10px] uppercase tracking-widest text-white/30 mb-2">Your roster</p>
           <div className="flex gap-1.5 flex-wrap">
-            {picks.map(({ role, player }) => (
+            {picks.map(({ role, player, team }) => (
               <span
                 key={role}
                 className="text-[10px] px-2 py-1 rounded-full bg-white/[0.06] text-white/60"
               >
-                {ROLE_LABELS[role].slice(0, 3)} {player.name.split(' ')[0]}
+                {player.name.split(' ')[0]} · {team.year}
               </span>
             ))}
           </div>

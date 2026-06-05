@@ -42,6 +42,24 @@ export interface Player {
   accent: string;
 }
 
+/** Historical lineup — one card per draft round (82-0 style) */
+export interface HistoricalTeam {
+  id: string;
+  esport: EsportId;
+  name: string;
+  year: number;
+  region: string;
+  tagline: string;
+  accent: string;
+  roster: Record<Role, string>;
+}
+
+export interface DraftRound {
+  team: HistoricalTeam;
+  /** Full starting five, ordered by role */
+  roster: Player[];
+}
+
 export type StageId = 'spring' | 'msi' | 'summer' | 'worlds';
 
 export const STAGES: StageId[] = ['spring', 'msi', 'summer', 'worlds'];
@@ -83,6 +101,7 @@ export type GamePhase = 'home' | 'draft' | 'ready' | 'simulation' | 'result';
 export interface DraftPick {
   role: Role;
   player: Player;
+  team: HistoricalTeam;
 }
 
 export interface DailyConstraint {

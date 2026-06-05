@@ -1,6 +1,10 @@
 import type { EsportId, Player, Role } from '@/core/types';
 import { LOL_PLAYERS } from './players/lol';
 
+const PLAYER_MAP = new Map<string, Player>(
+  LOL_PLAYERS.map((p) => [p.id, p])
+);
+
 const REGISTRY: Record<EsportId, Player[]> = {
   lol: LOL_PLAYERS,
   valorant: [],
@@ -23,5 +27,6 @@ export function getPlayersByRole(
 }
 
 export function getPlayerById(id: string, esport: EsportId = 'lol'): Player | undefined {
+  if (esport === 'lol') return PLAYER_MAP.get(id);
   return getPlayers(esport).find((p) => p.id === id);
 }

@@ -1,4 +1,5 @@
 import type { Player } from '@/core/types';
+import { LOL_LEGEND_PLAYERS } from './lol-legends';
 
 /** Helper to build player entries with consistent rating scale (0–99) */
 function p(
@@ -36,7 +37,7 @@ function p(
   };
 }
 
-export const LOL_PLAYERS: Player[] = [
+export const LOL_CORE_PLAYERS: Player[] = [
   // TOP
   p('zeus', 'Zeus', 'top', 'LCK', 'T1', 'T1', 2023, '2x Worlds Champion', 2, 1, 4, 2021,
     { overall: 94, peak: 96, international: 93, clutch: 91, consistency: 92, leadership: 85, synergy: 90 }, '#C9A227'),
@@ -167,3 +168,5 @@ export const LOL_PLAYERS: Player[] = [
   p('vulcan', 'Vulcan', 'support', 'LCS', 'C9', 'EG', 2022, 'LCS Champion', 0, 0, 2, 2018,
     { overall: 86, peak: 89, international: 82, clutch: 85, consistency: 88, leadership: 87, synergy: 87 }, '#4ECDC4'),
 ];
+
+export const LOL_PLAYERS: Player[] = [...LOL_CORE_PLAYERS, ...LOL_LEGEND_PLAYERS];

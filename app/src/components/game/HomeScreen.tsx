@@ -37,8 +37,8 @@ export function HomeScreen({
           <br />
           <span className="text-gold">ROAD</span>
         </h1>
-        <p className="text-white/50 text-sm mt-4 max-w-[280px] mx-auto leading-relaxed">
-          Draft five legends. Win Spring, MSI, Summer, and Worlds. One run. Sixty seconds.
+        <p className="text-white/50 text-sm mt-4 max-w-[300px] mx-auto leading-relaxed">
+          Five legendary teams roll in. Pick one player from each roster until your squad is complete.
         </p>
       </motion.header>
 

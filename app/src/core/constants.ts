@@ -1,6 +1,6 @@
 import type { Role } from './types';
 
-export const DRAFT_POOL_SIZE = 3;
+export const DRAFT_ROUNDS = 5;
 
 export const ROLE_ORDER: Role[] = ['top', 'jungle', 'mid', 'adc', 'support'];
 
