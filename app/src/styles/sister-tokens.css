@@ -1,0 +1,46 @@
+/**
+ * Ring Chase design tokens — dark esports UI palette.
+ */
+:root {
+  --kb-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --kb-ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --kb-bg-deep: #07060a;
+  --kb-bg-base: #0d0b12;
+  --kb-bg-card: #16131c;
+  --kb-bg-elev: #1e1a26;
+  --kb-glass: rgba(255, 255, 255, 0.045);
+  --kb-glass-strong: rgba(255, 255, 255, 0.08);
+  --kb-border: rgba(255, 255, 255, 0.08);
+  --kb-border-strong: rgba(255, 255, 255, 0.16);
+  --kb-hairline: rgba(255, 255, 255, 0.05);
+
+  --kb-fg: #f4f0e6;
+  --kb-fg-soft: #c8c2b4;
+  --kb-fg-mute: #7a7480;
+  --kb-fg-faint: #4d4856;
+
+  --kb-amber: #ff6a1f;
+  --kb-amber-hot: #ff8a3d;
+  --kb-amber-glow: #ffb475;
+
+  --kb-gold: #e8b842;
+  --kb-gold-deep: #8a6418;
+
+  --kb-crimson: #ff3d5e;
+  --kb-green: #00d17a;
+
+  --kb-display: 'Anton', 'Oswald', 'Arial Narrow', system-ui, sans-serif;
+  --kb-ui: 'Space Grotesk', system-ui, sans-serif;
+  --kb-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --kb-r-md: 16px;
+  --kb-r-lg: 22px;
+  --kb-r-xl: 28px;
+
+  --kb-shadow-card: 0 2px 4px rgba(0, 0, 0, 0.4), 0 20px 40px -10px rgba(0, 0, 0, 0.6);
+  --kb-shadow-gold: 0 14px 40px -6px rgba(232, 184, 66, 0.28);
+  --kb-shadow-amber: 0 14px 40px -6px rgba(255, 106, 31, 0.35);
+
+  --ring-gold: var(--kb-gold);
+}

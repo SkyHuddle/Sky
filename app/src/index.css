@@ -1,9 +1,12 @@
+@import './styles/sister-tokens.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
+    --ring-gold: var(--kb-gold);
     --background: 0 0% 0%;
     --foreground: 48 18% 83%;
     --card: 0 0% 6%;
@@ -32,8 +35,159 @@
   }
 
   body {
-    background-color: #000000;
-    color: #E1E0CC;
+    background-color: var(--kb-bg-deep);
+    color: var(--kb-fg);
+    font-family: var(--kb-ui);
     overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  .kb-root {
+    font-family: var(--kb-ui);
+    color: var(--kb-fg);
+    background: var(--kb-bg-deep);
+  }
+
+  .font-display {
+    font-family: var(--kb-display);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .kb-mono {
+    font-family: var(--kb-mono);
+    font-feature-settings: 'tnum';
+  }
+
+  .text-kb-fg { color: var(--kb-fg); }
+  .text-kb-soft { color: var(--kb-fg-soft); }
+  .text-kb-mute { color: var(--kb-fg-mute); }
+  .text-kb-faint { color: var(--kb-fg-faint); }
+  .text-kb-amber { color: var(--kb-amber); }
+  .text-kb-amber-hot { color: var(--kb-amber-hot); }
+  .text-ring-gold { color: var(--kb-gold); }
+  .bg-ring-gold { background-color: var(--kb-gold); }
+  .border-ring-gold { border-color: var(--kb-gold); }
+
+  .glow-ring {
+    text-shadow: 0 0 40px rgba(232, 184, 66, 0.45);
+  }
+
+  .kb-brand-bar {
+    background: rgba(7, 6, 10, 0.82);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--kb-hairline);
+  }
+
+  .kb-card {
+    background: var(--kb-bg-card);
+    border: 1px solid var(--kb-border);
+    box-shadow: var(--kb-shadow-card);
+  }
+
+  .kb-card-accent-gold {
+    border-color: rgba(232, 184, 66, 0.22);
+    box-shadow: var(--kb-shadow-card), 0 0 0 1px rgba(232, 184, 66, 0.06);
+  }
+
+  .kb-card-accent-amber {
+    border-color: rgba(255, 106, 31, 0.22);
+    box-shadow: var(--kb-shadow-card), 0 0 0 1px rgba(255, 106, 31, 0.06);
+  }
+
+  .glass-panel,
+  .kb-glass-panel {
+    background: var(--kb-glass);
+    border: 1px solid var(--kb-border);
+    backdrop-filter: blur(14px);
+  }
+
+  .kb-cta-gold {
+    background: var(--kb-gold);
+    color: #0a0806;
+    box-shadow: var(--kb-shadow-gold);
+  }
+
+  .kb-cta-gold:hover:not(:disabled) {
+    filter: brightness(1.05);
+    transform: scale(1.01);
+  }
+
+  .kb-cta-amber {
+    background: var(--kb-amber);
+    color: #0a0806;
+    box-shadow: var(--kb-shadow-amber);
+  }
+
+  .kb-cta-amber:hover:not(:disabled) {
+    filter: brightness(1.06);
+    transform: scale(1.01);
+  }
+
+  .kb-cta-glass {
+    background: var(--kb-glass-strong);
+    border: 1px solid var(--kb-border);
+    color: var(--kb-fg);
+    backdrop-filter: blur(12px);
+  }
+
+  .kb-cta-glass:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--kb-border-strong);
+  }
+
+  .kb-cta-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 9999px;
+    background: rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s var(--kb-ease-out);
+  }
+
+  .group:hover .kb-cta-icon {
+    transform: scale(1.08);
+  }
+
+  .animate-pulse-ring {
+    animation: pulse-ring 2.5s ease-in-out infinite;
+  }
+
+  .mesh-bg-ring {
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255, 106, 31, 0.06) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 40% at 100% 50%, rgba(232, 184, 66, 0.05) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 30% at 0% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 45%);
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 20%, transparent 75%);
+  }
+
+  @keyframes kb-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.55; transform: scale(1.2); }
+  }
+
+  .kb-live-dot {
+    animation: kb-pulse 1.6s ease-in-out infinite;
+  }
+}
+
+@keyframes pulse-ring {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(232, 184, 66, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(232, 184, 66, 0);
   }
 }
