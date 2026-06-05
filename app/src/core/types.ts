@@ -115,12 +115,20 @@ export type WorldsFailureDetail =
   | 'semifinals'
   | 'finals';
 
+/** One beat inside a tournament (e.g. "MSI Groups", "Worlds Semifinal") */
+export interface TournamentRunStep {
+  label: string;
+  passed: boolean;
+}
+
 export interface StageOutcome {
   stage: StageId;
   passed: boolean;
   detail?: WorldsFailureDetail;
   roll: number;
   threshold: number;
+  /** Bracket progression shown during simulation */
+  run: TournamentRunStep[];
 }
 
 export interface SimulationResult {

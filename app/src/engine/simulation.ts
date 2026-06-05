@@ -8,6 +8,7 @@ import type {
 import { STAGE_THRESHOLDS, WORLDS_FAILURE_LABELS } from '@/core/constants';
 import { computeRosterScore, countTitles, stageTeamPower } from './ratings';
 import { playersForSimulation } from './player-power';
+import { enrichStageWithRun } from './tournament-run';
 import { hashString } from './draft';
 
 function mulberry32(seed: number) {
@@ -81,13 +82,14 @@ export function simulateGoldenRoad(
       detail = worldsFailureDetail(stagePower, threshold, rng);
     }
 
-    stages.push({
+    const base = {
       stage,
       passed,
       detail,
       roll: Math.round(roll * 10) / 10,
       threshold: Math.round(threshold * 10) / 10,
-    });
+    };
+    stages.push(enrichStageWithRun(base, rng));
 
     if (!passed && !failed) {
       failed = true;

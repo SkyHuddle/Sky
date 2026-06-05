@@ -14,7 +14,7 @@ export const SIMULATION_GUIDE = {
     },
     {
       title: 'The four checks',
-      body: 'Spring → MSI → Summer → Worlds. Each stage rolls your effective team power vs a difficulty bar. MSI is the usual killer. You must clear all four.',
+      body: 'Spring → MSI → Summer → Worlds. During the sim you will see bracket beats (groups, playoffs, finals). Those steps are driven by your team power — not a replay of a real historical bracket.',
     },
     {
       title: 'What to expect',

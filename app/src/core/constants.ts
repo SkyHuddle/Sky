@@ -5,8 +5,10 @@ export const DRAFT_ROUNDS = 5;
 export const ROLE_ORDER: Role[] = ['top', 'jungle', 'mid', 'adc', 'support'];
 
 /** Stage reveal timing (ms) */
-export const STAGE_REVEAL_DELAY = 1400;
-export const STAGE_PAUSE = 600;
+export const STAGE_REVEAL_DELAY = 1200;
+export const STAGE_PAUSE = 400;
+/** Per bracket beat inside a tournament stage */
+export const RUN_BEAT_DELAY = 380;
 
 /**
  * Minimum team power (0–100 scale) to clear each stage.

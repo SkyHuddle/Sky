@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import type { SimulationResult, StageId } from '@/core/types';
+import type { SimulationResult, StageId, StageOutcome } from '@/core/types';
 import { STAGE_LABELS } from '@/core/types';
 import { STAGES } from '@/core/types';
-import { STAGE_REVEAL_DELAY, STAGE_PAUSE } from '@/core/constants';
-import { Check, X } from 'lucide-react';
+import { STAGE_REVEAL_DELAY, STAGE_PAUSE, RUN_BEAT_DELAY } from '@/core/constants';
+import { Check, X, Minus } from 'lucide-react';
 
 interface SimulationScreenProps {
   result: SimulationResult;
@@ -12,52 +12,103 @@ interface SimulationScreenProps {
 }
 
 export function SimulationScreen({ result, onComplete }: SimulationScreenProps) {
-  const [revealedCount, setRevealedCount] = useState(0);
+  const [stageIndex, setStageIndex] = useState(-1);
+  const [beatIndex, setBeatIndex] = useState(-1);
   const [showFinal, setShowFinal] = useState(false);
   const onCompleteRef = useRef(onComplete);
   onCompleteRef.current = onComplete;
 
   useEffect(() => {
-    if (revealedCount < STAGES.length) {
-      const t = setTimeout(() => {
-        setRevealedCount((c) => c + 1);
-      }, revealedCount === 0 ? 400 : STAGE_REVEAL_DELAY + STAGE_PAUSE);
-      return () => clearTimeout(t);
-    }
+    setStageIndex(-1);
+    setBeatIndex(-1);
+    setShowFinal(false);
+    const t = setTimeout(() => setStageIndex(0), 350);
+    return () => clearTimeout(t);
+  }, [result]);
 
-    const finalT = setTimeout(() => {
-      setShowFinal(true);
-    }, STAGE_REVEAL_DELAY);
+  useEffect(() => {
+    if (stageIndex < 0 || stageIndex >= STAGES.length) return;
 
-    const doneT = setTimeout(() => onCompleteRef.current(), STAGE_REVEAL_DELAY + 1200);
-    return () => {
-      clearTimeout(finalT);
-      clearTimeout(doneT);
+    const stage = result.stages[stageIndex];
+    if (!stage) return;
+
+    let beat = 0;
+    let cancelled = false;
+    const timeouts: ReturnType<typeof setTimeout>[] = [];
+
+    const schedule = (fn: () => void, ms: number) => {
+      const id = setTimeout(fn, ms);
+      timeouts.push(id);
     };
-  }, [revealedCount]);
+
+    const finishStage = () => {
+      if (cancelled) return;
+      setBeatIndex(-1);
+      schedule(() => {
+        if (cancelled) return;
+        if (stageIndex < STAGES.length - 1) {
+          setStageIndex(stageIndex + 1);
+        } else {
+          setShowFinal(true);
+          schedule(() => {
+            if (!cancelled) onCompleteRef.current();
+          }, STAGE_REVEAL_DELAY + 900);
+        }
+      }, STAGE_PAUSE);
+    };
+
+    const runBeat = () => {
+      if (cancelled) return;
+      setBeatIndex(beat);
+      const step = stage.run[beat];
+
+      schedule(() => {
+        if (cancelled) return;
+        if (!step.passed) {
+          finishStage();
+          return;
+        }
+        beat += 1;
+        if (beat < stage.run.length) {
+          runBeat();
+        } else {
+          finishStage();
+        }
+      }, RUN_BEAT_DELAY);
+    };
+
+    runBeat();
+
+    return () => {
+      cancelled = true;
+      timeouts.forEach(clearTimeout);
+    };
+  }, [stageIndex, result.stages]);
 
   return (
-    <div className="flex flex-col min-h-[100dvh] items-center justify-center px-5 max-w-lg mx-auto">
+    <div className="flex flex-col min-h-[100dvh] items-center justify-center px-5 max-w-lg mx-auto py-8">
       <motion.p
-        className="text-[10px] uppercase tracking-[0.4em] text-gold/60 mb-8"
+        className="text-[10px] uppercase tracking-[0.4em] text-gold/60 mb-6"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
       >
-        Simulating Season
+        Golden Road Run
       </motion.p>
 
-      <div className="w-full space-y-4">
-        {STAGES.map((stage, i) => {
+      <div className="w-full space-y-3">
+        {STAGES.map((stageId, i) => {
           const outcome = result.stages[i];
-          const revealed = i < revealedCount;
           if (!outcome) return null;
 
           return (
-            <StageRow
-              key={stage}
-              stage={stage}
-              passed={outcome.passed}
-              revealed={revealed}
+            <StageBlock
+              key={stageId}
+              stage={stageId}
+              outcome={outcome}
+              isPast={i < stageIndex}
+              isCurrent={i === stageIndex}
+              isFuture={i > stageIndex}
+              activeBeatIndex={i === stageIndex ? beatIndex : -1}
             />
           );
         })}
@@ -66,10 +117,9 @@ export function SimulationScreen({ result, onComplete }: SimulationScreenProps) 
       <AnimatePresence>
         {showFinal && (
           <motion.div
-            className="mt-12 text-center"
+            className="mt-10 text-center"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 20 }}
           >
             <h2
               className={`font-display text-3xl sm:text-4xl tracking-wide ${
@@ -80,11 +130,6 @@ export function SimulationScreen({ result, onComplete }: SimulationScreenProps) 
                 ? 'GOLDEN ROAD'
                 : result.failureMessage.toUpperCase()}
             </h2>
-            {result.goldenRoad && (
-              <p className="text-gold/70 text-sm mt-2 tracking-widest uppercase">
-                Achieved
-              </p>
-            )}
           </motion.div>
         )}
       </AnimatePresence>
@@ -92,47 +137,101 @@ export function SimulationScreen({ result, onComplete }: SimulationScreenProps) 
   );
 }
 
-function StageRow({
+function StageBlock({
   stage,
-  passed,
-  revealed,
+  outcome,
+  isPast,
+  isCurrent,
+  isFuture,
+  activeBeatIndex,
 }: {
   stage: StageId;
-  passed: boolean;
-  revealed: boolean;
+  outcome: StageOutcome;
+  isPast: boolean;
+  isCurrent: boolean;
+  isFuture: boolean;
+  activeBeatIndex: number;
 }) {
+  const stageDone = isPast || (isCurrent && activeBeatIndex < 0 && !isFuture);
+  const stagePassed = outcome.passed && stageDone;
+
   return (
     <motion.div
-      className={`flex items-center justify-between p-4 rounded-2xl border transition-colors duration-500 ${
-        !revealed
-          ? 'border-white/[0.04] bg-white/[0.02] opacity-40'
-          : passed
-            ? 'border-gold/30 bg-gold/5'
-            : 'border-red-500/30 bg-red-500/5'
+      className={`rounded-2xl border overflow-hidden transition-colors ${
+        isFuture
+          ? 'border-white/[0.04] bg-white/[0.02] opacity-35'
+          : stageDone
+            ? stagePassed
+              ? 'border-gold/25 bg-gold/[0.04]'
+              : 'border-red-500/30 bg-red-500/[0.06]'
+            : 'border-gold/20 bg-white/[0.03]'
       }`}
-      animate={revealed ? { opacity: 1, scale: 1 } : { opacity: 0.4, scale: 0.98 }}
     >
-      <span className="font-display text-lg text-white/90">{STAGE_LABELS[stage]}</span>
-      {revealed ? (
-        <motion.span
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          className={`flex items-center gap-1.5 text-sm font-medium ${
-            passed ? 'text-gold' : 'text-red-400'
-          }`}
-        >
-          {passed ? (
-            <>
-              <Check className="w-4 h-4" /> Champion
-            </>
-          ) : (
-            <>
-              <X className="w-4 h-4" /> Eliminated
-            </>
-          )}
-        </motion.span>
-      ) : (
-        <span className="text-white/20 text-sm">...</span>
+      <div className="flex items-center justify-between px-4 py-3 border-b border-white/[0.04]">
+        <span className="font-display text-lg text-white/90">{STAGE_LABELS[stage]}</span>
+        {stageDone ? (
+          <span
+            className={`flex items-center gap-1 text-xs font-medium uppercase tracking-wider ${
+              stagePassed ? 'text-gold' : 'text-red-400'
+            }`}
+          >
+            {stagePassed ? <Check className="w-3.5 h-3.5" /> : <X className="w-3.5 h-3.5" />}
+            {stagePassed ? 'Cleared' : 'Out'}
+          </span>
+        ) : isCurrent ? (
+          <span className="text-[10px] text-gold/60 uppercase tracking-widest animate-pulse">
+            Live
+          </span>
+        ) : (
+          <span className="text-white/20 text-xs">—</span>
+        )}
+      </div>
+
+      {(isCurrent || isPast) && (
+        <ul className="px-3 py-2 space-y-0.5">
+          {outcome.run.map((beat, i) => {
+            const revealed =
+              isPast || (isCurrent && activeBeatIndex >= 0 && i <= activeBeatIndex);
+            const isFailBeat = revealed && !beat.passed;
+            const isPassBeat = revealed && beat.passed;
+
+            if (!revealed) {
+              return (
+                <li
+                  key={beat.label}
+                  className="flex items-center gap-2 py-1.5 text-white/15 text-xs px-2"
+                >
+                  <Minus className="w-3 h-3" />
+                  <span>···</span>
+                </li>
+              );
+            }
+
+            return (
+              <motion.li
+                key={beat.label}
+                initial={{ opacity: 0, x: 6 }}
+                animate={{ opacity: 1, x: 0 }}
+                className={`flex items-center gap-2 py-1.5 text-xs rounded-lg px-2 ${
+                  isFailBeat
+                    ? 'text-red-400 bg-red-500/10'
+                    : isPassBeat
+                      ? 'text-white/75'
+                      : 'text-white/40'
+                }`}
+              >
+                {isFailBeat ? (
+                  <X className="w-3 h-3 shrink-0" />
+                ) : isPassBeat ? (
+                  <Check className="w-3 h-3 shrink-0 text-gold/80" />
+                ) : (
+                  <Minus className="w-3 h-3 shrink-0" />
+                )}
+                <span className="truncate">{beat.label}</span>
+              </motion.li>
+            );
+          })}
+        </ul>
       )}
     </motion.div>
   );
