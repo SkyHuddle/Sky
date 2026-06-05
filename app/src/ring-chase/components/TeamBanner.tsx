@@ -24,7 +24,7 @@ export function TeamBanner({ team, rosterAvgOvr }: TeamBannerProps) {
       key={team.id}
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      className="rounded-2xl p-5 mb-5 relative overflow-hidden"
+      className="kb-card rounded-[var(--kb-r-lg)] p-5 mb-5 relative overflow-hidden"
       style={{
         background: `linear-gradient(135deg, ${team.accent}24 0%, ${team.accent}08 45%, rgba(255,255,255,0.02) 100%)`,
         border: `1px solid ${team.accent}35`,
@@ -38,14 +38,14 @@ export function TeamBanner({ team, rosterAvgOvr }: TeamBannerProps) {
       <div className="relative z-10 flex items-start justify-between gap-3">
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2 mb-2 flex-wrap">
-            <p className="text-[10px] uppercase tracking-[0.25em] text-white/45">
+            <p className="text-[10px] uppercase tracking-[0.25em] text-kb-mute">
               {team.region} · {team.gameTitle}
             </p>
             <span
               className={`text-[9px] uppercase px-2 py-0.5 rounded-full font-medium ${
                 team.tier === 'legendary'
                   ? 'bg-ring-gold/15 text-ring-gold border border-ring-gold/25'
-                  : 'bg-white/8 text-white/55 border border-white/10'
+                  : 'bg-kb-glass text-kb-soft border border-kb-border'
               }`}
             >
               {TIER_LABEL[team.tier]}
@@ -57,20 +57,20 @@ export function TeamBanner({ team, rosterAvgOvr }: TeamBannerProps) {
               </span>
             )}
           </div>
-          <h3 className="font-display text-2xl sm:text-3xl text-white tracking-wide leading-none truncate">
+          <h3 className="font-display text-2xl sm:text-3xl text-kb-fg tracking-wide leading-none truncate">
             {team.teamName}
           </h3>
           <p className="text-sm mt-2 font-medium" style={{ color: team.accent }}>
             {team.eventContext}
           </p>
-          <p className="text-[10px] text-white/35 mt-1">{creds.detail}</p>
+          <p className="text-[10px] text-kb-mute mt-1">{creds.detail}</p>
           {rosterAvgOvr != null && rosterAvgOvr > 0 && (
-            <div className="mt-3 inline-flex items-center gap-2 rounded-lg bg-black/25 border border-white/[0.06] px-2.5 py-1.5">
-              <span className="text-[10px] uppercase tracking-wider text-white/35">Card avg</span>
-              <span className="font-display text-xl tabular-nums leading-none text-ring-gold">
+            <div className="mt-3 inline-flex items-center gap-2 rounded-lg bg-kb-deep/50 border border-kb-border px-2.5 py-1.5">
+              <span className="text-[10px] uppercase tracking-wider text-kb-mute">Card avg</span>
+              <span className="font-display text-xl tabular-nums leading-none text-kb-gold">
                 {Math.round(rosterAvgOvr)}
               </span>
-              <span className="text-[10px] text-white/25">OVR</span>
+              <span className="text-[10px] text-kb-faint">OVR</span>
             </div>
           )}
         </div>

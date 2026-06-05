@@ -21,10 +21,10 @@ interface CardStatBreakdownProps {
 function ModeChip({ label, kd, rating, maps }: { label: string; kd: number; rating: number; maps: number }) {
   if (maps < 1) return null;
   return (
-    <span className="inline-flex flex-col gap-0.5 rounded-lg bg-white/[0.04] border border-white/[0.06] px-2.5 py-1.5 text-[10px] tabular-nums min-w-[4.5rem]">
-      <span className="text-white/30 uppercase tracking-wider text-[8px]">{label}</span>
-      <span className="text-white/75 font-medium">{formatKd(kd)} K/D</span>
-      <span className="text-white/40 text-[9px]">{rating.toFixed(2)} BP · {maps}m</span>
+    <span className="inline-flex flex-col gap-0.5 rounded-lg bg-kb-glass border border-kb-border px-2.5 py-1.5 text-[10px] tabular-nums min-w-[4.5rem] kb-mono">
+      <span className="text-kb-mute uppercase tracking-wider text-[8px]">{label}</span>
+      <span className="text-kb-soft font-medium">{formatKd(kd)} K/D</span>
+      <span className="text-kb-mute text-[9px]">{rating.toFixed(2)} BP · {maps}m</span>
     </span>
   );
 }
@@ -38,28 +38,28 @@ export function CardStatBreakdown({ stats, team, compact }: CardStatBreakdownPro
   ];
 
   return (
-    <div className={compact ? '' : 'pt-3 border-t border-white/[0.06] mt-2'}>
+    <div className={compact ? '' : 'pt-3 border-t border-kb-hairline mt-2'}>
       {creds && (
-        <div className="mb-2.5 rounded-lg bg-white/[0.03] border border-white/[0.06] px-2.5 py-2">
-          <div className="flex items-center gap-1.5 text-[9px] uppercase tracking-wider text-white/35 mb-1">
+        <div className="mb-2.5 rounded-lg bg-kb-glass border border-kb-border px-2.5 py-2">
+          <div className="flex items-center gap-1.5 text-[9px] uppercase tracking-wider text-kb-mute mb-1">
             <Calendar className="w-3 h-3" />
             {team!.season} team-year
           </div>
-          <p className="text-[11px] text-white/70 leading-snug">{creds.headline}</p>
-          <p className="text-[10px] text-white/40 mt-0.5">{creds.detail}</p>
+          <p className="text-[11px] text-kb-soft leading-snug">{creds.headline}</p>
+          <p className="text-[10px] text-kb-mute mt-0.5">{creds.detail}</p>
         </div>
       )}
       <div className="flex flex-wrap gap-1.5 mb-2.5">
         {chips.map(({ label, value }) => (
           <span
             key={label}
-            className="inline-flex items-center gap-1.5 rounded-md bg-white/[0.04] border border-white/[0.06] px-2 py-1 text-[10px] tabular-nums"
+            className="inline-flex items-center gap-1.5 rounded-md bg-kb-glass border border-kb-border px-2 py-1 text-[10px] tabular-nums kb-mono"
           >
-            <span className="text-white/30 uppercase tracking-wider">{label}</span>
-            <span className="text-white/75 font-medium">{value}</span>
+            <span className="text-kb-mute uppercase tracking-wider">{label}</span>
+            <span className="text-kb-soft font-medium">{value}</span>
           </span>
         ))}
-        <span className="inline-flex items-center gap-1 rounded-md bg-ring-gold/10 border border-ring-gold/20 px-2 py-1 text-[9px] uppercase tracking-wider text-ring-gold/90">
+        <span className="inline-flex items-center gap-1 rounded-md bg-kb-gold/10 border border-kb-gold/20 px-2 py-1 text-[9px] uppercase tracking-wider text-kb-gold/90">
           <Trophy className="w-3 h-3" />
           {ACCOMPLISHMENT_LABEL[stats.accomplishment]}
         </span>
@@ -95,7 +95,7 @@ export function CardStatBreakdown({ stats, team, compact }: CardStatBreakdownPro
       )}
 
       {!compact && stats.source === 'bp-stats' && (
-        <p className="text-[9px] text-white/25 mt-2.5 leading-relaxed">
+        <p className="text-[9px] text-kb-faint mt-2.5 leading-relaxed">
           OVR tuned from BreakingPoint season stats + {ACCOMPLISHMENT_LABEL[stats.accomplishment].toLowerCase()} context.
         </p>
       )}

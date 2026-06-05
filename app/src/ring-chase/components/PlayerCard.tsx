@@ -23,10 +23,10 @@ interface PlayerCardProps {
 }
 
 function ovrAccent(overall: number): string {
-  if (overall >= 94) return '#e8c547';
-  if (overall >= 90) return '#c9a227';
-  if (overall >= 86) return '#a8b4c4';
-  return '#8b929e';
+  if (overall >= 94) return 'var(--kb-gold)';
+  if (overall >= 90) return 'var(--kb-gold-deep)';
+  if (overall >= 86) return 'var(--kb-fg-soft)';
+  return 'var(--kb-mute)';
 }
 
 export function PlayerCard({
@@ -55,17 +55,18 @@ export function PlayerCard({
     <motion.div
       layout
       className={cn(
-        'relative w-full rounded-2xl overflow-hidden border transition-all duration-200',
+        'kb-card relative w-full rounded-[var(--kb-r-md)] overflow-hidden transition-all duration-200',
         selected
-          ? 'border-ring-gold/50 ring-1 ring-ring-gold/25 shadow-lg shadow-ring-gold/15'
+          ? 'border-kb-gold/50 ring-1 ring-kb-gold/25 shadow-lg'
           : disabled
-            ? 'border-white/[0.04] opacity-40'
-            : 'border-white/[0.08] hover:border-white/15'
+            ? 'border-kb-hairline opacity-40'
+            : 'border-kb-border hover:border-kb-border-strong'
       )}
       style={{
         background: selected
-          ? `linear-gradient(135deg, ${team.accent}20 0%, rgba(201,162,39,0.08) 40%, rgba(6,6,8,0.96) 100%)`
-          : `linear-gradient(135deg, ${team.accent}14 0%, rgba(255,255,255,0.02) 50%, rgba(6,6,8,0.96) 100%)`,
+          ? `linear-gradient(135deg, ${team.accent}20 0%, rgba(232,184,66,0.08) 40%, var(--kb-bg-card) 100%)`
+          : `linear-gradient(135deg, ${team.accent}14 0%, var(--kb-glass) 50%, var(--kb-bg-card) 100%)`,
+        boxShadow: selected ? 'var(--kb-shadow-gold)' : undefined,
       }}
     >
       <div
@@ -106,11 +107,11 @@ export function PlayerCard({
           </div>
 
           <div className="flex-1 min-w-0">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-ring-gold/70 font-medium">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-kb-gold/80 font-semibold">
               {SLOT_LABELS[teamSlot]}
             </p>
-            <p className="font-display text-lg text-white truncate leading-tight">{player.gamertag}</p>
-            <p className="text-[10px] text-white/40 mt-0.5 truncate">{creds.headline}</p>
+            <p className="font-display text-lg text-kb-fg truncate leading-tight">{player.gamertag}</p>
+            <p className="text-[10px] text-kb-mute mt-0.5 truncate">{creds.headline}</p>
             <div className="flex flex-wrap items-center gap-1.5 mt-1.5">
               {creds.ringsThisYear > 0 && (
                 <span className="inline-flex items-center gap-1 text-[9px] px-2 py-0.5 rounded-full bg-ring-gold/15 text-ring-gold/90">
@@ -119,12 +120,12 @@ export function PlayerCard({
                 </span>
               )}
               {creds.majorsThisYear > 0 && creds.ringsThisYear === 0 && (
-                <span className="inline-block text-[9px] px-2 py-0.5 rounded-full bg-white/[0.06] text-white/55">
+                <span className="inline-block text-[9px] px-2 py-0.5 rounded-full bg-kb-glass text-kb-soft">
                   {creds.majorsThisYear} Major{creds.majorsThisYear > 1 ? 's' : ''}
                 </span>
               )}
               {stats && (stats.source === 'bp-stats' || stats.source === 'curated-audit') && (
-                <span className="text-[9px] text-white/35 tabular-nums">
+                <span className="text-[9px] text-kb-mute tabular-nums kb-mono">
                   {stats.kd.toFixed(2)} K/D
                 </span>
               )}
@@ -132,7 +133,7 @@ export function PlayerCard({
           </div>
 
           <div className="text-right shrink-0">
-            <p className="text-[9px] uppercase tracking-[0.2em] text-white/30 mb-0.5">OVR</p>
+            <p className="text-[9px] uppercase tracking-[0.2em] text-kb-mute mb-0.5">OVR</p>
             <span
               className="font-display text-2xl tabular-nums leading-none"
               style={{ color: ovrColor }}
@@ -140,7 +141,7 @@ export function PlayerCard({
               {confidence === 'estimated' ? '~' : ''}
               {overall}
             </span>
-            <p className="text-[9px] text-white/25 mt-0.5">{team.season}</p>
+            <p className="text-[9px] text-kb-faint mt-0.5 kb-mono">{team.season}</p>
           </div>
         </div>
       </button>
@@ -150,7 +151,7 @@ export function PlayerCard({
           <button
             type="button"
             onClick={handleExpand}
-            className="flex items-center gap-1 text-[10px] text-white/35 hover:text-white/55 transition-colors py-1"
+            className="flex items-center gap-1 text-[10px] text-kb-mute hover:text-kb-soft transition-colors py-1"
           >
             <ChevronDown
               className={cn('w-3 h-3 transition-transform', expanded && 'rotate-180')}

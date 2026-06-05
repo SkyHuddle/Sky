@@ -20,28 +20,27 @@ export function SeasonRecordCard({
 
   return (
     <motion.div
-      className={`rounded-2xl border text-center relative overflow-hidden ${
+      className={`kb-card rounded-[var(--kb-r-lg)] text-center relative overflow-hidden ${
         compact ? 'px-5 py-5' : 'px-6 py-6'
-      }`}
+      } ${isWin ? 'kb-card-accent-gold' : ''}`}
       style={{
-        borderColor: isWin ? 'rgba(201, 162, 39, 0.45)' : 'rgba(255,255,255,0.1)',
         background: isWin
-          ? 'linear-gradient(165deg, rgba(201,162,39,0.14) 0%, rgba(6,6,8,0.95) 55%)'
-          : 'linear-gradient(165deg, rgba(255,255,255,0.04) 0%, rgba(6,6,8,0.95) 55%)',
-        boxShadow: isWin ? '0 16px 48px rgba(201, 162, 39, 0.12)' : undefined,
+          ? 'linear-gradient(165deg, rgba(232,184,66,0.12) 0%, var(--kb-bg-card) 55%)'
+          : undefined,
+        boxShadow: isWin ? 'var(--kb-shadow-card), var(--kb-shadow-gold)' : undefined,
       }}
     >
       {isWin && (
-        <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-40 h-24 bg-ring-gold/20 blur-3xl pointer-events-none" />
+        <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-40 h-24 bg-kb-gold/20 blur-3xl pointer-events-none" />
       )}
 
-      <p className="text-[10px] uppercase tracking-[0.35em] text-white/35 mb-2 relative">
+      <p className="text-[10px] uppercase tracking-[0.35em] text-kb-mute mb-2 relative">
         Season record
       </p>
       <p
         className={`font-display tabular-nums leading-none relative ${
           compact ? 'text-5xl sm:text-6xl' : 'text-6xl'
-        } ${isWin ? 'text-ring-gold glow-ring' : 'text-white'}`}
+        } ${isWin ? 'text-ring-gold glow-ring' : 'text-kb-fg'}`}
       >
         {summary.record}
       </p>
@@ -60,13 +59,13 @@ export function SeasonRecordCard({
       </div>
 
       {!compact && (
-        <p className="text-sm text-white/55 mt-4 leading-relaxed relative max-w-[280px] mx-auto">
+        <p className="text-sm text-kb-soft mt-4 leading-relaxed relative max-w-[280px] mx-auto">
           {summary.narrative}
         </p>
       )}
 
       {variant !== 'sim' && (
-        <p className="text-[10px] text-white/30 mt-3 tabular-nums relative">
+        <p className="text-[10px] text-kb-faint mt-3 tabular-nums kb-mono relative">
           Bracket {summary.bracketWins}-{summary.bracketLosses} · Regular season {summary.record}
         </p>
       )}
@@ -85,10 +84,10 @@ function Chip({
 }) {
   return (
     <span
-      className={`inline-flex items-center gap-1 text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border font-medium ${
+      className={`inline-flex items-center gap-1 text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border font-semibold ${
         highlight
-          ? 'bg-ring-gold/12 text-ring-gold/95 border-ring-gold/25'
-          : 'bg-white/[0.04] text-white/50 border-white/[0.08]'
+          ? 'bg-kb-gold/12 text-kb-gold border-kb-gold/25'
+          : 'bg-kb-glass text-kb-mute border-kb-border'
       }`}
     >
       {Icon && <Icon className="w-3 h-3" />}

@@ -75,10 +75,10 @@ export function TeamSlotMachine({
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <p className="text-[10px] uppercase tracking-[0.45em] text-ring-gold/80 mb-2 font-medium">
+        <p className="text-[10px] uppercase tracking-[0.45em] text-kb-gold/80 mb-2 font-semibold">
           {phaseLabel}
         </p>
-        <p className="text-white/45 text-sm">
+        <p className="text-kb-mute text-sm">
           Draft your {SLOT_LABELS[draftSlot]} · Rolling team…
         </p>
       </motion.div>
@@ -89,40 +89,40 @@ export function TeamSlotMachine({
       </div>
 
       <motion.div
-        className="w-full max-w-sm rounded-2xl border px-5 py-5 text-center relative overflow-hidden"
+        className="kb-card w-full max-w-sm rounded-[var(--kb-r-lg)] border px-5 py-5 text-center relative overflow-hidden"
         style={{
-          borderColor: done ? `${team.accent}55` : 'rgba(255,255,255,0.08)',
+          borderColor: done ? `${team.accent}55` : undefined,
           background: done
-            ? `linear-gradient(180deg, ${team.accent}18 0%, rgba(255,255,255,0.02) 100%)`
-            : 'rgba(255,255,255,0.02)',
+            ? `linear-gradient(180deg, ${team.accent}18 0%, var(--kb-bg-card) 100%)`
+            : undefined,
           boxShadow: done ? `0 16px 48px ${team.accent}15` : undefined,
         }}
         animate={done ? { scale: [1, 1.015, 1] } : {}}
         transition={{ duration: 0.4 }}
       >
         {!done ? (
-          <div className="h-1.5 rounded-full bg-white/8 overflow-hidden">
+          <div className="h-1.5 rounded-full bg-kb-glass-strong overflow-hidden">
             <motion.div
               className="h-full rounded-full"
               style={{
                 width: `${progress * 100}%`,
-                background: `linear-gradient(90deg, ${team.accent}, #c9a227)`,
+                background: `linear-gradient(90deg, ${team.accent}, var(--kb-gold))`,
               }}
             />
           </div>
         ) : (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            <p className="text-[10px] uppercase tracking-widest text-white/35 mb-1">You landed</p>
+            <p className="text-[10px] uppercase tracking-widest text-kb-mute mb-1">You landed</p>
             <p className="text-base font-medium" style={{ color: team.accent }}>
               {team.eventContext}
             </p>
-            <p className="text-[10px] text-white/30 mt-1">{team.gameTitle}</p>
+            <p className="text-[10px] text-kb-faint mt-1">{team.gameTitle}</p>
           </motion.div>
         )}
       </motion.div>
 
       {!done && (
-        <p className="text-white/25 text-[10px] uppercase tracking-[0.35em] mt-8 animate-pulse">
+        <p className="text-kb-faint text-[10px] uppercase tracking-[0.35em] mt-8 animate-pulse">
           Spinning
         </p>
       )}
@@ -147,16 +147,16 @@ function Reel({
 }) {
   return (
     <motion.div
-      className="rounded-2xl border p-4 text-center overflow-hidden min-h-[112px] flex flex-col justify-center"
+      className="kb-card rounded-[var(--kb-r-md)] border p-4 text-center overflow-hidden min-h-[112px] flex flex-col justify-center"
       style={{
-        borderColor: highlight ? `${accent}60` : 'rgba(255,255,255,0.08)',
+        borderColor: highlight ? `${accent}60` : undefined,
         background: highlight
-          ? `linear-gradient(160deg, ${accent}22 0%, rgba(255,255,255,0.02) 100%)`
-          : 'rgba(255,255,255,0.02)',
+          ? `linear-gradient(160deg, ${accent}22 0%, var(--kb-bg-card) 100%)`
+          : undefined,
         boxShadow: highlight ? `0 0 32px ${accent}12` : undefined,
       }}
     >
-      <p className="text-[9px] uppercase tracking-[0.3em] text-white/30 mb-2 font-medium">{label}</p>
+      <p className="text-[9px] uppercase tracking-[0.3em] text-kb-mute mb-2 font-semibold">{label}</p>
       <motion.p
         key={value}
         initial={{ opacity: 0.3, y: 10 }}
@@ -164,12 +164,12 @@ function Reel({
         transition={{ duration: 0.05 }}
         className={`font-display tracking-wide leading-tight ${
           small ? 'text-[0.95rem] px-1' : 'text-4xl'
-        } ${highlight ? '' : 'text-white/85'}`}
+        } ${highlight ? '' : 'text-kb-fg'}`}
         style={highlight ? { color: accent } : undefined}
       >
         {value}
       </motion.p>
-      {sub && <p className="text-[10px] text-white/30 mt-1.5 uppercase tracking-wider">{sub}</p>}
+      {sub && <p className="text-[10px] text-kb-mute mt-1.5 uppercase tracking-wider">{sub}</p>}
     </motion.div>
   );
 }

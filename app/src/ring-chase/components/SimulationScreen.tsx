@@ -93,16 +93,16 @@ export function SimulationScreen({ result, picks, simSeed, onComplete }: Simulat
   }, [stageIndex, result.stages, picks, simSeed]);
 
   return (
-    <div className="flex flex-col min-h-[100dvh] items-center justify-center px-5 max-w-lg mx-auto py-10">
+    <div className="flex flex-col min-h-[calc(100dvh-4rem)] items-center justify-center px-5 max-w-lg mx-auto py-10">
       <motion.p
-        className="text-[10px] uppercase tracking-[0.45em] text-ring-gold/60 mb-2 font-medium"
+        className="text-[10px] uppercase tracking-[0.45em] text-kb-gold/70 mb-2 font-semibold"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
       >
         Ring Chase Run
       </motion.p>
       <motion.p
-        className="text-white/35 text-xs mb-4 text-center"
+        className="text-kb-mute text-xs mb-4 text-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.05 }}
@@ -114,13 +114,13 @@ export function SimulationScreen({ result, picks, simSeed, onComplete }: Simulat
         {activeMoment && stageIndex >= 0 && !showFinal && (
           <motion.div
             key={activeMoment}
-            className="w-full mb-4 rounded-xl border border-ring-gold/20 bg-ring-gold/[0.06] px-3.5 py-2.5 flex items-start gap-2"
+            className="w-full mb-4 rounded-[var(--kb-r-md)] border border-kb-amber/25 bg-kb-amber/[0.08] px-3.5 py-2.5 flex items-start gap-2"
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
           >
-            <Radio className="w-3.5 h-3.5 text-ring-gold shrink-0 mt-0.5 animate-pulse" />
-            <p className="text-xs text-white/70 leading-relaxed">{activeMoment}</p>
+            <Radio className="w-3.5 h-3.5 text-kb-amber shrink-0 mt-0.5 animate-pulse" />
+            <p className="text-xs text-kb-soft leading-relaxed">{activeMoment}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -158,7 +158,7 @@ export function SimulationScreen({ result, picks, simSeed, onComplete }: Simulat
               perfectSeason={result.perfectSeason}
               ringWon={result.ringWon}
             />
-            <p className="text-center text-white/40 text-xs mt-4 leading-relaxed px-2">
+            <p className="text-center text-kb-mute text-xs mt-4 leading-relaxed px-2">
               {result.seasonSummary.narrative}
             </p>
           </motion.div>
@@ -189,33 +189,33 @@ function StageBlock({
   return (
     <motion.div
       layout
-      className={`rounded-2xl border overflow-hidden transition-all duration-300 ${
+      className={`rounded-[var(--kb-r-lg)] border overflow-hidden transition-all duration-300 ${
         isFuture
-          ? 'border-white/[0.04] bg-white/[0.015] opacity-30'
+          ? 'border-kb-hairline bg-kb-card/40 opacity-30'
           : stageDone
             ? stagePassed
-              ? 'border-ring-gold/30 bg-ring-gold/[0.05] shadow-lg shadow-ring-gold/5'
-              : 'border-red-500/25 bg-red-500/[0.06]'
-            : 'border-ring-gold/15 bg-white/[0.025] ring-1 ring-ring-gold/10'
+              ? 'kb-card-accent-gold border-kb-gold/30 bg-kb-gold/[0.05]'
+              : 'border-kb-crimson/25 bg-kb-crimson/[0.06]'
+            : 'border-kb-gold/15 bg-kb-card ring-1 ring-kb-gold/10'
       }`}
     >
-      <div className="flex items-center justify-between px-4 py-3 border-b border-white/[0.04] gap-3">
-        <span className="font-display text-lg text-white/90">{STAGE_LABELS[stage]}</span>
+      <div className="flex items-center justify-between px-4 py-3 border-b border-kb-hairline gap-3">
+        <span className="font-display text-lg text-kb-fg">{STAGE_LABELS[stage]}</span>
         {stageDone ? (
           <span
             className={`flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider ${
-              stagePassed ? 'text-ring-gold' : 'text-red-400'
+              stagePassed ? 'text-kb-gold' : 'text-kb-crimson'
             }`}
           >
             {stagePassed ? <Check className="w-3.5 h-3.5" /> : <X className="w-3.5 h-3.5" />}
             {stagePassed ? 'Cleared' : 'Out'}
           </span>
         ) : isCurrent ? (
-          <span className="text-[10px] text-ring-gold/70 uppercase tracking-widest animate-pulse font-medium">
+          <span className="text-[10px] text-kb-amber uppercase tracking-widest animate-pulse font-semibold">
             Live
           </span>
         ) : (
-          <span className="text-white/15 text-xs">—</span>
+          <span className="text-kb-faint text-xs">—</span>
         )}
       </div>
 
@@ -230,7 +230,7 @@ function StageBlock({
               return (
                 <li
                   key={beat.label}
-                  className="flex items-center gap-2 py-1.5 text-white/12 text-xs px-2"
+                  className="flex items-center gap-2 py-1.5 text-kb-faint text-xs px-2"
                 >
                   <Minus className="w-3 h-3" />
                   <span>···</span>
@@ -245,16 +245,16 @@ function StageBlock({
                 animate={{ opacity: 1, x: 0 }}
                 className={`flex items-center gap-2 py-1.5 text-xs rounded-lg px-2.5 ${
                   isFailBeat
-                    ? 'text-red-300/90 bg-red-500/12'
+                    ? 'text-kb-crimson/90 bg-kb-crimson/12'
                     : isPassBeat
-                      ? 'text-white/75'
-                      : 'text-white/40'
+                      ? 'text-kb-soft'
+                      : 'text-kb-mute'
                 }`}
               >
                 {isFailBeat ? (
                   <X className="w-3 h-3 shrink-0" />
                 ) : isPassBeat ? (
-                  <Check className="w-3 h-3 shrink-0 text-ring-gold/80" />
+                  <Check className="w-3 h-3 shrink-0 text-kb-gold/80" />
                 ) : (
                   <Minus className="w-3 h-3 shrink-0" />
                 )}

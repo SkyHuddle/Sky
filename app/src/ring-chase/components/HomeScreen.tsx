@@ -1,10 +1,10 @@
-import { Link } from 'react-router';
 import { motion } from 'framer-motion';
-import { Trophy, Flame, Target, Calendar, Circle, ArrowLeft, Lock } from 'lucide-react';
+import { Trophy, Flame, Target, Calendar, Lock } from 'lucide-react';
 import type { DailyConstraint, DailyRunResult, PlayerStats } from '../core/types';
-import { Button } from '@/components/ui/button';
 import { RingPath } from './RingPath';
 import { DailyLeaderboard } from './DailyLeaderboard';
+import { SisterCtaButton } from './SisterCtaButton';
+import { KbCard } from './KbCard';
 import { getDailyChallengeNumber } from '../features/daily';
 import { getDataSourceLabel } from '../engine/card-context';
 import { canStartDailyToday, getDailyTeamLabels, loadDailyBoard } from '../features/daily-board';
@@ -17,6 +17,8 @@ interface HomeScreenProps {
   onStartFree: () => void;
   onStartDaily: () => void;
 }
+
+const easeSkyler: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export function HomeScreen({
   stats,
@@ -32,126 +34,108 @@ export function HomeScreen({
   const board = loadDailyBoard(dateKey);
 
   return (
-    <div className="flex flex-col min-h-[100dvh] px-5 pb-10 pt-14 max-w-lg mx-auto">
-      <Link
-        to="/"
-        className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-white/30 hover:text-white/50 mb-4 -mt-2 transition-colors"
-      >
-        <ArrowLeft className="w-3 h-3" />
-        Skyler Camper
-      </Link>
+    <div className="flex flex-col min-h-[calc(100dvh-4rem)] px-5 pb-10 pt-2 max-w-lg mx-auto">
       <motion.header
         className="text-center mb-8"
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.55, ease: easeSkyler }}
       >
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-ring-gold/30 bg-gradient-to-r from-ring-gold/12 to-transparent mb-7 shadow-sm shadow-ring-gold/10">
-          <Circle className="w-3.5 h-3.5 text-ring-gold fill-ring-gold/30" />
-          <span className="text-[10px] uppercase tracking-[0.22em] text-ring-gold/90 font-medium">
-            Call of Duty Esports
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-kb-gold/25 bg-kb-gold/10 mb-6">
+          <span className="w-2 h-2 rounded-full bg-kb-amber kb-live-dot" />
+          <span className="text-[10px] uppercase tracking-[0.22em] text-kb-soft font-semibold">
+            Daily esports guessing
           </span>
         </div>
 
-        <h1 className="font-display text-[3.25rem] sm:text-6xl tracking-wide text-white leading-[0.95]">
-          RING
+        <h1 className="font-display text-[3.5rem] sm:text-6xl text-kb-fg leading-[0.92]">
+          Ring
           <br />
-          <span className="text-ring-gold glow-ring">CHASE</span>
+          <span className="text-ring-gold glow-ring">Chase</span>
         </h1>
 
-        <p className="text-white/50 text-sm mt-5 max-w-[320px] mx-auto leading-relaxed">
-          Build a CDL superteam from real team-year cards. Run the table or walk away 16-4 with no ring.
+        <p className="text-kb-soft text-sm mt-5 max-w-[320px] mx-auto leading-relaxed">
+          Do you actually know ball? This is the CoD version — draft team-year cards, run the table, share your season.
         </p>
-        <p className="text-[10px] text-white/30 mt-3 max-w-[320px] mx-auto leading-relaxed">
-          {getDataSourceLabel()}. Stats and rings are that season only — scout before you draft.
+        <p className="text-[10px] text-kb-mute mt-3 max-w-[320px] mx-auto leading-relaxed">
+          {getDataSourceLabel()}. Same vibe as{' '}
+          <a href="https://knowball.us" className="text-kb-amber hover:text-kb-amber-hot transition-colors">
+            KnowBall
+          </a>
+          , built for esports.
         </p>
       </motion.header>
 
-      <motion.div
-        className="rounded-2xl glass-panel p-4 mb-6 border border-ring-gold/15 shadow-lg shadow-black/20"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.1 }}
-      >
-        <p className="text-[10px] uppercase tracking-widest text-white/35 mb-3 text-center">
-          The path
-        </p>
-        <RingPath variant="full" />
-        <p className="text-[10px] text-white/30 text-center mt-3 leading-relaxed">
-          Major I → II → III → IV → Champs
-          <br />
-          <span className="text-ring-gold/50">Perfect Season = 4 majors + ring</span>
-        </p>
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }}>
+        <KbCard accent="gold" className="mb-6">
+          <p className="text-[10px] uppercase tracking-widest text-kb-mute mb-3 text-center">
+            The path
+          </p>
+          <RingPath variant="full" />
+          <p className="text-[10px] text-kb-faint text-center mt-3 leading-relaxed">
+            Major I → II → III → IV → Champs
+            <br />
+            <span className="text-kb-gold/80">Perfect season = 4 majors + ring</span>
+          </p>
+        </KbCard>
       </motion.div>
 
       <motion.div
         className="space-y-3 mb-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.12 }}
+        transition={{ delay: 0.12, ease: easeSkyler }}
       >
-        <Button
-          onClick={onStartFree}
-          className="w-full h-[3.75rem] text-base font-semibold rounded-2xl bg-ring-gold text-black hover:bg-ring-gold/90 shadow-xl shadow-ring-gold/20 border-0 animate-pulse-ring"
-        >
+        <SisterCtaButton onClick={onStartFree} variant="gold" className="h-14 animate-pulse-ring">
           Run the Table
-        </Button>
+        </SisterCtaButton>
 
-        <button
-          type="button"
+        <SisterCtaButton
           onClick={dailyOpen ? onStartDaily : undefined}
           disabled={!dailyOpen}
-          className={`w-full h-[3.75rem] rounded-2xl flex flex-col items-center justify-center gap-0.5 transition-all ${
-            dailyOpen
-              ? 'glass-panel hover:bg-white/[0.06]'
-              : 'glass-panel opacity-55 cursor-not-allowed'
-          }`}
+          variant={dailyOpen ? 'amber' : 'glass'}
+          showArrow={dailyOpen}
+          className="h-14"
         >
-          <span className="flex items-center gap-2 text-white font-medium text-sm">
-            {dailyOpen ? (
-              <Calendar className="w-4 h-4 text-ring-gold" />
-            ) : (
-              <Lock className="w-4 h-4 text-white/40" />
-            )}
+          <span className="inline-flex items-center justify-center gap-2">
+            {dailyOpen ? <Calendar className="w-4 h-4" /> : <Lock className="w-4 h-4 opacity-50" />}
             Daily Ring Chase #{dailyNum}
+            {!dailyOpen && ' · Done'}
           </span>
-          <span className="text-[11px] text-white/40">
-            {dailyOpen ? dailyConstraint.title : 'Completed — one attempt per day'}
-          </span>
-        </button>
+        </SisterCtaButton>
+        {dailyOpen && (
+          <p className="text-center text-[10px] text-kb-mute -mt-1">{dailyConstraint.title}</p>
+        )}
       </motion.div>
 
-      <motion.div
-        className="rounded-2xl glass-panel p-4 mb-6 border border-white/[0.06]"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.18 }}
-      >
-        <p className="text-[10px] uppercase tracking-widest text-ring-gold/70 mb-1.5">
-          Today&apos;s board
-        </p>
-        <p className="text-white font-medium">{dailyConstraint.title}</p>
-        <p className="text-white/45 text-xs mt-1.5 leading-relaxed">{dailyConstraint.description}</p>
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.18 }}>
+        <KbCard accent="amber" className="mb-6">
+          <p className="text-[10px] uppercase tracking-widest text-kb-amber/80 mb-1.5 font-semibold">
+            Today&apos;s board
+          </p>
+          <p className="text-kb-fg font-semibold">{dailyConstraint.title}</p>
+          <p className="text-kb-soft text-xs mt-1.5 leading-relaxed">{dailyConstraint.description}</p>
 
-        <div className="mt-3 flex flex-wrap gap-1.5">
-          {dailyTeams.map((label) => (
-            <span
-              key={label}
-              className="text-[9px] px-2 py-0.5 rounded-full bg-white/[0.04] border border-white/[0.06] text-white/45"
-            >
-              {label}
-            </span>
-          ))}
-        </div>
-
-        {dailyPlayed && (
-          <div className="mt-3 pt-3 border-t border-white/[0.06]">
-            <p className="text-ring-gold/80 text-xs font-medium">{dailyPlayed.headline ?? 'Played today'}</p>
-            <p className="text-[10px] text-white/35 mt-1">
-              Score {dailyPlayed.score.toFixed(1)} · {dailyPlayed.record ?? '—'}
-            </p>
+          <div className="mt-3 flex flex-wrap gap-1.5">
+            {dailyTeams.map((label) => (
+              <span
+                key={label}
+                className="text-[9px] px-2 py-0.5 rounded-full bg-kb-glass-strong border border-kb-border text-kb-mute kb-mono"
+              >
+                {label}
+              </span>
+            ))}
           </div>
-        )}
+
+          {dailyPlayed && (
+            <div className="mt-3 pt-3 border-t border-kb-hairline">
+              <p className="text-kb-gold text-xs font-semibold kb-mono">{dailyPlayed.headline ?? 'Played today'}</p>
+              <p className="text-[10px] text-kb-mute mt-1 kb-mono">
+                Score {dailyPlayed.score.toFixed(1)}
+              </p>
+            </div>
+          )}
+        </KbCard>
       </motion.div>
 
       <motion.div className="mb-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.22 }}>
@@ -178,11 +162,11 @@ function StatsGrid({ stats }: { stats: PlayerStats }) {
       transition={{ delay: 0.35 }}
     >
       {items.map(({ icon: Icon, label, value }) => (
-        <div key={label} className="rounded-xl glass-panel p-3 text-center">
-          <Icon className="w-4 h-4 text-ring-gold/55 mx-auto mb-2" />
-          <p className="font-display text-xl text-white tabular-nums">{value}</p>
-          <p className="text-[8px] uppercase tracking-wider text-white/30 mt-1">{label}</p>
-        </div>
+        <KbCard key={label} className="text-center !p-3">
+          <Icon className="w-4 h-4 text-kb-gold/60 mx-auto mb-2" />
+          <p className="font-display text-xl text-kb-fg tabular-nums kb-mono !normal-case !tracking-normal">{value}</p>
+          <p className="text-[8px] uppercase tracking-wider text-kb-faint mt-1">{label}</p>
+        </KbCard>
       ))}
     </motion.div>
   );

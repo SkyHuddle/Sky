@@ -73,16 +73,16 @@ export function DraftScreen({
 
   return (
     <div className="flex flex-col min-h-[100dvh] max-w-lg mx-auto">
-      <header className="sticky top-0 z-20 px-5 pt-5 pb-3 bg-[#060608]/90 backdrop-blur-xl border-b border-white/[0.05]">
+      <header className="sticky top-0 z-20 px-5 pt-3 pb-3 kb-brand-bar">
         <div className="flex items-center justify-between mb-3">
           <button
             type="button"
             onClick={onBack}
-            className="text-white/40 text-sm hover:text-white/70 transition-colors py-2"
+            className="text-kb-mute text-sm hover:text-kb-soft transition-colors py-2"
           >
             ← Exit
           </button>
-          <span className="text-[10px] uppercase tracking-[0.2em] text-white/35">
+          <span className="text-[10px] uppercase tracking-[0.2em] text-kb-mute">
             {DRAFT_ROUND_LABELS[picks.length] ?? `Pick ${picks.length + 1}`} · {SLOT_LABELS[openRoles[0] ?? 'mainAR']}
           </span>
         </div>
@@ -111,15 +111,15 @@ export function DraftScreen({
             <TeamBanner team={team} rosterAvgOvr={teamRosterAvgOvr(team)} />
 
             {isDaily && dailyConstraint.id !== 'standard' && (
-              <p className="text-[10px] text-ring-gold/60 mb-4 -mt-2 px-1">{dailyConstraint.title}</p>
+              <p className="text-[10px] text-kb-amber/80 mb-4 -mt-2 px-1 font-medium">{dailyConstraint.title}</p>
             )}
 
-            <div className="mb-4 rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3.5">
-              <p className="text-xs text-white/55 leading-relaxed">
+            <div className="mb-4 rounded-[var(--kb-r-md)] border border-kb-border bg-kb-glass px-4 py-3.5">
+              <p className="text-xs text-kb-soft leading-relaxed">
                 {pickableCount === 1 ? (
                   <>
                     Draft your{' '}
-                    <span className="text-ring-gold font-medium">
+                    <span className="text-kb-gold font-semibold">
                       {SLOT_LABELS[openRoles[0]!]}
                     </span>
                     .
@@ -133,7 +133,7 @@ export function DraftScreen({
             </div>
 
             {pickableCount === 0 && (
-              <p className="text-sm text-red-400/80 mb-4 rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-3">
+              <p className="text-sm text-kb-crimson/90 mb-4 rounded-[var(--kb-r-md)] border border-kb-crimson/20 bg-kb-crimson/10 px-4 py-3">
                 No eligible players for today&apos;s rule on this team. Respin or try Daily tomorrow.
               </p>
             )}
@@ -149,12 +149,12 @@ export function DraftScreen({
                     onSelect={() => onSelectPlayer(player, teamRole)}
                   />
                   {roleTaken && (
-                    <p className="text-[10px] text-white/25 mt-1.5 pl-1">
+                    <p className="text-[10px] text-kb-faint mt-1.5 pl-1">
                       {SLOT_LABELS[teamRole]} slot filled
                     </p>
                   )}
                   {!roleTaken && dailyBlocked && (
-                    <p className="text-[10px] text-red-400/75 mt-1.5 pl-1">
+                    <p className="text-[10px] text-kb-crimson/80 mt-1.5 pl-1">
                       Blocked by today&apos;s rule
                     </p>
                   )}
@@ -166,13 +166,13 @@ export function DraftScreen({
               <button
                 type="button"
                 onClick={onRespinTeam}
-                className="w-full mt-6 py-3.5 rounded-2xl border border-white/10 text-sm text-white/50 hover:text-white/70 hover:border-ring-gold/30 transition-colors"
+                className="w-full mt-6 py-3.5 rounded-full border border-kb-border text-sm text-kb-mute hover:text-kb-soft hover:border-kb-gold/30 transition-colors"
               >
                 Respin team ({respinsLeft} left)
               </button>
             )}
             {isDaily && (
-              <p className="text-center text-[10px] text-white/30 mt-6">
+              <p className="text-center text-[10px] text-kb-faint mt-6">
                 Daily mode — fixed teams, no respins
               </p>
             )}
@@ -210,20 +210,20 @@ function RosterSlots({
               key={slot}
               className={`flex-1 rounded-xl py-2 px-1 text-center border transition-all ${
                 pick
-                  ? 'border-ring-gold/25 bg-ring-gold/8'
+                  ? 'border-kb-gold/25 bg-kb-gold/8'
                   : open
-                    ? 'border-ring-gold/15 bg-ring-gold/[0.04] ring-1 ring-ring-gold/10'
-                    : 'border-white/5 opacity-40'
+                    ? 'border-kb-gold/15 bg-kb-gold/[0.04] ring-1 ring-kb-gold/10'
+                    : 'border-kb-hairline opacity-40'
               }`}
             >
-              <p className="text-[7px] uppercase tracking-wider text-white/30 font-medium">
+              <p className="text-[7px] uppercase tracking-wider text-kb-mute font-semibold">
                 {SLOT_LABELS[slot].slice(0, 3)}
               </p>
-              <p className="text-[10px] text-white/85 truncate font-medium mt-0.5 px-0.5">
+              <p className="text-[10px] text-kb-fg truncate font-medium mt-0.5 px-0.5">
                 {pick ? pick.player.gamertag.slice(0, 6) : open ? '?' : '—'}
               </p>
               {ovr != null && (
-                <p className="text-[9px] font-display tabular-nums mt-0.5 text-ring-gold/80">
+                <p className="text-[9px] font-display tabular-nums mt-0.5 text-kb-gold/80">
                   {ovr}
                 </p>
               )}
@@ -232,8 +232,8 @@ function RosterSlots({
         })}
       </div>
       {teamOvr != null && (
-        <p className="text-[9px] text-center text-white/30 mt-2 uppercase tracking-wider">
-          Draft avg <span className="text-ring-gold/80 font-display tabular-nums">{teamOvr}</span> OVR
+        <p className="text-[9px] text-center text-kb-mute mt-2 uppercase tracking-wider">
+          Draft avg <span className="text-kb-gold/80 font-display tabular-nums">{teamOvr}</span> OVR
         </p>
       )}
     </div>
