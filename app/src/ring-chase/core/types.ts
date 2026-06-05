@@ -208,7 +208,7 @@ export interface DailyConstraint {
   title: string;
   description: string;
   filter?: (ctx: DailyFilterContext) => boolean;
-  pickFilter?: (player: CodPlayer, picks: DraftPick[]) => boolean;
+  pickFilter?: (player: CodPlayer, picks: DraftPick[], team?: HistoricalCodTeam) => boolean;
 }
 
 export interface DailyFilterContext {

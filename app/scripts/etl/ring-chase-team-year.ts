@@ -9,14 +9,14 @@ import { fileURLToPath } from 'node:url';
 import { COD_TEAMS } from '../../src/ring-chase/data/teams';
 import { getPlayerById } from '../../src/ring-chase/data/players';
 import { rosterPlayerIds } from '../../src/ring-chase/data/roster-slots';
-import {
-  accomplishmentFromTeam,
-  getAccomplishmentTuning,
-  type TeamYearAccomplishment,
-} from '../../src/ring-chase/data/accomplishment';
-import type { CodPlayer, HistoricalCodTeam, PlayerRatings } from '../../src/ring-chase/core/types';
+import { accomplishmentFromTeam } from '../../src/ring-chase/data/accomplishment';
 import { ESTIMATED_SLOT_OVERRIDES } from '../../src/ring-chase/data/estimated-slot-overrides';
 import { pickBestHeadshot, buildEraHeadshotCandidates } from '../../src/ring-chase/data/headshot-resolve';
+import {
+  resolveSlotRatings,
+  type TeamYearBpStats,
+  type ModeSlice,
+} from '../../src/ring-chase/engine/team-year-ovr';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT_DIR = join(__dirname, '../../src/ring-chase/data/generated');
@@ -71,23 +71,6 @@ type StatRow = {
   bp_rating: number;
   gametime_min: number;
 };
-
-export interface ModeSlice {
-  kd: number;
-  bpRating: number;
-  maps: number;
-}
-
-export interface TeamYearBpStats {
-  kd: number;
-  bpRating: number;
-  maps: number;
-  kills: number;
-  deaths: number;
-  hardpoint?: ModeSlice;
-  snd?: ModeSlice;
-  control?: ModeSlice;
-}
 
 export interface TeamYearRatingsEntry {
   teamId: string;
@@ -208,49 +191,6 @@ function aggregateStats(rows: StatRow[]): TeamYearBpStats | null {
   return stats;
 }
 
-function scaleRatings(base: PlayerRatings, overall: number): PlayerRatings {
-  const scale = overall / Math.max(base.overall, 1);
-  const scaled = { ...base };
-  for (const key of Object.keys(scaled) as (keyof PlayerRatings)[]) {
-    if (key === 'overall') continue;
-    scaled[key] = Math.round(scaled[key] * scale * 10) / 10;
-  }
-  scaled.overall = overall;
-  return scaled;
-}
-
-function estimateOverall(
-  player: CodPlayer,
-  team: HistoricalCodTeam,
-  accomplishment: TeamYearAccomplishment
-): number {
-  const rosterIds = rosterPlayerIds(team.roster);
-  const roster = rosterIds.map((id) => getPlayerById(id)).filter((p): p is CodPlayer => p != null);
-  const seedAvg =
-    roster.length > 0
-      ? roster.reduce((sum, p) => sum + p.ratings.overall, 0) / roster.length
-      : player.ratings.overall;
-  const delta = player.ratings.overall - seedAvg;
-  const tuning = getAccomplishmentTuning(team);
-  const raw = team.teamRating + delta * 0.9 + tuning.ovrBonus;
-  return Math.round(Math.min(99, Math.max(tuning.floor, raw)));
-}
-
-function overallFromBp(
-  stats: TeamYearBpStats,
-  player: CodPlayer,
-  team: HistoricalCodTeam,
-  accomplishment: TeamYearAccomplishment
-): number {
-  const tuning = getAccomplishmentTuning(team);
-  const curated = estimateOverall(player, team, accomplishment);
-  const bpLift = (stats.bpRating - 1.0) * 14 + (stats.kd - 1.0) * 8;
-  const volume = Math.min(1.5, Math.max(0, (stats.maps - 40) / 200));
-
-  const raw = curated + bpLift + volume;
-  return Math.round(Math.min(99, Math.max(tuning.floor, raw)));
-}
-
 async function fetchSeasonStats(seasonId: number): Promise<StatRow[]> {
   const rows: StatRow[] = [];
   for (let offset = 0; offset < 50000; offset += 1000) {
@@ -325,39 +265,18 @@ async function main() {
       const slotKey = entryKey(team.id, playerId);
       const override = ESTIMATED_SLOT_OVERRIDES[slotKey];
 
-      let source: 'bp-stats' | 'estimated' | 'curated-audit' = 'estimated';
-      let stats: TeamYearBpStats;
-      let overall: number;
+      const resolved = resolveSlotRatings({
+        player,
+        team,
+        accomplishment,
+        bpAgg: override ? null : agg,
+        override,
+      });
+      const { source, stats, overall } = resolved;
 
-      if (agg && agg.maps >= 5) {
-        source = 'bp-stats';
-        stats = agg;
-        overall = overallFromBp(agg, player, team, accomplishment);
-        bpHits += 1;
-      } else if (override) {
-        source = 'curated-audit';
-        stats = {
-          kd: override.kd,
-          bpRating: override.bpRating,
-          maps: override.maps,
-          kills: Math.round(override.kd * override.maps * 10),
-          deaths: Math.round(override.maps * 10),
-        };
-        overall =
-          override.overall ??
-          overallFromBp(stats, player, team, accomplishment);
-        audited += 1;
-      } else {
-        stats = {
-          kd: 1,
-          bpRating: 1,
-          maps: 0,
-          kills: 0,
-          deaths: 0,
-        };
-        overall = estimateOverall(player, team, accomplishment);
-        estimated += 1;
-      }
+      if (source === 'bp-stats') bpHits += 1;
+      else if (source === 'curated-audit') audited += 1;
+      else estimated += 1;
 
       bundle.entries[entryKey(team.id, playerId)] = {
         teamId: team.id,
