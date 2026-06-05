@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowUpRight, Zap, Trophy, Dumbbell, Mail, Sparkles, Target, Circle } from 'lucide-react';
 import Hero from './sections/Hero';
 import Intro from './components/Intro';
+import { ESPORTS_URL } from './config/esports';
 
 type PanelType = 'knowball' | 'bodyintel' | 'ringchase' | 'skyler' | null;
 
@@ -44,21 +45,21 @@ const panels = {
     cta: 'Join the waitlist',
   },
   ringchase: {
-    title: 'Ring Chase',
-    tagline: 'CoD Esports Roster Game',
+    title: 'Esports Games',
+    tagline: 'Ring Chase & Golden Road',
     status: 'Live',
     accent: '#C9A227',
     image: '/images/knowball.jpg',
     description:
-      'Draft four legends from iconic historical teams — OpTic 2017, FaZe 2021, Empire 2020, and more. Chase the ring through four Majors and Champs.',
+      'CoD Ring Chase and LoL Golden Road live on a separate site. Draft pro rosters, run seasons, and share your results.',
     bullets: [
-      { text: '4-round constrained draft — pick one per team', icon: Target },
-      { text: 'Chemistry-aware sim with BP Rating data', icon: Zap },
-      { text: 'Daily Ring Chase with global constraints', icon: Trophy },
-      { text: 'Screenshot-first share cards for X & Discord', icon: Sparkles },
+      { text: 'Ring Chase — CoD team-year draft with daily mode', icon: Target },
+      { text: 'Golden Road — LoL Worlds roster builder', icon: Zap },
+      { text: 'Share cards and daily leaderboards', icon: Trophy },
+      { text: 'Powered by esports stats data', icon: Sparkles },
     ],
-    link: '/ring-chase',
-    cta: 'Play Ring Chase',
+    link: ESPORTS_URL,
+    cta: 'Open Esports Games',
   },
   skyler: {
     title: 'Skyler Camper',

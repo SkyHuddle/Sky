@@ -1,5 +1,5 @@
 {
-  "name": "ring-chase",
+  "name": "skyler-camper",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,14 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "etl:breakingpoint": "tsx scripts/etl/breakingpoint-sync.ts",
-    "etl:ring-chase-team-year": "tsx scripts/etl/ring-chase-team-year.ts",
-    "validate:ring-chase-data": "tsx scripts/etl/validate-ring-chase-data.ts",
-    "validate:ring-chase-ovr": "tsx scripts/etl/validate-ring-chase-ovr.ts",
-    "validate:ring-chase-records": "tsx scripts/etl/validate-ring-chase-records.ts",
-    "validate:ring-chase": "npm run validate:ring-chase-data && npm run validate:ring-chase-ovr && npm run validate:ring-chase-records",
-    "recompute:ring-chase-ratings": "tsx scripts/etl/recompute-team-year-ratings.ts"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
