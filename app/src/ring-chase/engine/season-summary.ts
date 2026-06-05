@@ -1,5 +1,6 @@
 import type { ChampsOutcome, DraftPick, SeasonSummary, SimulationResult, StageOutcome } from '../core/types';
 import { CHAMPS_OUTCOME_LABELS } from '../core/types';
+import { cardOverall } from './card-context';
 import { hashString } from './rng';
 
 export type { SeasonSummary };
@@ -10,14 +11,18 @@ export const REGULAR_SEASON_GAMES = 20;
 const LADDER_MAX_NON_PERFECT = 999;
 const LADDER_BUCKET = 50;
 
-const CHAMPS_LADDER: Record<ChampsOutcome, number> = {
-  champion: 120,
-  grand_final: 92,
-  top3: 78,
-  top4: 65,
-  top6: 50,
-  top8: 38,
-  missed: 12,
+const OVR_BASELINE = 72;
+const BASE_WINS = 6;
+
+/** Small nudge from Champs placement — regular season is mostly roster-driven */
+const CHAMPS_WIN_NUDGE: Record<ChampsOutcome, number> = {
+  champion: 1.2,
+  grand_final: 0.5,
+  top3: 0.35,
+  top4: 0.15,
+  top6: 0,
+  top8: -0.35,
+  missed: -0.9,
 };
 
 export type RegularSeasonInput = Pick<
@@ -98,51 +103,75 @@ function buildNarrative(
   return `You went ${record} but the run ended before a ring.`;
 }
 
+function rosterAvgOvr(picks: DraftPick[]): number {
+  if (picks.length === 0) return OVR_BASELINE;
+  const sum = picks.reduce((acc, pick) => acc + cardOverall(pick.player, pick.team), 0);
+  return sum / picks.length;
+}
+
+function weakestOvr(picks: DraftPick[]): number {
+  return Math.min(...picks.map((pick) => cardOverall(pick.player, pick.team)));
+}
+
+function weakLinkPenalty(weakest: number): number {
+  if (weakest < 80) return (80 - weakest) * 0.35;
+  if (weakest < 84) return (84 - weakest) * 0.2;
+  return 0;
+}
+
+function recordHashSpread(picks: DraftPick[], result: RegularSeasonInput): number {
+  const pickKey = picks.map((p) => `${p.team.id}:${p.player.id}`).join('|');
+  return hashString(
+    `${pickKey}|${result.majorWins}|${result.failureStage ?? ''}|${result.champsOutcome}|${Math.round(result.rosterScore)}`
+  );
+}
+
 /**
- * Continuous 0–999 ladder from bracket outcome + roster context.
- * Each 50-point band maps to one regular-season win total (0–19).
+ * Expected regular-season wins from roster talent, weak links, traps, and modest bracket correlation.
+ * ~6 wins at 72 avg OVR; each +2 OVR adds ~1 win before bracket nudges.
+ */
+function computeTalentWins(picks: DraftPick[], result: RegularSeasonInput): number {
+  const avgOvr = rosterAvgOvr(picks);
+  const trapSlots = picks.filter((p) => p.team.tier === 'underdog').length;
+
+  let wins =
+    BASE_WINS +
+    (avgOvr - OVR_BASELINE) * 0.5 +
+    (result.rosterScore - avgOvr) * 0.2;
+
+  wins -= weakLinkPenalty(weakestOvr(picks));
+  wins -= trapSlots * 1.6;
+
+  wins += result.majorWins * 0.55;
+  wins += result.ringWon ? 1.4 : CHAMPS_WIN_NUDGE[result.champsOutcome];
+
+  if (result.majorWins === 0) wins -= 1.1;
+  if (result.failureStage === 'major1') wins -= 0.9;
+  else if (result.failureStage === 'major2') wins -= 0.45;
+
+  return wins;
+}
+
+function recordJitter(picks: DraftPick[], result: RegularSeasonInput): number {
+  return (recordHashSpread(picks, result) % 9) - 4;
+}
+
+/**
+ * Continuous 0–999 ladder encoding for regular-season wins (50 points per win).
  */
 export function computeLadderScore(picks: DraftPick[], result: RegularSeasonInput): number {
   if (result.perfectSeason) return 1000;
 
-  const trapSlots = picks.filter((p) => p.team.tier === 'underdog').length;
-  const avgPower =
-    result.stages.length > 0
-      ? result.stages.reduce((sum, stage) => sum + stage.power, 0) / result.stages.length
-      : result.rosterScore;
-
-  let score = result.majorWins * 168;
-  score += result.ringWon ? CHAMPS_LADDER.champion : CHAMPS_LADDER[result.champsOutcome];
-  score += (result.rosterScore - 72) * 2.4;
-  score += avgPower * 2.5;
-  score -= trapSlots * 44;
-
-  if (result.majorWins === 0) score -= 38;
-  if (result.failureStage === 'major1') score -= 22;
-  else if (result.failureStage === 'major2') score -= 8;
-
-  for (const stage of result.stages) {
-    const beatsCleared = stage.run.filter((beat) => beat.passed).length;
-    score += beatsCleared * 2.2;
-    if (!stage.passed) {
-      score += stage.passChance * 0.42;
-    }
-  }
-
-  const pickKey = picks.map((p) => `${p.team.id}:${p.player.id}`).join('|');
-  const spread = hashString(
-    `${pickKey}|${result.majorWins}|${result.failureStage ?? ''}|${result.champsOutcome}|${Math.round(result.rosterScore)}`
-  );
-  score += spread % 50;
-
-  return Math.max(0, Math.min(LADDER_MAX_NON_PERFECT, Math.round(score)));
+  const wins = computeRegularSeasonWins(picks, result);
+  const spread = recordHashSpread(picks, result);
+  return Math.max(0, Math.min(LADDER_MAX_NON_PERFECT, wins * LADDER_BUCKET + (spread % LADDER_BUCKET)));
 }
 
-/** Maps ladder → wins in [0, 20]. Every combo 0-20 … 20-0 is a distinct bucket. */
+/** Maps roster + bracket context → wins in [0, 20]. Every combo 0-20 … 20-0 is a distinct bucket. */
 export function computeRegularSeasonWins(picks: DraftPick[], result: RegularSeasonInput): number {
   if (result.perfectSeason) return REGULAR_SEASON_GAMES;
-  const score = computeLadderScore(picks, result);
-  const wins = Math.floor(score / LADDER_BUCKET);
+
+  const wins = Math.round(computeTalentWins(picks, result) + recordJitter(picks, result));
   return Math.max(0, Math.min(REGULAR_SEASON_GAMES - 1, wins));
 }
 
