@@ -9,8 +9,8 @@ export const STAGE_PAUSE = 350;
 export const RUN_BEAT_DELAY = 380;
 
 /** Slot machine timing */
-export const SPIN_DURATION_MS = 2600;
-export const SPIN_TICK_MS = 75;
+export const SPIN_DURATION_MS = 2000;
+export const SPIN_TICK_MS = 65;
 
 /** Logistic midpoints for per-stage pass probability */
 export const STAGE_PASS_MIDPOINTS: Record<StageId, number> = {

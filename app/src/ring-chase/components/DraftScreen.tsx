@@ -124,7 +124,6 @@ export function DraftScreen({
         {draftSubphase === 'spin' && (
           <TeamSlotMachine
             key={spinGeneration}
-            team={currentRound.team}
             spin={currentRound.spin}
             spinKey={spinGeneration}
             roundIndex={currentRound.roundIndex}
