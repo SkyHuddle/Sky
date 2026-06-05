@@ -18,11 +18,11 @@ export const SIMULATION_GUIDE = {
     },
     {
       title: 'The four checks',
-      body: 'Spring → MSI → Summer → Worlds. Your roster OVR drives sim power at each stage — not a replay of a real historical bracket.',
+      body: 'Spring → MSI → Summer → Worlds. Each stage is a percentage roll based on your roster strength — stronger teams win more often, but any lineup can pull off an upset.',
     },
     {
       title: 'What to expect',
-      body: 'Strong rosters win more often, but upsets still happen — that\'s what makes a Golden Road special. Stack high OVR picks and chase the ~10–25% runs.',
+      body: 'Win chance on the ready screen is the combined odds of clearing all four stages. Even modest OVR rosters keep a real shot; stacking legends pushes you into the teens or higher.',
     },
   ],
 } as const;

@@ -7,8 +7,11 @@ import type {
 } from '@/core/types';
 import { STAGES } from '@/core/types';
 import {
-  STAGE_THRESHOLDS,
-  STAGE_THRESHOLD_JITTER,
+  STAGE_PASS_MIDPOINTS,
+  STAGE_PASS_STEEPNESS,
+  STAGE_PASS_MIN,
+  STAGE_PASS_MAX,
+  MIN_GOLDEN_ROAD_CHANCE,
   WORLDS_FAILURE_LABELS,
 } from '@/core/constants';
 import { computeRosterScore, countTitles, stageTeamPower } from './ratings';
@@ -25,20 +28,32 @@ function mulberry32(seed: number) {
   };
 }
 
-function rollVariance(rng: () => number, clutch: number): number {
-  const spread = 12 - clutch / 12;
-  return (rng() - 0.5) * spread;
+function clampPassChance(chance: number): number {
+  return Math.min(STAGE_PASS_MAX, Math.max(STAGE_PASS_MIN, chance));
 }
 
-function worldsFailureDetail(
+/** Pass probability for one stage from roster stage power (logistic curve) */
+export function stagePassProbability(power: number, stage: StageId): number {
+  const mid = STAGE_PASS_MIDPOINTS[stage];
+  const steepness = STAGE_PASS_STEEPNESS[stage];
+  const logistic = 1 / (1 + Math.exp(-steepness * (power - mid)));
+  return clampPassChance(logistic);
+}
+
+function stagePowerJitter(
   power: number,
-  threshold: number,
+  stage: StageId,
+  avgClutch: number,
   rng: () => number
-): WorldsFailureDetail {
-  const gap = threshold - power;
-  if (gap > 10 || rng() < 0.35) return 'groups';
-  if (gap > 6 || rng() < 0.5) return 'quarterfinals';
-  if (gap > 3 || rng() < 0.65) return 'semifinals';
+): number {
+  const spread = stage === 'worlds' ? 2 + avgClutch / 30 : 1.5;
+  return power + (rng() - 0.5) * spread;
+}
+
+function worldsFailureDetail(passChance: number, rng: () => number): WorldsFailureDetail {
+  if (passChance < 0.15 || rng() < 0.35) return 'groups';
+  if (passChance < 0.3 || rng() < 0.5) return 'quarterfinals';
+  if (passChance < 0.45 || rng() < 0.65) return 'semifinals';
   return 'finals';
 }
 
@@ -55,27 +70,14 @@ function failureMessage(stage: StageId, detail?: WorldsFailureDetail): string {
   return labels[stage];
 }
 
-export interface StagePreview {
-  stage: StageId;
-  label: string;
-  power: number;
-  needed: number;
-  edge: number;
-}
-
-export function rosterStagePreview(picks: DraftPick[]): StagePreview[] {
+export function goldenRoadProbability(picks: DraftPick[]): number {
   const players = playersForSimulation(picks);
-  return STAGES.map((stage) => {
-    const power = Math.round(stageTeamPower(players, stage) * 10) / 10;
-    const needed = STAGE_THRESHOLDS[stage];
-    return {
-      stage,
-      label: stage === 'spring' ? 'Spring' : stage === 'msi' ? 'MSI' : stage === 'summer' ? 'Summer' : 'Worlds',
-      power,
-      needed,
-      edge: Math.round((power - needed) * 10) / 10,
-    };
-  });
+  let odds = 1;
+  for (const stage of STAGES) {
+    const power = stageTeamPower(players, stage);
+    odds *= stagePassProbability(power, stage);
+  }
+  return Math.max(odds, MIN_GOLDEN_ROAD_CHANCE);
 }
 
 export function simulateGoldenRoad(
@@ -100,23 +102,21 @@ export function simulateGoldenRoad(
 
   for (const stage of stageOrder) {
     const stagePower = stageTeamPower(simPlayers, stage);
-    const jitter = STAGE_THRESHOLD_JITTER;
-    const threshold = STAGE_THRESHOLDS[stage] + rng() * jitter * 2 - jitter;
-    const variance = rollVariance(rng, avgClutch);
-    const roll = stagePower + variance;
-    const passed = roll >= threshold;
+    const effectivePower = stagePowerJitter(stagePower, stage, avgClutch, rng);
+    const passChance = stagePassProbability(effectivePower, stage);
+    const passed = rng() < passChance;
 
     let detail: WorldsFailureDetail | undefined;
     if (!passed && stage === 'worlds') {
-      detail = worldsFailureDetail(stagePower, threshold, rng);
+      detail = worldsFailureDetail(passChance, rng);
     }
 
     const base = {
       stage,
       passed,
       detail,
-      roll: Math.round(roll * 10) / 10,
-      threshold: Math.round(threshold * 10) / 10,
+      roll: Math.round(effectivePower * 10) / 10,
+      threshold: Math.round(passChance * 1000) / 10,
     };
     stages.push(enrichStageWithRun(base, rng));
 
@@ -139,7 +139,6 @@ export function simulateGoldenRoad(
   };
 }
 
-const ODDS_SAMPLES = 384;
 const oddsCache = new Map<string, number>();
 
 function rosterOddsKey(picks: DraftPick[]): string {
@@ -149,7 +148,7 @@ function rosterOddsKey(picks: DraftPick[]): string {
     .join('|');
 }
 
-/** Monte Carlo win chance — matches simulateGoldenRoad mechanics */
+/** Golden Road win chance from per-stage pass probabilities */
 export function estimateGoldenRoadOdds(picks: DraftPick[]): number {
   if (picks.length === 0) return 0;
 
@@ -157,14 +156,7 @@ export function estimateGoldenRoadOdds(picks: DraftPick[]): number {
   const cached = oddsCache.get(key);
   if (cached != null) return cached;
 
-  const seed = hashString(key);
-  let wins = 0;
-  for (let i = 0; i < ODDS_SAMPLES; i++) {
-    if (simulateGoldenRoad(picks, { seed: `odds-${seed}-${i}` }).goldenRoad) {
-      wins++;
-    }
-  }
-  const rate = wins / ODDS_SAMPLES;
+  const rate = goldenRoadProbability(picks);
   oddsCache.set(key, rate);
   return rate;
 }
