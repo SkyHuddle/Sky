@@ -1,13 +1,13 @@
 import type { CodPlayer, DraftPick, HistoricalCodTeam, PlayerRatings } from '../core/types';
-import { getAccomplishmentTuning, getCardCredentials } from '../data/accomplishment';
+import { accomplishmentFromTeam, getCardCredentials } from '../data/accomplishment';
 import { resolveTeamRoster } from '../data';
 import {
   getCardStatBreakdown,
   getTeamYearEntry,
   getTeamYearMeta,
-  scaleRatingsFromOverall,
   type CardStatBreakdown,
 } from '../data/team-year-ratings';
+import { curatedOverall, scaleRatingsFromOverall } from './team-year-ovr';
 import bpMeta from '../data/generated/bp-sync-meta.json';
 
 type BpLegend = { tag?: string; id?: number };
@@ -18,13 +18,7 @@ const meta = bpMeta as BpMeta;
 function formulaOverall(player: CodPlayer, team: HistoricalCodTeam): number {
   const roster = resolveTeamRoster(team);
   if (roster.length === 0) return Math.round(player.ratings.overall);
-
-  const seedAvg = roster.reduce((sum, p) => sum + p.ratings.overall, 0) / roster.length;
-  const delta = player.ratings.overall - seedAvg;
-  const tuning = getAccomplishmentTuning(team);
-  const raw = team.teamRating + delta * 0.9 + tuning.ovrBonus;
-
-  return Math.round(Math.min(99, Math.max(tuning.floor, raw)));
+  return curatedOverall(player, team, accomplishmentFromTeam(team));
 }
 
 /** Gameplay uses BP team-year cards when ETL data exists, else curated formula. */

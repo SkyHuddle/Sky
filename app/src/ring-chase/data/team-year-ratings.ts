@@ -1,4 +1,4 @@
-import type { CodPlayer, HistoricalCodTeam, PlayerRatings } from '../core/types';
+import type { CodPlayer, HistoricalCodTeam } from '../core/types';
 import type { TeamYearAccomplishment } from './accomplishment';
 import { resolveTeamYearHeadshots } from './headshot-resolve';
 import teamYearBundle from './generated/team-year-ratings.json';
@@ -149,16 +149,4 @@ export function getCardStatBreakdown(
   };
 }
 
-export function scaleRatingsFromOverall(
-  base: PlayerRatings,
-  overall: number
-): PlayerRatings {
-  const scale = overall / Math.max(base.overall, 1);
-  const scaled = { ...base };
-  for (const key of Object.keys(scaled) as (keyof PlayerRatings)[]) {
-    if (key === 'overall') continue;
-    scaled[key] = Math.round(scaled[key] * scale * 10) / 10;
-  }
-  scaled.overall = overall;
-  return scaled;
-}
+export { scaleRatingsFromOverall } from '../engine/team-year-ovr';

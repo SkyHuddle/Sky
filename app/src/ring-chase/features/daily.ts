@@ -1,4 +1,5 @@
 import type { CodPlayer, DailyConstraint, DraftPick, HistoricalCodTeam } from '../core/types';
+import { cardOverall } from '../engine/card-context';
 
 export function getDateKey(): string {
   return new Date().toISOString().slice(0, 10);
@@ -82,9 +83,10 @@ const DAILY_CONSTRAINTS: DailyConstraint[] = [
     id: 'one-legend',
     title: 'One Legend, Three Stars',
     description: 'Max one player rated 94+ overall.',
-    pickFilter: (player, picks) => {
-      const legends = picks.filter((p) => p.player.ratings.overall >= 94).length;
-      if (player.ratings.overall >= 94 && legends >= 1) return false;
+    pickFilter: (player, picks, team) => {
+      const ovr = team ? cardOverall(player, team) : player.ratings.overall;
+      const legends = picks.filter((p) => cardOverall(p.player, p.team) >= 94).length;
+      if (ovr >= 94 && legends >= 1) return false;
       return true;
     },
   },
@@ -104,7 +106,8 @@ const DAILY_CONSTRAINTS: DailyConstraint[] = [
     id: 'no-top5',
     title: 'No Top 5 Rated',
     description: 'Cannot pick players rated 95+ overall.',
-    pickFilter: (player) => player.ratings.overall < 95,
+    pickFilter: (player, _picks, team) =>
+      (team ? cardOverall(player, team) : player.ratings.overall) < 95,
   },
   {
     id: 'no-ar-stars',
@@ -239,10 +242,11 @@ export function teamPassesFilter(
 export function playerPassesFilter(
   player: CodPlayer,
   picks: DraftPick[],
-  constraint: DailyConstraint
+  constraint: DailyConstraint,
+  team?: HistoricalCodTeam
 ): boolean {
   if (!constraint.pickFilter) return true;
-  return constraint.pickFilter(player, picks);
+  return constraint.pickFilter(player, picks, team);
 }
 
 export function estimatePercentile(score: number, ringWon: boolean, perfectSeason: boolean): number {

@@ -11,7 +11,10 @@
     "etl:breakingpoint": "tsx scripts/etl/breakingpoint-sync.ts",
     "etl:ring-chase-team-year": "tsx scripts/etl/ring-chase-team-year.ts",
     "validate:ring-chase-data": "tsx scripts/etl/validate-ring-chase-data.ts",
-    "validate:ring-chase-records": "tsx scripts/etl/validate-ring-chase-records.ts"
+    "validate:ring-chase-ovr": "tsx scripts/etl/validate-ring-chase-ovr.ts",
+    "validate:ring-chase-records": "tsx scripts/etl/validate-ring-chase-records.ts",
+    "validate:ring-chase": "npm run validate:ring-chase-data && npm run validate:ring-chase-ovr && npm run validate:ring-chase-records",
+    "recompute:ring-chase-ratings": "tsx scripts/etl/recompute-team-year-ratings.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

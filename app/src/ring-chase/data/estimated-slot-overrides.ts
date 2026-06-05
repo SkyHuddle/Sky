@@ -96,4 +96,18 @@ export const ESTIMATED_SLOT_OVERRIDES: Record<string, EstimatedSlotOverride> = {
   'cloud9-2017:aches': { kd: 0.98, bpRating: 0.98, maps: 85, note: 'IW C9 flop flex' },
   'cloud9-2017:enable': { kd: 0.97, bpRating: 0.97, maps: 82, note: 'IW C9 flop SMG' },
   'cloud9-2017:haggy': { kd: 0.93, bpRating: 0.93, maps: 70, note: 'IW C9 bench SMG' },
+  'optic-tx-2024:mercules': {
+    kd: 1.04,
+    bpRating: 1.03,
+    maps: 20,
+    overall: 87,
+    note: 'Champs bench piece — thin MWIII sample',
+  },
+  'optic-2017:karma': {
+    kd: 0.96,
+    bpRating: 0.99,
+    maps: 180,
+    overall: 91,
+    note: 'IW Champs IGL — role value, not top slayer',
+  },
 };

@@ -59,7 +59,7 @@ export function DraftScreen({
       const taken = pickedIds.has(player.id);
       const roleTaken = !openRoles.includes(teamRole);
       const dailyBlocked =
-        isDaily && !playerPassesFilter(player, picks, dailyConstraint);
+        isDaily && !playerPassesFilter(player, picks, dailyConstraint, team);
       const blocked = taken || roleTaken || dailyBlocked;
 
       return { player, teamRole, roleTaken, dailyBlocked, blocked };
