@@ -1,23 +1,24 @@
 import type { ChampsOutcome, DraftPick, SeasonSummary, SimulationResult, StageOutcome } from '../core/types';
 import { CHAMPS_OUTCOME_LABELS } from '../core/types';
+import { cardOverall } from './card-context';
 import { hashString } from './rng';
 
 export type { SeasonSummary };
 
 export const REGULAR_SEASON_GAMES = 20;
 
-/** Ladder buckets: score 0–999 → wins 0–19; perfect season → 20-0 only */
 const LADDER_MAX_NON_PERFECT = 999;
 const LADDER_BUCKET = 50;
 
-const CHAMPS_LADDER: Record<ChampsOutcome, number> = {
-  champion: 120,
-  grand_final: 92,
-  top3: 78,
-  top4: 65,
-  top6: 50,
-  top8: 38,
-  missed: 12,
+/** Small Champs placement nudge — regular season is roster-driven, not bracket-driven */
+const CHAMPS_WIN_NUDGE: Record<ChampsOutcome, number> = {
+  champion: 0.4,
+  grand_final: 0.2,
+  top3: 0.15,
+  top4: 0.1,
+  top6: 0,
+  top8: -0.15,
+  missed: -0.35,
 };
 
 export type RegularSeasonInput = Pick<
@@ -98,52 +99,99 @@ function buildNarrative(
   return `You went ${record} but the run ended before a ring.`;
 }
 
+function rosterAvgOvr(picks: DraftPick[]): number {
+  if (picks.length === 0) return 72;
+  const sum = picks.reduce((acc, pick) => acc + cardOverall(pick.player, pick.team), 0);
+  return sum / picks.length;
+}
+
+function weakestOvr(picks: DraftPick[]): number {
+  return Math.min(...picks.map((pick) => cardOverall(pick.player, pick.team)));
+}
+
+function weakLinkPenalty(weakest: number): number {
+  if (weakest < 80) return (80 - weakest) * 0.4;
+  if (weakest < 88) return (88 - weakest) * 0.15;
+  return 0;
+}
+
+function recordHashSpread(picks: DraftPick[], result: RegularSeasonInput): number {
+  const pickKey = picks.map((p) => `${p.team.id}:${p.player.id}`).join('|');
+  return hashString(
+    `${pickKey}|${result.majorWins}|${result.failureStage ?? ''}|${result.champsOutcome}|${Math.round(result.rosterScore)}`
+  );
+}
+
+/** Talent ceiling from avg OVR — trap stacks can't post elite regular seasons */
+function talentCeiling(avgOvr: number): number {
+  return Math.min(19, Math.max(4, Math.round(5 + (avgOvr - 72) * 0.58)));
+}
+
 /**
- * Continuous 0–999 ladder from bracket outcome + roster context.
- * Each 50-point band maps to one regular-season win total (0–19).
+ * Major wins imply a strong regular season, scaled by roster quality.
+ * Trap/low-OVR stacks get a much lower floor so majors don't inflate bad teams to 17+ wins.
  */
+function majorWinFloor(avgOvr: number, majorWins: number, trapSlots: number): number {
+  if (majorWins === 0) return 0;
+
+  const tierBoost = avgOvr >= 96 ? 3 : avgOvr >= 92 ? 2 : avgOvr >= 88 ? 1 : 0;
+  let floor = 7 + majorWins * 3.5 + tierBoost;
+  floor -= trapSlots * 4;
+  floor -= Math.max(0, 90 - avgOvr) * 0.25;
+
+  const minWithMajors = majorWins >= 2 ? 6 + majorWins : majorWins;
+  return Math.max(minWithMajors, Math.min(19, Math.round(floor)));
+}
+
+function bracketCeilingBoost(majorWins: number): number {
+  return Math.min(2, majorWins * 0.5);
+}
+
+/**
+ * Expected regular-season wins from roster talent, weak links, traps, and modest bracket correlation.
+ */
+function computeTalentWins(picks: DraftPick[], result: RegularSeasonInput): number {
+  const avgOvr = rosterAvgOvr(picks);
+  const trapSlots = picks.filter((p) => p.team.tier === 'underdog').length;
+
+  let wins = 4 + (avgOvr - 70) * 0.52 + (result.rosterScore - avgOvr) * 0.15;
+  wins -= weakLinkPenalty(weakestOvr(picks));
+  wins -= trapSlots * 2;
+  wins += result.majorWins * 0.25;
+  wins += result.ringWon ? 0.6 : CHAMPS_WIN_NUDGE[result.champsOutcome];
+
+  if (result.majorWins === 0) wins -= 0.8;
+  if (result.failureStage === 'major1') wins -= 0.5;
+  else if (result.failureStage === 'major2') wins -= 0.25;
+
+  return wins;
+}
+
+function recordJitter(picks: DraftPick[], result: RegularSeasonInput): number {
+  return (recordHashSpread(picks, result) % 5) - 2;
+}
+
+export function computeRegularSeasonWins(picks: DraftPick[], result: RegularSeasonInput): number {
+  if (result.perfectSeason) return REGULAR_SEASON_GAMES;
+
+  const avgOvr = rosterAvgOvr(picks);
+  const trapSlots = picks.filter((p) => p.team.tier === 'underdog').length;
+  const floor = majorWinFloor(avgOvr, result.majorWins, trapSlots);
+  const ceiling = talentCeiling(avgOvr) + bracketCeilingBoost(result.majorWins);
+
+  let wins = Math.round(computeTalentWins(picks, result) + recordJitter(picks, result));
+  wins = Math.max(floor, Math.min(Math.round(ceiling), wins));
+
+  return Math.max(0, Math.min(REGULAR_SEASON_GAMES - 1, wins));
+}
+
+/** Ladder encoding for legacy tooling (50 points per win). */
 export function computeLadderScore(picks: DraftPick[], result: RegularSeasonInput): number {
   if (result.perfectSeason) return 1000;
 
-  const trapSlots = picks.filter((p) => p.team.tier === 'underdog').length;
-  const avgPower =
-    result.stages.length > 0
-      ? result.stages.reduce((sum, stage) => sum + stage.power, 0) / result.stages.length
-      : result.rosterScore;
-
-  let score = result.majorWins * 168;
-  score += result.ringWon ? CHAMPS_LADDER.champion : CHAMPS_LADDER[result.champsOutcome];
-  score += (result.rosterScore - 72) * 2.4;
-  score += avgPower * 2.5;
-  score -= trapSlots * 44;
-
-  if (result.majorWins === 0) score -= 38;
-  if (result.failureStage === 'major1') score -= 22;
-  else if (result.failureStage === 'major2') score -= 8;
-
-  for (const stage of result.stages) {
-    const beatsCleared = stage.run.filter((beat) => beat.passed).length;
-    score += beatsCleared * 2.2;
-    if (!stage.passed) {
-      score += stage.passChance * 0.42;
-    }
-  }
-
-  const pickKey = picks.map((p) => `${p.team.id}:${p.player.id}`).join('|');
-  const spread = hashString(
-    `${pickKey}|${result.majorWins}|${result.failureStage ?? ''}|${result.champsOutcome}|${Math.round(result.rosterScore)}`
-  );
-  score += spread % 50;
-
-  return Math.max(0, Math.min(LADDER_MAX_NON_PERFECT, Math.round(score)));
-}
-
-/** Maps ladder → wins in [0, 20]. Every combo 0-20 … 20-0 is a distinct bucket. */
-export function computeRegularSeasonWins(picks: DraftPick[], result: RegularSeasonInput): number {
-  if (result.perfectSeason) return REGULAR_SEASON_GAMES;
-  const score = computeLadderScore(picks, result);
-  const wins = Math.floor(score / LADDER_BUCKET);
-  return Math.max(0, Math.min(REGULAR_SEASON_GAMES - 1, wins));
+  const wins = computeRegularSeasonWins(picks, result);
+  const spread = recordHashSpread(picks, result);
+  return Math.max(0, Math.min(LADDER_MAX_NON_PERFECT, wins * LADDER_BUCKET + (spread % LADDER_BUCKET)));
 }
 
 export function formatRegularSeasonRecord(wins: number): string {
