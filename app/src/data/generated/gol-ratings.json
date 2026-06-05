@@ -1,0 +1,2359 @@
+{
+  "source": "gol.gg",
+  "generatedAt": "2026-06-05T03:35:53.364Z",
+  "playerCount": 112,
+  "entries": {
+    "369": {
+      "playerId": "369",
+      "golId": 1922,
+      "ratings": {
+        "overall": 82,
+        "peak": 86,
+        "international": 85,
+        "clutch": 73,
+        "consistency": 89,
+        "leadership": 70,
+        "synergy": 65
+      },
+      "stats": {
+        "winRate": 66.1,
+        "kda": 3.4,
+        "games": 899,
+        "goldPerMin": 398,
+        "killParticipation": 56.2,
+        "damagePerMin": 548.5
+      }
+    },
+    "957": {
+      "playerId": "957",
+      "golId": 604,
+      "ratings": {
+        "overall": 72,
+        "peak": 74,
+        "international": 70,
+        "clutch": 73,
+        "consistency": 70,
+        "leadership": 62,
+        "synergy": 73
+      },
+      "stats": {
+        "winRate": 56.5,
+        "kda": 3.9,
+        "games": 359,
+        "goldPerMin": 375,
+        "killParticipation": 62.4,
+        "damagePerMin": 376.5
+      }
+    },
+    "ambition": {
+      "playerId": "ambition",
+      "golId": 104,
+      "ratings": {
+        "overall": 70,
+        "peak": 72,
+        "international": 70,
+        "clutch": 69,
+        "consistency": 75,
+        "leadership": 71,
+        "synergy": 82
+      },
+      "stats": {
+        "winRate": 59.5,
+        "kda": 3.3,
+        "games": 363,
+        "goldPerMin": 349,
+        "killParticipation": 66.9,
+        "damagePerMin": 287.1
+      }
+    },
+    "angel": {
+      "playerId": "angel",
+      "golId": 1708,
+      "ratings": {
+        "overall": 81,
+        "peak": 85,
+        "international": 77,
+        "clutch": 79,
+        "consistency": 68,
+        "leadership": 66,
+        "synergy": 80
+      },
+      "stats": {
+        "winRate": 52.8,
+        "kda": 4.8,
+        "games": 625,
+        "goldPerMin": 398,
+        "killParticipation": 67.2,
+        "damagePerMin": 534.9
+      }
+    },
+    "armut": {
+      "playerId": "armut",
+      "golId": 1308,
+      "ratings": {
+        "overall": 75,
+        "peak": 77,
+        "international": 73,
+        "clutch": 66,
+        "consistency": 70,
+        "leadership": 65,
+        "synergy": 64
+      },
+      "stats": {
+        "winRate": 55.1,
+        "kda": 3.2,
+        "games": 506,
+        "goldPerMin": 398,
+        "killParticipation": 57.3,
+        "damagePerMin": 498.2
+      }
+    },
+    "bang": {
+      "playerId": "bang",
+      "golId": 100,
+      "ratings": {
+        "overall": 90,
+        "peak": 94,
+        "international": 91,
+        "clutch": 89,
+        "consistency": 81,
+        "leadership": 68,
+        "synergy": 82
+      },
+      "stats": {
+        "winRate": 61.4,
+        "kda": 5.5,
+        "games": 658,
+        "goldPerMin": 424,
+        "killParticipation": 66.6,
+        "damagePerMin": 588.4
+      }
+    },
+    "baolan": {
+      "playerId": "baolan",
+      "golId": 727,
+      "ratings": {
+        "overall": 77,
+        "peak": 79,
+        "international": 78,
+        "clutch": 71,
+        "consistency": 77,
+        "leadership": 72,
+        "synergy": 84
+      },
+      "stats": {
+        "winRate": 61.1,
+        "kda": 3.4,
+        "games": 357,
+        "goldPerMin": 258,
+        "killParticipation": 67.6,
+        "damagePerMin": 172.6
+      }
+    },
+    "bdd": {
+      "playerId": "bdd",
+      "golId": 650,
+      "ratings": {
+        "overall": 82,
+        "peak": 84,
+        "international": 80,
+        "clutch": 78,
+        "consistency": 72,
+        "leadership": 66,
+        "synergy": 84
+      },
+      "stats": {
+        "winRate": 55.3,
+        "kda": 4.6,
+        "games": 1078,
+        "goldPerMin": 402,
+        "killParticipation": 69.1,
+        "damagePerMin": 535.6
+      }
+    },
+    "ben": {
+      "playerId": "ben",
+      "golId": 725,
+      "ratings": {
+        "overall": 77,
+        "peak": 79,
+        "international": 77,
+        "clutch": 73,
+        "consistency": 74,
+        "leadership": 70,
+        "synergy": 84
+      },
+      "stats": {
+        "winRate": 60.1,
+        "kda": 3.7,
+        "games": 293,
+        "goldPerMin": 259,
+        "killParticipation": 68.1,
+        "damagePerMin": 148.2
+      }
+    },
+    "beryl": {
+      "playerId": "beryl",
+      "golId": 2184,
+      "ratings": {
+        "overall": 76,
+        "peak": 78,
+        "international": 75,
+        "clutch": 65,
+        "consistency": 77,
+        "leadership": 76,
+        "synergy": 82
+      },
+      "stats": {
+        "winRate": 58.8,
+        "kda": 2.9,
+        "games": 821,
+        "goldPerMin": 252,
+        "killParticipation": 67.2,
+        "damagePerMin": 194.4
+      }
+    },
+    "bin": {
+      "playerId": "bin",
+      "golId": 2606,
+      "ratings": {
+        "overall": 81,
+        "peak": 83,
+        "international": 83,
+        "clutch": 72,
+        "consistency": 84,
+        "leadership": 69,
+        "synergy": 58
+      },
+      "stats": {
+        "winRate": 63.3,
+        "kda": 3.4,
+        "games": 899,
+        "goldPerMin": 409,
+        "killParticipation": 52.3,
+        "damagePerMin": 528.5
+      }
+    },
+    "blaber": {
+      "playerId": "blaber",
+      "golId": 1634,
+      "ratings": {
+        "overall": 78,
+        "peak": 80,
+        "international": 80,
+        "clutch": 77,
+        "consistency": 85,
+        "leadership": 77,
+        "synergy": 92
+      },
+      "stats": {
+        "winRate": 63.7,
+        "kda": 4,
+        "games": 608,
+        "goldPerMin": 370,
+        "killParticipation": 73.2,
+        "damagePerMin": 380.9
+      }
+    },
+    "blank": {
+      "playerId": "blank",
+      "golId": 411,
+      "ratings": {
+        "overall": 71,
+        "peak": 73,
+        "international": 70,
+        "clutch": 74,
+        "consistency": 73,
+        "leadership": 73,
+        "synergy": 90
+      },
+      "stats": {
+        "winRate": 57.5,
+        "kda": 4,
+        "games": 487,
+        "goldPerMin": 337,
+        "killParticipation": 72.9,
+        "damagePerMin": 289.4
+      }
+    },
+    "brokenblade": {
+      "playerId": "brokenblade",
+      "golId": 1310,
+      "ratings": {
+        "overall": 80,
+        "peak": 82,
+        "international": 81,
+        "clutch": 73,
+        "consistency": 83,
+        "leadership": 69,
+        "synergy": 64
+      },
+      "stats": {
+        "winRate": 62.5,
+        "kda": 3.6,
+        "games": 758,
+        "goldPerMin": 391,
+        "killParticipation": 56.3,
+        "damagePerMin": 506.2
+      }
+    },
+    "broxah": {
+      "playerId": "broxah",
+      "golId": 872,
+      "ratings": {
+        "overall": 75,
+        "peak": 79,
+        "international": 76,
+        "clutch": 86,
+        "consistency": 77,
+        "leadership": 72,
+        "synergy": 86
+      },
+      "stats": {
+        "winRate": 61.1,
+        "kda": 5.2,
+        "games": 360,
+        "goldPerMin": 337,
+        "killParticipation": 69.2,
+        "damagePerMin": 242.7
+      }
+    },
+    "bwipo": {
+      "playerId": "bwipo",
+      "golId": 795,
+      "ratings": {
+        "overall": 78,
+        "peak": 80,
+        "international": 79,
+        "clutch": 66,
+        "consistency": 81,
+        "leadership": 68,
+        "synergy": 71
+      },
+      "stats": {
+        "winRate": 61.4,
+        "kda": 2.8,
+        "games": 567,
+        "goldPerMin": 397,
+        "killParticipation": 60.5,
+        "damagePerMin": 525.8
+      }
+    },
+    "canyon": {
+      "playerId": "canyon",
+      "golId": 1909,
+      "ratings": {
+        "overall": 81,
+        "peak": 87,
+        "international": 86,
+        "clutch": 85,
+        "consistency": 94,
+        "leadership": 79,
+        "synergy": 91
+      },
+      "stats": {
+        "winRate": 69.2,
+        "kda": 4.7,
+        "games": 983,
+        "goldPerMin": 360,
+        "killParticipation": 70.1,
+        "damagePerMin": 367.9
+      }
+    },
+    "caps": {
+      "playerId": "caps",
+      "golId": 802,
+      "ratings": {
+        "overall": 88,
+        "peak": 92,
+        "international": 91,
+        "clutch": 78,
+        "consistency": 88,
+        "leadership": 70,
+        "synergy": 82
+      },
+      "stats": {
+        "winRate": 65.4,
+        "kda": 4,
+        "games": 925,
+        "goldPerMin": 424,
+        "killParticipation": 65.8,
+        "damagePerMin": 599.1
+      }
+    },
+    "carzzy": {
+      "playerId": "carzzy",
+      "golId": 1584,
+      "ratings": {
+        "overall": 81,
+        "peak": 83,
+        "international": 77,
+        "clutch": 68,
+        "consistency": 65,
+        "leadership": 64,
+        "synergy": 75
+      },
+      "stats": {
+        "winRate": 51.7,
+        "kda": 3.6,
+        "games": 528,
+        "goldPerMin": 434,
+        "killParticipation": 64.6,
+        "damagePerMin": 654.7
+      }
+    },
+    "chovy": {
+      "playerId": "chovy",
+      "golId": 1629,
+      "ratings": {
+        "overall": 94,
+        "peak": 98,
+        "international": 97,
+        "clutch": 92,
+        "consistency": 93,
+        "leadership": 71,
+        "synergy": 84
+      },
+      "stats": {
+        "winRate": 69,
+        "kda": 5.8,
+        "games": 1033,
+        "goldPerMin": 439,
+        "killParticipation": 66,
+        "damagePerMin": 623
+      }
+    },
+    "condi": {
+      "playerId": "condi",
+      "golId": 401,
+      "ratings": {
+        "overall": 69,
+        "peak": 71,
+        "international": 65,
+        "clutch": 73,
+        "consistency": 65,
+        "leadership": 70,
+        "synergy": 89
+      },
+      "stats": {
+        "winRate": 52.9,
+        "kda": 4.1,
+        "games": 416,
+        "goldPerMin": 324,
+        "killParticipation": 72.3,
+        "damagePerMin": 216.1
+      }
+    },
+    "corejj": {
+      "playerId": "corejj",
+      "golId": 257,
+      "ratings": {
+        "overall": 81,
+        "peak": 83,
+        "international": 80,
+        "clutch": 77,
+        "consistency": 77,
+        "leadership": 76,
+        "synergy": 89
+      },
+      "stats": {
+        "winRate": 58.6,
+        "kda": 4.3,
+        "games": 915,
+        "goldPerMin": 260,
+        "killParticipation": 71.3,
+        "damagePerMin": 177.8
+      }
+    },
+    "crisp": {
+      "playerId": "crisp",
+      "golId": 1169,
+      "ratings": {
+        "overall": 78,
+        "peak": 80,
+        "international": 77,
+        "clutch": 70,
+        "consistency": 75,
+        "leadership": 75,
+        "synergy": 88
+      },
+      "stats": {
+        "winRate": 57.6,
+        "kda": 3.5,
+        "games": 958,
+        "goldPerMin": 251,
+        "killParticipation": 70.8,
+        "damagePerMin": 155.7
+      }
+    },
+    "crown": {
+      "playerId": "crown",
+      "golId": 451,
+      "ratings": {
+        "overall": 77,
+        "peak": 79,
+        "international": 75,
+        "clutch": 66,
+        "consistency": 69,
+        "leadership": 63,
+        "synergy": 78
+      },
+      "stats": {
+        "winRate": 55.1,
+        "kda": 3.2,
+        "games": 439,
+        "goldPerMin": 403,
+        "killParticipation": 65.6,
+        "damagePerMin": 537.2
+      }
+    },
+    "cuvee": {
+      "playerId": "cuvee",
+      "golId": 216,
+      "ratings": {
+        "overall": 69,
+        "peak": 71,
+        "international": 65,
+        "clutch": 60,
+        "consistency": 66,
+        "leadership": 65,
+        "synergy": 64
+      },
+      "stats": {
+        "winRate": 52.2,
+        "kda": 2.6,
+        "games": 577,
+        "goldPerMin": 383,
+        "killParticipation": 58.3,
+        "damagePerMin": 410.4
+      }
+    },
+    "deft": {
+      "playerId": "deft",
+      "golId": 44,
+      "ratings": {
+        "overall": 88,
+        "peak": 90,
+        "international": 89,
+        "clutch": 81,
+        "consistency": 82,
+        "leadership": 69,
+        "synergy": 84
+      },
+      "stats": {
+        "winRate": 61.7,
+        "kda": 4.6,
+        "games": 1189,
+        "goldPerMin": 431,
+        "killParticipation": 67.5,
+        "damagePerMin": 606.7
+      }
+    },
+    "delight": {
+      "playerId": "delight",
+      "golId": 3411,
+      "ratings": {
+        "overall": 81,
+        "peak": 83,
+        "international": 81,
+        "clutch": 75,
+        "consistency": 78,
+        "leadership": 76,
+        "synergy": 91
+      },
+      "stats": {
+        "winRate": 59.6,
+        "kda": 4,
+        "games": 678,
+        "goldPerMin": 254,
+        "killParticipation": 74.3,
+        "damagePerMin": 171
+      }
+    },
+    "doinb": {
+      "playerId": "doinb",
+      "golId": 470,
+      "ratings": {
+        "overall": 83,
+        "peak": 85,
+        "international": 83,
+        "clutch": 78,
+        "consistency": 78,
+        "leadership": 68,
+        "synergy": 91
+      },
+      "stats": {
+        "winRate": 59.4,
+        "kda": 4.4,
+        "games": 872,
+        "goldPerMin": 420,
+        "killParticipation": 72.3,
+        "damagePerMin": 537.9
+      }
+    },
+    "doublelift": {
+      "playerId": "doublelift",
+      "golId": 149,
+      "ratings": {
+        "overall": 86,
+        "peak": 88,
+        "international": 86,
+        "clutch": 81,
+        "consistency": 80,
+        "leadership": 68,
+        "synergy": 89
+      },
+      "stats": {
+        "winRate": 60.4,
+        "kda": 4.6,
+        "games": 624,
+        "goldPerMin": 434,
+        "killParticipation": 70.9,
+        "damagePerMin": 569.1
+      }
+    },
+    "elk": {
+      "playerId": "elk",
+      "golId": 2376,
+      "ratings": {
+        "overall": 86,
+        "peak": 88,
+        "international": 85,
+        "clutch": 78,
+        "consistency": 75,
+        "leadership": 67,
+        "synergy": 85
+      },
+      "stats": {
+        "winRate": 57.5,
+        "kda": 4.5,
+        "games": 888,
+        "goldPerMin": 455,
+        "killParticipation": 69.3,
+        "damagePerMin": 706.7
+      }
+    },
+    "elyoya": {
+      "playerId": "elyoya",
+      "golId": 2719,
+      "ratings": {
+        "overall": 74,
+        "peak": 76,
+        "international": 71,
+        "clutch": 77,
+        "consistency": 70,
+        "leadership": 74,
+        "synergy": 89
+      },
+      "stats": {
+        "winRate": 54.8,
+        "kda": 4.5,
+        "games": 582,
+        "goldPerMin": 357,
+        "killParticipation": 72.9,
+        "damagePerMin": 355.6
+      }
+    },
+    "faker": {
+      "playerId": "faker",
+      "golId": 48,
+      "ratings": {
+        "overall": 87,
+        "peak": 91,
+        "international": 90,
+        "clutch": 78,
+        "consistency": 90,
+        "leadership": 70,
+        "synergy": 78
+      },
+      "stats": {
+        "winRate": 66.9,
+        "kda": 4,
+        "games": 1542,
+        "goldPerMin": 413,
+        "killParticipation": 63.2,
+        "damagePerMin": 560
+      }
+    },
+    "flandre": {
+      "playerId": "flandre",
+      "golId": 341,
+      "ratings": {
+        "overall": 76,
+        "peak": 78,
+        "international": 74,
+        "clutch": 68,
+        "consistency": 72,
+        "leadership": 67,
+        "synergy": 70
+      },
+      "stats": {
+        "winRate": 55.7,
+        "kda": 3.3,
+        "games": 1077,
+        "goldPerMin": 401,
+        "killParticipation": 60.6,
+        "damagePerMin": 517.4
+      }
+    },
+    "gala": {
+      "playerId": "gala",
+      "golId": 1931,
+      "ratings": {
+        "overall": 88,
+        "peak": 92,
+        "international": 87,
+        "clutch": 84,
+        "consistency": 76,
+        "leadership": 67,
+        "synergy": 80
+      },
+      "stats": {
+        "winRate": 58.3,
+        "kda": 5.1,
+        "games": 909,
+        "goldPerMin": 453,
+        "killParticipation": 66.3,
+        "damagePerMin": 630.5
+      }
+    },
+    "ghost": {
+      "playerId": "ghost",
+      "golId": 717,
+      "ratings": {
+        "overall": 77,
+        "peak": 79,
+        "international": 74,
+        "clutch": 74,
+        "consistency": 70,
+        "leadership": 66,
+        "synergy": 76
+      },
+      "stats": {
+        "winRate": 54,
+        "kda": 4.1,
+        "games": 648,
+        "goldPerMin": 410,
+        "killParticipation": 64.4,
+        "damagePerMin": 473
+      }
+    },
+    "gimgoon": {
+      "playerId": "gimgoon",
+      "golId": 605,
+      "ratings": {
+        "overall": 71,
+        "peak": 73,
+        "international": 68,
+        "clutch": 68,
+        "consistency": 66,
+        "leadership": 62,
+        "synergy": 62
+      },
+      "stats": {
+        "winRate": 53.8,
+        "kda": 3.4,
+        "games": 377,
+        "goldPerMin": 383,
+        "killParticipation": 56.8,
+        "damagePerMin": 406.7
+      }
+    },
+    "gorilla": {
+      "playerId": "gorilla",
+      "golId": 65,
+      "ratings": {
+        "overall": 78,
+        "peak": 80,
+        "international": 78,
+        "clutch": 70,
+        "consistency": 80,
+        "leadership": 76,
+        "synergy": 82
+      },
+      "stats": {
+        "winRate": 60.6,
+        "kda": 3.4,
+        "games": 584,
+        "goldPerMin": 256,
+        "killParticipation": 66.5,
+        "damagePerMin": 155.9
+      }
+    },
+    "gumayusi": {
+      "playerId": "gumayusi",
+      "golId": 3247,
+      "ratings": {
+        "overall": 90,
+        "peak": 96,
+        "international": 93,
+        "clutch": 83,
+        "consistency": 87,
+        "leadership": 70,
+        "synergy": 84
+      },
+      "stats": {
+        "winRate": 65.2,
+        "kda": 4.7,
+        "games": 778,
+        "goldPerMin": 461,
+        "killParticipation": 67,
+        "damagePerMin": 644.9
+      }
+    },
+    "hans-sama": {
+      "playerId": "hans-sama",
+      "golId": 732,
+      "ratings": {
+        "overall": 87,
+        "peak": 91,
+        "international": 87,
+        "clutch": 82,
+        "consistency": 79,
+        "leadership": 68,
+        "synergy": 80
+      },
+      "stats": {
+        "winRate": 60.1,
+        "kda": 4.8,
+        "games": 807,
+        "goldPerMin": 447,
+        "killParticipation": 65.7,
+        "damagePerMin": 598.5
+      }
+    },
+    "huanfeng": {
+      "playerId": "huanfeng",
+      "golId": 2904,
+      "ratings": {
+        "overall": 83,
+        "peak": 87,
+        "international": 80,
+        "clutch": 83,
+        "consistency": 65,
+        "leadership": 62,
+        "synergy": 77
+      },
+      "stats": {
+        "winRate": 53.6,
+        "kda": 5.2,
+        "games": 377,
+        "goldPerMin": 443,
+        "killParticipation": 65.4,
+        "damagePerMin": 577.7
+      }
+    },
+    "humanoid": {
+      "playerId": "humanoid",
+      "golId": 1716,
+      "ratings": {
+        "overall": 83,
+        "peak": 85,
+        "international": 81,
+        "clutch": 67,
+        "consistency": 74,
+        "leadership": 67,
+        "synergy": 74
+      },
+      "stats": {
+        "winRate": 56.9,
+        "kda": 3.2,
+        "games": 684,
+        "goldPerMin": 426,
+        "killParticipation": 62.6,
+        "damagePerMin": 635.8
+      }
+    },
+    "hylissang": {
+      "playerId": "hylissang",
+      "golId": 237,
+      "ratings": {
+        "overall": 72,
+        "peak": 74,
+        "international": 69,
+        "clutch": 60,
+        "consistency": 71,
+        "leadership": 74,
+        "synergy": 77
+      },
+      "stats": {
+        "winRate": 54.9,
+        "kda": 2.5,
+        "games": 792,
+        "goldPerMin": 257,
+        "killParticipation": 64.9,
+        "damagePerMin": 176.4
+      }
+    },
+    "impact": {
+      "playerId": "impact",
+      "golId": 46,
+      "ratings": {
+        "overall": 76,
+        "peak": 78,
+        "international": 76,
+        "clutch": 68,
+        "consistency": 79,
+        "leadership": 68,
+        "synergy": 70
+      },
+      "stats": {
+        "winRate": 59.9,
+        "kda": 3.2,
+        "games": 958,
+        "goldPerMin": 376,
+        "killParticipation": 60,
+        "damagePerMin": 466.3
+      }
+    },
+    "jackeylove": {
+      "playerId": "jackeylove",
+      "golId": 1267,
+      "ratings": {
+        "overall": 90,
+        "peak": 94,
+        "international": 93,
+        "clutch": 80,
+        "consistency": 88,
+        "leadership": 70,
+        "synergy": 85
+      },
+      "stats": {
+        "winRate": 65.5,
+        "kda": 4.3,
+        "games": 1044,
+        "goldPerMin": 453,
+        "killParticipation": 67.3,
+        "damagePerMin": 680.3
+      }
+    },
+    "jankos": {
+      "playerId": "jankos",
+      "golId": 34,
+      "ratings": {
+        "overall": 73,
+        "peak": 75,
+        "international": 72,
+        "clutch": 75,
+        "consistency": 76,
+        "leadership": 75,
+        "synergy": 88
+      },
+      "stats": {
+        "winRate": 58.2,
+        "kda": 4.1,
+        "games": 869,
+        "goldPerMin": 341,
+        "killParticipation": 70.9,
+        "damagePerMin": 308.2
+      }
+    },
+    "jensen": {
+      "playerId": "jensen",
+      "golId": 583,
+      "ratings": {
+        "overall": 84,
+        "peak": 88,
+        "international": 83,
+        "clutch": 80,
+        "consistency": 76,
+        "leadership": 67,
+        "synergy": 86
+      },
+      "stats": {
+        "winRate": 58,
+        "kda": 4.7,
+        "games": 729,
+        "goldPerMin": 417,
+        "killParticipation": 69.6,
+        "damagePerMin": 552.6
+      }
+    },
+    "jiejie": {
+      "playerId": "jiejie",
+      "golId": 2324,
+      "ratings": {
+        "overall": 73,
+        "peak": 75,
+        "international": 71,
+        "clutch": 75,
+        "consistency": 73,
+        "leadership": 75,
+        "synergy": 90
+      },
+      "stats": {
+        "winRate": 56.2,
+        "kda": 4.2,
+        "games": 666,
+        "goldPerMin": 349,
+        "killParticipation": 74,
+        "damagePerMin": 352.7
+      }
+    },
+    "jojopyun": {
+      "playerId": "jojopyun",
+      "golId": 3544,
+      "ratings": {
+        "overall": 80,
+        "peak": 82,
+        "international": 77,
+        "clutch": 66,
+        "consistency": 69,
+        "leadership": 64,
+        "synergy": 78
+      },
+      "stats": {
+        "winRate": 54.9,
+        "kda": 3.2,
+        "games": 472,
+        "goldPerMin": 410,
+        "killParticipation": 65.7,
+        "damagePerMin": 601.4
+      }
+    },
+    "kaiser": {
+      "playerId": "kaiser",
+      "golId": 2704,
+      "ratings": {
+        "overall": 78,
+        "peak": 80,
+        "international": 77,
+        "clutch": 72,
+        "consistency": 73,
+        "leadership": 72,
+        "synergy": 90
+      },
+      "stats": {
+        "winRate": 57.3,
+        "kda": 3.7,
+        "games": 461,
+        "goldPerMin": 251,
+        "killParticipation": 71.8,
+        "damagePerMin": 195.7
+      }
+    },
+    "kanavi": {
+      "playerId": "kanavi",
+      "golId": 2360,
+      "ratings": {
+        "overall": 81,
+        "peak": 85,
+        "international": 84,
+        "clutch": 77,
+        "consistency": 87,
+        "leadership": 78,
+        "synergy": 93
+      },
+      "stats": {
+        "winRate": 65.2,
+        "kda": 4,
+        "games": 840,
+        "goldPerMin": 384,
+        "killParticipation": 72.7,
+        "damagePerMin": 456.3
+      }
+    },
+    "karsa": {
+      "playerId": "karsa",
+      "golId": 404,
+      "ratings": {
+        "overall": 74,
+        "peak": 76,
+        "international": 75,
+        "clutch": 75,
+        "consistency": 83,
+        "leadership": 77,
+        "synergy": 88
+      },
+      "stats": {
+        "winRate": 62.4,
+        "kda": 3.9,
+        "games": 875,
+        "goldPerMin": 348,
+        "killParticipation": 69.9,
+        "damagePerMin": 308.2
+      }
+    },
+    "keria": {
+      "playerId": "keria",
+      "golId": 1258,
+      "ratings": {
+        "overall": 84,
+        "peak": 88,
+        "international": 87,
+        "clutch": 80,
+        "consistency": 87,
+        "leadership": 78,
+        "synergy": 91
+      },
+      "stats": {
+        "winRate": 65,
+        "kda": 4.3,
+        "games": 988,
+        "goldPerMin": 259,
+        "killParticipation": 71.1,
+        "damagePerMin": 217.9
+      }
+    },
+    "khan": {
+      "playerId": "khan",
+      "golId": 982,
+      "ratings": {
+        "overall": 81,
+        "peak": 85,
+        "international": 85,
+        "clutch": 75,
+        "consistency": 90,
+        "leadership": 69,
+        "synergy": 73
+      },
+      "stats": {
+        "winRate": 67.7,
+        "kda": 3.6,
+        "games": 524,
+        "goldPerMin": 404,
+        "killParticipation": 60.3,
+        "damagePerMin": 480.9
+      }
+    },
+    "kiin": {
+      "playerId": "kiin",
+      "golId": 1115,
+      "ratings": {
+        "overall": 78,
+        "peak": 80,
+        "international": 78,
+        "clutch": 70,
+        "consistency": 78,
+        "leadership": 68,
+        "synergy": 68
+      },
+      "stats": {
+        "winRate": 59.6,
+        "kda": 3.4,
+        "games": 1064,
+        "goldPerMin": 398,
+        "killParticipation": 59,
+        "damagePerMin": 513.9
+      }
+    },
+    "kingen": {
+      "playerId": "kingen",
+      "golId": 1229,
+      "ratings": {
+        "overall": 70,
+        "peak": 72,
+        "international": 64,
+        "clutch": 58,
+        "consistency": 60,
+        "leadership": 64,
+        "synergy": 57
+      },
+      "stats": {
+        "winRate": 45.9,
+        "kda": 2.6,
+        "games": 791,
+        "goldPerMin": 381,
+        "killParticipation": 55.1,
+        "damagePerMin": 516.9
+      }
+    },
+    "knight": {
+      "playerId": "knight",
+      "golId": 1270,
+      "ratings": {
+        "overall": 93,
+        "peak": 98,
+        "international": 96,
+        "clutch": 91,
+        "consistency": 89,
+        "leadership": 70,
+        "synergy": 88
+      },
+      "stats": {
+        "winRate": 66.6,
+        "kda": 5.7,
+        "games": 1064,
+        "goldPerMin": 433,
+        "killParticipation": 68.9,
+        "damagePerMin": 645.7
+      }
+    },
+    "kuro": {
+      "playerId": "kuro",
+      "golId": 73,
+      "ratings": {
+        "overall": 83,
+        "peak": 87,
+        "international": 83,
+        "clutch": 82,
+        "consistency": 79,
+        "leadership": 68,
+        "synergy": 85
+      },
+      "stats": {
+        "winRate": 59.9,
+        "kda": 4.8,
+        "games": 604,
+        "goldPerMin": 397,
+        "killParticipation": 68.5,
+        "damagePerMin": 496
+      }
+    },
+    "labrov": {
+      "playerId": "labrov",
+      "golId": 2887,
+      "ratings": {
+        "overall": 77,
+        "peak": 79,
+        "international": 75,
+        "clutch": 67,
+        "consistency": 72,
+        "leadership": 73,
+        "synergy": 89
+      },
+      "stats": {
+        "winRate": 56.6,
+        "kda": 3.2,
+        "games": 525,
+        "goldPerMin": 248,
+        "killParticipation": 71.6,
+        "damagePerMin": 178.4
+      }
+    },
+    "lehends": {
+      "playerId": "lehends",
+      "golId": 738,
+      "ratings": {
+        "overall": 78,
+        "peak": 80,
+        "international": 77,
+        "clutch": 69,
+        "consistency": 76,
+        "leadership": 75,
+        "synergy": 84
+      },
+      "stats": {
+        "winRate": 58.2,
+        "kda": 3.4,
+        "games": 954,
+        "goldPerMin": 251,
+        "killParticipation": 68.4,
+        "damagePerMin": 182.6
+      }
+    },
+    "letme": {
+      "playerId": "letme",
+      "golId": 346,
+      "ratings": {
+        "overall": 72,
+        "peak": 74,
+        "international": 71,
+        "clutch": 74,
+        "consistency": 71,
+        "leadership": 61,
+        "synergy": 69
+      },
+      "stats": {
+        "winRate": 57.7,
+        "kda": 4,
+        "games": 291,
+        "goldPerMin": 378,
+        "killParticipation": 59.8,
+        "damagePerMin": 370.7
+      }
+    },
+    "levi": {
+      "playerId": "levi",
+      "golId": 974,
+      "ratings": {
+        "overall": 80,
+        "peak": 82,
+        "international": 82,
+        "clutch": 81,
+        "consistency": 86,
+        "leadership": 78,
+        "synergy": 92
+      },
+      "stats": {
+        "winRate": 64.6,
+        "kda": 4.4,
+        "games": 694,
+        "goldPerMin": 378,
+        "killParticipation": 71.8,
+        "damagePerMin": 406.4
+      }
+    },
+    "licorice": {
+      "playerId": "licorice",
+      "golId": 852,
+      "ratings": {
+        "overall": 71,
+        "peak": 73,
+        "international": 68,
+        "clutch": 62,
+        "consistency": 67,
+        "leadership": 64,
+        "synergy": 60
+      },
+      "stats": {
+        "winRate": 53.2,
+        "kda": 2.8,
+        "games": 489,
+        "goldPerMin": 388,
+        "killParticipation": 55.3,
+        "damagePerMin": 461.9
+      }
+    },
+    "lwx": {
+      "playerId": "lwx",
+      "golId": 806,
+      "ratings": {
+        "overall": 80,
+        "peak": 82,
+        "international": 77,
+        "clutch": 71,
+        "consistency": 71,
+        "leadership": 66,
+        "synergy": 81
+      },
+      "stats": {
+        "winRate": 54.8,
+        "kda": 3.8,
+        "games": 725,
+        "goldPerMin": 443,
+        "killParticipation": 67,
+        "damagePerMin": 537.6
+      }
+    },
+    "maple": {
+      "playerId": "maple",
+      "golId": 286,
+      "ratings": {
+        "overall": 87,
+        "peak": 91,
+        "international": 88,
+        "clutch": 84,
+        "consistency": 82,
+        "leadership": 69,
+        "synergy": 84
+      },
+      "stats": {
+        "winRate": 61.7,
+        "kda": 5,
+        "games": 744,
+        "goldPerMin": 410,
+        "killParticipation": 67.7,
+        "damagePerMin": 566.7
+      }
+    },
+    "mata": {
+      "playerId": "mata",
+      "golId": 85,
+      "ratings": {
+        "overall": 80,
+        "peak": 82,
+        "international": 81,
+        "clutch": 77,
+        "consistency": 83,
+        "leadership": 77,
+        "synergy": 82
+      },
+      "stats": {
+        "winRate": 62.9,
+        "kda": 4.1,
+        "games": 577,
+        "goldPerMin": 261,
+        "killParticipation": 66.1,
+        "damagePerMin": 140.7
+      }
+    },
+    "meiko": {
+      "playerId": "meiko",
+      "golId": 386,
+      "ratings": {
+        "overall": 82,
+        "peak": 84,
+        "international": 83,
+        "clutch": 75,
+        "consistency": 83,
+        "leadership": 77,
+        "synergy": 92
+      },
+      "stats": {
+        "winRate": 62.4,
+        "kda": 3.9,
+        "games": 1331,
+        "goldPerMin": 255,
+        "killParticipation": 72.7,
+        "damagePerMin": 184.3
+      }
+    },
+    "mikyx": {
+      "playerId": "mikyx",
+      "golId": 698,
+      "ratings": {
+        "overall": 78,
+        "peak": 80,
+        "international": 78,
+        "clutch": 67,
+        "consistency": 80,
+        "leadership": 76,
+        "synergy": 85
+      },
+      "stats": {
+        "winRate": 60.7,
+        "kda": 3,
+        "games": 791,
+        "goldPerMin": 258,
+        "killParticipation": 68.5,
+        "damagePerMin": 203.2
+      }
+    },
+    "ming": {
+      "playerId": "ming",
+      "golId": 804,
+      "ratings": {
+        "overall": 81,
+        "peak": 83,
+        "international": 82,
+        "clutch": 75,
+        "consistency": 82,
+        "leadership": 77,
+        "synergy": 87
+      },
+      "stats": {
+        "winRate": 61.6,
+        "kda": 3.9,
+        "games": 847,
+        "goldPerMin": 254,
+        "killParticipation": 69.5,
+        "damagePerMin": 157.4
+      }
+    },
+    "missing": {
+      "playerId": "missing",
+      "golId": 1647,
+      "ratings": {
+        "overall": 80,
+        "peak": 82,
+        "international": 80,
+        "clutch": 71,
+        "consistency": 80,
+        "leadership": 76,
+        "synergy": 90
+      },
+      "stats": {
+        "winRate": 60.5,
+        "kda": 3.5,
+        "games": 812,
+        "goldPerMin": 254,
+        "killParticipation": 71.1,
+        "damagePerMin": 186.5
+      }
+    },
+    "mlxg": {
+      "playerId": "mlxg",
+      "golId": 358,
+      "ratings": {
+        "overall": 70,
+        "peak": 72,
+        "international": 70,
+        "clutch": 79,
+        "consistency": 75,
+        "leadership": 72,
+        "synergy": 91
+      },
+      "stats": {
+        "winRate": 59.7,
+        "kda": 4.4,
+        "games": 380,
+        "goldPerMin": 345,
+        "killParticipation": 73,
+        "damagePerMin": 260.6
+      }
+    },
+    "mystic": {
+      "playerId": "mystic",
+      "golId": 406,
+      "ratings": {
+        "overall": 82,
+        "peak": 84,
+        "international": 80,
+        "clutch": 72,
+        "consistency": 71,
+        "leadership": 66,
+        "synergy": 86
+      },
+      "stats": {
+        "winRate": 55.1,
+        "kda": 3.9,
+        "games": 601,
+        "goldPerMin": 443,
+        "killParticipation": 70.3,
+        "damagePerMin": 589
+      }
+    },
+    "ning": {
+      "playerId": "ning",
+      "golId": 1056,
+      "ratings": {
+        "overall": 70,
+        "peak": 72,
+        "international": 69,
+        "clutch": 68,
+        "consistency": 74,
+        "leadership": 72,
+        "synergy": 87
+      },
+      "stats": {
+        "winRate": 58.3,
+        "kda": 3.2,
+        "games": 441,
+        "goldPerMin": 352,
+        "killParticipation": 70.3,
+        "damagePerMin": 296.1
+      }
+    },
+    "nuguri": {
+      "playerId": "nuguri",
+      "golId": 1249,
+      "ratings": {
+        "overall": 79,
+        "peak": 81,
+        "international": 81,
+        "clutch": 69,
+        "consistency": 83,
+        "leadership": 66,
+        "synergy": 70
+      },
+      "stats": {
+        "winRate": 64.5,
+        "kda": 3,
+        "games": 403,
+        "goldPerMin": 421,
+        "killParticipation": 59.4,
+        "damagePerMin": 545.1
+      }
+    },
+    "on": {
+      "playerId": "on",
+      "golId": 3353,
+      "ratings": {
+        "overall": 81,
+        "peak": 83,
+        "international": 83,
+        "clutch": 73,
+        "consistency": 85,
+        "leadership": 77,
+        "synergy": 88
+      },
+      "stats": {
+        "winRate": 64,
+        "kda": 3.5,
+        "games": 766,
+        "goldPerMin": 262,
+        "killParticipation": 69.6,
+        "damagePerMin": 205.2
+      }
+    },
+    "oner": {
+      "playerId": "oner",
+      "golId": 3741,
+      "ratings": {
+        "overall": 80,
+        "peak": 84,
+        "international": 83,
+        "clutch": 80,
+        "consistency": 89,
+        "leadership": 78,
+        "synergy": 92
+      },
+      "stats": {
+        "winRate": 66,
+        "kda": 4.3,
+        "games": 789,
+        "goldPerMin": 371,
+        "killParticipation": 71.5,
+        "damagePerMin": 393
+      }
+    },
+    "pawn": {
+      "playerId": "pawn",
+      "golId": 83,
+      "ratings": {
+        "overall": 85,
+        "peak": 89,
+        "international": 90,
+        "clutch": 85,
+        "consistency": 91,
+        "leadership": 67,
+        "synergy": 86
+      },
+      "stats": {
+        "winRate": 70.1,
+        "kda": 4.6,
+        "games": 368,
+        "goldPerMin": 409,
+        "killParticipation": 67.2,
+        "damagePerMin": 496
+      }
+    },
+    "peanut": {
+      "playerId": "peanut",
+      "golId": 392,
+      "ratings": {
+        "overall": 77,
+        "peak": 79,
+        "international": 79,
+        "clutch": 81,
+        "consistency": 84,
+        "leadership": 77,
+        "synergy": 89
+      },
+      "stats": {
+        "winRate": 63.2,
+        "kda": 4.5,
+        "games": 1169,
+        "goldPerMin": 353,
+        "killParticipation": 70.4,
+        "damagePerMin": 309.6
+      }
+    },
+    "perkz": {
+      "playerId": "perkz",
+      "golId": 555,
+      "ratings": {
+        "overall": 83,
+        "peak": 85,
+        "international": 83,
+        "clutch": 74,
+        "consistency": 80,
+        "leadership": 68,
+        "synergy": 76
+      },
+      "stats": {
+        "winRate": 60.5,
+        "kda": 3.8,
+        "games": 716,
+        "goldPerMin": 424,
+        "killParticipation": 63.6,
+        "damagePerMin": 556.3
+      }
+    },
+    "pray": {
+      "playerId": "pray",
+      "golId": 221,
+      "ratings": {
+        "overall": 85,
+        "peak": 87,
+        "international": 87,
+        "clutch": 79,
+        "consistency": 83,
+        "leadership": 67,
+        "synergy": 79
+      },
+      "stats": {
+        "winRate": 63.1,
+        "kda": 4.3,
+        "games": 509,
+        "goldPerMin": 425,
+        "killParticipation": 64.4,
+        "damagePerMin": 546.5
+      }
+    },
+    "pyosik": {
+      "playerId": "pyosik",
+      "golId": 2664,
+      "ratings": {
+        "overall": 66,
+        "peak": 68,
+        "international": 60,
+        "clutch": 64,
+        "consistency": 60,
+        "leadership": 72,
+        "synergy": 87
+      },
+      "stats": {
+        "winRate": 45.1,
+        "kda": 3.3,
+        "games": 677,
+        "goldPerMin": 345,
+        "killParticipation": 72.2,
+        "damagePerMin": 331.5
+      }
+    },
+    "rekkles": {
+      "playerId": "rekkles",
+      "golId": 15,
+      "ratings": {
+        "overall": 83,
+        "peak": 87,
+        "international": 83,
+        "clutch": 88,
+        "consistency": 78,
+        "leadership": 68,
+        "synergy": 89
+      },
+      "stats": {
+        "winRate": 59.5,
+        "kda": 7.2,
+        "games": 958,
+        "goldPerMin": 399,
+        "killParticipation": 70.7,
+        "damagePerMin": 462.4
+      }
+    },
+    "rookie": {
+      "playerId": "rookie",
+      "golId": 109,
+      "ratings": {
+        "overall": 85,
+        "peak": 87,
+        "international": 83,
+        "clutch": 76,
+        "consistency": 74,
+        "leadership": 67,
+        "synergy": 85
+      },
+      "stats": {
+        "winRate": 56.9,
+        "kda": 4.2,
+        "games": 1244,
+        "goldPerMin": 407,
+        "killParticipation": 69.2,
+        "damagePerMin": 638.8
+      }
+    },
+    "ruler": {
+      "playerId": "ruler",
+      "golId": 685,
+      "ratings": {
+        "overall": 93,
+        "peak": 98,
+        "international": 96,
+        "clutch": 90,
+        "consistency": 89,
+        "leadership": 70,
+        "synergy": 84
+      },
+      "stats": {
+        "winRate": 66.1,
+        "kda": 5.4,
+        "games": 1222,
+        "goldPerMin": 459,
+        "killParticipation": 67.1,
+        "damagePerMin": 628.2
+      }
+    },
+    "score": {
+      "playerId": "score",
+      "golId": 69,
+      "ratings": {
+        "overall": 73,
+        "peak": 75,
+        "international": 73,
+        "clutch": 78,
+        "consistency": 76,
+        "leadership": 74,
+        "synergy": 91
+      },
+      "stats": {
+        "winRate": 59.2,
+        "kda": 4.4,
+        "games": 507,
+        "goldPerMin": 343,
+        "killParticipation": 72.2,
+        "damagePerMin": 279.5
+      }
+    },
+    "scout": {
+      "playerId": "scout",
+      "golId": 610,
+      "ratings": {
+        "overall": 85,
+        "peak": 87,
+        "international": 84,
+        "clutch": 79,
+        "consistency": 77,
+        "leadership": 68,
+        "synergy": 86
+      },
+      "stats": {
+        "winRate": 58.7,
+        "kda": 4.5,
+        "games": 1170,
+        "goldPerMin": 415,
+        "killParticipation": 69.4,
+        "damagePerMin": 573.4
+      }
+    },
+    "showmaker": {
+      "playerId": "showmaker",
+      "golId": 1250,
+      "ratings": {
+        "overall": 87,
+        "peak": 91,
+        "international": 88,
+        "clutch": 84,
+        "consistency": 81,
+        "leadership": 68,
+        "synergy": 82
+      },
+      "stats": {
+        "winRate": 61.1,
+        "kda": 5,
+        "games": 1005,
+        "goldPerMin": 413,
+        "killParticipation": 66.7,
+        "damagePerMin": 567.4
+      }
+    },
+    "smeb": {
+      "playerId": "smeb",
+      "golId": 56,
+      "ratings": {
+        "overall": 78,
+        "peak": 80,
+        "international": 79,
+        "clutch": 73,
+        "consistency": 81,
+        "leadership": 68,
+        "synergy": 78
+      },
+      "stats": {
+        "winRate": 61.9,
+        "kda": 3.6,
+        "games": 546,
+        "goldPerMin": 397,
+        "killParticipation": 64.4,
+        "damagePerMin": 465.7
+      }
+    },
+    "sneaky": {
+      "playerId": "sneaky",
+      "golId": 129,
+      "ratings": {
+        "overall": 87,
+        "peak": 91,
+        "international": 88,
+        "clutch": 83,
+        "consistency": 82,
+        "leadership": 67,
+        "synergy": 84
+      },
+      "stats": {
+        "winRate": 62.4,
+        "kda": 4.8,
+        "games": 526,
+        "goldPerMin": 412,
+        "killParticipation": 67.6,
+        "damagePerMin": 576.6
+      }
+    },
+    "sofm": {
+      "playerId": "sofm",
+      "golId": 710,
+      "ratings": {
+        "overall": 68,
+        "peak": 70,
+        "international": 64,
+        "clutch": 67,
+        "consistency": 65,
+        "leadership": 73,
+        "synergy": 84
+      },
+      "stats": {
+        "winRate": 51.4,
+        "kda": 3.5,
+        "games": 628,
+        "goldPerMin": 335,
+        "killParticipation": 69.5,
+        "damagePerMin": 291.5
+      }
+    },
+    "sword": {
+      "playerId": "sword",
+      "golId": 3539,
+      "ratings": {
+        "overall": 64,
+        "peak": 66,
+        "international": 58,
+        "clutch": 64,
+        "consistency": 53,
+        "leadership": 55,
+        "synergy": 85
+      },
+      "stats": {
+        "winRate": 35.1,
+        "kda": 3.3,
+        "games": 148,
+        "goldPerMin": 311,
+        "killParticipation": 70.6,
+        "damagePerMin": 378.4
+      }
+    },
+    "swordart": {
+      "playerId": "swordart",
+      "golId": 288,
+      "ratings": {
+        "overall": 80,
+        "peak": 82,
+        "international": 79,
+        "clutch": 74,
+        "consistency": 76,
+        "leadership": 75,
+        "synergy": 86
+      },
+      "stats": {
+        "winRate": 58.1,
+        "kda": 4,
+        "games": 701,
+        "goldPerMin": 251,
+        "killParticipation": 69.6,
+        "damagePerMin": 164.9
+      }
+    },
+    "tarzan": {
+      "playerId": "tarzan",
+      "golId": 1226,
+      "ratings": {
+        "overall": 76,
+        "peak": 78,
+        "international": 75,
+        "clutch": 79,
+        "consistency": 77,
+        "leadership": 76,
+        "synergy": 90
+      },
+      "stats": {
+        "winRate": 58.5,
+        "kda": 4.5,
+        "games": 938,
+        "goldPerMin": 349,
+        "killParticipation": 71.9,
+        "damagePerMin": 367.3
+      }
+    },
+    "theshy": {
+      "playerId": "theshy",
+      "golId": 1075,
+      "ratings": {
+        "overall": 79,
+        "peak": 81,
+        "international": 80,
+        "clutch": 62,
+        "consistency": 82,
+        "leadership": 69,
+        "synergy": 58
+      },
+      "stats": {
+        "winRate": 61.6,
+        "kda": 2.4,
+        "games": 737,
+        "goldPerMin": 400,
+        "killParticipation": 53,
+        "damagePerMin": 604
+      }
+    },
+    "tian": {
+      "playerId": "tian",
+      "golId": 1269,
+      "ratings": {
+        "overall": 75,
+        "peak": 77,
+        "international": 76,
+        "clutch": 75,
+        "consistency": 82,
+        "leadership": 77,
+        "synergy": 87
+      },
+      "stats": {
+        "winRate": 62,
+        "kda": 3.9,
+        "games": 871,
+        "goldPerMin": 357,
+        "killParticipation": 69.5,
+        "damagePerMin": 351.2
+      }
+    },
+    "uzi": {
+      "playerId": "uzi",
+      "golId": 171,
+      "ratings": {
+        "overall": 89,
+        "peak": 93,
+        "international": 89,
+        "clutch": 87,
+        "consistency": 80,
+        "leadership": 67,
+        "synergy": 90
+      },
+      "stats": {
+        "winRate": 60.9,
+        "kda": 5.3,
+        "games": 548,
+        "goldPerMin": 468,
+        "killParticipation": 71.1,
+        "damagePerMin": 609
+      }
+    },
+    "viper": {
+      "playerId": "viper",
+      "golId": 1228,
+      "ratings": {
+        "overall": 91,
+        "peak": 95,
+        "international": 92,
+        "clutch": 89,
+        "consistency": 81,
+        "leadership": 69,
+        "synergy": 84
+      },
+      "stats": {
+        "winRate": 61.5,
+        "kda": 5.6,
+        "games": 1010,
+        "goldPerMin": 453,
+        "killParticipation": 67.5,
+        "damagePerMin": 650
+      }
+    },
+    "vulcan": {
+      "playerId": "vulcan",
+      "golId": 1301,
+      "ratings": {
+        "overall": 81,
+        "peak": 83,
+        "international": 80,
+        "clutch": 77,
+        "consistency": 76,
+        "leadership": 75,
+        "synergy": 90
+      },
+      "stats": {
+        "winRate": 58.2,
+        "kda": 4.3,
+        "games": 650,
+        "goldPerMin": 246,
+        "killParticipation": 71.5,
+        "damagePerMin": 172.1
+      }
+    },
+    "wei": {
+      "playerId": "wei",
+      "golId": 388,
+      "ratings": {
+        "overall": 72,
+        "peak": 74,
+        "international": 70,
+        "clutch": 71,
+        "consistency": 72,
+        "leadership": 74,
+        "synergy": 87
+      },
+      "stats": {
+        "winRate": 55.3,
+        "kda": 3.7,
+        "games": 752,
+        "goldPerMin": 352,
+        "killParticipation": 70.4,
+        "damagePerMin": 372.1
+      }
+    },
+    "wildturtle": {
+      "playerId": "wildturtle",
+      "golId": 139,
+      "ratings": {
+        "overall": 77,
+        "peak": 79,
+        "international": 73,
+        "clutch": 68,
+        "consistency": 66,
+        "leadership": 65,
+        "synergy": 77
+      },
+      "stats": {
+        "winRate": 51.7,
+        "kda": 3.6,
+        "games": 698,
+        "goldPerMin": 413,
+        "killParticipation": 65.7,
+        "damagePerMin": 513.8
+      }
+    },
+    "wolf": {
+      "playerId": "wolf",
+      "golId": 101,
+      "ratings": {
+        "overall": 85,
+        "peak": 89,
+        "international": 90,
+        "clutch": 83,
+        "consistency": 92,
+        "leadership": 77,
+        "synergy": 88
+      },
+      "stats": {
+        "winRate": 69.3,
+        "kda": 4.5,
+        "games": 489,
+        "goldPerMin": 269,
+        "killParticipation": 68.5,
+        "damagePerMin": 155.8
+      }
+    },
+    "wunder": {
+      "playerId": "wunder",
+      "golId": 596,
+      "ratings": {
+        "overall": 74,
+        "peak": 76,
+        "international": 72,
+        "clutch": 63,
+        "consistency": 73,
+        "leadership": 67,
+        "synergy": 61
+      },
+      "stats": {
+        "winRate": 55.9,
+        "kda": 2.8,
+        "games": 656,
+        "goldPerMin": 392,
+        "killParticipation": 55.8,
+        "damagePerMin": 474.4
+      }
+    },
+    "xiaobai": {
+      "playerId": "xiaobai",
+      "golId": 2674,
+      "ratings": {
+        "overall": 63,
+        "peak": 65,
+        "international": 58,
+        "clutch": 62,
+        "consistency": 54,
+        "leadership": 54,
+        "synergy": 56
+      },
+      "stats": {
+        "winRate": 49.4,
+        "kda": 2.9,
+        "games": 77,
+        "goldPerMin": 362,
+        "killParticipation": 53.8,
+        "damagePerMin": 363.3
+      }
+    },
+    "xiaohu": {
+      "playerId": "xiaohu",
+      "golId": 347,
+      "ratings": {
+        "overall": 83,
+        "peak": 85,
+        "international": 82,
+        "clutch": 76,
+        "consistency": 77,
+        "leadership": 68,
+        "synergy": 83
+      },
+      "stats": {
+        "winRate": 58.7,
+        "kda": 4.2,
+        "games": 1424,
+        "goldPerMin": 409,
+        "killParticipation": 67.6,
+        "damagePerMin": 548.6
+      }
+    },
+    "xiye": {
+      "playerId": "xiye",
+      "golId": 405,
+      "ratings": {
+        "overall": 77,
+        "peak": 79,
+        "international": 73,
+        "clutch": 72,
+        "consistency": 68,
+        "leadership": 66,
+        "synergy": 86
+      },
+      "stats": {
+        "winRate": 52.8,
+        "kda": 4,
+        "games": 685,
+        "goldPerMin": 407,
+        "killParticipation": 70.4,
+        "damagePerMin": 494.4
+      }
+    },
+    "xmithie": {
+      "playerId": "xmithie",
+      "golId": 269,
+      "ratings": {
+        "overall": 69,
+        "peak": 71,
+        "international": 67,
+        "clutch": 68,
+        "consistency": 71,
+        "leadership": 73,
+        "synergy": 87
+      },
+      "stats": {
+        "winRate": 55.8,
+        "kda": 3.3,
+        "games": 518,
+        "goldPerMin": 334,
+        "killParticipation": 70.4,
+        "damagePerMin": 275.5
+      }
+    },
+    "xun": {
+      "playerId": "xun",
+      "golId": 3330,
+      "ratings": {
+        "overall": 76,
+        "peak": 78,
+        "international": 76,
+        "clutch": 75,
+        "consistency": 77,
+        "leadership": 76,
+        "synergy": 89
+      },
+      "stats": {
+        "winRate": 59,
+        "kda": 4,
+        "games": 697,
+        "goldPerMin": 372,
+        "killParticipation": 71.1,
+        "damagePerMin": 403
+      }
+    },
+    "yike": {
+      "playerId": "yike",
+      "golId": 3406,
+      "ratings": {
+        "overall": 81,
+        "peak": 85,
+        "international": 84,
+        "clutch": 81,
+        "consistency": 89,
+        "leadership": 77,
+        "synergy": 91
+      },
+      "stats": {
+        "winRate": 66.7,
+        "kda": 4.4,
+        "games": 544,
+        "goldPerMin": 373,
+        "killParticipation": 71,
+        "damagePerMin": 436.5
+      }
+    },
+    "yuyanjia": {
+      "playerId": "yuyanjia",
+      "golId": 2624,
+      "ratings": {
+        "overall": 71,
+        "peak": 73,
+        "international": 69,
+        "clutch": 66,
+        "consistency": 65,
+        "leadership": 66,
+        "synergy": 77
+      },
+      "stats": {
+        "winRate": 55.2,
+        "kda": 3.1,
+        "games": 183,
+        "goldPerMin": 236,
+        "killParticipation": 64.8,
+        "damagePerMin": 147.6
+      }
+    },
+    "zeka": {
+      "playerId": "zeka",
+      "golId": 2906,
+      "ratings": {
+        "overall": 87,
+        "peak": 89,
+        "international": 86,
+        "clutch": 80,
+        "consistency": 77,
+        "leadership": 68,
+        "synergy": 80
+      },
+      "stats": {
+        "winRate": 58.8,
+        "kda": 4.6,
+        "games": 745,
+        "goldPerMin": 421,
+        "killParticipation": 65.8,
+        "damagePerMin": 605.3
+      }
+    },
+    "zeus": {
+      "playerId": "zeus",
+      "golId": 3658,
+      "ratings": {
+        "overall": 83,
+        "peak": 87,
+        "international": 86,
+        "clutch": 71,
+        "consistency": 89,
+        "leadership": 70,
+        "synergy": 68
+      },
+      "stats": {
+        "winRate": 66.4,
+        "kda": 3.2,
+        "games": 729,
+        "goldPerMin": 407,
+        "killParticipation": 57.4,
+        "damagePerMin": 572.2
+      }
+    },
+    "zeyzal": {
+      "playerId": "zeyzal",
+      "golId": 854,
+      "ratings": {
+        "overall": 81,
+        "peak": 83,
+        "international": 81,
+        "clutch": 79,
+        "consistency": 78,
+        "leadership": 73,
+        "synergy": 90
+      },
+      "stats": {
+        "winRate": 60.9,
+        "kda": 4.4,
+        "games": 445,
+        "goldPerMin": 255,
+        "killParticipation": 71.1,
+        "damagePerMin": 183.8
+      }
+    },
+    "zven": {
+      "playerId": "zven",
+      "golId": 481,
+      "ratings": {
+        "overall": 87,
+        "peak": 91,
+        "international": 88,
+        "clutch": 83,
+        "consistency": 82,
+        "leadership": 69,
+        "synergy": 83
+      },
+      "stats": {
+        "winRate": 62.2,
+        "kda": 4.8,
+        "games": 867,
+        "goldPerMin": 412,
+        "killParticipation": 66.8,
+        "damagePerMin": 559.2
+      }
+    }
+  }
+}

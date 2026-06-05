@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "golden-road",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,7 +7,12 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "etl:gol:resolve": "tsx scripts/etl/resolve-gol-ids.ts",
+    "etl:gol": "tsx scripts/etl/run-gol-etl.ts",
+    "etl:gol:teams:resolve": "tsx scripts/etl/resolve-gol-teams.ts",
+    "etl:gol:team-year": "tsx scripts/etl/run-team-year-etl.ts",
+    "etl:gol:patch-accomplishments": "tsx scripts/etl/patch-accomplishment-ratings.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -65,6 +70,7 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
     "autoprefixer": "^10.4.23",
+    "cheerio": "^1.2.0",
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
@@ -73,6 +79,7 @@
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.19",
     "tailwindcss-animate": "^1.0.7",
+    "tsx": "^4.22.4",
     "tw-animate-css": "^1.4.0",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
