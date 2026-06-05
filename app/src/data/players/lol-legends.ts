@@ -141,4 +141,10 @@ export const LOL_LEGEND_PLAYERS: Player[] = [
     { overall: 85, peak: 88, international: 83, clutch: 84, consistency: 86, leadership: 82, synergy: 85 }, '#B2BEC3'),
   p('wildturtle', 'WildTurtle', 'adc', 'LCS', 'CLG', 'CLG', 2020, 'Veteran ADC', 0, 0, 2, 2012,
     { overall: 79, peak: 86, international: 76, clutch: 78, consistency: 82, leadership: 84, synergy: 80 }, '#9B59B6'),
+  p('duke', 'Duke', 'top', 'LCK', 'T1', 'SKT', 2016, '2x Worlds Champion', 2, 0, 3, 2014,
+    { overall: 88, peak: 91, international: 87, clutch: 86, consistency: 88, leadership: 84, synergy: 87 }, '#C9A227'),
+  p('bengi', 'Bengi', 'jungle', 'LCK', 'T1', 'SKT', 2016, '3x Worlds Champion', 3, 0, 5, 2013,
+    { overall: 90, peak: 94, international: 91, clutch: 90, consistency: 91, leadership: 92, synergy: 90 }, '#C9A227'),
+  p('light', 'Light', 'adc', 'LPL', 'WBG', 'WBG', 2023, 'World Finalist', 0, 0, 2, 2019,
+    { overall: 88, peak: 91, international: 87, clutch: 88, consistency: 87, leadership: 82, synergy: 86 }, '#E84057'),
 ];

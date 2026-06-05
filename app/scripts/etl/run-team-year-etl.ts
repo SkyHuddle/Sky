@@ -1,4 +1,7 @@
 #!/usr/bin/env npx tsx
+/**
+ * Team-year KDA for every roster slot: Gol team roster table first, season page fallback.
+ */
 import { mkdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -6,7 +9,7 @@ import { loadAppTeams } from './load-app-teams';
 import { loadAppPlayers } from './load-app-players';
 import { parseGolTeamRoster, GOL_TEAM_STATS_URL } from './parse-gol-team-html';
 import { parseGolPlayerHtml, GOL_PLAYER_SEASON_URL } from './parse-gol-html';
-import { computeRatingsFromTeamYear } from './compute-ratings';
+import { computeRatingsFromKda } from './compute-ratings';
 import { yearToGolSeason } from './gol-season';
 import type { GolIdMap, GolTeamYearStats, TeamYearRatingsBundle } from './types';
 
@@ -16,7 +19,7 @@ const PLAYER_IDS_PATH = join(__dir, 'gol-ids.json');
 const OUT_DIR = join(__dir, '../../src/data/generated');
 const OUT_FILE = join(OUT_DIR, 'team-year-ratings.json');
 const UA = 'GoldenRoad-ETL/1.0';
-const DELAY_MS = Number(process.env.GOL_ETL_DELAY_MS ?? 650);
+const DELAY_MS = Number(process.env.GOL_ETL_DELAY_MS ?? 550);
 
 function sleep(ms: number) {
   return new Promise((r) => setTimeout(r, ms));
@@ -42,11 +45,6 @@ async function main() {
     ids: Record<string, number>;
   };
   const playerMap = JSON.parse(readFileSync(PLAYER_IDS_PATH, 'utf8')) as GolIdMap;
-  const golToPlayer = new Map<number, string>();
-  for (const [playerId, golId] of Object.entries(playerMap.ids)) {
-    golToPlayer.set(golId, playerId);
-  }
-
   const playersById = new Map(loadAppPlayers().map((p) => [p.id, p]));
   const teams = loadAppTeams();
 
@@ -57,7 +55,25 @@ async function main() {
     entries: {},
   };
 
-  const seasonStatsCache = new Map<string, { winRate: number; games: number }>();
+  const seasonCache = new Map<
+    string,
+    { kda: number; winRate: number; games: number }
+  >();
+
+  async function seasonStats(golPlayerId: number, season: string) {
+    const key = `${golPlayerId}:${season}`;
+    if (seasonCache.has(key)) return seasonCache.get(key)!;
+    const html = await fetchHtml(GOL_PLAYER_SEASON_URL(golPlayerId, season));
+    const parsed = parseGolPlayerHtml(golPlayerId, html);
+    const stats = {
+      kda: parsed?.kda ?? 2.5,
+      winRate: parsed?.winRate ?? 50,
+      games: parsed?.games ?? 0,
+    };
+    seasonCache.set(key, stats);
+    await sleep(DELAY_MS);
+    return stats;
+  }
 
   for (const team of teams) {
     const golTeamId = teamMap.ids[team.id];
@@ -67,57 +83,47 @@ async function main() {
     }
 
     const season = yearToGolSeason(team.year);
-    const rosterGolIds = new Set(
-      Object.values(team.roster)
-        .map((pid) => playerMap.ids[pid])
-        .filter((id): id is number => id != null)
-    );
 
     try {
-      console.log(`Team ${team.name} ${team.year} (${team.id}) → gol ${golTeamId}`);
+      console.log(`Team ${team.name} ${team.year} (${team.id})`);
       const html = await fetchHtml(GOL_TEAM_STATS_URL(golTeamId));
       const rows = parseGolTeamRoster(html);
+      const rowByGol = new Map(rows.map((r) => [r.golPlayerId, r]));
 
-      for (const row of rows) {
-        if (!rosterGolIds.has(row.golPlayerId)) continue;
-        const playerId = golToPlayer.get(row.golPlayerId);
-        if (!playerId) continue;
+      for (const playerId of Object.values(team.roster)) {
         const player = playersById.get(playerId);
-        if (!player) continue;
-
-        const cacheKey = `${row.golPlayerId}:${season}`;
-        let seasonExtra = seasonStatsCache.get(cacheKey);
-        if (!seasonExtra) {
-          const pHtml = await fetchHtml(
-            GOL_PLAYER_SEASON_URL(row.golPlayerId, season)
-          );
-          const parsed = parseGolPlayerHtml(row.golPlayerId, pHtml);
-          seasonExtra = {
-            winRate: parsed?.winRate ?? 50,
-            games: parsed?.games ?? 0,
-          };
-          seasonStatsCache.set(cacheKey, seasonExtra);
-          await sleep(DELAY_MS);
+        const golPlayerId = playerMap.ids[playerId];
+        if (!player || !golPlayerId) {
+          console.warn(`  missing player/gol id: ${playerId}`);
+          continue;
         }
 
+        const teamRow = rowByGol.get(golPlayerId);
+        const hasTeamKda = teamRow != null && teamRow.kda > 0;
+        const source = hasTeamKda ? 'team-roster' : 'season';
+        const extra = await seasonStats(golPlayerId, season);
+        const kda = hasTeamKda ? teamRow!.kda : extra.kda;
+
         const stats: GolTeamYearStats = {
-          kda: row.kda,
-          killParticipation: row.killParticipation,
-          damagePct: row.damagePct,
-          goldPct: row.goldPct,
-          winRate: seasonExtra.winRate,
-          games: seasonExtra.games,
+          kda,
+          killParticipation: teamRow?.killParticipation ?? 60,
+          damagePct: teamRow?.damagePct ?? 20,
+          goldPct: teamRow?.goldPct ?? 20,
+          winRate: extra.winRate,
+          games: extra.games,
         };
 
         bundle.entries[entryKey(team.id, playerId)] = {
           teamId: team.id,
           playerId,
           golTeamId,
-          golPlayerId: row.golPlayerId,
+          golPlayerId,
           season,
+          source,
           stats,
-          ratings: computeRatingsFromTeamYear(stats, player.role),
+          ratings: computeRatingsFromKda(kda, player.role),
         };
+        console.log(`  ${player.name}: ${kda.toFixed(1)} KDA (${source})`);
       }
     } catch (e) {
       console.warn(`  error:`, e);
@@ -129,7 +135,7 @@ async function main() {
   bundle.entryCount = Object.keys(bundle.entries).length;
   mkdirSync(OUT_DIR, { recursive: true });
   writeFileSync(OUT_FILE, JSON.stringify(bundle, null, 2));
-  console.log(`Wrote ${bundle.entryCount} team-year ratings → ${OUT_FILE}`);
+  console.log(`Wrote ${bundle.entryCount} entries → ${OUT_FILE}`);
 }
 
 main().catch((e) => {

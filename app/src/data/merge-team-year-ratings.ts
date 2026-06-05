@@ -5,6 +5,7 @@ export interface TeamYearRatingsEntry {
   teamId: string;
   playerId: string;
   season: string;
+  source?: 'team-roster' | 'season';
   stats: {
     kda: number;
     killParticipation: number;
@@ -54,4 +55,14 @@ export function getTeamYearRatings(
   playerId: string
 ): PlayerRatings | null {
   return getTeamYearEntry(teamId, playerId)?.ratings ?? null;
+}
+
+export function getCardKda(teamId: string, playerId: string): number | null {
+  const entry = getTeamYearEntry(teamId, playerId);
+  if (!entry) return null;
+  return entry.stats.kda;
+}
+
+export function formatKda(kda: number): string {
+  return kda.toFixed(1);
 }

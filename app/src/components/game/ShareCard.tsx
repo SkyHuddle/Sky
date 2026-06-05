@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import type { DraftPick, SimulationResult } from '@/core/types';
 import { ROLE_LABELS } from '@/core/types';
-import { cardOverall } from '@/engine/player-power';
+import { cardKda, formatKda } from '@/engine/player-power';
 
 interface ShareCardProps {
   picks: DraftPick[];
@@ -65,7 +65,9 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
                     className="text-xs font-medium tabular-nums shrink-0"
                     style={{ color: player.accent }}
                   >
-                    {cardOverall(player, team)}
+                    {cardKda(player, team) != null
+                      ? formatKda(cardKda(player, team)!)
+                      : '—'}
                   </span>
                 </div>
                 <p className="text-[10px] text-white/30 mt-0.5 pl-14">

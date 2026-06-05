@@ -61,6 +61,23 @@ export function computeRatingsFromGol(
   };
 }
 
+/** Sim ratings from Gol KDA average only. */
+export function computeRatingsFromKda(kda: number, role: Role): PlayerRatings {
+  const k = norm(kda, 1.6, 6.2);
+  const roleBump = role === 'support' || role === 'jungle' ? 2 : 0;
+  const overall = clamp(50 + k * 44 + roleBump, 50, 96);
+  const peak = clamp(overall + (k > 0.82 ? 3 : 1), overall, 98);
+  return {
+    overall,
+    peak,
+    international: overall,
+    clutch: clamp(overall + k * 4, 50, 96),
+    consistency: overall,
+    leadership: clamp(overall + (role === 'support' ? 4 : 0), 50, 92),
+    synergy: clamp(overall + k * 3, 50, 94),
+  };
+}
+
 /** Team-season slice from Gol team roster table (+ season WR when available). */
 export function computeRatingsFromTeamYear(
   stats: GolTeamYearStats,

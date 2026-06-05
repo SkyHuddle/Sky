@@ -46,5 +46,11 @@
   "gg-2019": ["Golden Guardians"],
   "tsm-2020": ["TSM", "Team SoloMid"],
   "navi-2021": ["Natus Vincere", "NaVi"],
-  "heretics-2023": ["Team Heretics", "Heretics"]
+  "heretics-2023": ["Team Heretics", "Heretics"],
+  "t1-2024": ["T1"],
+  "blg-2023": ["Bilibili Gaming", "BLG"],
+  "g2-2022": ["G2 Esports", "G2"],
+  "rng-2022": ["Royal Never Give Up", "RNG"],
+  "wbg-2023": ["Weibo Gaming", "WBG"],
+  "jdg-2024": ["JD Gaming", "JDG"]
 }

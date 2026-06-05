@@ -1,12 +1,12 @@
 /** Player-facing explanation of Golden Road simulation logic */
 export const SIMULATION_GUIDE = {
-  headline: 'How ratings & the Golden Road work',
+  headline: 'How Gol.gg KDA & the Golden Road work',
   intro:
-    'The number on a player card is their Gol.gg stats on that team-year when we have them — KDA, kill share, damage, and gold share from that roster slice. Team and year on the spin match the real lineup.',
+    'Every player card shows their Gol.gg KDA average for that team and year — pulled from the team roster table when possible, otherwise the season split.',
   sections: [
     {
-      title: 'Are ratings real?',
-      body: 'We scrape Gol.gg team pages for each historical roster in the game. When a player-team-year exists in our database, that OVR drives the sim. Otherwise we fall back to career Gol stats.',
+      title: 'What the number means',
+      body: 'KDA is kills + assists per death from Gol.gg pro match data. Higher KDA on a card means that player was performing better on that specific roster during that year.',
     },
     {
       title: 'Respin',
@@ -14,11 +14,11 @@ export const SIMULATION_GUIDE = {
     },
     {
       title: 'The four checks',
-      body: 'Spring → MSI → Summer → Worlds. During the sim you will see bracket beats (groups, playoffs, finals). Those steps are driven by your roster power — not a replay of a real historical bracket.',
+      body: 'Spring → MSI → Summer → Worlds. Your roster KDA is converted into sim power for each stage — not a replay of a real historical bracket.',
     },
     {
       title: 'What to expect',
-      body: 'A stacked roster of high-OVR pros might have ~10% Golden Road odds. Mixed or weak rolls should fail most of the time. Near-misses at Worlds are the sweet spot.',
+      body: 'Stacked high-KDA legends can still fail Worlds most of the time. Weak rolls and near-misses are the sweet spot.',
     },
   ],
 } as const;

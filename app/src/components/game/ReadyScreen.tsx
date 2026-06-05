@@ -3,7 +3,7 @@ import type { DraftPick } from '@/core/types';
 import { ROLE_LABELS } from '@/core/types';
 import { Button } from '@/components/ui/button';
 import { SimulationGuide } from './SimulationGuide';
-import { cardOverall } from '@/engine/player-power';
+import { cardKda, formatKda } from '@/engine/player-power';
 
 interface ReadyScreenProps {
   picks: DraftPick[];
@@ -12,8 +12,8 @@ interface ReadyScreenProps {
 }
 
 export function ReadyScreen({ picks, onAttempt, onEdit }: ReadyScreenProps) {
-  const avgOvr =
-    picks.reduce((s, p) => s + cardOverall(p.player, p.team), 0) / picks.length;
+  const avgKda =
+    picks.reduce((s, p) => s + (cardKda(p.player, p.team) ?? 0), 0) / picks.length;
 
   return (
     <div className="flex flex-col min-h-[100dvh] px-5 py-10 max-w-lg mx-auto justify-between">
@@ -42,7 +42,11 @@ export function ReadyScreen({ picks, onAttempt, onEdit }: ReadyScreenProps) {
           {picks.map(({ role, player, team }, i) => (
             <motion.div
               key={role}
-              className="flex items-center gap-4 p-3 rounded-xl border border-white/[0.06] bg-white/[0.03]"
+              className="flex items-center gap-4 p-3.5 rounded-2xl border border-white/[0.08] bg-white/[0.03]"
+              style={{
+                borderColor: `${team.accent}25`,
+                background: `linear-gradient(90deg, ${team.accent}10 0%, transparent 100%)`,
+              }}
               initial={{ opacity: 0, x: -12 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.08 * i }}
@@ -63,15 +67,26 @@ export function ReadyScreen({ picks, onAttempt, onEdit }: ReadyScreenProps) {
                 </p>
                 <p className="font-display text-lg text-white truncate">{player.name}</p>
               </div>
-              <span className="text-gold font-display text-xl">
-                {cardOverall(player, team)}
-              </span>
+              <div className="text-right">
+                <p className="text-[8px] uppercase tracking-wider text-white/30">KDA</p>
+                <span className="text-gold font-display text-2xl tabular-nums">
+                  {cardKda(player, team) != null
+                    ? formatKda(cardKda(player, team)!)
+                    : '—'}
+                </span>
+              </div>
             </motion.div>
           ))}
         </motion.div>
 
         <p className="text-center text-white/40 text-sm mt-6">
-          Team OVR <span className="text-gold font-display text-2xl ml-1">{avgOvr.toFixed(0)}</span>
+          Avg KDA{' '}
+          <span className="text-gold font-display text-2xl ml-1 tabular-nums">
+            {formatKda(avgKda)}
+          </span>
+          <span className="block text-[10px] text-emerald-400/70 mt-1 uppercase tracking-wider">
+            Gol.gg team-year stats
+          </span>
         </p>
 
         <div className="mt-6">

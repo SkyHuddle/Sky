@@ -88,24 +88,30 @@ export function DraftScreen({
           >
             <TeamBanner team={currentRound.team} />
 
-            <p className="text-white/45 text-xs mb-3 leading-relaxed">
-              Tap a player for their role. Open slots:{' '}
-              <span className="text-gold">
-                {openRoles.map((r) => ROLE_LABELS[r]).join(', ')}
-              </span>
-            </p>
+            <div className="flex items-center justify-between gap-3 mb-4">
+              <p className="text-white/45 text-xs leading-relaxed flex-1">
+                Pick one pro — stats are Gol.gg KDA for this team-year. Open:{' '}
+                <span className="text-gold font-medium">
+                  {openRoles.map((r) => ROLE_LABELS[r]).join(', ')}
+                </span>
+              </p>
+            </div>
 
             {respinsLeft > 0 && (
               <button
                 type="button"
                 onClick={onRespinTeam}
-                className="w-full mb-4 text-sm font-medium text-gold border border-gold/40 bg-gold/10 hover:bg-gold/20 rounded-xl px-4 py-3 transition-colors active:scale-[0.98]"
+                className="w-full mb-5 flex items-center justify-center gap-2 text-sm font-semibold text-gold border border-gold/35 bg-gradient-to-r from-gold/15 to-gold/5 hover:from-gold/25 hover:to-gold/10 rounded-2xl px-4 py-3.5 transition-all active:scale-[0.98] shadow-sm shadow-gold/10"
               >
-                Respin team · 1 per game
+                <span className="text-base">↻</span>
+                Respin team
+                <span className="text-[10px] font-normal text-gold/70 uppercase tracking-wider">
+                  1 per game
+                </span>
               </button>
             )}
 
-            <div className="space-y-2">
+            <div className="space-y-2.5">
               {roleOrder.map((teamRole, i) => {
                 const playerId = currentRound.team.roster[teamRole];
                 const player = currentRound.roster.find((p) => p.id === playerId);

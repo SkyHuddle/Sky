@@ -1,29 +1,35 @@
 import type { HistoricalTeam, Player, PlayerRatings } from '@/core/types';
-import { getTeamYearRatings } from '@/data/merge-team-year-ratings';
+import {
+  getTeamYearRatings,
+  getTeamYearEntry,
+  getCardKda,
+  formatKda,
+} from '@/data/merge-team-year-ratings';
 
-/**
- * Card OVR prefers Gol.gg stats for that player on that team-year roster.
- * Falls back to career Gol / curated ratings when the ETL has no slice.
- */
+export { formatKda };
 
-export function careerRatings(player: Player): PlayerRatings {
-  return player.ratings;
+/** Gol.gg KDA for this player on this team-year card. */
+export function cardKda(player: Player, team: HistoricalTeam): number | null {
+  return getCardKda(team.id, player.id);
 }
 
-export function careerOverall(player: Player): number {
-  return player.ratings.overall;
+export function hasGolCardStats(player: Player, team: HistoricalTeam): boolean {
+  return getCardKda(team.id, player.id) != null;
 }
 
 export function cardRatings(player: Player, team: HistoricalTeam): PlayerRatings {
-  return getTeamYearRatings(team.id, player.id) ?? careerRatings(player);
+  return getTeamYearRatings(team.id, player.id) ?? player.ratings;
 }
 
 export function cardOverall(player: Player, team: HistoricalTeam): number {
   return cardRatings(player, team).overall;
 }
 
-export function isTeamYearRated(player: Player, team: HistoricalTeam): boolean {
-  return getTeamYearRatings(team.id, player.id) != null;
+export function golStatSource(
+  player: Player,
+  team: HistoricalTeam
+): 'team-roster' | 'season' | null {
+  return getTeamYearEntry(team.id, player.id)?.source ?? null;
 }
 
 export function playersForSimulation(
