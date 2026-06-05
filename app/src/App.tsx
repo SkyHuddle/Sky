@@ -78,11 +78,11 @@ export default function App() {
               picks={game.picks}
               openRoles={game.openRoles}
               spinGeneration={game.spinGeneration}
-              skipsLeft={game.skipsLeft}
+              respinsLeft={game.respinsLeft}
               dailyConstraint={game.dailyConstraint}
               isDaily={game.mode === 'daily'}
               onSpinComplete={game.finishSpin}
-              onSkipTeam={game.skipTeam}
+              onRespinTeam={game.respinTeam}
               onSelectPlayer={game.selectPlayer}
               onBack={handleBack}
             />

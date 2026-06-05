@@ -70,3 +70,6 @@ export function parseGolPlayerHtml(golId: number, html: string): GolPlayerStats 
 
 export const GOL_PLAYER_STATS_URL = (id: number) =>
   `https://gol.gg/players/player-stats/${id}/season-ALL/split-ALL/tournament-ALL/`;
+
+export const GOL_PLAYER_SEASON_URL = (id: number, season: string) =>
+  `https://gol.gg/players/player-stats/${id}/season-${season}/split-ALL/tournament-ALL/`;

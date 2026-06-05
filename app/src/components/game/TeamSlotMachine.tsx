@@ -11,8 +11,6 @@ interface TeamSlotMachineProps {
   spin: SlotSpin;
   spinKey: number;
   onComplete: () => void;
-  onSkip?: () => void;
-  canSkip?: boolean;
 }
 
 export function TeamSlotMachine({
@@ -21,8 +19,6 @@ export function TeamSlotMachine({
   spin,
   spinKey,
   onComplete,
-  onSkip,
-  canSkip,
 }: TeamSlotMachineProps) {
   const [index, setIndex] = useState(0);
   const [done, setDone] = useState(false);
@@ -113,18 +109,6 @@ export function TeamSlotMachine({
         </p>
       )}
 
-      {canSkip && onSkip && !done && (
-        <button
-          type="button"
-          onClick={(e) => {
-            e.preventDefault();
-            onSkip();
-          }}
-          className="mt-6 z-10 text-sm font-medium text-gold border border-gold/40 bg-gold/10 hover:bg-gold/20 rounded-full px-6 py-3 transition-colors active:scale-[0.98]"
-        >
-          Skip team · {canSkip ? '1 left' : '0 left'}
-        </button>
-      )}
     </div>
   );
 }

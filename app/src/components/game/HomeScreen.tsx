@@ -3,6 +3,7 @@ import { Trophy, Flame, Target, Calendar, Database } from 'lucide-react';
 import type { DailyConstraint, DailyRunResult, PlayerStats } from '@/core/types';
 import { Button } from '@/components/ui/button';
 import { getGolDataMeta } from '@/data';
+import { getTeamYearMeta } from '@/data/merge-team-year-ratings';
 
 interface HomeScreenProps {
   stats: PlayerStats;
@@ -20,6 +21,7 @@ export function HomeScreen({
   onStartDaily,
 }: HomeScreenProps) {
   const golMeta = getGolDataMeta();
+  const teamYearMeta = getTeamYearMeta();
 
   return (
     <div className="flex flex-col min-h-[100dvh] px-5 pb-8 pt-12 max-w-lg mx-auto">
@@ -43,11 +45,13 @@ export function HomeScreen({
         <p className="text-white/50 text-sm mt-4 max-w-[320px] mx-auto leading-relaxed">
           Spin a team & year each round — Spring, MSI, Summer, Worlds. Pick one pro per round for their role. Fill all five slots. Chase the Golden Road.
         </p>
-        {golMeta && (
+        {(teamYearMeta ?? golMeta) && (
           <div className="inline-flex items-center gap-1.5 mt-4 px-2.5 py-1 rounded-full border border-emerald-500/25 bg-emerald-500/10">
             <Database className="w-3 h-3 text-emerald-400/90" />
             <span className="text-[9px] uppercase tracking-wider text-emerald-300/80">
-              OVR from Gol.gg · {golMeta.count} players
+              {teamYearMeta
+                ? `OVR from Gol team-year · ${teamYearMeta.count} cards`
+                : `OVR from Gol.gg · ${golMeta!.count} players`}
             </span>
           </div>
         )}

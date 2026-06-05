@@ -2,15 +2,15 @@
 export const SIMULATION_GUIDE = {
   headline: 'How ratings & the Golden Road work',
   intro:
-    'The number on a player card is their career strength — not a guess at how they played on that specific team-year. The spin picks which legendary roster you draft from; OVR comes from Gol.gg career stats when available.',
+    'The number on a player card is their Gol.gg stats on that team-year when we have them — KDA, kill share, damage, and gold share from that roster slice. Team and year on the spin match the real lineup.',
   sections: [
     {
       title: 'Are ratings real?',
-      body: 'Most pros use Gol.gg career stats (win rate, KDA, damage, sample size). Others use curated peaks informed by titles and international play. We do not pretend to know exact stats for every team-year combo.',
+      body: 'We scrape Gol.gg team pages for each historical roster in the game. When a player-team-year exists in our database, that OVR drives the sim. Otherwise we fall back to career Gol stats.',
     },
     {
-      title: 'Team & year on the card',
-      body: 'Spring 2016 SKT and 2020 CLG are different vibes for the draft — but Faker is still Faker. Team tier affects which rosters show up in the slot machine, not a hidden nerf on the player badge.',
+      title: 'Respin',
+      body: 'After the slot machine lands and you see the five players, you get one respin per game to roll a different team for the current round.',
     },
     {
       title: 'The four checks',
@@ -18,7 +18,7 @@ export const SIMULATION_GUIDE = {
     },
     {
       title: 'What to expect',
-      body: 'A stacked roster of high-OVR pros might have ~10% Golden Road odds. Mixed rolls should fail most of the time. Near-misses at Worlds are the sweet spot.',
+      body: 'A stacked roster of high-OVR pros might have ~10% Golden Road odds. Mixed or weak rolls should fail most of the time. Near-misses at Worlds are the sweet spot.',
     },
   ],
 } as const;

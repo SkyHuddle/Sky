@@ -20,11 +20,11 @@ interface DraftScreenProps {
   picks: DraftPick[];
   openRoles: Role[];
   spinGeneration: number;
-  skipsLeft: number;
+  respinsLeft: number;
   dailyConstraint?: DailyConstraint;
   isDaily: boolean;
   onSpinComplete: () => void;
-  onSkipTeam: () => void;
+  onRespinTeam: () => void;
   onSelectPlayer: (player: Player, naturalRole: Role) => void;
   onBack: () => void;
 }
@@ -35,11 +35,11 @@ export function DraftScreen({
   picks,
   openRoles,
   spinGeneration,
-  skipsLeft,
+  respinsLeft,
   dailyConstraint,
   isDaily,
   onSpinComplete,
-  onSkipTeam,
+  onRespinTeam,
   onSelectPlayer,
   onBack,
 }: DraftScreenProps) {
@@ -77,8 +77,6 @@ export function DraftScreen({
             spin={currentRound.spin}
             spinKey={spinGeneration}
             onComplete={onSpinComplete}
-            onSkip={onSkipTeam}
-            canSkip={skipsLeft > 0}
           />
         )}
 
@@ -96,6 +94,16 @@ export function DraftScreen({
                 {openRoles.map((r) => ROLE_LABELS[r]).join(', ')}
               </span>
             </p>
+
+            {respinsLeft > 0 && (
+              <button
+                type="button"
+                onClick={onRespinTeam}
+                className="w-full mb-4 text-sm font-medium text-gold border border-gold/40 bg-gold/10 hover:bg-gold/20 rounded-xl px-4 py-3 transition-colors active:scale-[0.98]"
+              >
+                Respin team · 1 per game
+              </button>
+            )}
 
             <div className="space-y-2">
               {roleOrder.map((teamRole, i) => {

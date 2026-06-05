@@ -9,7 +9,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "etl:gol:resolve": "tsx scripts/etl/resolve-gol-ids.ts",
-    "etl:gol": "tsx scripts/etl/run-gol-etl.ts"
+    "etl:gol": "tsx scripts/etl/run-gol-etl.ts",
+    "etl:gol:teams:resolve": "tsx scripts/etl/resolve-gol-teams.ts",
+    "etl:gol:team-year": "tsx scripts/etl/run-team-year-etl.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

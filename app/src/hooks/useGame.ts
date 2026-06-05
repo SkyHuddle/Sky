@@ -34,7 +34,7 @@ export function useGame() {
   const [draftRounds, setDraftRounds] = useState<DraftRound[]>([]);
   const [draftSubphase, setDraftSubphase] = useState<DraftSubphase>('spin');
   const [spinGeneration, setSpinGeneration] = useState(0);
-  const [skipsLeft, setSkipsLeft] = useState(1);
+  const [respinsLeft, setRespinsLeft] = useState(1);
   const [result, setResult] = useState<SimulationResult | null>(null);
   const [dailyPercentile, setDailyPercentile] = useState<number | null>(null);
 
@@ -64,7 +64,7 @@ export function useGame() {
     setRoundIndex(0);
     setDraftSubphase('spin');
     setSpinGeneration(0);
-    setSkipsLeft(1);
+    setRespinsLeft(1);
     setResult(null);
     setDailyPercentile(null);
     setPhase('draft');
@@ -74,8 +74,9 @@ export function useGame() {
     setDraftSubphase('pick');
   }, []);
 
-  const skipTeam = useCallback(() => {
-    if (skipsLeft <= 0) return;
+  /** One respin per game — after the spin lands and the roster is shown */
+  const respinTeam = useCallback(() => {
+    if (respinsLeft <= 0 || draftSubphase !== 'pick') return;
 
     const usedIds = draftRounds
       .filter((_, i) => i !== roundIndex)
@@ -88,10 +89,18 @@ export function useGame() {
       copy[roundIndex] = next;
       return copy;
     });
-    setSkipsLeft((s) => s - 1);
+    setRespinsLeft((s) => s - 1);
     setSpinGeneration((g) => g + 1);
     setDraftSubphase('spin');
-  }, [skipsLeft, draftRounds, roundIndex, runSeed, mode, dailyConstraint.filter]);
+  }, [
+    respinsLeft,
+    draftSubphase,
+    draftRounds,
+    roundIndex,
+    runSeed,
+    mode,
+    dailyConstraint.filter,
+  ]);
 
   const selectPlayer = useCallback(
     (player: Player, naturalRole: Role) => {
@@ -187,14 +196,14 @@ export function useGame() {
     spinGeneration,
     openRoles,
     filledRoles,
-    skipsLeft,
+    respinsLeft,
     result,
     dailyConstraint,
     dailyPercentile,
     dateKey,
     startGame,
     finishSpin,
-    skipTeam,
+    respinTeam,
     selectPlayer,
     startSimulation,
     finishSimulation,

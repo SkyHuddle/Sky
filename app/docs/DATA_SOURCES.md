@@ -48,7 +48,16 @@ npm run etl:gol:resolve   # map app player id → Gol.gg numeric id
 npm run etl:gol           # scrape career stats, write gol-ratings.json
 ```
 
-Output: `app/src/data/generated/gol-ratings.json` — merged at load time in `src/data/merge-gol-ratings.ts`. The home screen shows a badge when Gol data is present.
+Output: `app/src/data/generated/gol-ratings.json` — merged at load time in `src/data/merge-gol-ratings.ts`.
+
+**Team-year pass** (card OVR on draft):
+
+```bash
+npm run etl:gol:teams:resolve   # map historical team id → Gol team-season id
+npm run etl:gol:team-year         # scrape roster KDA/KP/dmg/gold per team-year
+```
+
+Output: `app/src/data/generated/team-year-ratings.json` — used by `player-power.ts` before career fallback. Home screen badge reflects team-year count when present.
 
 **Note:** Riot’s Match API is solo queue only; it does not replace Gol for pro careers.
 

@@ -1,5 +1,5 @@
 import type { PlayerRatings, Role } from '../../src/core/types';
-import type { GolPlayerStats } from './types';
+import type { GolPlayerStats, GolTeamYearStats } from './types';
 
 function clamp(n: number, min: number, max: number): number {
   return Math.round(Math.min(max, Math.max(min, n)));
@@ -49,6 +49,52 @@ export function computeRatingsFromGol(
     94
   );
   const synergy = clamp(52 + kp * 35 + wr * 8, 52, 95);
+
+  return {
+    overall,
+    peak,
+    international,
+    clutch,
+    consistency,
+    leadership,
+    synergy,
+  };
+}
+
+/** Team-season slice from Gol team roster table (+ season WR when available). */
+export function computeRatingsFromTeamYear(
+  stats: GolTeamYearStats,
+  role: Role
+): PlayerRatings {
+  const kda = norm(stats.kda, 1.8, 6.5);
+  const kp = norm(stats.killParticipation, 45, 75);
+  const dmg = norm(stats.damagePct, 14, 32);
+  const gold = norm(stats.goldPct, 16, 26);
+  const wr = norm(stats.winRate, 35, 75);
+  const sample = norm(Math.min(stats.games, 120), 8, 80);
+
+  const isSupport = role === 'support';
+  const isCarry = role === 'adc' || role === 'mid';
+
+  const impact =
+    kda * 0.26 +
+    kp * 0.2 +
+    (isCarry ? dmg * 0.22 : isSupport ? kp * 0.08 : dmg * 0.12) +
+    gold * 0.1 +
+    wr * 0.12 +
+    sample * 0.08;
+
+  const overall = clamp(52 + impact * 44, 52, 97);
+  const peak = clamp(overall + (kda > 0.8 ? 3 : 1), overall, 98);
+  const international = clamp(overall + (wr - 0.5) * 10, 50, 96);
+  const clutch = clamp(52 + kda * 30 + kp * 8, 50, 95);
+  const consistency = clamp(50 + wr * 36 + sample * 10, 50, 94);
+  const leadership = clamp(
+    50 + (isSupport || role === 'jungle' ? 10 : 3) + sample * 8 + kp * 6,
+    50,
+    92
+  );
+  const synergy = clamp(50 + kp * 38 + wr * 6, 50, 94);
 
   return {
     overall,

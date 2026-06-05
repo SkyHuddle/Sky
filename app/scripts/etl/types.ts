@@ -46,3 +46,29 @@ export interface GolIdMap {
   ids: Record<string, number>;
   unresolved: string[];
 }
+
+export interface GolTeamYearStats {
+  kda: number;
+  killParticipation: number;
+  damagePct: number;
+  goldPct: number;
+  winRate: number;
+  games: number;
+}
+
+export interface TeamYearRatingsEntry {
+  teamId: string;
+  playerId: string;
+  golTeamId: number;
+  golPlayerId: number;
+  season: string;
+  stats: GolTeamYearStats;
+  ratings: PlayerRatings;
+}
+
+export interface TeamYearRatingsBundle {
+  source: 'gol.gg-team-year';
+  generatedAt: string;
+  entryCount: number;
+  entries: Record<string, TeamYearRatingsEntry>;
+}

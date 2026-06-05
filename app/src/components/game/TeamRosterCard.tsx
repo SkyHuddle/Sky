@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import type { HistoricalTeam, Player, Role } from '@/core/types';
 import { ROLE_LABELS } from '@/core/types';
+import { cardOverall, isTeamYearRated } from '@/engine/player-power';
 import { cn } from '@/lib/utils';
 
 interface TeamRosterCardProps {
@@ -14,13 +15,14 @@ interface TeamRosterCardProps {
 
 export function TeamRosterCard({
   player,
-  team: _team,
+  team,
   teamRole,
   onSelect,
   disabled,
   roleTaken,
 }: TeamRosterCardProps) {
-  const cardOvr = player.ratings.overall;
+  const cardOvr = cardOverall(player, team);
+  const teamYear = isTeamYearRated(player, team);
   const initials = player.name
     .split(' ')
     .map((n) => n[0])
@@ -63,6 +65,11 @@ export function TeamRosterCard({
         </div>
         <div className="text-right shrink-0">
           <span className="font-display text-xl text-gold tabular-nums">{cardOvr}</span>
+          {teamYear && (
+            <p className="text-[8px] text-emerald-400/70 uppercase tracking-wider mt-0.5">
+              {team.year} split
+            </p>
+          )}
         </div>
       </div>
     </motion.button>
