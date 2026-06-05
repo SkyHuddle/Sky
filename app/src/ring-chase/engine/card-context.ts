@@ -74,7 +74,7 @@ export function cardStatBreakdown(
 export function cardStatConfidence(
   player: CodPlayer,
   team: HistoricalCodTeam
-): 'bp-stats' | 'estimated' {
+): 'bp-stats' | 'estimated' | 'curated-audit' {
   const entry = getTeamYearEntry(team.id, player.id);
   return entry?.source ?? 'estimated';
 }

@@ -51,8 +51,19 @@ export function loadDailyResult(dateKey: string): DailyRunResult | null {
   try {
     const raw = localStorage.getItem(DAILY_KEY);
     if (!raw) return null;
-    const map = JSON.parse(raw) as Record<string, DailyRunResult>;
-    return map[dateKey] ?? null;
+    const map = JSON.parse(raw) as Record<string, Partial<DailyRunResult>>;
+    const row = map[dateKey];
+    if (!row?.date) return null;
+    return {
+      date: row.date,
+      score: row.score ?? 0,
+      ringWon: row.ringWon ?? false,
+      perfectSeason: row.perfectSeason ?? false,
+      majorWins: row.majorWins ?? 0,
+      record: row.record ?? '—',
+      headline: row.headline ?? 'Played today',
+      percentile: row.percentile ?? null,
+    };
   } catch {
     return null;
   }

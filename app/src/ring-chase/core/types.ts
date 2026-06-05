@@ -196,6 +196,7 @@ export interface SimulationResult {
   mvp: CodPlayer;
   weakLink: CodPlayer | null;
   seasonSummary: SeasonSummary;
+  historicalComparison: HistoricalComparison;
   explanation: string;
   footer: string;
 }
@@ -227,7 +228,24 @@ export interface DailyRunResult {
   score: number;
   ringWon: boolean;
   perfectSeason: boolean;
+  majorWins: number;
+  record: string;
+  headline: string;
   percentile: number | null;
+}
+
+export interface HistoricalComparison {
+  yourHeadline: string;
+  facts: {
+    teamLabel: string;
+    playerTag: string;
+    placement: string;
+    majors: number;
+    champs: string;
+    ringThatYear: boolean;
+  }[];
+  anchorLine: string;
+  contrastLine: string;
 }
 
 export const ROLE_LABELS: Record<CodRole, string> = {

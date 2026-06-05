@@ -1,20 +1,24 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import type { SimulationResult, StageId, StageOutcome } from '../core/types';
+import type { DraftPick, SimulationResult, StageId, StageOutcome } from '../core/types';
 import { STAGES, STAGE_LABELS } from '../core/types';
 import { STAGE_PAUSE, RUN_BEAT_DELAY } from '../core/constants';
-import { Check, X, Minus } from 'lucide-react';
+import { lanMomentForBeat } from '../engine/lan-moments';
+import { Check, X, Minus, Radio } from 'lucide-react';
 import { SeasonRecordCard } from './SeasonRecordCard';
 
 interface SimulationScreenProps {
   result: SimulationResult;
+  picks: DraftPick[];
+  simSeed: string;
   onComplete: () => void;
 }
 
-export function SimulationScreen({ result, onComplete }: SimulationScreenProps) {
+export function SimulationScreen({ result, picks, simSeed, onComplete }: SimulationScreenProps) {
   const [stageIndex, setStageIndex] = useState(-1);
   const [beatIndex, setBeatIndex] = useState(-1);
   const [showFinal, setShowFinal] = useState(false);
+  const [activeMoment, setActiveMoment] = useState<string | null>(null);
   const onCompleteRef = useRef(onComplete);
   onCompleteRef.current = onComplete;
 
@@ -22,6 +26,7 @@ export function SimulationScreen({ result, onComplete }: SimulationScreenProps) 
     setStageIndex(-1);
     setBeatIndex(-1);
     setShowFinal(false);
+    setActiveMoment(null);
     const t = setTimeout(() => setStageIndex(0), 400);
     return () => clearTimeout(t);
   }, [result]);
@@ -43,6 +48,7 @@ export function SimulationScreen({ result, onComplete }: SimulationScreenProps) 
     const finishStage = () => {
       if (cancelled) return;
       setBeatIndex(-1);
+      setActiveMoment(null);
       schedule(() => {
         if (cancelled) return;
         if (stageIndex < STAGES.length - 1) {
@@ -60,6 +66,8 @@ export function SimulationScreen({ result, onComplete }: SimulationScreenProps) 
       if (cancelled) return;
       setBeatIndex(beat);
       const step = stage.run[beat];
+      const moment = lanMomentForBeat(picks, stage.stage, step, beat, simSeed);
+      setActiveMoment(moment);
 
       schedule(() => {
         if (cancelled) return;
@@ -82,7 +90,7 @@ export function SimulationScreen({ result, onComplete }: SimulationScreenProps) 
       cancelled = true;
       timeouts.forEach(clearTimeout);
     };
-  }, [stageIndex, result.stages]);
+  }, [stageIndex, result.stages, picks, simSeed]);
 
   return (
     <div className="flex flex-col min-h-[100dvh] items-center justify-center px-5 max-w-lg mx-auto py-10">
@@ -94,13 +102,28 @@ export function SimulationScreen({ result, onComplete }: SimulationScreenProps) 
         Ring Chase Run
       </motion.p>
       <motion.p
-        className="text-white/35 text-xs mb-8 text-center"
+        className="text-white/35 text-xs mb-4 text-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.05 }}
       >
         Win every major. Then Champs.
       </motion.p>
+
+      <AnimatePresence mode="wait">
+        {activeMoment && stageIndex >= 0 && !showFinal && (
+          <motion.div
+            key={activeMoment}
+            className="w-full mb-4 rounded-xl border border-ring-gold/20 bg-ring-gold/[0.06] px-3.5 py-2.5 flex items-start gap-2"
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+          >
+            <Radio className="w-3.5 h-3.5 text-ring-gold shrink-0 mt-0.5 animate-pulse" />
+            <p className="text-xs text-white/70 leading-relaxed">{activeMoment}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div className="w-full space-y-3">
         {STAGES.map((stageId, i) => {
@@ -173,7 +196,7 @@ function StageBlock({
             ? stagePassed
               ? 'border-ring-gold/30 bg-ring-gold/[0.05] shadow-lg shadow-ring-gold/5'
               : 'border-red-500/25 bg-red-500/[0.06]'
-              : 'border-ring-gold/15 bg-white/[0.025] ring-1 ring-ring-gold/10'
+            : 'border-ring-gold/15 bg-white/[0.025] ring-1 ring-ring-gold/10'
       }`}
     >
       <div className="flex items-center justify-between px-4 py-3 border-b border-white/[0.04] gap-3">

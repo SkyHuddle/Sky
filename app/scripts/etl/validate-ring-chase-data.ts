@@ -33,6 +33,7 @@ function main() {
   let errors = 0;
   let warnings = 0;
   let bpBacked = 0;
+  let audited = 0;
   let estimated = 0;
   let missing = 0;
 
@@ -61,6 +62,7 @@ function main() {
       }
 
       if (entry.source === 'bp-stats') bpBacked += 1;
+      else if (entry.source === 'curated-audit') audited += 1;
       else estimated += 1;
 
       if (entry.accomplishment !== expected) {
@@ -82,6 +84,11 @@ function main() {
 
       if (entry.source === 'estimated' && entry.stats.maps > 0) {
         console.warn(`⚠ Marked estimated but has maps: ${key}`);
+        warnings += 1;
+      }
+
+      if (entry.source === 'curated-audit' && entry.stats.maps < 1) {
+        console.warn(`⚠ Curated audit missing maps: ${key}`);
         warnings += 1;
       }
     }
@@ -108,7 +115,7 @@ function main() {
   console.log(`Teams: ${COD_TEAMS.length}`);
   console.log(`Roster slots: ${expectedSlots}`);
   console.log(`Bundle entries: ${bundle.entryCount}`);
-  console.log(`BP-backed: ${bpBacked} · Estimated: ${estimated} · Missing: ${missing}`);
+  console.log(`BP-backed: ${bpBacked} · Audited: ${audited} · Estimated: ${estimated} · Missing: ${missing}`);
   console.log(`Errors: ${errors} · Warnings: ${warnings}`);
 
   if (errors > 0) {

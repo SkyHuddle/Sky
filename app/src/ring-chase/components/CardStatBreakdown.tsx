@@ -63,6 +63,11 @@ export function CardStatBreakdown({ stats, team, compact }: CardStatBreakdownPro
           <Trophy className="w-3 h-3" />
           {ACCOMPLISHMENT_LABEL[stats.accomplishment]}
         </span>
+        {stats.source === 'curated-audit' && (
+          <span className="inline-flex items-center rounded-md bg-emerald-500/10 border border-emerald-500/20 px-2 py-1 text-[9px] uppercase tracking-wider text-emerald-400/90">
+            Verified
+          </span>
+        )}
         {stats.source === 'estimated' && (
           <span className="inline-flex items-center rounded-md bg-amber-500/10 border border-amber-500/20 px-2 py-1 text-[9px] uppercase tracking-wider text-amber-400/90">
             Estimated

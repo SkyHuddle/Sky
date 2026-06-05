@@ -96,7 +96,7 @@ function regularSeasonRecord(
 }
 
 export function buildSeasonSummary(
-  result: Omit<SimulationResult, 'seasonSummary' | 'explanation' | 'footer'>,
+  result: Omit<SimulationResult, 'seasonSummary' | 'explanation' | 'footer' | 'historicalComparison'>,
   picks: DraftPick[]
 ): SeasonSummary {
   const { stages, majorWins, ringWon, perfectSeason, champsOutcome } = result;

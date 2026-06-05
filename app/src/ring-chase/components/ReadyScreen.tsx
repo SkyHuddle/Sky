@@ -9,6 +9,7 @@ import { getPlayerHeadshot } from '../data/team-year-ratings';
 
 interface ReadyScreenProps {
   picks: DraftPick[];
+  isDaily?: boolean;
   onAttempt: () => void;
   onEdit: () => void;
 }
@@ -19,7 +20,7 @@ function ovrColor(ovr: number): string {
   return '#b8c0cc';
 }
 
-export function ReadyScreen({ picks, onAttempt, onEdit }: ReadyScreenProps) {
+export function ReadyScreen({ picks, isDaily, onAttempt, onEdit }: ReadyScreenProps) {
   const avgOvr =
     picks.reduce((s, p) => s + cardOverall(p.player, p.team), 0) / picks.length;
   const chemistry = evaluateChemistry(picks);
@@ -128,13 +129,20 @@ export function ReadyScreen({ picks, onAttempt, onEdit }: ReadyScreenProps) {
         >
           Start the Run
         </Button>
-        <button
-          type="button"
-          onClick={onEdit}
-          className="w-full text-sm text-white/35 hover:text-white/55 py-2"
-        >
-          Redraft last pick
-        </button>
+        {!isDaily && (
+          <button
+            type="button"
+            onClick={onEdit}
+            className="w-full text-sm text-white/35 hover:text-white/55 py-2"
+          >
+            Redraft last pick
+          </button>
+        )}
+        {isDaily && (
+          <p className="text-center text-[10px] text-white/30 py-1">
+            Daily locked — no redrafts or respins
+          </p>
+        )}
       </motion.div>
     </div>
   );

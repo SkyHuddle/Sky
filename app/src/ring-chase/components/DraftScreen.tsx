@@ -162,7 +162,7 @@ export function DraftScreen({
               ))}
             </div>
 
-            {respinsLeft > 0 && (
+            {!isDaily && respinsLeft > 0 && (
               <button
                 type="button"
                 onClick={onRespinTeam}
@@ -170,6 +170,11 @@ export function DraftScreen({
               >
                 Respin team ({respinsLeft} left)
               </button>
+            )}
+            {isDaily && (
+              <p className="text-center text-[10px] text-white/30 mt-6">
+                Daily mode — fixed teams, no respins
+              </p>
             )}
           </motion.div>
         )}

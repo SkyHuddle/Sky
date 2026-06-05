@@ -24,7 +24,13 @@ import {
   playerPassesFilter,
   teamPassesFilter,
 } from '../features/daily';
-import { recordAttempt, saveDailyResult } from '../features/storage';
+import {
+  canStartDailyToday,
+  loadDailyBoard,
+  submitDailyBoardEntry,
+  type DailyBoardEntry,
+} from '../features/daily-board';
+import { recordAttempt, saveDailyResult, loadDailyResult } from '../features/storage';
 import { resolveTeamRoster } from '../data';
 
 export function useRingChaseGame() {
@@ -39,9 +45,12 @@ export function useRingChaseGame() {
   const [respinsLeft, setRespinsLeft] = useState(1);
   const [result, setResult] = useState<SimulationResult | null>(null);
   const [dailyPercentile, setDailyPercentile] = useState<number | null>(null);
+  const [dailyBoard, setDailyBoard] = useState<DailyBoardEntry[]>([]);
+  const [dailyBoardEntryId, setDailyBoardEntryId] = useState<string | null>(null);
 
   const dateKey = getDateKey();
   const dailyConstraint = useMemo(() => getDailyConstraint(), []);
+  const dailyPlayed = useMemo(() => loadDailyResult(dateKey), [dateKey, phase]);
 
   const currentRound: DraftRound | null = draftRounds[roundIndex] ?? null;
 
@@ -54,6 +63,10 @@ export function useRingChaseGame() {
 
   const startGame = useCallback(
     (gameMode: GameMode) => {
+      if (gameMode === 'daily' && !canStartDailyToday(loadDailyResult(dateKey))) {
+        return;
+      }
+
       const constraint = getDailyConstraint();
       const teamFilter =
         gameMode === 'daily' && constraint.filter
@@ -74,9 +87,10 @@ export function useRingChaseGame() {
       setRoundIndex(0);
       setDraftSubphase('spin');
       setSpinGeneration(0);
-      setRespinsLeft(1);
+      setRespinsLeft(gameMode === 'daily' ? 0 : 1);
       setResult(null);
       setDailyPercentile(null);
+      setDailyBoardEntryId(null);
       setPhase('draft');
     },
     [dateKey]
@@ -87,18 +101,14 @@ export function useRingChaseGame() {
   }, []);
 
   const respinTeam = useCallback(() => {
+    if (mode === 'daily') return;
     if (respinsLeft <= 0 || draftSubphase !== 'pick') return;
 
     const usedIds = draftRounds
       .filter((_, i) => i !== roundIndex)
       .map((r) => r.team.id);
-    const teamFilter =
-      mode === 'daily' && dailyConstraint.filter
-        ? (team: Parameters<typeof teamPassesFilter>[0]) =>
-            teamPassesFilter(team, resolveTeamRoster(team), dailyConstraint)
-        : undefined;
 
-    const next = rerollRound(runSeed, roundIndex, usedIds, teamFilter);
+    const next = rerollRound(runSeed, roundIndex, usedIds);
     setDraftRounds((prev) => {
       const copy = [...prev];
       copy[roundIndex] = next;
@@ -107,7 +117,7 @@ export function useRingChaseGame() {
     setRespinsLeft((s) => s - 1);
     setSpinGeneration((g) => g + 1);
     setDraftSubphase('spin');
-  }, [respinsLeft, draftSubphase, draftRounds, roundIndex, runSeed, mode, dailyConstraint]);
+  }, [mode, respinsLeft, draftSubphase, draftRounds, roundIndex, runSeed]);
 
   const selectPlayer = useCallback(
     (player: CodPlayer, naturalRole: RosterSlot) => {
@@ -156,8 +166,26 @@ export function useRingChaseGame() {
         score: sim.rosterScore,
         ringWon: sim.ringWon,
         perfectSeason: sim.perfectSeason,
+        majorWins: sim.majorWins,
+        record: sim.seasonSummary.record,
+        headline: sim.seasonSummary.headline,
         percentile,
       });
+      const board = submitDailyBoardEntry(
+        dateKey,
+        sim.seasonSummary,
+        {
+          score: sim.rosterScore,
+          ringWon: sim.ringWon,
+          perfectSeason: sim.perfectSeason,
+          majorWins: sim.majorWins,
+          record: sim.seasonSummary.record,
+          headline: sim.seasonSummary.headline,
+        },
+        picks.map((p) => p.player.gamertag)
+      );
+      setDailyBoard(board);
+      setDailyBoardEntryId(`you-${dateKey}`);
     }
   }, [picks, mode, dateKey]);
 
@@ -173,17 +201,22 @@ export function useRingChaseGame() {
     setDraftSubphase('spin');
     setSpinGeneration(0);
     setRespinsLeft(1);
-  }, []);
+    setDailyBoard(loadDailyBoard(dateKey));
+  }, [dateKey]);
 
-  const playAgain = useCallback(() => startGame(mode), [mode, startGame]);
+  const playAgain = useCallback(() => {
+    if (mode === 'daily') return;
+    startGame(mode);
+  }, [mode, startGame]);
 
   const redraftLast = useCallback(() => {
+    if (mode === 'daily') return;
     if (picks.length === 0) return;
     setPicks((prev) => prev.slice(0, -1));
     setRoundIndex(picks.length - 1);
     setDraftSubphase('pick');
     setPhase('draft');
-  }, [picks]);
+  }, [mode, picks]);
 
   return {
     phase,
@@ -198,6 +231,9 @@ export function useRingChaseGame() {
     result,
     dailyConstraint,
     dailyPercentile,
+    dailyPlayed,
+    dailyBoard,
+    dailyBoardEntryId,
     dateKey,
     runSeed,
     startGame,

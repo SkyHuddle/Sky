@@ -4,8 +4,12 @@ import { Share2, RotateCcw, Home } from 'lucide-react';
 import type { DraftPick, GameMode, SimulationResult } from '../core/types';
 import { ShareCard } from './ShareCard';
 import { SeasonRecordCard } from './SeasonRecordCard';
+import { HistoricalCompare } from './HistoricalCompare';
+import { DailyLeaderboard } from './DailyLeaderboard';
 import { Button } from '@/components/ui/button';
 import { addShareHistory } from '../features/storage';
+import { loadDailyBoard } from '../features/daily-board';
+import { getDateKey } from '../features/daily';
 
 interface ResultScreenProps {
   picks: DraftPick[];
@@ -13,6 +17,7 @@ interface ResultScreenProps {
   mode: GameMode;
   dailyTitle?: string;
   dailyPercentile: number | null;
+  dailyBoardEntryId?: string | null;
   onPlayAgain: () => void;
   onHome: () => void;
 }
@@ -22,10 +27,12 @@ export function ResultScreen({
   result,
   mode,
   dailyTitle,
+  dailyBoardEntryId,
   onPlayAgain,
   onHome,
 }: ResultScreenProps) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const dailyBoard = mode === 'daily' ? loadDailyBoard(getDateKey()) : [];
 
   const handleShare = useCallback(async () => {
     addShareHistory({
@@ -35,8 +42,8 @@ export function ResultScreen({
       rosterNames: picks.map((p) => p.player.gamertag),
     });
 
-    const { seasonSummary } = result;
-    const text = `${seasonSummary.headline}\n${seasonSummary.narrative}\n\n${picks.map((p) => `${p.team.season} ${p.player.gamertag}`).join(' · ')}\nScore: ${result.rosterScore.toFixed(1)}`;
+    const { seasonSummary, historicalComparison } = result;
+    const text = `${seasonSummary.headline}\n${seasonSummary.narrative}\n\n${historicalComparison.anchorLine}\n\n${picks.map((p) => `${p.team.season} ${p.player.gamertag}`).join(' · ')}\nScore: ${result.rosterScore.toFixed(1)}`;
 
     if (navigator.share) {
       try {
@@ -56,13 +63,17 @@ export function ResultScreen({
           Final standings
         </p>
 
-        <div className="mb-6">
+        <div className="mb-5">
           <SeasonRecordCard
             summary={result.seasonSummary}
             variant="result"
             perfectSeason={result.perfectSeason}
             ringWon={result.ringWon}
           />
+        </div>
+
+        <div className="mb-6">
+          <HistoricalCompare comparison={result.historicalComparison} />
         </div>
 
         <div ref={cardRef} className="flex justify-center">
@@ -73,17 +84,9 @@ export function ResultScreen({
         </p>
       </motion.div>
 
-      {mode === 'daily' && (
-        <motion.div
-          className="mt-6 rounded-2xl glass-panel p-4 text-center border border-ring-gold/10"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.15 }}
-        >
-          <p className="text-[10px] uppercase tracking-widest text-ring-gold/70">Daily score</p>
-          <p className="font-display text-2xl text-white mt-1 tabular-nums">
-            {result.rosterScore.toFixed(1)}
-          </p>
+      {mode === 'daily' && dailyBoard.length > 0 && (
+        <motion.div className="mt-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }}>
+          <DailyLeaderboard board={dailyBoard} yourEntryId={dailyBoardEntryId ?? `you-${getDateKey()}`} />
         </motion.div>
       )}
 
@@ -109,13 +112,19 @@ export function ResultScreen({
           <Share2 className="w-4 h-4 mr-2 text-ring-gold" />
           Share Result
         </Button>
-        <Button
-          onClick={onPlayAgain}
-          className="w-full h-12 rounded-2xl bg-ring-gold text-black hover:bg-ring-gold/90 border-0 shadow-lg shadow-ring-gold/15"
-        >
-          <RotateCcw className="w-4 h-4 mr-2" />
-          Run It Back
-        </Button>
+        {mode === 'free' ? (
+          <Button
+            onClick={onPlayAgain}
+            className="w-full h-12 rounded-2xl bg-ring-gold text-black hover:bg-ring-gold/90 border-0 shadow-lg shadow-ring-gold/15"
+          >
+            <RotateCcw className="w-4 h-4 mr-2" />
+            Run It Back
+          </Button>
+        ) : (
+          <p className="text-center text-[11px] text-white/35 py-2">
+            Daily locked — one official attempt per day
+          </p>
+        )}
         <button
           type="button"
           onClick={onHome}

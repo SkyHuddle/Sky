@@ -1,11 +1,14 @@
 import { Link } from 'react-router';
 import { motion } from 'framer-motion';
-import { Trophy, Flame, Target, Calendar, Circle, ArrowLeft } from 'lucide-react';
+import { Trophy, Flame, Target, Calendar, Circle, ArrowLeft, Lock } from 'lucide-react';
 import type { DailyConstraint, DailyRunResult, PlayerStats } from '../core/types';
 import { Button } from '@/components/ui/button';
 import { RingPath } from './RingPath';
+import { DailyLeaderboard } from './DailyLeaderboard';
 import { getDailyChallengeNumber } from '../features/daily';
 import { getDataSourceLabel } from '../engine/card-context';
+import { canStartDailyToday, getDailyTeamLabels, loadDailyBoard } from '../features/daily-board';
+import { getDateKey } from '../features/daily';
 
 interface HomeScreenProps {
   stats: PlayerStats;
@@ -15,13 +18,6 @@ interface HomeScreenProps {
   onStartDaily: () => void;
 }
 
-const COMMUNITY_RESULTS = [
-  'Scump + Simp + Shotzzy + Cellium lost Champs Final',
-  'HyDra + FormaL + aBeZy + Scrap won Ring',
-  'Clayster + Karma + Dashy + Pred — Perfect Season',
-  'Simp + aBeZy + HyDra + Envoy — NO RING',
-];
-
 export function HomeScreen({
   stats,
   dailyConstraint,
@@ -30,6 +26,10 @@ export function HomeScreen({
   onStartDaily,
 }: HomeScreenProps) {
   const dailyNum = getDailyChallengeNumber();
+  const dateKey = getDateKey();
+  const dailyOpen = canStartDailyToday(dailyPlayed);
+  const dailyTeams = getDailyTeamLabels(dateKey);
+  const board = loadDailyBoard(dateKey);
 
   return (
     <div className="flex flex-col min-h-[100dvh] px-5 pb-10 pt-14 max-w-lg mx-auto">
@@ -99,47 +99,63 @@ export function HomeScreen({
 
         <button
           type="button"
-          onClick={onStartDaily}
-          className="w-full h-[3.75rem] rounded-2xl glass-panel hover:bg-white/[0.06] transition-all flex flex-col items-center justify-center gap-0.5"
+          onClick={dailyOpen ? onStartDaily : undefined}
+          disabled={!dailyOpen}
+          className={`w-full h-[3.75rem] rounded-2xl flex flex-col items-center justify-center gap-0.5 transition-all ${
+            dailyOpen
+              ? 'glass-panel hover:bg-white/[0.06]'
+              : 'glass-panel opacity-55 cursor-not-allowed'
+          }`}
         >
           <span className="flex items-center gap-2 text-white font-medium text-sm">
-            <Calendar className="w-4 h-4 text-ring-gold" />
+            {dailyOpen ? (
+              <Calendar className="w-4 h-4 text-ring-gold" />
+            ) : (
+              <Lock className="w-4 h-4 text-white/40" />
+            )}
             Daily Ring Chase #{dailyNum}
           </span>
-          <span className="text-[11px] text-white/40">{dailyConstraint.title}</span>
+          <span className="text-[11px] text-white/40">
+            {dailyOpen ? dailyConstraint.title : 'Completed — one attempt per day'}
+          </span>
         </button>
       </motion.div>
 
       <motion.div
-        className="rounded-2xl glass-panel p-4 mb-6"
+        className="rounded-2xl glass-panel p-4 mb-6 border border-white/[0.06]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.2 }}
+        transition={{ delay: 0.18 }}
       >
         <p className="text-[10px] uppercase tracking-widest text-ring-gold/70 mb-1.5">
-          Today&apos;s challenge
+          Today&apos;s board
         </p>
         <p className="text-white font-medium">{dailyConstraint.title}</p>
         <p className="text-white/45 text-xs mt-1.5 leading-relaxed">{dailyConstraint.description}</p>
+
+        <div className="mt-3 flex flex-wrap gap-1.5">
+          {dailyTeams.map((label) => (
+            <span
+              key={label}
+              className="text-[9px] px-2 py-0.5 rounded-full bg-white/[0.04] border border-white/[0.06] text-white/45"
+            >
+              {label}
+            </span>
+          ))}
+        </div>
+
         {dailyPlayed && (
-          <p className="text-ring-gold/80 text-xs mt-3 font-medium">
-            Played today · Score {dailyPlayed.score.toFixed(1)}
-          </p>
+          <div className="mt-3 pt-3 border-t border-white/[0.06]">
+            <p className="text-ring-gold/80 text-xs font-medium">{dailyPlayed.headline ?? 'Played today'}</p>
+            <p className="text-[10px] text-white/35 mt-1">
+              Score {dailyPlayed.score.toFixed(1)} · {dailyPlayed.record ?? '—'}
+            </p>
+          </div>
         )}
       </motion.div>
 
-      <motion.div
-        className="mb-6 space-y-2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.25 }}
-      >
-        <p className="text-[10px] uppercase tracking-widest text-white/30 mb-2">Community</p>
-        {COMMUNITY_RESULTS.map((line) => (
-          <p key={line} className="text-xs text-white/40 leading-relaxed px-1">
-            {line}
-          </p>
-        ))}
+      <motion.div className="mb-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.22 }}>
+        <DailyLeaderboard board={board} yourEntryId={dailyPlayed ? `you-${dateKey}` : undefined} />
       </motion.div>
 
       <StatsGrid stats={stats} />

@@ -28,7 +28,7 @@ export interface TeamYearRatingsEntry {
   bpPlayerId?: number;
   bpTag?: string;
   headshot?: string | null;
-  source: 'bp-stats' | 'estimated';
+  source: 'bp-stats' | 'estimated' | 'curated-audit';
   accomplishment: TeamYearAccomplishment;
   stats: TeamYearBpStats;
   overall: number;
@@ -112,7 +112,7 @@ export interface CardStatBreakdown {
   hardpoint?: ModeSlice;
   snd?: ModeSlice;
   control?: ModeSlice;
-  source: 'bp-stats' | 'estimated';
+  source: 'bp-stats' | 'estimated' | 'curated-audit';
   accomplishment: TeamYearAccomplishment;
 }
 

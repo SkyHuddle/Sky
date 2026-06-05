@@ -41,7 +41,7 @@ function stageStatWeakness(stage: StageId, players: CodPlayer[]): string | null 
 }
 
 export function buildExplanation(
-  result: Omit<SimulationResult, 'explanation' | 'footer' | 'seasonSummary'>,
+  result: Omit<SimulationResult, 'explanation' | 'footer' | 'seasonSummary' | 'historicalComparison'>,
   picks: DraftPick[]
 ): { explanation: string; footer: string } {
   const players = picks.map((p) => p.player);

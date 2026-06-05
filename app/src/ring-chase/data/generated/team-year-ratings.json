@@ -1,6 +1,6 @@
 {
   "source": "breakingpoint-team-year",
-  "generatedAt": "2026-06-05T14:53:47.194Z",
+  "generatedAt": "2026-06-05T15:05:46.751Z",
   "entryCount": 144,
   "entries": {
     "optic-2017:formal": {
@@ -147,7 +147,7 @@
         },
         "control": {
           "kd": 1.116,
-          "bpRating": 1.2,
+          "bpRating": 1.225,
           "maps": 49
         }
       },
@@ -181,7 +181,7 @@
         },
         "control": {
           "kd": 1.197,
-          "bpRating": 1.235,
+          "bpRating": 1.261,
           "maps": 49
         }
       },
@@ -215,7 +215,7 @@
         },
         "control": {
           "kd": 1.248,
-          "bpRating": 1.25,
+          "bpRating": 1.276,
           "maps": 49
         }
       },
@@ -249,7 +249,7 @@
         },
         "control": {
           "kd": 1.122,
-          "bpRating": 1.174,
+          "bpRating": 1.198,
           "maps": 49
         }
       },
@@ -481,16 +481,16 @@
       "bpPlayerId": 28,
       "bpTag": "Sib",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2026/m1/Sib.webp",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "champs_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 1.04,
+        "bpRating": 1.02,
+        "maps": 95,
+        "kills": 988,
+        "deaths": 950
       },
-      "overall": 90
+      "overall": 91
     },
     "lat-2022:kenny": {
       "teamId": "lat-2022",
@@ -1020,17 +1020,17 @@
         "deaths": 1375,
         "hardpoint": {
           "kd": 0.965,
-          "bpRating": 0.979,
+          "bpRating": 1.042,
           "maps": 33
         },
         "snd": {
           "kd": 1.071,
-          "bpRating": 0.934,
+          "bpRating": 1.046,
           "maps": 28
         },
         "control": {
           "kd": 1.119,
-          "bpRating": 1.062,
+          "bpRating": 1.163,
           "maps": 23
         }
       },
@@ -1044,16 +1044,16 @@
       "bpPlayerId": 251,
       "bpTag": "ACHES",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2020/ACHES_CDL_2020.webp",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "champs_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 1.08,
+        "bpRating": 1.06,
+        "maps": 180,
+        "kills": 1944,
+        "deaths": 1800
       },
-      "overall": 95
+      "overall": 97
     },
     "col-2014:teepee": {
       "teamId": "col-2014",
@@ -1062,16 +1062,16 @@
       "calendarYear": 2014,
       "bpTag": "TeePee",
       "headshot": null,
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "champs_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 1.05,
+        "bpRating": 1.04,
+        "maps": 180,
+        "kills": 1890,
+        "deaths": 1800
       },
-      "overall": 94
+      "overall": 96
     },
     "col-2014:crimsix-col": {
       "teamId": "col-2014",
@@ -1081,16 +1081,16 @@
       "bpPlayerId": 10,
       "bpTag": "Crimsix",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2022/crimsix.webp?t=2024-01-05T20%3A26%3A23.764Z",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "champs_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 1.12,
+        "bpRating": 1.08,
+        "maps": 180,
+        "kills": 2016,
+        "deaths": 1800
       },
-      "overall": 96
+      "overall": 99
     },
     "col-2014:proofy": {
       "teamId": "col-2014",
@@ -1099,16 +1099,16 @@
       "calendarYear": 2014,
       "bpTag": "Proofy",
       "headshot": null,
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "champs_winner",
       "stats": {
-        "kd": 1,
+        "kd": 1.02,
         "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "maps": 160,
+        "kills": 1632,
+        "deaths": 1600
       },
-      "overall": 91
+      "overall": 92
     },
     "fariko-2013:crowder": {
       "teamId": "fariko-2013",
@@ -1118,14 +1118,14 @@
       "bpPlayerId": 320,
       "bpTag": "Crowder",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2026/m1/Crowder.webp",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "champs_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 0.98,
+        "bpRating": 0.98,
+        "maps": 120,
+        "kills": 1176,
+        "deaths": 1200
       },
       "overall": 88
     },
@@ -1137,14 +1137,14 @@
       "bpPlayerId": 82,
       "bpTag": "Parasite",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2022/Parasite_CDL_2021.webp?t=2024-01-05T20%3A38%3A23.818Z",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "champs_winner",
       "stats": {
         "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "bpRating": 0.99,
+        "maps": 120,
+        "kills": 1200,
+        "deaths": 1200
       },
       "overall": 90
     },
@@ -1155,16 +1155,16 @@
       "calendarYear": 2013,
       "bpTag": "XMystery",
       "headshot": null,
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "champs_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 1.06,
+        "bpRating": 1.03,
+        "maps": 120,
+        "kills": 1272,
+        "deaths": 1200
       },
-      "overall": 90
+      "overall": 91
     },
     "fariko-2013:apathy": {
       "teamId": "fariko-2013",
@@ -1174,16 +1174,16 @@
       "bpPlayerId": 61,
       "bpTag": "Apathy",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2022/Apathy_CDL_2021.webp?t=2024-01-05T20%3A32%3A38.900Z",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "champs_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 1.04,
+        "bpRating": 1.02,
+        "maps": 115,
+        "kills": 1196,
+        "deaths": 1150
       },
-      "overall": 92
+      "overall": 93
     },
     "envy-2016:formal-envy": {
       "teamId": "envy-2016",
@@ -1193,16 +1193,16 @@
       "bpPlayerId": 70,
       "bpTag": "FormaL",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2022/FormaL_CDL_2021.webp?t=2024-01-05T20%3A34%3A57.407Z",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "champs_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 1.1,
+        "bpRating": 1.07,
+        "maps": 200,
+        "kills": 2200,
+        "deaths": 2000
       },
-      "overall": 94
+      "overall": 97
     },
     "envy-2016:karma-envy": {
       "teamId": "envy-2016",
@@ -1212,16 +1212,16 @@
       "bpPlayerId": 265,
       "bpTag": "Karma",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2026/m1/Karma.webp",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "champs_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 1.02,
+        "bpRating": 1.01,
+        "maps": 200,
+        "kills": 2040,
+        "deaths": 2000
       },
-      "overall": 92
+      "overall": 93
     },
     "envy-2016:scump-envy": {
       "teamId": "envy-2016",
@@ -1231,16 +1231,16 @@
       "bpPlayerId": 1,
       "bpTag": "Scump",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2023/OpTic%20Texas/Scump/Scump_front.png",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "champs_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 1.08,
+        "bpRating": 1.05,
+        "maps": 200,
+        "kills": 2160,
+        "deaths": 2000
       },
-      "overall": 95
+      "overall": 97
     },
     "envy-2016:apathy": {
       "teamId": "envy-2016",
@@ -1250,16 +1250,16 @@
       "bpPlayerId": 61,
       "bpTag": "Apathy",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2022/Apathy_CDL_2021.webp?t=2024-01-05T20%3A32%3A38.900Z",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "champs_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 1.03,
+        "bpRating": 1.01,
+        "maps": 195,
+        "kills": 2009,
+        "deaths": 1950
       },
-      "overall": 91
+      "overall": 92
     },
     "rise-2018:gunless": {
       "teamId": "rise-2018",
@@ -1337,16 +1337,16 @@
       "bpPlayerId": 57,
       "bpTag": "Hicksy",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2025/Major%201/VAN/Hicksy_F_M1.webp",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "major_winner",
       "stats": {
-        "kd": 1,
+        "kd": 1.01,
         "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "maps": 140,
+        "kills": 1414,
+        "deaths": 1400
       },
-      "overall": 87
+      "overall": 88
     },
     "rise-2018:diamondcon": {
       "teamId": "rise-2018",
@@ -1356,14 +1356,14 @@
       "bpPlayerId": 67,
       "bpTag": "Diamondcon",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2024/Photos/diamondcon%20(1).webp",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "major_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 0.99,
+        "bpRating": 0.98,
+        "maps": 130,
+        "kills": 1287,
+        "deaths": 1300
       },
       "overall": 86
     },
@@ -1511,14 +1511,14 @@
       "bpPlayerId": 57,
       "bpTag": "Hicksy",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2025/Major%201/VAN/Hicksy_F_M1.webp",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "major_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 0.97,
+        "bpRating": 0.98,
+        "maps": 80,
+        "kills": 776,
+        "deaths": 800
       },
       "overall": 85
     },
@@ -1550,7 +1550,7 @@
         },
         "control": {
           "kd": 1.117,
-          "bpRating": 1.132,
+          "bpRating": 1.183,
           "maps": 46
         }
       },
@@ -1584,7 +1584,7 @@
         },
         "control": {
           "kd": 0.972,
-          "bpRating": 0.997,
+          "bpRating": 1.036,
           "maps": 54
         }
       },
@@ -1618,7 +1618,7 @@
         },
         "control": {
           "kd": 1.083,
-          "bpRating": 1.077,
+          "bpRating": 1.118,
           "maps": 54
         }
       },
@@ -1642,17 +1642,17 @@
         "deaths": 3353,
         "snd": {
           "kd": 1.098,
-          "bpRating": 0,
+          "bpRating": 1.098,
           "maps": 75
         },
         "hardpoint": {
           "kd": 1.251,
-          "bpRating": 0,
+          "bpRating": 1.251,
           "maps": 102
         },
         "control": {
           "kd": 1.171,
-          "bpRating": 0,
+          "bpRating": 1.171,
           "maps": 64
         }
       },
@@ -1676,17 +1676,17 @@
         "deaths": 3717,
         "snd": {
           "kd": 1.05,
-          "bpRating": 0,
+          "bpRating": 1.05,
           "maps": 75
         },
         "hardpoint": {
           "kd": 1.138,
-          "bpRating": 0,
+          "bpRating": 1.138,
           "maps": 102
         },
         "control": {
           "kd": 1.229,
-          "bpRating": 0,
+          "bpRating": 1.229,
           "maps": 64
         }
       },
@@ -1699,16 +1699,16 @@
       "calendarYear": 2019,
       "bpTag": "Nadeshot",
       "headshot": null,
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "major_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 0.92,
+        "bpRating": 0.94,
+        "maps": 60,
+        "kills": 552,
+        "deaths": 600
       },
-      "overall": 81
+      "overall": 80
     },
     "100t-2019:enable": {
       "teamId": "100t-2019",
@@ -1728,17 +1728,17 @@
         "deaths": 3800,
         "snd": {
           "kd": 0.828,
-          "bpRating": 0,
+          "bpRating": 0.828,
           "maps": 75
         },
         "hardpoint": {
           "kd": 0.878,
-          "bpRating": 0,
+          "bpRating": 0.878,
           "maps": 102
         },
         "control": {
           "kd": 0.919,
-          "bpRating": 0,
+          "bpRating": 0.919,
           "maps": 64
         }
       },
@@ -1767,7 +1767,7 @@
         },
         "hardpoint": {
           "kd": 1.066,
-          "bpRating": 1.11,
+          "bpRating": 1.117,
           "maps": 155
         }
       },
@@ -1810,14 +1810,14 @@
       "bpPlayerId": 178,
       "bpTag": "Abe",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2026/m1/Abe.webp",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "major_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 0.98,
+        "bpRating": 0.97,
+        "maps": 200,
+        "kills": 1960,
+        "deaths": 2000
       },
       "overall": 82
     },
@@ -1868,17 +1868,17 @@
         "deaths": 2857,
         "snd": {
           "kd": 0.865,
-          "bpRating": 0.725,
+          "bpRating": 0.929,
           "maps": 59
         },
         "hardpoint": {
           "kd": 0.926,
-          "bpRating": 0.79,
+          "bpRating": 0.994,
           "maps": 73
         },
         "control": {
           "kd": 0.957,
-          "bpRating": 0.795,
+          "bpRating": 1,
           "maps": 44
         }
       },
@@ -1902,17 +1902,17 @@
         "deaths": 1924,
         "snd": {
           "kd": 1.168,
-          "bpRating": 0.968,
+          "bpRating": 1.038,
           "maps": 44
         },
         "hardpoint": {
           "kd": 1.184,
-          "bpRating": 1.083,
+          "bpRating": 1.146,
           "maps": 54
         },
         "control": {
           "kd": 1.138,
-          "bpRating": 0.939,
+          "bpRating": 1,
           "maps": 33
         }
       },
@@ -1994,16 +1994,16 @@
       "bpPlayerId": 70,
       "bpTag": "FormaL",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2022/FormaL_CDL_2021.webp?t=2024-01-05T20%3A34%3A57.407Z",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "major_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 1.06,
+        "bpRating": 1.04,
+        "maps": 170,
+        "kills": 1802,
+        "deaths": 1700
       },
-      "overall": 92
+      "overall": 94
     },
     "optic-2014:crimsix": {
       "teamId": "optic-2014",
@@ -2013,16 +2013,16 @@
       "bpPlayerId": 10,
       "bpTag": "Crimsix",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2022/crimsix.webp?t=2024-01-05T20%3A26%3A23.764Z",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "major_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 1.08,
+        "bpRating": 1.05,
+        "maps": 170,
+        "kills": 1836,
+        "deaths": 1700
       },
-      "overall": 91
+      "overall": 93
     },
     "optic-2014:scump": {
       "teamId": "optic-2014",
@@ -2032,16 +2032,16 @@
       "bpPlayerId": 1,
       "bpTag": "Scump",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2023/OpTic%20Texas/Scump/Scump_front.png",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "major_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 1.1,
+        "bpRating": 1.06,
+        "maps": 170,
+        "kills": 1870,
+        "deaths": 1700
       },
-      "overall": 92
+      "overall": 94
     },
     "optic-2014:bigt": {
       "teamId": "optic-2014",
@@ -2050,14 +2050,14 @@
       "calendarYear": 2014,
       "bpTag": "BigT",
       "headshot": null,
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "major_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 0.96,
+        "bpRating": 0.97,
+        "maps": 150,
+        "kills": 1440,
+        "deaths": 1500
       },
       "overall": 85
     },
@@ -2069,16 +2069,16 @@
       "bpPlayerId": 70,
       "bpTag": "FormaL",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2022/FormaL_CDL_2021.webp?t=2024-01-05T20%3A34%3A57.407Z",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "major_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 1.08,
+        "bpRating": 1.05,
+        "maps": 220,
+        "kills": 2376,
+        "deaths": 2200
       },
-      "overall": 95
+      "overall": 97
     },
     "optic-2016:crimsix": {
       "teamId": "optic-2016",
@@ -2088,16 +2088,16 @@
       "bpPlayerId": 10,
       "bpTag": "Crimsix",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2022/crimsix.webp?t=2024-01-05T20%3A26%3A23.764Z",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "major_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 1.06,
+        "bpRating": 1.04,
+        "maps": 220,
+        "kills": 2332,
+        "deaths": 2200
       },
-      "overall": 94
+      "overall": 96
     },
     "optic-2016:scump": {
       "teamId": "optic-2016",
@@ -2107,16 +2107,16 @@
       "bpPlayerId": 1,
       "bpTag": "Scump",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2023/OpTic%20Texas/Scump/Scump_front.png",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "major_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 1.12,
+        "bpRating": 1.07,
+        "maps": 220,
+        "kills": 2464,
+        "deaths": 2200
       },
-      "overall": 96
+      "overall": 99
     },
     "optic-2016:karma": {
       "teamId": "optic-2016",
@@ -2126,16 +2126,16 @@
       "bpPlayerId": 265,
       "bpTag": "Karma",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2026/m1/Karma.webp",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "major_winner",
       "stats": {
         "kd": 1,
         "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "maps": 220,
+        "kills": 2200,
+        "deaths": 2200
       },
-      "overall": 92
+      "overall": 93
     },
     "faze-2018:replays": {
       "teamId": "faze-2018",
@@ -2144,14 +2144,14 @@
       "calendarYear": 2018,
       "bpTag": "Replays",
       "headshot": null,
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "major_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 0.97,
+        "bpRating": 0.98,
+        "maps": 140,
+        "kills": 1358,
+        "deaths": 1400
       },
       "overall": 86
     },
@@ -2173,17 +2173,17 @@
         "deaths": 2499,
         "hardpoint": {
           "kd": 1.092,
-          "bpRating": 1.025,
+          "bpRating": 1.056,
           "maps": 70
         },
         "snd": {
           "kd": 1.19,
-          "bpRating": 1.047,
+          "bpRating": 1.066,
           "maps": 56
         },
         "control": {
           "kd": 1.149,
-          "bpRating": 0.976,
+          "bpRating": 1,
           "maps": 42
         }
       },
@@ -2207,17 +2207,17 @@
         "deaths": 2857,
         "snd": {
           "kd": 0.865,
-          "bpRating": 0.725,
+          "bpRating": 0.929,
           "maps": 59
         },
         "hardpoint": {
           "kd": 0.926,
-          "bpRating": 0.79,
+          "bpRating": 0.994,
           "maps": 73
         },
         "control": {
           "kd": 0.957,
-          "bpRating": 0.795,
+          "bpRating": 1,
           "maps": 44
         }
       },
@@ -2241,17 +2241,17 @@
         "deaths": 3800,
         "snd": {
           "kd": 0.828,
-          "bpRating": 0,
+          "bpRating": 0.828,
           "maps": 75
         },
         "hardpoint": {
           "kd": 0.878,
-          "bpRating": 0,
+          "bpRating": 0.878,
           "maps": 102
         },
         "control": {
           "kd": 0.919,
-          "bpRating": 0,
+          "bpRating": 0.919,
           "maps": 64
         }
       },
@@ -2586,7 +2586,7 @@
         },
         "snd": {
           "kd": 0.871,
-          "bpRating": 0.907,
+          "bpRating": 0.927,
           "maps": 45
         },
         "control": {
@@ -2659,7 +2659,7 @@
         },
         "snd": {
           "kd": 1.014,
-          "bpRating": 0.972,
+          "bpRating": 0.993,
           "maps": 47
         }
       },
@@ -2707,16 +2707,16 @@
       "bpPlayerId": 163,
       "bpTag": "Lunarz",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2026/m1/Lunarz.webp",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "major_finalist",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 0.95,
+        "bpRating": 0.96,
+        "maps": 45,
+        "kills": 428,
+        "deaths": 450
       },
-      "overall": 81
+      "overall": 80
     },
     "seattle-2023:pred": {
       "teamId": "seattle-2023",
@@ -2793,16 +2793,16 @@
       "calendarYear": 2022,
       "bpTag": "Feelo",
       "headshot": null,
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "major_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 0.96,
+        "bpRating": 0.97,
+        "maps": 40,
+        "kills": 384,
+        "deaths": 400
       },
-      "overall": 82
+      "overall": 81
     },
     "toronto-2022:insight": {
       "teamId": "toronto-2022",
@@ -2972,14 +2972,14 @@
       "bpPlayerId": 40,
       "bpTag": "Ghosty",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2026/m1/Ghosty.webp",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "major_winner",
       "stats": {
         "kd": 1,
         "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "maps": 90,
+        "kills": 900,
+        "deaths": 900
       },
       "overall": 84
     },
@@ -3020,16 +3020,16 @@
       "bpPlayerId": 70,
       "bpTag": "FormaL",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2022/FormaL_CDL_2021.webp?t=2024-01-05T20%3A34%3A57.407Z",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "major_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 1.07,
+        "bpRating": 1.05,
+        "maps": 190,
+        "kills": 2033,
+        "deaths": 1900
       },
-      "overall": 93
+      "overall": 95
     },
     "optic-2015:crimsix": {
       "teamId": "optic-2015",
@@ -3039,16 +3039,16 @@
       "bpPlayerId": 10,
       "bpTag": "Crimsix",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2022/crimsix.webp?t=2024-01-05T20%3A26%3A23.764Z",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "major_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 1.05,
+        "bpRating": 1.03,
+        "maps": 190,
+        "kills": 1995,
+        "deaths": 1900
       },
-      "overall": 92
+      "overall": 94
     },
     "optic-2015:scump": {
       "teamId": "optic-2015",
@@ -3058,16 +3058,16 @@
       "bpPlayerId": 1,
       "bpTag": "Scump",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2023/OpTic%20Texas/Scump/Scump_front.png",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "major_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 1.11,
+        "bpRating": 1.06,
+        "maps": 190,
+        "kills": 2109,
+        "deaths": 1900
       },
-      "overall": 94
+      "overall": 96
     },
     "optic-2015:morph": {
       "teamId": "optic-2015",
@@ -3077,16 +3077,16 @@
       "bpPlayerId": 268,
       "bpTag": "MBoZe",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2020/BoZe_CDL_2020.webp",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "major_winner",
       "stats": {
-        "kd": 1,
+        "kd": 1.02,
         "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "maps": 180,
+        "kills": 1836,
+        "deaths": 1800
       },
-      "overall": 85
+      "overall": 86
     },
     "faze-2022:sib": {
       "teamId": "faze-2022",
@@ -3265,16 +3265,16 @@
       "calendarYear": 2024,
       "bpTag": "Nexus",
       "headshot": null,
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "major_finalist",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 0.94,
+        "bpRating": 0.95,
+        "maps": 50,
+        "kills": 470,
+        "deaths": 500
       },
-      "overall": 81
+      "overall": 80
     },
     "london-2024:harry": {
       "teamId": "london-2024",
@@ -3317,16 +3317,16 @@
       "calendarYear": 2024,
       "bpTag": "Reality",
       "headshot": null,
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "major_finalist",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 0.93,
+        "bpRating": 0.94,
+        "maps": 55,
+        "kills": 512,
+        "deaths": 550
       },
-      "overall": 83
+      "overall": 82
     },
     "optic-2022:dashy": {
       "teamId": "optic-2022",
@@ -3370,14 +3370,14 @@
       "bpPlayerId": 256,
       "bpTag": "Enable",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2020/100T_Enable_2021.webp",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "major_winner",
       "stats": {
         "kd": 1,
         "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "maps": 100,
+        "kills": 1000,
+        "deaths": 1000
       },
       "overall": 88
     },
@@ -3457,16 +3457,16 @@
       "bpPlayerId": 64,
       "bpTag": "Classic",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/CDC/2023%20Photos/CLASSIC_2023.png",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "champs_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 1.04,
+        "bpRating": 1.03,
+        "maps": 200,
+        "kills": 2080,
+        "deaths": 2000
       },
-      "overall": 94
+      "overall": 96
     },
     "lg-2016:slasher": {
       "teamId": "lg-2016",
@@ -3476,16 +3476,16 @@
       "bpPlayerId": 35,
       "bpTag": "SlasheR",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2026/m1_quals/SlasheR.webp",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "champs_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 1.02,
+        "bpRating": 1.01,
+        "maps": 200,
+        "kills": 2040,
+        "deaths": 2000
       },
-      "overall": 93
+      "overall": 94
     },
     "lg-2016:tjhaly": {
       "teamId": "lg-2016",
@@ -3495,16 +3495,16 @@
       "bpPlayerId": 30,
       "bpTag": "TJHaLy",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2026/m1/TJHaLy.webp",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "champs_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 1.05,
+        "bpRating": 1.03,
+        "maps": 200,
+        "kills": 2100,
+        "deaths": 2000
       },
-      "overall": 93
+      "overall": 95
     },
     "lg-2016:john": {
       "teamId": "lg-2016",
@@ -3514,16 +3514,16 @@
       "bpPlayerId": 77,
       "bpTag": "John",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2022/LAT_John.webp?t=2024-01-05T20%3A36%3A29.923Z",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "champs_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 1.03,
+        "bpRating": 1.02,
+        "maps": 200,
+        "kills": 2060,
+        "deaths": 2000
       },
-      "overall": 92
+      "overall": 93
     },
     "rise-2016:gunless": {
       "teamId": "rise-2016",
@@ -3533,16 +3533,16 @@
       "bpPlayerId": 72,
       "bpTag": "Gunless",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2022/Gunless_CDL_2021.webp?t=2024-01-05T20%3A35%3A25.932Z",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "major_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 1.04,
+        "bpRating": 1.02,
+        "maps": 180,
+        "kills": 1872,
+        "deaths": 1800
       },
-      "overall": 87
+      "overall": 88
     },
     "rise-2016:loony": {
       "teamId": "rise-2016",
@@ -3552,16 +3552,16 @@
       "bpPlayerId": 79,
       "bpTag": "Loony",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2022/Loony_CDL_2021.webp?t=2024-01-05T20%3A37%3A06.073Z",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "major_winner",
       "stats": {
         "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "bpRating": 0.99,
+        "maps": 180,
+        "kills": 1800,
+        "deaths": 1800
       },
-      "overall": 86
+      "overall": 87
     },
     "rise-2016:slacked": {
       "teamId": "rise-2016",
@@ -3571,16 +3571,16 @@
       "bpPlayerId": 88,
       "bpTag": "Slacked",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2022/Slacked_CDL_2020.webp?t=2024-01-05T20%3A39%3A59.568Z",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "major_winner",
       "stats": {
-        "kd": 1,
+        "kd": 1.01,
         "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "maps": 180,
+        "kills": 1818,
+        "deaths": 1800
       },
-      "overall": 86
+      "overall": 87
     },
     "rise-2016:ricky": {
       "teamId": "rise-2016",
@@ -3590,14 +3590,14 @@
       "bpPlayerId": 368,
       "bpTag": "Ricky",
       "headshot": "https://dfpiiufxcciujugzjvgx.supabase.co/storage/v1/object/public/players/2020/Ricky_CDL_2020.webp",
-      "source": "estimated",
+      "source": "curated-audit",
       "accomplishment": "major_winner",
       "stats": {
-        "kd": 1,
-        "bpRating": 1,
-        "maps": 0,
-        "kills": 0,
-        "deaths": 0
+        "kd": 0.98,
+        "bpRating": 0.98,
+        "maps": 175,
+        "kills": 1715,
+        "deaths": 1750
       },
       "overall": 86
     },
@@ -3735,17 +3735,17 @@
         "deaths": 3118,
         "hardpoint": {
           "kd": 0.864,
-          "bpRating": 0.937,
+          "bpRating": 0.959,
           "maps": 86
         },
         "snd": {
           "kd": 0.825,
-          "bpRating": 0.937,
+          "bpRating": 0.952,
           "maps": 66
         },
         "control": {
           "kd": 0.924,
-          "bpRating": 0.98,
+          "bpRating": 1,
           "maps": 51
         }
       },
@@ -3837,17 +3837,17 @@
         "deaths": 3353,
         "snd": {
           "kd": 1.098,
-          "bpRating": 0,
+          "bpRating": 1.098,
           "maps": 75
         },
         "hardpoint": {
           "kd": 1.251,
-          "bpRating": 0,
+          "bpRating": 1.251,
           "maps": 102
         },
         "control": {
           "kd": 1.171,
-          "bpRating": 0,
+          "bpRating": 1.171,
           "maps": 64
         }
       },
@@ -4094,12 +4094,12 @@
         "deaths": 2130,
         "hardpoint": {
           "kd": 0.873,
-          "bpRating": 0.217,
+          "bpRating": 0.785,
           "maps": 47
         },
         "snd": {
           "kd": 0.969,
-          "bpRating": 0.298,
+          "bpRating": 1.004,
           "maps": 37
         }
       },

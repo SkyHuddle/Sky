@@ -8,7 +8,7 @@ const DAILY_CONSTRAINTS: DailyConstraint[] = [
   {
     id: 'standard',
     title: 'Daily Ring Chase',
-    description: 'Same four iconic teams for everyone. One official attempt.',
+    description: 'Same four team-year cards for everyone. One attempt — no respins.',
   },
   {
     id: 'no-rings',

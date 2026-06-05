@@ -63,13 +63,23 @@ export function RingChaseApp() {
 
         {game.phase === 'ready' && (
           <motion.div key="ready" initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} className="relative z-10">
-            <ReadyScreen picks={game.picks} onAttempt={game.startSimulation} onEdit={game.redraftLast} />
+            <ReadyScreen
+              picks={game.picks}
+              isDaily={game.mode === 'daily'}
+              onAttempt={game.startSimulation}
+              onEdit={game.redraftLast}
+            />
           </motion.div>
         )}
 
         {game.phase === 'simulation' && game.result && (
           <motion.div key="sim" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="relative z-10">
-            <SimulationScreen result={game.result} onComplete={game.finishSimulation} />
+            <SimulationScreen
+              result={game.result}
+              picks={game.picks}
+              simSeed={game.mode === 'daily' ? `${game.dateKey}-${game.picks.map((p) => p.player.id).sort().join('-')}` : game.runSeed}
+              onComplete={game.finishSimulation}
+            />
           </motion.div>
         )}
 
@@ -81,6 +91,7 @@ export function RingChaseApp() {
               mode={game.mode}
               dailyTitle={game.dailyConstraint.title}
               dailyPercentile={game.dailyPercentile}
+              dailyBoardEntryId={game.dailyBoardEntryId}
               onPlayAgain={game.playAgain}
               onHome={game.resetToHome}
             />

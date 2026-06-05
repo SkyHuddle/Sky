@@ -15,6 +15,7 @@ import {
   type TeamYearAccomplishment,
 } from '../../src/ring-chase/data/accomplishment';
 import type { CodPlayer, HistoricalCodTeam, PlayerRatings } from '../../src/ring-chase/core/types';
+import { ESTIMATED_SLOT_OVERRIDES } from '../../src/ring-chase/data/estimated-slot-overrides';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT_DIR = join(__dirname, '../../src/ring-chase/data/generated');
@@ -95,7 +96,7 @@ export interface TeamYearRatingsEntry {
   bpPlayerId?: number;
   bpTag?: string;
   headshot?: string | null;
-  source: 'bp-stats' | 'estimated';
+  source: 'bp-stats' | 'estimated' | 'curated-audit';
   accomplishment: TeamYearAccomplishment;
   stats: TeamYearBpStats;
   overall: number;
@@ -293,6 +294,7 @@ async function main() {
 
   let bpHits = 0;
   let estimated = 0;
+  let audited = 0;
 
   for (const team of COD_TEAMS) {
     const seasonId = CALENDAR_TO_BP_SEASON[team.season];
@@ -311,7 +313,10 @@ async function main() {
       const playerRows = bpPlayer && seasonStats ? seasonStats.get(bpPlayer.id) : undefined;
       const agg = playerRows ? aggregateStats(playerRows) : null;
 
-      let source: 'bp-stats' | 'estimated' = 'estimated';
+      const slotKey = entryKey(team.id, playerId);
+      const override = ESTIMATED_SLOT_OVERRIDES[slotKey];
+
+      let source: 'bp-stats' | 'estimated' | 'curated-audit' = 'estimated';
       let stats: TeamYearBpStats;
       let overall: number;
 
@@ -320,6 +325,19 @@ async function main() {
         stats = agg;
         overall = overallFromBp(agg, player, team, accomplishment);
         bpHits += 1;
+      } else if (override) {
+        source = 'curated-audit';
+        stats = {
+          kd: override.kd,
+          bpRating: override.bpRating,
+          maps: override.maps,
+          kills: Math.round(override.kd * override.maps * 10),
+          deaths: Math.round(override.maps * 10),
+        };
+        overall =
+          override.overall ??
+          overallFromBp(stats, player, team, accomplishment);
+        audited += 1;
       } else {
         stats = {
           kd: 1,
@@ -346,7 +364,7 @@ async function main() {
         overall,
       };
 
-      const mark = source === 'bp-stats' ? '✓' : '~';
+      const mark = source === 'bp-stats' ? '✓' : source === 'curated-audit' ? '◆' : '~';
       console.log(
         `  ${mark} ${team.id} · ${player.gamertag}: OVR ${overall} · ${stats.kd.toFixed(2)} K/D · ${stats.maps} maps`
       );
@@ -357,7 +375,7 @@ async function main() {
   mkdirSync(OUT_DIR, { recursive: true });
   writeFileSync(OUT_FILE, JSON.stringify(bundle, null, 2));
   console.log(
-    `\nWrote ${bundle.entryCount} entries (${bpHits} BP, ${estimated} estimated) → ${OUT_FILE}`
+    `\nWrote ${bundle.entryCount} entries (${bpHits} BP, ${audited} audited, ${estimated} estimated) → ${OUT_FILE}`
   );
 }
 

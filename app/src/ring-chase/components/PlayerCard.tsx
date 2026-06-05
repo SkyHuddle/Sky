@@ -123,7 +123,7 @@ export function PlayerCard({
                   {creds.majorsThisYear} Major{creds.majorsThisYear > 1 ? 's' : ''}
                 </span>
               )}
-              {stats && stats.source === 'bp-stats' && (
+              {stats && (stats.source === 'bp-stats' || stats.source === 'curated-audit') && (
                 <span className="text-[9px] text-white/35 tabular-nums">
                   {stats.kd.toFixed(2)} K/D
                 </span>
