@@ -13,7 +13,7 @@ const ALL: DraftTournamentPhase[] = [
   'worlds_playoffs',
 ];
 
-/** LCS / LEC cellar teams — rosters match Gol.gg last line-up */
+/** LCS / LEC cellar teams — historically accurate rosters */
 export const LOL_WEAK_TEAMS: HistoricalTeam[] = [
   {
     id: 'clg-2019',

@@ -36,15 +36,12 @@ export function ResultScreen({
     });
 
     const text = result.goldenRoad
-      ? `🏆 GOLDEN ROAD ACHIEVED!\n${picks.map((p) => `${p.player.name}`).join(' · ')}\nScore: ${result.rosterScore}`
+      ? `🏆 GOLDEN ROAD!\n${picks.map((p) => p.player.name).join(' · ')}\nScore: ${result.rosterScore}`
       : `${result.failureMessage}\n${picks.map((p) => p.player.name).join(' · ')}\nScore: ${result.rosterScore}`;
 
     if (navigator.share) {
       try {
-        await navigator.share({
-          title: 'Golden Road',
-          text,
-        });
+        await navigator.share({ title: 'Golden Road', text });
         return;
       } catch {
         /* fall through */
@@ -55,12 +52,15 @@ export function ResultScreen({
   }, [picks, result]);
 
   return (
-    <div className="min-h-[100dvh] px-4 py-8 pb-12 max-w-lg mx-auto overflow-y-auto">
+    <div className="min-h-[100dvh] px-4 py-10 pb-14 max-w-lg mx-auto overflow-y-auto">
       <motion.div
-        initial={{ opacity: 0, y: 24 }}
+        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="mb-6"
+        transition={{ duration: 0.45 }}
       >
+        <p className="text-center text-[10px] uppercase tracking-[0.35em] text-white/30 mb-5">
+          Your result
+        </p>
         <div ref={cardRef} className="flex justify-center">
           <ShareCard
             picks={picks}
@@ -69,32 +69,39 @@ export function ResultScreen({
             dailyTitle={dailyTitle}
           />
         </div>
-        <p className="text-center text-white/30 text-xs mt-3">
-          Screenshot to share · Built for X, Reddit & Discord
+        <p className="text-center text-white/25 text-xs mt-4">
+          Screenshot to share on X, Reddit, or Discord
         </p>
       </motion.div>
 
       {mode === 'daily' && dailyPercentile != null && (
-        <DailyLeaderboard percentile={dailyPercentile} score={result.rosterScore} />
+        <motion.div
+          className="mt-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.15 }}
+        >
+          <DailyLeaderboard percentile={dailyPercentile} score={result.rosterScore} />
+        </motion.div>
       )}
 
       <motion.div
-        className="space-y-3 mt-6"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        className="space-y-2.5 mt-8"
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
       >
         <Button
           onClick={handleShare}
           variant="outline"
-          className="w-full h-12 rounded-xl border-gold/30 text-gold hover:bg-gold/10"
+          className="w-full h-12 rounded-2xl border-white/12 bg-white/[0.03] text-white hover:bg-white/[0.06] hover:text-white"
         >
-          <Share2 className="w-4 h-4 mr-2" />
+          <Share2 className="w-4 h-4 mr-2 text-gold" />
           Share Result
         </Button>
         <Button
           onClick={onPlayAgain}
-          className="w-full h-12 rounded-xl bg-gold text-black hover:bg-gold/90"
+          className="w-full h-12 rounded-2xl bg-gold text-black hover:bg-gold/90 border-0 shadow-lg shadow-gold/15"
         >
           <RotateCcw className="w-4 h-4 mr-2" />
           One More Run
@@ -102,7 +109,7 @@ export function ResultScreen({
         <button
           type="button"
           onClick={onHome}
-          className="w-full flex items-center justify-center gap-2 text-white/40 text-sm py-3 hover:text-white/60"
+          className="w-full flex items-center justify-center gap-2 text-white/35 text-sm py-3.5 hover:text-white/55 transition-colors"
         >
           <Home className="w-4 h-4" />
           Home

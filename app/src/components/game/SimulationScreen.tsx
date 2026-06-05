@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import type { SimulationResult, StageId, StageOutcome } from '@/core/types';
 import { STAGE_LABELS } from '@/core/types';
 import { STAGES } from '@/core/types';
-import { STAGE_REVEAL_DELAY, STAGE_PAUSE, RUN_BEAT_DELAY } from '@/core/constants';
+import { STAGE_PAUSE, RUN_BEAT_DELAY } from '@/core/constants';
 import { Check, X, Minus } from 'lucide-react';
 
 interface SimulationScreenProps {
@@ -22,7 +22,7 @@ export function SimulationScreen({ result, onComplete }: SimulationScreenProps) 
     setStageIndex(-1);
     setBeatIndex(-1);
     setShowFinal(false);
-    const t = setTimeout(() => setStageIndex(0), 350);
+    const t = setTimeout(() => setStageIndex(0), 400);
     return () => clearTimeout(t);
   }, [result]);
 
@@ -37,8 +37,7 @@ export function SimulationScreen({ result, onComplete }: SimulationScreenProps) 
     const timeouts: ReturnType<typeof setTimeout>[] = [];
 
     const schedule = (fn: () => void, ms: number) => {
-      const id = setTimeout(fn, ms);
-      timeouts.push(id);
+      timeouts.push(setTimeout(fn, ms));
     };
 
     const finishStage = () => {
@@ -52,7 +51,7 @@ export function SimulationScreen({ result, onComplete }: SimulationScreenProps) 
           setShowFinal(true);
           schedule(() => {
             if (!cancelled) onCompleteRef.current();
-          }, STAGE_REVEAL_DELAY + 900);
+          }, 1100);
         }
       }, STAGE_PAUSE);
     };
@@ -86,9 +85,9 @@ export function SimulationScreen({ result, onComplete }: SimulationScreenProps) 
   }, [stageIndex, result.stages]);
 
   return (
-    <div className="flex flex-col min-h-[100dvh] items-center justify-center px-5 max-w-lg mx-auto py-8">
+    <div className="flex flex-col min-h-[100dvh] items-center justify-center px-5 max-w-lg mx-auto py-10">
       <motion.p
-        className="text-[10px] uppercase tracking-[0.4em] text-gold/60 mb-6"
+        className="text-[10px] uppercase tracking-[0.45em] text-gold/60 mb-8 font-medium"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
       >
@@ -117,19 +116,23 @@ export function SimulationScreen({ result, onComplete }: SimulationScreenProps) 
       <AnimatePresence>
         {showFinal && (
           <motion.div
-            className="mt-10 text-center"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
+            className="mt-10 text-center px-4"
+            initial={{ opacity: 0, scale: 0.92, y: 8 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ type: 'spring', stiffness: 280, damping: 24 }}
           >
             <h2
-              className={`font-display text-3xl sm:text-4xl tracking-wide ${
-                result.goldenRoad ? 'text-gold glow-gold' : 'text-white'
+              className={`font-display text-3xl sm:text-4xl tracking-wide leading-tight ${
+                result.goldenRoad ? 'text-gold glow-gold' : 'text-white/90'
               }`}
             >
               {result.goldenRoad
                 ? 'GOLDEN ROAD'
                 : result.failureMessage.toUpperCase()}
             </h2>
+            {!result.goldenRoad && (
+              <p className="text-white/35 text-xs mt-2">So close — run it back</p>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
@@ -157,21 +160,22 @@ function StageBlock({
 
   return (
     <motion.div
-      className={`rounded-2xl border overflow-hidden transition-colors ${
+      layout
+      className={`rounded-2xl border overflow-hidden transition-all duration-300 ${
         isFuture
-          ? 'border-white/[0.04] bg-white/[0.02] opacity-35'
+          ? 'border-white/[0.04] bg-white/[0.015] opacity-30'
           : stageDone
             ? stagePassed
-              ? 'border-gold/25 bg-gold/[0.04]'
-              : 'border-red-500/30 bg-red-500/[0.06]'
-            : 'border-gold/20 bg-white/[0.03]'
+              ? 'border-gold/30 bg-gold/[0.05] shadow-lg shadow-gold/5'
+              : 'border-red-500/25 bg-red-500/[0.06]'
+            : 'border-gold/15 bg-white/[0.025] ring-1 ring-gold/10'
       }`}
     >
       <div className="flex items-center justify-between px-4 py-3 border-b border-white/[0.04]">
         <span className="font-display text-lg text-white/90">{STAGE_LABELS[stage]}</span>
         {stageDone ? (
           <span
-            className={`flex items-center gap-1 text-xs font-medium uppercase tracking-wider ${
+            className={`flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider ${
               stagePassed ? 'text-gold' : 'text-red-400'
             }`}
           >
@@ -179,11 +183,11 @@ function StageBlock({
             {stagePassed ? 'Cleared' : 'Out'}
           </span>
         ) : isCurrent ? (
-          <span className="text-[10px] text-gold/60 uppercase tracking-widest animate-pulse">
+          <span className="text-[10px] text-gold/70 uppercase tracking-widest animate-pulse font-medium">
             Live
           </span>
         ) : (
-          <span className="text-white/20 text-xs">—</span>
+          <span className="text-white/15 text-xs">—</span>
         )}
       </div>
 
@@ -199,7 +203,7 @@ function StageBlock({
               return (
                 <li
                   key={beat.label}
-                  className="flex items-center gap-2 py-1.5 text-white/15 text-xs px-2"
+                  className="flex items-center gap-2 py-1.5 text-white/12 text-xs px-2"
                 >
                   <Minus className="w-3 h-3" />
                   <span>···</span>
@@ -210,11 +214,11 @@ function StageBlock({
             return (
               <motion.li
                 key={beat.label}
-                initial={{ opacity: 0, x: 6 }}
+                initial={{ opacity: 0, x: 8 }}
                 animate={{ opacity: 1, x: 0 }}
-                className={`flex items-center gap-2 py-1.5 text-xs rounded-lg px-2 ${
+                className={`flex items-center gap-2 py-1.5 text-xs rounded-lg px-2.5 ${
                   isFailBeat
-                    ? 'text-red-400 bg-red-500/10'
+                    ? 'text-red-300/90 bg-red-500/12'
                     : isPassBeat
                       ? 'text-white/75'
                       : 'text-white/40'

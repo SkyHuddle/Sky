@@ -1,12 +1,16 @@
 /** Player-facing explanation of Golden Road simulation logic */
 export const SIMULATION_GUIDE = {
-  headline: 'How Gol.gg OVR & the Golden Road work',
+  headline: 'How OVR & the Golden Road work',
   intro:
-    'Every player card shows an overall score (OVR) built from Gol.gg team-year stats — KDA, kill participation, damage share, gold share, win rate, and games played.',
+    'Each card shows an overall rating (OVR) for that pro on that team and year — built from KDA, kill participation, damage share, gold share, win rate, and games played.',
   sections: [
     {
-      title: 'What the number means',
-      body: 'OVR blends all of a player’s Gol.gg stats for that team and year. KDA is shown smaller underneath. Higher OVR means stronger performance on that specific roster.',
+      title: 'What OVR means',
+      body: 'Higher OVR means stronger performance on that specific roster that split. KDA is shown underneath as a quick reference, but OVR weighs every stat together.',
+    },
+    {
+      title: 'Exact vs estimated',
+      body: 'Most cards use full roster stats. A few show ~ when we only have split-wide data — those ratings are directionally right but less precise.',
     },
     {
       title: 'Respin',

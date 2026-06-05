@@ -13,6 +13,8 @@ import { DRAFT_PHASE_ORDER } from '@/core/types';
 import { TeamBanner, TeamRosterCard } from './TeamRosterCard';
 import { TeamSlotMachine } from './TeamSlotMachine';
 import { isOnePerOrgDay, orgConstraintViolated } from '@/features/daily';
+import { cardOverall, teamRosterAvgOvr } from '@/engine/player-power';
+import { ovrAccentColor } from '@/engine/ovr-display';
 
 interface DraftScreenProps {
   currentRound: DraftRound;
@@ -47,20 +49,21 @@ export function DraftScreen({
     isDaily && dailyConstraint && isOnePerOrgDay(dailyConstraint.id);
 
   const roleOrder: Role[] = ['top', 'jungle', 'mid', 'adc', 'support'];
+  const rosterAvg = teamRosterAvgOvr(currentRound.team, currentRound.roster);
 
   return (
     <div className="flex flex-col min-h-[100dvh] max-w-lg mx-auto">
-      <header className="sticky top-0 z-20 px-5 pt-6 pb-3 bg-[#060608]/90 backdrop-blur-xl border-b border-white/[0.04]">
+      <header className="sticky top-0 z-20 px-5 pt-5 pb-3 bg-[#060608]/85 backdrop-blur-xl border-b border-white/[0.05]">
         <div className="flex items-center justify-between mb-3">
           <button
             type="button"
             onClick={onBack}
-            className="text-white/40 text-sm hover:text-white/70"
+            className="text-white/40 text-sm hover:text-white/70 transition-colors px-1 -ml-1"
           >
             ← Exit
           </button>
-          <span className="text-[10px] uppercase tracking-widest text-white/35">
-            Pick {picks.length + 1}/5
+          <span className="text-[10px] uppercase tracking-[0.2em] text-white/35 font-medium">
+            Pick {picks.length + 1} / 5
           </span>
         </div>
 
@@ -82,15 +85,17 @@ export function DraftScreen({
 
         {draftSubphase === 'pick' && (
           <motion.div
-            className="px-5 py-4 pb-8"
+            className="px-5 py-4 pb-10"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
-            <TeamBanner team={currentRound.team} />
+            <TeamBanner team={currentRound.team} rosterAvgOvr={rosterAvg} />
 
-            <div className="flex items-center justify-between gap-3 mb-4">
-              <p className="text-white/45 text-xs leading-relaxed flex-1">
-                Pick one pro — OVR from Gol.gg team-year stats. Open:{' '}
+            <div className="mb-4 rounded-xl glass-panel px-4 py-3">
+              <p className="text-xs text-white/50 leading-relaxed">
+                Tap a pro to draft.{' '}
+                <span className="text-white/70">OVR</span> is their rating that year — tap{' '}
+                <span className="text-white/70">View stats</span> for the breakdown. Open:{' '}
                 <span className="text-gold font-medium">
                   {openRoles.map((r) => ROLE_LABELS[r]).join(', ')}
                 </span>
@@ -101,17 +106,17 @@ export function DraftScreen({
               <button
                 type="button"
                 onClick={onRespinTeam}
-                className="w-full mb-5 flex items-center justify-center gap-2 text-sm font-semibold text-gold border border-gold/35 bg-gradient-to-r from-gold/15 to-gold/5 hover:from-gold/25 hover:to-gold/10 rounded-2xl px-4 py-3.5 transition-all active:scale-[0.98] shadow-sm shadow-gold/10"
+                className="w-full mb-5 flex items-center justify-center gap-2.5 text-sm font-semibold text-gold border border-gold/30 bg-gradient-to-r from-gold/12 to-transparent hover:from-gold/20 rounded-2xl px-4 py-3.5 transition-all active:scale-[0.98]"
               >
-                <span className="text-base">↻</span>
+                <span className="text-lg leading-none">↻</span>
                 Respin team
-                <span className="text-[10px] font-normal text-gold/70 uppercase tracking-wider">
-                  1 per game
+                <span className="text-[10px] font-normal text-gold/60 uppercase tracking-wider ml-1">
+                  1 left
                 </span>
               </button>
             )}
 
-            <div className="space-y-2.5">
+            <div className="space-y-3">
               {roleOrder.map((teamRole, i) => {
                 const playerId = currentRound.team.roster[teamRole];
                 const player = currentRound.roster.find((p) => p.id === playerId);
@@ -129,9 +134,9 @@ export function DraftScreen({
                 return (
                   <motion.div
                     key={player.id}
-                    initial={{ opacity: 0, y: 12 }}
+                    initial={{ opacity: 0, y: 14 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.04 }}
+                    transition={{ delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <TeamRosterCard
                       player={player}
@@ -142,13 +147,13 @@ export function DraftScreen({
                       roleTaken={roleTaken}
                     />
                     {roleTaken && (
-                      <p className="text-[10px] text-white/30 mt-1 pl-1">
-                        {ROLE_LABELS[teamRole]} already filled
+                      <p className="text-[10px] text-white/25 mt-1.5 pl-1">
+                        {ROLE_LABELS[teamRole]} slot filled
                       </p>
                     )}
                     {!roleTaken && blocked && (
-                      <p className="text-[10px] text-red-400/80 mt-1 pl-1">
-                        Org already used
+                      <p className="text-[10px] text-red-400/75 mt-1.5 pl-1">
+                        Org already used today
                       </p>
                     )}
                   </motion.div>
@@ -171,19 +176,19 @@ function TournamentProgress({
 }) {
   return (
     <div className="mb-3">
-      <p className="text-[10px] uppercase tracking-widest text-gold/60 mb-2">
+      <p className="text-[10px] uppercase tracking-[0.2em] text-gold/70 mb-2 font-medium">
         {DRAFT_PHASE_LABELS[currentPhase]}
       </p>
-      <div className="flex gap-1">
+      <div className="flex gap-1.5">
         {DRAFT_PHASE_ORDER.map((phase, i) => (
           <div
             key={phase}
-            className={`h-1 flex-1 rounded-full ${
+            className={`h-1.5 flex-1 rounded-full transition-colors ${
               i < completedCount
-                ? 'bg-gold'
+                ? 'bg-gold shadow-sm shadow-gold/30'
                 : phase === currentPhase
-                  ? 'bg-gold/50'
-                  : 'bg-white/10'
+                  ? 'bg-gold/45'
+                  : 'bg-white/8'
             }`}
           />
         ))}
@@ -201,27 +206,37 @@ function RosterSlots({
 }) {
   const slots: Role[] = ['top', 'jungle', 'mid', 'adc', 'support'];
   return (
-    <div className="flex gap-1">
+    <div className="flex gap-1.5">
       {slots.map((role) => {
         const pick = picks.find((p) => p.role === role);
         const open = openRoles.includes(role);
+        const ovr = pick ? cardOverall(pick.player, pick.team) : null;
+
         return (
           <div
             key={role}
-            className={`flex-1 rounded-lg py-1.5 px-1 text-center border ${
+            className={`flex-1 rounded-xl py-2 px-1 text-center border transition-colors ${
               pick
-                ? 'border-gold/30 bg-gold/10'
+                ? 'border-gold/25 bg-gold/8'
                 : open
-                  ? 'border-white/15 bg-white/[0.03]'
+                  ? 'border-white/12 bg-white/[0.03] ring-1 ring-white/5'
                   : 'border-white/5 opacity-40'
             }`}
           >
-            <p className="text-[8px] uppercase tracking-wider text-white/35">
+            <p className="text-[7px] uppercase tracking-wider text-white/30 font-medium">
               {ROLE_LABELS[role].slice(0, 3)}
             </p>
-            <p className="text-[10px] text-white/80 truncate font-medium mt-0.5">
-              {pick ? pick.player.name.split(' ')[0] : '—'}
+            <p className="text-[10px] text-white/85 truncate font-medium mt-0.5 px-0.5">
+              {pick ? pick.player.name.split(' ').pop() : '—'}
             </p>
+            {ovr != null && (
+              <p
+                className="text-[9px] font-display tabular-nums mt-0.5"
+                style={{ color: ovrAccentColor(ovr) }}
+              >
+                {ovr}
+              </p>
+            )}
           </div>
         );
       })}

@@ -36,14 +36,9 @@ export default function App() {
   }, [game]);
 
   return (
-    <div className="min-h-[100dvh] bg-[#060608] text-foreground antialiased">
-      <div
-        className="fixed inset-0 pointer-events-none z-0"
-        style={{
-          background:
-            'radial-gradient(ellipse 100% 80% at 50% -20%, rgba(201, 162, 39, 0.08) 0%, transparent 50%)',
-        }}
-      />
+    <div className="min-h-[100dvh] bg-[#060608] text-foreground antialiased relative overflow-x-hidden">
+      <div className="fixed inset-0 mesh-bg pointer-events-none z-0" />
+      <div className="fixed inset-0 grid-bg pointer-events-none z-0 opacity-60" />
 
       <AnimatePresence mode="wait">
         {game.phase === 'home' && (
@@ -92,7 +87,7 @@ export default function App() {
         {game.phase === 'ready' && (
           <motion.div
             key="ready"
-            initial={{ opacity: 0, scale: 0.96 }}
+            initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
             className="relative z-10"
@@ -123,7 +118,7 @@ export default function App() {
         {game.phase === 'result' && game.result && (
           <motion.div
             key="result"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             className="relative z-10"
           >
