@@ -1,7 +1,14 @@
 import type { EsportId, HistoricalTeam, Player, Role } from '@/core/types';
 import { ROLES } from '@/core/types';
-import { LOL_TEAMS } from './lol';
+import { LOL_TEAMS_RAW } from './lol';
+import { LOL_WEAK_TEAMS } from './lol-weak';
+import { withTeamMeta } from './meta';
 import { getPlayerById } from '@/data';
+
+const LOL_TEAMS: HistoricalTeam[] = [
+  ...LOL_TEAMS_RAW.map(withTeamMeta),
+  ...LOL_WEAK_TEAMS,
+];
 
 const REGISTRY: Record<EsportId, HistoricalTeam[]> = {
   lol: LOL_TEAMS,

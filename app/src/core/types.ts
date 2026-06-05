@@ -13,6 +13,32 @@ export const ROLE_LABELS: Record<Role, string> = {
   support: 'SUPPORT',
 };
 
+/** Five draft rounds mirror the Golden Road tournament path */
+export type DraftTournamentPhase =
+  | 'spring'
+  | 'msi'
+  | 'summer'
+  | 'worlds_groups'
+  | 'worlds_playoffs';
+
+export const DRAFT_PHASE_ORDER: DraftTournamentPhase[] = [
+  'spring',
+  'msi',
+  'summer',
+  'worlds_groups',
+  'worlds_playoffs',
+];
+
+export const DRAFT_PHASE_LABELS: Record<DraftTournamentPhase, string> = {
+  spring: 'Spring Split',
+  msi: 'MSI',
+  summer: 'Summer Split',
+  worlds_groups: 'Worlds — Groups',
+  worlds_playoffs: 'Worlds — Knockout',
+};
+
+export type TeamTier = 'legend' | 'contender' | 'average' | 'weak';
+
 export interface PlayerRatings {
   overall: number;
   peak: number;
@@ -51,13 +77,19 @@ export interface HistoricalTeam {
   region: string;
   tagline: string;
   accent: string;
+  tier: TeamTier;
+  /** Which draft rounds can roll this team */
+  phases: DraftTournamentPhase[];
   roster: Record<Role, string>;
 }
 
 export interface DraftRound {
+  roundIndex: number;
+  phase: DraftTournamentPhase;
   team: HistoricalTeam;
-  /** Full starting five, ordered by role */
   roster: Player[];
+  /** Teams to flash during slot animation */
+  spinSequence: HistoricalTeam[];
 }
 
 export type StageId = 'spring' | 'msi' | 'summer' | 'worlds';
@@ -98,10 +130,16 @@ export type GameMode = 'free' | 'daily';
 
 export type GamePhase = 'home' | 'draft' | 'ready' | 'simulation' | 'result';
 
+export type DraftSubphase = 'spin' | 'pick' | 'assign';
+
 export interface DraftPick {
+  /** Slot on your Golden Road roster */
   role: Role;
+  /** Role they played on the rolled team card */
+  naturalRole: Role;
   player: Player;
   team: HistoricalTeam;
+  phase: DraftTournamentPhase;
 }
 
 export interface DailyConstraint {
@@ -118,6 +156,7 @@ export interface PlayerStats {
   bestRosterScore: number;
   dailyCompletions: number;
   lastPlayedDate: string | null;
+  skipsUsed: number;
 }
 
 export interface DailyRunResult {

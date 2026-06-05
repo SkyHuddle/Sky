@@ -139,4 +139,6 @@ export const LOL_LEGEND_PLAYERS: Player[] = [
     { overall: 86, peak: 89, international: 84, clutch: 85, consistency: 87, leadership: 81, synergy: 84 }, '#B2BEC3'),
   p('ben', 'Ben', 'support', 'LPL', 'WE', 'WE', 2017, 'World Semifinalist', 0, 0, 1, 2016,
     { overall: 85, peak: 88, international: 83, clutch: 84, consistency: 86, leadership: 82, synergy: 85 }, '#B2BEC3'),
+  p('wildturtle', 'WildTurtle', 'adc', 'LCS', 'CLG', 'CLG', 2020, 'Veteran ADC', 0, 0, 2, 2012,
+    { overall: 82, peak: 88, international: 80, clutch: 81, consistency: 84, leadership: 85, synergy: 83 }, '#9B59B6'),
 ];

@@ -11,6 +11,7 @@ const DEFAULT_STATS: PlayerStats = {
   bestRosterScore: 0,
   dailyCompletions: 0,
   lastPlayedDate: null,
+  skipsUsed: 0,
 };
 
 export function loadStats(): PlayerStats {

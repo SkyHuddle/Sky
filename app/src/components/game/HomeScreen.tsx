@@ -37,8 +37,8 @@ export function HomeScreen({
           <br />
           <span className="text-gold">ROAD</span>
         </h1>
-        <p className="text-white/50 text-sm mt-4 max-w-[300px] mx-auto leading-relaxed">
-          Five legendary teams roll in. Pick one player from each roster until your squad is complete.
+        <p className="text-white/50 text-sm mt-4 max-w-[320px] mx-auto leading-relaxed">
+          Spin a team & year each round — Spring, MSI, Summer, Worlds. Pick one player, assign a role. Fill all five slots. Chase the Golden Road.
         </p>
       </motion.header>
 

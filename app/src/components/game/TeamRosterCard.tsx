@@ -6,7 +6,6 @@ import { cn } from '@/lib/utils';
 interface TeamRosterCardProps {
   player: Player;
   teamRole: Role;
-  draftRole: Role;
   onSelect: () => void;
   disabled?: boolean;
 }
@@ -14,12 +13,15 @@ interface TeamRosterCardProps {
 export function TeamRosterCard({
   player,
   teamRole,
-  draftRole,
   onSelect,
   disabled,
 }: TeamRosterCardProps) {
-  const isNatural = teamRole === draftRole;
-  const initials = player.name.slice(0, 2).toUpperCase();
+  const initials = player.name
+    .split(' ')
+    .map((n) => n[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase();
 
   return (
     <motion.button
@@ -28,19 +30,12 @@ export function TeamRosterCard({
       disabled={disabled}
       className={cn(
         'relative w-full text-left rounded-xl p-3 transition-all',
-        'border bg-white/[0.03]',
-        isNatural ? 'border-gold/40 bg-gold/[0.06]' : 'border-white/[0.08]',
+        'border border-white/[0.08] bg-white/[0.03]',
         'active:scale-[0.98] disabled:opacity-40 disabled:pointer-events-none',
         !disabled && 'hover:border-gold/35 hover:bg-white/[0.06]'
       )}
       whileTap={{ scale: disabled ? 1 : 0.98 }}
     >
-      {isNatural && (
-        <span className="absolute -top-2 right-3 text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-full bg-gold text-black font-semibold">
-          {ROLE_LABELS[draftRole]}
-        </span>
-      )}
-
       <div className="flex items-center gap-3">
         <div
           className="w-11 h-11 rounded-lg flex items-center justify-center text-sm font-bold shrink-0"
@@ -57,7 +52,7 @@ export function TeamRosterCard({
             {player.name}
           </p>
           <p className="text-[10px] uppercase tracking-widest text-white/35 mt-0.5">
-            {ROLE_LABELS[teamRole]}
+            {ROLE_LABELS[teamRole]} on team
           </p>
         </div>
         <span className="font-display text-xl text-gold tabular-nums shrink-0">
@@ -72,6 +67,13 @@ interface TeamBannerProps {
   team: HistoricalTeam;
 }
 
+const TIER_BADGE: Record<string, string> = {
+  legend: 'Legend',
+  contender: 'Contender',
+  average: 'Average',
+  weak: 'Underdog',
+};
+
 export function TeamBanner({ team }: TeamBannerProps) {
   return (
     <motion.div
@@ -84,30 +86,37 @@ export function TeamBanner({ team }: TeamBannerProps) {
         border: `1px solid ${team.accent}35`,
       }}
     >
-      <div
-        className="absolute top-0 right-0 w-32 h-32 rounded-full blur-3xl opacity-20 pointer-events-none"
-        style={{ background: team.accent }}
-      />
-      <div className="relative z-10">
-        <div className="flex items-start justify-between gap-2">
-          <div>
-            <p className="text-[10px] uppercase tracking-[0.3em] text-white/40">
+      <div className="relative z-10 flex items-start justify-between gap-2">
+        <div>
+          <div className="flex items-center gap-2 mb-1">
+            <p className="text-[10px] uppercase tracking-[0.25em] text-white/40">
               {team.region} · {team.year}
             </p>
-            <h3 className="font-display text-2xl text-white tracking-wide mt-1">
-              {team.name}
-            </h3>
-            <p className="text-sm mt-1" style={{ color: `${team.accent}` }}>
-              {team.tagline}
-            </p>
+            <span
+              className={`text-[9px] uppercase px-1.5 py-0.5 rounded ${
+                team.tier === 'weak'
+                  ? 'bg-red-500/20 text-red-300'
+                  : team.tier === 'legend'
+                    ? 'bg-gold/20 text-gold'
+                    : 'bg-white/10 text-white/50'
+              }`}
+            >
+              {TIER_BADGE[team.tier]}
+            </span>
           </div>
-          <span
-            className="text-3xl font-display tabular-nums shrink-0 opacity-90"
-            style={{ color: team.accent }}
-          >
-            {team.year}
-          </span>
+          <h3 className="font-display text-2xl text-white tracking-wide">
+            {team.name}
+          </h3>
+          <p className="text-sm mt-1" style={{ color: team.accent }}>
+            {team.tagline}
+          </p>
         </div>
+        <span
+          className="text-3xl font-display tabular-nums shrink-0 opacity-90"
+          style={{ color: team.accent }}
+        >
+          {team.year}
+        </span>
       </div>
     </motion.div>
   );

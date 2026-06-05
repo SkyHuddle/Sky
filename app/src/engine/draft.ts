@@ -1,5 +1,13 @@
-import type { DraftRound, HistoricalTeam, Player, Role } from '@/core/types';
-import { ROLE_ORDER } from '@/core/constants';
+import type {
+  DraftRound,
+  DraftTournamentPhase,
+  HistoricalTeam,
+  Player,
+  TeamTier,
+} from '@/core/types';
+import { DRAFT_PHASE_ORDER } from '@/core/types';
+import { SPIN_TICK_MS } from '@/core/constants';
+import { getPlayerById } from '@/data';
 import { getValidTeams, resolveTeamRoster } from '@/data/teams';
 
 function mulberry32(seed: number) {
@@ -11,7 +19,7 @@ function mulberry32(seed: number) {
   };
 }
 
-function hashString(str: string): number {
+export function hashString(str: string): number {
   let h = 2166136261;
   for (let i = 0; i < str.length; i++) {
     h ^= str.charCodeAt(i);
@@ -29,67 +37,132 @@ function shuffle<T>(arr: T[], rng: () => number): T[] {
   return copy;
 }
 
-function teamPassesFilter(
-  team: HistoricalTeam,
-  role: Role,
-  filter?: (p: Player) => boolean,
-  usedPlayerIds: string[] = []
-): boolean {
-  const roster = resolveTeamRoster(team);
-  if (!roster) return false;
+const PHASE_TIER_WEIGHTS: Record<
+  DraftTournamentPhase,
+  Record<TeamTier, number>
+> = {
+  spring: { weak: 38, average: 32, contender: 24, legend: 6 },
+  msi: { weak: 22, average: 34, contender: 32, legend: 12 },
+  summer: { weak: 35, average: 33, contender: 26, legend: 6 },
+  worlds_groups: { weak: 14, average: 30, contender: 36, legend: 20 },
+  worlds_playoffs: { weak: 8, average: 22, contender: 40, legend: 30 },
+};
 
-  const rolePlayer = roster.find((p) => p.id === team.roster[role]);
-  if (!rolePlayer || usedPlayerIds.includes(rolePlayer.id)) return false;
-  if (filter && !filter(rolePlayer)) return false;
-
-  return true;
+function pickWeightedTier(
+  phase: DraftTournamentPhase,
+  rng: () => number
+): TeamTier {
+  const weights = PHASE_TIER_WEIGHTS[phase];
+  const total = Object.values(weights).reduce((a, b) => a + b, 0);
+  let roll = rng() * total;
+  for (const tier of ['weak', 'average', 'contender', 'legend'] as TeamTier[]) {
+    roll -= weights[tier];
+    if (roll <= 0) return tier;
+  }
+  return 'average';
 }
 
-/** Build all 5 draft rounds up front — same teams for a given seed (daily parity) */
+function poolForPhase(
+  phase: DraftTournamentPhase,
+  usedTeamIds: Set<string>,
+  filter?: (p: Player) => boolean
+): HistoricalTeam[] {
+  return getValidTeams('lol').filter((t) => {
+    if (usedTeamIds.has(t.id)) return false;
+    if (!t.phases.includes(phase)) return false;
+    if (!filter) return true;
+    return Object.values(t.roster).some((id) => {
+      const pl = getPlayerById(id);
+      return pl && filter(pl);
+    });
+  });
+}
+
+function rollTeamForPhase(
+  phase: DraftTournamentPhase,
+  rng: () => number,
+  usedTeamIds: Set<string>,
+  filter?: (p: Player) => boolean
+): HistoricalTeam {
+  const pool = poolForPhase(phase, usedTeamIds, filter);
+  const targetTier = pickWeightedTier(phase, rng);
+  const tierPool = pool.filter((t) => t.tier === targetTier);
+  const pickFrom = tierPool.length > 0 ? tierPool : pool;
+  if (pickFrom.length === 0) {
+    const fallback = getValidTeams('lol').filter((t) => !usedTeamIds.has(t.id));
+    return fallback[Math.floor(rng() * fallback.length)];
+  }
+  return pickFrom[Math.floor(rng() * pickFrom.length)];
+}
+
+export function buildSpinSequence(
+  finalTeam: HistoricalTeam,
+  phase: DraftTournamentPhase,
+  seed: string,
+  roundIndex: number,
+  durationMs = 2400,
+  tickMs = SPIN_TICK_MS
+): HistoricalTeam[] {
+  const rng = mulberry32(hashString(`${seed}-spin-${roundIndex}`));
+  const ticks = Math.floor(durationMs / tickMs);
+  const pool = shuffle(
+    getValidTeams('lol').filter((t) => t.phases.includes(phase)),
+    rng
+  );
+  const sequence: HistoricalTeam[] = [];
+  for (let i = 0; i < ticks - 1; i++) {
+    sequence.push(pool[i % pool.length]);
+  }
+  sequence.push(finalTeam);
+  return sequence;
+}
+
 export function generateDraftRounds(
   seed: string,
-  filter?: (p: Player) => boolean,
-  usedPlayerIds: string[] = []
+  filter?: (p: Player) => boolean
 ): DraftRound[] {
   const rng = mulberry32(hashString(seed));
-  const available = shuffle(getValidTeams('lol'), rng);
-  const rounds: DraftRound[] = [];
   const usedTeamIds = new Set<string>();
-  const pickedPlayerIds = new Set(usedPlayerIds);
+  const rounds: DraftRound[] = [];
 
-  for (let i = 0; i < ROLE_ORDER.length; i++) {
-    const role = ROLE_ORDER[i];
-    let team =
-      available.find(
-        (t) =>
-          !usedTeamIds.has(t.id) &&
-          teamPassesFilter(t, role, filter, [...pickedPlayerIds])
-      ) ?? null;
-
-    if (!team) {
-      team =
-        available.find(
-          (t) =>
-            !usedTeamIds.has(t.id) &&
-            teamPassesFilter(t, role, undefined, [...pickedPlayerIds])
-        ) ?? null;
-    }
-
-    if (!team) {
-      team = available.find((t) => !usedTeamIds.has(t.id)) ?? available[i % available.length];
-    }
-
-    const roster = resolveTeamRoster(team);
-    if (!roster) continue;
-
+  for (let i = 0; i < DRAFT_PHASE_ORDER.length; i++) {
+    const phase = DRAFT_PHASE_ORDER[i];
+    const team = rollTeamForPhase(phase, rng, usedTeamIds, filter);
     usedTeamIds.add(team.id);
-    const rolePlayerId = team.roster[role];
-    pickedPlayerIds.add(rolePlayerId);
+    const roster = resolveTeamRoster(team) ?? [];
+    const spinSequence = buildSpinSequence(team, phase, seed, i);
 
-    rounds.push({ team, roster });
+    rounds.push({
+      roundIndex: i,
+      phase,
+      team,
+      roster,
+      spinSequence,
+    });
   }
 
   return rounds;
+}
+
+export function rerollRound(
+  seed: string,
+  roundIndex: number,
+  usedTeamIds: string[],
+  filter?: (p: Player) => boolean
+): DraftRound {
+  const phase = DRAFT_PHASE_ORDER[roundIndex];
+  const rng = mulberry32(hashString(`${seed}-skip-${roundIndex}-${Date.now()}`));
+  const used = new Set(usedTeamIds);
+  const team = rollTeamForPhase(phase, rng, used, filter);
+  const roster = resolveTeamRoster(team) ?? [];
+  const spinSequence = buildSpinSequence(team, phase, seed, roundIndex);
+  return {
+    roundIndex,
+    phase,
+    team,
+    roster,
+    spinSequence,
+  };
 }
 
 export function createRunSeed(mode: 'free' | 'daily', dateKey?: string): string {
@@ -99,4 +172,4 @@ export function createRunSeed(mode: 'free' | 'daily', dateKey?: string): string 
   return `free-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
 }
 
-export { ROLE_ORDER };
+export { DRAFT_PHASE_ORDER };

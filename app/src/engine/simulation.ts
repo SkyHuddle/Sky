@@ -1,8 +1,8 @@
-import type { Player, SimulationResult, StageId, StageOutcome, WorldsFailureDetail } from '@/core/types';
-import { STAGE_THRESHOLDS, WORLDS_FAILURE_LABELS } from '@/core/constants';
+import type { SimulationResult, StageId, StageOutcome, WorldsFailureDetail, DraftPick } from '@/core/types';
+import { STAGE_THRESHOLDS, WORLDS_FAILURE_LABELS, OFF_ROLE_PENALTY } from '@/core/constants';
 import { computeRosterScore, countTitles, stageTeamPower } from './ratings';
+import { hashString } from './draft';
 
-/** Seeded RNG for reproducible daily runs */
 function mulberry32(seed: number) {
   return () => {
     let t = (seed += 0x6d2b79f5);
@@ -12,17 +12,8 @@ function mulberry32(seed: number) {
   };
 }
 
-function hashString(str: string): number {
-  let h = 2166136261;
-  for (let i = 0; i < str.length; i++) {
-    h ^= str.charCodeAt(i);
-    h = Math.imul(h, 16777619);
-  }
-  return h >>> 0;
-}
-
 function rollVariance(rng: () => number, clutch: number): number {
-  const spread = 14 - clutch / 12;
+  const spread = 16 - clutch / 10;
   return (rng() - 0.5) * spread;
 }
 
@@ -32,9 +23,9 @@ function worldsFailureDetail(
   rng: () => number
 ): WorldsFailureDetail {
   const gap = threshold - power;
-  if (gap > 12 || rng() < 0.35) return 'groups';
-  if (gap > 7 || rng() < 0.5) return 'quarterfinals';
-  if (gap > 3 || rng() < 0.65) return 'semifinals';
+  if (gap > 14 || rng() < 0.4) return 'groups';
+  if (gap > 8 || rng() < 0.55) return 'quarterfinals';
+  if (gap > 4 || rng() < 0.7) return 'semifinals';
   return 'finals';
 }
 
@@ -54,28 +45,49 @@ function failureMessage(
   return labels[stage];
 }
 
+function offRolePenalty(picks: DraftPick[]): number {
+  return picks.reduce((sum, p) => {
+    return sum + (p.role !== p.naturalRole ? OFF_ROLE_PENALTY : 0);
+  }, 0);
+}
+
+function weakTeamPenalty(picks: DraftPick[]): number {
+  return picks.reduce((sum, p) => {
+    if (p.team.tier === 'weak') return sum + 3;
+    if (p.team.tier === 'average') return sum + 1.2;
+    return sum;
+  }, 0);
+}
+
 export function simulateGoldenRoad(
-  players: Player[],
+  picks: DraftPick[],
   options?: { seed?: string }
 ): SimulationResult {
+  const players = picks.map((p) => p.player);
   const seed = options?.seed
     ? hashString(options.seed)
     : (Date.now() ^ (Math.random() * 1e9)) >>> 0;
   const rng = mulberry32(seed);
 
-  const rosterScore = computeRosterScore(players);
+  const rosterScore = Math.max(
+    0,
+    computeRosterScore(players) - offRolePenalty(picks) * 0.35 - weakTeamPenalty(picks) * 0.25
+  );
   const titleCounts = countTitles(players);
   const avgClutch =
     players.reduce((s, p) => s + p.ratings.clutch, 0) / players.length;
+
+  const penalty = offRolePenalty(picks) + weakTeamPenalty(picks);
 
   const stages: StageOutcome[] = [];
   const stageOrder: StageId[] = ['spring', 'msi', 'summer', 'worlds'];
   let failed = false;
   let failureStage: StageId | null = null;
   let failureMessageText = '';
+
   for (const stage of stageOrder) {
-    const power = stageTeamPower(players, stage);
-    const threshold = STAGE_THRESHOLDS[stage] + rng() * 4 - 2;
+    const power = stageTeamPower(players, stage) - penalty;
+    const threshold = STAGE_THRESHOLDS[stage] + rng() * 5 - 1;
     const variance = rollVariance(rng, avgClutch);
     const roll = power + variance;
     const passed = roll >= threshold;
@@ -102,16 +114,12 @@ export function simulateGoldenRoad(
 
   const goldenRoad = stages.every((s) => s.passed);
 
-  if (goldenRoad) {
-    failureMessageText = 'Golden Road Achieved';
-  }
-
   return {
     stages,
     goldenRoad,
     failureStage: goldenRoad ? null : failureStage,
     failureMessage: goldenRoad ? 'Golden Road Achieved' : failureMessageText,
-    rosterScore,
+    rosterScore: Math.round(rosterScore * 10) / 10,
     titleCounts,
   };
 }

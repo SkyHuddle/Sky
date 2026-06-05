@@ -1,9 +1,11 @@
 import type { HistoricalTeam, Role } from '@/core/types';
 
+type RawTeam = Omit<HistoricalTeam, 'tier' | 'phases'>;
+
 const R = (top: string, jungle: string, mid: string, adc: string, support: string) =>
   ({ top, jungle, mid, adc, support }) as Record<Role, string>;
 
-export const LOL_TEAMS: HistoricalTeam[] = [
+export const LOL_TEAMS_RAW: RawTeam[] = [
   {
     id: 'skt-2016',
     esport: 'lol',

@@ -26,14 +26,11 @@ export default function App() {
 
   const handleStartFree = useCallback(() => game.startGame('free'), [game]);
   const handleStartDaily = useCallback(() => game.startGame('daily'), [game]);
-
   const handleBack = useCallback(() => game.resetToHome(), [game]);
-
   const handleAttempt = useCallback(() => {
     game.startSimulation();
     game.setPhase('simulation');
   }, [game]);
-
   const handleSimulationComplete = useCallback(() => {
     game.finishSimulation();
   }, [game]);
@@ -67,22 +64,30 @@ export default function App() {
           </motion.div>
         )}
 
-        {game.phase === 'draft' && game.currentRole && game.currentRound && (
+        {game.phase === 'draft' && game.currentRound && (
           <motion.div
-            key="draft"
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -40 }}
+            key={`draft-${game.roundIndex}-${game.draftSubphase}`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             className="relative z-10"
           >
             <DraftScreen
-              currentRole={game.currentRole}
-              currentRoleIndex={game.currentRoleIndex}
+              roundIndex={game.roundIndex}
               currentRound={game.currentRound}
+              draftSubphase={game.draftSubphase}
               picks={game.picks}
+              openRoles={game.openRoles}
+              skipsLeft={game.skipsLeft}
               dailyConstraint={game.dailyConstraint}
               isDaily={game.mode === 'daily'}
-              onSelect={game.selectPlayer}
+              pendingPlayer={game.pendingPlayer}
+              pendingNaturalRole={game.pendingNaturalRole}
+              onSpinComplete={game.finishSpin}
+              onSkipTeam={game.skipTeam}
+              onSelectPlayer={game.selectPlayer}
+              onAssignRole={game.assignRole}
+              onCancelAssign={game.cancelAssign}
               onBack={handleBack}
             />
           </motion.div>

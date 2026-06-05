@@ -37,7 +37,7 @@ export function ReadyScreen({ picks, onAttempt, onEdit }: ReadyScreenProps) {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1 }}
         >
-          {picks.map(({ role, player, team }, i) => (
+          {picks.map(({ role, naturalRole, player, team }, i) => (
             <motion.div
               key={role}
               className="flex items-center gap-4 p-3 rounded-xl border border-white/[0.06] bg-white/[0.03]"
@@ -57,7 +57,8 @@ export function ReadyScreen({ picks, onAttempt, onEdit }: ReadyScreenProps) {
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-[10px] text-white/35 uppercase tracking-widest">
-                  {ROLE_LABELS[role]} · {team.year} {team.name}
+                  {ROLE_LABELS[role]}
+                  {role !== naturalRole && ` (was ${ROLE_LABELS[naturalRole]})`} · {team.year} {team.name}
                 </p>
                 <p className="font-display text-lg text-white truncate">{player.name}</p>
               </div>
