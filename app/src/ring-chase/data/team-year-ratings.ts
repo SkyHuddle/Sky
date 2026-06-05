@@ -1,8 +1,8 @@
 import type { CodPlayer, HistoricalCodTeam } from '../core/types';
 import type { TeamYearAccomplishment } from './accomplishment';
 import { resolveTeamYearHeadshots } from './headshot-resolve';
+import { lookupPlayerHeadshot } from './headshot-index';
 import teamYearBundle from './generated/team-year-ratings.json';
-import bpPlayers from './generated/bp-players-index.json';
 
 export interface ModeSlice {
   kd: number;
@@ -42,15 +42,7 @@ interface TeamYearRatingsBundle {
   entries: Record<string, TeamYearRatingsEntry>;
 }
 
-type BpPlayerRow = { id: number; tag: string; headshot: string | null };
-
 const bundle = teamYearBundle as TeamYearRatingsBundle;
-const playerIndex = bpPlayers as BpPlayerRow[];
-
-const headshotByTag = new Map<string, string | null>();
-for (const row of playerIndex) {
-  if (row.headshot) headshotByTag.set(row.tag.toLowerCase(), row.headshot);
-}
 
 function entryKey(teamId: string, playerId: string) {
   return `${teamId}:${playerId}`;
@@ -89,10 +81,7 @@ export function getTeamYearOverall(
 
 export function getPlayerHeadshot(player: CodPlayer, team?: HistoricalCodTeam): string | null {
   const entry = team ? getTeamYearEntry(team.id, player.id) : null;
-  const generic =
-    (entry?.bpTag ? headshotByTag.get(entry.bpTag.toLowerCase()) : null) ??
-    headshotByTag.get(player.gamertag.toLowerCase()) ??
-    null;
+  const generic = lookupPlayerHeadshot(player.id, player.gamertag, entry?.bpTag);
 
   if (!team) return generic;
 
@@ -111,10 +100,7 @@ export function getPlayerHeadshotCandidates(
   team?: HistoricalCodTeam
 ): string[] {
   const entry = team ? getTeamYearEntry(team.id, player.id) : null;
-  const generic =
-    (entry?.bpTag ? headshotByTag.get(entry.bpTag.toLowerCase()) : null) ??
-    headshotByTag.get(player.gamertag.toLowerCase()) ??
-    null;
+  const generic = lookupPlayerHeadshot(player.id, player.gamertag, entry?.bpTag);
   if (!team) return generic ? [generic] : [];
   return resolveTeamYearHeadshots(player, team, entry?.headshot, generic, entry?.bpTag);
 }

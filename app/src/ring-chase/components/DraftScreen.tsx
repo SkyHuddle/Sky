@@ -11,6 +11,7 @@ import type {
 import { SLOT_LABELS } from '../core/types';
 import { SLOT_ORDER } from '../core/constants';
 import { PlayerCard } from './PlayerCard';
+import { PlayerHeadshot } from './PlayerHeadshot';
 import { TeamBanner } from './TeamBanner';
 import { TeamSlotMachine } from './TeamSlotMachine';
 import { playerPassesFilter } from '../features/daily';
@@ -250,9 +251,17 @@ function RosterSlots({
               <p className="text-[7px] uppercase tracking-wider text-kb-mute font-semibold">
                 {SLOT_LABELS[slot].slice(0, 3)}
               </p>
-              <p className="text-[10px] text-kb-fg truncate font-medium mt-0.5 px-0.5">
-                {pick ? pick.player.gamertag.slice(0, 6) : open ? '?' : '—'}
-              </p>
+              {pick ? (
+                <div className="mx-auto mt-1 w-7 h-7 rounded-md overflow-hidden flex items-center justify-center bg-kb-glass border border-kb-hairline">
+                  <PlayerHeadshot
+                    player={pick.player}
+                    team={pick.team}
+                    fallbackClassName="text-[8px] font-bold"
+                  />
+                </div>
+              ) : (
+                <p className="text-[10px] text-kb-fg font-medium mt-1.5">{open ? '?' : '—'}</p>
+              )}
               {ovr != null && (
                 <p className="text-[9px] font-display tabular-nums mt-0.5 text-kb-gold/80">
                   {ovr}

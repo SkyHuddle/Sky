@@ -4,7 +4,7 @@ import { SLOT_LABELS } from '../core/types';
 import { RingPath } from './RingPath';
 import { evaluateChemistry } from '../engine/chemistry';
 import { cardCredentials, cardOverall } from '../engine/card-context';
-import { getPlayerHeadshot } from '../data/team-year-ratings';
+import { PlayerHeadshot } from './PlayerHeadshot';
 import { KbCard } from './KbCard';
 import { RingCtaButton } from './RingCtaButton';
 
@@ -84,7 +84,6 @@ export function ReadyScreen({ picks, isDaily, onAttempt, onEdit }: ReadyScreenPr
           {picks.map(({ player, team, role }, i) => {
             const creds = cardCredentials(team);
             const ovr = cardOverall(player, team);
-            const headshot = getPlayerHeadshot(player, team);
             return (
               <motion.div
                 key={`${team.id}-${player.id}`}
@@ -108,11 +107,11 @@ export function ReadyScreen({ picks, isDaily, onAttempt, onEdit }: ReadyScreenPr
                     border: `1px solid ${team.accent}35`,
                   }}
                 >
-                  {headshot ? (
-                    <img src={headshot} alt="" className="w-full h-full object-cover object-top" />
-                  ) : (
-                    player.gamertag.slice(0, 2).toUpperCase()
-                  )}
+                  <PlayerHeadshot
+                    player={player}
+                    team={team}
+                    fallbackClassName="text-xs font-bold"
+                  />
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-[9px] text-kb-mute uppercase tracking-wider">{SLOT_LABELS[role]}</p>
