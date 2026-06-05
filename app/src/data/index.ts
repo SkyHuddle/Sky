@@ -1,12 +1,22 @@
 import type { EsportId, Player, Role } from '@/core/types';
 import { LOL_PLAYERS } from './players/lol';
+import {
+  mergePlayersWithGol,
+  getGolDataMeta,
+  getPlayerDataSource,
+  hasGolRatings,
+} from './merge-gol-ratings';
+
+export { getGolDataMeta, getPlayerDataSource, hasGolRatings };
+
+const LOL_PLAYERS_WITH_GOL = mergePlayersWithGol(LOL_PLAYERS);
 
 const PLAYER_MAP = new Map<string, Player>(
-  LOL_PLAYERS.map((p) => [p.id, p])
+  LOL_PLAYERS_WITH_GOL.map((p) => [p.id, p])
 );
 
 const REGISTRY: Record<EsportId, Player[]> = {
-  lol: LOL_PLAYERS,
+  lol: LOL_PLAYERS_WITH_GOL,
   valorant: [],
   cs2: [],
   dota2: [],
