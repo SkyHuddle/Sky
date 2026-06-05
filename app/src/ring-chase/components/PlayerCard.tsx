@@ -10,7 +10,6 @@ interface PlayerCardProps {
   teamSlot: RosterSlot;
   selected?: boolean;
   disabled?: boolean;
-  recommended?: boolean;
   onSelect: () => void;
 }
 
@@ -20,7 +19,6 @@ export function PlayerCard({
   teamSlot,
   selected,
   disabled,
-  recommended,
   onSelect,
 }: PlayerCardProps) {
   const handleSelect = () => {
@@ -38,21 +36,13 @@ export function PlayerCard({
       whileTap={disabled ? undefined : { scale: 0.97 }}
       style={{ touchAction: 'manipulation' }}
       className={`relative w-full text-left rounded-2xl p-4 border transition-all ${
-        recommended && !disabled
-          ? 'border-ring-gold/45 ring-1 ring-ring-gold/20 shadow-lg shadow-ring-gold/10'
-          : selected
-            ? 'border-ring-gold bg-ring-gold/15 shadow-lg shadow-ring-gold/10'
-            : disabled
-              ? 'border-white/[0.04] bg-white/[0.01] opacity-40'
-              : 'border-white/[0.08] bg-white/[0.03] hover:border-ring-gold/30 hover:bg-white/[0.05] active:scale-[0.99]'
+        selected
+          ? 'border-ring-gold bg-ring-gold/15 shadow-lg shadow-ring-gold/10'
+          : disabled
+            ? 'border-white/[0.04] bg-white/[0.01] opacity-40'
+            : 'border-white/[0.08] bg-white/[0.03] hover:border-ring-gold/30 hover:bg-white/[0.05] active:scale-[0.99]'
       }`}
     >
-      {recommended && !disabled && (
-        <span className="absolute top-0 right-0 rounded-bl-xl rounded-tr-2xl bg-ring-gold/90 text-black text-[9px] font-bold uppercase tracking-wider px-2.5 py-1">
-          Best pick
-        </span>
-      )}
-
       <div className="flex items-center gap-3.5">
         <div
           className="w-12 h-12 rounded-xl flex items-center justify-center text-sm font-bold shrink-0"

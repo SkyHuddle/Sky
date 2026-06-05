@@ -3,7 +3,6 @@ import type { DraftPick } from '../core/types';
 import { SLOT_LABELS } from '../core/types';
 import { Button } from '@/components/ui/button';
 import { RingPath } from './RingPath';
-import { estimateRingOdds } from '../engine/simulation';
 import { evaluateChemistry } from '../engine/chemistry';
 import { cardCredentials, cardOverall } from '../engine/card-context';
 
@@ -16,8 +15,6 @@ interface ReadyScreenProps {
 export function ReadyScreen({ picks, onAttempt, onEdit }: ReadyScreenProps) {
   const avgOvr =
     picks.reduce((s, p) => s + cardOverall(p.player, p.team), 0) / picks.length;
-  const odds = estimateRingOdds(picks);
-  const oddsPct = Math.max(1, Math.round(odds * 100));
   const chemistry = evaluateChemistry(picks);
 
   return (
@@ -35,15 +32,9 @@ export function ReadyScreen({ picks, onAttempt, onEdit }: ReadyScreenProps) {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.08 }}
         >
-          <div className="flex items-end justify-between mb-4">
-            <div>
-              <p className="text-[10px] uppercase tracking-wider text-white/35">Roster rating</p>
-              <p className="font-display text-4xl text-ring-gold tabular-nums mt-1">{avgOvr.toFixed(1)}</p>
-            </div>
-            <div className="text-right">
-              <p className="text-[10px] uppercase tracking-wider text-white/35">Ring odds</p>
-              <p className="font-display text-2xl text-white tabular-nums mt-1">~{oddsPct}%</p>
-            </div>
+          <div className="mb-4 text-center">
+            <p className="text-[10px] uppercase tracking-wider text-white/35">Roster rating</p>
+            <p className="font-display text-4xl text-ring-gold tabular-nums mt-1">{avgOvr.toFixed(1)}</p>
           </div>
           <div className="mb-3">
             <RingPath variant="full" />

@@ -183,17 +183,14 @@ function StageBlock({
       <div className="flex items-center justify-between px-4 py-3 border-b border-white/[0.04] gap-3">
         <span className="font-display text-lg text-white/90">{STAGE_LABELS[stage]}</span>
         {stageDone ? (
-          <div className="text-right">
-            <span
-              className={`flex items-center justify-end gap-1.5 text-[10px] font-semibold uppercase tracking-wider ${
-                stagePassed ? 'text-ring-gold' : 'text-red-400'
-              }`}
-            >
-              {stagePassed ? <Check className="w-3.5 h-3.5" /> : <X className="w-3.5 h-3.5" />}
-              {stagePassed ? 'Cleared' : 'Out'}
-            </span>
-            <p className="text-[9px] text-white/30 mt-0.5 tabular-nums">{outcome.passChance}% chance</p>
-          </div>
+          <span
+            className={`flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider ${
+              stagePassed ? 'text-ring-gold' : 'text-red-400'
+            }`}
+          >
+            {stagePassed ? <Check className="w-3.5 h-3.5" /> : <X className="w-3.5 h-3.5" />}
+            {stagePassed ? 'Cleared' : 'Out'}
+          </span>
         ) : isCurrent ? (
           <span className="text-[10px] text-ring-gold/70 uppercase tracking-widest animate-pulse font-medium">
             Live

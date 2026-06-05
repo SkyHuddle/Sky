@@ -74,7 +74,7 @@ export function buildExplanation(
 
   if (close && coinFlip) {
     return {
-      explanation: `Coin-flip series at ${stageLabel} didn't break your way (${failedStage.passChance}% win chance).`,
+      explanation: `Coin-flip series at ${stageLabel} didn't break your way.`,
       footer: failedStage.outcome === 'grand_final' ? 'One map away.' : `Major wins: ${majorWins}`,
     };
   }
@@ -113,7 +113,7 @@ export function buildExplanation(
   }
 
   return {
-    explanation: `Lost at ${STAGE_LABELS[failedStage.stage]} with a ${failedStage.passChance}% advance chance.`,
+    explanation: `The run ended at ${STAGE_LABELS[failedStage.stage]}.`,
     footer: `Major wins: ${majorWins}`,
   };
 }

@@ -68,14 +68,6 @@ export function DraftScreen({
       });
   }, [currentRound, openRoles, pickedIds, isDaily, picks, dailyConstraint, team]);
 
-  const bestPickId = useMemo(() => {
-    const pickable = rosterEntries.filter((e) => !e.blocked);
-    if (pickable.length === 0) return null;
-    return pickable.reduce((best, e) =>
-      cardOverall(e.player, team) > cardOverall(best.player, team) ? e : best
-    ).player.id;
-  }, [rosterEntries, team]);
-
   const pickableCount = rosterEntries.filter((e) => !e.blocked).length;
 
   return (
@@ -136,13 +128,10 @@ export function DraftScreen({
                     <span className="text-ring-gold font-medium">
                       {SLOT_LABELS[openRoles[0]!]}
                     </span>
-                    . Highest OVR wins.
+                    .
                   </>
                 ) : pickableCount > 1 ? (
-                  <>
-                    {pickableCount} slots open — cards sorted by OVR.{' '}
-                    <span className="text-ring-gold/90">Best pick</span> is highlighted.
-                  </>
+                  <>Pick the {SLOT_LABELS[openRoles[0]!]} for this roster.</>
                 ) : (
                   <>No eligible players for today&apos;s rule on this team.</>
                 )}
@@ -163,7 +152,6 @@ export function DraftScreen({
                     team={team}
                     teamSlot={teamRole}
                     disabled={blocked}
-                    recommended={!blocked && player.id === bestPickId}
                     onSelect={() => onSelectPlayer(player, teamRole)}
                   />
                   {roleTaken && (

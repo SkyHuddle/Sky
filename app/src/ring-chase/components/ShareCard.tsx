@@ -80,10 +80,6 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
               <span className="text-ring-gold">{result.rosterScore}</span>
             </div>
             <div className="flex justify-between text-white/50">
-              <span>Ring Odds</span>
-              <span className="text-white/80">{Math.round(result.ringOdds * 100)}%</span>
-            </div>
-            <div className="flex justify-between text-white/50">
               <span>MVP</span>
               <span className="text-white/80">{result.mvp.gamertag}</span>
             </div>

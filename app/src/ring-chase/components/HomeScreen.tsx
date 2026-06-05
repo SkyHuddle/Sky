@@ -5,7 +5,6 @@ import type { DailyConstraint, DailyRunResult, PlayerStats } from '../core/types
 import { Button } from '@/components/ui/button';
 import { RingPath } from './RingPath';
 import { getDailyChallengeNumber } from '../features/daily';
-import { getDataSourceLabel } from '../engine/card-context';
 
 interface HomeScreenProps {
   stats: PlayerStats;
@@ -63,7 +62,7 @@ export function HomeScreen({
           Draft four pros across four majors. Win them all, then Champs — run the table.
         </p>
         <p className="text-[10px] text-white/30 mt-3 max-w-[300px] mx-auto leading-relaxed">
-          {getDataSourceLabel()}. OVR and rings shown per team-year card — not career stats.
+          Curated team-year cards — not live API. OVR and rings are for that season only.
         </p>
       </motion.header>
 
@@ -124,7 +123,6 @@ export function HomeScreen({
         {dailyPlayed && (
           <p className="text-ring-gold/80 text-xs mt-3 font-medium">
             Played today · Score {dailyPlayed.score.toFixed(1)}
-            {dailyPlayed.percentile != null && ` · Top ${(100 - dailyPlayed.percentile).toFixed(0)}%`}
           </p>
         )}
       </motion.div>

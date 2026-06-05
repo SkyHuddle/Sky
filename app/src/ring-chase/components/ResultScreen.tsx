@@ -21,7 +21,6 @@ export function ResultScreen({
   result,
   mode,
   dailyTitle,
-  dailyPercentile,
   onPlayAgain,
   onHome,
 }: ResultScreenProps) {
@@ -63,18 +62,17 @@ export function ResultScreen({
         </p>
       </motion.div>
 
-      {mode === 'daily' && dailyPercentile != null && (
+      {mode === 'daily' && (
         <motion.div
           className="mt-6 rounded-2xl glass-panel p-4 text-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.15 }}
         >
-          <p className="text-[10px] uppercase tracking-widest text-ring-gold/70">Daily rank</p>
-          <p className="font-display text-2xl text-white mt-1">
-            Top {(100 - dailyPercentile).toFixed(0)}%
+          <p className="text-[10px] uppercase tracking-widest text-ring-gold/70">Daily score</p>
+          <p className="font-display text-2xl text-white mt-1 tabular-nums">
+            {result.rosterScore.toFixed(1)}
           </p>
-          <p className="text-xs text-white/40 mt-1">Score {result.rosterScore.toFixed(1)}</p>
         </motion.div>
       )}
 
