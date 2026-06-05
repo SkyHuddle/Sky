@@ -191,12 +191,6 @@ function StageBlock({
         )}
       </div>
 
-      {stageDone && (
-        <p className="px-4 pb-2 text-[10px] tabular-nums text-white/30">
-          Power {outcome.roll} vs need ~{outcome.threshold}
-        </p>
-      )}
-
       {(isCurrent || isPast) && (
         <ul className="px-3 py-2 space-y-0.5">
           {outcome.run.map((beat, i) => {

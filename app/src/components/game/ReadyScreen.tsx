@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { SimulationGuide } from './SimulationGuide';
 import { GoldenRoadPath } from './GoldenRoadPath';
 import { cardKda, cardOverall, formatKda } from '@/engine/player-power';
-import { estimateGoldenRoadOdds, rosterStagePreview } from '@/engine/simulation';
+import { estimateGoldenRoadOdds } from '@/engine/simulation';
 import { ovrAccentColor, ovrMeterPercent } from '@/engine/ovr-display';
 
 interface ReadyScreenProps {
@@ -20,7 +20,6 @@ export function ReadyScreen({ picks, onAttempt, onEdit }: ReadyScreenProps) {
   const odds = estimateGoldenRoadOdds(picks);
   const oddsPct = Math.round(odds * 100);
   const meter = ovrMeterPercent(avgOvr);
-  const stages = rosterStagePreview(picks);
 
   return (
     <div className="flex flex-col min-h-[100dvh] px-5 py-10 max-w-lg mx-auto justify-between">
@@ -78,50 +77,6 @@ export function ReadyScreen({ picks, onAttempt, onEdit }: ReadyScreenProps) {
             />
           </div>
           <GoldenRoadPath variant="full" className="mb-1" />
-        </motion.div>
-
-        <motion.div
-          className="mt-4 rounded-2xl glass-panel p-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.12 }}
-        >
-          <p className="text-[10px] uppercase tracking-widest text-white/35 mb-3">
-            Stage check preview
-          </p>
-          <div className="grid grid-cols-4 gap-2">
-            {stages.map(({ label, power, needed, edge }) => (
-              <div
-                key={label}
-                className={`rounded-xl p-2 text-center border ${
-                  edge >= 2
-                    ? 'border-emerald-500/25 bg-emerald-500/8'
-                    : edge >= 0
-                      ? 'border-gold/20 bg-gold/5'
-                      : 'border-red-500/20 bg-red-500/5'
-                }`}
-              >
-                <p className="text-[8px] uppercase tracking-wider text-white/35">{label}</p>
-                <p
-                  className="font-display text-lg tabular-nums mt-0.5"
-                  style={{ color: ovrAccentColor(power) }}
-                >
-                  {power}
-                </p>
-                <p className="text-[8px] text-white/25 mt-0.5">
-                  need ~{needed}
-                </p>
-                <p
-                  className={`text-[9px] font-medium tabular-nums mt-0.5 ${
-                    edge >= 0 ? 'text-emerald-400/80' : 'text-red-400/70'
-                  }`}
-                >
-                  {edge >= 0 ? '+' : ''}
-                  {edge}
-                </p>
-              </div>
-            ))}
-          </div>
         </motion.div>
 
         <motion.div
