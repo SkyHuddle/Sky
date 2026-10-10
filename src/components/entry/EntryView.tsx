@@ -162,8 +162,9 @@ export function EntryView({ d, board, recap, nowIso, healthOk }: { d: EntryDashb
 
         <aside className="space-y-6">
           <BoardPreview d={d} board={board} />
-          <Upcoming d={d} w={w} />
-          {d.isOwner ? <AutopilotCard d={d} /> : null}
+          {/* Once the event is over there is nothing left to play or automate. */}
+          {recap ? null : <Upcoming d={d} w={w} />}
+          {d.isOwner && !recap ? <AutopilotCard d={d} /> : null}
         </aside>
       </div>
     </div>
@@ -179,7 +180,7 @@ function statusLabel(p: DashboardPlayer, d: EntryDashboard): { kind: "live" | "n
     case "eliminated":
       return { kind: "eliminated", text: "Eliminated" };
     case "done":
-      return { kind: "done", text: "Done this stage" };
+      return { kind: "done", text: "Stage done" };
     case "did_not_play":
       return { kind: "dnp", text: "Did not play" };
     default:

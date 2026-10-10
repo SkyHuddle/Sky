@@ -169,12 +169,18 @@ export function Builder({ data, nowIso, signedIn }: { data: BuilderData; nowIso:
   const full = b.playerIds.length >= data.rules.rosterSize;
   const canReview = full && !firstError;
   const stillOut = data.ineligiblePrevious.filter((p) => b.playerIds.includes(p.id));
+  // A window can raise the team limit (the Grand Final: only two teams are left, so 3 + 2).
+  const raisedLimit =
+    data.window && data.rules.maxPerTeam > DEFAULT_CS2_CONTEST_RULES.maxPerTeam
+      ? `Up to ${data.rules.maxPerTeam} players from one team in the ${data.window.stageName}.`
+      : null;
   const transferNote = b.transfers ? (
     <Notice tone={b.transfers.error ? "danger" : "lavender"} icon="swap">
       <span className="font-semibold text-ink">
         {b.transfers.discretionary.length} of {b.transfers.allowed} transfers used
       </span>
       <span className="text-ink-2"> · Replacing eliminated players is free.</span>
+      {raisedLimit ? <span className="mt-1 block text-ink-2">{raisedLimit}</span> : null}
       {stillOut.length ? (
         <span className="mt-2 flex flex-wrap items-center gap-1.5">
           <span className="text-ink-2">Eliminated:</span>
@@ -197,11 +203,10 @@ export function Builder({ data, nowIso, signedIn }: { data: BuilderData; nowIso:
       ) : null}
     </Notice>
   ) : null;
-  // A window can raise the team limit (the Grand Final: only two teams are left, so 3 + 2).
   const teamLimitNote =
-    data.window && data.rules.maxPerTeam > DEFAULT_CS2_CONTEST_RULES.maxPerTeam ? (
+    raisedLimit && !transferNote ? (
       <Notice tone="info" icon="info">
-        Up to {data.rules.maxPerTeam} players from one team in the {data.window.stageName}.
+        {raisedLimit}
       </Notice>
     ) : null;
 
@@ -390,7 +395,7 @@ function Frame({ data, nowIso, children, wide }: { data: BuilderData; nowIso: st
             </div>
             <div className="truncate text-caption text-ink-2">
               <span className="sm:hidden">{data.contest.name} · </span>
-              {data.window ? `${data.window.stageName}${data.window.position > 1 ? " transfers" : ""}` : "Lineup"}
+              {data.window ? `${data.window.stageName}${data.previous ? " transfers" : ""}` : "Lineup"}
               {data.tournament.isDemo ? <span className="text-lavender sm:hidden"> · Demo data</span> : null}
             </div>
           </div>

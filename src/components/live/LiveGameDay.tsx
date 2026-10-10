@@ -25,24 +25,23 @@ export function LiveGameDay({ initial, nowIso }: { initial: LivePayload; nowIso:
   const upcoming = d.players.filter((p) => p.state === "upcoming").sort((a, b) => (a.next?.at ?? "").localeCompare(b.next?.at ?? ""));
   const rest = d.players.filter((p) => p.state !== "live" && p.state !== "upcoming");
   const movement = d.entry.previousRank && d.entry.rank ? d.entry.previousRank - d.entry.rank : null;
-  const scored = d.entry.rank !== null;
+  // Before any map finishes everyone is on 0 and the rank is only the submission-time tiebreak: don't show it.
+  const scored = d.entry.rank !== null && (d.entry.points !== 0 || (d.rivals.above?.points ?? 0) !== 0 || (d.rivals.below?.points ?? 0) !== 0);
 
   return (
     <div className="mx-auto max-w-[1180px]">
       <header className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <div className="flex items-center gap-2 text-eyebrow text-ink-2">
-            <Link href={`/t/${d.tournament.slug}`} className="truncate hover:text-ink">
-              {d.tournament.name}
-            </Link>
-            <span className="text-ink-3">·</span>
-            <span className="truncate">{d.contest.name}</span>
-          </div>
+          <Link href={`/t/${d.tournament.slug}`} className="block truncate text-eyebrow text-ink-2 hover:text-ink">
+            {d.tournament.name}
+          </Link>
           <h1 className="mt-1 flex items-center gap-2 text-title text-ink">
             {d.anyLive ? "Live" : "GameDay"}
             {d.anyLive ? <span className="size-2 rounded-full bg-live motion-safe:animate-pulse-dot" aria-hidden /> : null}
           </h1>
-          <p className="text-footnote text-ink-2">{d.stageName ? `${d.stageName}${d.anyLive ? " in progress" : ""}` : "Waiting for the first lock"}</p>
+          <p className="truncate text-footnote text-ink-2">
+            {d.contest.name} · {d.stageName ? `${d.stageName}${d.anyLive ? " in progress" : ""}` : "Waiting for the first lock"}
+          </p>
         </div>
         <div className="flex shrink-0 flex-col items-end gap-1.5">
           <Connection state={state} receivedAt={receivedAt} stale={d.freshness.stale} />
@@ -85,8 +84,12 @@ export function LiveGameDay({ initial, nowIso }: { initial: LivePayload; nowIso:
               </div>
             </div>
             <p className="mt-4 flex flex-wrap items-center gap-2 text-caption text-ink-3">
-              <StatePill kind={d.entry.scoreState === "settled" ? "settled" : d.entry.scoreState === "official" ? "official" : "provisional"} />
-              Totals update when each map ends. Live map points show how it&apos;s going.
+              {scored ? (
+                <StatePill kind={d.entry.scoreState === "settled" ? "settled" : d.entry.scoreState === "official" ? "official" : "provisional"} />
+              ) : (
+                <StatePill kind="upcoming" label="No maps finished yet" />
+              )}
+              Totals and ranks update when each map ends. Live map points show how it&apos;s going.
             </p>
             {d.leagues.length ? (
               <ul className="mt-4 flex flex-wrap gap-2 border-t border-border pt-4">
@@ -240,7 +243,7 @@ function PlayerLine({ p, d }: { p: LivePlayer; d: LivePayload }) {
         </span>
         {p.live ? (
           <span className="tabular mt-1 block text-caption text-ink-3">
-            {p.live.mapName}{" "}
+            Map {p.live.mapNumber} · {p.live.mapName}{" "}
             <span className="text-ink">
               {p.live.roundsFor}–{p.live.roundsAgainst}
             </span>{" "}
@@ -281,7 +284,8 @@ function StatusText({ p, teams }: { p: LivePlayer; teams: Record<string, TeamLit
   if (p.live) {
     return (
       <span className="min-w-0 truncate">
-        vs {teams[p.live.opponentId]?.acronym} · <span className="text-live">Map {p.live.mapNumber} live</span>
+        vs {teams[p.live.opponentId]?.acronym} <span className="ml-1 inline-block size-1.5 rounded-full bg-live align-middle" aria-hidden />
+        <span className="sr-only">, live</span>
       </span>
     );
   }
@@ -289,11 +293,11 @@ function StatusText({ p, teams }: { p: LivePlayer; teams: Record<string, TeamLit
   if (p.next)
     return (
       <span className="min-w-0 truncate">
-        {p.next.postponed ? <span className="text-warning">Postponed · </span> : null}vs {teams[p.next.opponentId]?.acronym ?? "TBD"} · <LocalTime iso={p.next.at} />
+        {p.next.postponed ? <span className="text-warning">Postponed · </span> : null}vs {teams[p.next.opponentId]?.acronym ?? "TBD"} · <LocalTime iso={p.next.at} format="day" />
       </span>
     );
   if (p.state === "eliminated") return <span className="text-negative">Eliminated</span>;
-  if (p.state === "finished") return <span>Done this stage</span>;
+  if (p.state === "finished") return <span>Stage done</span>;
   return <span>Not started</span>;
 }
 

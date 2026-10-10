@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/cn";
-import { clockTime, dateTime, durationShort, shortDate } from "@/lib/format";
+import { clockTime, dateTime, dayTime, durationShort, shortDate } from "@/lib/format";
 import { Icon, type IconName } from "./Icon";
 
 /**
@@ -68,10 +68,10 @@ function useClockOffset(serverNow?: string): number {
 }
 
 /** Formats a time in the viewer's local time zone (client-side, so the server's zone never leaks). */
-export function LocalTime({ iso, format = "datetime", className }: { iso: string; format?: "datetime" | "date" | "time"; className?: string }) {
+export function LocalTime({ iso, format = "datetime", className }: { iso: string; format?: "datetime" | "date" | "time" | "day"; className?: string }) {
   const [text, setText] = useState<string | null>(null);
   useEffect(() => {
-    setText(format === "date" ? shortDate(iso) : format === "time" ? clockTime(iso) : dateTime(iso));
+    setText(format === "date" ? shortDate(iso) : format === "time" ? clockTime(iso) : format === "day" ? dayTime(iso) : dateTime(iso));
   }, [iso, format]);
   return (
     <time dateTime={iso} className={className} suppressHydrationWarning>

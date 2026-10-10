@@ -42,6 +42,14 @@ const timeFmt = new Intl.DateTimeFormat("en", { hour: "numeric", minute: "2-digi
 export const shortDate = (iso: string | Date) => dateFmt.format(new Date(iso));
 export const dateTime = (iso: string | Date) => dateTimeFmt.format(new Date(iso));
 export const clockTime = (iso: string | Date) => timeFmt.format(new Date(iso));
+const dayTimeFmt = new Intl.DateTimeFormat("en", { weekday: "short", hour: "numeric", minute: "2-digit" });
+/** "3:00 PM" today, "Mon 3:00 PM" within the week, otherwise the full date and time. */
+export const dayTime = (iso: string | Date, now = new Date()) => {
+  const d = new Date(iso);
+  const days = (d.getTime() - now.getTime()) / 86_400_000;
+  if (d.toDateString() === now.toDateString()) return timeFmt.format(d);
+  return days > -1 && days < 6 ? dayTimeFmt.format(d) : dateTimeFmt.format(d);
+};
 
 export function dateRange(a: string, b: string): string {
   const da = new Date(a);
