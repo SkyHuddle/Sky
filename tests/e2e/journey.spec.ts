@@ -1,5 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
-import { inviteCode } from "./helpers";
+import { inviteCode, liveMatchId } from "./helpers";
 
 /**
  * The MVP acceptance journey (22 steps), on a phone-sized viewport, against persisted data.
@@ -104,6 +104,20 @@ test("a new fan builds a team, joins a league, follows scoring, transfers, and s
   await expect(page.getByText(/You're in\./)).toBeVisible();
   const leagueUrl = page.url();
 
+  // Live: replay the first Stage 1 series through the real pipeline; pages update over SSE without reloading.
+  await page.getByRole("button", { name: "Demo", exact: true }).click();
+  await page.getByRole("button", { name: /^Watch live/ }).click();
+  await page.waitForURL(/\/live$/);
+  await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+  await expect(page.getByRole("status").filter({ hasText: /^Updated/ }).first()).toBeVisible({ timeout: 60_000 });
+  const matchId = await liveMatchId("demo-meridian-major");
+  await page.goto(`/live/match/${matchId}`);
+  const round = page.getByText(/· round \d+$/).first();
+  await expect(round).toBeVisible({ timeout: 60_000 });
+  const firstRound = await round.innerText();
+  await expect.poll(async () => (await round.isVisible()) ? await round.innerText() : "map finished", { timeout: 90_000 }).not.toBe(firstRound);
+  await expect(page.getByText(/Round-by-round play isn't supplied/)).toBeVisible();
+
   // 18. Results arrive: the demo clock plays Stage 1 through the real pipeline.
   await advanceDemo(page, /Play Stage 1/);
 
@@ -139,8 +153,24 @@ test("a new fan builds a team, joins a league, follows scoring, transfers, and s
   await page.goto(entryUrl);
   await advanceDemo(page, /Play Stage 2/);
   await advanceDemo(page, /Play Stage 3/);
-  await advanceDemo(page, /Play Playoffs/);
+  await advanceDemo(page, /Play Quarterfinals/);
+  await advanceDemo(page, /Play Semifinals/);
+  await advanceDemo(page, /Play Grand Final/);
   await advanceDemo(page, /Settle final results/);
+
+  // The recap, a stage cup, and the share image.
+  await page.goto(entryUrl);
+  await expect(page.getByText("Final result")).toBeVisible();
+  await expect(page.getByRole("heading", { name: /^\d+(st|nd|rd|th) of \d/ })).toBeVisible();
+  await expect(page.getByText("Fantasy MVP")).toBeVisible();
+  const image = await page.request.get(`/api/og/entry/${entryUrl.split("/e/")[1]}`);
+  expect(image.status()).toBe(200);
+  expect(image.headers()["content-type"]).toContain("image/png");
+  await page.goto(`/c/${CONTEST}/leaderboard`);
+  await page.getByRole("tab", { name: "Grand Final Cup" }).click();
+  await expect(page.getByRole("tab", { name: "Grand Final Cup" })).toHaveAttribute("aria-selected", "true");
+  await expect(page.locator("ol[aria-busy=false] li").first()).toBeVisible();
+
   await page.goto("/profile");
   await expect(page.getByRole("heading", { name: user })).toBeVisible();
   const history = page.getByRole("region", { name: "Tournament history" });
