@@ -1,6 +1,6 @@
 # Esports Fantasy — Product Design System & UX Specification
 
-**Status:** Working design source of truth · **Version:** 1.0 · **Primary platform:** Mobile web / iPhone first · **Launch esport:** CS2
+**Status:** Working design source of truth · **Version:** 1.1 (see [changelog](#changelog)) · **Primary platform:** Mobile web / iPhone first · **Launch esport:** CS2
 
 > **North star:** *Sleeper esports personality, refined with the restraint, clarity, and precision of a top-tier iOS app.* Player-first. Competition-first. Calm surfaces, vivid content, exquisite interaction details. The app must feel intentionally designed rather than generated from a generic dashboard template.
 
@@ -65,7 +65,7 @@ These are **starting tokens**. Adjust only as part of a deliberate, documented s
 | Border | `--border` | `#2A394C` | Usually 1px with low prominence |
 | Primary text | `--text-1` | `#F3F6FA` | Titles, scores, names |
 | Secondary text | `--text-2` | `#A2B1C3` | Supporting copy |
-| Tertiary text | `--text-3` | `#788BA0` | Less prominent metadata, only at accessible contrast |
+| Tertiary text | `--text-3` | `#7C8FA4` | Less prominent metadata, only at accessible contrast. *v1.1: nudged from `#788BA0`, which measured 4.3:1 on `--surface-2` and failed axe; `#7C8FA4` passes 4.5:1 on every surface.* |
 | Primary accent | `--mint` | `#58E3CD` | Select player, primary CTA, positive score |
 | Mint wash | `--mint-wash` | `#163A39` | Mint-highlighted backgrounds; no large neon panels |
 | Competitive accent | `--violet` | `#A99AFF` | Rank/trophies, limited special moments |
@@ -126,7 +126,7 @@ Use **Inter**, **Geist**, or a similar carefully rendered, highly legible modern
 
 ## 4. Core mobile shell
 
-**Navigation model:** Home · Fantasy · Leagues · Profile (4 tabs at launch). A persistent bottom bar on top-level screens, contextual header/back navigation in deeper routes. Avoid a second bottom bar inside the fantasy builder.
+**Navigation model (v1.1):** Home · Fantasy · **Live** · Leagues · Profile (5 tabs). Live is a top-level destination because following your players during matches is the core loop, not a sub-page of an entry. A persistent bottom bar on top-level screens, contextual header/back navigation in deeper routes. Avoid a second bottom bar inside the fantasy builder.
 
 **Header:** 52–60px. Left logo or back arrow; centered or leading current page context, not both competing; right actions limited to one or two. Tournament and sport switches must have obvious interactive states.
 
@@ -225,6 +225,7 @@ Use **Inter**, **Geist**, or a similar carefully rendered, highly legible modern
 - Five player rows: photo, name, team, match state, fantasy points, last-map change. Visually distinguish **in-progress match** from **points finalized**.
 - Tap player for point breakdown; scoring calculations come from an auditable backend.
 - Show map-result status honestly: `Map 2 in progress · Fantasy points update when map ends` when appropriate.
+- *v1.1:* once the tournament ends, the summary hero is replaced by the **Results recap** (§5.11), and the five player rows remain beneath it.
 - Below: compact leaderboard preview, stage progression, permitted roster action.
 - Do not turn this into a comprehensive match broadcast interface.
 
@@ -244,6 +245,50 @@ Use **Inter**, **Geist**, or a similar carefully rendered, highly legible modern
 - Profile hero: avatar, username, preferred esport; simple verified stats, event history, placements, achievements earned.
 - No fictional trophies or ranking data in production.
 - Leagues: create/join with minimal fields; reusable invite link; eligible existing contest entry appears in relevant standings without duplication.
+
+### 5.9 Live GameDay (v1.1)
+
+**Job:** During matches, answer "how am I doing right now, and what happens next?" without refreshing.
+
+- **Header:** tournament, current stage, and a connection chip: `Live` / `Connecting` / `Reconnecting` / `Data delayed` / `Offline`, plus "Updated Ns ago". The chip is text plus a dot, never colour alone.
+- **Score card (the focal point):** fantasy points in `text-score`, global rank with movement, and league ranks as chips. When the total changes, the number does a 600ms flash; reduced motion skips it.
+- **Stale notice:** if no new snapshot or sync has arrived within the thresholds in LIVE_DATA.md, an amber notice sits directly above the scores, giving the time of the last update. Numbers stay visible.
+- **Player groups:** `Playing now`, then `Up next` (opponent and local start time), then `Finished or out`. A playing row shows:
+  - the map and score;
+  - K–D–A;
+  - **live map points** labelled `map pts · live`, visually secondary to the total.
+
+  Live map points are never added to the total (GAMEPLAY.md G-1).
+- **Rival Watch:** the managers directly above and below you, with the gap in points, shared players, and their players you don't have. A "playing" tag appears only when that player's match is live. The copy is a plain fact ("You trail by 3.4"); no probabilities.
+- **Your matches:** the live and next matches involving your players, linking to the Match Center.
+- **Activity:** every item comes from a ledger row or a standings snapshot (map scored, series won, advancement credit, correction, rank change). No generated chatter.
+- **Empty states:** signed out → sign in; no entry → find a tournament; nothing live → the next match time for your players.
+
+### 5.10 Match Center (v1.1)
+
+- Score header with both teams, the format (BO1/3/5), the status, and the map tabs.
+- For each map: a scoreboard per team showing player, K–D–A and **fantasy map points under the viewer's contest rules** (other provider stats appear only once a licensed feed is confirmed to supply them). Your players get a mint-wash row and the word "yours", so ownership never relies on colour alone.
+- A provider-honesty line sits under the scoreboard. On a live map it says the fantasy column is provisional, joins the total when the map ends, and that the provider supplies scoreboards, not round-by-round play. The page never invents round history.
+
+### 5.11 Results recap and share card (v1.1)
+
+- **Recap** (entry page after the final): placement "Nth of N" in `text-title`, points and percentile, award chips (Champion, Top 1/10/25%, League winner; only when earned), then three facts: Fantasy MVP, captain bonus (and best possible captain), and best value (points per $100K). League placements follow, then **Share** and **Next tournament**.
+- **Share card** (`/api/og/entry/[id]`, 1200×630): brand mark, tournament, points and rank, and five silhouette portraits with crests.
+  - Before a window locks, player names are replaced by "Hidden until lock", so sharing early never leaks a lineup.
+  - "Demo data" is printed on demo tournaments.
+- Shared links unfurl with this card (Open Graph and Twitter metadata on `/e/[id]`).
+
+### 5.12 Transfer management (v1.1)
+
+- Transfers happen in the builder, opened from **Make Transfers** (Home hero, entry page, Live). The header names the window ("Quarterfinals transfers") with the lock countdown. A transfer notice above the list reads `N of N transfers used · Replacing eliminated players is free` and lists eliminated players as one-tap removal chips.
+- Eliminated players show as **Out** in their slot. Replacing one never shows a transfer count change.
+- Kept players display the price paid; new signings show the current price. The salary summary uses the same numbers the server validates.
+- When a window raises the team limit (the Grand Final), the builder says so in words: "Up to 3 players from one team in the Grand Final".
+- Autopilot status and what it did are listed on the entry page, tagged `Autopilot`.
+
+### 5.13 Stage cups (v1.1)
+
+- A leaderboard scope per window (`Stage 3 Cup`, `Quarterfinals Cup`…) ranked by points scored in that stage only. It gives late joiners and managers with a slow start something to win. The scope control scrolls horizontally on mobile; it never wraps to two lines.
 
 ---
 
@@ -288,7 +333,8 @@ This is as important as visual polish.
 - **No fictional live data** in production screens. Development/demo state must be visibly labeled.
 - The provided mockup includes **Sleeper's logo**, an outdated/historical event label, hypothetical player photos, fake stat values, role labels, prizes and live scoreboards. Treat every one as *style direction only*.
 - Confirm current roster/team affiliation for each tournament; use contest snapshot identities.
-- Do not suggest live fantasy event scoring if the product updates after **completed maps** only.
+- Do not suggest live fantasy event scoring if the product updates after **completed maps** only. *v1.1:* in-map points are shown per player as `map pts · live` and are never presented as part of the total.
+- Never show an apparently live screen on stale data: connection and freshness states are always visible on Live and the Match Center (§5.9).
 - Don't show fabricated projections unless they are modeled and labeled.
 - Use image rights cleared for commercial use; preserve fallback quality when team logos, event images, or headshots are unavailable.
 - Reflect user score as **provisional** until finalized if provider corrections are possible.
@@ -346,6 +392,15 @@ Never combine mock and production data silently. Use typed `dataSource: 'demo' |
 - [ ] At least **one visual revision** after screenshot critique per flagship screen.
 - [ ] Server enforces roster validity and deadlines.
 
+### Live and results (v1.1)
+
+- [ ] Live updates arrive without refresh, through the real pipeline (replay in demo), never client-side increments.
+- [ ] Connection, delayed and stale states are visible and worded; numbers stay readable.
+- [ ] Live map points are labelled provisional and are never added to totals.
+- [ ] Activity items, Rival Watch statements and awards all trace to stored data.
+- [ ] The share image hides player names before lock and says "Demo data" for demo events.
+- [ ] Live, Match Center and Recap screenshots reviewed at all five viewport sizes.
+
 ---
 
 ## 11. How the AI coding agent should work with this spec
@@ -370,3 +425,13 @@ Never combine mock and production data silently. Use typed `dataSource: 'demo' |
 A brand-new esports fan should know what to do within seconds. A frequent fantasy player should be able to pick five players rapidly without losing access to advanced research. The completed lineup should feel exciting enough to share. Watching score progression should be unambiguous and satisfying. Every interaction should feel fast, coherent, and trustworthy.
 
 **Mental model:** Apple-grade clarity in the underlying product, Sleeper-grade fun in the fantasy interactions, original esports identity in the visual layer. The goal is not to look like AI made a pretty dashboard; the goal is to look like a thoughtful design team made a product people want to use every tournament.
+
+
+---
+
+## Changelog
+
+| Version | Change |
+|---|---|
+| 1.1 | Five-tab navigation with **Live**. New screen specs: Live GameDay (§5.9), Match Center (§5.10), Results recap and share card (§5.11), Transfer management (§5.12), Stage cups (§5.13). Tertiary text token `#7C8FA4` (contrast). Live and results QA checklist. Rules referenced here are defined in [GAMEPLAY.md](GAMEPLAY.md); live behaviour is defined in [LIVE_DATA.md](LIVE_DATA.md). |
+| 1.0 | Initial design package. |

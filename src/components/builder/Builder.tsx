@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { motion } from "motion/react";
+import { DEFAULT_CS2_CONTEST_RULES } from "@/domain/types";
 import { cn } from "@/lib/cn";
 import { money } from "@/lib/format";
 import type { BuilderData } from "@/server/queries/contest";
@@ -196,6 +197,13 @@ export function Builder({ data, nowIso, signedIn }: { data: BuilderData; nowIso:
       ) : null}
     </Notice>
   ) : null;
+  // A window can raise the team limit (the Grand Final: only two teams are left, so 3 + 2).
+  const teamLimitNote =
+    data.window && data.rules.maxPerTeam > DEFAULT_CS2_CONTEST_RULES.maxPerTeam ? (
+      <Notice tone="info" icon="info">
+        Up to {data.rules.maxPerTeam} players from one team in the {data.window.stageName}.
+      </Notice>
+    ) : null;
 
   const list = (
     <ul className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface" aria-label="Player pool">
@@ -281,6 +289,7 @@ export function Builder({ data, nowIso, signedIn }: { data: BuilderData; nowIso:
           </div>
           <div className="space-y-3 pt-4 lg:pt-0">
             {transferNote}
+            {teamLimitNote}
             <div className="flex gap-2">
               <div className="flex-1">
                 <SearchField value={b.filters.q} onChange={(q) => b.setFilters({ ...b.filters, q })} />

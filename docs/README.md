@@ -1,6 +1,6 @@
 # Esports Fantasy Platform: Research and Product Blueprint
 
-Phase 0 deliverables. Read in order; each document builds on the previous one.
+Phase 0 deliverables (01–09) are the research record: read in order, each builds on the previous one. They are not edited to hide earlier assumptions; where the build changed a decision, the documents marked **authoritative** below (and the project [README](../README.md#documents)) say which file wins.
 
 | # | Document | Brief deliverables covered |
 |---|----------|----------------------------|
@@ -16,6 +16,12 @@ Phase 0 deliverables. Read in order; each document builds on the previous one.
 | 10 | [Implementation decisions](10-implementation-decisions.md) | What changed during the build, and why |
 | — | [DESIGN.md](DESIGN.md) | **UI/UX source of truth** (design system, screen specs, quality checklist) |
 | 11 | [Design gap analysis](11-design-gap-analysis.md) | Where the app differed from DESIGN.md, and the fix |
+| — | [GAMEPLAY.md](GAMEPLAY.md) | **Authoritative game rules** (supersedes docs 04 and 09 where they differ) |
+| — | [GAMEPLAY_OPEN_QUESTIONS.md](GAMEPLAY_OPEN_QUESTIONS.md) | Rules still to be decided, with the evidence each needs |
+| — | [SCORING_FAIRNESS.md](SCORING_FAIRNESS.md) | Generated fairness report from simulated Majors |
+| — | [LIVE_DATA.md](LIVE_DATA.md) | **Authoritative** for data providers, usage rights and live behaviour ([full research notes](research/live-data-sources.md)) |
+| — | [ARCHITECTURE.md](ARCHITECTURE.md) | **Authoritative** for application architecture, ledger, realtime and security |
+| — | [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md) | Milestones and their status |
 
 ## The short version
 
