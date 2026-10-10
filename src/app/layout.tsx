@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   title: { default: "Lockin: CS2 tournament fantasy", template: "%s · Lockin" },
   description: "Build your dream esports team, compete through the biggest CS2 tournaments, and prove you're the best fantasy manager.",
   applicationName: "Lockin",
+  // Absolute URLs for share-card previews; set APP_URL in production.
+  metadataBase: new URL(process.env.APP_URL ?? "http://localhost:3000"),
 };
 
 export const viewport: Viewport = {

@@ -28,6 +28,21 @@ export interface ContestRules {
   transfersPerWindow: number;
 }
 
+/** Per-window overrides (docs/GAMEPLAY.md): e.g. 1 strategic transfer in playoff windows, 3 per team in the final. */
+export interface WindowRuleOverrides {
+  transfersAllowed?: number | null;
+  maxPerTeam?: number | null;
+}
+
+/** The rules that apply in one window: contest defaults with that window's overrides. */
+export function windowRules(rules: ContestRules, w: WindowRuleOverrides | null | undefined): ContestRules {
+  return {
+    ...rules,
+    transfersPerWindow: w?.transfersAllowed ?? rules.transfersPerWindow,
+    maxPerTeam: w?.maxPerTeam ?? rules.maxPerTeam,
+  };
+}
+
 export const DEFAULT_CS2_CONTEST_RULES: ContestRules = {
   rosterSize: 5,
   salaryCap: 1_000_000,

@@ -1,6 +1,6 @@
 import type { MatchStatus } from "@/domain/types";
 import type { NormMatch, NormTournament, ProviderAdapter } from "../types";
-import type { DemoApiMatch, DemoApiTournament } from "./payload";
+import type { DemoApiMatch, DemoApiPlayerGameStats, DemoApiTournament } from "./payload";
 import { demoCatalog } from "./catalog";
 import { viewAt } from "./view";
 
@@ -80,23 +80,37 @@ function normalizeMatch(m: DemoApiMatch): NormMatch {
       winnerTeamExternalId: g.winner_id,
       finishedAt: new Date(g.finished_at),
       statsVersion: g.stats_version,
-      stats: g.players.map((p) => ({
-        playerId: p.player_id,
-        teamId: p.team_id,
-        kills: p.kills,
-        deaths: p.deaths,
-        assists: p.assists,
-        openingKills: p.first_kills,
-        multiKillRounds: { k3: p.multikills["3k"], k4: p.multikills["4k"], k5: p.multikills["5k"] },
-        clutchesWon: {
-          v1: p.clutches_won["1v1"],
-          v2: p.clutches_won["1v2"],
-          v3: p.clutches_won["1v3"],
-          v4: p.clutches_won["1v4"],
-          v5: p.clutches_won["1v5"],
-        },
-      })),
+      stats: g.players.map(normalizeStats),
     })),
+    liveMap: m.live_game
+      ? {
+          number: m.live_game.position,
+          mapName: m.live_game.map,
+          roundsByTeam: m.live_game.rounds,
+          roundNumber: m.live_game.round_number,
+          updatedAt: new Date(m.live_game.updated_at),
+          stats: m.live_game.players.map(normalizeStats),
+        }
+      : null,
+  };
+}
+
+function normalizeStats(p: DemoApiPlayerGameStats) {
+  return {
+    playerId: p.player_id,
+    teamId: p.team_id,
+    kills: p.kills,
+    deaths: p.deaths,
+    assists: p.assists,
+    openingKills: p.first_kills,
+    multiKillRounds: { k3: p.multikills["3k"], k4: p.multikills["4k"], k5: p.multikills["5k"] },
+    clutchesWon: {
+      v1: p.clutches_won["1v1"],
+      v2: p.clutches_won["1v2"],
+      v3: p.clutches_won["1v3"],
+      v4: p.clutches_won["1v4"],
+      v5: p.clutches_won["1v5"],
+    },
   };
 }
 

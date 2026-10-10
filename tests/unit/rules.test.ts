@@ -6,7 +6,7 @@ import {
   validateRoster,
   validateTransfers,
 } from "@/domain/rules";
-import { DEFAULT_CS2_CONTEST_RULES, type PoolPlayer } from "@/domain/types";
+import { DEFAULT_CS2_CONTEST_RULES, windowRules, type PoolPlayer } from "@/domain/types";
 import { rankEntries, percentileLabel } from "@/domain/standings";
 import { runAutopilot, type AutopilotCandidate } from "@/domain/autopilot";
 
@@ -154,5 +154,27 @@ describe("autopilot", () => {
     const withoutHeld = runAutopilot({ playerIds: ["k1", "l1", "m1", "n1", "gone"], captainId: "k1", pool, rules });
     expect(withoutHeld.playerIds).not.toContain("x1"); // 830k + 290k would be over the cap
     expect(withoutHeld.playerIds).toContain("y1");
+  });
+});
+
+describe("window rule overrides", () => {
+  const base = { rosterSize: 5, salaryCap: 1_000_000, maxPerTeam: 2, captainMultiplier: 1.5, transfersPerWindow: 2 };
+  const pool = new Map(
+    ["a1", "a2", "a3", "b1", "b2"].map((id) => [id, { id, teamId: id[0]!, price: 150_000 }] as const),
+  );
+  it("defaults to the contest rules when a window has no overrides", () => {
+    expect(windowRules(base, null)).toEqual(base);
+    expect(windowRules(base, { transfersAllowed: null, maxPerTeam: null })).toEqual(base);
+  });
+  it("lets the Grand Final take three from one team, and only there", () => {
+    const lineup = { playerIds: ["a1", "a2", "a3", "b1", "b2"], captainId: "a1" };
+    expect(validateRoster(lineup, pool, base).map((e) => e.code)).toContain("TEAM_LIMIT");
+    expect(validateRoster(lineup, pool, windowRules(base, { maxPerTeam: 3 }))).toEqual([]);
+  });
+  it("applies the playoff transfer allowance", () => {
+    const count = countTransfers(["a1", "a2", "b1", "x1", "x2"], ["a1", "a2", "b1", "a3", "b2"], new Set(["a1", "a2", "a3", "b1", "b2", "x1", "x2"]));
+    expect(count.discretionary).toHaveLength(2);
+    expect(validateTransfers(count, windowRules(base, { transfersAllowed: 1 }))).not.toBeNull();
+    expect(validateTransfers(count, base)).toBeNull();
   });
 });

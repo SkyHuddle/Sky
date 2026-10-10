@@ -1,7 +1,7 @@
 import { and, asc, desc, eq, inArray, isNull, min } from "drizzle-orm";
 import { runAutopilot } from "@/domain/autopilot";
 import { CS2_DEFAULT_RULES } from "@/domain/scoring/cs2";
-import { DEFAULT_CS2_CONTEST_RULES, type ContestRules } from "@/domain/types";
+import { DEFAULT_CS2_CONTEST_RULES, windowRules, type ContestRules } from "@/domain/types";
 import type { Db } from "../db/connect";
 import * as s from "../db/schema";
 import { newId } from "../ids";
@@ -17,6 +17,8 @@ import { ruleSetById } from "./score";
  */
 
 const DAY = 86_400_000;
+const PLAYOFF_TRANSFERS = 1;
+const FINAL_MAX_PER_TEAM = 3;
 const SETTLE_DELAY = DAY; // settle 24 h after the last stage ends (docs/04 score states)
 
 interface ContestPlan {
@@ -35,14 +37,14 @@ function plansFor(tier: string): ContestPlan[] {
         name: "Main Event",
         tagline: "The 16 Stage 3 teams through to the final. All the stars, about a week.",
         kind: "main_event",
-        stagePositions: [3, 4],
+        stagePositions: [3, 4, 5, 6],
       },
       {
         slug: "full-run",
         name: "Full Run",
         tagline: "Every stage from Stage 1. More transfers, more decisions, for the dedicated.",
         kind: "full_run",
-        stagePositions: [1, 2, 3, 4],
+        stagePositions: [1, 2, 3, 4, 5, 6],
       },
     ];
   }
@@ -52,7 +54,7 @@ function plansFor(tier: string): ContestPlan[] {
       name: "Tournament Fantasy",
       tagline: "One team for the whole event, with transfers between stages.",
       kind: "standard",
-      stagePositions: [1, 2, 3, 4],
+      stagePositions: [1, 2, 3, 4, 5, 6],
     },
   ];
 }
@@ -81,6 +83,7 @@ export async function ensureContests(db: Db): Promise<string[]> {
         // Entries open two weeks before the event starts.
         opensAt: new Date(t.beginAt.getTime() - 14 * DAY),
       });
+      const lastPosition = Math.max(...stageRows.map((x) => x.position));
       for (const [i, pos] of plan.stagePositions.entries()) {
         const stage = stageRows.find((x) => x.position === pos);
         if (!stage) continue;
@@ -91,6 +94,11 @@ export async function ensureContests(db: Db): Promise<string[]> {
           position: i + 1,
           lockAt: stage.beginAt,
           status: "upcoming",
+          // docs/GAMEPLAY.md: one strategic transfer per playoff window (eliminated players are always
+          // free to replace); with only two teams left, the final allows three from one team so a
+          // five-player lineup (3 + 2) is possible.
+          transfersAllowed: stage.kind === "single_elimination" ? PLAYOFF_TRANSFERS : null,
+          maxPerTeam: stage.position === lastPosition && stage.kind === "single_elimination" ? FINAL_MAX_PER_TEAM : null,
         });
       }
       const prices = await computePrices(db, t.id, ruleSetById(CS2_DEFAULT_RULES.id));
@@ -197,8 +205,9 @@ async function advanceContest(db: Db, c: typeof s.contests.$inferSelect, now: Da
       const prev = windows[i - 1];
       const prevDone = !prev || (stageOf.get(prev.stageId)!.status === "completed" && prev.status !== "upcoming" && prev.status !== "open");
       const teamRows = await db.select().from(s.stageTeams).where(eq(s.stageTeams.stageId, stage.id));
-      const expected = stage.kind === "swiss" ? 16 : 8;
-      if (c.opensAt <= now && prevDone && teamRows.length === expected) {
+      // A stage's field is known once its teams are published (all at once when the previous stage ends).
+      const fieldKnown = stage.kind === "swiss" ? teamRows.length === 16 : teamRows.length >= 2;
+      if (c.opensAt <= now && prevDone && fieldKnown) {
         await openWindow(db, c, w, teamRows.map((t) => t.teamId), windows[i - 1], now);
         sum.opened.push(w.id);
         sum.touchedContests.push(c.id);
@@ -209,7 +218,7 @@ async function advanceContest(db: Db, c: typeof s.contests.$inferSelect, now: Da
     }
 
     if (w.status === "open" && w.lockAt <= now) {
-      sum.autopilotChanges += await runWindowAutopilot(db, c, w, rules);
+      sum.autopilotChanges += await runWindowAutopilot(db, c, w, windowRules(rules, w));
       await db.update(s.contestWindows).set({ status: "locked" }).where(eq(s.contestWindows.id, w.id));
       sum.locked.push(w.id);
       sum.touchedContests.push(c.id);

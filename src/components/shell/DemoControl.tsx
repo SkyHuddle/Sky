@@ -16,7 +16,12 @@ import { cn } from "@/lib/cn";
 export function DemoControl({ now, signedIn, compact }: { now: string; signedIn: boolean; compact?: boolean }) {
   const [open, setOpen] = useState(false);
   const [busy, setBusy] = useState(false);
-  const [status, setStatus] = useState<{ next: { label: string; target: string } | null; now: string } | null>(null);
+  const [status, setStatus] = useState<{
+    next: { label: string; target: string } | null;
+    now: string;
+    speed: number;
+    live: { at: string; label: string; inProgress: boolean } | null;
+  } | null>(null);
   const router = useRouter();
   const toast = useToast();
 
@@ -36,6 +41,34 @@ export function DemoControl({ now, signedIn, compact }: { now: string; signedIn:
       router.refresh();
     } catch (e) {
       toast(e instanceof Error ? e.message : "Couldn't advance the demo", "error");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function watchLive() {
+    setBusy(true);
+    try {
+      const res = await fetch("/api/demo/live", { method: "POST" });
+      const body = await res.json();
+      if (!res.ok) throw new Error(body?.error?.message ?? "Couldn't start the live replay");
+      toast(`Replaying ${body.label} at ${body.speed}× speed`, "success");
+      setOpen(false);
+      router.push("/live");
+      router.refresh();
+    } catch (e) {
+      toast(e instanceof Error ? e.message : "Couldn't start the live replay", "error");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function pause() {
+    setBusy(true);
+    try {
+      await fetch("/api/demo/pause", { method: "POST" });
+      toast("Demo clock back to real time", "success");
+      await load();
     } finally {
       setBusy(false);
     }
@@ -71,13 +104,25 @@ export function DemoControl({ now, signedIn, compact }: { now: string; signedIn:
             <p className="text-callout text-ink-2">The demo Major is complete. Reseed with <code className="rounded bg-elevated px-1">npm run db:seed</code> to start again.</p>
           ) : null}
           {signedIn ? (
-            <Button block size="lg" variant="lavender" icon="play" loading={busy} disabled={!status?.next} onClick={advance}>
-              {status?.next ? status.next.label : "Loading…"}
-            </Button>
+            <div className="space-y-2.5">
+              <Button block size="lg" icon="live" loading={busy} disabled={!status?.live} onClick={watchLive}>
+                {status?.live ? `Watch live: ${status.live.label}` : "No matches to watch"}
+              </Button>
+              {status && status.speed > 1 ? (
+                <Button block variant="secondary" onClick={pause} disabled={busy}>
+                  Back to real time ({status.speed}× now)
+                </Button>
+              ) : null}
+              <Button block size="lg" variant="lavender" icon="play" loading={busy} disabled={!status?.next} onClick={advance}>
+                {status?.next ? `Skip ahead: ${status.next.label}` : "Loading…"}
+              </Button>
+            </div>
           ) : (
-            <p className="text-callout text-ink-2">Sign in to advance the demo.</p>
+            <p className="text-callout text-ink-2">Sign in to control the demo.</p>
           )}
-          <p className="text-caption text-ink-3">Advancing jumps to the end of the next stage of Meridian Major (Demo). Lineups for that stage lock first; Autopilot runs for anyone who didn&apos;t act.</p>
+          <p className="text-caption text-ink-3">
+            Watch live replays the next series at 20× speed: maps unfold round by round through the real ingestion and scoring pipeline. Skip ahead jumps to the end of the next stage of Meridian Major (Demo); lineups lock first and Autopilot runs for anyone who didn&apos;t act.
+          </p>
         </div>
       </Sheet>
     </>

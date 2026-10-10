@@ -80,7 +80,10 @@ describe("accounts", () => {
 describe("tournament fantasy journey", () => {
   it("opens Full Run before Stage 1 with a frozen 80-player pool; Main Event waits for Stage 3 teams", async () => {
     const ws = await db.select().from(s.contestWindows).where(eq(s.contestWindows.contestId, FULL_RUN)).orderBy(asc(s.contestWindows.position));
-    expect(ws.map((w) => w.status)).toEqual(["open", "upcoming", "upcoming", "upcoming"]);
+    expect(ws.map((w) => w.status)).toEqual(["open", "upcoming", "upcoming", "upcoming", "upcoming", "upcoming"]);
+    // Playoff windows: one strategic transfer each; the Grand Final allows three from one team.
+    expect(ws.map((w) => w.transfersAllowed)).toEqual([null, null, null, 1, 1, 1]);
+    expect(ws.map((w) => w.maxPerTeam)).toEqual([null, null, null, null, null, 3]);
     expect(await db.select().from(s.windowPool).where(eq(s.windowPool.windowId, ws[0]!.id))).toHaveLength(80);
     const me = await db.select().from(s.contestWindows).where(eq(s.contestWindows.contestId, "demo-meridian-major--main-event"));
     expect(me.every((w) => w.status === "upcoming")).toBe(true);

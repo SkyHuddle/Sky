@@ -32,10 +32,14 @@ export default async function HomePage() {
   const completed = all.filter((t) => t.status === "completed" && t !== featured);
   const mine = all.flatMap((t) => t.contests.filter((c) => c.myEntry && c.status !== "completed").map((c) => ({ t, c })));
   const contest = primaryContest(featured, now);
+  // Players competing right now come first (DESIGN.md §7.1): only when the viewer has an entry here.
+  const liveMatches = hub?.matches.filter((m) => m.status === "live") ?? [];
+  const liveNow = mine.some(({ t }) => t.id === featured.id) && liveMatches.length ? { count: liveMatches.length, teams: hub!.teams, matches: liveMatches.slice(0, 3) } : null;
 
   return (
     <div className="space-y-8 lg:grid lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-x-8 lg:gap-y-8 lg:space-y-0">
-      <div className="lg:col-span-2">
+      <div className="space-y-4 lg:col-span-2">
+        {liveNow ? <LiveNowCard live={liveNow} /> : null}
         <TournamentHero t={featured} contest={contest} now={now} nowIso={nowIso} />
       </div>
 
@@ -130,6 +134,26 @@ export default async function HomePage() {
         ) : null}
       </div>
     </div>
+  );
+}
+
+function LiveNowCard({ live }: { live: { count: number; teams: Record<string, TeamLite>; matches: MatchLite[] } }) {
+  return (
+    <Link href="/live" className="flex min-h-[72px] items-center gap-3 rounded-2xl border border-live/30 bg-surface px-4 py-3 transition-colors hover:bg-elevated">
+      <span className="relative inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-[rgb(255_120_129/0.12)] text-live">
+        <Icon name="live" size={20} />
+      </span>
+      <span className="min-w-0 flex-1">
+        <span className="block text-headline text-ink">Matches are live</span>
+        <span className="block truncate text-footnote text-ink-2">
+          {live.matches.map((m) => `${live.teams[m.teamAId]?.acronym ?? "TBD"} v ${live.teams[m.teamBId]?.acronym ?? "TBD"}`).join(" · ")}
+          {live.count > live.matches.length ? ` · +${live.count - live.matches.length}` : ""}
+        </span>
+      </span>
+      <span className="inline-flex items-center gap-0.5 text-callout font-medium text-accent">
+        Follow your team <Icon name="chevronRight" size={16} />
+      </span>
+    </Link>
   );
 }
 

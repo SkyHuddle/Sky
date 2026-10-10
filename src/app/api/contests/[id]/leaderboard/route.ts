@@ -12,6 +12,8 @@ export const GET = route<{ id: string }>(async ({ db, req, viewer }, { id }) => 
   if (kind === "friends") {
     if (!viewer) throw new AppError("UNAUTHENTICATED", "Sign in to see your friends' board.");
     scope = { kind: "friends", userId: viewer.id };
+  } else if (kind === "stage") {
+    scope = { kind: "stage", windowId: url.searchParams.get("window") ?? "" };
   } else if (kind === "league") {
     const leagueId = url.searchParams.get("league") ?? "";
     if (!(await isMember(db, leagueId, viewer?.id ?? null))) throw new AppError("FORBIDDEN", "Join the league to see its standings.");

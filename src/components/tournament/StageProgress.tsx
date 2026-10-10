@@ -2,7 +2,9 @@ import { cn } from "@/lib/cn";
 import type { StageView } from "@/server/queries/tournament";
 import { Icon } from "../ui/Icon";
 
-/** Stage 1 → Stage 2 → Stage 3 → Playoffs, with the current stage emphasised. */
+const SHORT: Record<string, string> = { Quarterfinals: "QF", Semifinals: "SF", "Grand Final": "Final" };
+
+/** Stage 1 → Stage 2 → Stage 3 → QF → SF → Final, with the current stage emphasised. */
 export function StageProgress({ stages, className, compact }: { stages: StageView[]; className?: string; compact?: boolean }) {
   return (
     <ol className={cn("flex items-center gap-1.5", className)} aria-label="Tournament stages">
@@ -21,7 +23,9 @@ export function StageProgress({ stages, className, compact }: { stages: StageVie
               {!compact ? (
                 <div className={cn("mt-1.5 flex items-center gap-1 truncate text-caption", live ? "font-semibold text-ink" : done ? "text-ink-3" : "text-ink-2")}>
                   {done ? <Icon name="check" size={12} strokeWidth={2.4} /> : live ? <span className="size-1.5 shrink-0 rounded-full bg-live motion-safe:animate-pulse-dot" aria-hidden /> : null}
-                  <span className="truncate">{s.name}</span>
+                  <span className="truncate" title={s.name}>
+                    {stages.length > 4 ? (SHORT[s.name] ?? s.name.replace("Stage ", "S")) : s.name}
+                  </span>
                   <span className="sr-only">{done ? "(complete)" : live ? "(live)" : "(upcoming)"}</span>
                 </div>
               ) : null}

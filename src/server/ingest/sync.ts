@@ -138,9 +138,12 @@ async function syncTournament(db: Db, provider: ProviderAdapter, t: NormTourname
     ? await db.select({ id: s.matches.id, hash: s.matches.payloadHash }).from(s.matches).where(inArray(s.matches.id, matchIds))
     : [];
   const hashes = new Map(known.map((k) => [k.id, k.hash]));
+  // Live scoreboards change every round: keep them out of the match hash (so a round doesn't
+  // trigger a rescore) and store them separately as provisional snapshots.
+  await syncLiveMaps(db, P, t.matches);
   for (const m of t.matches) {
     const id = internalId(P, m.externalId);
-    const hash = stableHash(m);
+    const hash = matchHash(m);
     if (hashes.get(id) === hash) continue;
     const problems = validateMatch(m);
     if (problems.length > 0) {
@@ -163,6 +166,44 @@ async function syncTournament(db: Db, provider: ProviderAdapter, t: NormTourname
   summary.changedStageIds = [...new Set(summary.changedStageIds)];
 }
 
+const matchHash = (m: NormMatch) => stableHash({ ...m, liveMap: undefined });
+
+/** Upserts the current live-map snapshot of each live match; removes snapshots that are no longer live. */
+async function syncLiveMaps(db: Db, P: string, matches: NormMatch[]) {
+  const live = matches.filter((m) => m.status === "live" && m.liveMap);
+  const liveIds = new Set(live.map((m) => internalId(P, m.externalId)));
+  // Only this tournament's matches: other tournaments are synced separately.
+  const ownIds = matches.map((m) => internalId(P, m.externalId));
+  if (ownIds.length === 0) return;
+  const existing = await db
+    .select({ matchId: s.liveMaps.matchId, number: s.liveMaps.number, at: s.liveMaps.providerUpdatedAt })
+    .from(s.liveMaps)
+    .where(inArray(s.liveMaps.matchId, ownIds));
+  const stale = existing.filter((e) => !liveIds.has(e.matchId)).map((e) => e.matchId);
+  if (stale.length) await db.delete(s.liveMaps).where(inArray(s.liveMaps.matchId, stale));
+  const have = new Map(existing.map((e) => [e.matchId, e]));
+  for (const m of live) {
+    const id = internalId(P, m.externalId);
+    const lm = m.liveMap!;
+    const prev = have.get(id);
+    // Out-of-order or duplicate snapshots are ignored: only a newer snapshot (or a new map) replaces the old one.
+    if (prev && prev.number === lm.number && prev.at.getTime() >= lm.updatedAt.getTime()) continue;
+    const [known] = await db.select({ id: s.matches.id }).from(s.matches).where(eq(s.matches.id, id));
+    if (!known) continue; // the match row arrives with the regular sync below; the snapshot follows next tick
+    const row = {
+      matchId: id,
+      number: lm.number,
+      mapName: lm.mapName,
+      roundsA: lm.roundsByTeam[m.teamAExternalId] ?? 0,
+      roundsB: lm.roundsByTeam[m.teamBExternalId] ?? 0,
+      stats: lm.stats.map((x) => ({ ...x, playerId: internalId(P, x.playerId), teamId: internalId(P, x.teamId) })),
+      providerUpdatedAt: lm.updatedAt,
+      updatedAt: new Date(),
+    };
+    await db.insert(s.liveMaps).values(row).onConflictDoUpdate({ target: s.liveMaps.matchId, set: row });
+  }
+}
+
 async function upsertMatch(db: Db, P: string, id: string, m: NormMatch, summary: SyncSummary) {
   await upsertExternal(db, P, "match", m.externalId);
   const row = {
@@ -177,7 +218,7 @@ async function upsertMatch(db: Db, P: string, id: string, m: NormMatch, summary:
     teamAId: internalId(P, m.teamAExternalId),
     teamBId: internalId(P, m.teamBExternalId),
     winnerTeamId: m.winnerTeamExternalId ? internalId(P, m.winnerTeamExternalId) : null,
-    payloadHash: stableHash(m),
+    payloadHash: matchHash(m),
     updatedAt: new Date(),
   };
   await db.insert(s.matches).values(row).onConflictDoUpdate({ target: s.matches.id, set: row });

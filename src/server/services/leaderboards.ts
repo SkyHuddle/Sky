@@ -8,7 +8,12 @@ import * as s from "../db/schema";
  * appears on every board without being rebuilt.
  */
 
-export type BoardScope = { kind: "global" } | { kind: "league"; leagueId: string } | { kind: "friends"; userId: string };
+export type BoardScope =
+  | { kind: "global" }
+  | { kind: "league"; leagueId: string }
+  | { kind: "friends"; userId: string }
+  /** A stage cup: the same entries ranked by points scored in one stage window only. */
+  | { kind: "stage"; windowId: string };
 
 export interface BoardRow {
   rank: number;
@@ -48,6 +53,7 @@ export async function getBoard(
 ): Promise<Board> {
   const pageSize = Math.min(100, Math.max(5, opts.pageSize ?? 25));
   const page = Math.max(1, opts.page ?? 1);
+  if (scope.kind === "stage") return stageCup(db, contestId, scope.windowId, opts.viewerId, page, pageSize);
 
   let filter = and(eq(s.entries.contestId, contestId), isNotNull(s.entries.rank));
   if (scope.kind === "league") {
@@ -94,5 +100,32 @@ export async function getBoard(
     });
   });
   const me = opts.viewerId ? rows.find((r) => r.userId === opts.viewerId) ?? null : null;
+  return { rows: rows.slice((page - 1) * pageSize, page * pageSize), total: rows.length, me, page, pageSize };
+}
+
+/** Stage cup standings from the per-window entry scores (no separate draft, same entry). */
+async function stageCup(db: Db, contestId: string, windowId: string, viewerId: string | null, page: number, pageSize: number): Promise<Board> {
+  const all = await db
+    .select({
+      entryId: s.entries.id,
+      userId: s.entries.userId,
+      points: s.entryWindowScores.points,
+      username: s.users.username,
+      displayName: s.users.displayName,
+      avatarHue: s.users.avatarHue,
+      isBot: s.users.isBot,
+    })
+    .from(s.entryWindowScores)
+    .innerJoin(s.entries, eq(s.entries.id, s.entryWindowScores.entryId))
+    .innerJoin(s.users, eq(s.users.id, s.entries.userId))
+    .where(and(eq(s.entryWindowScores.windowId, windowId), eq(s.entries.contestId, contestId)))
+    .orderBy(sql`${s.entryWindowScores.points} desc`, asc(s.entries.id));
+  const rows: BoardRow[] = [];
+  all.forEach((r, i) => {
+    const prev = rows[i - 1];
+    const rank = prev && prev.points === r.points ? prev.rank : i + 1;
+    rows.push({ rank, entryId: r.entryId, userId: r.userId, username: r.username, displayName: r.displayName, avatarHue: r.avatarHue, points: r.points, movement: null, isBot: r.isBot });
+  });
+  const me = viewerId ? rows.find((r) => r.userId === viewerId) ?? null : null;
   return { rows: rows.slice((page - 1) * pageSize, page * pageSize), total: rows.length, me, page, pageSize };
 }

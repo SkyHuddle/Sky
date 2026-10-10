@@ -1,6 +1,6 @@
 import { and, asc, eq, inArray } from "drizzle-orm";
 import { countTransfers, validateRoster, validateTransfers } from "@/domain/rules";
-import type { ContestRules, PoolPlayer } from "@/domain/types";
+import { windowRules, type ContestRules, type PoolPlayer } from "@/domain/types";
 import type { Db } from "../db/connect";
 import * as s from "../db/schema";
 import { AppError } from "../errors";
@@ -53,7 +53,8 @@ export async function windowPoolMap(db: Db, windowId: string): Promise<Map<strin
 
 export async function saveEntry(db: Db, input: SaveEntryInput, now: Date): Promise<SaveEntryResult> {
   const { contest, window, windows } = await openWindowFor(db, input.contestId, now);
-  const rules = contest.rules as ContestRules;
+  // The window's own rules apply (e.g. 1 strategic transfer in playoff windows, 3 per team in the final).
+  const rules = windowRules(contest.rules as ContestRules, window);
   const pool = await windowPoolMap(db, window.id);
 
   // Players kept from the previous window count at the price paid for them (FPL-style).

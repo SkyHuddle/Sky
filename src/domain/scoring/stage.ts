@@ -93,12 +93,14 @@ export function scoreStage(
       else if (r.losses >= stage.lossesToEliminate) r.status = "eliminated";
     }
   } else {
-    for (const r of records.values()) if (r.losses > 0) r.status = "eliminated";
+    // Single elimination, one bracket round per stage (Quarterfinals, Semifinals, Grand Final):
+    // the loser is out, the winner moves on.
+    for (const r of records.values()) {
+      if (r.losses > 0) r.status = "eliminated";
+      else if (r.wins > 0) r.status = "advanced";
+    }
   }
-  const complete =
-    stage.kind === "swiss"
-      ? [...records.values()].every((r) => r.status !== "alive")
-      : [...records.values()].filter((r) => r.status === "alive").length <= 1;
+  const complete = [...records.values()].every((r) => r.status !== "alive");
 
   let credits: AdvancementCreditLine[] = [];
   if (complete && stage.kind === "swiss" && stage.winsToAdvance && stage.lossesToEliminate) {

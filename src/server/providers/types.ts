@@ -65,6 +65,20 @@ export interface NormMatch {
   teamBExternalId: string;
   winnerTeamExternalId: string | null;
   maps: NormMap[];
+  /** The map being played now, as a scoreboard snapshot (live matches only, when the provider supplies it). */
+  liveMap?: NormLiveMap | null;
+}
+
+export interface NormLiveMap {
+  number: number;
+  mapName: string;
+  roundsByTeam: Record<string, number>;
+  /** Rounds completed so far. */
+  roundNumber: number;
+  /** When the provider produced this snapshot. */
+  updatedAt: Date;
+  /** playerId / teamId are EXTERNAL ids. */
+  stats: Cs2PlayerMapStats[];
 }
 
 export interface NormTournament {

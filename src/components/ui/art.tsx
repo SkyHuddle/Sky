@@ -56,7 +56,7 @@ const HAIRSTYLES = [
  * implying what a real person looks like. Team colour appears in the jersey trim and chest crest.
  * Licensed headshots replace this inside the same frame.
  */
-export function PortraitSvg({ seed, color, team, className }: { seed: string; color: string; team?: { id: string; name: string }; className?: string }) {
+export function PortraitSvg({ seed, color, team, className, size }: { seed: string; color: string; team?: { id: string; name: string }; className?: string; size?: number }) {
   const rng = new Rng(hashString(`portrait:${seed}`));
   const style = rng.int(0, HAIRSTYLES.length - 1);
   const headset = rng.chance(0.45);
@@ -69,7 +69,7 @@ export function PortraitSvg({ seed, color, team, className }: { seed: string; co
   const trim = mix(color, "#ffffff", luminance(color) > 0.5 ? 0 : 0.15);
 
   return (
-    <svg viewBox="12 6 76 76" className={className} aria-hidden focusable="false">
+    <svg viewBox="12 6 76 76" className={className} width={size} height={size} aria-hidden focusable="false">
       {/* jersey */}
       <path d="M4 100 C6 81 19 71.6 35.4 68.8 L44 67 L56 67 L64.6 68.8 C81 71.6 94 81 96 100 Z" fill={jersey} />
       <path d="M14 82 C20 75.4 27.8 71.6 36 70 M86 82 C80 75.4 72.2 71.6 64 70" stroke={trim} strokeOpacity="0.7" strokeWidth="1.4" fill="none" />
@@ -154,25 +154,25 @@ export function crestGlyph(name: string): keyof typeof GLYPHS {
   return keys[hashString(name) % keys.length]!;
 }
 
-export function CrestSvg({ id, name, color, className, bare }: { id: string; name: string; color: string; className?: string; bare?: boolean }) {
+export function CrestSvg({ id, name, color, className, bare, size }: { id: string; name: string; color: string; className?: string; bare?: boolean; size?: number }) {
   const shapes = Object.values(SHAPES);
   const shape = shapes[hashString(`crest:${id}`) % shapes.length]!;
   const glyph = GLYPHS[crestGlyph(name)]!;
   const light = luminance(color) > 0.42;
   const ink = light ? mix(color, "#070a10", 0.82) : "#f7f9fc";
   const body = (
-    <>
+    <g>
       <path d={shape} fill={mix(color, "#070a10", 0.12)} />
       <path d={shape} fill="none" stroke="#ffffff" strokeOpacity="0.22" strokeWidth="1.2" transform="translate(2.6 2.6) scale(0.87)" />
       <g transform="translate(20 20) scale(0.92) translate(-20 -19.6)">
         {glyph.fill ? <path d={glyph.fill} fill={ink} /> : null}
         {glyph.stroke ? <path d={glyph.stroke} fill="none" stroke={ink} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /> : null}
       </g>
-    </>
+    </g>
   );
-  if (bare) return <g>{body}</g>;
+  if (bare) return body;
   return (
-    <svg viewBox="0 0 40 40" className={className} aria-hidden focusable="false">
+    <svg viewBox="0 0 40 40" className={className} width={size} height={size} aria-hidden focusable="false">
       {body}
     </svg>
   );

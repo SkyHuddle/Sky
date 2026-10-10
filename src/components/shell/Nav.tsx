@@ -8,6 +8,7 @@ import { Icon, type IconName } from "../ui/Icon";
 export const NAV: { href: string; label: string; icon: IconName; match: (p: string) => boolean }[] = [
   { href: "/", label: "Home", icon: "home", match: (p) => p === "/" || p.startsWith("/t/") },
   { href: "/fantasy", label: "Fantasy", icon: "roster", match: (p) => p.startsWith("/fantasy") || p.startsWith("/e/") || p.startsWith("/c/") },
+  { href: "/live", label: "Live", icon: "live", match: (p) => p.startsWith("/live") },
   { href: "/leagues", label: "Leagues", icon: "trophy", match: (p) => p.startsWith("/leagues") || p.startsWith("/join") },
   { href: "/profile", label: "Profile", icon: "user", match: (p) => p.startsWith("/profile") || p.startsWith("/u/") },
 ];
@@ -17,7 +18,7 @@ export function TabBar() {
   const path = usePathname();
   return (
     <nav aria-label="Primary" className="glass pb-safe fixed inset-x-0 bottom-0 z-40 border-t border-border lg:hidden">
-      <ul className="mx-auto grid max-w-lg grid-cols-4">
+      <ul className="mx-auto grid max-w-lg grid-cols-5">
         {NAV.map((item) => {
           const active = item.match(path);
           return (
@@ -25,9 +26,9 @@ export function TabBar() {
               <Link
                 href={item.href}
                 aria-current={active ? "page" : undefined}
-                className={cn("flex h-14 flex-col items-center justify-center gap-0.5 text-[0.75rem] font-medium transition-colors", active ? "text-ink" : "text-ink-3 hover:text-ink-2")}
+                className={cn("flex h-16 flex-col items-center justify-center gap-1 text-[0.75rem] font-medium transition-colors", active ? "text-ink" : "text-ink-3 hover:text-ink-2")}
               >
-                <span className={cn("flex h-7 w-12 items-center justify-center rounded-full transition-colors", active && "bg-elevated text-accent")}>
+                <span className={cn("flex h-7 w-11 items-center justify-center rounded-full transition-colors", active && "bg-elevated text-accent")}>
                   <Icon name={item.icon} size={21} strokeWidth={active ? 2 : 1.75} />
                 </span>
                 {item.label}

@@ -1,4 +1,4 @@
-import { eq, inArray } from "drizzle-orm";
+import { inArray } from "drizzle-orm";
 import type { Db } from "../db/connect";
 import * as s from "../db/schema";
 import type { ProviderAdapter } from "../providers/types";
@@ -29,15 +29,13 @@ export async function runPipeline(db: Db, provider: ProviderAdapter, now: Date):
   const sync = await syncProvider(db, provider, now);
   const created = await ensureContests(db);
 
-  // Stages to rescore: anything the sync touched, plus every stage of newly created contests
-  // (their rule set may not have ledger rows yet), plus stages with live matches.
+  // Stages to rescore: anything the sync touched (a finished map or result changes the match hash),
+  // plus every stage of newly created contests (their rule set may not have ledger rows yet).
   const stageIds = new Set(sync.changedStageIds);
   if (created.length) {
     const ws = await db.select({ stageId: s.contestWindows.stageId }).from(s.contestWindows).where(inArray(s.contestWindows.contestId, created));
     ws.forEach((w) => stageIds.add(w.stageId));
   }
-  const live = await db.selectDistinct({ stageId: s.matches.stageId }).from(s.matches).where(eq(s.matches.status, "live"));
-  live.forEach((l) => stageIds.add(l.stageId));
   for (const id of stageIds) await rescoreStage(db, id);
 
   const adv = await advanceContests(db, now);

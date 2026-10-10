@@ -11,15 +11,20 @@ import { demoTick } from "./services/demo";
 
 const INTERVAL_MS = 60_000;
 let lastRun = 0;
+let version = 0;
 let inflight: Promise<void> | null = null;
 
-export async function ensureFresh(db: Db, force = false): Promise<void> {
+/** Increments after every pipeline run, so live streams know when to recompute (one ingestion, many viewers). */
+export const pipelineVersion = () => version;
+
+export async function ensureFresh(db: Db, force = false, minIntervalMs = INTERVAL_MS): Promise<void> {
   if (inflight) return inflight;
-  if (!force && Date.now() - lastRun < INTERVAL_MS) return;
+  if (!force && Date.now() - lastRun < minIntervalMs) return;
   inflight = (async () => {
     try {
       await demoTick(db, await clockNow(db));
       lastRun = Date.now();
+      version++;
     } catch (err) {
       // Provider failures must not take the app down; the UI shows "stats delayed".
       console.error("[pipeline] tick failed", err);

@@ -1,7 +1,7 @@
 import { and, asc, desc, eq, inArray, isNull } from "drizzle-orm";
 import type { SeriesBreakdown } from "@/domain/scoring/cs2";
 import type { AdvancementCreditLine } from "@/domain/scoring/advancement";
-import type { ContestRules } from "@/domain/types";
+import { windowRules, type ContestRules } from "@/domain/types";
 import type { Db } from "../db/connect";
 import * as s from "../db/schema";
 import { currentRoster } from "../ingest/contests";
@@ -60,12 +60,14 @@ export async function builderData(db: Db, contestId: string, viewerId: string | 
   const [t] = await db.select().from(s.tournaments).where(eq(s.tournaments.id, c.tournamentId));
   const [summary] = await tournamentSummaries(db, viewerId, { slug: t!.slug });
   const contest = summary!.contests.find((x) => x.id === c.id)!;
-  const rules = c.rules as ContestRules;
   const rs = ruleSetById(c.ruleSetId);
 
   const open = contest.openWindow && new Date(contest.openWindow.lockAt) > now ? contest.openWindow : null;
   const lastLocked = [...contest.windows].reverse().find((w) => w.status === "locked" || w.status === "completed") ?? null;
   const shownWindow = open ?? lastLocked ?? contest.windows[0] ?? null;
+  // The shown window's own rules (transfer allowance, team limit) apply in the builder.
+  const [windowRow] = shownWindow ? await db.select().from(s.contestWindows).where(eq(s.contestWindows.id, shownWindow.id)) : [];
+  const rules = windowRules(c.rules as ContestRules, windowRow);
   const state: BuilderData["state"] = open
     ? "open"
     : contest.status === "completed"
@@ -286,9 +288,10 @@ export async function entryDashboard(db: Db, entryId: string, viewerId: string |
   const [t] = await db.select().from(s.tournaments).where(eq(s.tournaments.id, c!.tournamentId));
   const [summary] = await tournamentSummaries(db, viewerId, { slug: t!.slug });
   const contest = summary!.contests.find((x) => x.id === c!.id)!;
-  const rules = c!.rules as ContestRules;
   const isOwner = viewerId === e.userId;
   const windowRows = await db.select().from(s.contestWindows).where(eq(s.contestWindows.contestId, c!.id)).orderBy(asc(s.contestWindows.position));
+  // Rules as they apply right now: the open window's overrides, if a window is open.
+  const rules = windowRules(c!.rules as ContestRules, windowRows.find((w) => w.status === "open"));
   const stageIds = windowRows.map((w) => w.stageId);
   const matches = await matchesForStages(db, stageIds);
   const stageTeamRows = stageIds.length ? await db.select().from(s.stageTeams).where(inArray(s.stageTeams.stageId, stageIds)) : [];

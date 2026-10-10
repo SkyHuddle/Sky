@@ -19,6 +19,7 @@ import { PlayerRow } from "./PlayerRow";
 import { PlayerSheet } from "./PlayerSheet";
 import { Review, type SubmitError } from "./Review";
 import { LineupList, RosterSlots, SalarySummary } from "./RosterTray";
+import { ShareButton } from "../entry/ShareButton";
 import { LineupShowcase } from "./Showcase";
 import { useBuilder } from "./useBuilder";
 
@@ -410,20 +411,6 @@ function Frame({ data, nowIso, children, wide }: { data: BuilderData; nowIso: st
 }
 
 function Done({ data, b, entryId, created, nowIso }: { data: BuilderData; b: ReturnType<typeof useBuilder>; entryId: string; created: boolean; nowIso: string }) {
-  const toast = useToast();
-  const share = async () => {
-    const url = `${window.location.origin}/e/${entryId}`;
-    const text = `My ${data.tournament.shortName} fantasy team is locked in.`;
-    try {
-      if (navigator.share) await navigator.share({ title: "My Lockin team", text, url });
-      else {
-        await navigator.clipboard.writeText(url);
-        toast("Link copied", "success");
-      }
-    } catch {
-      /* user cancelled */
-    }
-  };
   return (
     <div className="mx-auto max-w-xl py-6 text-center">
       <motion.div
@@ -466,9 +453,10 @@ function Done({ data, b, entryId, created, nowIso }: { data: BuilderData; b: Ret
           Join or create a league
         </ButtonLink>
       </div>
-      <Button variant="ghost" icon="share" className="mt-3" onClick={share}>
-        Share your team
-      </Button>
+      <div className="mt-4 flex justify-center">
+        <ShareButton entryId={entryId} text={`My ${data.tournament.shortName} fantasy team is locked in.`} label="Share your team" />
+      </div>
+      <p className="mt-2 text-caption text-ink-3">Player names on the shared card stay hidden until {data.window?.stageName ?? "the stage"} locks.</p>
     </div>
   );
 }

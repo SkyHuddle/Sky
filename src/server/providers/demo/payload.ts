@@ -60,6 +60,18 @@ export interface DemoApiMatch {
   opponents: [string, string];
   winner_id: string | null;
   games: DemoApiGame[];
+  /** The map being played right now (running matches only): a scoreboard snapshot. */
+  live_game?: DemoApiLiveGame | null;
+}
+
+export interface DemoApiLiveGame {
+  position: number;
+  map: string;
+  rounds: Record<string, number>;
+  /** Rounds completed so far. */
+  round_number: number;
+  updated_at: string;
+  players: DemoApiPlayerGameStats[];
 }
 
 export interface DemoApiStage {

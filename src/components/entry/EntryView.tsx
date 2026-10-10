@@ -15,9 +15,11 @@ import { DemoBadge, PlayerAvatar, TeamMark, UserAvatar } from "../ui/identity";
 import { Movement, Notice } from "../ui/primitives";
 import { Countdown, LocalTime, StatePill } from "../ui/status";
 import { useToast } from "../ui/Toast";
+import type { Recap } from "@/server/queries/recap";
 import { Breakdown } from "./Breakdown";
+import { RecapCard } from "./RecapCard";
 
-export function EntryView({ d, board, nowIso, healthOk }: { d: EntryDashboard; board: Board; nowIso: string; healthOk: boolean }) {
+export function EntryView({ d, board, recap, nowIso, healthOk }: { d: EntryDashboard; board: Board; recap: Recap | null; nowIso: string; healthOk: boolean }) {
   const now = new Date(nowIso);
   const lockedWindows = d.windows.filter((w) => w.status === "locked" || w.status === "completed");
   const defaultWindow = (lockedWindows[lockedWindows.length - 1] ?? d.windows[d.windows.length - 1])?.id ?? null;
@@ -31,8 +33,9 @@ export function EntryView({ d, board, nowIso, healthOk }: { d: EntryDashboard; b
 
   return (
     <div className="space-y-6">
-      {/* Score hero */}
-      <section className="overflow-hidden rounded-[20px] border border-border bg-surface" aria-labelledby="score">
+      {recap ? <RecapCard r={recap} teams={d.teams} entryId={d.entry.id} tournamentName={d.tournament.shortName} isOwner={d.isOwner} /> : null}
+      {/* Score hero (the recap replaces it once the event is over) */}
+      <section className={cn("overflow-hidden rounded-[20px] border border-border bg-surface", recap && "hidden")} aria-labelledby="score">
         <div className="p-5 sm:p-6">
           <div className="flex flex-wrap items-center gap-2">
             <Link href={`/t/${d.tournament.slug}`} className="text-eyebrow text-ink-2 hover:text-ink">

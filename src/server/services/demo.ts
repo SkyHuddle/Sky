@@ -1,9 +1,9 @@
 import { and, asc, eq, inArray } from "drizzle-orm";
 import { addBlockReason } from "@/domain/rules";
 import { Rng } from "@/domain/random";
-import type { ContestRules, PoolPlayer } from "@/domain/types";
+import { windowRules, type ContestRules, type PoolPlayer } from "@/domain/types";
 import { hashPassword } from "../auth/password";
-import { isDemoMode, now as clockNow, setClockOffset } from "../clock";
+import { getClockSpeed, isDemoMode, now as clockNow, setDemoClock } from "../clock";
 import type { Db } from "../db/connect";
 import * as s from "../db/schema";
 import { AppError } from "../errors";
@@ -98,7 +98,7 @@ export async function runBots(db: Db, now: Date): Promise<number> {
     if (w.lockAt <= now) continue;
     const [c] = await db.select().from(s.contests).where(eq(s.contests.id, w.contestId));
     if (!c) continue;
-    const rules = c.rules as ContestRules;
+    const rules = windowRules(c.rules as ContestRules, w);
     const base = await windowPoolMap(db, w.id);
     const prices = await db.select().from(s.playerPrices).where(eq(s.playerPrices.contestId, c.id));
     const avg = new Map(prices.map((p) => [p.playerId, p.avgPoints]));
@@ -191,6 +191,10 @@ export interface DemoStatus {
   now: string;
   offsetHours: number;
   next: { label: string; target: string } | null;
+  /** Replay speed of the demo clock (1 = real time). */
+  speed: number;
+  /** The next (or current) series the live replay would show. */
+  live: { at: string; label: string; inProgress: boolean } | null;
 }
 
 async function featuredTournament(db: Db) {
@@ -217,12 +221,60 @@ async function nextStep(db: Db, at: Date): Promise<{ label: string; target: Date
 export async function demoStatus(db: Db): Promise<DemoStatus> {
   const at = await clockNow(db);
   const next = isDemoMode() ? await nextStep(db, at) : null;
+  const live = isDemoMode() ? await nextLiveMoment(db, at) : null;
   return {
     enabled: isDemoMode(),
     now: at.toISOString(),
     offsetHours: Math.round((at.getTime() - Date.now()) / 3_600_000),
     next: next ? { label: next.label, target: next.target.toISOString() } : null,
+    speed: await getClockSpeed(db),
+    live: live ? { at: live.at.toISOString(), label: live.label, inProgress: live.inProgress } : null,
   };
+}
+
+const LIVE_SPEED = 20;
+
+/** The featured event's series in progress, or the next one to start. */
+async function nextLiveMoment(db: Db, at: Date): Promise<{ at: Date; label: string; inProgress: boolean } | null> {
+  const t = await featuredTournament(db);
+  if (!t) return null;
+  const st = await db.select({ id: s.stages.id, name: s.stages.name, beginAt: s.stages.beginAt, position: s.stages.position }).from(s.stages).where(eq(s.stages.tournamentId, t.id));
+  if (!st.length) return null;
+  const ms = await db
+    .select({ id: s.matches.id, at: s.matches.scheduledAt, status: s.matches.status, stageId: s.matches.stageId })
+    .from(s.matches)
+    .where(and(inArray(s.matches.stageId, st.map((x) => x.id)), inArray(s.matches.status, ["live", "scheduled"])))
+    .orderBy(asc(s.matches.scheduledAt));
+  const running = ms.find((m) => m.status === "live");
+  if (running) return { at, label: `${st.find((x) => x.id === running.stageId)?.name} in progress`, inProgress: true };
+  const next = ms.find((m) => m.at.getTime() >= at.getTime()) ?? ms[0];
+  if (next) return { at: next.at, label: `${st.find((x) => x.id === next.stageId)?.name}`, inProgress: false };
+  // Fixtures for the next stage aren't published yet: aim for the stage's start.
+  const upcoming = st.filter((x) => x.beginAt.getTime() > at.getTime()).sort((a, b) => a.position - b.position)[0];
+  return upcoming ? { at: upcoming.beginAt, label: upcoming.name, inProgress: false } : null;
+}
+
+/**
+ * Demo "watch live": jump to just before the next series of the featured event (or stay, if one is
+ * running) and play the clock at 20× real time. Maps then unfold round by round through the real
+ * provider → ingestion → scoring path; nothing is faked on the client.
+ */
+export async function demoWatchLive(db: Db) {
+  if (!isDemoMode()) throw new AppError("DEMO_DISABLED", "Demo controls are disabled.");
+  const at = await clockNow(db);
+  const live = await nextLiveMoment(db, at);
+  if (!live) throw new AppError("VALIDATION", "There are no more matches to watch in the demo tournament.");
+  const target = live.inProgress ? at : new Date(live.at.getTime() - 60_000);
+  await setDemoClock(db, target, LIVE_SPEED);
+  const result = await demoTick(db, target);
+  return { at: target.toISOString(), speed: LIVE_SPEED, label: live.label, result };
+}
+
+/** Back to normal speed, keeping the current demo time. */
+export async function demoPause(db: Db) {
+  if (!isDemoMode()) throw new AppError("DEMO_DISABLED", "Demo controls are disabled.");
+  await setDemoClock(db, await clockNow(db), 1);
+  return { ok: true };
 }
 
 /** Moves the demo clock to the end of the featured event's next stage and processes everything due. */
@@ -231,7 +283,7 @@ export async function demoAdvance(db: Db) {
   const at = await clockNow(db);
   const next = await nextStep(db, at);
   if (!next) throw new AppError("VALIDATION", "The demo tournament is already complete.");
-  await setClockOffset(db, next.target.getTime() - Date.now());
+  await setDemoClock(db, next.target, 1);
   const result = await demoTick(db, next.target);
   return { step: next.label, at: next.target.toISOString(), result };
 }

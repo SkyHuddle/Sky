@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 
 const FORMAT_NOTE: Record<string, string> = {
   swiss: "16-team Swiss · 3 wins advance, 3 losses out",
-  single_elimination: "8-team single elimination · BO3, BO5 final",
+  single_elimination: "Single elimination · BO3 (Grand Final BO5)",
 };
 
 export default async function TournamentOverview({ params }: { params: Promise<{ slug: string }> }) {

@@ -1,5 +1,5 @@
-import type { DemoApiMatch, DemoApiTournament } from "./payload";
-import type { SimulatedTournament } from "./simulate";
+import type { DemoApiLiveGame, DemoApiMatch, DemoApiTournament } from "./payload";
+import { unpackSnapshot, type SimulatedTournament } from "./simulate";
 
 /**
  * What the demo provider's API "returns" at a given moment. Matches that haven't started are
@@ -58,12 +58,42 @@ export function viewAt(sim: SimulatedTournament, now: Date): DemoApiTournament {
       status,
       winner_id: finished ? m.winner_id : null,
       games,
+      live_game: status === "running" ? liveGame(sim, m, games.length, nowMs) : null,
     });
   }
 
   const visibleIds = new Set(matches.flatMap((m) => m.games.flatMap((g) => g.players.map((p) => p.player_id))));
   const players = t.players.filter((p) => !p.is_stand_in || visibleIds.has(p.id));
   return { ...t, stages, matches, players };
+}
+
+/**
+ * The map in progress, replayed from the simulation's round log: the scoreboard after the last
+ * completed round at `now`. This is what a scoreboard-snapshot provider would send.
+ */
+function liveGame(sim: SimulatedTournament, m: DemoApiMatch, finishedCount: number, nowMs: number): DemoApiLiveGame | null {
+  const g = m.games[finishedCount];
+  if (!g) return null;
+  const start = finishedCount > 0 ? new Date(m.games[finishedCount - 1]!.finished_at).getTime() : new Date(m.scheduled_at).getTime();
+  const end = new Date(g.finished_at).getTime();
+  const log = sim.rounds.get(g.id);
+  if (!log || log.length === 0 || nowMs < start) return null;
+  const per = (end - start) / log.length;
+  const done = Math.min(log.length - 1, Math.floor((nowMs - start) / per)); // never reveal the final round early
+  const [a, b] = m.opponents;
+  if (done <= 0) {
+    const zero = unpackSnapshot(g.players, { roundsA: 0, roundsB: 0, packed: new Int16Array(g.players.length * 12) });
+    return { position: g.position, map: g.map, rounds: { [a]: 0, [b]: 0 }, round_number: 0, updated_at: new Date(start).toISOString(), players: zero };
+  }
+  const snap = log[done - 1]!;
+  return {
+    position: g.position,
+    map: g.map,
+    rounds: { [a]: snap.roundsA, [b]: snap.roundsB },
+    round_number: snap.roundsA + snap.roundsB,
+    updated_at: new Date(start + done * per).toISOString(),
+    players: unpackSnapshot(g.players, snap),
+  };
 }
 
 function lastFinish(m: DemoApiMatch): number {

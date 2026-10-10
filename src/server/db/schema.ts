@@ -175,6 +175,25 @@ export const matches = pgTable(
   (t) => [index("matches_stage").on(t.stageId), index("matches_scheduled").on(t.scheduledAt)],
 );
 
+/**
+ * The map currently being played in a live series, as last reported by the provider: a scoreboard
+ * snapshot, not a ledger entry. Replaced on every sync and removed when the map finishes; fantasy
+ * points derived from it are provisional and never written to the scoring ledger.
+ */
+export const liveMaps = pgTable("live_maps", {
+  matchId: text("match_id")
+    .primaryKey()
+    .references(() => matches.id),
+  number: integer("number").notNull(),
+  mapName: text("map_name").notNull(),
+  roundsA: integer("rounds_a").notNull(),
+  roundsB: integer("rounds_b").notNull(),
+  /** Internal ids. Same fields as player_map_stats. */
+  stats: jsonb("stats").notNull(),
+  providerUpdatedAt: ts("provider_updated_at").notNull(),
+  updatedAt: ts("updated_at").notNull().defaultNow(),
+});
+
 export const maps = pgTable(
   "maps",
   {
@@ -256,6 +275,9 @@ export const contestWindows = pgTable(
     status: text("status").notNull().default("upcoming"), // upcoming | open | locked | completed
     poolFrozenAt: ts("pool_frozen_at"),
     autopilotRanAt: ts("autopilot_ran_at"),
+    /** Per-window overrides of the contest rules (docs/GAMEPLAY.md): null = use the contest default. */
+    transfersAllowed: integer("transfers_allowed"),
+    maxPerTeam: integer("max_per_team"),
   },
   (t) => [uniqueIndex("windows_contest_position").on(t.contestId, t.position)],
 );

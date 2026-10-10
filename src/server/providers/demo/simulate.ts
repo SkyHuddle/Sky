@@ -12,7 +12,8 @@ import type {
 } from "./payload";
 
 /**
- * Simulates a full CS2 Major-format tournament (three 16-team Swiss stages + 8-team playoff)
+ * Simulates a full CS2 Major-format tournament (three 16-team Swiss stages, then Quarterfinals,
+ * Semifinals and a Grand Final)
  * round by round, so every stat is internally consistent: team kills equal opponent deaths,
  * opening kills are first kills, multi-kills and clutches come from actual simulated rounds.
  *
@@ -50,6 +51,8 @@ export interface SimulatedCorrection {
 export interface SimulatedTournament {
   tournament: DemoApiTournament;
   corrections: SimulatedCorrection[];
+  /** gameId -> scoreboard after each round, for replaying maps in progress. */
+  rounds: Map<string, RoundSnapshot[]>;
 }
 
 interface SimPlayer {
@@ -152,8 +155,9 @@ function simulateMap(
   b: SimPlayer[],
   teamA: string,
   teamB: string,
-): { roundsA: number; roundsB: number; winner: string; stats: DemoApiPlayerGameStats[] } {
+): { roundsA: number; roundsB: number; winner: string; stats: DemoApiPlayerGameStats[]; rounds: RoundSnapshot[] } {
   const stats = new Map<string, DemoApiPlayerGameStats>();
+  const rounds: RoundSnapshot[] = [];
   for (const p of [...a, ...b]) stats.set(p.id, emptyStats(p));
   const strength = (ps: SimPlayer[]) => ps.reduce((s, p) => s + p.skill, 0) / ps.length;
   const formA = (rng.next() - 0.5) * 0.12;
@@ -163,7 +167,11 @@ function simulateMap(
 
   let ra = 0;
   let rb = 0;
-  const play = () => (simulateRound(rng, a, b, pA, stats) === "a" ? ra++ : rb++);
+  const play = () => {
+    if (simulateRound(rng, a, b, pA, stats) === "a") ra++;
+    else rb++;
+    rounds.push({ roundsA: ra, roundsB: rb, packed: pack([...stats.values()]) });
+  };
   // Regulation: first to 13 of 24 rounds.
   while (ra < 13 && rb < 13 && !(ra === 12 && rb === 12)) play();
   // Overtime: MR3 periods. First to 4 rounds within a period wins; 3-3 starts another period.
@@ -172,7 +180,46 @@ function simulateMap(
     const startB = rb;
     while (ra - startA < 4 && rb - startB < 4 && !(ra - startA === 3 && rb - startB === 3)) play();
   }
-  return { roundsA: ra, roundsB: rb, winner: ra > rb ? teamA : teamB, stats: [...stats.values()] };
+  return { roundsA: ra, roundsB: rb, winner: ra > rb ? teamA : teamB, stats: [...stats.values()], rounds };
+}
+
+/**
+ * The scoreboard after each round of a map, packed compactly (12 numbers per player), so the
+ * replay can show a map in progress exactly as it unfolded. Player order matches the final stats.
+ */
+export interface RoundSnapshot {
+  roundsA: number;
+  roundsB: number;
+  packed: Int16Array;
+}
+
+const FIELDS = 12;
+function pack(list: DemoApiPlayerGameStats[]): Int16Array {
+  const out = new Int16Array(list.length * FIELDS);
+  list.forEach((p, i) => {
+    out.set(
+      [p.kills, p.deaths, p.assists, p.first_kills, p.multikills["3k"], p.multikills["4k"], p.multikills["5k"], p.clutches_won["1v1"], p.clutches_won["1v2"], p.clutches_won["1v3"], p.clutches_won["1v4"], p.clutches_won["1v5"]],
+      i * FIELDS,
+    );
+  });
+  return out;
+}
+
+/** Rebuilds the scoreboard at a round snapshot, using the final stat lines for ids and order. */
+export function unpackSnapshot(finalStats: DemoApiPlayerGameStats[], snap: RoundSnapshot): DemoApiPlayerGameStats[] {
+  return finalStats.map((p, i) => {
+    const v = (k: number) => snap.packed[i * FIELDS + k]!;
+    return {
+      player_id: p.player_id,
+      team_id: p.team_id,
+      kills: v(0),
+      deaths: v(1),
+      assists: v(2),
+      first_kills: v(3),
+      multikills: { "3k": v(4), "4k": v(5), "5k": v(6) },
+      clutches_won: { "1v1": v(7), "1v2": v(8), "1v3": v(9), "1v4": v(10), "1v5": v(11) },
+    };
+  });
 }
 
 export function simulateTournament(opts: SimulationOptions): SimulatedTournament {
@@ -189,6 +236,7 @@ export function simulateTournament(opts: SimulationOptions): SimulatedTournament
   const matches: DemoApiMatch[] = [];
   const corrections: SimulatedCorrection[] = [];
   const extraPlayers: DemoApiPlayer[] = [];
+  const roundLog = new Map<string, RoundSnapshot[]>();
   let matchSeq = 0;
 
   const playSeries = (
@@ -216,6 +264,7 @@ export function simulateTournament(opts: SimulationOptions): SimulatedTournament
       at += MAP_DURATION + rng.int(-8, 15) * 60_000;
       if (sim.winner === teamA) wa++;
       else wb++;
+      roundLog.set(`${id}-g${games.length + 1}`, sim.rounds);
       games.push({
         id: `${id}-g${games.length + 1}`,
         position: games.length + 1,
@@ -354,35 +403,42 @@ export function simulateTournament(opts: SimulationOptions): SimulatedTournament
     });
   }
 
-  // Playoffs: 8 teams, seeded by Stage 3 finish. QF 1v8, 4v5, 2v7, 3v6; BO3; final BO5.
-  const pStageId = `${opts.id}-po`;
+  // Playoffs: 8 teams seeded by Stage 3 finish (QF 1v8, 4v5, 2v7, 3v6), BO3 with a BO5 final.
+  // Each bracket round is its own stage, so fantasy transfer windows open between them
+  // (docs/GAMEPLAY.md): Quarterfinals → Semifinals → Grand Final.
   const pBegin = t0 + 13 * day;
   const s = advancers;
-  const qfPairs: Array<[string, string]> = [
+  const bracketStage = (key: string, name: string, position: number, begin: number, teamIds: string[], slot: string, format: 1 | 3 | 5, pairs: Array<[string, string]>, gapHours: number) => {
+    const stageId = `${opts.id}-${key}`;
+    const played = pairs.map(([x, y], i) => playSeries(stageId, 1, slot, format, x, y, begin + i * gapHours * HOUR));
+    const end = Math.max(...played.map((m) => new Date(m.games[m.games.length - 1]!.finished_at).getTime()));
+    stages.push({
+      id: stageId,
+      name,
+      short_name: name,
+      kind: "single_elimination",
+      position,
+      begin_at: new Date(begin).toISOString(),
+      end_at: new Date(end).toISOString(),
+      team_ids: teamIds,
+      entering_team_ids: [],
+      wins_to_advance: null,
+      losses_to_eliminate: null,
+    });
+    return played.map((m) => m.winner_id!);
+  };
+  const qfWinners = bracketStage("qf", "Quarterfinals", 4, pBegin, s, "quarterfinal", 3, [
     [s[0]!, s[7]!],
     [s[3]!, s[4]!],
     [s[1]!, s[6]!],
     [s[2]!, s[5]!],
-  ];
-  const qf = qfPairs.map(([x, y], i) => playSeries(pStageId, 1, "quarterfinal", 3, x, y, pBegin + i * 4 * HOUR));
-  const sfBegin = pBegin + day;
-  const sf1 = playSeries(pStageId, 2, "semifinal", 3, qf[0]!.winner_id!, qf[1]!.winner_id!, sfBegin);
-  const sf2 = playSeries(pStageId, 2, "semifinal", 3, qf[2]!.winner_id!, qf[3]!.winner_id!, sfBegin + 4 * HOUR);
-  const final = playSeries(pStageId, 3, "final", 5, sf1.winner_id!, sf2.winner_id!, pBegin + 2 * day);
-  const pEnd = new Date(final.games[final.games.length - 1]!.finished_at).getTime();
-  stages.push({
-    id: pStageId,
-    name: "Playoffs",
-    short_name: "Playoffs",
-    kind: "single_elimination",
-    position: 4,
-    begin_at: new Date(pBegin).toISOString(),
-    end_at: new Date(pEnd).toISOString(),
-    team_ids: s,
-    entering_team_ids: [],
-    wins_to_advance: null,
-    losses_to_eliminate: null,
-  });
+  ], 4);
+  const sfWinners = bracketStage("sf", "Semifinals", 5, pBegin + day, qfWinners, "semifinal", 3, [
+    [qfWinners[0]!, qfWinners[1]!],
+    [qfWinners[2]!, qfWinners[3]!],
+  ], 4);
+  bracketStage("gf", "Grand Final", 6, pBegin + 2 * day, sfWinners, "final", 5, [[sfWinners[0]!, sfWinners[1]!]], 0);
+  const pEnd = Math.max(...stages.map((x) => new Date(x.end_at).getTime()));
 
   const teams: DemoApiTeam[] = opts.teams.map((t) => ({
     id: t.id,
@@ -423,5 +479,6 @@ export function simulateTournament(opts: SimulationOptions): SimulatedTournament
       players,
     },
     corrections,
+    rounds: roundLog,
   };
 }

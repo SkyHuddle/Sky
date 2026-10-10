@@ -25,16 +25,17 @@ describe("demo universe and simulator", () => {
     expect(new Set(u.players.map((p) => p.nickname)).size).toBe(160);
   });
 
-  it("follows the Major format: 33 Swiss series per stage and a 7-series playoff", () => {
+  it("follows the Major format: 33 Swiss series per stage, then QF (4), SF (2) and a BO5 Grand Final", () => {
     const t = sim.tournament;
     for (const s of t.stages.filter((x) => x.kind === "swiss")) {
       expect(t.matches.filter((m) => m.stage_id === s.id)).toHaveLength(33);
       expect(s.team_ids).toHaveLength(16);
     }
-    const po = t.stages.find((s) => s.kind === "single_elimination")!;
-    const poMatches = t.matches.filter((m) => m.stage_id === po.id);
-    expect(poMatches).toHaveLength(7);
-    expect(poMatches.find((m) => m.bracket_slot === "final")!.number_of_games).toBe(5);
+    const rounds = t.stages.filter((s) => s.kind === "single_elimination");
+    expect(rounds.map((r) => r.name)).toEqual(["Quarterfinals", "Semifinals", "Grand Final"]);
+    expect(rounds.map((r) => t.matches.filter((m) => m.stage_id === r.id).length)).toEqual([4, 2, 1]);
+    expect(rounds.map((r) => r.team_ids.length)).toEqual([8, 4, 2]);
+    expect(t.matches.find((m) => m.bracket_slot === "final")!.number_of_games).toBe(5);
   });
 
   it("produces internally consistent stats on every map", () => {
