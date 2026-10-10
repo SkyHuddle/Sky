@@ -10,7 +10,7 @@ export function Card({ children, className, as: As = "div" }: { children: ReactN
 export function SectionHeader({ title, action, className, id }: { title: string; action?: ReactNode; className?: string; id?: string }) {
   return (
     <div className={cn("mb-3 flex items-end justify-between gap-3", className)}>
-      <h2 id={id} className="text-headline text-ink">
+      <h2 id={id} className="text-section text-ink">
         {title}
       </h2>
       {action}

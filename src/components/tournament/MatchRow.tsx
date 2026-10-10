@@ -23,9 +23,9 @@ export function MatchRow({ m, teams, compact }: { m: MatchLite; teams: Record<st
   };
   return (
     <div className="rounded-xl bg-surface px-3.5 py-3">
-      <div className="mb-2 flex items-center gap-2 text-caption text-ink-3">
+      <div className="kicker mb-2 flex items-center gap-2 text-ink-3">
         <span>BO{m.format}</span>
-        {m.slot !== "swiss" ? <span className="capitalize">· {m.slot}</span> : <span>· Round {m.round}</span>}
+        {m.slot !== "swiss" ? <span>· {m.slot}</span> : <span>· Round {m.round}</span>}
         <span className="ml-auto">
           {m.status === "live" ? (
             <StatePill kind="live" />

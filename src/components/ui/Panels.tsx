@@ -23,7 +23,7 @@ export function Panels({ panels, initial, label, gridClass = "lg:grid-cols-3" }:
                 setActive(p.id);
               }}
               className={cn(
-                "inline-flex h-9 min-w-[72px] flex-auto shrink-0 items-center justify-center rounded-[10px] px-3 text-footnote font-semibold whitespace-nowrap transition-colors",
+                "inline-flex h-9 min-w-[72px] flex-auto shrink-0 items-center justify-center rounded-md px-3 text-footnote font-semibold whitespace-nowrap transition-colors",
                 active === p.id ? "bg-raised text-ink" : "text-ink-2 hover:text-ink",
               )}
             >

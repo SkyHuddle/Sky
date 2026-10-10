@@ -184,7 +184,7 @@ export function FilterPanel({ data, filters, setFilters }: { data: BuilderData; 
         <ul className="space-y-0.5">
           {SORTS.map((s) => (
             <li key={s.key}>
-              <button onClick={() => setFilters({ ...filters, sort: s.key })} aria-pressed={filters.sort === s.key} className={cn("flex h-10 w-full items-center justify-between rounded-[10px] px-3 text-left text-callout", filters.sort === s.key ? "bg-elevated font-semibold text-ink" : "text-ink-2 hover:bg-surface")}>
+              <button onClick={() => setFilters({ ...filters, sort: s.key })} aria-pressed={filters.sort === s.key} className={cn("flex h-10 w-full items-center justify-between rounded-md px-3 text-left text-callout", filters.sort === s.key ? "bg-elevated font-semibold text-ink" : "text-ink-2 hover:bg-surface")}>
                 {s.label}
                 {filters.sort === s.key ? <Icon name="check" size={15} className="text-accent" /> : null}
               </button>

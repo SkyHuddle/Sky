@@ -20,7 +20,7 @@ export default async function TournamentLayout({ children, params }: { children:
         <EventArt seed={t.slug} title={t.shortName.split(" ")[0]!} accent={accent} banner className="pointer-events-none absolute inset-0" />
         <div className="relative">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-eyebrow" style={{ color: accent }}>
+            <span className="kicker" style={{ color: accent }}>
               Counter-Strike 2 · {TIER_LABEL[t.tier]}
             </span>
             {t.isDemo ? <DemoBadge /> : null}

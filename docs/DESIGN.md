@@ -1,6 +1,6 @@
 # Esports Fantasy — Product Design System & UX Specification
 
-**Status:** Working design source of truth · **Version:** 1.5 (see [changelog](#changelog)) · **Primary platform:** Mobile web / iPhone first · **Launch esport:** CS2
+**Status:** Working design source of truth · **Version:** 1.6 (see [changelog](#changelog)) · **Primary platform:** Mobile web / iPhone first · **Launch esport:** CS2
 
 > **North star:** *Sleeper esports personality, refined with the restraint, clarity, and precision of a top-tier iOS app.* Player-first. Competition-first. Calm surfaces, vivid content, exquisite interaction details. The app must feel intentionally designed rather than generated from a generic dashboard template.
 
@@ -102,7 +102,7 @@ Use **Inter**, **Geist**, or a similar carefully rendered, highly legible modern
 - Standard vertical section spacing: **24px**; related card row spacing: **8–12px**.
 - Standard interactive control height: **44–48px**; primary CTA: **50–54px**.
 - Compact rows: **68–80px**, never a 40px press target.
-- Radius by role (v1.2): **6–8px** utility, **12–14px** cards and portrait tiles, **16px** for the one hero container, **full pill** for actions, chips and avatars. Nothing in between.
+- Radius by role (v1.6): **3–5px** tags and inner segments, **6–8px** buttons and inputs, **8–10px** cards, portrait tiles and the hero container; full circles only for avatars and status dots.
 - Containers have no border (v1.2): separate by a surface step or by space. 1px hairlines only between rows. Shadow only on things that float (sheets, toasts, the sticky "you" row).
 - Navigation bar: approximately **64–72px content height** + bottom safe area.
 - iOS safe areas: `env(safe-area-inset-top)` and `env(safe-area-inset-bottom)` where applicable.
@@ -125,7 +125,7 @@ Use **Inter**, **Geist**, or a similar carefully rendered, highly legible modern
 - Clear direct labels: **Build Team**, **View My Team**, **View Standings**, **Review Lineup**, **Submit Lineup**.
 - Use competition states exactly: **Open**, **Locks in 2h**, **Map in progress**, **Scores update after each map**, **Final**, **Transfers open**.
 - No fake “LIVE” badge for fantasy points that only refresh after each completed map. A match can be live while the fantasy score remains pending.
-- States are coloured text with an icon or dot, not pills (v1.2). At most one small badge style (4px radius) for tags such as Demo data. Labels above titles are sentence case, not tracked caps.
+- States are coloured text with an icon or dot, not pills (v1.2). At most one small badge style (4px radius) for tags such as Demo data. Labels above titles are sentence case; the one exception is match metadata, set as monospace caps (`.kicker`, v1.6).
 - Currency styling: use compact `$245K` on player rows, but full `$245,000` on details; maintain one semantic salary unit.
 
 ---
@@ -439,6 +439,7 @@ A brand-new esports fan should know what to do within seconds. A frequent fantas
 
 | Version | Change |
 |---|---|
+| 1.6 | Editorial pass, borrowing from esports media and league identities rather than app templates. Section headings use the condensed display face in caps, like a sports-media section label. Match metadata (BO3 · Stage 2, event kickers) is set in monospace caps, the broadcast-graphics voice, paired against the condensed display face, as Riot's Worlds 2022 identity pairs a compressed display face with a secondary one ([Tendril](https://www.stashmedia.tv/tendril-ramps-up-riot-worlds-2022-with-branding-toolkit/)). One vivid hue supports the type rather than decorating, as in LoL Esports' single "Iceborn blue" ([The New Company](https://the-brandidentity.com/project/the-new-companys-energetic-identity-system-for-lol-esports-avoids-typical-fantasy-gaming-tropes)). Radii tightened to 3–10px (buttons 6–8px): soft 14px corners everywhere read as a generic app template. Sheep Esports was requested as a reference, but its site could not be reached from the build environment, so nothing here is taken from it. |
 | 1.5 | Sign-in and sign-up are an app entry screen: a brand hero (illustrated fictional players, "Draft the pros. Follow every map.") above the form on phones, a split art panel and form on desktop; show/hide password; one-tap demo login in demo mode. Every text field is 16px, so iOS no longer zooms in on focus. First run: Home explains the game in three numbered steps built from the contest's own rules. Transfers: the review screen lists who leaves and who arrives against last stage's lineup, marking free swaps for eliminated players. Builder: "roster full" is shown once (status and tray), not repeated on every row; an eliminated player shows as a dimmed face with a red dot in the entry slip, with "1 out · Replace free"; the "roster full" toast only fires when the lineup is playable. One toast at a time. Score changes on Live get a brief mint highlight; the podium rises in, winner last. |
 | 1.4 | Mobile-first pass over every route. Bracket and Swiss standings show one round or stage at a time on phones (a segmented switcher opening on the current round), side by side from `lg`; no sideways page scrolling. Tournament tabs scroll the active tab into view and fade at the edge while more tabs are hidden. Match Center scoreboard: crests either side, series score in the display face, the loser's score dimmed. Text fields get a visible focus ring (they had none) and the invite field is visible on its card. Public leagues lead with the event, since community leagues share a name; big member lists show eight and expand on tap. Profile stats are flat tiles in the display face; usernames keep their case. The Fantasy tab leads with an open contest instead of an empty state. On touch screens, tapped links and tabs dim instantly, like native list cells. |
 | 1.3 | Polish pass. Bars over scrolling content are near-opaque (text no longer reads through the tab bar); the demo notice is a slim strip and the Demo data tag is solid. Event hero: type-poster art (§3.4) and the lock deadline as segmented day/hour/minute blocks in the display face. Live: before any map finishes, the score card shows your lineup (live dot and live map points, or start time) instead of empty dashes. Leaderboard: a top-three podium when the board has 10+ entries and no tie in the top three; fan avatars use low-chroma tints. Recap: placement as one big display number with a field-position track (last → 1st), points and captain bonus in the display face, MVP and best value as portrait tiles. Form chart bars are mint when at or above the shown average. Salary left uses the display face. |

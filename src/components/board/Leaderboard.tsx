@@ -70,7 +70,7 @@ export function Leaderboard({ contestId, initial, scopes, viewerId }: { contestI
                 void load(s.key, 1);
               }}
               className={cn(
-                "inline-flex h-10 min-w-[88px] flex-auto shrink-0 items-center justify-center rounded-[10px] px-3 text-footnote font-semibold whitespace-nowrap transition-colors",
+                "inline-flex h-10 min-w-[88px] flex-auto shrink-0 items-center justify-center rounded-md px-3 text-footnote font-semibold whitespace-nowrap transition-colors",
                 scope === s.key ? "bg-raised text-ink" : "text-ink-2 hover:text-ink",
               )}
             >

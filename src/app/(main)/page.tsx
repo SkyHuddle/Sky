@@ -182,7 +182,7 @@ function TournamentHero({ t, contest, now, nowIso }: { t: TournamentSummary; con
       <EventArt seed={t.slug} title={t.shortName.split(" ")[0]!} accent={accent} className="pointer-events-none absolute inset-0" />
       <div className="relative flex min-h-[236px] flex-col p-5 sm:min-h-[272px] sm:p-7 lg:min-h-[296px] lg:p-8">
         <div className="flex items-center gap-2">
-          <span className="text-eyebrow text-ink-2">CS2 · {TIER_LABEL[t.tier]}</span>
+          <span className="kicker text-ink-2">CS2 · {TIER_LABEL[t.tier]}</span>
           {t.isDemo ? <DemoBadge className="ml-auto" /> : null}
         </div>
         <div className="mt-auto pt-10">
@@ -298,7 +298,7 @@ function FirstEntryPrompt({ c }: { c: ContestView | null }) {
   ];
   return (
     <div className="rounded-2xl bg-surface p-4 sm:p-5">
-      <p className="text-headline text-ink">How it works</p>
+      <p className="text-headline text-ink">Three steps to play</p>
       <ol className="mt-4 space-y-4">
         {steps.map((st, i) => (
           <li key={st.title} className="flex gap-3.5">

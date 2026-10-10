@@ -40,7 +40,7 @@ export function MatchCenterView({ initial }: { initial: MatchCenter }) {
       </Link>
       <section className="rounded-2xl bg-surface p-5">
         <div className="flex items-center gap-2 text-caption text-ink-3">
-          <span className="truncate">
+          <span className="kicker truncate">
             {m.tournament.name} · {m.stageName} · BO{m.format}
           </span>
           <span className="ml-auto flex items-center gap-2">
@@ -88,7 +88,7 @@ export function MatchCenterView({ initial }: { initial: MatchCenter }) {
               role="tab"
               aria-selected={tab === g.number}
               onClick={() => setTab(g.number)}
-              className={cn("h-10 min-w-[96px] flex-1 rounded-[10px] px-3 text-footnote font-semibold whitespace-nowrap", tab === g.number ? "bg-raised text-ink" : "text-ink-2 hover:text-ink")}
+              className={cn("h-10 min-w-[96px] flex-1 rounded-md px-3 text-footnote font-semibold whitespace-nowrap", tab === g.number ? "bg-raised text-ink" : "text-ink-2 hover:text-ink")}
             >
               {g.mapName} <span className="num text-ink-3">{g.roundsA}–{g.roundsB}</span>
             </button>
@@ -98,7 +98,7 @@ export function MatchCenterView({ initial }: { initial: MatchCenter }) {
               role="tab"
               aria-selected={tab === "live"}
               onClick={() => setTab("live")}
-              className={cn("inline-flex h-10 min-w-[96px] flex-1 items-center justify-center gap-1.5 rounded-[10px] px-3 text-footnote font-semibold whitespace-nowrap", tab === "live" ? "bg-raised text-ink" : "text-ink-2 hover:text-ink")}
+              className={cn("inline-flex h-10 min-w-[96px] flex-1 items-center justify-center gap-1.5 rounded-md px-3 text-footnote font-semibold whitespace-nowrap", tab === "live" ? "bg-raised text-ink" : "text-ink-2 hover:text-ink")}
             >
               <span className="size-1.5 rounded-full bg-live" aria-hidden /> {m.live.mapName}
             </button>
