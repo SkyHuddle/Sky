@@ -40,6 +40,8 @@ export interface StageScore {
   credits: AdvancementCreditLine[];
   /** playerId -> stage points (series totals + credits). */
   playerTotals: Map<string, number>;
+  /** Series still in progress, scored provisionally from finished maps (no series result yet). */
+  provisionalMatchIds: Set<string>;
   records: Map<string, TeamStageRecord>;
   complete: boolean;
 }
@@ -56,7 +58,14 @@ export function scoreStage(
   const breakdowns: SeriesBreakdown[] = [];
   const lastSeriesPlayers = new Map<string, string[]>();
 
+  const provisionalMatchIds = new Set<string>();
   for (const s of ordered) {
+    if (s.status === "live" && s.maps.length > 0) {
+      // Per-map updates: score the finished maps now; the series result is added when it ends.
+      breakdowns.push(...scoreSeries({ matchId: s.matchId, format: s.format, winnerTeamId: "", maps: s.maps }, rules));
+      provisionalMatchIds.add(s.matchId);
+      continue;
+    }
     const finished = s.status === "completed" || s.status === "forfeit";
     if (!finished || !s.winner) continue;
     const loser = s.winner === s.teamA ? s.teamB : s.teamA;
@@ -110,5 +119,5 @@ export function scoreStage(
   for (const b of breakdowns) playerTotals.set(b.playerId, (playerTotals.get(b.playerId) ?? 0) + b.total);
   for (const c of credits) playerTotals.set(c.playerId, (playerTotals.get(c.playerId) ?? 0) + c.points);
 
-  return { series: breakdowns, credits, playerTotals, records, complete };
+  return { series: breakdowns, credits, playerTotals, records, complete, provisionalMatchIds };
 }
