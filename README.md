@@ -12,6 +12,14 @@ Start here: [rules](docs/GAMEPLAY.md) · [design](docs/DESIGN.md) · [live data]
 |---|---|---|---|---|
 | ![Home](docs/screenshots/mobile-home-before.png) | ![Builder](docs/screenshots/mobile-builder.png) | ![Player](docs/screenshots/mobile-player-sheet.png) | ![Review](docs/screenshots/mobile-review.png) | ![My Fantasy](docs/screenshots/mobile-dashboard-breakdown.png) |
 
+| Live GameDay | Match Center | Final transfers | Results recap | Stage cup |
+|---|---|---|---|---|
+| ![Live](docs/screenshots/mobile-live.png) | ![Match Center](docs/screenshots/mobile-match-center.png) | ![Transfers](docs/screenshots/mobile-transfers-final.png) | ![Recap](docs/screenshots/mobile-recap.png) | ![Stage cup](docs/screenshots/mobile-stage-cup.png) |
+
+![Desktop live](docs/screenshots/desktop-live.png)
+
+![Share card](docs/screenshots/share-card.png)
+
 ![Desktop home](docs/screenshots/desktop-home.png)
 
 ## What works
@@ -53,12 +61,12 @@ npm run dev                   # http://localhost:3000
 
 ```bash
 npm run check                 # typecheck + lint + unit/integration tests (vitest)
-npm run test:e2e              # production build + Playwright: 22-step journey (phone), axe accessibility, desktop builder
+npm run test:e2e              # production build + Playwright: full journey (phone) incl. live SSE and results, axe, desktop
 ```
 
 - **Unit tests:** every worked example in `docs/04-gameplay-and-scoring.md` reproduces exactly. Fairness checks (BO1/BO3/BO5 parity, 3-0 vs 3-2, team-result share) run on simulated Majors, plus roster rules, transfers, tiebreaks and Autopilot.
 - **Integration test:** the full gameplay journey runs through the real services on an in-memory PostgreSQL. It covers locks, a stats correction without double counting, free replacements, the transfer limit, Autopilot with an audit trail, and settlement through to the profile.
-- **Browser tests:** all 22 acceptance steps on an iPhone-sized viewport, accessibility (WCAG 2.1 AA, no serious violations) on key screens at both sizes, and the desktop layout.
+- **Browser tests:** all 22 acceptance steps on an iPhone-sized viewport, plus following a live series (the round score changes over Server-Sent Events without reloading), every playoff stage, the results recap, a stage cup and the share image; accessibility (WCAG 2.1 AA, no serious violations) on key screens at both sizes; and the desktop layout.
 
 ## How it's built
 
