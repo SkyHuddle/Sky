@@ -56,8 +56,15 @@ export async function saveEntry(db: Db, input: SaveEntryInput, now: Date): Promi
   const rules = contest.rules as ContestRules;
   const pool = await windowPoolMap(db, window.id);
 
-  const errors = validateRoster({ playerIds: input.playerIds, captainId: input.captainId }, pool, rules);
+  // Players kept from the previous window count at the price paid for them (FPL-style).
+  const prevWindow = windows.find((w) => w.position === window.position - 1);
+  const [own] = await db.select({ id: s.entries.id }).from(s.entries).where(and(eq(s.entries.contestId, contest.id), eq(s.entries.userId, input.userId)));
+  const prevRoster = own && prevWindow ? await currentRoster(db, own.id, prevWindow.id) : null;
+  const effective = heldPricePool(pool, prevRoster?.prices);
+
+  const errors = validateRoster({ playerIds: input.playerIds, captainId: input.captainId }, effective, rules);
   if (errors.length) throw new AppError("ROSTER_INVALID", errors[0]!.message, { errors });
+  const paid = new Map(input.playerIds.map((id) => [id, effective.get(id)!.price]));
 
   return db.transaction(async (txRaw) => {
     const tx = txRaw as unknown as Db;
@@ -89,7 +96,6 @@ export async function saveEntry(db: Db, input: SaveEntryInput, now: Date): Promi
 
     // Transfers are measured against the previous window's locked roster.
     let transferResult = { free: [] as string[], discretionary: [] as string[] };
-    const prevWindow = windows.find((w) => w.position === window.position - 1);
     if (!created && prevWindow) {
       const prev = await currentRoster(tx, entryId!, prevWindow.id);
       if (prev) {
@@ -121,6 +127,7 @@ export async function saveEntry(db: Db, input: SaveEntryInput, now: Date): Promi
       playerIds: input.playerIds,
       captainId: input.captainId,
       source: "user",
+      prices: paid,
     });
     await tx
       .update(s.entries)
@@ -146,6 +153,17 @@ export async function saveEntry(db: Db, input: SaveEntryInput, now: Date): Promi
       transfers: transferResult,
     };
   });
+}
+
+/** The window pool with kept players re-priced at what was paid for them. */
+export function heldPricePool(pool: Map<string, PoolPlayer>, held: ReadonlyMap<string, number> | undefined): Map<string, PoolPlayer> {
+  if (!held || held.size === 0) return pool;
+  const out = new Map(pool);
+  for (const [id, price] of held) {
+    const p = out.get(id);
+    if (p && price > 0) out.set(id, { ...p, price });
+  }
+  return out;
 }
 
 export async function setAutopilot(db: Db, userId: string, entryId: string, autopilot: boolean): Promise<void> {

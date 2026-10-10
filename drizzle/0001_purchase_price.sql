@@ -1,0 +1,1 @@
+ALTER TABLE "roster_selections" ADD COLUMN "price" integer DEFAULT 0 NOT NULL;

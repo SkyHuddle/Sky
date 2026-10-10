@@ -10,6 +10,7 @@ const securityHeaders = [
 const config: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  devIndicators: false,
   serverExternalPackages: ["@electric-sql/pglite", "pg"],
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];

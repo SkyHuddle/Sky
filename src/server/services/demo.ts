@@ -11,7 +11,7 @@ import { newInviteCode } from "../ids";
 import { currentRoster } from "../ingest/contests";
 import { runPipeline } from "../ingest/pipeline";
 import { getProvider } from "../providers";
-import { saveEntry, windowPoolMap } from "./entries";
+import { heldPricePool, saveEntry, windowPoolMap } from "./entries";
 
 /**
  * Demonstration mode. Fictional "bot" managers fill leaderboards and leagues so the product can be
@@ -122,23 +122,25 @@ export async function runBots(db: Db, now: Date): Promise<number> {
       // Existing entry in a later window: replace eliminated players (unless on Autopilot) and maybe upgrade.
       const cur = await currentRoster(db, e.id, w.id);
       if (!cur || cur.version.source === "user") continue;
-      const dead = cur.playerIds.filter((id) => !pool.has(id));
+      const held = heldPricePool(base, cur.prices);
+      const heldPool = new Map([...held].map(([id, p]) => [id, { ...p, avg: avg.get(id) ?? 0 }]));
+      const dead = cur.playerIds.filter((id) => !heldPool.has(id));
       const wantsTransfer = rng.chance(0.35);
       if ((dead.length === 0 || e.autopilot) && !wantsTransfer) continue;
-      const keep = cur.playerIds.filter((id) => pool.has(id));
-      const sold = wantsTransfer && keep.length > 0 ? [keep.sort((a, b) => pool.get(a)!.avg - pool.get(b)!.avg)[0]!] : [];
+      const keep = cur.playerIds.filter((id) => heldPool.has(id));
+      const sold = wantsTransfer && keep.length > 0 ? [keep.sort((a, b) => heldPool.get(a)!.avg - heldPool.get(b)!.avg)[0]!] : [];
       const roster = keep.filter((id) => !sold.includes(id));
-      const candidates = rng.shuffle([...pool.values()]).sort((a, b) => b.avg - a.avg);
+      const candidates = rng.shuffle([...heldPool.values()]).sort((a, b) => b.avg - a.avg);
       for (const p of candidates) {
         if (roster.length === rules.rosterSize) break;
         if (sold.includes(p.id)) continue;
-        const spent = roster.reduce((a, id) => a + pool.get(id)!.price, 0);
+        const spent = roster.reduce((a, id) => a + heldPool.get(id)!.price, 0);
         const slotsLeft = rules.rosterSize - roster.length - 1;
         if (rules.salaryCap - spent - p.price < slotsLeft * 100_000) continue;
-        if (!addBlockReason(p, roster, pool, rules)) roster.push(p.id);
+        if (!addBlockReason(p, roster, heldPool, rules)) roster.push(p.id);
       }
       if (roster.length !== rules.rosterSize) continue;
-      const captainId = cur.version.captainPlayerId && roster.includes(cur.version.captainPlayerId) ? cur.version.captainPlayerId : [...roster].sort((a, b) => pool.get(b)!.price - pool.get(a)!.price)[0]!;
+      const captainId = cur.version.captainPlayerId && roster.includes(cur.version.captainPlayerId) ? cur.version.captainPlayerId : [...roster].sort((a, b) => heldPool.get(b)!.price - heldPool.get(a)!.price)[0]!;
       try {
         await saveEntry(db, { userId: bot.id, contestId: c.id, playerIds: roster, captainId }, now);
         actions++;

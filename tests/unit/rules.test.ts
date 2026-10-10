@@ -144,4 +144,15 @@ describe("autopilot", () => {
     expect(r.unfilledSlots).toBe(1);
     expect(r.playerIds).toEqual(["k1"]);
   });
+
+  it("counts kept players at the price paid for them (purchase price), not today's price", () => {
+    // k1 now costs 250k but was bought for 120k: that frees budget for a pricier replacement.
+    const pool = [C("k1", "K", 250_000, 0.1), C("l1", "L", 200_000, 0.1), C("m1", "M", 200_000, 0.1), C("n1", "N", 180_000, 0.1), C("x1", "X", 290_000, 0.9), C("y1", "Y", 100_000, 0.05)];
+    const held = new Map([["k1", 120_000], ["l1", 200_000], ["m1", 200_000], ["n1", 180_000]]);
+    const withHeld = runAutopilot({ playerIds: ["k1", "l1", "m1", "n1", "gone"], captainId: "k1", pool, rules, heldPrices: held });
+    expect(withHeld.playerIds).toContain("x1"); // 700k held + 290k = 990k fits
+    const withoutHeld = runAutopilot({ playerIds: ["k1", "l1", "m1", "n1", "gone"], captainId: "k1", pool, rules });
+    expect(withoutHeld.playerIds).not.toContain("x1"); // 830k + 290k would be over the cap
+    expect(withoutHeld.playerIds).toContain("y1");
+  });
 });

@@ -113,12 +113,20 @@ export async function currentRoster(db: Db, entryId: string, windowId: string) {
     .limit(1);
   if (!v) return null;
   const sel = await db.select().from(s.rosterSelections).where(eq(s.rosterSelections.rosterVersionId, v.id)).orderBy(asc(s.rosterSelections.slot));
-  return { version: v, playerIds: sel.map((x) => x.playerId) };
+  return { version: v, playerIds: sel.map((x) => x.playerId), prices: new Map(sel.map((x) => [x.playerId, x.price])) };
 }
 
 export async function insertRosterVersion(
   db: Db,
-  args: { entryId: string; windowId: string; playerIds: string[]; captainId: string | null; source: "user" | "autopilot" | "carry_forward" },
+  args: {
+    entryId: string;
+    windowId: string;
+    playerIds: string[];
+    captainId: string | null;
+    source: "user" | "autopilot" | "carry_forward";
+    /** Price paid per player (purchase price for kept players, current price for new ones). */
+    prices: ReadonlyMap<string, number>;
+  },
 ): Promise<string> {
   const [last] = await db
     .select({ version: s.rosterVersions.version })
@@ -136,7 +144,7 @@ export async function insertRosterVersion(
     source: args.source,
   });
   if (args.playerIds.length) {
-    await db.insert(s.rosterSelections).values(args.playerIds.map((playerId, slot) => ({ rosterVersionId: id, playerId, slot })));
+    await db.insert(s.rosterSelections).values(args.playerIds.map((playerId, slot) => ({ rosterVersionId: id, playerId, slot, price: args.prices.get(playerId) ?? 0 })));
   }
   return id;
 }
@@ -191,7 +199,7 @@ async function advanceContest(db: Db, c: typeof s.contests.$inferSelect, now: Da
       const teamRows = await db.select().from(s.stageTeams).where(eq(s.stageTeams.stageId, stage.id));
       const expected = stage.kind === "swiss" ? 16 : 8;
       if (c.opensAt <= now && prevDone && teamRows.length === expected) {
-        await openWindow(db, c, w, teamRows.map((t) => t.teamId), windows[i - 1]);
+        await openWindow(db, c, w, teamRows.map((t) => t.teamId), windows[i - 1], now);
         sum.opened.push(w.id);
         sum.touchedContests.push(c.id);
         w.status = "open";
@@ -243,14 +251,18 @@ async function openWindow(
   w: typeof s.contestWindows.$inferSelect,
   teamIds: string[],
   prev: typeof s.contestWindows.$inferSelect | undefined,
+  now: Date,
 ) {
-  // Freeze the eligible pool: active, non-stand-in players of the stage's teams, at contest prices.
-  const pool = await db
-    .select({ playerId: s.playerPrices.playerId, price: s.playerPrices.price, teamId: s.playerTeamMemberships.teamId })
-    .from(s.playerPrices)
-    .innerJoin(s.playerTeamMemberships, and(eq(s.playerTeamMemberships.playerId, s.playerPrices.playerId), isNull(s.playerTeamMemberships.validTo)))
-    .innerJoin(s.players, eq(s.players.id, s.playerPrices.playerId))
-    .where(and(eq(s.playerPrices.contestId, c.id), inArray(s.playerTeamMemberships.teamId, teamIds), eq(s.players.isStandIn, false)));
+  // Freeze the eligible pool: active, non-stand-in players of the stage's teams, priced across the
+  // full range within this pool using history up to now (docs/10, "per-window prices").
+  const members = await db
+    .select({ playerId: s.playerTeamMemberships.playerId, teamId: s.playerTeamMemberships.teamId })
+    .from(s.playerTeamMemberships)
+    .innerJoin(s.players, eq(s.players.id, s.playerTeamMemberships.playerId))
+    .where(and(isNull(s.playerTeamMemberships.validTo), inArray(s.playerTeamMemberships.teamId, teamIds), eq(s.players.isStandIn, false)));
+  const priced = await computePrices(db, c.tournamentId, ruleSetById(c.ruleSetId), { teamIds, before: now });
+  const priceOf = new Map(priced.map((p) => [p.playerId, p.price]));
+  const pool = members.filter((m) => priceOf.has(m.playerId)).map((m) => ({ playerId: m.playerId, teamId: m.teamId, price: priceOf.get(m.playerId)! }));
   if (pool.length) {
     await db.insert(s.windowPool).values(pool.map((p) => ({ windowId: w.id, ...p }))).onConflictDoNothing();
   }
@@ -262,7 +274,7 @@ async function openWindow(
     for (const e of es) {
       const r = await currentRoster(db, e.id, prev.id);
       if (!r) continue;
-      await insertRosterVersion(db, { entryId: e.id, windowId: w.id, playerIds: r.playerIds, captainId: r.version.captainPlayerId, source: "carry_forward" });
+      await insertRosterVersion(db, { entryId: e.id, windowId: w.id, playerIds: r.playerIds, captainId: r.version.captainPlayerId, source: "carry_forward", prices: r.prices });
     }
   }
 }
@@ -275,13 +287,13 @@ async function runWindowAutopilot(db: Db, c: typeof s.contests.$inferSelect, w: 
   const es = await db.select().from(s.entries).where(and(eq(s.entries.contestId, c.id), eq(s.entries.autopilot, true)));
 
   // Ownership in this window (share of entries rostering each player), from current rosters.
-  const rosters = new Map<string, { playerIds: string[]; captainId: string | null }>();
+  const rosters = new Map<string, { playerIds: string[]; captainId: string | null; prices: Map<string, number> }>();
   const allEntries = await db.select({ id: s.entries.id }).from(s.entries).where(eq(s.entries.contestId, c.id));
   const owned = new Map<string, number>();
   for (const e of allEntries) {
     const r = await currentRoster(db, e.id, w.id);
     if (!r) continue;
-    rosters.set(e.id, { playerIds: r.playerIds, captainId: r.version.captainPlayerId });
+    rosters.set(e.id, { playerIds: r.playerIds, captainId: r.version.captainPlayerId, prices: r.prices });
     for (const p of r.playerIds) owned.set(p, (owned.get(p) ?? 0) + 1);
   }
   const total = Math.max(1, rosters.size);
@@ -297,9 +309,11 @@ async function runWindowAutopilot(db: Db, c: typeof s.contests.$inferSelect, w: 
   for (const e of es) {
     const r = rosters.get(e.id);
     if (!r) continue;
-    const result = runAutopilot({ playerIds: r.playerIds, captainId: r.captainId, pool: candidates, rules });
+    const result = runAutopilot({ playerIds: r.playerIds, captainId: r.captainId, pool: candidates, rules, heldPrices: r.prices });
     if (!result.changed) continue;
-    await insertRosterVersion(db, { entryId: e.id, windowId: w.id, playerIds: result.playerIds, captainId: result.captainId, source: "autopilot" });
+    const poolPrice = new Map(pool.map((p) => [p.playerId, p.price]));
+    const paid = new Map(result.playerIds.map((id) => [id, r.prices.get(id) ?? poolPrice.get(id) ?? 0]));
+    await insertRosterVersion(db, { entryId: e.id, windowId: w.id, playerIds: result.playerIds, captainId: result.captainId, source: "autopilot", prices: paid });
     for (const rep of result.replacements) {
       await db.insert(s.transfers).values({
         id: newId(),
@@ -320,7 +334,7 @@ async function runWindowAutopilot(db: Db, c: typeof s.contests.$inferSelect, w: 
       targetType: "entry",
       targetId: e.id,
       reason: `Window ${w.position} locked`,
-      before: r,
+      before: { playerIds: r.playerIds, captainId: r.captainId },
       after: { playerIds: result.playerIds, captainId: result.captainId, replacements: result.replacements, unfilledSlots: result.unfilledSlots },
     });
     changes++;

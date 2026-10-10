@@ -1,5 +1,5 @@
 import { beforeAll, describe, expect, it } from "vitest";
-import { and, asc, eq, isNotNull, isNull } from "drizzle-orm";
+import { and, asc, desc, eq, isNotNull, isNull } from "drizzle-orm";
 import { createDatabase, type Db } from "@/server/db/connect";
 import * as s from "@/server/db/schema";
 import { setSetting } from "@/server/clock";
@@ -231,6 +231,12 @@ describe("tournament fantasy journey", () => {
     const res = await saveEntry(db, { userId: alice, contestId: FULL_RUN, playerIds: legal, captainId: legal[0]! }, at);
     expect(res.transfers.discretionary).toHaveLength(0);
     expect(res.transfers.free.sort()).toEqual(dead.sort());
+    // Kept players stay at the price paid in window 1; new signings cost the window-2 price.
+    const [prevV] = await db.select().from(s.rosterVersions).where(and(eq(s.rosterVersions.entryId, res.entryId), eq(s.rosterVersions.windowId, `${FULL_RUN}--w1`))).orderBy(desc(s.rosterVersions.version)).limit(1);
+    const prevSel = await db.select().from(s.rosterSelections).where(eq(s.rosterSelections.rosterVersionId, prevV!.id));
+    const newSel = await db.select().from(s.rosterSelections).where(eq(s.rosterSelections.rosterVersionId, res.rosterVersionId));
+    for (const id of alive) expect(newSel.find((x) => x.playerId === id)!.price).toBe(prevSel.find((x) => x.playerId === id)!.price);
+    for (const x of newSel.filter((x) => !alive.includes(x.playerId))) expect(x.price).toBe(pool.find((p) => p.playerId === x.playerId)!.price);
     void s2;
   });
 

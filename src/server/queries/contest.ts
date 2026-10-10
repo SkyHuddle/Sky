@@ -25,6 +25,8 @@ export interface PoolPlayerView {
   mapsSampled: number;
   /** Map scores, most recent last (up to 5). */
   form: number[];
+  /** True when the user already owns this player: the price shown is what they paid. */
+  held: boolean;
   /** Fantasy points scored in this contest so far (live events only). */
   contestPoints: number;
   nextOpponentId: string | null;
@@ -121,6 +123,7 @@ export async function builderData(db: Db, contestId: string, viewerId: string | 
         nextOpponentId: nm ? (nm.teamAId === p.teamId ? nm.teamBId : nm.teamAId) : null,
         nextMatchAt: nm?.scheduledAt ?? null,
         ownership: ownership ? ownership.get(p.playerId) ?? 0 : null,
+        held: false,
       };
     })
     .sort((a, b) => b.price - a.price || a.nickname.localeCompare(b.nickname));
@@ -144,6 +147,14 @@ export async function builderData(db: Db, contestId: string, viewerId: string | 
           const pr = await currentRoster(db, e.id, prevW.id);
           if (pr) {
             previous = { playerIds: pr.playerIds, captainId: pr.version.captainPlayerId };
+            // Kept players count at the price paid for them.
+            for (const p of pool) {
+              const paid = pr.prices.get(p.id);
+              if (paid) {
+                p.price = paid;
+                p.held = true;
+              }
+            }
             const gone = pr.playerIds.filter((id) => !ids.includes(id));
             if (gone.length) {
               const gp = await db.select().from(s.players).where(inArray(s.players.id, gone));
@@ -153,7 +164,7 @@ export async function builderData(db: Db, contestId: string, viewerId: string | 
                 id: p.id,
                 nickname: p.nickname,
                 teamId: mem.find((m) => m.playerId === p.id)?.teamId ?? "",
-                price: prices.find((x) => x.playerId === p.id)?.price ?? 0,
+                price: pr.prices.get(p.id) ?? prices.find((x) => x.playerId === p.id)?.price ?? 0,
               }));
               const extraTeams = await teamsById(db, ineligiblePrevious.map((x) => x.teamId));
               for (const [k, v] of extraTeams) teams.set(k, v);
@@ -334,7 +345,7 @@ export async function entryDashboard(db: Db, entryId: string, viewerId: string |
         nickname: p.nickname,
         role: p.role,
         teamId,
-        price: prices.find((x) => x.playerId === pid)?.price ?? 0,
+        price: r.prices.get(pid) || (prices.find((x) => x.playerId === pid)?.price ?? 0),
         isCaptain,
         multiplier,
         basePoints: base,

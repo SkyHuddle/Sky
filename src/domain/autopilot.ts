@@ -27,6 +27,8 @@ export interface AutopilotInput {
   /** Eligible pool for the window being locked. Players not in it are considered ineligible. */
   pool: readonly AutopilotCandidate[];
   rules: ContestRules;
+  /** Purchase prices of players kept from the previous window (they count at what was paid). */
+  heldPrices?: ReadonlyMap<string, number>;
 }
 
 export interface AutopilotReplacement {
@@ -76,7 +78,8 @@ export function runAutopilot(input: AutopilotInput): AutopilotResult {
 
   const teamCount = (ids: string[], teamId: string) =>
     ids.reduce((n, id) => n + (poolById.get(id)?.teamId === teamId ? 1 : 0), 0);
-  const spent = (ids: string[]) => ids.reduce((s, id) => s + (poolById.get(id)?.price ?? 0), 0);
+  const priceOf = (id: string) => input.heldPrices?.get(id) ?? poolById.get(id)?.price ?? 0;
+  const spent = (ids: string[]) => ids.reduce((s, id) => s + priceOf(id), 0);
 
   // Cheapest legal completion check: can `slots` more players be added within budget and team limits?
   const canComplete = (ids: string[], slots: number): boolean => {
@@ -126,9 +129,7 @@ export function runAutopilot(input: AutopilotInput): AutopilotResult {
   let captainReassignedFrom: string | null = null;
   if (!captainId || !roster.includes(captainId)) {
     captainReassignedFrom = captainId;
-    const best = [...roster].sort(
-      (a, b) => (poolById.get(b)!.price - poolById.get(a)!.price) || a.localeCompare(b),
-    )[0];
+    const best = [...roster].sort((a, b) => priceOf(b) - priceOf(a) || a.localeCompare(b))[0];
     captainId = best ?? null;
   }
 

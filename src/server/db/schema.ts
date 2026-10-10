@@ -329,6 +329,8 @@ export const rosterSelections = pgTable(
     rosterVersionId: text("roster_version_id").notNull().references(() => rosterVersions.id, { onDelete: "cascade" }),
     playerId: text("player_id").notNull().references(() => players.id),
     slot: integer("slot").notNull(),
+    /** Price paid. Kept players stay at their purchase price in later windows (FPL-style). */
+    price: integer("price").notNull().default(0),
   },
   (t) => [primaryKey({ columns: [t.rosterVersionId, t.playerId] })],
 );

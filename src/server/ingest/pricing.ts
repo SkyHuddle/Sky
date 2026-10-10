@@ -9,9 +9,13 @@ import * as s from "../db/schema";
  * 1. History: average fantasy map score (this rule set) over every map the player played before
  *    the tournament began. Needs at least 5 maps to count.
  * 2. Prior: where the team enters the tournament (later entry = higher seed = stronger).
- * 3. Blend (history 80%, prior 20%; prior only when history is thin), rank all players,
- *    and map the percentile onto the price range. Stars land near $290k, so a five-star
- *    roster is impossible under the $1M cap.
+ * 3. Blend (history 80%, prior 20%; prior only when history is thin), rank the players in the
+ *    pool being priced, and map the percentile onto the price range. Stars land near $290k, so a
+ *    five-star roster is impossible under the $1M cap.
+ *
+ * Each stage window prices its own pool (opts.teamIds) across the full range, using history up to
+ * the window opening (opts.before). Pricing every player on one global scale left Stage 1 pools
+ * (the 16 lowest seeds) topping out at $185k, so the cap never bound. See docs/10.
  */
 
 export interface PriceRow {
@@ -25,7 +29,12 @@ const MIN_PRICE = 100_000;
 const MAX_PRICE = 290_000;
 const round5k = (n: number) => Math.round(n / 5000) * 5000;
 
-export async function computePrices(db: Db, tournamentId: string, rules: Cs2ScoringRules): Promise<PriceRow[]> {
+export async function computePrices(
+  db: Db,
+  tournamentId: string,
+  rules: Cs2ScoringRules,
+  opts: { teamIds?: string[]; before?: Date } = {},
+): Promise<PriceRow[]> {
   const [t] = await db.select().from(s.tournaments).where(eq(s.tournaments.id, tournamentId));
   if (!t) throw new Error("tournament not found");
   const stageRows = await db.select().from(s.stages).where(eq(s.stages.tournamentId, tournamentId));
@@ -39,7 +48,7 @@ export async function computePrices(db: Db, tournamentId: string, rules: Cs2Scor
     const pos = posOf.get(row.stageId) ?? 1;
     teamPrior.set(row.teamId, pos * 100 - row.seed);
   }
-  const teamIds = [...teamPrior.keys()];
+  const teamIds = opts.teamIds ? [...teamPrior.keys()].filter((id) => opts.teamIds!.includes(id)) : [...teamPrior.keys()];
   if (teamIds.length === 0) return [];
 
   const members = await db
@@ -74,7 +83,7 @@ export async function computePrices(db: Db, tournamentId: string, rules: Cs2Scor
     })
     .from(s.playerMapStats)
     .innerJoin(s.maps, eq(s.maps.id, s.playerMapStats.mapId))
-    .where(and(inArray(s.playerMapStats.playerId, members.map((m) => m.playerId)), lt(s.maps.finishedAt, t.beginAt)));
+    .where(and(inArray(s.playerMapStats.playerId, members.map((m) => m.playerId)), lt(s.maps.finishedAt, opts.before ?? t.beginAt)));
 
   const sums = new Map<string, { total: number; n: number }>();
   for (const h of hist) {
