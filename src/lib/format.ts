@@ -42,6 +42,9 @@ const timeFmt = new Intl.DateTimeFormat("en", { hour: "numeric", minute: "2-digi
 export const shortDate = (iso: string | Date) => dateFmt.format(new Date(iso));
 export const dateTime = (iso: string | Date) => dateTimeFmt.format(new Date(iso));
 export const clockTime = (iso: string | Date) => timeFmt.format(new Date(iso));
+const weekdayFmt = new Intl.DateTimeFormat("en", { weekday: "short" });
+/** "Today", or the short weekday ("Mon"). */
+export const dayLabel = (iso: string | Date, now = new Date()) => (new Date(iso).toDateString() === now.toDateString() ? "Today" : weekdayFmt.format(new Date(iso)));
 const dayTimeFmt = new Intl.DateTimeFormat("en", { weekday: "short", hour: "numeric", minute: "2-digit" });
 /** "3:00 PM" today, "Mon 3:00 PM" within the week, otherwise the full date and time. */
 export const dayTime = (iso: string | Date, now = new Date()) => {

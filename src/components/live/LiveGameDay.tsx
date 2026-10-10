@@ -243,11 +243,10 @@ function PlayerLine({ p, d }: { p: LivePlayer; d: LivePayload }) {
         </span>
         {p.live ? (
           <span className="tabular mt-1 block text-caption text-ink-3">
-            Map {p.live.mapNumber} · {p.live.mapName}{" "}
-            <span className="text-ink">
-              {p.live.roundsFor}–{p.live.roundsAgainst}
+            <span className="whitespace-nowrap">
+              Map {p.live.mapNumber} · {p.live.mapName} <span className="text-ink">{p.live.roundsFor}–{p.live.roundsAgainst}</span>
             </span>{" "}
-            · K–D–A <span className="text-ink-2">{p.live.kills}–{p.live.deaths}–{p.live.assists}</span>
+            · <span className="whitespace-nowrap">K–D–A <span className="text-ink-2">{p.live.kills}–{p.live.deaths}–{p.live.assists}</span></span>
           </span>
         ) : null}
       </span>
@@ -258,6 +257,11 @@ function PlayerLine({ p, d }: { p: LivePlayer; d: LivePayload }) {
               <span className="num block text-[1.125rem] text-accent">{pts(p.live.mapPoints)}</span>
             </Flash>
             <span className="block text-caption text-ink-3">map pts · live</span>
+          </>
+        ) : p.next && p.points === 0 ? (
+          <>
+            <LocalTime iso={p.next.at} format="time" className="num block text-[1.0625rem] text-ink" />
+            <LocalTime iso={p.next.at} format="weekday" className="block text-caption text-ink-3" />
           </>
         ) : (
           <>
@@ -293,7 +297,7 @@ function StatusText({ p, teams }: { p: LivePlayer; teams: Record<string, TeamLit
   if (p.next)
     return (
       <span className="min-w-0 truncate">
-        {p.next.postponed ? <span className="text-warning">Postponed · </span> : null}vs {teams[p.next.opponentId]?.acronym ?? "TBD"} · <LocalTime iso={p.next.at} format="day" />
+        {p.next.postponed ? <span className="text-warning">Postponed · </span> : null}vs {teams[p.next.opponentId]?.acronym ?? "TBD"}
       </span>
     );
   if (p.state === "eliminated") return <span className="text-negative">Eliminated</span>;
