@@ -161,7 +161,7 @@ test("a new fan builds a team, joins a league, follows scoring, transfers, and s
 
   // The recap, a stage cup, and the share image.
   await page.goto(entryUrl);
-  await expect(page.getByText("Final result")).toBeVisible();
+  await expect(page.getByText("Final result", { exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: /^\d+(st|nd|rd|th) of \d/ })).toBeVisible();
   await expect(page.getByText("Fantasy MVP")).toBeVisible();
   const image = await page.request.get(`/api/og/entry/${entryUrl.split("/e/")[1]}`);
