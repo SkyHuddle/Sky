@@ -1,0 +1,149 @@
+import { expect, test, type Page } from "@playwright/test";
+import { inviteCode } from "./helpers";
+
+/**
+ * The MVP acceptance journey (22 steps), on a phone-sized viewport, against persisted data.
+ * Results come from the demo provider through the real ingestion and scoring pipeline.
+ */
+
+const CONTEST = "demo-meridian-major--full-run";
+const user = `fan_${Date.now().toString(36).slice(-6)}`;
+
+async function advanceDemo(page: Page, expectLabel: RegExp) {
+  await page.getByRole("button", { name: "Demo", exact: true }).click();
+  const run = page.getByRole("button", { name: expectLabel });
+  await expect(run).toBeEnabled();
+  await run.click();
+  await expect(page.getByText(/results are in/)).toBeVisible({ timeout: 120_000 });
+  await page.keyboard.press("Escape");
+}
+
+async function addFirstAvailable(page: Page, count: number) {
+  for (let i = 0; i < count; i++) {
+    await page.locator('button[aria-label^="Add "]:not([disabled])').filter({ visible: true }).first().click();
+  }
+}
+
+/** The builder renders a mobile tray and a desktop roster (one hidden by CSS); target what's visible. */
+const vis = (page: Page, text: string | RegExp) => page.getByText(text).filter({ visible: true }).first();
+
+test("a new fan builds a team, joins a league, follows scoring, transfers, and sees the result", async ({ page }) => {
+  // 1–2. Open the site and browse tournaments.
+  await page.goto("/");
+  await expect(page.getByRole("heading", { name: "Meridian Major" })).toBeVisible();
+  await page.getByRole("link", { name: "Event hub" }).click();
+  await page.waitForURL(/\/t\/meridian-major$/, { timeout: 90_000 });
+
+  // 3–4. Select the fantasy competition and read the rules.
+  await page.getByRole("navigation", { name: "Tournament sections" }).getByRole("link", { name: "Fantasy" }).click();
+  await expect(page.getByRole("heading", { name: "Rules and scoring" })).toBeVisible();
+  await expect(page.getByText("Two contests, two ways to play")).toBeVisible();
+
+  // 5. Create an account (returning straight to the builder).
+  await page.goto(`/signup?next=${encodeURIComponent(`/c/${CONTEST}/build`)}`);
+  await page.getByLabel("Username").fill(user);
+  await page.getByLabel("Email").fill(`${user}@example.com`);
+  await page.getByLabel("Password").fill("a-strong-password");
+  await page.getByRole("button", { name: "Create account" }).click();
+
+  // 6. The roster builder.
+  await page.waitForURL(new RegExp(`/c/${CONTEST}/build`), { timeout: 90_000 });
+  await expect(vis(page, "0/5 players")).toBeVisible();
+
+  // 7. Search and filter.
+  await page.getByPlaceholder("Search players or teams").fill("zzzz");
+  await expect(page.getByText("No players match")).toBeVisible();
+  await page.getByRole("button", { name: "Clear search" }).click();
+  await page.getByRole("button", { name: /^Team/ }).click();
+  await page.getByRole("dialog").getByRole("button").filter({ hasText: /\w/ }).nth(0).click();
+  await page.getByRole("button", { name: "Show players" }).click();
+  await expect(page.getByText("5 of 80 players")).toBeVisible();
+
+  // 8. Inspect a player's statistics.
+  await page.getByRole("button", { name: /View details/ }).first().click();
+  await expect(page.getByRole("tab", { name: "Recent maps" })).toBeVisible();
+  await page.getByRole("tab", { name: "Recent maps" }).click();
+  await expect(page.getByRole("dialog").getByText("K–D–A")).toBeVisible();
+  await page.keyboard.press("Escape");
+
+  // 9–11. Add players, respecting the team limit and the cap.
+  await addFirstAvailable(page, 2); // two from the filtered team
+  const blocked = page.locator('button[aria-label*="can\'t be added: 2 from this team already"]').first();
+  await expect(blocked).toBeDisabled();
+  await page.getByRole("button", { name: /^\d+ teams?/ }).click();
+  await page.getByRole("button", { name: "Clear" }).click();
+  await page.getByRole("button", { name: "Show players" }).click();
+  await page.getByRole("button", { name: /Sort:/ }).click();
+  await page.getByRole("button", { name: "Salary: low to high" }).click();
+  await addFirstAvailable(page, 3);
+  await expect(vis(page, "5/5 players")).toBeVisible();
+  await expect(vis(page, "Team complete")).toBeVisible();
+
+  // 12–13. Review the team and choose a captain.
+  await page.getByRole("button", { name: "Review team" }).click();
+  await expect(page.getByRole("heading", { name: "Your team" })).toBeVisible();
+  await page.getByRole("button", { name: "Make captain" }).first().click();
+  await expect(page.getByText("Captain chosen (scores 1.5×)")).toBeVisible();
+
+  // 14. Submit.
+  await page.getByRole("button", { name: "Submit team" }).click();
+  await expect(page.getByRole("heading", { name: "You're in" })).toBeVisible();
+
+  // 15. Return later and see the saved entry.
+  await page.goto("/fantasy");
+  await page.getByRole("link", { name: /Meridian Major/ }).first().click();
+  await page.waitForURL(/\/e\//, { timeout: 90_000 }); // first visit compiles the route in dev mode
+  const entryUrl = page.url();
+  await expect(page.getByText("Fantasy points")).toBeVisible();
+
+  // 16. Join a private league with the existing entry.
+  const code = await inviteCode(`${CONTEST}--friday`);
+  await page.goto(`/join/${code}`);
+  await expect(page.getByRole("heading", { name: "Friday Night CS" })).toBeVisible();
+  await page.getByRole("button", { name: "Join league" }).click();
+  await expect(page.getByText(/You're in\./)).toBeVisible();
+  const leagueUrl = page.url();
+
+  // 18. Results arrive: the demo clock plays Stage 1 through the real pipeline.
+  await advanceDemo(page, /Play Stage 1/);
+
+  // 17. Find my name on the league leaderboard.
+  await page.goto(leagueUrl);
+  await expect(page.locator("ol").getByText(user, { exact: false }).first()).toBeVisible();
+
+  // 19–20. Points from ingested results, how they were awarded, and my ranking.
+  await page.goto(entryUrl);
+  await expect(page.getByText(/^of \d/)).toBeVisible();
+  await page.getByRole("tab", { name: "Stage 1" }).click();
+  const firstPlayer = page.locator('button[aria-expanded]').first();
+  await firstPlayer.click();
+  await expect(page.getByText(/Map 1 ·/).first()).toBeVisible();
+  await expect(page.getByText("Map average").first()).toBeVisible();
+
+  // 21. Permitted roster changes during the transfer window.
+  await page.getByRole("link", { name: "Make transfers" }).click();
+  await expect(page.getByText(/transfers used/)).toBeVisible();
+  const outChip = page.getByRole("button", { name: /Remove eliminated player/ });
+  while ((await outChip.count()) > 0) await outChip.first().click(); // free replacements
+  const alive = page.locator('li button[aria-label^="Remove "]:not([aria-label*="eliminated"])').filter({ visible: true }).first();
+  if (await alive.count()) await alive.click(); // one discretionary transfer
+  const tray = page.getByText(/\d\/5 players/).filter({ visible: true }).first();
+  const missing = 5 - Number((await tray.innerText()).trim().split("/")[0]);
+  await addFirstAvailable(page, missing);
+  await page.getByRole("button", { name: "Review team" }).click();
+  if (await page.getByText("Choose a captain").count()) await page.getByRole("button", { name: "Make captain" }).first().click();
+  await page.getByRole("button", { name: "Save changes" }).click();
+  await expect(page.getByRole("heading", { name: "Changes saved" })).toBeVisible();
+
+  // 22. Play out the tournament, settle, and see the result on the profile.
+  await page.goto(entryUrl);
+  await advanceDemo(page, /Play Stage 2/);
+  await advanceDemo(page, /Play Stage 3/);
+  await advanceDemo(page, /Play Playoffs/);
+  await advanceDemo(page, /Settle final results/);
+  await page.goto("/profile");
+  await expect(page.getByRole("heading", { name: user })).toBeVisible();
+  const history = page.getByRole("region", { name: "Tournament history" });
+  await expect(history.getByText("Meridian Major (Demo)")).toBeVisible();
+  await expect(history.getByText(/Full Run · Final/)).toBeVisible();
+});

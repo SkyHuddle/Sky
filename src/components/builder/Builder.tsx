@@ -158,15 +158,28 @@ export function Builder({ data, nowIso, signedIn }: { data: BuilderData; nowIso:
   }
 
   const firstError = b.errors.find((e) => e.code !== "CAPTAIN_REQUIRED") ?? null;
+  const stillOut = data.ineligiblePrevious.filter((p) => b.playerIds.includes(p.id));
   const transferNote = b.transfers ? (
     <Notice tone={b.transfers.error ? "danger" : "lavender"} icon="swap">
       <span className="font-semibold text-ink">
         {b.transfers.discretionary.length} of {b.transfers.allowed} transfers used
       </span>
-      <span className="text-ink-2">
-        {" "}
-        · Replacing eliminated players is free{data.ineligiblePrevious.length ? ` (${data.ineligiblePrevious.length} to replace)` : ""}.
-      </span>
+      <span className="text-ink-2"> · Replacing eliminated players is free.</span>
+      {stillOut.length ? (
+        <span className="mt-2 flex flex-wrap items-center gap-1.5">
+          <span className="text-ink-2">Eliminated:</span>
+          {stillOut.map((p) => (
+            <button
+              key={p.id}
+              onClick={() => b.remove(p.id)}
+              aria-label={`Remove eliminated player ${p.nickname}`}
+              className="inline-flex h-7 items-center gap-1 rounded-full bg-negative-soft px-2.5 text-caption font-semibold text-negative hover:bg-negative/20"
+            >
+              {p.nickname} <Icon name="x" size={12} strokeWidth={2.6} />
+            </button>
+          ))}
+        </span>
+      ) : null}
     </Notice>
   ) : null;
 

@@ -118,9 +118,24 @@ export function useBuilder(data: BuilderData) {
     return { ...count, error: validateTransfers(count, data.rules), allowed: data.rules.transfersPerWindow };
   }, [data.previous, data.entryId, playerIds, pool, data.rules]);
 
+  const cheapest = useMemo(() => Math.min(...data.pool.map((p) => p.price)), [data.pool]);
+
+  /**
+   * Why a player can't be added: the shared rule check, plus a guard against dead ends: a pick that
+   * leaves too little money to fill the remaining slots even with the cheapest players.
+   */
   const blockReason = useCallback(
-    (p: PoolPlayerView) => addBlockReason({ id: p.id, teamId: p.teamId, price: p.price }, playerIds, withIneligible, data.rules),
-    [playerIds, withIneligible, data.rules],
+    (p: PoolPlayerView): RosterError | null => {
+      const hard = addBlockReason({ id: p.id, teamId: p.teamId, price: p.price }, playerIds, withIneligible, data.rules);
+      if (hard || playerIds.includes(p.id)) return hard;
+      const slotsAfter = data.rules.rosterSize - playerIds.length - 1;
+      const leftAfter = summary.salaryRemaining - p.price;
+      if (slotsAfter > 0 && leftAfter < slotsAfter * cheapest) {
+        return { code: "OVER_CAP", message: `Leaves too little for ${slotsAfter} more player${slotsAfter > 1 ? "s" : ""}`, playerId: p.id };
+      }
+      return null;
+    },
+    [playerIds, withIneligible, data.rules, summary.salaryRemaining, cheapest],
   );
 
   const add = useCallback(

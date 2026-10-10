@@ -1,4 +1,5 @@
 import { and, asc, eq, inArray, ne } from "drizzle-orm";
+import type { ContestRules } from "@/domain/types";
 import type { Db } from "../db/connect";
 import * as s from "../db/schema";
 import { matchesForStages, teamsById, type MatchLite, type TeamLite } from "./common";
@@ -34,6 +35,8 @@ export interface ContestView {
   status: string;
   opensAt: string;
   entries: number;
+  ruleSetId: string;
+  rules: ContestRules;
   windows: WindowView[];
   /** The window currently accepting entries/changes, if any. */
   openWindow: WindowView | null;
@@ -95,7 +98,6 @@ export async function tournamentSummaries(db: Db, viewerId: string | null, opts:
     const currentStage = stages.find((x) => x.status === "live") ?? stages.find((x) => x.status === "upcoming") ?? stages[stages.length - 1] ?? null;
     const contests: ContestView[] = contestRows
       .filter((c) => c.tournamentId === t.id)
-      .sort((a, b) => (a.kind === "main_event" ? -1 : b.kind === "main_event" ? 1 : 0))
       .map((c) => {
         const windows: WindowView[] = windowRows
           .filter((w) => w.contestId === c.id)
@@ -118,12 +120,15 @@ export async function tournamentSummaries(db: Db, viewerId: string | null, opts:
           status: c.status,
           opensAt: c.opensAt.toISOString(),
           entries: es.length,
+          ruleSetId: c.ruleSetId,
+          rules: c.rules as ContestRules,
           windows,
           openWindow: windows.find((w) => w.status === "open") ?? null,
           nextWindow: windows.find((w) => w.status === "upcoming") ?? null,
           myEntry: mine ? { id: mine.id, rank: mine.rank, points: mine.points, entriesCount: es.length } : null,
         };
       });
+    contests.sort((a, b) => rankContest(a) - rankContest(b));
     return {
       id: t.id,
       slug: t.slug,
@@ -140,6 +145,11 @@ export async function tournamentSummaries(db: Db, viewerId: string | null, opts:
       contests,
     };
   });
+}
+
+/** Open contests first; otherwise the Main Event leads. */
+function rankContest(c: ContestView): number {
+  return (c.openWindow ? 0 : 10) + (c.kind === "main_event" ? 0 : 1);
 }
 
 export interface StandingRow {

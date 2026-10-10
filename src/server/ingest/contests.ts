@@ -266,6 +266,17 @@ async function openWindow(
   if (pool.length) {
     await db.insert(s.windowPool).values(pool.map((p) => ({ windowId: w.id, ...p }))).onConflictDoNothing();
   }
+  // Keep the contest's reference prices current (latest price, recent average) for display,
+  // Autopilot tie-breaks and research. Prices paid stay on roster selections.
+  for (const p of priced) {
+    await db
+      .insert(s.playerPrices)
+      .values({ contestId: c.id, playerId: p.playerId, price: p.price, avgPoints: p.avgPoints, mapsSampled: p.mapsSampled })
+      .onConflictDoUpdate({
+        target: [s.playerPrices.contestId, s.playerPrices.playerId],
+        set: { price: p.price, avgPoints: p.avgPoints, mapsSampled: p.mapsSampled },
+      });
+  }
   await db.update(s.contestWindows).set({ status: "open", poolFrozenAt: new Date() }).where(eq(s.contestWindows.id, w.id));
 
   // Carry every entry's roster forward unchanged; eliminated players stay until replaced.

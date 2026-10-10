@@ -154,7 +154,7 @@ export function Review({
               onClick={() => b.setAutopilot(!b.autopilot)}
               className={cn("relative h-7 w-12 shrink-0 rounded-full transition-colors", b.autopilot ? "bg-accent" : "bg-raised ring-1 ring-border-strong")}
             >
-              <span className={cn("absolute top-0.5 size-6 rounded-full bg-white shadow transition-transform", b.autopilot ? "translate-x-[22px]" : "translate-x-0.5")} />
+              <span className={cn("absolute top-0.5 left-0 size-6 rounded-full bg-white shadow transition-transform", b.autopilot ? "translate-x-[22px]" : "translate-x-0.5")} />
             </button>
           </div>
         </section>
