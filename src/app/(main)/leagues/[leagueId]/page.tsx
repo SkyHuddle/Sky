@@ -4,7 +4,7 @@ import { Leaderboard } from "@/components/board/Leaderboard";
 import { InviteLink, JoinButton, LeaveLeague, RemoveMember } from "@/components/league/LeagueClient";
 import { ButtonLink } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
-import { PlayerAvatar } from "@/components/ui/identity";
+import { UserAvatar } from "@/components/ui/identity";
 import { Notice, SectionHeader } from "@/components/ui/primitives";
 import { pageContext } from "@/server/page";
 import { leagueDetail } from "@/server/queries/people";
@@ -82,7 +82,7 @@ export default async function LeaguePage({ params, searchParams }: { params: Pro
         <ul className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface">
           {d.members.slice(0, 60).map((m) => (
             <li key={m.userId} className="flex items-center gap-3 px-4 py-2.5">
-              <PlayerAvatar nickname={m.username} team={{ id: "u", name: "", acronym: "", color: `hsl(${m.avatarHue} 70% 62%)`, country: "" }} size={30} />
+              <UserAvatar username={m.username} hue={m.avatarHue} size={30} />
               <Link href={`/u/${m.username}`} className="min-w-0 flex-1 truncate text-callout text-ink hover:underline">
                 {m.username}
               </Link>

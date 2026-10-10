@@ -59,6 +59,17 @@ What changed between the blueprint (docs 01–09) and the built MVP, and why. Ea
 - **Rosters for an open window are private;** they become visible to others once the window locks.
 - **Ties never use randomness.** Total → captain points → fewer transfers → earlier final submission → shared rank.
 
+## Visual identity without licensed images
+
+- **Problem:** the reference look for fantasy sports apps leans on player headshots and team logos. Demo players are fictional and no image rights exist, so photos and real logos are out.
+- **Decision:** both are generated (`src/components/ui/art.tsx`), deterministic per player and team:
+  - **Portraits:** a faceless head-and-shoulders figure in the team's jersey, with varied skin tone, hair and facial hair, an optional gaming headset, and the team crest on the chest. Faceless on purpose: no fake likenesses.
+  - **Crests:** a shield, hex, round or kite shape in the team colour, with an emblem taken from the team's name (Ember Row gets a flame, Kestrel a wing, Tidewater waves).
+  - **Event art:** a top-down radar of a fictional map with A and B sites, instead of stock key art.
+- **Licensed images replace them in the same frames** (`PlayerAvatar`, `TeamMark`, `PlayerCard`), so layouts don't change.
+- **Flat fills only.** SVG gradient ids repeat when the same player appears twice on a page; if the first copy sits inside a hidden panel, Chrome stops painting the others. Flat colours avoid that entirely.
+- **Type:** Archivo (variable width axis) condensed and heavy for event titles, scores, prices and ranks; Geist for everything else.
+
 ## Demonstration mode
 
 - **No licensed data was available.** pandascore.co and grid.gg are unreachable from this environment.

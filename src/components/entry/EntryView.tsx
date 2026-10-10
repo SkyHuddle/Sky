@@ -5,13 +5,13 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { cn } from "@/lib/cn";
-import { money, ordinal, percentileLabel, pts, relativeAgo } from "@/lib/format";
+import { money, percentileLabel, pts, relativeAgo } from "@/lib/format";
 import type { DashboardPlayer, DashboardWindow, EntryDashboard } from "@/server/queries/contest";
 import type { Board } from "@/server/services/leaderboards";
 import { StageProgress } from "../tournament/StageProgress";
 import { ButtonLink } from "../ui/Button";
 import { Icon } from "../ui/Icon";
-import { DemoBadge, PlayerAvatar } from "../ui/identity";
+import { DemoBadge, PlayerAvatar, rgba, TeamMark, UserAvatar } from "../ui/identity";
 import { Movement, Notice } from "../ui/primitives";
 import { Countdown, LocalTime, StatePill } from "../ui/status";
 import { useToast } from "../ui/Toast";
@@ -32,7 +32,10 @@ export function EntryView({ d, board, nowIso, healthOk }: { d: EntryDashboard; b
   return (
     <div className="space-y-6">
       {/* Score hero */}
-      <section className="overflow-hidden rounded-[24px] border border-border bg-surface" aria-labelledby="score">
+      <section
+        className="overflow-hidden rounded-[24px] border border-white/[0.07] bg-surface bg-[radial-gradient(90%_120%_at_100%_0%,rgb(167_139_250/0.16),transparent_55%),radial-gradient(80%_100%_at_0%_100%,rgb(92_227_203/0.08),transparent_60%)]"
+        aria-labelledby="score"
+      >
         <div className="p-5 sm:p-6">
           <div className="flex flex-wrap items-center gap-2">
             <Link href={`/t/${d.tournament.slug}`} className="text-eyebrow text-lavender hover:underline">
@@ -44,41 +47,40 @@ export function EntryView({ d, board, nowIso, healthOk }: { d: EntryDashboard; b
           </div>
           {!d.isOwner ? (
             <div className="mt-3 flex items-center gap-2.5">
-              <PlayerAvatar nickname={d.entry.username} team={{ id: "u", name: "", acronym: "", color: `hsl(${d.entry.avatarHue} 70% 62%)`, country: "" }} size={32} />
+              <UserAvatar username={d.entry.username} hue={d.entry.avatarHue} size={32} />
               <Link href={`/u/${d.entry.username}`} className="text-headline text-ink hover:underline">
                 {d.entry.username}
               </Link>
             </div>
           ) : null}
-          <div className="mt-4 flex flex-wrap items-end gap-x-8 gap-y-4">
-            <div>
-              <div id="score" className="text-caption text-ink-3">
+          <div className="mt-4 flex items-end justify-between gap-4">
+            <div className="min-w-0">
+              <div id="score" className="text-caption text-ink-2">
                 Fantasy points
               </div>
               <AnimatePresence mode="popLayout" initial={false}>
-                <motion.div
-                  key={d.entry.totalPoints}
-                  initial={{ y: 10, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  className="tabular text-[3rem] leading-[1] font-semibold tracking-[-0.04em] text-ink"
-                >
+                <motion.div key={d.entry.totalPoints} initial={{ y: 10, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="num text-[3.5rem] leading-[0.95] text-accent">
                   {scored ? pts(d.entry.totalPoints) : "—"}
                 </motion.div>
               </AnimatePresence>
             </div>
-            <div>
-              <div className="text-caption text-ink-3">Rank</div>
-              <div className="flex items-baseline gap-2">
-                <span className="tabular text-title text-ink">{scored ? ordinal(d.entry.rank!) : "—"}</span>
-                {scored ? <span className="text-callout text-ink-3">of {d.entry.entriesCount.toLocaleString("en")}</span> : null}
-                {scored ? <Movement value={movement} /> : null}
+            <div className="shrink-0 border-l border-border pl-4 text-right">
+              <div className="text-caption text-ink-2">Rank</div>
+              <div className="flex items-baseline justify-end gap-2">
+                <span className="num text-[2.25rem] leading-none text-ink">{scored ? `#${d.entry.rank!.toLocaleString("en")}` : "—"}</span>
+                {scored ? <Movement value={movement} className="text-footnote" /> : null}
               </div>
-              {scored ? <div className="text-caption text-lavender">{percentileLabel(d.entry.rank, d.entry.entriesCount)}</div> : null}
+              {scored ? (
+                <div className="mt-1 text-caption text-ink-3">
+                  <span>of {d.entry.entriesCount.toLocaleString("en")}</span>
+                  <span className="text-lavender"> · {percentileLabel(d.entry.rank, d.entry.entriesCount)}</span>
+                </div>
+              ) : null}
             </div>
-            <div className="text-caption text-ink-3 sm:ml-auto sm:text-right">
-              <div>Data checked {relativeAgo(d.lastUpdated, Date.parse(d.realNow))}</div>
-              {d.entry.scoreState !== "settled" ? <div>Scores update after each completed map</div> : null}
-            </div>
+          </div>
+          <div className="mt-3 text-caption text-ink-3">
+            Data checked {relativeAgo(d.lastUpdated, Date.parse(d.realNow))}
+            {d.entry.scoreState !== "settled" ? " · scores update after each completed map" : ""}
           </div>
           {!scored ? (
             <p className="mt-3 text-callout text-ink-2">Scoring starts when {d.windows[0]?.stageName ?? "the first stage"} locks and the first maps are played.</p>
@@ -146,7 +148,7 @@ export function EntryView({ d, board, nowIso, healthOk }: { d: EntryDashboard; b
                   role="tab"
                   aria-selected={x.id === w?.id}
                   onClick={() => setWindowId(x.id)}
-                  className={cn("inline-flex h-9 shrink-0 items-center gap-1.5 rounded-full px-3.5 text-footnote font-semibold transition-colors", x.id === w?.id ? "bg-ink text-bg" : "bg-surface text-ink-2 ring-1 ring-border hover:text-ink")}
+                  className={cn("inline-flex h-9 shrink-0 items-center gap-1.5 rounded-full px-3.5 text-footnote font-semibold transition-colors", x.id === w?.id ? "bg-accent-soft text-accent ring-1 ring-accent/50" : "bg-surface text-ink-2 ring-1 ring-border hover:text-ink")}
                 >
                   {x.stageName}
                   {x.status === "open" ? <span className="size-1.5 rounded-full bg-accent" aria-label="(editable)" /> : null}
@@ -195,6 +197,7 @@ function WindowRoster({ w, d, expanded, setExpanded }: { w: DashboardWindow; d: 
     );
   }
   const players = [...w.players].sort((a, b) => Number(b.isCaptain) - Number(a.isCaptain) || b.points - a.points);
+  const best = Math.max(1, ...players.map((p) => p.points));
   return (
     <div className="space-y-3">
       {w.autopilotChanges.length ? (
@@ -214,18 +217,22 @@ function WindowRoster({ w, d, expanded, setExpanded }: { w: DashboardWindow; d: 
           <Icon name="swap" size={15} /> {w.transfers.filter((t) => t.kind === "discretionary").length} transfer(s) and {w.transfers.filter((t) => t.kind === "free").length} free replacement(s) this stage
         </p>
       ) : null}
-      <ul className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface">
+      <ul className="space-y-2">
         {players.map((p) => {
           const s = statusLabel(p, d);
           const team = d.teams[p.teamId];
           const isOpen = expanded === `${w.id}:${p.id}`;
           return (
-            <li key={p.id}>
-              <button onClick={() => setExpanded(isOpen ? null : `${w.id}:${p.id}`)} aria-expanded={isOpen} className="flex w-full items-center gap-3 px-4 py-3 text-left hover:bg-[#131b28]">
-                <PlayerAvatar nickname={p.nickname} team={team} size={44} ring={p.isCaptain ? "captain" : null} className={cn(s.kind === "eliminated" && "opacity-55")} />
+            <li
+              key={p.id}
+              className={cn("overflow-hidden rounded-[18px] border bg-surface", p.isCaptain ? "border-lavender/40" : "border-border")}
+              style={{ backgroundImage: `linear-gradient(90deg, ${rgba(team?.color ?? "#6f7d92", 0.12)} 0%, transparent 40%)` }}
+            >
+              <button onClick={() => setExpanded(isOpen ? null : `${w.id}:${p.id}`)} aria-expanded={isOpen} className="flex w-full items-center gap-3 py-2 pr-3 pl-2 text-left hover:bg-white/[0.02]">
+                <PlayerAvatar nickname={p.nickname} team={team} size={52} shape="tile" className={cn(s.kind === "eliminated" && "opacity-50 grayscale")} />
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-1.5">
-                    <span className="truncate text-[0.9375rem] font-semibold text-ink">{p.nickname}</span>
+                    <span className="truncate text-[1rem] font-semibold tracking-tight text-ink">{p.nickname}</span>
                     {p.isCaptain ? (
                       <span className="inline-flex h-5 items-center gap-0.5 rounded-full bg-lavender-soft px-1.5 text-[0.625rem] font-bold text-lavender">
                         <Icon name="star" size={10} strokeWidth={2.6} /> C ×{d.rules.captainMultiplier}
@@ -233,7 +240,7 @@ function WindowRoster({ w, d, expanded, setExpanded }: { w: DashboardWindow; d: 
                     ) : null}
                   </div>
                   <div className="mt-0.5 flex items-center gap-1.5 text-footnote text-ink-3">
-                    <span className="inline-block size-1.5 rounded-full" style={{ background: team?.color }} aria-hidden />
+                    <TeamMark team={team} size={15} />
                     {team?.acronym}
                     <span
                       className={cn(
@@ -255,11 +262,14 @@ function WindowRoster({ w, d, expanded, setExpanded }: { w: DashboardWindow; d: 
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="tabular text-headline text-ink">{pts(p.points)}</div>
-                  <div className="tabular text-caption text-ink-3">{money(p.price)}</div>
+                  <div className="num text-[1.375rem] leading-none text-ink">{pts(p.points)}</div>
+                  <div className="tabular mt-1 text-caption text-ink-3">{money(p.price)}</div>
                 </div>
                 <Icon name="chevronDown" size={18} className={cn("shrink-0 text-ink-3 transition-transform", isOpen && "rotate-180")} />
               </button>
+              <div className="mx-3 mb-2 h-[3px] overflow-hidden rounded-full bg-white/[0.05]" aria-hidden>
+                <div className={cn("h-full rounded-full", p.isCaptain ? "bg-lavender" : "bg-accent")} style={{ width: `${Math.max(0, (p.points / best) * 100)}%` }} />
+              </div>
               <AnimatePresence initial={false}>
                 {isOpen ? (
                   <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }} className="overflow-hidden">
@@ -273,7 +283,7 @@ function WindowRoster({ w, d, expanded, setExpanded }: { w: DashboardWindow; d: 
           );
         })}
         {players.length < d.rules.rosterSize ? (
-          <li className="px-4 py-3 text-footnote text-warning">
+          <li className="rounded-[18px] border border-dashed border-warning/40 px-4 py-3 text-footnote text-warning">
             {d.rules.rosterSize - players.length} empty slot{d.rules.rosterSize - players.length > 1 ? "s" : ""}: no legal replacement was available.
           </li>
         ) : null}
@@ -329,13 +339,16 @@ function BoardPreview({ d, board }: { d: EntryDashboard; board: Board }) {
 function BoardLine({ r, me }: { r: Board["rows"][number]; me: boolean }) {
   return (
     <li>
-      <Link href={`/e/${r.entryId}`} className={cn("flex h-10 items-center gap-2.5 rounded-lg px-2 text-callout", me ? "bg-lavender-soft" : "hover:bg-elevated")}>
+      <Link
+        href={`/e/${r.entryId}`}
+        className={cn("flex h-10 items-center gap-2.5 rounded-xl px-2 text-callout", me ? "bg-[linear-gradient(90deg,rgb(92_227_203/0.16),rgb(92_227_203/0.04))] ring-1 ring-accent/50" : "hover:bg-elevated")}
+      >
         <span className="tabular w-8 text-right text-footnote text-ink-3">{r.rank}</span>
         <span className={cn("min-w-0 flex-1 truncate", me ? "font-semibold text-ink" : "text-ink-2")}>
           {r.username}
           {me ? " (you)" : ""}
         </span>
-        <span className="tabular font-semibold text-ink">{pts(r.points)}</span>
+        <span className={cn("num text-[1.0625rem]", me ? "text-accent" : "text-ink")}>{pts(r.points)}</span>
       </Link>
     </li>
   );

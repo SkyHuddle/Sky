@@ -1,13 +1,14 @@
 import { cn } from "@/lib/cn";
-import { initials, money, pts } from "@/lib/format";
+import { money, pts } from "@/lib/format";
 import type { TeamLite } from "@/server/queries/common";
 import { Icon } from "../ui/Icon";
+import { CrestSvg, PortraitSvg } from "../ui/art";
 import { Flag, rgba } from "../ui/identity";
 
 /**
  * The "team announcement" card used on roster review, confirmation and sharing.
- * A tall portrait frame: team-tinted field, oversized initials (photo slot when licensed),
- * the team's acronym as a watermark, and the facts that matter.
+ * A tall portrait frame: team-tinted field, the player's portrait (a licensed photo replaces it),
+ * the team crest as a watermark, and the facts that matter.
  */
 export function PlayerCard({
   player,
@@ -39,23 +40,16 @@ export function PlayerCard({
       style={{ boxShadow: captain ? "0 0 0 1px rgb(167 139 250 / 0.25), 0 18px 50px -20px rgb(167 139 250 / 0.35)" : undefined }}
     >
       <div
-        className={cn("relative overflow-hidden", lg ? "h-40 sm:h-52" : "h-24 sm:h-32")}
+        className={cn("relative overflow-hidden", lg ? "h-44 sm:h-52" : "h-28 sm:h-32")}
         style={{ background: `radial-gradient(130% 110% at 25% 0%, ${rgba(color, 0.5)} 0%, ${rgba(color, 0.16)} 48%, #111824 100%)` }}
       >
-        <span
-          className="pointer-events-none absolute -right-2 -bottom-6 font-black tracking-tighter select-none"
-          style={{ color: rgba(color, 0.14), fontSize: lg ? 120 : 64, lineHeight: 1 }}
-          aria-hidden
-        >
-          {team?.acronym ?? ""}
-        </span>
-        <span
-          className="absolute left-4 font-semibold tracking-tight text-ink/95"
-          style={{ fontSize: lg ? 64 : 36, bottom: lg ? 10 : 4, letterSpacing: "-0.04em" }}
-          aria-hidden
-        >
-          {initials(player.nickname)}
-        </span>
+        {team ? (
+          <span className="pointer-events-none absolute -bottom-8 -left-6 opacity-[0.1]" style={{ width: lg ? 200 : 120, height: lg ? 200 : 120 }} aria-hidden>
+            <CrestSvg id={team.id} name={team.name} color="#ffffff" className="size-full" />
+          </span>
+        ) : null}
+        <PortraitSvg seed={player.nickname} color={color} team={team ?? undefined} className={cn("pointer-events-none absolute bottom-0 h-full w-auto", lg ? "right-2" : "right-1/2 translate-x-1/2")} />
+        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-[linear-gradient(0deg,#111824,transparent)]" aria-hidden />
         {captain ? (
           <span className="absolute top-3 left-3 inline-flex h-6 items-center gap-1 rounded-full bg-lavender px-2 text-[0.6875rem] font-bold text-[#1b1035]">
             <Icon name="star" size={12} strokeWidth={2.4} /> Captain 1.5×
@@ -67,7 +61,7 @@ export function PlayerCard({
       </div>
       <div className={cn("flex flex-1 flex-col", lg ? "p-4" : "p-3")}>
         <div className="flex items-center gap-1.5">
-          <span className={cn("truncate font-semibold tracking-tight text-ink", lg ? "text-title" : "text-headline")}>{player.nickname}</span>
+          <span className={cn("display truncate text-ink", lg ? "text-[1.75rem] leading-none" : "text-[1.25rem] leading-none")}>{player.nickname}</span>
           <Flag code={player.nationality} className="text-[0.9rem]" />
         </div>
         <div className="mt-0.5 flex items-center gap-1.5 truncate text-footnote text-ink-2">
@@ -78,12 +72,12 @@ export function PlayerCard({
         <div className="mt-auto flex items-end justify-between gap-2 pt-3">
           <div>
             <div className="text-caption text-ink-3">Salary</div>
-            <div className="tabular text-callout font-semibold text-ink">{money(player.price)}</div>
+            <div className="num text-[1.125rem] text-ink">{money(player.price)}</div>
           </div>
           {player.avgPoints !== undefined ? (
             <div className="text-right">
               <div className="text-caption text-ink-3">Avg / map</div>
-              <div className="tabular text-callout font-semibold text-ink">{pts(player.avgPoints)}</div>
+              <div className="num text-[1.125rem] text-ink">{pts(player.avgPoints)}</div>
             </div>
           ) : null}
         </div>

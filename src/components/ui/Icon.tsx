@@ -20,6 +20,7 @@ const PATHS = {
   clock: "M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18M12 7.5V12l3 2",
   sliders: "M4 7h10M18 7h2M4 17h4M12 17h8M14 4.5v5M8 14.5v5",
   arrowUp: "M12 19V5M6 11l6-6 6 6",
+  arrowRight: "M5 12h14M13 6l6 6-6 6",
   arrowDown: "M12 5v14M6 13l6 6 6-6",
   info: "M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18M12 11v5.5M12 7.6v.4",
   alert: "M12 4 2.8 19.5h18.4zM12 10v4.5M12 17.4v.4",

@@ -49,7 +49,7 @@ function Chip({ active, onClick, children, label }: { active?: boolean; onClick:
       aria-label={label}
       className={cn(
         "inline-flex h-8 shrink-0 items-center gap-1.5 rounded-full px-3 text-footnote font-medium transition-colors",
-        active ? "bg-ink text-bg" : "bg-surface text-ink-2 ring-1 ring-border hover:text-ink",
+        active ? "bg-accent-soft text-accent ring-1 ring-accent/50" : "bg-surface text-ink-2 ring-1 ring-border hover:text-ink",
       )}
     >
       {children}

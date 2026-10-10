@@ -193,7 +193,7 @@ export function Builder({ data, nowIso, signedIn }: { data: BuilderData; nowIso:
   ) : null;
 
   const list = (
-    <ul className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-[#0d131d]" aria-label="Player pool">
+    <ul className="space-y-2" aria-label="Player pool">
       {b.visible.map((p) => (
         <PlayerRow
           key={p.id}
@@ -209,7 +209,7 @@ export function Builder({ data, nowIso, signedIn }: { data: BuilderData; nowIso:
         />
       ))}
       {b.visible.length === 0 ? (
-        <li className="px-4 py-10 text-center">
+        <li className="rounded-2xl border border-border bg-surface px-4 py-10 text-center">
           <p className="text-headline text-ink">No players match</p>
           <p className="mt-1 text-callout text-ink-2">Try a different search or clear your filters.</p>
           <Button variant="secondary" size="sm" className="mt-4" onClick={() => b.setFilters({ q: "", teams: [], roles: [], sort: b.filters.sort, affordable: false })}>
@@ -269,8 +269,8 @@ export function Builder({ data, nowIso, signedIn }: { data: BuilderData; nowIso:
 
         {/* Pool */}
         <section aria-label="Choose players" className="min-w-0">
-          {/* Mobile roster tray: compact and sticky while searching */}
-          <div className="glass sticky top-[57px] z-20 -mx-4 border-b border-border px-4 pt-3 pb-3 lg:hidden">
+          {/* Mobile roster: money left, players picked, five slots. The sticky action bar repeats the essentials while scrolling. */}
+          <div className="rounded-[22px] border border-border bg-surface p-4 lg:hidden">
             <RosterTray data={data} b={b} onOpenPlayer={setOpenPlayer} />
           </div>
           <div className="space-y-3 pt-3 lg:pt-0">

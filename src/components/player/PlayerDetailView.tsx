@@ -5,7 +5,8 @@ import { cn } from "@/lib/cn";
 import { money, pts } from "@/lib/format";
 import type { PlayerDetail } from "@/server/queries/contest";
 import { Icon } from "../ui/Icon";
-import { Flag, PlayerAvatar, RoleChip, TeamMark, rgba } from "../ui/identity";
+import { CrestSvg, PortraitSvg } from "../ui/art";
+import { Flag, TeamMark, rgba } from "../ui/identity";
 import { LocalTime } from "../ui/status";
 
 /**
@@ -18,37 +19,49 @@ export function PlayerDetailView({ d, compact }: { d: PlayerDetail; compact?: bo
   const color = d.team?.color ?? "#6f7d92";
   return (
     <div>
-      <div className="relative overflow-hidden rounded-2xl border border-border p-4" style={{ background: `radial-gradient(120% 140% at 0% 0%, ${rgba(color, 0.32)} 0%, ${rgba(color, 0.08)} 50%, #111824 100%)` }}>
-        <div className="flex items-center gap-4">
-          <PlayerAvatar nickname={d.player.nickname} team={d.team} size={compact ? 72 : 88} />
-          <div className="min-w-0">
-            <div className="flex items-center gap-2">
-              <h3 className="truncate text-title text-ink">{d.player.nickname}</h3>
-              <Flag code={d.player.nationality} />
-            </div>
-            <div className="truncate text-callout text-ink-2">
-              {d.player.firstName} {d.player.lastName}
-            </div>
-            <div className="mt-2 flex items-center gap-2">
-              <TeamMark team={d.team} size={22} />
-              <span className="truncate text-footnote text-ink-2">{d.team?.name}</span>
-              <RoleChip role={d.player.role} />
-            </div>
+      <div
+        className={cn("relative overflow-hidden rounded-[22px] border border-white/[0.07]", compact ? "h-[232px]" : "h-[280px]")}
+        style={{ background: `radial-gradient(110% 120% at 75% 10%, ${rgba(color, 0.45)} 0%, ${rgba(color, 0.12)} 45%, #0e141f 80%)` }}
+      >
+        {d.team ? (
+          <span className="pointer-events-none absolute -top-10 -left-12 size-[230px] opacity-[0.07]" aria-hidden>
+            <CrestSvg id={d.team.id} name={d.team.name} color="#ffffff" className="size-full" />
+          </span>
+        ) : null}
+        <PortraitSvg seed={d.player.nickname} color={color} team={d.team ?? undefined} className="pointer-events-none absolute right-[-6%] bottom-0 h-[96%] w-auto" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(10_14_22/0.85)_0%,rgb(10_14_22/0.35)_55%,transparent_80%),linear-gradient(0deg,rgb(10_14_22/0.7)_0%,transparent_45%)]" aria-hidden />
+
+        <div className="absolute top-4 left-4">
+          <div className="text-caption text-ink-2">Salary</div>
+          <div className="num text-[1.875rem] leading-none text-accent">{d.price !== null ? money(d.price) : "—"}</div>
+        </div>
+        <div className="absolute inset-x-4 bottom-4">
+          <div className="flex items-center gap-2">
+            <h3 className="display truncate text-[2.75rem] leading-[0.95] text-ink">{d.player.nickname}</h3>
+            <Flag code={d.player.nationality} className="text-[1.25rem]" />
+          </div>
+          <div className="truncate text-footnote text-ink-2">
+            {d.player.firstName} {d.player.lastName}
+          </div>
+          <div className="mt-2 flex items-center gap-2">
+            <TeamMark team={d.team} size={22} />
+            <span className="truncate text-callout font-medium text-ink">{d.team?.name}</span>
+            <span className="inline-flex h-6 items-center rounded-full px-2.5 text-caption font-semibold text-ink ring-1 ring-white/20">{d.player.role}</span>
           </div>
         </div>
-        <dl className="mt-4 grid grid-cols-3 gap-2">
-          <Fact label="Salary" value={d.price !== null ? money(d.price) : "—"} />
-          <Fact label="Avg / map" value={d.recent.length ? pts(d.avgPoints) : "—"} hint={`last ${d.recent.length} maps`} />
-          <Fact label="25+ maps" value={d.consistency !== null ? `${Math.round(d.consistency * 100)}%` : "—"} hint="consistency" />
-        </dl>
-        {d.contestPoints !== null ? (
-          <div className="mt-2 rounded-xl bg-[rgb(10_14_22/0.45)] px-3 py-2 text-footnote text-ink-2">
-            In this contest so far: <span className="tabular font-semibold text-ink">{pts(d.contestPoints)} pts</span>
-          </div>
-        ) : null}
       </div>
 
-      <div role="tablist" aria-label="Player research" className="mt-4 flex gap-1 rounded-xl bg-elevated p-1">
+      <dl className="mt-3 grid grid-cols-3 gap-2">
+        <Fact label="Avg / map" value={d.recent.length ? pts(d.avgPoints) : "—"} hint={`last ${d.recent.length} maps`} />
+        <Fact label="25+ maps" value={d.consistency !== null ? `${Math.round(d.consistency * 100)}%` : "—"} hint="consistency" />
+        {d.contestPoints !== null ? (
+          <Fact label="This contest" value={pts(d.contestPoints)} hint="points so far" accent />
+        ) : (
+          <Fact label="Best map" value={d.recent.length ? pts(Math.max(...d.recent.map((m) => m.mapScore))) : "—"} hint="recent high" />
+        )}
+      </dl>
+
+      <div role="tablist" aria-label="Player research" className="mt-4 flex gap-1 border-b border-border">
         {(
           [
             ["form", "Form"],
@@ -61,7 +74,10 @@ export function PlayerDetailView({ d, compact }: { d: PlayerDetail; compact?: bo
             role="tab"
             aria-selected={tab === k}
             onClick={() => setTab(k)}
-            className={cn("h-9 flex-1 rounded-[9px] text-footnote font-semibold transition-colors", tab === k ? "bg-raised text-ink shadow-sm" : "text-ink-3 hover:text-ink-2")}
+            className={cn(
+              "relative h-10 flex-1 text-footnote font-semibold transition-colors",
+              tab === k ? "text-ink after:absolute after:inset-x-3 after:-bottom-px after:h-0.5 after:rounded-full after:bg-accent" : "text-ink-3 hover:text-ink-2",
+            )}
           >
             {label}
           </button>
@@ -82,56 +98,57 @@ export function PlayerDetailView({ d, compact }: { d: PlayerDetail; compact?: bo
   );
 }
 
-function Fact({ label, value, hint }: { label: string; value: string; hint?: string }) {
+function Fact({ label, value, hint, accent }: { label: string; value: string; hint?: string; accent?: boolean }) {
   return (
-    <div className="rounded-xl bg-[rgb(10_14_22/0.45)] px-3 py-2.5">
+    <div className="rounded-2xl border border-border bg-surface px-3 py-2.5">
       <dt className="text-caption text-ink-3">{label}</dt>
-      <dd className="tabular text-headline text-ink">{value}</dd>
+      <dd className={cn("num text-[1.5rem] leading-tight", accent ? "text-accent" : "text-ink")}>{value}</dd>
       {hint ? <dd className="text-[0.6875rem] text-ink-3">{hint}</dd> : null}
     </div>
   );
 }
 
-/** Bars of fantasy points per map, oldest → newest, with the 25-point reference line. */
+/** Bars of fantasy points per map, oldest → newest, value on top, opponent crest below, with the 25-point reference line. */
 function FormChart({ d }: { d: PlayerDetail }) {
   const maps = [...d.recent].reverse();
   if (maps.length === 0) return <p className="text-callout text-ink-2">No completed maps yet.</p>;
   const max = Math.max(50, ...maps.map((m) => m.mapScore));
   const min = Math.min(0, ...maps.map((m) => m.mapScore));
-  const H = 140;
+  const H = 132;
   const scale = (v: number) => ((v - min) / (max - min)) * H;
   const ref = 25;
+  const band = (v: number) => (v >= ref ? "bg-[linear-gradient(180deg,var(--color-accent),rgb(92_227_203/0.35))]" : v >= 10 ? "bg-[linear-gradient(180deg,var(--color-lavender),rgb(167_139_250/0.3))]" : "bg-negative/70");
   return (
     <figure>
-      <div className="relative h-[164px]" role="img" aria-label={`Fantasy points per map, last ${maps.length}: ${maps.map((m) => pts(m.mapScore)).join(", ")}`}>
-        <div className="absolute inset-x-0 border-t border-dashed border-border-strong" style={{ bottom: 24 + scale(ref) }}>
+      <div className="relative h-[190px]" role="img" aria-label={`Fantasy points per map, last ${maps.length}: ${maps.map((m) => pts(m.mapScore)).join(", ")}`}>
+        <div className="absolute inset-x-0 border-t border-dashed border-border-strong" style={{ bottom: 28 + scale(ref) - scale(min) }}>
           <span className="absolute -top-4 right-0 text-[0.625rem] text-ink-3">25 pts</span>
         </div>
-        <div className="absolute inset-x-0 bottom-6 flex h-[140px] items-end gap-1.5">
+        <div className="absolute inset-x-0 bottom-7 flex h-[156px] items-end gap-1.5">
           {maps.map((m) => (
-            <div key={m.mapId} className="group relative flex h-full flex-1 flex-col justify-end">
-              <span className="tabular mb-1 text-center text-[0.625rem] text-ink-2 opacity-0 transition-opacity group-hover:opacity-100">{pts(m.mapScore, 0)}</span>
+            <div key={m.mapId} className="relative flex h-full flex-1 flex-col items-stretch justify-end">
+              <span className="num mb-1 text-center text-[0.6875rem] leading-none text-ink-2">{pts(m.mapScore, 0)}</span>
               <div
-                className={cn("rounded-t-[4px]", m.mapScore >= ref ? "bg-accent" : m.mapScore >= 10 ? "bg-ink-3" : "bg-negative/70")}
+                className={cn("rounded-t-[6px] rounded-b-[2px]", band(m.mapScore))}
                 style={{ height: Math.max(3, scale(m.mapScore) - scale(min)) }}
-                title={`${m.mapName} vs ${d.teams[m.opponentId]?.acronym ?? ""}: ${pts(m.mapScore)} pts`}
+                title={`${m.mapName} vs ${d.teams[m.opponentId]?.name ?? ""}: ${pts(m.mapScore)} pts`}
               />
             </div>
           ))}
         </div>
         <div className="absolute inset-x-0 bottom-0 flex gap-1.5">
           {maps.map((m) => (
-            <span key={m.mapId} className="flex-1 truncate text-center text-[0.625rem] text-ink-3">
-              {d.teams[m.opponentId]?.acronym ?? ""}
+            <span key={m.mapId} className="flex flex-1 justify-center" title={d.teams[m.opponentId]?.name}>
+              <TeamMark team={d.teams[m.opponentId]} size={18} />
             </span>
           ))}
         </div>
       </div>
-      <figcaption className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-caption text-ink-3">
+      <figcaption className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-caption text-ink-3">
         <span className="inline-flex items-center gap-1.5"><span className="size-2 rounded-sm bg-accent" />25+ points</span>
-        <span className="inline-flex items-center gap-1.5"><span className="size-2 rounded-sm bg-ink-3" />10–25</span>
+        <span className="inline-flex items-center gap-1.5"><span className="size-2 rounded-sm bg-lavender" />10–25</span>
         <span className="inline-flex items-center gap-1.5"><span className="size-2 rounded-sm bg-negative/70" />under 10</span>
-        <span>Labels: opponent</span>
+        <span>Below each bar: the opponent</span>
       </figcaption>
     </figure>
   );

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SignOutButton } from "@/components/auth/SignOutButton";
 import { Icon } from "@/components/ui/Icon";
-import { PlayerAvatar } from "@/components/ui/identity";
+import { UserAvatar } from "@/components/ui/identity";
 import { EmptyState, SectionHeader } from "@/components/ui/primitives";
 import { LocalTime, StatePill } from "@/components/ui/status";
 import { cn } from "@/lib/cn";
@@ -22,14 +22,13 @@ export default async function ProfilePage({ params }: { params: Promise<{ userna
   const p = await profileByUsername(db, username);
   if (!p) notFound();
   const own = viewer?.id === p.user.id;
-  const team = { id: "u", name: "", acronym: "", color: `hsl(${p.user.avatarHue} 70% 62%)`, country: "" };
   const st = p.stats;
   return (
     <div className="mx-auto max-w-3xl space-y-8">
       <section className="relative overflow-hidden rounded-[24px] border border-border bg-surface p-5 sm:p-6">
         <div className="pointer-events-none absolute inset-0 opacity-60" style={{ background: `radial-gradient(90% 120% at 0% 0%, hsl(${p.user.avatarHue} 70% 50% / 0.18), transparent 60%)` }} aria-hidden />
         <div className="relative flex items-center gap-4">
-          <PlayerAvatar nickname={p.user.username} team={team} size={76} />
+          <UserAvatar username={p.user.username} hue={p.user.avatarHue} size={76} />
           <div className="min-w-0 flex-1">
             <h1 className="truncate text-display text-ink">{p.user.username}</h1>
             <p className="text-callout text-ink-2">

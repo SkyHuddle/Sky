@@ -9,8 +9,8 @@ import { PlayerAvatar } from "../ui/identity";
 import type { BuilderState } from "./useBuilder";
 
 /**
- * The compact roster: five slots, players picked, money left, a slim salary bar.
- * Stays small while searching; the full roster lives on the review screen.
+ * The roster at a glance: money left and players picked (the two numbers every decision turns on),
+ * a salary bar, and five slots that fill with portraits. Compact enough to stay pinned on phones.
  */
 export function RosterTray({ data, b, onOpenPlayer, className }: { data: BuilderData; b: BuilderState; onOpenPlayer: (id: string) => void; className?: string }) {
   const size = data.rules.rosterSize;
@@ -18,9 +18,41 @@ export function RosterTray({ data, b, onOpenPlayer, className }: { data: Builder
   const used = b.summary.salaryUsed;
   const pct = Math.min(100, (used / data.rules.salaryCap) * 100);
   const over = b.summary.salaryRemaining < 0;
+  const perSlot = b.summary.averagePerOpenSlot !== null && b.summary.openSlots > 0 && !over ? Math.round(b.summary.averagePerOpenSlot / 1000) * 1000 : null;
 
   return (
     <div className={cn("space-y-3", className)}>
+      <div className="flex items-end justify-between gap-3">
+        <div className="min-w-0" aria-live="polite">
+          <AnimatePresence mode="popLayout" initial={false}>
+            <motion.div
+              key={b.summary.salaryRemaining}
+              initial={{ y: 8, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -8, opacity: 0 }}
+              transition={{ duration: 0.18 }}
+              className={cn("num text-[1.875rem] leading-none", over ? "text-negative" : "text-accent")}
+            >
+              {money(b.summary.salaryRemaining)}
+            </motion.div>
+          </AnimatePresence>
+          <div className="mt-1 text-caption text-ink-2">
+            {over ? "Over the cap" : "Salary left"}
+            {perSlot !== null ? <span className="text-ink-3"> · {money(perSlot)} per open slot</span> : null}
+          </div>
+        </div>
+        <div className="shrink-0 text-right">
+          <div className="text-caption text-ink-2">
+            <span className="num text-[1.875rem] leading-none text-ink">{b.playerIds.length}</span>
+            <span className="num text-[1.125rem] text-ink-3">/{size}</span> players
+          </div>
+        </div>
+      </div>
+
+      <div className="h-1 overflow-hidden rounded-full bg-elevated" role="meter" aria-label="Salary used" aria-valuemin={0} aria-valuemax={data.rules.salaryCap} aria-valuenow={used}>
+        <motion.div className={cn("h-full rounded-full", over ? "bg-negative" : "bg-accent")} initial={false} animate={{ width: `${pct}%` }} transition={{ type: "spring", stiffness: 260, damping: 30 }} />
+      </div>
+
       <ol className="grid grid-cols-5 gap-2" aria-label={`Your roster, ${b.playerIds.length} of ${size} players`}>
         {slots.map((id, i) => {
           const p = id ? b.byId.get(id) : null;
@@ -31,62 +63,49 @@ export function RosterTray({ data, b, onOpenPlayer, className }: { data: Builder
           return (
             <li key={i} className="min-w-0">
               {id && name ? (
-                <button onClick={() => onOpenPlayer(id)} className="group flex w-full flex-col items-center gap-1 rounded-xl py-1" aria-label={`${name}${isCaptain ? ", captain" : ""}${out ? ", eliminated" : ""}. Open details`}>
-                  <motion.span key={id} initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: "spring", stiffness: 520, damping: 26 }} className="relative">
-                    <PlayerAvatar nickname={name} team={team} size={46} ring={isCaptain ? "captain" : null} className={cn(out && "opacity-50 grayscale")} />
+                <button
+                  onClick={() => onOpenPlayer(id)}
+                  className="group flex w-full flex-col gap-1"
+                  aria-label={`${name}${isCaptain ? ", captain" : ""}${out ? ", eliminated" : ""}. Open details`}
+                >
+                  <motion.span
+                    key={id}
+                    initial={{ scale: 0.7, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ type: "spring", stiffness: 520, damping: 28 }}
+                    className={cn(
+                      "relative block aspect-[4/5] w-full rounded-[14px]",
+                      isCaptain ? "ring-2 ring-lavender ring-offset-2 ring-offset-bg" : out ? "ring-1 ring-negative/60" : "",
+                    )}
+                  >
+                    <PlayerAvatar nickname={name} team={team} size="fill" shape="tile" className={cn(out && "opacity-45 grayscale")} />
                     {isCaptain ? (
-                      <span className="absolute -right-1 -bottom-1 inline-flex size-[18px] items-center justify-center rounded-full bg-lavender text-[#1b1035] ring-2 ring-bg" aria-hidden>
+                      <span className="absolute -top-1.5 -right-1.5 inline-flex size-5 items-center justify-center rounded-full bg-lavender text-[#1b1035] ring-2 ring-bg" aria-hidden>
                         <Icon name="star" size={11} strokeWidth={2.6} />
                       </span>
                     ) : null}
                     {out ? (
-                      <span className="absolute -right-1 -bottom-1 inline-flex size-[18px] items-center justify-center rounded-full bg-negative text-[#2a0a0e] ring-2 ring-bg" aria-hidden>
-                        <Icon name="x" size={11} strokeWidth={3} />
+                      <span className="absolute inset-x-1 bottom-1 rounded-md bg-negative py-0.5 text-center text-[0.625rem] font-bold text-[#2a0a0e]" aria-hidden>
+                        OUT
                       </span>
                     ) : null}
                   </motion.span>
-                  <span className={cn("w-full truncate text-center text-[0.6875rem] font-medium", out ? "text-negative" : "text-ink-2 group-hover:text-ink")}>{out ? "Out" : name}</span>
+                  <span className={cn("w-full truncate text-center text-[0.6875rem] font-semibold", out ? "text-negative" : "text-ink-2 group-hover:text-ink")}>{name}</span>
                 </button>
               ) : (
-                <div className="flex w-full flex-col items-center gap-1 py-1">
-                  <span className="inline-flex size-[46px] items-center justify-center rounded-full border border-dashed border-border-strong text-ink-3">
-                    <Icon name="plus" size={18} />
+                <div className="flex w-full flex-col gap-1">
+                  <span className="flex aspect-[4/5] w-full items-center justify-center rounded-[14px] border border-dashed border-border-strong bg-white/[0.02] text-ink-3">
+                    <span className="inline-flex size-7 items-center justify-center rounded-full ring-1 ring-border-strong">
+                      <Icon name="plus" size={15} />
+                    </span>
                   </span>
-                  <span className="text-[0.6875rem] text-ink-3">Slot {i + 1}</span>
+                  <span className="text-center text-[0.6875rem] text-ink-3">Slot {i + 1}</span>
                 </div>
               )}
             </li>
           );
         })}
       </ol>
-      <div>
-        <div className="flex items-baseline justify-between text-footnote">
-          <span className="text-ink-2">
-            <span className="tabular font-semibold text-ink">{b.playerIds.length}</span>/{size} players
-          </span>
-          <span className="text-ink-2" aria-live="polite">
-            <AnimatePresence mode="popLayout" initial={false}>
-              <motion.span
-                key={b.summary.salaryRemaining}
-                initial={{ y: 6, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -6, opacity: 0 }}
-                transition={{ duration: 0.18 }}
-                className={cn("tabular inline-block font-semibold", over ? "text-negative" : "text-ink")}
-              >
-                {money(b.summary.salaryRemaining)}
-              </motion.span>
-            </AnimatePresence>{" "}
-            left
-            {b.summary.averagePerOpenSlot !== null && b.summary.openSlots > 0 && !over ? (
-              <span className="text-ink-3"> · {money(Math.round(b.summary.averagePerOpenSlot / 1000) * 1000)}/slot</span>
-            ) : null}
-          </span>
-        </div>
-        <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-elevated" role="meter" aria-label="Salary used" aria-valuemin={0} aria-valuemax={data.rules.salaryCap} aria-valuenow={used}>
-          <motion.div className={cn("h-full rounded-full", over ? "bg-negative" : "bg-accent")} initial={false} animate={{ width: `${pct}%` }} transition={{ type: "spring", stiffness: 260, damping: 30 }} />
-        </div>
-      </div>
     </div>
   );
 }

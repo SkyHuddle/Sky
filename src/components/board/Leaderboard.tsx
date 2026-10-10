@@ -6,7 +6,7 @@ import { cn } from "@/lib/cn";
 import { percentileLabel, pts } from "@/lib/format";
 import type { Board, BoardRow } from "@/server/services/leaderboards";
 import { Button } from "../ui/Button";
-import { PlayerAvatar } from "../ui/identity";
+import { UserAvatar } from "../ui/identity";
 import { EmptyState, Movement, Notice, Skeleton } from "../ui/primitives";
 
 type Scope = { key: string; label: string; query: string };
@@ -109,7 +109,7 @@ export function Leaderboard({ contestId, initial, scopes, viewerId }: { contestI
 
       {board.me && !meVisible ? (
         <div className="fixed inset-x-0 bottom-[calc(56px+env(safe-area-inset-bottom))] z-30 px-4 pb-2 lg:bottom-4 lg:left-[248px]">
-          <div className="mx-auto max-w-3xl overflow-hidden rounded-2xl border border-lavender/40 bg-[#1a1830] shadow-[0_12px_40px_rgb(0_0_0/0.5)]">
+          <div className="mx-auto max-w-3xl overflow-hidden rounded-2xl border border-accent/50 bg-[#0f1f22] shadow-[0_12px_40px_rgb(0_0_0/0.5)]">
             <ol>
               <Row r={board.me} me total={board.total} />
             </ol>
@@ -123,20 +123,20 @@ export function Leaderboard({ contestId, initial, scopes, viewerId }: { contestI
 function Row({ r, me, total }: { r: BoardRow; me: boolean; total: number }) {
   return (
     <li id={me ? `row-${r.entryId}` : undefined}>
-      <Link href={`/e/${r.entryId}`} className={cn("flex h-14 items-center gap-3 px-4 transition-colors", me ? "bg-lavender-soft" : "hover:bg-[#131b28]")}>
-        <span className={cn("tabular w-10 text-right text-callout", r.rank <= 3 ? "font-bold text-ink" : "text-ink-2")}>{r.rank}</span>
+      <Link href={`/e/${r.entryId}`} className={cn("flex h-14 items-center gap-3 px-4 transition-colors", me ? "bg-[linear-gradient(90deg,rgb(92_227_203/0.16),rgb(92_227_203/0.03))] shadow-[inset_3px_0_0_var(--color-accent)]" : "hover:bg-[#131b28]")}>
+        <span className={cn("num w-10 text-right text-[1.0625rem]", r.rank <= 3 ? "text-ink" : "text-ink-2")}>{r.rank}</span>
         <span className="w-8">
           <Movement value={r.movement} />
         </span>
-        <PlayerAvatar nickname={r.username} team={{ id: "u", name: "", acronym: "", color: `hsl(${r.avatarHue} 70% 62%)`, country: "" }} size={32} />
+        <UserAvatar username={r.username} hue={r.avatarHue} size={32} />
         <span className="min-w-0 flex-1">
           <span className={cn("block truncate text-callout", me ? "font-semibold text-ink" : "text-ink")}>
             {r.username}
-            {me ? <span className="text-lavender"> · you</span> : null}
+            {me ? <span className="text-accent"> · you</span> : null}
           </span>
           {me ? <span className="block text-caption text-lavender">{percentileLabel(r.rank, total)}</span> : null}
         </span>
-        <span className="tabular text-[0.9375rem] font-semibold text-ink">{pts(r.points)}</span>
+        <span className={cn("num text-[1.125rem]", me ? "text-accent" : "text-ink")}>{pts(r.points)}</span>
       </Link>
     </li>
   );

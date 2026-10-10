@@ -1,15 +1,11 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import type { SessionUser } from "@/server/auth/session";
-import { PlayerAvatar } from "../ui/identity";
+import { UserAvatar } from "../ui/identity";
 import { Icon } from "../ui/Icon";
 import { Brand } from "./Brand";
 import { DemoControl } from "./DemoControl";
 import { SideNav, TabBar } from "./Nav";
-
-function avatarTeam(hue: number) {
-  return { id: "me", name: "", acronym: "", color: `hsl(${hue} 70% 62%)`, country: "" };
-}
 
 export function UserChip({ viewer }: { viewer: SessionUser | null }) {
   if (!viewer) {
@@ -21,7 +17,7 @@ export function UserChip({ viewer }: { viewer: SessionUser | null }) {
   }
   return (
     <Link href={`/u/${viewer.username}`} aria-label="Your profile" className="rounded-full">
-      <PlayerAvatar nickname={viewer.username} team={avatarTeam(viewer.avatarHue)} size={34} />
+      <UserAvatar username={viewer.username} hue={viewer.avatarHue} size={34} />
     </Link>
   );
 }
