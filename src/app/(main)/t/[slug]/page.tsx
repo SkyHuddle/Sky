@@ -26,7 +26,7 @@ export default async function TournamentOverview({ params }: { params: Promise<{
     <div className="space-y-9">
       <section aria-labelledby="contests-h">
         <SectionHeader id="contests-h" title="Fantasy contests" action={<TextLink href={`/t/${slug}/fantasy`}>Rules and leagues</TextLink>} />
-        <div className="grid gap-4 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
           {t.contests.map((c) => (
             <ContestCard key={c.id} c={c} now={now} nowIso={now.toISOString()} slug={slug} />
           ))}
@@ -35,7 +35,7 @@ export default async function TournamentOverview({ params }: { params: Promise<{
 
       <section aria-labelledby="format-h">
         <SectionHeader id="format-h" title="Format" />
-        <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {t.stages.map((s) => (
             <li key={s.id} className={cn("rounded-2xl border bg-surface p-4", s.status === "live" ? "border-accent/40" : "border-border")}>
               <div className="flex items-center justify-between">
@@ -52,7 +52,7 @@ export default async function TournamentOverview({ params }: { params: Promise<{
       </section>
 
       {next.length || recent.length ? (
-        <section aria-labelledby="matches-h" className="grid gap-6 lg:grid-cols-2">
+        <section aria-labelledby="matches-h" className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           {next.length ? (
             <div>
               <SectionHeader id="matches-h" title="Up next" action={<TextLink href={`/t/${slug}/matches`}>All matches</TextLink>} />

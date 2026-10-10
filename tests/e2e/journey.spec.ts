@@ -28,6 +28,7 @@ async function addFirstAvailable(page: Page, count: number) {
 const vis = (page: Page, text: string | RegExp) => page.getByText(text).filter({ visible: true }).first();
 
 test("a new fan builds a team, joins a league, follows scoring, transfers, and sees the result", async ({ page }) => {
+  test.setTimeout(600_000); // a whole Major, stage by stage, plus a live replay
   // 1–2. Open the site and browse tournaments.
   await page.goto("/");
   await expect(page.getByRole("heading", { name: "Meridian Major" })).toBeVisible();

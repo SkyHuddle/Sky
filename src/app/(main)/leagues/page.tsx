@@ -77,7 +77,7 @@ export default async function LeaguesPage({ searchParams }: { searchParams: Prom
       {pub.length ? (
         <section aria-labelledby="pub-h">
           <SectionHeader id="pub-h" title="Public leagues" />
-          <ul className="grid gap-2 sm:grid-cols-2">
+          <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
             {pub.map((l) => {
               const c = activeContests.find((x) => x.id === l.contestId);
               return (

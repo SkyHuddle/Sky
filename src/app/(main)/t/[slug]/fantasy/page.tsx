@@ -35,7 +35,7 @@ export default async function TournamentFantasy({ params }: { params: Promise<{ 
         </section>
       ) : null}
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         {t.contests.map((c) => (
           <ContestCard key={c.id} c={c} now={now} nowIso={now.toISOString()} slug={slug} />
         ))}
@@ -44,7 +44,7 @@ export default async function TournamentFantasy({ params }: { params: Promise<{ 
       {leagues.length ? (
         <section aria-labelledby="leagues-h">
           <SectionHeader id="leagues-h" title="Public leagues" />
-          <ul className="grid gap-2 sm:grid-cols-2">
+          <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
             {leagues.map((l) => (
               <li key={l.id}>
                 <Link href={`/leagues/${l.id}`} className="flex items-center gap-3 rounded-2xl border border-border bg-surface px-4 py-3 hover:border-border-strong">

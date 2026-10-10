@@ -132,9 +132,9 @@ export function EntryView({ d, board, recap, nowIso, healthOk }: { d: EntryDashb
         </Notice>
       ) : null}
 
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
         {/* Roster by stage */}
-        <section aria-labelledby="roster-h">
+        <section aria-labelledby="roster-h" className="min-w-0">
           <div className="mb-3 flex items-center justify-between gap-3">
             <h2 id="roster-h" className="text-headline text-ink">
               {d.isOwner ? "Your roster" : "Roster"}

@@ -29,7 +29,7 @@ export default async function TournamentMatches({ params }: { params: Promise<{ 
               {rounds.map((r) => (
                 <div key={r}>
                   <h3 className="mb-2 text-eyebrow text-ink-3">{s.kind === "swiss" ? `Round ${r}` : ["Quarter-finals", "Semi-finals", "Grand final"][r - 1]}</h3>
-                  <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                  <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
                     {ms
                       .filter((m) => m.round === r)
                       .map((m) => (

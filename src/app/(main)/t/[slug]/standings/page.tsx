@@ -16,7 +16,7 @@ export default async function TournamentStandings({ params }: { params: Promise<
   const swiss = hub.summary.stages.filter((s) => s.kind === "swiss" && (hub.standings[s.id]?.length ?? 0) > 0);
   if (swiss.length === 0) return <EmptyState icon="list" title="No standings yet" body="Stage standings appear when teams are set." />;
   return (
-    <div className="grid gap-6 lg:grid-cols-3">
+    <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
       {swiss.map((s) => (
         <section key={s.id} aria-labelledby={`sd-${s.id}`} className="overflow-hidden rounded-2xl border border-border bg-surface">
           <div className="flex items-center justify-between border-b border-border px-4 py-3">
