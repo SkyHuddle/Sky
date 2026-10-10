@@ -31,7 +31,8 @@ export default async function FantasyPage() {
         <EmptyState icon="roster" title="Sign in to see your teams" body="Build a team without an account; sign in when you submit it." action={<ButtonLink href="/signin?next=/fantasy">Sign in</ButtonLink>} />
       ) : null}
 
-      {viewer ? (
+      {/* No active teams but a contest is open: lead with the open contest, skip the empty state. */}
+      {viewer && (active.length > 0 || open.length === 0) ? (
         <section aria-labelledby="active-h">
           <SectionHeader id="active-h" title="Active" />
           {active.length === 0 ? (
@@ -42,7 +43,7 @@ export default async function FantasyPage() {
                 const cta = contestCta(c, now);
                 return (
                   <li key={c.id}>
-                    <Link href={`/e/${c.myEntry!.id}`} className="block rounded-2xl bg-surface p-4 hover:border-border-strong">
+                    <Link href={`/e/${c.myEntry!.id}`} className="block rounded-2xl bg-surface p-4 transition-colors hover:bg-elevated">
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
                           <div className="truncate text-headline text-ink">{t.shortName}</div>
@@ -76,10 +77,10 @@ export default async function FantasyPage() {
 
       {open.length ? (
         <section aria-labelledby="open-h">
-          <SectionHeader id="open-h" title="Open for entry" />
+          <SectionHeader id="open-h" title={active.length ? "Open for entry" : "Pick your first team"} />
           <ul className="space-y-2">
             {open.map(({ t, c }) => (
-              <li key={c.id} className="flex items-center gap-3 rounded-2xl border border-accent/30 bg-surface p-4">
+              <li key={c.id} className="flex items-center gap-3 rounded-2xl bg-surface p-4">
                 <div className="min-w-0 flex-1">
                   <div className="truncate text-callout font-semibold text-ink">
                     {t.shortName} · {c.name}
@@ -103,7 +104,7 @@ export default async function FantasyPage() {
           <ul className="space-y-2">
             {done.map(({ t, c }) => (
               <li key={c.id}>
-                <Link href={`/e/${c.myEntry!.id}`} className="flex items-center gap-3 rounded-2xl bg-surface px-4 py-3.5 hover:border-border-strong">
+                <Link href={`/e/${c.myEntry!.id}`} className="flex items-center gap-3 rounded-2xl bg-surface px-4 py-3.5 transition-colors hover:bg-elevated">
                   <div className="min-w-0 flex-1">
                     <div className="truncate text-callout font-semibold text-ink">{t.name}</div>
                     <div className="text-caption text-ink-3">{c.name}</div>

@@ -21,12 +21,16 @@ export function MatchCenterView({ initial }: { initial: MatchCenter }) {
   const maps = [...m.maps].sort((a, b) => a.number - b.number);
   const [tab, setTab] = useState<number | "live">(m.live ? "live" : (maps[maps.length - 1]?.number ?? 1));
   const shown = tab === "live" ? m.live : maps.find((x) => x.number === tab);
-  const side = (team: MatchCenter["teamA"], score: number, right?: boolean) => (
-    <div className={cn("flex min-w-0 flex-1 flex-col items-center gap-2", right && "")}>
-      <TeamMark team={team} size={44} />
+  const done = m.status === "completed";
+  const side = (team: MatchCenter["teamA"]) => (
+    <div className="flex min-w-0 flex-1 flex-col items-center gap-2 text-center">
+      <TeamMark team={team} size={52} />
       <span className="max-w-full truncate text-callout font-semibold text-ink">{team.name}</span>
-      <span className="num text-[2rem] leading-none text-ink">{score}</span>
     </div>
+  );
+  // A scoreboard: crests either side, the series score in the display face between them.
+  const score = (n: number, other: number) => (
+    <span className={cn("font-display text-[3.25rem] leading-none font-bold tabular-nums", done && n < other ? "text-ink-3" : "text-ink")}>{n}</span>
   );
 
   return (
@@ -44,10 +48,20 @@ export function MatchCenterView({ initial }: { initial: MatchCenter }) {
             {m.status === "live" ? <StatePill kind="live" label="Live" /> : m.status === "completed" ? <StatePill kind="completed" /> : <LocalTime iso={m.scheduledAt} />}
           </span>
         </div>
-        <div className="mt-4 flex items-center gap-3">
-          {side(m.teamA, m.mapsA)}
-          <span className="text-caption text-ink-3">maps</span>
-          {side(m.teamB, m.mapsB, true)}
+        <div className="mt-5 flex items-center gap-2">
+          {side(m.teamA)}
+          <div className="flex shrink-0 flex-col items-center">
+            <span className="sr-only">
+              Maps {m.mapsA} to {m.mapsB}
+            </span>
+            <div className="flex items-center gap-3" aria-hidden>
+              {score(m.mapsA, m.mapsB)}
+              <span className="font-display text-[2rem] leading-none text-ink-3">–</span>
+              {score(m.mapsB, m.mapsA)}
+            </div>
+            <span className="mt-1 text-caption text-ink-3">Maps</span>
+          </div>
+          {side(m.teamB)}
         </div>
         {m.live ? (
           <div className="mt-4 rounded-xl bg-elevated px-4 py-3 text-center">

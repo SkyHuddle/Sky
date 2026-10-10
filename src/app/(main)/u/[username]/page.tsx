@@ -30,7 +30,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ userna
         <div className="relative flex items-center gap-4">
           <UserAvatar username={p.user.username} hue={p.user.avatarHue} size={76} />
           <div className="min-w-0 flex-1">
-            <h1 className="truncate text-display text-ink">{p.user.username}</h1>
+            <h1 className="truncate text-[1.75rem] leading-8 font-bold tracking-[-0.02em] text-ink">{p.user.username}</h1>
             <p className="text-callout text-ink-2">
               Counter-Strike 2 · Member since <LocalTime iso={p.user.createdAt} format="date" />
             </p>
@@ -43,9 +43,9 @@ export default async function ProfilePage({ params }: { params: Promise<{ userna
         </div>
         <dl className="relative mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
           <Fact label="Events entered" value={String(st.eventsEntered)} />
-          <Fact label="Best finish" value={st.bestRank ? `${ordinal(st.bestRank.rank)} / ${st.bestRank.entries}` : "—"} />
+          <Fact label="Best finish" value={st.bestRank ? ordinal(st.bestRank.rank) : "—"} sub={st.bestRank ? `of ${st.bestRank.entries.toLocaleString("en")}` : undefined} />
           <Fact label="Avg percentile" value={st.averagePercentile !== null ? `Top ${Math.ceil(st.averagePercentile * 100)}%` : "—"} />
-          <Fact label="Titles" value={String(st.contestWins + st.leagueWins)} sub={`${st.contestWins} contest · ${st.leagueWins} league`} />
+          <Fact label="Titles" value={String(st.contestWins + st.leagueWins)} sub={`${st.contestWins} contest${st.contestWins === 1 ? "" : "s"} · ${st.leagueWins} league${st.leagueWins === 1 ? "" : "s"}`} />
         </dl>
       </section>
 
@@ -70,7 +70,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ userna
           Fantasy career
         </h2>
         <p className="mt-1 text-callout text-ink-2">
-          Season rankings and achievements arrive once the career model has been validated. Until then this page shows only recorded results: placements, percentiles and titles.
+          Season rankings and achievements are coming. For now this page shows recorded results only.
         </p>
         <p className="mt-3 text-footnote text-ink-3">Career points from settled contests: <span className="tabular font-semibold text-ink">{pts(st.careerPoints)}</span></p>
       </section>
@@ -87,9 +87,9 @@ export default async function ProfilePage({ params }: { params: Promise<{ userna
 
 function Fact({ label, value, sub }: { label: string; value: string; sub?: string }) {
   return (
-    <div className="rounded-xl bg-[rgb(10_14_22/0.5)] px-3 py-3 ring-1 ring-border">
+    <div className="rounded-xl bg-elevated px-3.5 py-3">
       <dt className="text-caption text-ink-3">{label}</dt>
-      <dd className="tabular mt-0.5 text-title text-ink">{value}</dd>
+      <dd className="mt-1 font-display text-[1.75rem] leading-8 font-bold text-ink tabular-nums">{value}</dd>
       {sub ? <dd className="text-[0.75rem] text-ink-3">{sub}</dd> : null}
     </div>
   );
@@ -100,7 +100,7 @@ function EntryList({ list }: { list: ProfileEntry[] }) {
     <ul className="space-y-2">
       {list.map((e) => (
         <li key={e.entryId}>
-          <Link href={`/e/${e.entryId}`} className="flex items-center gap-3 rounded-2xl bg-surface px-4 py-3.5 hover:border-border-strong">
+          <Link href={`/e/${e.entryId}`} className="flex items-center gap-3 rounded-2xl bg-surface px-4 py-3.5 transition-colors hover:bg-elevated">
             <span className={cn("inline-flex size-11 shrink-0 items-center justify-center rounded-xl", e.rank === 1 ? "bg-lavender text-[#1b1035]" : "bg-elevated text-ink-2")}>
               <Icon name={e.rank === 1 ? "crown" : "trophy"} size={20} />
             </span>

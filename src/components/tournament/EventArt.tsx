@@ -18,7 +18,7 @@ export function EventArt({ seed, title, accent = "#4fe0c4", className, banner }:
     <div className={className} aria-hidden>
       <div className="absolute inset-0 bg-surface" style={{ backgroundImage: `radial-gradient(55% 90% at ${glowX}% ${glowY}%, ${accent}30 0%, transparent 70%)` }} />
       <div
-        className={banner ? "absolute top-[-8%] right-[-6%] hidden w-[62%] sm:block" : "absolute top-[-4%] right-[-14%] w-[86%] sm:right-[-4%] sm:w-[70%]"}
+        className={banner ? "absolute top-[24%] right-[-6%] hidden w-[54%] sm:block" : "absolute top-[-4%] right-[-14%] w-[86%] sm:right-[-4%] sm:w-[70%]"}
         style={{
           transform: `rotate(${tilt}deg)`,
           transformOrigin: "100% 0%",

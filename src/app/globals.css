@@ -208,6 +208,16 @@
   }
 }
 
+/* Touch screens: tappable rows and links answer the finger immediately, like native list cells. */
+@media (hover: none) {
+  a:active,
+  summary:active,
+  [role="tab"]:active {
+    opacity: 0.72;
+    transition: opacity 0s;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

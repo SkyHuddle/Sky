@@ -49,7 +49,7 @@ export default async function LeaguesPage({ searchParams }: { searchParams: Prom
           <ul className="space-y-2">
             {mine.map((l) => (
               <li key={l.id}>
-                <Link href={`/leagues/${l.id}`} className="flex items-center gap-3 rounded-2xl bg-surface px-4 py-3.5 hover:border-border-strong">
+                <Link href={`/leagues/${l.id}`} className="flex items-center gap-3 rounded-2xl bg-surface px-4 py-3.5 transition-colors hover:bg-elevated">
                   <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl bg-lavender-soft text-lavender">
                     <Icon name="trophy" size={20} />
                   </span>
@@ -77,16 +77,25 @@ export default async function LeaguesPage({ searchParams }: { searchParams: Prom
       {pub.length ? (
         <section aria-labelledby="pub-h">
           <SectionHeader id="pub-h" title="Public leagues" />
-          <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+          <ul className="space-y-2">
             {pub.map((l) => {
               const c = activeContests.find((x) => x.id === l.contestId);
               return (
                 <li key={l.id}>
-                  <Link href={`/leagues/${l.id}`} className="block rounded-2xl bg-surface px-4 py-3.5 hover:border-border-strong">
-                    <div className="truncate text-callout font-semibold text-ink">{l.name}</div>
-                    <div className="truncate text-caption text-ink-3">
-                      {c?.t.shortName} · {c?.name} · {l.members} members
+                  <Link href={`/leagues/${l.id}`} className="flex items-center gap-3 rounded-2xl bg-surface px-4 py-3.5 transition-colors hover:bg-elevated">
+                    <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl bg-elevated text-ink-2">
+                      <Icon name="roster" size={20} />
+                    </span>
+                    {/* Public leagues often share a name, so the event leads. */}
+                    <div className="min-w-0 flex-1">
+                      <div className="truncate text-callout font-semibold text-ink">
+                        {c?.t.shortName} · {c?.name}
+                      </div>
+                      <div className="truncate text-caption text-ink-3">
+                        {l.name} · {l.members.toLocaleString("en")} members
+                      </div>
                     </div>
+                    <Icon name="chevronRight" size={18} className="text-ink-3" />
                   </Link>
                 </li>
               );

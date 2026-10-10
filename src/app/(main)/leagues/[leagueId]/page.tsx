@@ -79,20 +79,27 @@ export default async function LeaguePage({ params, searchParams }: { params: Pro
 
       <section aria-labelledby="members-h">
         <SectionHeader id="members-h" title={`Members (${d.members.length})`} />
+        {/* Big public leagues: the first few members, the rest one tap away. */}
         <ul className="divide-y divide-border overflow-hidden rounded-2xl bg-surface">
-          {d.members.slice(0, 60).map((m) => (
-            <li key={m.userId} className="flex items-center gap-3 px-4 py-2.5">
-              <UserAvatar username={m.username} hue={m.avatarHue} size={30} />
-              <Link href={`/u/${m.username}`} className="min-w-0 flex-1 truncate text-callout text-ink hover:underline">
-                {m.username}
-              </Link>
-              {m.role === "owner" ? <span className="text-caption text-lavender">Owner</span> : null}
-              {!m.hasEntry ? <span className="text-caption text-ink-3">No team yet</span> : null}
-              {d.isOwner && m.role !== "owner" ? <RemoveMember leagueId={d.league.id} userId={m.userId} username={m.username} /> : null}
-            </li>
+          {d.members.slice(0, 8).map((m) => (
+            <MemberRow key={m.userId} m={m} leagueId={d.league.id} isOwner={d.isOwner} />
           ))}
         </ul>
-        {d.members.length > 60 ? <p className="mt-2 text-caption text-ink-3">and {d.members.length - 60} more</p> : null}
+        {d.members.length > 8 ? (
+          <details className="group mt-2">
+            <summary className="inline-flex h-10 cursor-pointer list-none items-center gap-1 text-callout font-medium text-accent [&::-webkit-details-marker]:hidden">
+              <span className="group-open:hidden">Show all {d.members.length} members</span>
+              <span className="hidden group-open:inline">Show fewer</span>
+              <Icon name="chevronDown" size={16} className="transition-transform group-open:rotate-180" />
+            </summary>
+            <ul className="mt-1 divide-y divide-border overflow-hidden rounded-2xl bg-surface">
+              {d.members.slice(8, 200).map((m) => (
+                <MemberRow key={m.userId} m={m} leagueId={d.league.id} isOwner={d.isOwner} />
+              ))}
+            </ul>
+            {d.members.length > 200 ? <p className="mt-2 text-caption text-ink-3">and {d.members.length - 200} more</p> : null}
+          </details>
+        ) : null}
       </section>
 
       {d.isMember && !d.isOwner ? (
@@ -101,5 +108,19 @@ export default async function LeaguePage({ params, searchParams }: { params: Pro
         </div>
       ) : null}
     </div>
+  );
+}
+
+function MemberRow({ m, leagueId, isOwner }: { m: { userId: string; username: string; avatarHue: number; role: string; hasEntry: boolean }; leagueId: string; isOwner: boolean }) {
+  return (
+    <li className="flex items-center gap-3 px-4 py-2.5">
+      <UserAvatar username={m.username} hue={m.avatarHue} size={30} />
+      <Link href={`/u/${m.username}`} className="min-w-0 flex-1 truncate text-callout text-ink hover:underline">
+        {m.username}
+      </Link>
+      {m.role === "owner" ? <span className="text-caption text-lavender">Owner</span> : null}
+      {!m.hasEntry ? <span className="text-caption text-ink-3">No team yet</span> : null}
+      {isOwner && m.role !== "owner" ? <RemoveMember leagueId={leagueId} userId={m.userId} username={m.username} /> : null}
+    </li>
   );
 }

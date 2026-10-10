@@ -47,7 +47,7 @@ export default async function TournamentFantasy({ params }: { params: Promise<{ 
           <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
             {leagues.map((l) => (
               <li key={l.id}>
-                <Link href={`/leagues/${l.id}`} className="flex items-center gap-3 rounded-2xl bg-surface px-4 py-3 hover:border-border-strong">
+                <Link href={`/leagues/${l.id}`} className="flex items-center gap-3 rounded-2xl bg-surface px-4 py-3 transition-colors hover:bg-elevated">
                   <span className="inline-flex size-10 items-center justify-center rounded-xl bg-lavender-soft text-lavender">
                     <Icon name="trophy" size={18} />
                   </span>
