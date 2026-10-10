@@ -17,7 +17,7 @@ export default async function TournamentLayout({ children, params }: { children:
   return (
     <div>
       <header className="relative -mx-4 -mt-5 overflow-hidden border-b border-border px-4 pt-6 pb-5 lg:mx-0 lg:mt-0 lg:rounded-2xl lg:border lg:px-7 lg:pt-7">
-        <EventArt seed={t.slug} accent={accent} banner className="pointer-events-none absolute inset-0" />
+        <EventArt seed={t.slug} title={t.shortName.split(" ")[0]!} accent={accent} banner className="pointer-events-none absolute inset-0" />
         <div className="relative">
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-eyebrow" style={{ color: accent }}>
@@ -26,7 +26,7 @@ export default async function TournamentLayout({ children, params }: { children:
             {t.isDemo ? <DemoBadge /> : null}
             <StatePill kind={t.status === "live" ? "live" : t.status === "completed" ? "completed" : "upcoming"} className="ml-auto" />
           </div>
-          <h1 className="display mt-3 text-[2.5rem] leading-[0.95] text-ink uppercase sm:text-[3rem]">{t.shortName}</h1>
+          <h1 className="font-display mt-3 text-[2.75rem] leading-[0.95] font-bold text-ink uppercase sm:text-[3.5rem]">{t.shortName}</h1>
           <p className="mt-1 text-callout text-ink-2">
             {dateRange(t.beginAt, t.endAt)} · {t.location} · {t.stages.length} stages
           </p>

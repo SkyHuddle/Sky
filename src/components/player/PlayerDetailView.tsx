@@ -172,7 +172,7 @@ function FormChart({ d }: { d: PlayerDetail }) {
           return (
             <div key={m.mapId} className="flex flex-1 flex-col items-center justify-end gap-1.5">
               <span className="num text-footnote text-ink">{pts(m.mapScore, 0)}</span>
-              <span className={cn("w-full max-w-[28px] rounded-[3px]", m.mapScore >= 25 ? "bg-ink-2" : "bg-raised")} style={{ height: h }} title={`${m.mapName} vs ${d.teams[m.opponentId]?.name ?? ""}`} />
+              <span className={cn("w-full max-w-[28px] rounded-[3px]", m.mapScore >= avg ? "bg-accent" : "bg-ink-3/50")} style={{ height: h }} title={`${m.mapName} vs ${d.teams[m.opponentId]?.name ?? ""}`} />
             </div>
           );
         })}
@@ -186,7 +186,9 @@ function FormChart({ d }: { d: PlayerDetail }) {
         ))}
       </div>
       <p className="mt-3 flex items-center gap-1.5 text-caption text-ink-3">
-        <span className="inline-block size-2 rounded-[2px] bg-ink-2" aria-hidden /> 25+ points
+        <span className="inline-block size-2 rounded-[2px] bg-accent" aria-hidden /> At or above avg
+        <span className="ml-3 inline-block size-2 rounded-[2px] bg-ink-3/50" aria-hidden /> Below
+        <span className="ml-auto">Crest: opponent</span>
       </p>
     </figure>
   );

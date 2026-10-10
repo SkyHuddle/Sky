@@ -1,6 +1,6 @@
 # Esports Fantasy — Product Design System & UX Specification
 
-**Status:** Working design source of truth · **Version:** 1.2 (see [changelog](#changelog)) · **Primary platform:** Mobile web / iPhone first · **Launch esport:** CS2
+**Status:** Working design source of truth · **Version:** 1.3 (see [changelog](#changelog)) · **Primary platform:** Mobile web / iPhone first · **Launch esport:** CS2
 
 > **North star:** *Sleeper esports personality, refined with the restraint, clarity, and precision of a top-tier iOS app.* Player-first. Competition-first. Calm surfaces, vivid content, exquisite interaction details. The app must feel intentionally designed rather than generated from a generic dashboard template.
 
@@ -115,6 +115,7 @@ Use **Inter**, **Geist**, or a similar carefully rendered, highly legible modern
 - Player portraits (v1.2): demo players are fictional, so they get flat illustrated busts (varied skin tone, hair, accessories) wearing the team's colours on a flat team-tinted tile. Real players get licensed headshots in the same frame; an illustration never stands in for a real person.
 - Team colors: portrait tiles, jerseys, crests and the crest watermark in a player hero. Never the app's UI accent.
 - Prefer actual licensed event imagery or an original abstract event graphic. Do not use random Counter-Strike screenshots as universal art.
+- Event art (v1.3): until licensed key art exists, the event's own name is the artwork: outlined display type repeated in three steps of strength, tilted a few degrees, bleeding off the right edge behind one spotlight in the tier colour, masked away from the headline. It is hidden on narrow tournament banners where it would collide with text.
 - Gradients only when they clarify hierarchy (e.g., bottom fade for headline over a hero image).
 - No excessive blurs, fluorescent borders, fake glassmorphism, heavy beveled cards, or mysterious icons.
 
@@ -438,6 +439,7 @@ A brand-new esports fan should know what to do within seconds. A frequent fantas
 
 | Version | Change |
 |---|---|
+| 1.3 | Polish pass. Bars over scrolling content are near-opaque (text no longer reads through the tab bar); the demo notice is a slim strip and the Demo data tag is solid. Event hero: type-poster art (§3.4) and the lock deadline as segmented day/hour/minute blocks in the display face. Live: before any map finishes, the score card shows your lineup (live dot and live map points, or start time) instead of empty dashes. Leaderboard: a top-three podium when the board has 10+ entries and no tie in the top three; fan avatars use low-chroma tints. Recap: placement as one big display number with a field-position track (last → 1st), points and captain bonus in the display face, MVP and best value as portrait tiles. Form chart bars are mint when at or above the shown average. Salary left uses the display face. |
 | 1.2.1 | Patterns from fantasy and pick'em apps (Sleeper, Underdog, PrizePicks): an entry slip with the picks' faces in the builder's action bar; a "Locked in" stamp as the submit moment; your five faces on the Home entry card; a live pace bar (this map's points against the player's own per-map average, both real). Licensed logo and headshot slots: when the data provider supplies `logoUrl` / `photoUrl` under a contract that allows display, they replace the generated crest and illustration in the same frames. |
 | 1.2 | De-templating pass after "looks too AI" feedback. Neutral canvas and three-step surface ladder; borders removed from containers; one accent (violet retired); condensed display face for titles, hero names and scores; illustrated team-colour portraits; states as text; sentence-case labels; tighter radii. Techniques drawn from public DESIGN.md write-ups of Spotify, PlayStation, Nike, Revolut, The Verge, Apple, Linear and Raycast ([awesome-design-md](https://github.com/VoltAgent/awesome-design-md)), not copied from any product. |
 | 1.1 | Five-tab navigation with **Live**. New screen specs: Live GameDay (§5.9), Match Center (§5.10), Results recap and share card (§5.11), Transfer management (§5.12), Stage cups (§5.13). Tertiary text token `#7C8FA4` (contrast). Live and results QA checklist. Rules referenced here are defined in [GAMEPLAY.md](GAMEPLAY.md); live behaviour is defined in [LIVE_DATA.md](LIVE_DATA.md). |

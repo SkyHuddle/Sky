@@ -33,7 +33,7 @@ export function SalarySummary({ data, b, onOpenLineup, className }: { data: Buil
               animate={{ y: 0, opacity: 1 }}
               exit={reduce ? undefined : { y: -6, opacity: 0 }}
               transition={{ duration: 0.16 }}
-              className={cn("num text-[1.375rem] leading-7", over ? "text-negative" : "text-ink")}
+              className={cn("font-display text-[1.875rem] leading-8 font-bold tabular-nums", over ? "text-negative" : "text-ink")}
             >
               {money(Math.abs(b.summary.salaryRemaining))}
             </motion.div>

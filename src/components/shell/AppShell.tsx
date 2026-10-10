@@ -60,8 +60,8 @@ export function AppShell({ viewer, demo, now, children }: { viewer: SessionUser 
         </header>
         {demo ? (
           <div className="border-b border-border">
-            <p className="mx-auto flex max-w-[1360px] items-center gap-2 px-4 py-2 text-caption text-ink-2 sm:px-5 lg:px-8">
-              <Icon name="info" size={14} className="shrink-0 text-lavender" />
+            <p className="mx-auto flex max-w-[1360px] items-center gap-1.5 px-4 py-1.5 text-caption text-ink-3 sm:px-5 lg:px-8">
+              <Icon name="info" size={13} className="shrink-0" />
               Demo data: fictional teams, players and simulated results.
             </p>
           </div>

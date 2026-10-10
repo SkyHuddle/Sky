@@ -5,7 +5,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { DemoBadge, PlayerAvatar, TeamMark } from "@/components/ui/identity";
 import { EmptyState } from "@/components/ui/primitives";
-import { Countdown, LocalTime, StatePill } from "@/components/ui/status";
+import { Countdown, CountdownBlocks, LocalTime, StatePill } from "@/components/ui/status";
 import { cn } from "@/lib/cn";
 import { contestCta, primaryContest } from "@/lib/contest";
 import { dateRange, money, ordinal, percentileLabel, pts } from "@/lib/format";
@@ -179,7 +179,7 @@ function TournamentHero({ t, contest, now, nowIso }: { t: TournamentSummary; con
   const ctaHref = cta?.primary.href || `/t/${t.slug}`;
   return (
     <section aria-labelledby="featured" className="relative overflow-hidden rounded-2xl">
-      <EventArt seed={t.slug} accent={accent} className="pointer-events-none absolute inset-0" />
+      <EventArt seed={t.slug} title={t.shortName.split(" ")[0]!} accent={accent} className="pointer-events-none absolute inset-0" />
       <div className="relative flex min-h-[236px] flex-col p-5 sm:min-h-[272px] sm:p-7 lg:min-h-[296px] lg:p-8">
         <div className="flex items-center gap-2">
           <span className="text-eyebrow text-ink-2">CS2 · {TIER_LABEL[t.tier]}</span>
@@ -192,22 +192,13 @@ function TournamentHero({ t, contest, now, nowIso }: { t: TournamentSummary; con
             </h1>
             <Icon name="chevronRight" size={22} className="mt-0.5 text-ink-3 transition-transform group-hover:translate-x-0.5" />
           </Link>
-          <p className="mt-1 flex flex-wrap items-center gap-x-2 text-footnote text-ink-2">
+          <p className="mt-1.5 flex flex-wrap items-center gap-x-2 text-footnote text-ink-2">
             <span>{dateRange(t.beginAt, t.endAt)}</span>
             <span aria-hidden className="text-ink-3">
               ·
             </span>
             <span>{t.location}</span>
-            {cta?.deadline && (cta.state === "open" || cta.state === "window") ? (
-              <>
-                <span aria-hidden className="text-ink-3">
-                  ·
-                </span>
-                <span className="text-warning">
-                  {contest?.openWindow?.stageName} {cta.deadline.label.toLowerCase()} <Countdown to={cta.deadline.at} now={nowIso} className="num" />
-                </span>
-              </>
-            ) : t.currentStage ? (
+            {t.currentStage && !(cta?.deadline && (cta.state === "open" || cta.state === "window")) ? (
               <>
                 <span aria-hidden className="text-ink-3">
                   ·
@@ -216,6 +207,14 @@ function TournamentHero({ t, contest, now, nowIso }: { t: TournamentSummary; con
               </>
             ) : null}
           </p>
+          {cta?.deadline && (cta.state === "open" || cta.state === "window") ? (
+            <div className="mt-5">
+              <div className="mb-2 text-footnote text-ink-2">
+                {contest?.openWindow?.stageName} {cta.state === "window" ? "transfers close" : "locks"} in
+              </div>
+              <CountdownBlocks to={cta.deadline.at} now={nowIso} />
+            </div>
+          ) : null}
           {ctaLabel ? (
             <ButtonLink href={ctaHref} size="lg" className="mt-5 w-full sm:w-auto sm:min-w-[220px]">
               {ctaLabel}

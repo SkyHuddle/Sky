@@ -104,15 +104,19 @@ export function PlayerAvatar({
   );
 }
 
-/** A fan's avatar: initials on their chosen hue. Never a portrait, so fans and players read differently. */
+/**
+ * A fan's avatar: initials on a muted tint of their chosen hue, tinted text on top. Never a
+ * portrait, so fans and players read differently; low chroma so a board of fans stays calm.
+ */
 export function UserAvatar({ username, hue, size = 32, className }: { username: string; hue: number; size?: number; className?: string }) {
   return (
     <span
-      className={cn("inline-flex shrink-0 items-center justify-center rounded-full font-semibold text-ink", className)}
+      className={cn("inline-flex shrink-0 items-center justify-center rounded-full font-semibold", className)}
       style={{
         width: size,
         height: size,
-        background: `hsl(${hue} 42% 30%)`,
+        background: `hsl(${hue} 18% 21%)`,
+        color: `hsl(${hue} 55% 80%)`,
         fontSize: Math.round(size * 0.38),
         letterSpacing: "-0.02em",
       }}
@@ -140,7 +144,7 @@ export function RoleChip({ role, className }: { role: string; className?: string
 export function DemoBadge({ className }: { className?: string }) {
   return (
     <span
-      className={cn("inline-flex h-5 items-center rounded-[4px] bg-white/[0.07] px-1.5 text-[0.75rem] font-medium text-ink-2", className)}
+      className={cn("inline-flex h-5 items-center rounded-[4px] bg-raised px-1.5 text-[0.75rem] font-medium text-ink-2", className)}
       title="Fictional teams and players, simulated results"
     >
       Demo data

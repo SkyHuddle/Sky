@@ -59,30 +59,32 @@ export function LiveGameDay({ initial, nowIso }: { initial: LivePayload; nowIso:
         <div className="min-w-0 space-y-6">
           {/* Your score: the one dominant number on the screen */}
           <section aria-labelledby="live-score" className="rounded-2xl bg-surface p-5">
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <div id="live-score" className="text-footnote text-ink-2">
-                  Fantasy points
-                </div>
-                <Flash value={d.entry.points}>
-                  <span className="text-score text-ink sm:text-[2.5rem] sm:leading-[2.75rem]">{scored ? pts(d.entry.points) : "—"}</span>
-                </Flash>
-              </div>
-              <div className="border-l border-border pl-4">
-                <div className="text-footnote text-ink-2">Global rank</div>
-                <div className="flex items-baseline gap-2">
-                  <Flash value={d.entry.rank ?? 0}>
-                    <span className="text-score text-ink sm:text-[2.5rem] sm:leading-[2.75rem]">{scored ? ordinal(d.entry.rank!) : "—"}</span>
+            {scored ? (
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <div id="live-score" className="text-footnote text-ink-2">
+                    Fantasy points
+                  </div>
+                  <Flash value={d.entry.points}>
+                    <span className="text-score text-ink sm:text-[3rem] sm:leading-[3rem]">{pts(d.entry.points)}</span>
                   </Flash>
-                  {scored && movement !== null ? <Movement value={movement} className="text-footnote" /> : null}
                 </div>
-                {scored ? (
+                <div className="border-l border-border pl-4">
+                  <div className="text-footnote text-ink-2">Global rank</div>
+                  <div className="flex items-baseline gap-2">
+                    <Flash value={d.entry.rank ?? 0}>
+                      <span className="text-score text-ink sm:text-[3rem] sm:leading-[3rem]">{ordinal(d.entry.rank!)}</span>
+                    </Flash>
+                    {movement !== null ? <Movement value={movement} className="text-footnote" /> : null}
+                  </div>
                   <div className="text-caption text-ink-3">
                     of {d.entry.entriesCount.toLocaleString("en")} · <span className="text-lavender">{percentileLabel(d.entry.rank, d.entry.entriesCount)}</span>
                   </div>
-                ) : null}
+                </div>
               </div>
-            </div>
+            ) : (
+              <LineupStrip d={d} />
+            )}
             <p className="mt-4 flex flex-wrap items-center gap-2 text-caption text-ink-3">
               {scored ? (
                 <StatePill kind={d.entry.scoreState === "settled" ? "settled" : d.entry.scoreState === "official" ? "official" : "provisional"} />
@@ -165,6 +167,46 @@ export function LiveGameDay({ initial, nowIso }: { initial: LivePayload; nowIso:
           <Activity feed={d.feed} />
         </aside>
       </div>
+    </div>
+  );
+}
+
+/**
+ * Before any map finishes there is no total to show, so the card shows the lineup instead: who is
+ * playing now (with live map points) and when the others start.
+ */
+function LineupStrip({ d }: { d: LivePayload }) {
+  const order = { live: 0, upcoming: 1, finished: 2, idle: 3, eliminated: 4 } as const;
+  const list = [...d.players].sort((a, b) => order[a.state] - order[b.state] || (a.next?.at ?? "").localeCompare(b.next?.at ?? ""));
+  return (
+    <div>
+      <div id="live-score" className="text-footnote text-ink-2">
+        Your lineup
+      </div>
+      <ul className="mt-3 grid grid-cols-5 gap-2">
+        {list.map((p) => (
+          <li key={p.id} className="min-w-0 text-center">
+            <span className="relative mx-auto block w-fit">
+              <PlayerAvatar nickname={p.nickname} team={d.teams[p.teamId]} size={48} ring={p.isCaptain ? "captain" : null} muted={p.state === "eliminated"} />
+              {p.state === "live" ? <span className="absolute -right-0.5 -bottom-0.5 size-3 rounded-full border-2 border-surface bg-live" aria-hidden /> : null}
+            </span>
+            <span className="mt-1.5 block truncate text-caption font-medium text-ink">{p.nickname}</span>
+            <span className={cn("block truncate text-caption", p.state === "live" ? "text-accent" : "text-ink-3")}>
+              {p.state === "live" && p.live ? (
+                <span className="num">{pts(p.live.mapPoints)}</span>
+              ) : p.state === "upcoming" && p.next ? (
+                <LocalTime iso={p.next.at} format="time" />
+              ) : p.state === "eliminated" ? (
+                "Out"
+              ) : p.state === "finished" ? (
+                "Done"
+              ) : (
+                "No match"
+              )}
+            </span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

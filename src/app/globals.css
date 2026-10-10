@@ -194,8 +194,9 @@
   .pb-safe {
     padding-bottom: max(env(safe-area-inset-bottom), 0px);
   }
+  /* Bars over scrolling content: near-opaque so text underneath never reads through (v1.3). */
   .glass {
-    background: rgb(11 12 15 / 0.86);
+    background: rgb(11 12 15 / 0.97);
     backdrop-filter: saturate(160%) blur(18px);
     -webkit-backdrop-filter: saturate(160%) blur(18px);
   }

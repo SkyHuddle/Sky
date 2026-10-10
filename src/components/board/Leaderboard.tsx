@@ -52,6 +52,9 @@ export function Leaderboard({ contestId, initial, scopes, viewerId }: { contestI
     return () => io.disconnect();
   }, [board.me, rows]);
 
+  // The top three get a podium when the board is big enough for the rest to read as a list.
+  const podium = board.total >= 10 && rows.length > 3 && rows[0]?.rank === 1 && rows[2]?.rank === 3;
+
   return (
     <div>
       {scopes.length > 1 ? (
@@ -87,8 +90,9 @@ export function Leaderboard({ contestId, initial, scopes, viewerId }: { contestI
             <span>{board.total.toLocaleString("en")} entries</span>
             <span>Points</span>
           </div>
+          {podium ? <Podium rows={rows.slice(0, 3)} viewerId={viewerId} /> : null}
           <ol className={cn("divide-y divide-border overflow-hidden rounded-2xl bg-surface transition-opacity", loading && "opacity-60")} aria-busy={loading}>
-            {rows.map((r) => (
+            {(podium ? rows.slice(3) : rows).map((r) => (
               <Row key={r.entryId} r={r} me={r.userId === viewerId} total={board.total} />
             ))}
             {loading && rows.length === 0
@@ -121,6 +125,39 @@ export function Leaderboard({ contestId, initial, scopes, viewerId }: { contestI
         </div>
       ) : null}
     </div>
+  );
+}
+
+const PLACE = ["1st", "2nd", "3rd"];
+
+/** First, second and third as three cards, winner in the middle on wider screens. */
+function Podium({ rows, viewerId }: { rows: BoardRow[]; viewerId: string | null }) {
+  return (
+    <ol className="mb-3 grid grid-cols-3 items-end gap-2" aria-label="Top three">
+      {rows.map((r, i) => {
+        const me = r.userId === viewerId;
+        return (
+          <li key={r.entryId} id={me ? `row-${r.entryId}` : undefined} className={cn(i === 0 ? "order-2" : i === 1 ? "order-1" : "order-3")}>
+            <Link
+              href={`/e/${r.entryId}`}
+              className={cn(
+                "flex flex-col items-center rounded-2xl bg-surface px-2 text-center transition-colors hover:bg-elevated",
+                i === 0 ? "pt-5 pb-4" : "pt-4 pb-3",
+                me && "bg-accent-soft shadow-[inset_0_0_0_1px_var(--color-accent)]",
+              )}
+            >
+              <span className={cn("font-display font-bold leading-none", i === 0 ? "text-[1.75rem] text-ink" : "text-[1.375rem] text-ink-2")}>{PLACE[i]}</span>
+              <UserAvatar username={r.username} hue={r.avatarHue} size={i === 0 ? 52 : 44} className="mt-2.5" />
+              <span className="mt-2 block w-full truncate text-footnote font-medium text-ink">
+                {r.username}
+                {me ? <span className="text-accent"> · you</span> : null}
+              </span>
+              <span className="num mt-0.5 block text-callout text-ink">{pts(r.points)}</span>
+            </Link>
+          </li>
+        );
+      })}
+    </ol>
   );
 }
 

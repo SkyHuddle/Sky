@@ -80,3 +80,36 @@ export function LocalTime({ iso, format = "datetime", className }: { iso: string
     </time>
   );
 }
+
+/**
+ * A deadline as segmented blocks in the display face (days · hours · minutes, or hours · minutes ·
+ * seconds in the last hour). Same clock source as Countdown; stable placeholder on the server.
+ */
+export function CountdownBlocks({ to, now: serverNow, className }: { to: string; now?: string; className?: string }) {
+  const [now, setNow] = useState<number | null>(null);
+  const offset = useClockOffset(serverNow);
+  useEffect(() => {
+    setNow(Date.now());
+    const id = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(id);
+  }, []);
+  const remaining = now === null ? null : Math.max(0, new Date(to).getTime() - (now + offset));
+  const s = remaining === null ? null : Math.floor(remaining / 1000);
+  const parts: Array<[string, string]> =
+    s === null
+      ? [["–", "days"], ["–", "hrs"], ["–", "min"]]
+      : s >= 3600
+        ? [[String(Math.floor(s / 86400)), Math.floor(s / 86400) === 1 ? "day" : "days"], [String(Math.floor((s % 86400) / 3600)).padStart(2, "0"), "hrs"], [String(Math.floor((s % 3600) / 60)).padStart(2, "0"), "min"]]
+        : [["00", "hrs"], [String(Math.floor(s / 60)).padStart(2, "0"), "min"], [String(s % 60).padStart(2, "0"), "sec"]];
+  return (
+    <span className={cn("inline-flex items-stretch gap-1.5", className)} suppressHydrationWarning>
+      {parts.map(([v, unit]) => (
+        <span key={unit} className="flex min-w-[52px] flex-col items-center rounded-lg bg-white/[0.06] px-2 pt-1.5 pb-1">
+          <span className="font-display text-[1.75rem] leading-7 font-bold text-ink tabular-nums">{v}</span>
+          <span className="text-[0.6875rem] leading-4 text-ink-3">{unit}</span>
+        </span>
+      ))}
+      <span className="sr-only">{remaining === null ? "" : durationShort(remaining)}</span>
+    </span>
+  );
+}
