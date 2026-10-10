@@ -17,7 +17,7 @@
   --color-border-strong: #3a4c63;
   --color-ink: #f3f6fa;
   --color-ink-2: #a2b1c3;
-  --color-ink-3: #788ba0;
+  --color-ink-3: #7c8fa4; /* spec #788BA0, nudged to pass 4.5:1 on surface-2 (DESIGN.md §3.1 "only at accessible contrast") */
   --color-accent: #58e3cd;
   --color-accent-strong: #7cebd9;
   --color-accent-ink: #04241f;

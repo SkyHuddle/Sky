@@ -7,7 +7,7 @@
 | 1 | §3.2 No condensed display fonts for ordinary content; tabular numerals | Archivo condensed for the hero, prices, scores and ranks | Geist only. Numbers use tabular figures at the sizes in §3.2 |
 | 2 | §5.1 Hero 210–250px at 390 wide, headline 28/34 | 340–380px poster with a 64px uppercase title | Compact hero: art above, readable overlay below, one CTA |
 | 3 | §3.4 No page gradients, glows or tinted cards | Page background glow, glowing primary buttons, team-tinted rows, gradient contest card, gradient "you" rows | Flat surfaces. One spotlight per screen, inside imagery only |
-| 4 | §3.1 Tokens | Close, but slightly different values and many hard-coded hexes | Spec tokens in `globals.css`; components use tokens only |
+| 4 | §3.1 Tokens | Close, but slightly different values and many hard-coded hexes | Spec tokens in `globals.css`; components use tokens only. One deliberate deviation: `--text-3` is `#7C8FA4`, not `#788BA0`, because the spec value is 4.47:1 on surface-2 and the spec requires tertiary text at accessible contrast |
 | 5 | §2.6, §8 No fake likenesses | Generated busts with skin tones and hair could read as real people | Neutral silhouettes: one tone, team colour only in the jersey trim and the halo inside the frame. Licensed headshots replace them |
 | 6 | §5.1 Esport selector with future games disabled | Static "CS2" label | Sport switcher: CS2 active; LoL and VALORANT marked *Coming later* and disabled |
 | 7 | §5.3 No role tabs unless roles are scored constraints | Role chips in the quick filter row | Quick controls are All, Team, Sort and Fits budget. Roles live in the filter sheet as metadata |
