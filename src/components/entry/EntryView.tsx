@@ -35,7 +35,7 @@ export function EntryView({ d, board, recap, nowIso, healthOk }: { d: EntryDashb
     <div className="space-y-6">
       {recap ? <RecapCard r={recap} teams={d.teams} entryId={d.entry.id} tournamentName={d.tournament.shortName} isOwner={d.isOwner} /> : null}
       {/* Score hero (the recap replaces it once the event is over) */}
-      <section className={cn("overflow-hidden rounded-[20px] border border-border bg-surface", recap && "hidden")} aria-labelledby="score">
+      <section className={cn("overflow-hidden rounded-2xl bg-surface", recap && "hidden")} aria-labelledby="score">
         <div className="p-5 sm:p-6">
           <div className="flex flex-wrap items-center gap-2">
             <Link href={`/t/${d.tournament.slug}`} className="text-eyebrow text-ink-2 hover:text-ink">
@@ -149,7 +149,7 @@ export function EntryView({ d, board, recap, nowIso, healthOk }: { d: EntryDashb
                   role="tab"
                   aria-selected={x.id === w?.id}
                   onClick={() => setWindowId(x.id)}
-                  className={cn("inline-flex h-9 shrink-0 items-center gap-1.5 rounded-full px-3.5 text-footnote font-semibold transition-colors", x.id === w?.id ? "bg-accent-soft text-accent ring-1 ring-accent/50" : "bg-surface text-ink-2 ring-1 ring-border hover:text-ink")}
+                  className={cn("inline-flex h-9 shrink-0 items-center gap-1.5 rounded-full px-3.5 text-footnote font-semibold transition-colors", x.id === w?.id ? "bg-ink text-bg" : "bg-surface text-ink-2 hover:text-ink")}
                 >
                   {x.stageName}
                   {x.status === "open" ? <span className="size-1.5 rounded-full bg-accent" aria-label="(editable)" /> : null}
@@ -191,7 +191,7 @@ function statusLabel(p: DashboardPlayer, d: EntryDashboard): { kind: "live" | "n
 function WindowRoster({ w, d, expanded, setExpanded }: { w: DashboardWindow; d: EntryDashboard; expanded: string | null; setExpanded: (id: string | null) => void }) {
   if (!w.visible) {
     return (
-      <div className="rounded-2xl border border-dashed border-border-strong p-6 text-center">
+      <div className="rounded-2xl bg-surface p-6 text-center">
         <Icon name="eye" size={22} className="mx-auto text-ink-3" />
         <p className="mt-2 text-headline text-ink">Hidden until lock</p>
         <p className="mt-1 text-callout text-ink-2">Lineups for {w.stageName} become public when the stage locks.</p>
@@ -218,7 +218,7 @@ function WindowRoster({ w, d, expanded, setExpanded }: { w: DashboardWindow; d: 
           <Icon name="swap" size={15} /> {w.transfers.filter((t) => t.kind === "discretionary").length} transfer(s) and {w.transfers.filter((t) => t.kind === "free").length} free replacement(s) this stage
         </p>
       ) : null}
-      <ul className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface">
+      <ul className="divide-y divide-border overflow-hidden rounded-2xl bg-surface">
         {players.map((p) => {
           const s = statusLabel(p, d);
           const team = d.teams[p.teamId];
@@ -277,7 +277,7 @@ function WindowRoster({ w, d, expanded, setExpanded }: { w: DashboardWindow; d: 
           );
         })}
         {players.length < d.rules.rosterSize ? (
-          <li className="rounded-[18px] border border-dashed border-warning/40 px-4 py-3 text-footnote text-warning">
+          <li className="rounded-2xl bg-warning-soft px-4 py-3 text-footnote text-warning">
             {d.rules.rosterSize - players.length} empty slot{d.rules.rosterSize - players.length > 1 ? "s" : ""}: no legal replacement was available.
           </li>
         ) : null}
@@ -316,7 +316,7 @@ function BoardPreview({ d, board }: { d: EntryDashboard; board: Board }) {
   const rows = board.rows.slice(0, 5);
   const meVisible = rows.some((r) => r.entryId === d.entry.id);
   return (
-    <section aria-labelledby="board-h" className="rounded-2xl border border-border bg-surface p-4">
+    <section aria-labelledby="board-h" className="rounded-2xl bg-surface p-4">
       <div className="mb-2 flex items-center justify-between">
         <h2 id="board-h" className="text-headline text-ink">
           Leaderboard
@@ -371,7 +371,7 @@ function Upcoming({ d, w }: { d: EntryDashboard; w: DashboardWindow | undefined 
     .filter((m) => m.stageId === w.stageId && (m.status === "scheduled" || m.status === "live" || m.status === "postponed") && (teamIds.has(m.teamAId) || teamIds.has(m.teamBId)))
     .slice(0, 6);
   return (
-    <section aria-labelledby="up-h" className="rounded-2xl border border-border bg-surface p-4">
+    <section aria-labelledby="up-h" className="rounded-2xl bg-surface p-4">
       <h2 id="up-h" className="mb-2 text-headline text-ink">
         Your players&apos; matches
       </h2>
@@ -427,7 +427,7 @@ function AutopilotCard({ d }: { d: EntryDashboard }) {
     }
   }
   return (
-    <section aria-labelledby="ap-h" className="rounded-2xl border border-border bg-surface p-4">
+    <section aria-labelledby="ap-h" className="rounded-2xl bg-surface p-4">
       <div className="flex items-start gap-3">
         <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-xl bg-lavender-soft text-lavender">
           <Icon name="autopilot" size={18} />

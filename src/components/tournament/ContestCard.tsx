@@ -11,7 +11,7 @@ import { Countdown, StatePill } from "../ui/status";
 export function ContestCard({ c, now, nowIso, slug }: { c: ContestView; now: Date; nowIso: string; slug: string }) {
   const cta = contestCta(c, now);
   return (
-    <article className={cn("flex flex-col rounded-2xl border bg-surface p-5", cta.state === "open" || cta.state === "window" ? "border-accent/30" : "border-border")}>
+    <article className="flex flex-col rounded-2xl bg-surface p-5">
       <div>
         <div className="flex flex-wrap items-center justify-between gap-2">
           <h3 className="text-title text-ink">{c.name}</h3>
@@ -27,7 +27,7 @@ export function ContestCard({ c, now, nowIso, slug }: { c: ContestView; now: Dat
         </div>
         <div>
           <dt className="text-caption text-ink-3">Transfer windows</dt>
-          <dd className="font-medium text-ink">{c.windows.length - 1} · 2 transfers each</dd>
+          <dd className="font-medium text-ink">{c.windows.length - 1}</dd>
         </div>
         <div>
           <dt className="text-caption text-ink-3">Entries</dt>
@@ -37,7 +37,7 @@ export function ContestCard({ c, now, nowIso, slug }: { c: ContestView; now: Dat
 
       <ol className="mt-4 flex flex-wrap gap-1.5" aria-label="Lineup windows">
         {c.windows.map((w) => (
-          <li key={w.id} className={cn("inline-flex h-7 items-center gap-1.5 rounded-full px-2.5 text-caption font-medium", w.status === "open" ? "bg-accent-soft text-accent" : w.status === "upcoming" ? "text-ink-3 ring-1 ring-border" : "bg-elevated text-ink-2")}>
+          <li key={w.id} className={cn("inline-flex h-7 items-center gap-1.5 rounded-full px-2.5 text-caption font-medium", w.status === "open" ? "bg-accent-soft text-accent" : w.status === "upcoming" ? "bg-elevated/60 text-ink-3" : "bg-elevated text-ink-2")}>
             {w.status === "open" ? <Icon name="check" size={12} strokeWidth={2.4} /> : w.status === "upcoming" ? null : <Icon name="lock" size={12} />}
             {w.stageName}
           </li>

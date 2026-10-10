@@ -42,7 +42,7 @@ export default async function FantasyPage() {
                 const cta = contestCta(c, now);
                 return (
                   <li key={c.id}>
-                    <Link href={`/e/${c.myEntry!.id}`} className="block rounded-2xl border border-border bg-surface p-4 hover:border-border-strong">
+                    <Link href={`/e/${c.myEntry!.id}`} className="block rounded-2xl bg-surface p-4 hover:border-border-strong">
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
                           <div className="truncate text-headline text-ink">{t.shortName}</div>
@@ -103,7 +103,7 @@ export default async function FantasyPage() {
           <ul className="space-y-2">
             {done.map(({ t, c }) => (
               <li key={c.id}>
-                <Link href={`/e/${c.myEntry!.id}`} className="flex items-center gap-3 rounded-2xl border border-border bg-surface px-4 py-3.5 hover:border-border-strong">
+                <Link href={`/e/${c.myEntry!.id}`} className="flex items-center gap-3 rounded-2xl bg-surface px-4 py-3.5 hover:border-border-strong">
                   <div className="min-w-0 flex-1">
                     <div className="truncate text-callout font-semibold text-ink">{t.name}</div>
                     <div className="text-caption text-ink-3">{c.name}</div>

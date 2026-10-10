@@ -18,7 +18,7 @@ function Field({ label, error, ...props }: { label: string; error?: string } & R
         {...props}
         aria-invalid={!!error || undefined}
         aria-describedby={error ? `${id}-error` : undefined}
-        className="h-12 w-full rounded-xl border border-border bg-surface px-3.5 text-[0.9375rem] text-ink placeholder:text-ink-3 focus:border-accent/60 focus:outline-none aria-[invalid=true]:border-negative/60"
+        className="h-12 w-full rounded-xl bg-surface px-3.5 text-[0.9375rem] text-ink placeholder:text-ink-3 focus:border-accent/60 focus:outline-none aria-[invalid=true]:border-negative/60"
       />
       {error ? (
         <p id={`${id}-error`} className="mt-1.5 text-footnote text-negative">

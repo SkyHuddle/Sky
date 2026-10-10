@@ -70,7 +70,7 @@ export default async function HomePage() {
               How it works
             </Link>
           </div>
-          <ul className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface">
+          <ul className="divide-y divide-border overflow-hidden rounded-2xl bg-surface">
             {featured.contests.map((c) => (
               <li key={c.id}>
                 <ContestLine c={c} slug={featured.slug} now={now} nowIso={nowIso} />
@@ -108,7 +108,7 @@ export default async function HomePage() {
                 const done = t.contests.find((c) => c.myEntry);
                 return (
                   <li key={t.id}>
-                    <Link href={`/t/${t.slug}`} className="flex min-h-[64px] items-center gap-3 rounded-2xl border border-border bg-surface px-4 py-3 transition-colors hover:bg-elevated">
+                    <Link href={`/t/${t.slug}`} className="flex min-h-[64px] items-center gap-3 rounded-2xl bg-surface px-4 py-3 transition-colors hover:bg-elevated">
                       <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-elevated text-ink-2">
                         <Icon name="trophy" size={19} />
                       </span>
@@ -177,7 +177,7 @@ function TournamentHero({ t, contest, now, nowIso }: { t: TournamentSummary; con
           : "View Standings";
   const ctaHref = cta?.primary.href || `/t/${t.slug}`;
   return (
-    <section aria-labelledby="featured" className="relative overflow-hidden rounded-[20px] border border-border">
+    <section aria-labelledby="featured" className="relative overflow-hidden rounded-2xl">
       <EventArt seed={t.slug} accent={accent} className="pointer-events-none absolute inset-0" />
       <div className="relative flex min-h-[236px] flex-col p-5 sm:min-h-[272px] sm:p-7 lg:min-h-[296px] lg:p-8">
         <div className="flex items-center gap-2">
@@ -186,7 +186,7 @@ function TournamentHero({ t, contest, now, nowIso }: { t: TournamentSummary; con
         </div>
         <div className="mt-auto pt-10">
           <Link href={`/t/${t.slug}`} className="group inline-flex items-center gap-1 rounded-md" aria-label={`${t.shortName}: tournament overview`}>
-            <h1 id="featured" className="text-display text-ink sm:text-[2.25rem] sm:leading-[2.625rem]">
+            <h1 id="featured" className="text-display text-ink sm:text-[3rem] sm:leading-[2.875rem] lg:text-[3.5rem] lg:leading-[3.25rem]">
               {t.shortName}
             </h1>
             <Icon name="chevronRight" size={22} className="mt-0.5 text-ink-3 transition-transform group-hover:translate-x-0.5" />
@@ -233,7 +233,7 @@ function EntrySummary({ t, c, now, nowIso }: { t: TournamentSummary; c: ContestV
   const scored = e.rank !== null;
   const stages = t.stages.filter((s) => c.windows.some((w) => w.stageId === s.id));
   return (
-    <Link href={`/e/${e.id}`} className="block rounded-2xl border border-border bg-surface p-4 transition-colors hover:bg-elevated sm:p-5">
+    <Link href={`/e/${e.id}`} className="block rounded-2xl bg-surface p-4 transition-colors hover:bg-elevated sm:p-5">
       <div className="flex items-center justify-between gap-3">
         <div className="min-w-0">
           <div className="truncate text-headline text-ink">{c.name}</div>
@@ -285,7 +285,7 @@ function FirstEntryPrompt({ c }: { c: ContestView | null }) {
     [`${r.captainMultiplier}×`, "captain"],
   ];
   return (
-    <div className="rounded-2xl border border-border bg-surface p-4 sm:p-5">
+    <div className="rounded-2xl bg-surface p-4 sm:p-5">
       <p className="text-headline text-ink">You haven&apos;t picked a team yet</p>
       <p className="mt-1 text-callout text-ink-2">Choose pros from the teams at this event. Your score follows their real results and updates after every map.</p>
       <dl className="mt-4 grid grid-cols-4 gap-2">
@@ -346,7 +346,7 @@ function NextMatches({ hub }: { hub: TournamentHub }) {
           All matches
         </Link>
       </div>
-      <ul className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface">
+      <ul className="divide-y divide-border overflow-hidden rounded-2xl bg-surface">
         {list.map((m) => (
           <li key={m.id}>
             <MatchLine m={m} teams={hub.teams} />
@@ -395,7 +395,7 @@ function EventLine({ t, now }: { t: TournamentSummary; now: Date }) {
   const accent = TIER_ACCENT[t.tier] ?? "#788ba0";
   const begin = new Date(t.beginAt);
   return (
-    <Link href={`/t/${t.slug}`} className="flex min-h-[72px] items-center gap-3 rounded-2xl border border-border bg-surface px-4 py-3 transition-colors hover:bg-elevated">
+    <Link href={`/t/${t.slug}`} className="flex min-h-[72px] items-center gap-3 rounded-2xl bg-surface px-4 py-3 transition-colors hover:bg-elevated">
       <span className="relative inline-flex size-11 shrink-0 flex-col items-center justify-center overflow-hidden rounded-xl bg-elevated leading-none">
         <span className="absolute inset-x-0 top-0 h-[3px]" style={{ background: accent }} aria-hidden />
         <span className="text-caption text-ink-3">{begin.toLocaleString("en", { month: "short", timeZone: "UTC" })}</span>

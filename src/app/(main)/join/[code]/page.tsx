@@ -22,7 +22,7 @@ export default async function JoinPage({ params }: { params: Promise<{ code: str
   if (viewer && (await isMember(db, invite.league.id, viewer.id))) redirect(`/leagues/${invite.league.id}`);
   return (
     <div className="mx-auto max-w-md pt-4">
-      <div className="rounded-[24px] border border-border bg-surface p-6 text-center">
+      <div className="rounded-2xl bg-surface p-6 text-center">
         <span className="mx-auto inline-flex size-16 items-center justify-center rounded-2xl bg-lavender-soft text-lavender">
           <Icon name="trophy" size={30} />
         </span>

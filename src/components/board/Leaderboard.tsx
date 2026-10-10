@@ -87,7 +87,7 @@ export function Leaderboard({ contestId, initial, scopes, viewerId }: { contestI
             <span>{board.total.toLocaleString("en")} entries</span>
             <span>Points</span>
           </div>
-          <ol className={cn("divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface transition-opacity", loading && "opacity-60")} aria-busy={loading}>
+          <ol className={cn("divide-y divide-border overflow-hidden rounded-2xl bg-surface transition-opacity", loading && "opacity-60")} aria-busy={loading}>
             {rows.map((r) => (
               <Row key={r.entryId} r={r} me={r.userId === viewerId} total={board.total} />
             ))}
@@ -113,7 +113,7 @@ export function Leaderboard({ contestId, initial, scopes, viewerId }: { contestI
 
       {board.me && !meVisible ? (
         <div className="fixed inset-x-0 bottom-[calc(56px+env(safe-area-inset-bottom))] z-30 px-4 pb-2 lg:bottom-4 lg:left-[248px]">
-          <div className="mx-auto max-w-3xl overflow-hidden rounded-2xl border border-border bg-surface shadow-[0_12px_32px_rgb(0_0_0/0.45)]">
+          <div className="mx-auto max-w-3xl overflow-hidden rounded-2xl bg-surface shadow-[0_12px_32px_rgb(0_0_0/0.45)]">
             <ol>
               <Row r={board.me} me total={board.total} />
             </ol>
@@ -128,8 +128,8 @@ function Row({ r, me, total }: { r: BoardRow; me: boolean; total: number }) {
   return (
     <li id={me ? `row-${r.entryId}` : undefined}>
       <Link href={`/e/${r.entryId}`} className={cn("flex min-h-[62px] items-center gap-3 px-4 py-2 transition-colors", me ? "bg-accent-soft shadow-[inset_3px_0_0_var(--color-accent)]" : "hover:bg-elevated/60")}>
-        <span className={cn("num w-10 text-right text-callout", r.rank <= 3 ? "text-ink" : "text-ink-2")}>{r.rank.toLocaleString("en")}</span>
-        <span className="w-8">{r.movement !== null && r.movement !== undefined ? <Movement value={r.movement} /> : null}</span>
+        <span className={cn("font-display w-9 shrink-0 text-center text-[1.25rem] font-bold tabular-nums", r.rank <= 3 ? "text-ink" : "text-ink-2")}>{r.rank.toLocaleString("en")}</span>
+        {r.movement !== null && r.movement !== undefined ? <span className="w-7 shrink-0"><Movement value={r.movement} /></span> : null}
         <UserAvatar username={r.username} hue={r.avatarHue} size={32} />
         <span className="min-w-0 flex-1">
           <span className={cn("block truncate text-callout", me ? "font-semibold text-ink" : "text-ink")}>

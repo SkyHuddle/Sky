@@ -74,14 +74,14 @@ export function PlayerAvatar({
         width: size === "fill" ? "100%" : size,
         height: size === "fill" ? "100%" : size,
         borderRadius: shape === "tile" ? (size === "fill" ? 14 : Math.round(size * 0.24)) : 999,
-        // Flat frame; the team tint stays inside the portrait region as a soft halo (DESIGN.md §3.4).
-        background: `radial-gradient(70% 62% at 50% 42%, ${rgba(color, 0.3)} 0%, transparent 72%), var(--color-raised)`,
+        // A flat tile in the team's colour (DESIGN.md v1.2 §3.4): colour comes from the content.
+        background: `linear-gradient(${rgba(color, 0.24)}, ${rgba(color, 0.24)}), var(--color-raised)`,
         boxShadow:
           ring === "captain"
             ? `0 0 0 2px var(--color-bg), 0 0 0 4px var(--color-lavender)`
             : ring === "selected"
               ? `0 0 0 2px var(--color-bg), 0 0 0 4px var(--color-accent)`
-              : `inset 0 0 0 1px rgb(255 255 255 / 0.06)`,
+              : undefined,
       }}
       aria-hidden
     >
@@ -98,8 +98,7 @@ export function UserAvatar({ username, hue, size = 32, className }: { username: 
       style={{
         width: size,
         height: size,
-        background: `linear-gradient(145deg, hsl(${hue} 60% 42%), hsl(${hue} 55% 24%))`,
-        boxShadow: `inset 0 0 0 1px hsl(${hue} 70% 62% / 0.4)`,
+        background: `hsl(${hue} 42% 30%)`,
         fontSize: Math.round(size * 0.38),
         letterSpacing: "-0.02em",
       }}
@@ -127,7 +126,7 @@ export function RoleChip({ role, className }: { role: string; className?: string
 export function DemoBadge({ className }: { className?: string }) {
   return (
     <span
-      className={cn("inline-flex h-5 items-center gap-1 rounded-full bg-lavender-soft px-2 text-[0.75rem] font-semibold text-lavender", className)}
+      className={cn("inline-flex h-5 items-center rounded-[4px] bg-white/[0.07] px-1.5 text-[0.75rem] font-medium text-ink-2", className)}
       title="Fictional teams and players, simulated results"
     >
       Demo data

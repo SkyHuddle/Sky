@@ -52,7 +52,7 @@ export function SportSwitcher({ variant = "compact" }: { variant?: "compact" | "
         <div
           role="menu"
           className={cn(
-            "absolute z-50 mt-2 w-64 overflow-hidden rounded-2xl border border-border bg-elevated p-1.5 shadow-[0_16px_40px_rgb(0_0_0/0.45)]",
+            "absolute z-50 mt-2 w-64 overflow-hidden rounded-2xl bg-elevated p-1.5 shadow-[0_16px_40px_rgb(0_0_0/0.45)]",
             variant === "full" ? "bottom-full left-0 mb-2" : "left-0",
           )}
         >

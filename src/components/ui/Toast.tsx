@@ -35,10 +35,10 @@ export function ToastProvider({ children }: { children: ReactNode }) {
               exit={{ opacity: 0, y: -8, scale: 0.98 }}
               transition={{ type: "spring", stiffness: 500, damping: 34 }}
               className={cn(
-                "pointer-events-auto flex max-w-md items-center gap-2.5 rounded-2xl border px-4 py-3 text-callout font-medium shadow-[0_12px_40px_rgb(0_0_0/0.45)]",
-                t.tone === "success" && "border-accent/30 bg-[#0f2a27] text-accent",
-                t.tone === "error" && "border-negative/30 bg-[#2a1418] text-negative",
-                t.tone === "info" && "border-border-strong bg-raised text-ink",
+                "pointer-events-auto flex max-w-md items-center gap-2.5 rounded-2xl px-4 py-3 text-callout font-medium shadow-[0_12px_40px_rgb(0_0_0/0.45)]",
+                t.tone === "success" && "bg-elevated text-accent",
+                t.tone === "error" && "bg-raised text-negative",
+                t.tone === "info" && "bg-raised text-ink",
               )}
             >
               <Icon name={t.tone === "success" ? "check" : t.tone === "error" ? "alert" : "info"} size={18} />

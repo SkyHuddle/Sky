@@ -10,7 +10,7 @@ import { ShareButton } from "./ShareButton";
 /** The end-of-tournament recap: placement first, then the picks that made it. */
 export function RecapCard({ r, teams, entryId, tournamentName, isOwner }: { r: Recap; teams: Record<string, TeamLite>; entryId: string; tournamentName: string; isOwner: boolean }) {
   return (
-    <section aria-labelledby="recap" className="overflow-hidden rounded-[20px] border border-border bg-surface">
+    <section aria-labelledby="recap" className="overflow-hidden rounded-2xl bg-surface">
       <div className="p-5 sm:p-6">
         <div className="flex items-center gap-2">
           <span className="text-eyebrow text-ink-2">Final result</span>

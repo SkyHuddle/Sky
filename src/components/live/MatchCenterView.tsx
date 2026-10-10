@@ -34,7 +34,7 @@ export function MatchCenterView({ initial }: { initial: MatchCenter }) {
       <Link href="/live" className="mb-3 inline-flex h-10 items-center gap-1 text-callout text-ink-2 hover:text-ink">
         <Icon name="chevronLeft" size={16} /> Live
       </Link>
-      <section className="rounded-[20px] border border-border bg-surface p-5">
+      <section className="rounded-2xl bg-surface p-5">
         <div className="flex items-center gap-2 text-caption text-ink-3">
           <span className="truncate">
             {m.tournament.name} · {m.stageName} · BO{m.format}
@@ -91,7 +91,7 @@ export function MatchCenterView({ initial }: { initial: MatchCenter }) {
           ) : null}
         </div>
       ) : (
-        <p className="mt-5 rounded-2xl border border-dashed border-border-strong p-5 text-callout text-ink-2">The scoreboard appears when the first map starts.</p>
+        <p className="mt-5 rounded-2xl bg-surface p-5 text-callout text-ink-2">The scoreboard appears when the first map starts.</p>
       )}
 
       {shown ? (
@@ -111,7 +111,7 @@ export function MatchCenterView({ initial }: { initial: MatchCenter }) {
 
 function Scoreboard({ lines, team, live }: { lines: ScoreLine[]; team: MatchCenter["teamA"]; live: boolean }) {
   return (
-    <section className="overflow-hidden rounded-2xl border border-border bg-surface">
+    <section className="overflow-hidden rounded-2xl bg-surface">
       <div className="flex items-center gap-2 border-b border-border px-4 py-2.5">
         <TeamMark team={team} size={18} />
         <span className="text-callout font-semibold text-ink">{team.name}</span>

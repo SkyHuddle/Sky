@@ -17,7 +17,7 @@ export function RulesCard({ ruleSetId, rules }: { ruleSetId: string; rules: Cont
     ["Series won (team)", `+${r.seriesWin}`],
   ];
   return (
-    <section aria-labelledby="rules-h" className="rounded-2xl border border-border bg-surface p-5">
+    <section aria-labelledby="rules-h" className="rounded-2xl bg-surface p-5">
       <div className="flex items-baseline justify-between">
         <h2 id="rules-h" className="text-headline text-ink">
           Rules and scoring

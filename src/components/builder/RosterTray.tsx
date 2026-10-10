@@ -87,7 +87,7 @@ export function RosterSlots({ data, b, onOpenPlayer, className }: { data: Builde
               </button>
             ) : (
               <span className="flex w-full flex-col items-center gap-1 py-0.5">
-                <span className="inline-flex size-11 items-center justify-center rounded-full border border-dashed border-border-strong text-caption text-ink-3">{i + 1}</span>
+                <span className="inline-flex size-11 items-center justify-center rounded-full bg-elevated text-caption text-ink-3">{i + 1}</span>
                 <span className="text-caption text-ink-3">Empty</span>
               </span>
             )}

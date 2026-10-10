@@ -14,8 +14,8 @@ import { FormBars } from "../ui/primitives";
 /**
  * One row in the player pool (DESIGN.md §5.3): 72px, portrait, name, team and role, salary and
  * average, and a 44px add/remove button. The row body opens the player sheet; the button selects
- * immediately. Selection shows as a mint strip and a filled check, never a painted row. A player who
- * can't be added stays visible, with the reason in words.
+ * immediately. Adding is the primary action (solid mint); a selected player shows a lifted row and an
+ * ink check. A player who can't be added stays visible, with the reason in words.
  */
 export const PlayerRow = memo(function PlayerRow({
   p,
@@ -40,8 +40,7 @@ export const PlayerRow = memo(function PlayerRow({
 }) {
   const disabled = !selected && !!block;
   return (
-    <li className={cn("group relative flex min-h-[72px] items-center gap-3 py-2 pr-1 pl-3 transition-colors sm:pl-4", !selected && "hover:bg-elevated/60")}>
-      <span className={cn("absolute inset-y-2 left-0 w-[3px] rounded-r-full bg-accent transition-opacity duration-150", selected ? "opacity-100" : "opacity-0")} aria-hidden />
+    <li className={cn("group relative flex min-h-[72px] items-center gap-3 py-2 pr-2 pl-3 transition-colors sm:pl-4", selected ? "bg-elevated" : "hover:bg-elevated/50")}>
       <button onClick={() => onOpen(p.id)} className="flex min-w-0 flex-1 items-center gap-3 rounded-xl text-left" aria-label={`${p.nickname}, ${team?.name}, ${money(p.price)}. View details`}>
         <span className="relative shrink-0">
           <PlayerAvatar nickname={p.nickname} team={team} size={48} shape="tile" className={cn(disabled && "opacity-55")} />
@@ -52,7 +51,7 @@ export const PlayerRow = memo(function PlayerRow({
           ) : null}
         </span>
         <span className="min-w-0 flex-1">
-          <span className={cn("block truncate text-[0.9375rem] leading-5 font-semibold", disabled ? "text-ink-2" : "text-ink")}>{p.nickname}</span>
+          <span className={cn("block truncate text-base leading-5 font-semibold", disabled ? "text-ink-2" : "text-ink")}>{p.nickname}</span>
           {block && !selected ? (
             <span className={cn("mt-0.5 line-clamp-2 block text-footnote leading-4", block.code === "OVER_CAP" ? "text-warning" : "text-ink-2")}>{block.message}</span>
           ) : (
@@ -81,8 +80,8 @@ export const PlayerRow = memo(function PlayerRow({
         aria-pressed={selected}
         aria-label={selected ? `Remove ${p.nickname}` : disabled ? `${p.nickname} can't be added: ${block?.message}` : `Add ${p.nickname}`}
         className={cn(
-          "inline-flex size-11 shrink-0 items-center justify-center rounded-full transition-colors duration-150",
-          selected ? "bg-accent text-accent-ink" : disabled ? "text-ink-3" : "text-accent ring-1 ring-accent/45 ring-inset hover:bg-accent-soft",
+          "inline-flex size-10 shrink-0 items-center justify-center rounded-full transition-colors duration-150",
+          selected ? "bg-ink text-bg" : disabled ? "text-ink-3" : "bg-accent text-accent-ink hover:bg-accent-strong",
         )}
       >
         <Icon name={selected ? "check" : disabled ? "lock" : "plus"} size={19} strokeWidth={2.4} />

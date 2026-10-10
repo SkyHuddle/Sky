@@ -4,7 +4,7 @@ import { cn } from "@/lib/cn";
 import { Icon, type IconName } from "./Icon";
 
 export function Card({ children, className, as: As = "div" }: { children: ReactNode; className?: string; as?: "div" | "section" | "article" | "li" }) {
-  return <As className={cn("rounded-2xl border border-border bg-surface", className)}>{children}</As>;
+  return <As className={cn("rounded-2xl bg-surface", className)}>{children}</As>;
 }
 
 export function SectionHeader({ title, action, className, id }: { title: string; action?: ReactNode; className?: string; id?: string }) {
@@ -29,7 +29,7 @@ export function TextLink({ href, children, className }: { href: string; children
 
 export function EmptyState({ icon, title, body, action, className }: { icon: IconName; title: string; body?: ReactNode; action?: ReactNode; className?: string }) {
   return (
-    <div className={cn("flex flex-col items-center justify-center rounded-2xl border border-dashed border-border-strong px-6 py-10 text-center", className)}>
+    <div className={cn("flex flex-col items-center justify-center rounded-2xl bg-surface px-6 py-10 text-center", className)}>
       <span className="mb-3 inline-flex size-11 items-center justify-center rounded-full bg-elevated text-ink-2">
         <Icon name={icon} size={22} />
       </span>
@@ -42,15 +42,15 @@ export function EmptyState({ icon, title, body, action, className }: { icon: Ico
 
 export function Notice({ tone = "info", icon, children, className }: { tone?: "info" | "warning" | "danger" | "success" | "lavender"; icon?: IconName; children: ReactNode; className?: string }) {
   const tones = {
-    info: "bg-elevated text-ink-2 border-border",
-    warning: "bg-warning-soft text-warning border-warning/25",
-    danger: "bg-negative-soft text-negative border-negative/25",
-    success: "bg-accent-soft text-accent border-accent/25",
-    lavender: "bg-lavender-soft text-lavender border-lavender/25",
+    info: "bg-elevated text-ink-2",
+    warning: "bg-warning-soft text-warning",
+    danger: "bg-negative-soft text-negative",
+    success: "bg-accent-soft text-accent",
+    lavender: "bg-elevated text-ink-2",
   };
   const defaultIcon: Record<string, IconName> = { info: "info", warning: "alert", danger: "alert", success: "check", lavender: "info" };
   return (
-    <div className={cn("flex items-start gap-2.5 rounded-xl border px-3.5 py-3 text-callout", tones[tone], className)} role={tone === "danger" ? "alert" : "status"}>
+    <div className={cn("flex items-start gap-2.5 rounded-xl px-3.5 py-3 text-callout", tones[tone], className)} role={tone === "danger" ? "alert" : "status"}>
       <Icon name={icon ?? defaultIcon[tone]!} size={18} className="mt-px shrink-0" />
       <div className="min-w-0 flex-1">{children}</div>
     </div>
@@ -89,7 +89,7 @@ export function Movement({ value, className }: { value: number | null | undefine
   );
 }
 
-/** Tiny bar chart of recent map scores (oldest → newest). Height encodes value; 25+ maps in mint. */
+/** Tiny bar chart of recent map scores (oldest → newest). Height encodes value; 25+ maps in ink. */
 export function FormBars({ values, className, max = 60 }: { values: number[]; className?: string; max?: number }) {
   if (values.length === 0) return <span className={cn("text-caption text-ink-3", className)}>No data</span>;
   return (
@@ -97,7 +97,7 @@ export function FormBars({ values, className, max = 60 }: { values: number[]; cl
       {values.map((v, i) => (
         <span
           key={i}
-          className={cn("w-[5px] rounded-[2px]", v >= 25 ? "bg-accent" : "bg-border-strong")}
+          className={cn("w-[5px] rounded-[2px]", v >= 25 ? "bg-ink-2" : "bg-raised")}
           style={{ height: `${Math.max(20, Math.min(100, (Math.max(0, v) / max) * 100))}%` }}
         />
       ))}

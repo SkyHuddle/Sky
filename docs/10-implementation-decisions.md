@@ -64,12 +64,12 @@ What changed between the blueprint (docs 01–09) and the built MVP, and why. Ea
 UI decisions now follow `docs/DESIGN.md` (source of truth). See `docs/11-design-gap-analysis.md` for what changed to meet it.
 
 - **No photos, no logos, no likenesses.** Demo players are fictional and no image rights exist, so portraits and crests are generated (`src/components/ui/art.tsx`), deterministic per player and team.
-  - **Portraits** are neutral silhouettes: one slate tone for every figure, varying only in outline (hair, beard, headset). They don't imply what a real person looks like. Team colour appears only in the jersey trim, the chest crest and a soft halo inside the frame.
+  - **Portraits** (DESIGN.md v1.2) are flat illustrated busts: skin tone, hair, brows and accessories vary by seed, and the jersey wears the team's colours on a team-tinted tile. The first version used identical grey silhouettes to avoid implying any likeness; testing showed they read as placeholders and made the whole app look generated. Because demo players are fictional, an illustration implies no real person. Real players will use licensed headshots, never an illustration.
   - **Crests** are a shield, hex, round or kite shape in the team colour, with an emblem taken from the team's name (Ember Row gets a flame, Kestrel a wing). They are clearly not real organisations' marks.
   - **Event art** is a top-down radar of a fictional map with A and B sites: original, abstract, and native to CS2.
 - **Licensed images replace them in the same frames** (`PlayerAvatar`, `TeamMark`, the roster showcase), so layouts don't change.
 - **Flat fills only.** SVG gradient ids repeat when the same player appears twice on a page. If the first copy sits inside a hidden panel, Chrome stops painting the others.
-- **Type:** Geist throughout, with tabular figures for every number (DESIGN.md §3.2). A condensed display face was tried and removed.
+- **Type:** Geist for UI, with tabular figures for every number. A condensed sports face (Barlow Condensed) is used only for event titles, hero names and big numbers (DESIGN.md v1.2 §3.2). An earlier condensed face was dropped when it spread to ordinary content; v1.2 limits it to those three roles.
 
 ## Demonstration mode
 

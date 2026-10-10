@@ -21,7 +21,7 @@ export default async function TournamentFantasy({ params }: { params: Promise<{ 
   return (
     <div className="space-y-9">
       {major ? (
-        <section className="rounded-2xl border border-border bg-surface p-5">
+        <section className="rounded-2xl bg-surface p-5">
           <h2 className="text-headline text-ink">Two contests, two ways to play</h2>
           <div className="mt-3 grid gap-4 text-callout text-ink-2 md:grid-cols-2">
             <p>
@@ -47,7 +47,7 @@ export default async function TournamentFantasy({ params }: { params: Promise<{ 
           <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
             {leagues.map((l) => (
               <li key={l.id}>
-                <Link href={`/leagues/${l.id}`} className="flex items-center gap-3 rounded-2xl border border-border bg-surface px-4 py-3 hover:border-border-strong">
+                <Link href={`/leagues/${l.id}`} className="flex items-center gap-3 rounded-2xl bg-surface px-4 py-3 hover:border-border-strong">
                   <span className="inline-flex size-10 items-center justify-center rounded-xl bg-lavender-soft text-lavender">
                     <Icon name="trophy" size={18} />
                   </span>

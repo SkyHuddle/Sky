@@ -50,43 +50,70 @@ const HAIRSTYLES = [
   "M35.8 37 C35.6 25.6 42.4 21.6 50 21.6 C57.8 21.6 64.6 25.6 64.2 37 C61.6 30.6 56.6 27.8 50 27.8 C43.4 27.8 38.4 30.6 35.8 37 Z",
 ];
 
+const SKIN = ["#f3cfb1", "#e8b894", "#d39e74", "#b67d55", "#8d5a3a", "#64402a"] as const;
+const HAIR = ["#17120f", "#17120f", "#2b1d15", "#3d2a1d", "#5e3d24", "#8a5d34", "#c79d62", "#e2d6c2", "#a5432b"] as const;
+
 /**
- * A neutral player silhouette (DESIGN.md §2.6, §8: no fake likenesses). One slate tone for the
- * figure; only the outline varies (hair, beard, headset), so players are distinguishable without
- * implying what a real person looks like. Team colour appears in the jersey trim and chest crest.
- * Licensed headshots replace this inside the same frame.
+ * A flat illustrated bust for a fictional demo player: skin tone, hair, brows and accessories
+ * vary by seed; the jersey wears the team's colours. Illustrated, not photographic, so it never
+ * passes for a real person; licensed headshots replace it inside the same frame for real players.
+ * Flat fills only (gradient ids would collide when the same player appears twice on a page).
  */
 export function PortraitSvg({ seed, color, team, className, size }: { seed: string; color: string; team?: { id: string; name: string }; className?: string; size?: number }) {
   const rng = new Rng(hashString(`portrait:${seed}`));
   const style = rng.int(0, HAIRSTYLES.length - 1);
-  const headset = rng.chance(0.45);
-  const beard = rng.chance(0.25);
-  // Flat fills only: gradient ids would collide when the same player appears twice on a page.
-  const figure = "#6b7c93";
-  const figureShade = "#5a6a80";
-  const hair = "#46566c";
-  const jersey = "#2c3d54";
-  const trim = mix(color, "#ffffff", luminance(color) > 0.5 ? 0 : 0.15);
+  const skin = SKIN[rng.int(0, SKIN.length - 1)]!;
+  const hair = HAIR[rng.int(0, HAIR.length - 1)]!;
+  const headset = rng.chance(0.4);
+  const beard = rng.chance(0.22);
+  const stubble = !beard && rng.chance(0.25);
+  const glasses = rng.chance(0.16);
+  const skinShade = mix(skin, "#3a2418", 0.22);
+  const featureInk = mix(skin, "#140c08", 0.78);
+  // Jersey in the team colour, kept away from the extremes so it reads on the tile.
+  const lum = luminance(color);
+  const jersey = lum < 0.06 ? mix(color, "#ffffff", 0.18) : lum > 0.6 ? mix(color, "#000000", 0.12) : color;
+  const jerseyShade = mix(jersey, "#000000", 0.28);
+  const trim = luminance(jersey) > 0.42 ? "#111316" : "#f4f5f6";
 
   return (
     <svg viewBox="12 6 76 76" className={className} width={size} height={size} aria-hidden focusable="false">
-      {/* jersey */}
+      {/* jersey: team colour, darker side panels, contrast collar */}
       <path d="M4 100 C6 81 19 71.6 35.4 68.8 L44 67 L56 67 L64.6 68.8 C81 71.6 94 81 96 100 Z" fill={jersey} />
-      <path d="M14 82 C20 75.4 27.8 71.6 36 70 M86 82 C80 75.4 72.2 71.6 64 70" stroke={trim} strokeOpacity="0.7" strokeWidth="1.4" fill="none" />
-      {/* neck, ears, head */}
-      <path d="M43.2 52 L43.2 67.6 Q50 75 56.8 67.6 L56.8 52 Z" fill={figureShade} />
-      <path d="M42 67 L50 77.6 L58 67" fill="none" stroke={trim} strokeWidth="1.8" strokeLinejoin="round" />
-      <ellipse cx="35.4" cy="42.4" rx="2.7" ry="4.2" fill={figureShade} />
-      <ellipse cx="64.6" cy="42.4" rx="2.7" ry="4.2" fill={figureShade} />
-      <ellipse cx="50" cy="40" rx="14.6" ry="17.6" fill={figure} />
-      <path d="M58.6 27 C63.6 32 65.8 41 62.4 49.6 C61 53 58.6 55.4 56 56.6 C61.4 50.6 62.6 38.6 58.6 27 Z" fill="#000" opacity="0.12" />
-      {beard ? <path d="M36.6 44 C37.4 55.6 43.6 58.4 50 58.4 C56.4 58.4 62.6 55.6 63.4 44 C61.6 50.4 57 52.8 50 52.8 C43 52.8 38.4 50.4 36.6 44 Z" fill={hair} /> : null}
+      <path d="M4 100 C5.4 87 11 79.4 19.6 74.6 L24 100 Z M96 100 C94.6 87 89 79.4 80.4 74.6 L76 100 Z" fill={jerseyShade} />
+      {/* neck */}
+      <path d="M43.4 51 L43.4 67.4 Q50 74.6 56.6 67.4 L56.6 51 Z" fill={skinShade} />
+      <path d="M41.6 66.6 L50 76.4 L58.4 66.6" fill="none" stroke={trim} strokeWidth="2.2" strokeLinejoin="round" />
+      {/* ears and head */}
+      <ellipse cx="35.4" cy="42.6" rx="2.8" ry="4.3" fill={skinShade} />
+      <ellipse cx="64.6" cy="42.6" rx="2.8" ry="4.3" fill={skinShade} />
+      <ellipse cx="50" cy="40" rx="14.6" ry="17.6" fill={skin} />
+      <path d="M58.6 27 C63.6 32 65.8 41 62.4 49.6 C61 53 58.6 55.4 56 56.6 C61.4 50.6 62.6 38.6 58.6 27 Z" fill="#000" opacity="0.1" />
+      {/* face: brows, eyes, nose, mouth */}
+      <path d="M41.4 37.2 Q44.4 35.6 47.2 36.8 M52.8 36.8 Q55.6 35.6 58.6 37.2" stroke={mix(hair, "#000000", 0.2)} strokeWidth="1.5" strokeLinecap="round" fill="none" />
+      <ellipse cx="44.4" cy="41.6" rx="1.35" ry="1.6" fill={featureInk} />
+      <ellipse cx="55.6" cy="41.6" rx="1.35" ry="1.6" fill={featureInk} />
+      <path d="M50.6 42.6 Q52 47.4 49.4 48.2" stroke={skinShade} strokeWidth="1.3" strokeLinecap="round" fill="none" />
+      <path d="M46.4 51.6 Q50 53.4 53.6 51.6" stroke={mix(skin, "#5a2a1e", 0.45)} strokeWidth="1.3" strokeLinecap="round" fill="none" />
+      {stubble ? <path d="M37.4 45 C38.6 55.4 44 58 50 58 C56 58 61.4 55.4 62.6 45 C60.8 52 56.4 55.4 50 55.4 C43.6 55.4 39.2 52 37.4 45 Z" fill={hair} opacity="0.28" /> : null}
+      {beard ? (
+        <path d="M36.6 44 C37.4 55.6 43.6 58.6 50 58.6 C56.4 58.6 62.6 55.6 63.4 44 C61.8 49.4 58.6 51.2 55.4 50.6 C53.4 50.2 51.6 50.4 50 51 C48.4 50.4 46.6 50.2 44.6 50.6 C41.4 51.2 38.2 49.4 36.6 44 Z" fill={hair} />
+      ) : null}
       <path d={HAIRSTYLES[style]} fill={hair} />
+      {glasses ? (
+        <g fill="none" stroke="#14161a" strokeWidth="1.3">
+          <rect x="39.6" y="38.6" width="9" height="6.4" rx="2.4" />
+          <rect x="51.4" y="38.6" width="9" height="6.4" rx="2.4" />
+          <path d="M48.6 41.2 H51.4" />
+        </g>
+      ) : null}
       {headset ? (
         <g>
-          <path d="M33.2 41 C32.2 17.6 67.8 17.6 66.8 41" stroke="#121a26" strokeWidth="3.6" fill="none" strokeLinecap="round" />
-          <rect x="29.6" y="34.8" width="7.6" height="13" rx="3.6" fill="#121a26" />
-          <rect x="62.8" y="34.8" width="7.6" height="13" rx="3.6" fill="#121a26" />
+          <path d="M33.2 41 C32.2 17.6 67.8 17.6 66.8 41" stroke="#16181c" strokeWidth="3.4" fill="none" strokeLinecap="round" />
+          <rect x="29.6" y="34.6" width="7.8" height="13.2" rx="3.6" fill="#16181c" />
+          <rect x="62.6" y="34.6" width="7.8" height="13.2" rx="3.6" fill="#16181c" />
+          <rect x="31.2" y="37.6" width="2" height="7.2" rx="1" fill={jersey} />
+          <path d="M33.6 46.6 C34.6 52.4 38.4 55 42.6 55.4" stroke="#16181c" strokeWidth="1.4" fill="none" strokeLinecap="round" />
         </g>
       ) : null}
       {team ? (

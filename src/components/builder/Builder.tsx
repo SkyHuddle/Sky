@@ -211,7 +211,7 @@ export function Builder({ data, nowIso, signedIn }: { data: BuilderData; nowIso:
     ) : null;
 
   const list = (
-    <ul className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface" aria-label="Player pool">
+    <ul className="-mx-1 divide-y divide-border" aria-label="Player pool">
       {b.visible.map((p) => (
         <PlayerRow
           key={p.id}
@@ -318,7 +318,7 @@ export function Builder({ data, nowIso, signedIn }: { data: BuilderData; nowIso:
 
         {/* Desktop: sticky lineup */}
         <aside className="hidden lg:block" aria-label="Your roster">
-          <div className="sticky top-20 rounded-[20px] border border-border bg-surface p-5">
+          <div className="sticky top-20 rounded-2xl bg-surface p-5">
             <div className="mb-4 flex items-center justify-between">
               <h2 className="text-section text-ink">Your roster</h2>
               {b.playerIds.length ? (

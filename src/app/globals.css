@@ -7,41 +7,45 @@
  * competitive/special moments (captain, rank, leagues). Team colours provide personality.
  */
 @theme {
-  /* DESIGN.md §3.1 tokens. Tailwind names map onto the spec: surface = surface-1,
-     elevated = surface-2, raised = surface-3, ink = text-1, accent = mint, lavender = violet. */
-  --color-bg: #0a0f18;
-  --color-surface: #121b28;
-  --color-elevated: #192536;
-  --color-raised: #223044;
-  --color-border: #2a394c;
-  --color-border-strong: #3a4c63;
-  --color-ink: #f3f6fa;
-  --color-ink-2: #a2b1c3;
-  --color-ink-3: #7c8fa4; /* spec #788BA0, nudged to pass 4.5:1 on surface-2 (DESIGN.md §3.1 "only at accessible contrast") */
-  --color-accent: #58e3cd;
-  --color-accent-strong: #7cebd9;
-  --color-accent-ink: #04241f;
-  --color-accent-soft: #163a39;
-  --color-lavender: #a99aff;
-  --color-lavender-ink: #1b1240;
-  --color-lavender-soft: rgb(169 154 255 / 0.14);
-  --color-positive: #58e3cd;
-  --color-negative: #ff7881;
+  /* DESIGN.md v1.2 §3.1. A near-neutral dark (a trace of blue, no navy), a short surface ladder
+     separated by lightness rather than borders, one accent (mint) for actions and live state.
+     "lavender" is retired as a colour: it now maps to ink emphasis (selected/captain inverts to ink). */
+  --color-bg: #0b0c0f;
+  --color-surface: #141619;
+  --color-elevated: #1b1e22;
+  --color-raised: #24282d;
+  --color-border: rgb(255 255 255 / 0.07);
+  --color-border-strong: rgb(255 255 255 / 0.14);
+  --color-ink: #f4f5f6;
+  --color-ink-2: #a5aab2;
+  --color-ink-3: #868c95;
+  --color-accent: #4fe0c4;
+  --color-accent-strong: #79ead4;
+  --color-accent-ink: #03221c;
+  --color-accent-soft: rgb(79 224 196 / 0.12);
+  --color-lavender: #f4f5f6;
+  --color-lavender-ink: #0b0c0f;
+  --color-lavender-soft: rgb(255 255 255 / 0.08);
+  --color-positive: #4fe0c4;
+  --color-negative: #ff6b76;
   --color-negative-ink: #2a0a0e;
-  --color-negative-soft: rgb(255 120 129 / 0.12);
-  --color-warning: #f3ba68;
-  --color-warning-soft: rgb(243 186 104 / 0.12);
-  --color-live: #ff7881;
-  --color-scrim: rgb(10 15 24 / 0.72);
+  --color-negative-soft: rgb(255 107 118 / 0.12);
+  --color-warning: #f5b85c;
+  --color-warning-soft: rgb(245 184 92 / 0.12);
+  --color-live: #ff4d5e;
+  --color-scrim: rgb(5 6 8 / 0.72);
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  /* Sports display face: event titles, hero names and big numbers only (DESIGN.md v1.2 §3.2). */
+  --font-display: var(--font-barlow-condensed), var(--font-geist-sans), ui-sans-serif, sans-serif;
 
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 20px;
-  --radius-2xl: 24px;
+  /* Radius by role: 6–8 utility, 12 cards and rows, 16 the one hero container, pill for actions. */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 12px;
+  --radius-2xl: 14px;
 
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
@@ -89,7 +93,7 @@
     background: var(--color-bg);
   }
   ::selection {
-    background: rgb(88 227 205 / 0.3);
+    background: rgb(79 224 196 / 0.3);
   }
   :focus-visible {
     outline: 2px solid var(--color-accent);
@@ -109,11 +113,14 @@
     font-variant-numeric: tabular-nums;
   }
   /* DESIGN.md §3.2 type scale (mobile). Nothing below 12px. */
+  /* Display: the condensed sports face, heavy and tight. Titles of events and heroes only. */
   .text-display {
-    font-size: 1.75rem;
-    line-height: 2.125rem;
-    font-weight: 680;
-    letter-spacing: -0.022em;
+    font-family: var(--font-display);
+    font-size: 2.25rem;
+    line-height: 2.25rem;
+    font-weight: 700;
+    letter-spacing: -0.005em;
+    text-transform: uppercase;
   }
   .text-title {
     font-size: 1.5rem;
@@ -149,20 +156,25 @@
     font-size: 0.75rem;
     line-height: 1rem;
   }
+  /* Small label above a title: sentence case, quiet. No shouty tracked caps. */
   .text-eyebrow {
-    font-size: 0.75rem;
-    line-height: 1rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
+    font-size: 0.8125rem;
+    line-height: 1.125rem;
+    font-weight: 500;
+    letter-spacing: 0;
   }
-  /* Big score: 34/38, tabular. */
+  /* Big score: the display face, tabular. */
   .text-score {
-    font-size: 2.125rem;
-    line-height: 2.375rem;
+    font-family: var(--font-display);
+    font-size: 2.75rem;
+    line-height: 2.75rem;
     font-weight: 700;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.01em;
     font-variant-numeric: tabular-nums;
+  }
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.005em;
   }
   /* Numbers in rows and tiles: same family, tabular, a touch heavier. */
   .num {
@@ -183,7 +195,7 @@
     padding-bottom: max(env(safe-area-inset-bottom), 0px);
   }
   .glass {
-    background: rgb(10 15 24 / 0.94);
+    background: rgb(11 12 15 / 0.86);
     backdrop-filter: saturate(160%) blur(18px);
     -webkit-backdrop-filter: saturate(160%) blur(18px);
   }

@@ -32,7 +32,7 @@ export default async function LeaguesPage({ searchParams }: { searchParams: Prom
         </ButtonLink>
       </div>
 
-      <section aria-labelledby="join-h" className="rounded-2xl border border-border bg-surface p-4">
+      <section aria-labelledby="join-h" className="rounded-2xl bg-surface p-4">
         <h2 id="join-h" className="mb-2 text-headline text-ink">
           Have an invite?
         </h2>
@@ -49,7 +49,7 @@ export default async function LeaguesPage({ searchParams }: { searchParams: Prom
           <ul className="space-y-2">
             {mine.map((l) => (
               <li key={l.id}>
-                <Link href={`/leagues/${l.id}`} className="flex items-center gap-3 rounded-2xl border border-border bg-surface px-4 py-3.5 hover:border-border-strong">
+                <Link href={`/leagues/${l.id}`} className="flex items-center gap-3 rounded-2xl bg-surface px-4 py-3.5 hover:border-border-strong">
                   <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl bg-lavender-soft text-lavender">
                     <Icon name="trophy" size={20} />
                   </span>
@@ -82,7 +82,7 @@ export default async function LeaguesPage({ searchParams }: { searchParams: Prom
               const c = activeContests.find((x) => x.id === l.contestId);
               return (
                 <li key={l.id}>
-                  <Link href={`/leagues/${l.id}`} className="block rounded-2xl border border-border bg-surface px-4 py-3.5 hover:border-border-strong">
+                  <Link href={`/leagues/${l.id}`} className="block rounded-2xl bg-surface px-4 py-3.5 hover:border-border-strong">
                     <div className="truncate text-callout font-semibold text-ink">{l.name}</div>
                     <div className="truncate text-caption text-ink-3">
                       {c?.t.shortName} · {c?.name} · {l.members} members

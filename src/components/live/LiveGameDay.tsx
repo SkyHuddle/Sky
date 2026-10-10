@@ -58,7 +58,7 @@ export function LiveGameDay({ initial, nowIso }: { initial: LivePayload; nowIso:
       <div className="mt-5 grid gap-6 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-8">
         <div className="min-w-0 space-y-6">
           {/* Your score: the one dominant number on the screen */}
-          <section aria-labelledby="live-score" className="rounded-[20px] border border-border bg-surface p-5">
+          <section aria-labelledby="live-score" className="rounded-2xl bg-surface p-5">
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <div id="live-score" className="text-footnote text-ink-2">
@@ -107,7 +107,7 @@ export function LiveGameDay({ initial, nowIso }: { initial: LivePayload; nowIso:
           </section>
 
           {d.openWindow && d.isOwner ? (
-            <div className="flex flex-col gap-3 rounded-2xl border border-accent/30 bg-accent-soft p-4 sm:flex-row sm:items-center">
+            <div className="flex flex-col gap-3 rounded-2xl bg-accent-soft p-4 sm:flex-row sm:items-center">
               <div className="min-w-0 flex-1">
                 <p className="text-headline text-ink">{d.openWindow.stageName} transfers are open</p>
                 <p className="text-footnote text-ink-2">
@@ -137,7 +137,7 @@ export function LiveGameDay({ initial, nowIso }: { initial: LivePayload; nowIso:
                   const b = d.teams[m.teamBId];
                   return (
                     <li key={m.id}>
-                      <Link href={`/live/match/${m.id}`} className="flex min-h-[72px] items-center gap-3 rounded-2xl border border-border bg-surface px-4 py-3 transition-colors hover:bg-elevated">
+                      <Link href={`/live/match/${m.id}`} className="flex min-h-[72px] items-center gap-3 rounded-2xl bg-surface px-4 py-3 transition-colors hover:bg-elevated">
                         <span className="min-w-0 flex-1">
                           <span className="flex items-center gap-2 text-callout font-semibold text-ink">
                             <TeamMark team={a} size={20} /> {a?.acronym} <span className="num text-ink-2">{m.mapsA}–{m.mapsB}</span> {b?.acronym} <TeamMark team={b} size={20} />
@@ -210,7 +210,7 @@ function PlayerGroup({ title, players, d, empty }: { title: string; players: Liv
       {players.length === 0 ? (
         empty ?? null
       ) : (
-        <ul className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface">
+        <ul className="divide-y divide-border overflow-hidden rounded-2xl bg-surface">
           {players.map((p) => (
             <li key={p.id}>
               <PlayerLine p={p} d={d} />
@@ -308,7 +308,7 @@ function StatusText({ p, teams }: { p: LivePlayer; teams: Record<string, TeamLit
 function NoLive({ d, nowIso }: { d: LivePayload; nowIso: string }) {
   const next = d.players.map((p) => p.next?.at).filter((x): x is string => !!x).sort()[0];
   return (
-    <div className="rounded-2xl border border-dashed border-border-strong p-5">
+    <div className="rounded-2xl bg-surface p-5">
       <p className="text-headline text-ink">None of your players are on the server right now</p>
       <p className="mt-1 text-callout text-ink-2">
         {next ? (
@@ -391,7 +391,7 @@ function RivalWatch({ d }: { d: LivePayload }) {
       <h2 id="rivals" className="mb-3 text-section text-ink">
         Rival Watch
       </h2>
-      <ul className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface">
+      <ul className="divide-y divide-border overflow-hidden rounded-2xl bg-surface">
         {above ? row(above, "above") : null}
         <li className="flex min-h-[52px] items-center gap-3 bg-accent-soft px-4 py-2 text-callout">
           <span className="num w-10 text-ink">{d.entry.rank ? ordinal(d.entry.rank) : "—"}</span>
@@ -413,9 +413,9 @@ function Activity({ feed }: { feed: FeedItem[] }) {
         Activity
       </h2>
       {feed.length === 0 ? (
-        <p className="rounded-2xl border border-dashed border-border-strong p-4 text-callout text-ink-2">Scoring updates for your players appear here as maps finish.</p>
+        <p className="rounded-2xl bg-surface p-4 text-callout text-ink-2">Scoring updates for your players appear here as maps finish.</p>
       ) : (
-        <ol className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface">
+        <ol className="divide-y divide-border overflow-hidden rounded-2xl bg-surface">
           {feed.slice(0, 12).map((f) => (
             <li key={f.id} className="flex items-start gap-3 px-4 py-3">
               <span

@@ -48,12 +48,12 @@ export function LineupShowcase({
     const color = p.team?.color ?? "#788ba0";
     const body = (
       <>
-        <span className="absolute inset-0" style={{ background: `radial-gradient(70% 55% at 50% 38%, ${rgba(color, big ? 0.34 : 0.26)} 0%, transparent 72%)` }} aria-hidden />
+        <span className="absolute inset-0" style={{ background: rgba(color, big ? 0.3 : 0.22) }} aria-hidden />
         <PortraitSvg
           seed={p.nickname}
           color={color}
           team={p.team}
-          className={cn("absolute left-1/2 max-w-none -translate-x-1/2", big ? "bottom-[18%] h-[68%] w-auto" : "top-[5%] h-auto w-[86%]", p.eliminated && "opacity-45 grayscale")}
+          className={cn("absolute left-1/2 max-w-none -translate-x-1/2", big ? "bottom-[18%] h-[68%] w-auto" : "top-[3%] h-auto w-[70%]", p.eliminated && "opacity-45 grayscale")}
         />
         <span className={cn("absolute inset-x-0 bottom-0 bg-[linear-gradient(0deg,var(--color-elevated)_45%,transparent)]", big ? "h-[42%]" : "h-[50%]")} aria-hidden />
         {isCaptain ? (
@@ -63,7 +63,7 @@ export function LineupShowcase({
         ) : null}
         {p.eliminated ? <span className="absolute top-2.5 right-2.5 rounded-full bg-negative-soft px-2 py-0.5 text-caption font-semibold text-negative">Out</span> : null}
         <span className={cn("absolute inset-x-0 bottom-0 text-left", big ? "p-3.5" : "p-2.5")}>
-          <span className={cn("block truncate font-semibold tracking-tight text-ink", big ? "text-[1.25rem] leading-6" : "text-callout sm:text-headline")}>{p.nickname}</span>
+          <span className={cn("font-display block truncate font-bold uppercase text-ink", big ? "text-[1.75rem] leading-7" : "text-[1.25rem] leading-6")}>{p.nickname}</span>
           <span className="mt-0.5 flex items-center gap-1.5 text-caption text-ink-2">
             <TeamMark team={p.team} size={big ? 16 : 14} />
             <span className="truncate">{big ? p.team?.name : p.team?.acronym}</span>
@@ -91,7 +91,7 @@ export function LineupShowcase({
   };
 
   return (
-    <section aria-label="Your lineup" className="overflow-hidden rounded-[22px] border border-border bg-surface">
+    <section aria-label="Your lineup" className="overflow-hidden rounded-2xl bg-surface">
       {header ? <div className="px-4 pt-4 sm:px-5 sm:pt-5">{header}</div> : null}
       <LayoutGroup>
         <div className="grid grid-cols-[1fr_1.3fr_1fr] gap-2 p-3 sm:gap-3 sm:p-5">

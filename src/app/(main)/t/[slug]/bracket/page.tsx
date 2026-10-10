@@ -28,7 +28,7 @@ export default async function TournamentBracket({ params }: { params: Promise<{ 
             <section key={c.id} aria-label={c.title} className="flex flex-col">
               <h2 className="mb-3 text-eyebrow text-ink-3">{c.title}</h2>
               <div className="flex flex-1 flex-col justify-around gap-3">
-                {list.length ? list.map((m) => <MatchRow key={m.id} m={m} teams={hub.teams} />) : <div className="rounded-xl border border-dashed border-border-strong p-6 text-center text-footnote text-ink-3">To be decided</div>}
+                {list.length ? list.map((m) => <MatchRow key={m.id} m={m} teams={hub.teams} />) : <div className="rounded-xl bg-surface p-6 text-center text-footnote text-ink-3">To be decided</div>}
               </div>
             </section>
           );

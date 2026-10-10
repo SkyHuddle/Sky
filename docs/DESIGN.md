@@ -1,6 +1,6 @@
 # Esports Fantasy — Product Design System & UX Specification
 
-**Status:** Working design source of truth · **Version:** 1.1 (see [changelog](#changelog)) · **Primary platform:** Mobile web / iPhone first · **Launch esport:** CS2
+**Status:** Working design source of truth · **Version:** 1.2 (see [changelog](#changelog)) · **Primary platform:** Mobile web / iPhone first · **Launch esport:** CS2
 
 > **North star:** *Sleeper esports personality, refined with the restraint, clarity, and precision of a top-tier iOS app.* Player-first. Competition-first. Calm surfaces, vivid content, exquisite interaction details. The app must feel intentionally designed rather than generated from a generic dashboard template.
 
@@ -58,19 +58,21 @@ These are **starting tokens**. Adjust only as part of a deliberate, documented s
 
 | Purpose | Token | Value | Guidance |
 |---|---|---|---|
-| Canvas | `--bg` | `#0A0F18` | Full app background, never pure black |
-| Base surface | `--surface-1` | `#121B28` | Default cards, panels |
-| Raised surface | `--surface-2` | `#192536` | Sheet headers, focused sections |
-| Subtle surface | `--surface-3` | `#223044` | Hover / selected-neutral surfaces |
-| Border | `--border` | `#2A394C` | Usually 1px with low prominence |
-| Primary text | `--text-1` | `#F3F6FA` | Titles, scores, names |
-| Secondary text | `--text-2` | `#A2B1C3` | Supporting copy |
-| Tertiary text | `--text-3` | `#7C8FA4` | Less prominent metadata, only at accessible contrast. *v1.1: nudged from `#788BA0`, which measured 4.3:1 on `--surface-2` and failed axe; `#7C8FA4` passes 4.5:1 on every surface.* |
-| Primary accent | `--mint` | `#58E3CD` | Select player, primary CTA, positive score |
-| Mint wash | `--mint-wash` | `#163A39` | Mint-highlighted backgrounds; no large neon panels |
-| Competitive accent | `--violet` | `#A99AFF` | Rank/trophies, limited special moments |
-| Negative/error | `--danger` | `#FF7881` | Invalid state, losses, fail |
-| Pending/warning | `--amber` | `#F3BA68` | Lock windows, action required |
+| Canvas | `--bg` | `#0B0C0F` | Near-neutral dark with a trace of blue; never navy, never pure black |
+| Base surface | `--surface-1` | `#141619` | Cards, list containers |
+| Raised surface | `--surface-2` | `#1B1E22` | Selected rows, sheet headers, inputs |
+| Subtle surface | `--surface-3` | `#24282D` | Hover, empty slots, portrait tiles |
+| Hairline | `--border` | `rgba(255,255,255,0.07)` | Row dividers only. Containers have **no** border |
+| Primary text | `--text-1` | `#F4F5F6` | Titles, scores, names; also the "selected/captain" ink |
+| Secondary text | `--text-2` | `#A5AAB2` | Supporting copy |
+| Tertiary text | `--text-3` | `#868C95` | Metadata (≥ 4.5:1 on every surface) |
+| Accent | `--mint` | `#4FE0C4` | **Only** primary actions, live/active state, positive deltas, focus |
+| Mint wash | `--mint-wash` | `rgba(79,224,196,0.12)` | The "you" row, open-window banner |
+| Negative/error | `--danger` | `#FF6B76` | Invalid, eliminated, losses |
+| Pending/warning | `--amber` | `#F5B85C` | Lock countdowns, action required, provisional |
+| Live | `--live` | `#FF4D5E` | The live dot only |
+
+**v1.2:** the violet second accent is retired. Captain, selected chips and rank emphasis invert to ink (white fill, dark text) instead. Colour comes from content: team colours on portrait tiles, jerseys and crests.
 
 Use CSS variables / a Tailwind theme. Never hardcode different near-equivalent mint, navy, or purple shades across components.
 
@@ -89,6 +91,8 @@ Use **Inter**, **Geist**, or a similar carefully rendered, highly legible modern
 | Small label / badge | 12 / 16 | 500–600 |
 | Big score | 30–36 / 38 | 700, tabular |
 
+**Display face (v1.2).** A condensed sports face (Barlow Condensed 600–700, uppercase) is used for exactly three things: event titles, a player's name in a hero or the lineup showcase, and big numbers (fantasy points, rank). Everything else is Geist. A binary weight hierarchy in UI text: 600–700 for what you act on, 400 for everything else.
+
 **Avoid text below 12px.** Important player salaries and fantasy metrics should be at least 14px. Do not use narrow, condensed display fonts for ordinary content. Protect names and values from truncation; only truncate metadata where acceptable.
 
 ### 3.3 Geometry and spacing
@@ -98,8 +102,8 @@ Use **Inter**, **Geist**, or a similar carefully rendered, highly legible modern
 - Standard vertical section spacing: **24px**; related card row spacing: **8–12px**.
 - Standard interactive control height: **44–48px**; primary CTA: **50–54px**.
 - Compact rows: **68–80px**, never a 40px press target.
-- Card radius: **14–16px**; hero panels: **18–20px**; chips: **10–12px** or full pill.
-- Dividers: 1px dark strokes. Avoid double-border + shadow + glow on a single card.
+- Radius by role (v1.2): **6–8px** utility, **12–14px** cards and portrait tiles, **16px** for the one hero container, **full pill** for actions, chips and avatars. Nothing in between.
+- Containers have no border (v1.2): separate by a surface step or by space. 1px hairlines only between rows. Shadow only on things that float (sheets, toasts, the sticky "you" row).
 - Navigation bar: approximately **64–72px content height** + bottom safe area.
 - iOS safe areas: `env(safe-area-inset-top)` and `env(safe-area-inset-bottom)` where applicable.
 - Desktop content max-width: **1360px** with intentional gutters; do not stretch data panels indefinitely.
@@ -108,8 +112,8 @@ Use **Inter**, **Geist**, or a similar carefully rendered, highly legible modern
 
 - No full-page gradients by default. Use flat charcoal/navy surfaces and image-driven depth.
 - One restrained spotlight behind **hero imagery** or selected player, not everywhere.
-- Player portraits: consistent cutout/crop, neutral dark shadow, optional restrained team-tinted halo **inside the portrait region only**.
-- Team colors: tiny logo/stripe/thumbnail accents, not the application-wide primary color.
+- Player portraits (v1.2): demo players are fictional, so they get flat illustrated busts (varied skin tone, hair, accessories) wearing the team's colours on a flat team-tinted tile. Real players get licensed headshots in the same frame; an illustration never stands in for a real person.
+- Team colors: portrait tiles, jerseys, crests and the crest watermark in a player hero. Never the app's UI accent.
 - Prefer actual licensed event imagery or an original abstract event graphic. Do not use random Counter-Strike screenshots as universal art.
 - Gradients only when they clarify hierarchy (e.g., bottom fade for headline over a hero image).
 - No excessive blurs, fluorescent borders, fake glassmorphism, heavy beveled cards, or mysterious icons.
@@ -120,6 +124,7 @@ Use **Inter**, **Geist**, or a similar carefully rendered, highly legible modern
 - Clear direct labels: **Build Team**, **View My Team**, **View Standings**, **Review Lineup**, **Submit Lineup**.
 - Use competition states exactly: **Open**, **Locks in 2h**, **Map in progress**, **Scores update after each map**, **Final**, **Transfers open**.
 - No fake “LIVE” badge for fantasy points that only refresh after each completed map. A match can be live while the fantasy score remains pending.
+- States are coloured text with an icon or dot, not pills (v1.2). At most one small badge style (4px radius) for tags such as Demo data. Labels above titles are sentence case, not tracked caps.
 - Currency styling: use compact `$245K` on player rows, but full `$245,000` on details; maintain one semantic salary unit.
 
 ---
@@ -433,5 +438,6 @@ A brand-new esports fan should know what to do within seconds. A frequent fantas
 
 | Version | Change |
 |---|---|
+| 1.2 | De-templating pass after "looks too AI" feedback. Neutral canvas and three-step surface ladder; borders removed from containers; one accent (violet retired); condensed display face for titles, hero names and scores; illustrated team-colour portraits; states as text; sentence-case labels; tighter radii. Techniques drawn from public DESIGN.md write-ups of Spotify, PlayStation, Nike, Revolut, The Verge, Apple, Linear and Raycast ([awesome-design-md](https://github.com/VoltAgent/awesome-design-md)), not copied from any product. |
 | 1.1 | Five-tab navigation with **Live**. New screen specs: Live GameDay (§5.9), Match Center (§5.10), Results recap and share card (§5.11), Transfer management (§5.12), Stage cups (§5.13). Tertiary text token `#7C8FA4` (contrast). Live and results QA checklist. Rules referenced here are defined in [GAMEPLAY.md](GAMEPLAY.md); live behaviour is defined in [LIVE_DATA.md](LIVE_DATA.md). |
 | 1.0 | Initial design package. |

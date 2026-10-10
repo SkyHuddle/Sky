@@ -16,7 +16,7 @@ export default async function TournamentLayout({ children, params }: { children:
   const accent = TIER_ACCENT[t.tier] ?? "#a78bfa";
   return (
     <div>
-      <header className="relative -mx-4 -mt-5 overflow-hidden border-b border-border px-4 pt-6 pb-5 lg:mx-0 lg:mt-0 lg:rounded-[24px] lg:border lg:px-7 lg:pt-7">
+      <header className="relative -mx-4 -mt-5 overflow-hidden border-b border-border px-4 pt-6 pb-5 lg:mx-0 lg:mt-0 lg:rounded-2xl lg:border lg:px-7 lg:pt-7">
         <EventArt seed={t.slug} accent={accent} banner className="pointer-events-none absolute inset-0" />
         <div className="relative">
           <div className="flex flex-wrap items-center gap-2">

@@ -75,5 +75,5 @@ export function EventArt({ seed, accent = "#a78bfa", className, radar = true, ba
   );
 }
 
-export const TIER_ACCENT: Record<string, string> = { major: "#a99aff", tier1: "#58e3cd", other: "#788ba0" };
+export const TIER_ACCENT: Record<string, string> = { major: "#4fe0c4", tier1: "#a5aab2", other: "#788ba0" };
 export const TIER_LABEL: Record<string, string> = { major: "Major", tier1: "Tier 1", other: "Event" };

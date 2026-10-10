@@ -4,7 +4,7 @@ import { useState } from "react";
 import { cn } from "@/lib/cn";
 import { moneyFull, pts } from "@/lib/format";
 import type { PlayerDetail } from "@/server/queries/contest";
-import { PortraitSvg } from "../ui/art";
+import { CrestSvg, PortraitSvg } from "../ui/art";
 import { Icon } from "../ui/Icon";
 import { Flag, TeamMark, rgba } from "../ui/identity";
 import { LocalTime } from "../ui/status";
@@ -65,11 +65,16 @@ function Hero({ d, compact }: { d: PlayerDetail; compact?: boolean }) {
   const color = d.team?.color ?? "#788ba0";
   const next = d.upcoming[0];
   return (
-    <div className={cn("relative overflow-hidden rounded-[20px] border border-border bg-elevated", compact ? "h-[248px]" : "h-[280px] lg:h-[400px]")}>
-      {/* the one spotlight: a team-tinted halo behind the portrait only */}
-      <div className="absolute inset-0" style={{ background: `radial-gradient(48% 62% at 72% 46%, ${rgba(color, 0.28)} 0%, transparent 70%)` }} aria-hidden />
-      <PortraitSvg seed={d.player.nickname} color={color} team={d.team ?? undefined} className="pointer-events-none absolute right-[-4%] bottom-0 h-[92%] w-auto" />
-      <div className="absolute inset-x-0 bottom-0 h-2/3 bg-[linear-gradient(0deg,var(--color-elevated)_8%,transparent)]" aria-hidden />
+    <div className={cn("relative overflow-hidden rounded-2xl bg-elevated", compact ? "h-[248px]" : "h-[280px] lg:h-[400px]")}>
+      {/* Colour from the content: a flat team tint and the crest as a large watermark. */}
+      <div className="absolute inset-0" style={{ background: rgba(color, 0.2) }} aria-hidden />
+      {d.team ? (
+        <span className="pointer-events-none absolute -top-6 -right-10 size-[300px] opacity-[0.1] lg:size-[420px]" aria-hidden>
+          <CrestSvg id={d.team.id} name={d.team.name} color={color} className="size-full" />
+        </span>
+      ) : null}
+      <PortraitSvg seed={d.player.nickname} color={color} team={d.team ?? undefined} className="pointer-events-none absolute right-[-6%] bottom-0 h-[84%] w-auto" />
+      <div className="absolute inset-0 bg-[linear-gradient(80deg,rgb(11_12_15/0.82)_8%,rgb(11_12_15/0.35)_45%,transparent_70%)]" aria-hidden />
       <div className="absolute inset-x-5 bottom-5">
         <div className="flex items-center gap-2">
           <h2 className="truncate text-display text-ink">{d.player.nickname}</h2>
@@ -103,7 +108,7 @@ function Hero({ d, compact }: { d: PlayerDetail; compact?: boolean }) {
 /** The two numbers that decide a pick: full salary and fantasy average. */
 function KeyNumbers({ d }: { d: PlayerDetail }) {
   return (
-    <dl className="mt-3 grid grid-cols-2 divide-x divide-border rounded-2xl border border-border bg-surface">
+    <dl className="mt-3 grid grid-cols-2 divide-x divide-border rounded-2xl bg-surface">
       <div className="px-4 py-3">
         <dt className="text-caption text-ink-3">Salary</dt>
         <dd className="num text-[1.375rem] leading-7 text-ink">{d.price !== null ? moneyFull(d.price) : "—"}</dd>
@@ -167,7 +172,7 @@ function FormChart({ d }: { d: PlayerDetail }) {
           return (
             <div key={m.mapId} className="flex flex-1 flex-col items-center justify-end gap-1.5">
               <span className="num text-footnote text-ink">{pts(m.mapScore, 0)}</span>
-              <span className={cn("w-full max-w-[44px] rounded-[8px]", m.mapScore >= 25 ? "bg-accent" : "bg-border-strong")} style={{ height: h }} title={`${m.mapName} vs ${d.teams[m.opponentId]?.name ?? ""}`} />
+              <span className={cn("w-full max-w-[28px] rounded-[3px]", m.mapScore >= 25 ? "bg-ink-2" : "bg-raised")} style={{ height: h }} title={`${m.mapName} vs ${d.teams[m.opponentId]?.name ?? ""}`} />
             </div>
           );
         })}
@@ -181,7 +186,7 @@ function FormChart({ d }: { d: PlayerDetail }) {
         ))}
       </div>
       <p className="mt-3 flex items-center gap-1.5 text-caption text-ink-3">
-        <span className="inline-block size-2 rounded-sm bg-accent" aria-hidden /> 25+ points
+        <span className="inline-block size-2 rounded-[2px] bg-ink-2" aria-hidden /> 25+ points
       </p>
     </figure>
   );

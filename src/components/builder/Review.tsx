@@ -7,7 +7,6 @@ import type { BuilderData } from "@/server/queries/contest";
 import { Button, ButtonLink } from "../ui/Button";
 import { Icon } from "../ui/Icon";
 import { Notice } from "../ui/primitives";
-import { Countdown } from "../ui/status";
 import { LineupShowcase, type ShowcasePlayer } from "./Showcase";
 import type { BuilderState } from "./useBuilder";
 
@@ -23,7 +22,6 @@ export interface SubmitError {
 export function Review({
   data,
   b,
-  nowIso,
   signedIn,
   submitting,
   error,
@@ -32,7 +30,7 @@ export function Review({
 }: {
   data: BuilderData;
   b: BuilderState;
-  nowIso: string;
+  nowIso?: string;
   signedIn: boolean;
   submitting: boolean;
   error: SubmitError | null;
@@ -65,16 +63,11 @@ export function Review({
       <Button variant="ghost" icon="chevronLeft" onClick={onBack} className="-ml-3">
         Edit players
       </Button>
-      <h1 className="mt-2 text-title text-ink">Your team</h1>
+      <h1 className="mt-2 text-display text-ink">Your team</h1>
       <p className="mt-1 text-callout text-ink-2">
         {hasCaptain ? (
           <>
-            Tap another player to change your captain.{" "}
-            {data.window ? (
-              <>
-                You can edit until lock in <Countdown to={data.window.lockAt} now={nowIso} className="num text-ink" />.
-              </>
-            ) : null}
+            Tap a player to make them captain.
           </>
         ) : (
           <>
@@ -117,7 +110,7 @@ export function Review({
       </div>
 
       <div className="mt-6 grid gap-4 lg:grid-cols-[1fr_340px]">
-        <section aria-labelledby="checks" className="rounded-2xl border border-border bg-surface p-4">
+        <section aria-labelledby="checks" className="rounded-2xl bg-surface p-4">
           <h2 id="checks" className="text-headline text-ink">
             Lineup rules
           </h2>
@@ -136,7 +129,7 @@ export function Review({
           </ul>
         </section>
 
-        <section aria-labelledby="autopilot" className="rounded-2xl border border-border bg-surface p-4">
+        <section aria-labelledby="autopilot" className="rounded-2xl bg-surface p-4">
           <div className="flex items-start gap-3">
             <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-xl bg-lavender-soft text-lavender">
               <Icon name="autopilot" size={18} />

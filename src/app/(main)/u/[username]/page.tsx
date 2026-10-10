@@ -25,7 +25,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ userna
   const st = p.stats;
   return (
     <div className="mx-auto max-w-3xl space-y-8">
-      <section className="relative overflow-hidden rounded-[24px] border border-border bg-surface p-5 sm:p-6">
+      <section className="relative overflow-hidden rounded-2xl bg-surface p-5 sm:p-6">
         <div className="pointer-events-none absolute inset-0 opacity-60" style={{ background: `radial-gradient(90% 120% at 0% 0%, hsl(${p.user.avatarHue} 70% 50% / 0.18), transparent 60%)` }} aria-hidden />
         <div className="relative flex items-center gap-4">
           <UserAvatar username={p.user.username} hue={p.user.avatarHue} size={76} />
@@ -65,7 +65,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ userna
         )}
       </section>
 
-      <section aria-labelledby="ach-h" className="rounded-2xl border border-border bg-surface p-5">
+      <section aria-labelledby="ach-h" className="rounded-2xl bg-surface p-5">
         <h2 id="ach-h" className="text-headline text-ink">
           Fantasy career
         </h2>
@@ -76,7 +76,7 @@ export default async function ProfilePage({ params }: { params: Promise<{ userna
       </section>
 
       {own ? (
-        <section aria-label="Account" className="flex items-center justify-between rounded-2xl border border-border bg-surface px-4 py-3">
+        <section aria-label="Account" className="flex items-center justify-between rounded-2xl bg-surface px-4 py-3">
           <span className="text-callout text-ink-2">Signed in as {p.user.username}</span>
           <SignOutButton />
         </section>
@@ -100,7 +100,7 @@ function EntryList({ list }: { list: ProfileEntry[] }) {
     <ul className="space-y-2">
       {list.map((e) => (
         <li key={e.entryId}>
-          <Link href={`/e/${e.entryId}`} className="flex items-center gap-3 rounded-2xl border border-border bg-surface px-4 py-3.5 hover:border-border-strong">
+          <Link href={`/e/${e.entryId}`} className="flex items-center gap-3 rounded-2xl bg-surface px-4 py-3.5 hover:border-border-strong">
             <span className={cn("inline-flex size-11 shrink-0 items-center justify-center rounded-xl", e.rank === 1 ? "bg-lavender text-[#1b1035]" : "bg-elevated text-ink-2")}>
               <Icon name={e.rank === 1 ? "crown" : "trophy"} size={20} />
             </span>

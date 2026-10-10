@@ -18,7 +18,7 @@ export default async function TournamentStandings({ params }: { params: Promise<
   return (
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
       {swiss.map((s) => (
-        <section key={s.id} aria-labelledby={`sd-${s.id}`} className="overflow-hidden rounded-2xl border border-border bg-surface">
+        <section key={s.id} aria-labelledby={`sd-${s.id}`} className="overflow-hidden rounded-2xl bg-surface">
           <div className="flex items-center justify-between border-b border-border px-4 py-3">
             <h2 id={`sd-${s.id}`} className="text-headline text-ink">
               {s.name}

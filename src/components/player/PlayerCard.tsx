@@ -32,7 +32,7 @@ export function PlayerCard({
   return (
     <div
       className={cn(
-        "relative flex flex-col overflow-hidden rounded-[20px] border bg-surface",
+        "relative flex flex-col overflow-hidden rounded-2xl border bg-surface",
         captain ? "border-lavender/60" : "border-border",
         eliminated && "opacity-60",
         className,
@@ -41,7 +41,7 @@ export function PlayerCard({
     >
       <div
         className={cn("relative overflow-hidden", lg ? "h-44 sm:h-52" : "h-28 sm:h-32")}
-        style={{ background: `radial-gradient(130% 110% at 25% 0%, ${rgba(color, 0.5)} 0%, ${rgba(color, 0.16)} 48%, #111824 100%)` }}
+        style={{ background: `linear-gradient(${rgba(color, 0.24)}, ${rgba(color, 0.24)}), var(--color-elevated)` }}
       >
         {team ? (
           <span className="pointer-events-none absolute -bottom-8 -left-6 opacity-[0.1]" style={{ width: lg ? 200 : 120, height: lg ? 200 : 120 }} aria-hidden>

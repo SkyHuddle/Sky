@@ -41,7 +41,7 @@ export function CreateLeagueForm({ contests, defaultContest }: { contests: { id:
         <label htmlFor="contestId" className="mb-1.5 block text-footnote font-medium text-ink-2">
           Contest
         </label>
-        <select id="contestId" name="contestId" defaultValue={defaultContest ?? contests[0]!.id} className="h-12 w-full rounded-xl border border-border bg-surface px-3 text-[0.9375rem] text-ink focus:border-accent/60 focus:outline-none">
+        <select id="contestId" name="contestId" defaultValue={defaultContest ?? contests[0]!.id} className="h-12 w-full rounded-xl bg-surface px-3 text-[0.9375rem] text-ink focus:border-accent/60 focus:outline-none">
           {contests.map((c) => (
             <option key={c.id} value={c.id}>
               {c.label}
@@ -53,13 +53,13 @@ export function CreateLeagueForm({ contests, defaultContest }: { contests: { id:
         <label htmlFor="name" className="mb-1.5 block text-footnote font-medium text-ink-2">
           League name
         </label>
-        <input id="name" name="name" required minLength={3} maxLength={40} placeholder="Friday Night CS" className="h-12 w-full rounded-xl border border-border bg-surface px-3.5 text-[0.9375rem] text-ink placeholder:text-ink-3 focus:border-accent/60 focus:outline-none" />
+        <input id="name" name="name" required minLength={3} maxLength={40} placeholder="Friday Night CS" className="h-12 w-full rounded-xl bg-surface px-3.5 text-[0.9375rem] text-ink placeholder:text-ink-3 focus:border-accent/60 focus:outline-none" />
       </div>
       <div>
         <label htmlFor="description" className="mb-1.5 block text-footnote font-medium text-ink-2">
           Description <span className="text-ink-3">(optional)</span>
         </label>
-        <textarea id="description" name="description" maxLength={200} rows={2} placeholder="Loser buys the first round." className="w-full rounded-xl border border-border bg-surface px-3.5 py-3 text-[0.9375rem] text-ink placeholder:text-ink-3 focus:border-accent/60 focus:outline-none" />
+        <textarea id="description" name="description" maxLength={200} rows={2} placeholder="Loser buys the first round." className="w-full rounded-xl bg-surface px-3.5 py-3 text-[0.9375rem] text-ink placeholder:text-ink-3 focus:border-accent/60 focus:outline-none" />
       </div>
       <fieldset>
         <legend className="mb-1.5 text-footnote font-medium text-ink-2">Who can join</legend>
@@ -106,7 +106,7 @@ export function JoinByCode() {
       <label className="sr-only" htmlFor="code">
         Invite code or link
       </label>
-      <input id="code" value={code} onChange={(e) => setCode(e.target.value)} placeholder="Paste an invite link or code" className="h-11 min-w-0 flex-1 rounded-xl border border-border bg-surface px-3.5 text-[0.9375rem] text-ink placeholder:text-ink-3 focus:border-accent/60 focus:outline-none" />
+      <input id="code" value={code} onChange={(e) => setCode(e.target.value)} placeholder="Paste an invite link or code" className="h-11 min-w-0 flex-1 rounded-xl bg-surface px-3.5 text-[0.9375rem] text-ink placeholder:text-ink-3 focus:border-accent/60 focus:outline-none" />
       <Button type="submit" variant="secondary" disabled={!code.trim()}>
         Join
       </Button>
@@ -119,7 +119,7 @@ export function InviteLink({ code }: { code: string }) {
   const [url, setUrl] = useState(`/join/${code}`);
   useEffect(() => setUrl(`${window.location.origin}/join/${code}`), [code]);
   return (
-    <div className="flex items-center gap-2 rounded-xl border border-border bg-elevated p-1.5 pl-3.5">
+    <div className="flex items-center gap-2 rounded-xl bg-elevated p-1.5 pl-3.5">
       <Icon name="link" size={16} className="shrink-0 text-ink-3" />
       <span className="min-w-0 flex-1 truncate text-callout text-ink-2" data-testid="invite-url">
         {url}

@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { CrestSvg, PortraitSvg } from "@/components/ui/art";
+import { CrestSvg, mix, PortraitSvg } from "@/components/ui/art";
 import { now as clockNow } from "@/server/clock";
 import { getDb } from "@/server/db/client";
 import { entryDashboard } from "@/server/queries/contest";
@@ -21,32 +21,32 @@ export async function GET(_req: Request, { params }: { params: Promise<{ entryId
   const players = locked?.players ?? [];
   const scored = d.entry.rank !== null;
   const final = d.contest.status === "completed";
-  const bg = "#0a0f18";
+  const bg = "#0b0c0f";
 
   return new ImageResponse(
     (
-      <div style={{ width: 1200, height: 630, display: "flex", flexDirection: "column", background: bg, color: "#f3f6fa", padding: 56, fontFamily: "sans-serif" }}>
+      <div style={{ width: 1200, height: 630, display: "flex", flexDirection: "column", background: bg, color: "#f4f5f6", padding: 56, fontFamily: "sans-serif" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
           <svg width={44} height={44} viewBox="0 0 32 32">
-            <rect x="1" y="1" width="30" height="30" rx="9" fill="#58e3cd" />
-            <path d="M10.5 9v14h11" fill="none" stroke="#04241f" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" />
-            <circle cx="20.5" cy="13" r="3" fill="#04241f" />
+            <rect x="1" y="1" width="30" height="30" rx="9" fill="#4fe0c4" />
+            <path d="M10.5 9v14h11" fill="none" stroke="#03221c" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" />
+            <circle cx="20.5" cy="13" r="3" fill="#03221c" />
           </svg>
           <div style={{ fontSize: 30, fontWeight: 700 }}>lockin</div>
-          <div style={{ marginLeft: "auto", fontSize: 24, color: "#a2b1c3", display: "flex" }}>
+          <div style={{ marginLeft: "auto", fontSize: 24, color: "#a5aab2", display: "flex" }}>
             {`${d.tournament.shortName} · ${d.contest.name}${d.tournament.isDemo ? " · Demo data" : ""}`}
           </div>
         </div>
         <div style={{ display: "flex", alignItems: "flex-end", marginTop: 40, gap: 48 }}>
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <div style={{ fontSize: 26, color: "#a2b1c3", display: "flex" }}>{`${d.entry.username}'s team`}</div>
+            <div style={{ fontSize: 26, color: "#a5aab2", display: "flex" }}>{`${d.entry.username}'s team`}</div>
             <div style={{ fontSize: 64, fontWeight: 700, marginTop: 6, display: "flex" }}>
               {final && scored ? `${ordinal(d.entry.rank!)} of ${d.entry.entriesCount}` : scored ? `${pts(d.entry.totalPoints)} pts` : "Locked in"}
             </div>
           </div>
           {scored ? (
             <div style={{ display: "flex", flexDirection: "column", marginLeft: "auto", alignItems: "flex-end" }}>
-              <div style={{ fontSize: 24, color: "#a2b1c3" }}>{final ? "Final points" : "Rank"}</div>
+              <div style={{ fontSize: 24, color: "#a5aab2" }}>{final ? "Final points" : "Rank"}</div>
               <div style={{ fontSize: 44, fontWeight: 700 }}>{final ? pts(d.entry.totalPoints) : ordinal(d.entry.rank!)}</div>
             </div>
           ) : null}
@@ -55,15 +55,16 @@ export async function GET(_req: Request, { params }: { params: Promise<{ entryId
           {(players.length ? players : Array.from({ length: d.rules.rosterSize }, () => null)).map((p, i) => {
             const team = p ? d.teams[p.teamId] : null;
             return (
-              <div key={i} style={{ width: 200, height: 250, borderRadius: 22, background: "#192536", display: "flex", flexDirection: "column", alignItems: "center", position: "relative", border: p?.isCaptain ? "3px solid #a99aff" : "1px solid #2a394c", overflow: "hidden" }}>
-                <div style={{ display: "flex", marginTop: 10 }}>
-                  <PortraitSvg seed={p?.nickname ?? `slot-${i}`} color={team?.color ?? "#788ba0"} size={170} />
+              <div key={i} style={{ width: 200, height: 250, borderRadius: 16, background: team ? mix(team.color, "#1b1e22", 0.72) : "#1b1e22", display: "flex", flexDirection: "column", alignItems: "center", position: "relative", border: p?.isCaptain ? "3px solid #f4f5f6" : "none", overflow: "hidden" }}>
+                {/* Before lock there is no portrait at all: a generated face would read as a real pick. */}
+                <div style={{ display: "flex", marginTop: 10, width: 170, height: 170, alignItems: "center", justifyContent: "center" }}>
+                  {p ? <PortraitSvg seed={p.nickname} color={team?.color ?? "#868c95"} size={170} /> : <div style={{ display: "flex", fontSize: 72, fontWeight: 700, color: "#3a3f46" }}>?</div>}
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 8 }}>
                   {team ? <CrestSvg id={team.id} name={team.name} color={team.color} size={24} /> : null}
                   <div style={{ fontSize: 26, fontWeight: 700 }}>{p ? p.nickname : "Hidden until lock"}</div>
                 </div>
-                {p?.isCaptain ? <div style={{ position: "absolute", top: 12, left: 12, background: "#a99aff", color: "#1b1240", borderRadius: 999, padding: "4px 12px", fontSize: 18, fontWeight: 700 }}>C</div> : null}
+                {p?.isCaptain ? <div style={{ position: "absolute", top: 12, left: 12, background: "#f4f5f6", color: "#0b0c0f", borderRadius: 999, padding: "4px 12px", fontSize: 18, fontWeight: 700 }}>C</div> : null}
               </div>
             );
           })}
