@@ -39,19 +39,19 @@ export function PlayerCard({
       style={{ boxShadow: captain ? "0 0 0 1px rgb(167 139 250 / 0.25), 0 18px 50px -20px rgb(167 139 250 / 0.35)" : undefined }}
     >
       <div
-        className={cn("relative overflow-hidden", lg ? "h-44 sm:h-52" : "h-32")}
+        className={cn("relative overflow-hidden", lg ? "h-40 sm:h-52" : "h-24 sm:h-32")}
         style={{ background: `radial-gradient(130% 110% at 25% 0%, ${rgba(color, 0.5)} 0%, ${rgba(color, 0.16)} 48%, #111824 100%)` }}
       >
         <span
           className="pointer-events-none absolute -right-2 -bottom-6 font-black tracking-tighter select-none"
-          style={{ color: rgba(color, 0.14), fontSize: lg ? 120 : 84, lineHeight: 1 }}
+          style={{ color: rgba(color, 0.14), fontSize: lg ? 120 : 64, lineHeight: 1 }}
           aria-hidden
         >
           {team?.acronym ?? ""}
         </span>
         <span
           className="absolute left-4 font-semibold tracking-tight text-ink/95"
-          style={{ fontSize: lg ? 64 : 44, bottom: lg ? 10 : 6, letterSpacing: "-0.04em" }}
+          style={{ fontSize: lg ? 64 : 36, bottom: lg ? 10 : 4, letterSpacing: "-0.04em" }}
           aria-hidden
         >
           {initials(player.nickname)}
@@ -75,7 +75,7 @@ export function PlayerCard({
           <span className="truncate">{team?.name}</span>
           <span className="text-ink-3">· {player.role}</span>
         </div>
-        <div className="mt-auto flex items-end justify-between pt-3">
+        <div className="mt-auto flex items-end justify-between gap-2 pt-3">
           <div>
             <div className="text-caption text-ink-3">Salary</div>
             <div className="tabular text-callout font-semibold text-ink">{money(player.price)}</div>

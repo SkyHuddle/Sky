@@ -76,7 +76,7 @@ export function EntryView({ d, board, nowIso, healthOk }: { d: EntryDashboard; b
               {scored ? <div className="text-caption text-lavender">{percentileLabel(d.entry.rank, d.entry.entriesCount)}</div> : null}
             </div>
             <div className="text-caption text-ink-3 sm:ml-auto sm:text-right">
-              <div>Data checked {relativeAgo(d.lastUpdated, now.getTime())}</div>
+              <div>Data checked {relativeAgo(d.lastUpdated, Date.parse(d.realNow))}</div>
               {d.entry.scoreState !== "settled" ? <div>Scores update after each completed map</div> : null}
             </div>
           </div>
@@ -90,8 +90,8 @@ export function EntryView({ d, board, nowIso, healthOk }: { d: EntryDashboard; b
         {d.isOwner ? (
           <div className="border-t border-border bg-[#0e1520] px-5 py-4 sm:px-6">
             {open ? (
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="inline-flex size-9 items-center justify-center rounded-xl bg-accent-soft text-accent">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                <span className="hidden size-9 shrink-0 items-center justify-center rounded-xl bg-accent-soft text-accent sm:inline-flex">
                   <Icon name={open.position > 1 ? "swap" : "roster"} size={18} />
                 </span>
                 <div className="min-w-0 flex-1">
@@ -101,7 +101,7 @@ export function EntryView({ d, board, nowIso, healthOk }: { d: EntryDashboard; b
                     <Countdown to={open.lockAt} now={nowIso} className="font-semibold text-ink" />
                   </div>
                 </div>
-                <ButtonLink href={`/c/${d.contest.id}/build`} iconRight="chevronRight">
+                <ButtonLink href={`/c/${d.contest.id}/build`} iconRight="chevronRight" className="w-full sm:w-auto">
                   {open.position > 1 ? "Make transfers" : "Edit lineup"}
                 </ButtonLink>
               </div>
@@ -353,7 +353,11 @@ function Upcoming({ d, w }: { d: EntryDashboard; w: DashboardWindow | undefined 
         Your players&apos; matches
       </h2>
       {list.length === 0 ? (
-        <p className="text-callout text-ink-2">No remaining matches for your players in {w.stageName}.</p>
+        <p className="text-callout text-ink-2">
+          {d.matches.some((m) => m.stageId === w.stageId)
+            ? `No remaining matches for your players in ${w.stageName}.`
+            : `Fixtures appear when ${w.stageName} pairings are set, about a day before it starts.`}
+        </p>
       ) : (
         <ul className="space-y-1.5">
           {list.map((m) => (

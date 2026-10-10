@@ -101,10 +101,17 @@ export function Review({
         </Button>
       </div>
 
-      <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-        {ordered[0] ? <div className="sm:col-span-2 lg:col-span-1 lg:row-span-1">{cardFor(ordered[0], true)}</div> : null}
-        {ordered.slice(1).map((id) => (
-          <div key={id}>{cardFor(id, false)}</div>
+      {!b.captainId || !b.playerIds.includes(b.captainId) ? (
+        <Notice tone="lavender" icon="star" className="mt-5">
+          <span className="font-semibold text-ink">Choose your captain.</span> <span className="text-ink-2">Their points count 1.5×. Tap “Make captain” on any player.</span>
+        </Notice>
+      ) : null}
+
+      <div className="mt-5 grid grid-cols-2 gap-3 lg:grid-cols-5">
+        {ordered.map((id, i) => (
+          <motion.div key={id} layout transition={{ type: "spring", stiffness: 420, damping: 38 }} className={i === 0 ? "col-span-2 lg:col-span-1" : undefined}>
+            {cardFor(id, i === 0 && b.captainId === id)}
+          </motion.div>
         ))}
       </div>
 

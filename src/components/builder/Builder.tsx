@@ -91,7 +91,9 @@ export function Builder({ data, nowIso, signedIn }: { data: BuilderData; nowIso:
       if (!editable) return;
       const adding = !b.playerIds.includes(id);
       b.toggle(id);
-      if (adding && b.playerIds.length + 1 === data.rules.rosterSize) toast("Roster full. Pick a captain on the review screen.", "success");
+      if (adding && b.playerIds.length + 1 === data.rules.rosterSize) {
+        toast(b.captainId && b.playerIds.includes(b.captainId) ? "Roster full. Review your team when ready." : "Roster full. Pick a captain on the review screen.", "success");
+      }
     },
     [b, editable, data.rules.rosterSize, toast],
   );
@@ -157,7 +159,9 @@ export function Builder({ data, nowIso, signedIn }: { data: BuilderData; nowIso:
     );
   }
 
-  const firstError = b.errors.find((e) => e.code !== "CAPTAIN_REQUIRED") ?? null;
+  const rawError = b.errors.find((e) => e.code !== "CAPTAIN_REQUIRED") ?? null;
+  const firstError =
+    rawError?.code === "INELIGIBLE_PLAYER" ? { ...rawError, message: "Replace your eliminated players (free)" } : rawError;
   const stillOut = data.ineligiblePrevious.filter((p) => b.playerIds.includes(p.id));
   const transferNote = b.transfers ? (
     <Notice tone={b.transfers.error ? "danger" : "lavender"} icon="swap">
@@ -168,6 +172,11 @@ export function Builder({ data, nowIso, signedIn }: { data: BuilderData; nowIso:
       {stillOut.length ? (
         <span className="mt-2 flex flex-wrap items-center gap-1.5">
           <span className="text-ink-2">Eliminated:</span>
+          {stillOut.length > 1 ? (
+            <button onClick={() => stillOut.forEach((p) => b.remove(p.id))} className="inline-flex h-7 items-center rounded-full bg-elevated px-2.5 text-caption font-semibold text-ink hover:bg-raised">
+              Remove all {stillOut.length}
+            </button>
+          ) : null}
           {stillOut.map((p) => (
             <button
               key={p.id}

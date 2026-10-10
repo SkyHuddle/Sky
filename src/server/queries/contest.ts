@@ -273,6 +273,8 @@ export interface EntryDashboard {
   matches: MatchLite[];
   pendingMaps: number;
   lastUpdated: string | null;
+  /** Wall-clock time of the request (ingestion timestamps are wall-clock, not demo-clock). */
+  realNow: string;
   isOwner: boolean;
 }
 
@@ -408,6 +410,7 @@ export async function entryDashboard(db: Db, entryId: string, viewerId: string |
     matches,
     pendingMaps,
     lastUpdated: last?.at?.toISOString() ?? null,
+    realNow: new Date().toISOString(),
     isOwner,
   };
 }

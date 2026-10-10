@@ -168,7 +168,14 @@ function FeaturedEvent({ t, now, nowIso }: { t: TournamentSummary; now: Date; no
           {t.shortName}
         </h1>
         <p className="mt-1 text-callout text-ink-2">
-          {dateRange(t.beginAt, t.endAt)} · {t.currentStage ? (t.status === "live" ? `${t.currentStage.name} live` : `Starts with ${t.stages[0]?.name}`) : ""}
+          {dateRange(t.beginAt, t.endAt)} ·{" "}
+          {t.currentStage?.status === "live"
+            ? `${t.currentStage.name} live`
+            : t.status === "live" && t.currentStage
+              ? `Next up: ${t.currentStage.name}`
+              : t.status === "completed"
+                ? "Completed"
+                : `Starts with ${t.stages[0]?.name}`}
         </p>
 
         <StageProgress stages={t.stages} className="mt-5 max-w-xl" />
