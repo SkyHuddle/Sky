@@ -13,6 +13,7 @@ Phase 0 deliverables. Read in order; each document builds on the previous one.
 | 7 | [MVP roadmap, business model and retention](07-roadmap-business-retention.md) | Deliverable 9, Parts 8 and 9 |
 | 8 | [Risks and open questions](08-risks-and-open-questions.md) | Deliverable 11 |
 | 9 | [Product requirements document](09-prd.md) | Deliverable 12 |
+| 10 | [Implementation decisions](10-implementation-decisions.md) | What changed during the build, and why |
 
 ## The short version
 
