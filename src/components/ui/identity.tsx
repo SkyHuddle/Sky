@@ -53,6 +53,7 @@ export function PlayerAvatar({
   className,
   ring,
   shape = "circle",
+  muted,
 }: {
   nickname: string;
   seed?: string;
@@ -62,6 +63,8 @@ export function PlayerAvatar({
   className?: string;
   ring?: "captain" | "selected" | null;
   shape?: "circle" | "tile";
+  /** Dim the portrait only (eliminated players), keeping any captain/selected ring at full colour. */
+  muted?: boolean;
 }) {
   const color = team?.color ?? "#6f7d92";
   return (
@@ -71,17 +74,18 @@ export function PlayerAvatar({
         width: size === "fill" ? "100%" : size,
         height: size === "fill" ? "100%" : size,
         borderRadius: shape === "tile" ? (size === "fill" ? 14 : Math.round(size * 0.24)) : 999,
-        background: `radial-gradient(90% 80% at 50% 38%, ${rgba(color, 0.42)} 0%, ${rgba(color, 0.12)} 55%, #0f1520 100%)`,
+        // Flat frame; the team tint stays inside the portrait region as a soft halo (DESIGN.md §3.4).
+        background: `radial-gradient(70% 62% at 50% 42%, ${rgba(color, 0.3)} 0%, transparent 72%), var(--color-raised)`,
         boxShadow:
           ring === "captain"
-            ? `0 0 0 2px #0a0e16, 0 0 0 4px var(--color-lavender)`
+            ? `0 0 0 2px var(--color-bg), 0 0 0 4px var(--color-lavender)`
             : ring === "selected"
-              ? `0 0 0 2px #0a0e16, 0 0 0 4px var(--color-accent)`
-              : `inset 0 0 0 1px ${rgba(color, 0.3)}`,
+              ? `0 0 0 2px var(--color-bg), 0 0 0 4px var(--color-accent)`
+              : `inset 0 0 0 1px rgb(255 255 255 / 0.06)`,
       }}
       aria-hidden
     >
-      <PortraitSvg seed={seed ?? nickname} color={color} team={team ?? undefined} className="absolute inset-0 size-full" />
+      <PortraitSvg seed={seed ?? nickname} color={color} team={team ?? undefined} className={cn("absolute inset-0 size-full", muted && "opacity-45 grayscale")} />
     </span>
   );
 }
@@ -117,13 +121,13 @@ export function Flag({ code, className }: { code: string; className?: string }) 
 }
 
 export function RoleChip({ role, className }: { role: string; className?: string }) {
-  return <span className={cn("inline-flex h-5 items-center rounded-md bg-elevated px-1.5 text-[0.6875rem] font-medium text-ink-2", className)}>{role}</span>;
+  return <span className={cn("inline-flex h-5 items-center rounded-md bg-elevated px-1.5 text-[0.75rem] font-medium text-ink-2", className)}>{role}</span>;
 }
 
 export function DemoBadge({ className }: { className?: string }) {
   return (
     <span
-      className={cn("inline-flex h-5 items-center gap-1 rounded-full bg-lavender-soft px-2 text-[0.6875rem] font-semibold text-lavender", className)}
+      className={cn("inline-flex h-5 items-center gap-1 rounded-full bg-lavender-soft px-2 text-[0.75rem] font-semibold text-lavender", className)}
       title="Fictional teams and players, simulated results"
     >
       Demo data

@@ -6,9 +6,11 @@ This branch (`esports-fantasy`) is an independent project. It shares no code, hi
 
 > **Demo data:** no licensed esports data feed is connected yet. The app runs on a clearly labelled demonstration provider: fictional teams, fictional players and simulated matches, pushed through the real ingestion, scoring and contest pipeline. Nothing in the demo is real tournament information.
 
-| Phone | | |
-|---|---|---|
-| ![Builder](docs/screenshots/mobile-builder.png) | ![Review](docs/screenshots/mobile-review.png) | ![Live dashboard](docs/screenshots/mobile-dashboard-breakdown.png) |
+Design source of truth: [`docs/DESIGN.md`](docs/DESIGN.md). Gap analysis and fixes: [`docs/11-design-gap-analysis.md`](docs/11-design-gap-analysis.md).
+
+| Home | Build Team | Player | Roster review | My Fantasy |
+|---|---|---|---|---|
+| ![Home](docs/screenshots/mobile-home-before.png) | ![Builder](docs/screenshots/mobile-builder.png) | ![Player](docs/screenshots/mobile-player-sheet.png) | ![Review](docs/screenshots/mobile-review.png) | ![My Fantasy](docs/screenshots/mobile-dashboard-breakdown.png) |
 
 ![Desktop home](docs/screenshots/desktop-home.png)
 
@@ -16,8 +18,8 @@ This branch (`esports-fantasy`) is an independent project. It shares no code, hi
 
 - **Home:** featured event, your active teams, upcoming events, recent results.
 - **Tournament hub:** overview, the two Major contests (Main Event and Full Run) explained, rules rendered from the pinned rule set, matches, bracket and Swiss standings.
-- **Lineup builder:** search, team/role/budget filters, five sort orders, inline reasons why a player can't be added (cap, team limit, dead-end budget), a player detail sheet, "Suggest", a draft saved on the device, offline handling, and a three-column desktop layout.
-- **Roster review:** a team-announcement layout, a rules checklist, captain choice, the Autopilot switch, and server-validated submission with a confirmation and sharing.
+- **Lineup builder:** a sticky salary summary with five neutral slots, search, quick filters (team, sort, fits budget; roles in a sheet), salary/fantasy-average/form sorts, inline reasons why a player can't be added (cap, team limit, dead-end budget), a player sheet that keeps your place, "Suggest", a draft saved on the device, offline handling, and a three-column desktop layout (filters 240 · pool · lineup 360).
+- **Roster review:** the lineup as a poster (captain in the centre, two either side; tap to change captain), salary used and remaining, the rules checklist, the Autopilot switch, and server-validated submission with a confirmation.
 - **Live dashboard:** points, rank, movement, percentile, and per-player status (playing now, next match, eliminated, did not play). A per-map breakdown traces every point to the scoring ledger. It also shows score states (provisional, official, settled, corrected), Autopilot activity and the transfer window.
 - **Transfers:** two per stage window; replacing eliminated players is free; kept players stay at the price you paid.
 - **Leaderboards:** global, friends (people you share a league with), and every league you're in, from the same entry. Paged, with your row pinned.

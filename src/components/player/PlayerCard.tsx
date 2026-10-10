@@ -51,12 +51,12 @@ export function PlayerCard({
         <PortraitSvg seed={player.nickname} color={color} team={team ?? undefined} className={cn("pointer-events-none absolute bottom-0 h-full w-auto", lg ? "right-2" : "right-1/2 translate-x-1/2")} />
         <div className="absolute inset-x-0 bottom-0 h-1/3 bg-[linear-gradient(0deg,#111824,transparent)]" aria-hidden />
         {captain ? (
-          <span className="absolute top-3 left-3 inline-flex h-6 items-center gap-1 rounded-full bg-lavender px-2 text-[0.6875rem] font-bold text-[#1b1035]">
+          <span className="absolute top-3 left-3 inline-flex h-6 items-center gap-1 rounded-full bg-lavender px-2 text-[0.75rem] font-bold text-[#1b1035]">
             <Icon name="star" size={12} strokeWidth={2.4} /> Captain 1.5×
           </span>
         ) : null}
         {eliminated ? (
-          <span className="absolute top-3 right-3 inline-flex h-6 items-center rounded-full bg-negative-soft px-2 text-[0.6875rem] font-bold text-negative">Eliminated</span>
+          <span className="absolute top-3 right-3 inline-flex h-6 items-center rounded-full bg-negative-soft px-2 text-[0.75rem] font-bold text-negative">Eliminated</span>
         ) : null}
       </div>
       <div className={cn("flex flex-1 flex-col", lg ? "p-4" : "p-3")}>

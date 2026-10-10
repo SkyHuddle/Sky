@@ -7,7 +7,7 @@ test("desktop builder shows filters, pool and roster side by side", async ({ pag
   await expect(page.getByText("Salary: high to low")).toBeVisible();
   const add = page.locator('button[aria-label^="Add "]:not([disabled])').first();
   await add.click();
-  await expect(page.locator("aside").getByText("1/5 players")).toBeVisible();
+  await expect(page.locator("aside").getByText("1 of 5 players")).toBeVisible();
   // Sticky roster stays in view after scrolling the pool.
   await page.mouse.wheel(0, 2500);
   await expect(page.getByRole("heading", { name: "Your roster" })).toBeInViewport();

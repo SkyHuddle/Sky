@@ -89,7 +89,7 @@ export function Movement({ value, className }: { value: number | null | undefine
   );
 }
 
-/** Tiny bar chart of recent map scores (oldest → newest). Height encodes value; values ≥ 25 are highlighted. */
+/** Tiny bar chart of recent map scores (oldest → newest). Height encodes value; 25+ maps in mint. */
 export function FormBars({ values, className, max = 60 }: { values: number[]; className?: string; max?: number }) {
   if (values.length === 0) return <span className={cn("text-caption text-ink-3", className)}>No data</span>;
   return (
@@ -97,8 +97,8 @@ export function FormBars({ values, className, max = 60 }: { values: number[]; cl
       {values.map((v, i) => (
         <span
           key={i}
-          className={cn("w-[5px] rounded-[2px]", v >= 25 ? "bg-accent" : v >= 12 ? "bg-ink-3" : "bg-negative/70")}
-          style={{ height: `${Math.max(12, Math.min(100, (Math.max(0, v) / max) * 100))}%` }}
+          className={cn("w-[5px] rounded-[2px]", v >= 25 ? "bg-accent" : "bg-border-strong")}
+          style={{ height: `${Math.max(20, Math.min(100, (Math.max(0, v) / max) * 100))}%` }}
         />
       ))}
     </span>

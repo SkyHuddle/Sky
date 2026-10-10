@@ -6,6 +6,7 @@ import { Icon } from "../ui/Icon";
 import { Brand } from "./Brand";
 import { DemoControl } from "./DemoControl";
 import { SideNav, TabBar } from "./Nav";
+import { SportSwitcher } from "./SportSwitcher";
 
 export function UserChip({ viewer }: { viewer: SessionUser | null }) {
   if (!viewer) {
@@ -23,8 +24,8 @@ export function UserChip({ viewer }: { viewer: SessionUser | null }) {
 }
 
 /**
- * The persistent frame: mobile top bar + bottom tabs; desktop sidebar. Game selection shows CS2
- * only (the one supported game), as a label rather than a fake switcher.
+ * The persistent frame: mobile top bar + bottom tabs; desktop sidebar. The esport switcher lists
+ * future games as disabled ("Coming later"), never as working options.
  */
 export function AppShell({ viewer, demo, now, children }: { viewer: SessionUser | null; demo: boolean; now: string; children: ReactNode }) {
   return (
@@ -34,13 +35,7 @@ export function AppShell({ viewer, demo, now, children }: { viewer: SessionUser 
         <Brand className="mb-7 px-2" />
         <SideNav />
         <div className="mt-auto space-y-3 px-1">
-          <div className="flex items-center justify-between rounded-xl bg-surface px-3 py-2.5 hairline">
-            <span className="text-caption text-ink-3">Game</span>
-            <span className="inline-flex items-center gap-1.5 text-callout font-semibold text-ink">
-              <span className="size-1.5 rounded-full bg-accent" aria-hidden />
-              Counter-Strike 2
-            </span>
-          </div>
+          <SportSwitcher variant="full" />
           {demo ? <DemoControl now={now} signedIn={!!viewer} /> : null}
           <div className="flex items-center justify-between">
             <UserChip viewer={viewer} />
@@ -52,11 +47,11 @@ export function AppShell({ viewer, demo, now, children }: { viewer: SessionUser 
       <div className="min-w-0 flex-1">
         {/* Mobile top bar */}
         <header className="glass sticky top-0 z-30 border-b border-border lg:hidden">
-          <div className="mx-auto flex h-14 max-w-2xl items-center gap-2 px-4">
+          <div className="mx-auto flex h-14 max-w-2xl items-center gap-2 px-4 sm:px-5">
             <Brand />
-            <span className="ml-1 inline-flex h-6 items-center rounded-full bg-elevated px-2 text-[0.6875rem] font-bold tracking-wide text-ink-2" title="Counter-Strike 2">
-              CS2
-            </span>
+            <div className="ml-1">
+              <SportSwitcher />
+            </div>
             <div className="ml-auto flex items-center gap-2">
               {demo ? <DemoControl now={now} signedIn={!!viewer} compact /> : null}
               <UserChip viewer={viewer} />
@@ -64,14 +59,14 @@ export function AppShell({ viewer, demo, now, children }: { viewer: SessionUser 
           </div>
         </header>
         {demo ? (
-          <div className="border-b border-border bg-[rgb(167_139_250/0.06)]">
-            <p className="mx-auto flex max-w-6xl items-center gap-2 px-4 py-1.5 text-caption text-ink-2 lg:px-8">
-              <Icon name="info" size={14} className="text-lavender" />
-              Demo mode: fictional teams and players with simulated results. Not real tournament data.
+          <div className="border-b border-border">
+            <p className="mx-auto flex max-w-[1360px] items-center gap-2 px-4 py-2 text-caption text-ink-2 sm:px-5 lg:px-8">
+              <Icon name="info" size={14} className="shrink-0 text-lavender" />
+              Demo data: fictional teams, players and simulated results.
             </p>
           </div>
         ) : null}
-        <main id="main" className="mx-auto w-full max-w-6xl px-4 pt-5 pb-28 lg:px-8 lg:pt-8 lg:pb-16">
+        <main id="main" className="mx-auto w-full max-w-[1360px] px-4 pt-5 pb-28 sm:px-5 lg:px-8 lg:pt-8 lg:pb-16">
           {children}
         </main>
       </div>

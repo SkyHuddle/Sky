@@ -5,13 +5,13 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { cn } from "@/lib/cn";
-import { money, percentileLabel, pts, relativeAgo } from "@/lib/format";
+import { ordinal, percentileLabel, pts, relativeAgo } from "@/lib/format";
 import type { DashboardPlayer, DashboardWindow, EntryDashboard } from "@/server/queries/contest";
 import type { Board } from "@/server/services/leaderboards";
 import { StageProgress } from "../tournament/StageProgress";
 import { ButtonLink } from "../ui/Button";
 import { Icon } from "../ui/Icon";
-import { DemoBadge, PlayerAvatar, rgba, TeamMark, UserAvatar } from "../ui/identity";
+import { DemoBadge, PlayerAvatar, TeamMark, UserAvatar } from "../ui/identity";
 import { Movement, Notice } from "../ui/primitives";
 import { Countdown, LocalTime, StatePill } from "../ui/status";
 import { useToast } from "../ui/Toast";
@@ -32,18 +32,14 @@ export function EntryView({ d, board, nowIso, healthOk }: { d: EntryDashboard; b
   return (
     <div className="space-y-6">
       {/* Score hero */}
-      <section
-        className="overflow-hidden rounded-[24px] border border-white/[0.07] bg-surface bg-[radial-gradient(90%_120%_at_100%_0%,rgb(167_139_250/0.16),transparent_55%),radial-gradient(80%_100%_at_0%_100%,rgb(92_227_203/0.08),transparent_60%)]"
-        aria-labelledby="score"
-      >
+      <section className="overflow-hidden rounded-[20px] border border-border bg-surface" aria-labelledby="score">
         <div className="p-5 sm:p-6">
           <div className="flex flex-wrap items-center gap-2">
-            <Link href={`/t/${d.tournament.slug}`} className="text-eyebrow text-lavender hover:underline">
+            <Link href={`/t/${d.tournament.slug}`} className="text-eyebrow text-ink-2 hover:text-ink">
               {d.tournament.shortName}
             </Link>
             <span className="text-caption text-ink-3">· {d.contest.name}</span>
             {d.tournament.isDemo ? <DemoBadge /> : null}
-            {scored ? <StatePill kind={stateKind} className="ml-auto" /> : null}
           </div>
           {!d.isOwner ? (
             <div className="mt-3 flex items-center gap-2.5">
@@ -53,35 +49,37 @@ export function EntryView({ d, board, nowIso, healthOk }: { d: EntryDashboard; b
               </Link>
             </div>
           ) : null}
-          <div className="mt-4 flex items-end justify-between gap-4">
+          <div className="mt-5 grid grid-cols-2 gap-4">
             <div className="min-w-0">
-              <div id="score" className="text-caption text-ink-2">
+              <div id="score" className="text-footnote text-ink-2">
                 Fantasy points
               </div>
               <AnimatePresence mode="popLayout" initial={false}>
-                <motion.div key={d.entry.totalPoints} initial={{ y: 10, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="num text-[3.5rem] leading-[0.95] text-accent">
+                <motion.div key={d.entry.totalPoints} initial={{ y: 8, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.2 }} className="text-score text-ink sm:text-[2.5rem] sm:leading-[2.75rem]">
                   {scored ? pts(d.entry.totalPoints) : "—"}
                 </motion.div>
               </AnimatePresence>
+              {w && scored ? <div className="text-caption text-ink-3">{pts(w.points)} in {w.stageName}</div> : null}
             </div>
-            <div className="shrink-0 border-l border-border pl-4 text-right">
-              <div className="text-caption text-ink-2">Rank</div>
-              <div className="flex items-baseline justify-end gap-2">
-                <span className="num text-[2.25rem] leading-none text-ink">{scored ? `#${d.entry.rank!.toLocaleString("en")}` : "—"}</span>
-                {scored ? <Movement value={movement} className="text-footnote" /> : null}
+            <div className="min-w-0 border-l border-border pl-4">
+              <div className="text-footnote text-ink-2">Global rank</div>
+              <div className="flex items-baseline gap-2">
+                <span className="text-score text-ink sm:text-[2.5rem] sm:leading-[2.75rem]">{scored ? ordinal(d.entry.rank!) : "—"}</span>
+                {scored && movement !== null ? <Movement value={movement} className="text-footnote" /> : null}
               </div>
               {scored ? (
-                <div className="mt-1 text-caption text-ink-3">
+                <div className="text-caption text-ink-3">
                   <span>of {d.entry.entriesCount.toLocaleString("en")}</span>
                   <span className="text-lavender"> · {percentileLabel(d.entry.rank, d.entry.entriesCount)}</span>
                 </div>
               ) : null}
             </div>
           </div>
-          <div className="mt-3 text-caption text-ink-3">
-            Data checked {relativeAgo(d.lastUpdated, Date.parse(d.realNow))}
-            {d.entry.scoreState !== "settled" ? " · scores update after each completed map" : ""}
-          </div>
+          <p className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-caption text-ink-3">
+            {scored ? <StatePill kind={stateKind} /> : null}
+            Updated {relativeAgo(d.lastUpdated, Date.parse(d.realNow))}
+            {d.entry.scoreState !== "settled" ? " · Scores update after each map" : ""}
+          </p>
           {!scored ? (
             <p className="mt-3 text-callout text-ink-2">Scoring starts when {d.windows[0]?.stageName ?? "the first stage"} locks and the first maps are played.</p>
           ) : null}
@@ -90,7 +88,7 @@ export function EntryView({ d, board, nowIso, healthOk }: { d: EntryDashboard; b
 
         {/* What to do next */}
         {d.isOwner ? (
-          <div className="border-t border-border bg-[#0e1520] px-5 py-4 sm:px-6">
+          <div className="border-t border-border px-5 py-4 sm:px-6">
             {open ? (
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                 <span className="hidden size-9 shrink-0 items-center justify-center rounded-xl bg-accent-soft text-accent sm:inline-flex">
@@ -104,7 +102,7 @@ export function EntryView({ d, board, nowIso, healthOk }: { d: EntryDashboard; b
                   </div>
                 </div>
                 <ButtonLink href={`/c/${d.contest.id}/build`} iconRight="chevronRight" className="w-full sm:w-auto">
-                  {open.position > 1 ? "Make transfers" : "Edit lineup"}
+                  {open.position > 1 ? "Make Transfers" : "Edit Lineup"}
                 </ButtonLink>
               </div>
             ) : d.contest.status === "completed" ? (
@@ -172,7 +170,7 @@ export function EntryView({ d, board, nowIso, healthOk }: { d: EntryDashboard; b
 function statusLabel(p: DashboardPlayer, d: EntryDashboard): { kind: "live" | "next" | "done" | "eliminated" | "idle" | "dnp"; text: string } {
   switch (p.status.kind) {
     case "live":
-      return { kind: "live", text: "Playing now" };
+      return { kind: "live", text: "Map in progress · updates when it ends" };
     case "next":
       return { kind: "next", text: `${p.status.postponed ? "Postponed · " : ""}vs ${d.teams[p.status.opponentId]?.acronym ?? "TBD"}` };
     case "eliminated":
@@ -197,7 +195,6 @@ function WindowRoster({ w, d, expanded, setExpanded }: { w: DashboardWindow; d: 
     );
   }
   const players = [...w.players].sort((a, b) => Number(b.isCaptain) - Number(a.isCaptain) || b.points - a.points);
-  const best = Math.max(1, ...players.map((p) => p.points));
   return (
     <div className="space-y-3">
       {w.autopilotChanges.length ? (
@@ -217,25 +214,21 @@ function WindowRoster({ w, d, expanded, setExpanded }: { w: DashboardWindow; d: 
           <Icon name="swap" size={15} /> {w.transfers.filter((t) => t.kind === "discretionary").length} transfer(s) and {w.transfers.filter((t) => t.kind === "free").length} free replacement(s) this stage
         </p>
       ) : null}
-      <ul className="space-y-2">
+      <ul className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface">
         {players.map((p) => {
           const s = statusLabel(p, d);
           const team = d.teams[p.teamId];
           const isOpen = expanded === `${w.id}:${p.id}`;
           return (
-            <li
-              key={p.id}
-              className={cn("overflow-hidden rounded-[18px] border bg-surface", p.isCaptain ? "border-lavender/40" : "border-border")}
-              style={{ backgroundImage: `linear-gradient(90deg, ${rgba(team?.color ?? "#6f7d92", 0.12)} 0%, transparent 40%)` }}
-            >
-              <button onClick={() => setExpanded(isOpen ? null : `${w.id}:${p.id}`)} aria-expanded={isOpen} className="flex w-full items-center gap-3 py-2 pr-3 pl-2 text-left hover:bg-white/[0.02]">
-                <PlayerAvatar nickname={p.nickname} team={team} size={52} shape="tile" className={cn(s.kind === "eliminated" && "opacity-50 grayscale")} />
+            <li key={p.id}>
+              <button onClick={() => setExpanded(isOpen ? null : `${w.id}:${p.id}`)} aria-expanded={isOpen} className="flex min-h-[72px] w-full items-center gap-3 py-2 pr-3 pl-3 text-left transition-colors hover:bg-elevated/60 sm:pl-4">
+                <PlayerAvatar nickname={p.nickname} team={team} size={48} shape="tile" ring={p.isCaptain ? "captain" : null} muted={s.kind === "eliminated"} />
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-1.5">
-                    <span className="truncate text-[1rem] font-semibold tracking-tight text-ink">{p.nickname}</span>
+                    <span className="truncate text-[0.9375rem] font-semibold text-ink">{p.nickname}</span>
                     {p.isCaptain ? (
-                      <span className="inline-flex h-5 items-center gap-0.5 rounded-full bg-lavender-soft px-1.5 text-[0.625rem] font-bold text-lavender">
-                        <Icon name="star" size={10} strokeWidth={2.6} /> C ×{d.rules.captainMultiplier}
+                      <span className="inline-flex h-5 items-center gap-0.5 rounded-full bg-lavender-soft px-1.5 text-caption font-semibold text-lavender">
+                        <Icon name="star" size={11} strokeWidth={2.4} /> {d.rules.captainMultiplier}×
                       </span>
                     ) : null}
                   </div>
@@ -261,15 +254,12 @@ function WindowRoster({ w, d, expanded, setExpanded }: { w: DashboardWindow; d: 
                     ) : null}
                   </div>
                 </div>
-                <div className="text-right">
-                  <div className="num text-[1.375rem] leading-none text-ink">{pts(p.points)}</div>
-                  <div className="tabular mt-1 text-caption text-ink-3">{money(p.price)}</div>
+                <div className="shrink-0 text-right">
+                  <div className="num text-[1.0625rem] text-ink">{pts(p.points)}</div>
+                  <LastSeries p={p} />
                 </div>
                 <Icon name="chevronDown" size={18} className={cn("shrink-0 text-ink-3 transition-transform", isOpen && "rotate-180")} />
               </button>
-              <div className="mx-3 mb-2 h-[3px] overflow-hidden rounded-full bg-white/[0.05]" aria-hidden>
-                <div className={cn("h-full rounded-full", p.isCaptain ? "bg-lavender" : "bg-accent")} style={{ width: `${Math.max(0, (p.points / best) * 100)}%` }} />
-              </div>
               <AnimatePresence initial={false}>
                 {isOpen ? (
                   <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }} className="overflow-hidden">
@@ -289,6 +279,22 @@ function WindowRoster({ w, d, expanded, setExpanded }: { w: DashboardWindow; d: 
         ) : null}
       </ul>
       <p className="text-caption text-ink-3">Tap a player to see exactly how their points were calculated.</p>
+    </div>
+  );
+}
+
+/** Points from the player's most recent series (with the captain multiplier), or its state if still running. */
+function LastSeries({ p }: { p: DashboardPlayer }) {
+  const last = [...p.events].reverse().find((e) => e.kind === "series");
+  if (!last) return <div className="text-caption text-ink-3">No series yet</div>;
+  const v = last.points * p.multiplier;
+  return (
+    <div className="tabular text-caption text-ink-3">
+      {last.state === "provisional" ? <span className="text-warning">Provisional </span> : "Last series "}
+      <span className={cn(v >= 0 ? "text-positive" : "text-negative")}>
+        {v >= 0 ? "+" : "−"}
+        {pts(Math.abs(v))}
+      </span>
     </div>
   );
 }
@@ -341,14 +347,14 @@ function BoardLine({ r, me }: { r: Board["rows"][number]; me: boolean }) {
     <li>
       <Link
         href={`/e/${r.entryId}`}
-        className={cn("flex h-10 items-center gap-2.5 rounded-xl px-2 text-callout", me ? "bg-[linear-gradient(90deg,rgb(92_227_203/0.16),rgb(92_227_203/0.04))] ring-1 ring-accent/50" : "hover:bg-elevated")}
+        className={cn("flex h-11 items-center gap-2.5 rounded-xl px-2 text-callout", me ? "bg-accent-soft" : "hover:bg-elevated")}
       >
         <span className="tabular w-8 text-right text-footnote text-ink-3">{r.rank}</span>
         <span className={cn("min-w-0 flex-1 truncate", me ? "font-semibold text-ink" : "text-ink-2")}>
           {r.username}
           {me ? " (you)" : ""}
         </span>
-        <span className={cn("num text-[1.0625rem]", me ? "text-accent" : "text-ink")}>{pts(r.points)}</span>
+        <span className="num text-ink">{pts(r.points)}</span>
       </Link>
     </li>
   );

@@ -7,31 +7,35 @@
  * competitive/special moments (captain, rank, leagues). Team colours provide personality.
  */
 @theme {
-  --color-bg: #0a0e16;
-  --color-surface: #111824;
-  --color-elevated: #182131;
-  --color-raised: #1f2a3d;
-  --color-border: #222d3f;
-  --color-border-strong: #2f3c52;
-  --color-ink: #f5f7fb;
-  --color-ink-2: #a3b0c2;
-  --color-ink-3: #8693a9;
-  --color-accent: #5ce3cb;
-  --color-accent-strong: #7ff0dc;
+  /* DESIGN.md §3.1 tokens. Tailwind names map onto the spec: surface = surface-1,
+     elevated = surface-2, raised = surface-3, ink = text-1, accent = mint, lavender = violet. */
+  --color-bg: #0a0f18;
+  --color-surface: #121b28;
+  --color-elevated: #192536;
+  --color-raised: #223044;
+  --color-border: #2a394c;
+  --color-border-strong: #3a4c63;
+  --color-ink: #f3f6fa;
+  --color-ink-2: #a2b1c3;
+  --color-ink-3: #788ba0;
+  --color-accent: #58e3cd;
+  --color-accent-strong: #7cebd9;
   --color-accent-ink: #04241f;
-  --color-accent-soft: rgb(92 227 203 / 0.12);
-  --color-lavender: #a78bfa;
-  --color-lavender-soft: rgb(167 139 250 / 0.14);
-  --color-positive: #5bd6a0;
-  --color-negative: #f0707a;
-  --color-negative-soft: rgb(240 112 122 / 0.12);
-  --color-warning: #f2b54a;
-  --color-warning-soft: rgb(242 181 74 / 0.12);
-  --color-live: #ff5a68;
+  --color-accent-soft: #163a39;
+  --color-lavender: #a99aff;
+  --color-lavender-ink: #1b1240;
+  --color-lavender-soft: rgb(169 154 255 / 0.14);
+  --color-positive: #58e3cd;
+  --color-negative: #ff7881;
+  --color-negative-ink: #2a0a0e;
+  --color-negative-soft: rgb(255 120 129 / 0.12);
+  --color-warning: #f3ba68;
+  --color-warning-soft: rgb(243 186 104 / 0.12);
+  --color-live: #ff7881;
+  --color-scrim: rgb(10 15 24 / 0.72);
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", Menlo, monospace;
-  --font-display: var(--font-archivo), var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
 
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -82,13 +86,10 @@
   }
   body {
     min-height: 100dvh;
-    background:
-      radial-gradient(120% 60% at 50% -10%, rgb(59 108 240 / 0.09), transparent 60%),
-      var(--color-bg);
-    background-attachment: fixed;
+    background: var(--color-bg);
   }
   ::selection {
-    background: rgb(92 227 203 / 0.3);
+    background: rgb(88 227 205 / 0.3);
   }
   :focus-visible {
     outline: 2px solid var(--color-accent);
@@ -107,23 +108,30 @@
   .tabular {
     font-variant-numeric: tabular-nums;
   }
+  /* DESIGN.md §3.2 type scale (mobile). Nothing below 12px. */
   .text-display {
-    font-size: 2rem;
-    line-height: 2.375rem;
-    font-weight: 650;
-    letter-spacing: -0.025em;
+    font-size: 1.75rem;
+    line-height: 2.125rem;
+    font-weight: 680;
+    letter-spacing: -0.022em;
   }
   .text-title {
-    font-size: 1.375rem;
-    line-height: 1.75rem;
+    font-size: 1.5rem;
+    line-height: 1.875rem;
+    font-weight: 660;
+    letter-spacing: -0.02em;
+  }
+  .text-section {
+    font-size: 1.125rem;
+    line-height: 1.5rem;
     font-weight: 620;
-    letter-spacing: -0.018em;
+    letter-spacing: -0.012em;
   }
   .text-headline {
-    font-size: 1.0625rem;
+    font-size: 1rem;
     line-height: 1.375rem;
     font-weight: 600;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.008em;
   }
   .text-body {
     font-size: 0.9375rem;
@@ -142,34 +150,25 @@
     line-height: 1rem;
   }
   .text-eyebrow {
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     line-height: 1rem;
     font-weight: 600;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
   }
-  /* Condensed display type (Archivo, width axis): event titles, scores, prices. */
-  .display {
-    font-family: var(--font-display);
-    font-stretch: 74%;
-    font-weight: 750;
-    letter-spacing: -0.005em;
-  }
-  .text-hero {
-    font-family: var(--font-display);
-    font-stretch: 64%;
-    font-weight: 820;
-    font-size: clamp(2.75rem, 11vw, 4.5rem);
-    line-height: 0.9;
-    letter-spacing: 0;
-    text-transform: uppercase;
-  }
-  .num {
-    font-family: var(--font-display);
-    font-stretch: 80%;
+  /* Big score: 34/38, tabular. */
+  .text-score {
+    font-size: 2.125rem;
+    line-height: 2.375rem;
     font-weight: 700;
+    letter-spacing: -0.03em;
     font-variant-numeric: tabular-nums;
-    letter-spacing: -0.01em;
+  }
+  /* Numbers in rows and tiles: same family, tabular, a touch heavier. */
+  .num {
+    font-variant-numeric: tabular-nums;
+    font-weight: 650;
+    letter-spacing: -0.012em;
   }
   .hairline {
     border: 1px solid var(--color-border);
@@ -184,7 +183,7 @@
     padding-bottom: max(env(safe-area-inset-bottom), 0px);
   }
   .glass {
-    background: rgb(10 14 22 / 0.92);
+    background: rgb(10 15 24 / 0.94);
     backdrop-filter: saturate(160%) blur(18px);
     -webkit-backdrop-filter: saturate(160%) blur(18px);
   }

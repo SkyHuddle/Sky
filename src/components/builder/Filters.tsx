@@ -9,12 +9,12 @@ import { TeamMark } from "../ui/identity";
 import { Sheet } from "../ui/Sheet";
 import type { Filters, SortKey } from "./useBuilder";
 
+/** Sorts backed by real data (DESIGN.md §5.3): salary, fantasy average, recent form. */
 export const SORTS: { key: SortKey; label: string; short: string }[] = [
-  { key: "price_desc", label: "Salary: high to low", short: "Salary ↓" },
+  { key: "price_desc", label: "Salary: high to low", short: "Salary" },
   { key: "price_asc", label: "Salary: low to high", short: "Salary ↑" },
-  { key: "avg", label: "Average points per map", short: "Avg pts" },
+  { key: "avg", label: "Fantasy average (per map)", short: "Fantasy avg" },
   { key: "form", label: "Recent form (last 3 maps)", short: "Form" },
-  { key: "value", label: "Value (points per $10k)", short: "Value" },
 ];
 export const ROLES = ["AWPer", "Entry", "Rifler", "Support", "IGL"];
 
@@ -48,8 +48,8 @@ function Chip({ active, onClick, children, label }: { active?: boolean; onClick:
       aria-pressed={active}
       aria-label={label}
       className={cn(
-        "inline-flex h-8 shrink-0 items-center gap-1.5 rounded-full px-3 text-footnote font-medium transition-colors",
-        active ? "bg-accent-soft text-accent ring-1 ring-accent/50" : "bg-surface text-ink-2 ring-1 ring-border hover:text-ink",
+        "inline-flex h-10 shrink-0 items-center gap-1.5 rounded-full px-3.5 text-footnote font-medium transition-colors",
+        active ? "bg-ink text-bg" : "bg-surface text-ink-2 ring-1 ring-border ring-inset hover:text-ink",
       )}
     >
       {children}
@@ -57,30 +57,56 @@ function Chip({ active, onClick, children, label }: { active?: boolean; onClick:
   );
 }
 
-/** Mobile filter chips: team and sort open sheets; role and budget toggle inline. */
+/**
+ * Mobile quick controls: All, Team, Sort, Fits budget. Roles are player metadata, not lineup slots,
+ * so they live in the Filters sheet rather than as tabs (DESIGN.md §5.3).
+ */
 export function FilterChips({ data, filters, setFilters }: { data: BuilderData; filters: Filters; setFilters: (f: Filters) => void }) {
-  const [sheet, setSheet] = useState<"teams" | "sort" | null>(null);
+  const [sheet, setSheet] = useState<"teams" | "sort" | "more" | null>(null);
+  const filtered = filters.teams.length > 0 || filters.roles.length > 0 || filters.affordable;
   const teamIds = [...new Set(data.pool.map((p) => p.teamId))].sort((a, b) => (data.teams[a]?.name ?? "").localeCompare(data.teams[b]?.name ?? ""));
   const sort = SORTS.find((s) => s.key === filters.sort)!;
   return (
     <>
-      <div className="scrollbar-none -mx-4 flex gap-2 overflow-x-auto px-4">
+      <div className="scrollbar-none -mx-4 flex gap-2 overflow-x-auto px-4 sm:-mx-5 sm:px-5">
+        <Chip active={!filtered} onClick={() => setFilters({ ...filters, teams: [], roles: [], affordable: false })}>
+          All
+        </Chip>
         <Chip active={filters.teams.length > 0} onClick={() => setSheet("teams")}>
           {filters.teams.length ? `${filters.teams.length} team${filters.teams.length > 1 ? "s" : ""}` : "Team"}
           <Icon name="chevronDown" size={14} />
         </Chip>
-        <Chip active={filters.sort !== "price_desc"} onClick={() => setSheet("sort")} label={`Sort: ${sort.label}`}>
+        <Chip active={false} onClick={() => setSheet("sort")} label={`Sort: ${sort.label}`}>
           <Icon name="sliders" size={14} /> {sort.short}
         </Chip>
         <Chip active={filters.affordable} onClick={() => setFilters({ ...filters, affordable: !filters.affordable })}>
           Fits budget
         </Chip>
-        {ROLES.map((r) => (
-          <Chip key={r} active={filters.roles.includes(r)} onClick={() => setFilters({ ...filters, roles: filters.roles.includes(r) ? filters.roles.filter((x) => x !== r) : [...filters.roles, r] })}>
-            {r}
-          </Chip>
-        ))}
+        <Chip active={filters.roles.length > 0} onClick={() => setSheet("more")}>
+          {filters.roles.length ? `Role · ${filters.roles.length}` : "Role"}
+          <Icon name="chevronDown" size={14} />
+        </Chip>
       </div>
+
+      <Sheet open={sheet === "more"} onOpenChange={(o) => !o && setSheet(null)} title="Filter by role" footer={
+          <div className="flex gap-2.5">
+            <Button variant="secondary" size="lg" className="flex-1" onClick={() => setFilters({ ...filters, roles: [] })}>
+              Clear
+            </Button>
+            <Button size="lg" className="flex-1" onClick={() => setSheet(null)}>
+              Show players
+            </Button>
+          </div>
+        }>
+        <p className="mb-3 text-footnote text-ink-2">Roles describe how a player plays. Any five players make a valid lineup.</p>
+        <div className="flex flex-wrap gap-2 pb-2">
+          {ROLES.map((r) => (
+            <Chip key={r} active={filters.roles.includes(r)} onClick={() => setFilters({ ...filters, roles: filters.roles.includes(r) ? filters.roles.filter((x) => x !== r) : [...filters.roles, r] })}>
+              {r}
+            </Chip>
+          ))}
+        </div>
+      </Sheet>
 
       <Sheet
         open={sheet === "teams"}
@@ -158,7 +184,7 @@ export function FilterPanel({ data, filters, setFilters }: { data: BuilderData; 
         <ul className="space-y-0.5">
           {SORTS.map((s) => (
             <li key={s.key}>
-              <button onClick={() => setFilters({ ...filters, sort: s.key })} aria-pressed={filters.sort === s.key} className={cn("flex h-9 w-full items-center justify-between rounded-lg px-2.5 text-left text-footnote", filters.sort === s.key ? "bg-elevated font-semibold text-ink" : "text-ink-2 hover:bg-surface")}>
+              <button onClick={() => setFilters({ ...filters, sort: s.key })} aria-pressed={filters.sort === s.key} className={cn("flex h-10 w-full items-center justify-between rounded-[10px] px-3 text-left text-callout", filters.sort === s.key ? "bg-elevated font-semibold text-ink" : "text-ink-2 hover:bg-surface")}>
                 {s.label}
                 {filters.sort === s.key ? <Icon name="check" size={15} className="text-accent" /> : null}
               </button>
@@ -168,6 +194,7 @@ export function FilterPanel({ data, filters, setFilters }: { data: BuilderData; 
       </div>
       <div>
         <h3 className="mb-2 text-eyebrow text-ink-3">Role</h3>
+        <p className="mb-2 text-caption text-ink-3">Metadata only. Any five players make a lineup.</p>
         <div className="flex flex-wrap gap-1.5">
           {ROLES.map((r) => (
             <Chip key={r} active={filters.roles.includes(r)} onClick={() => setFilters({ ...filters, roles: filters.roles.includes(r) ? filters.roles.filter((x) => x !== r) : [...filters.roles, r] })}>

@@ -18,7 +18,7 @@ export default async function PlayerPage({ params, searchParams }: { params: Pro
   const d = await playerDetail(db, playerId, contest ?? null, now);
   if (!d) notFound();
   return (
-    <div className="mx-auto max-w-2xl">
+    <div className="mx-auto max-w-2xl lg:max-w-6xl">
       {contest ? (
         <Link href={`/c/${encodeURIComponent(contest)}/build`} className="mb-4 inline-flex items-center gap-1 text-callout text-ink-2 hover:text-ink">
           <Icon name="chevronLeft" size={16} /> Back to your team

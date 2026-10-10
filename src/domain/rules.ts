@@ -187,7 +187,7 @@ export function formatShortMoney(amount: number): string {
   }
   if (abs >= 1_000) {
     const k = abs / 1_000;
-    return `${sign}$${Number.isInteger(k) ? k.toFixed(0) : k.toFixed(1)}k`;
+    return `${sign}$${Number.isInteger(k) ? k.toFixed(0) : k.toFixed(1)}K`;
   }
   return `${sign}$${abs}`;
 }

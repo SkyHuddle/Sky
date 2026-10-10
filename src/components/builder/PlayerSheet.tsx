@@ -84,7 +84,7 @@ export function PlayerSheet({
               }}
               className="flex-1"
             >
-              {selected ? "Remove" : block ? block.message : "Add to team"}
+              {selected ? "Remove from Team" : block ? block.message : "Add to Team"}
             </Button>
           </div>
         ) : null

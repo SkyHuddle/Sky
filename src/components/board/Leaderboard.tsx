@@ -55,7 +55,7 @@ export function Leaderboard({ contestId, initial, scopes, viewerId }: { contestI
   return (
     <div>
       {scopes.length > 1 ? (
-        <div role="tablist" aria-label="Leaderboard" className="scrollbar-none -mx-4 mb-4 flex gap-1.5 overflow-x-auto px-4">
+        <div role="tablist" aria-label="Leaderboard" className="scrollbar-none mb-4 flex gap-1 overflow-x-auto rounded-xl bg-surface p-1">
           {scopes.map((s) => (
             <button
               key={s.key}
@@ -65,7 +65,10 @@ export function Leaderboard({ contestId, initial, scopes, viewerId }: { contestI
                 setScope(s.key);
                 void load(s.key, 1);
               }}
-              className={cn("inline-flex h-9 shrink-0 items-center rounded-full px-3.5 text-footnote font-semibold transition-colors", scope === s.key ? "bg-ink text-bg" : "bg-surface text-ink-2 ring-1 ring-border hover:text-ink")}
+              className={cn(
+                "inline-flex h-10 min-w-[88px] flex-1 shrink-0 items-center justify-center rounded-[10px] px-3 text-footnote font-semibold whitespace-nowrap transition-colors",
+                scope === s.key ? "bg-raised text-ink" : "text-ink-2 hover:text-ink",
+              )}
             >
               {s.label}
             </button>
@@ -89,7 +92,7 @@ export function Leaderboard({ contestId, initial, scopes, viewerId }: { contestI
             ))}
             {loading && rows.length === 0
               ? Array.from({ length: 6 }, (_, i) => (
-                  <li key={i} className="flex h-14 items-center gap-3 px-4">
+                  <li key={i} className="flex h-[62px] items-center gap-3 px-4">
                     <Skeleton className="h-4 w-8" />
                     <Skeleton className="size-8 rounded-full" />
                     <Skeleton className="h-4 flex-1" />
@@ -109,7 +112,7 @@ export function Leaderboard({ contestId, initial, scopes, viewerId }: { contestI
 
       {board.me && !meVisible ? (
         <div className="fixed inset-x-0 bottom-[calc(56px+env(safe-area-inset-bottom))] z-30 px-4 pb-2 lg:bottom-4 lg:left-[248px]">
-          <div className="mx-auto max-w-3xl overflow-hidden rounded-2xl border border-accent/50 bg-[#0f1f22] shadow-[0_12px_40px_rgb(0_0_0/0.5)]">
+          <div className="mx-auto max-w-3xl overflow-hidden rounded-2xl border border-border bg-surface shadow-[0_12px_32px_rgb(0_0_0/0.45)]">
             <ol>
               <Row r={board.me} me total={board.total} />
             </ol>
@@ -123,11 +126,9 @@ export function Leaderboard({ contestId, initial, scopes, viewerId }: { contestI
 function Row({ r, me, total }: { r: BoardRow; me: boolean; total: number }) {
   return (
     <li id={me ? `row-${r.entryId}` : undefined}>
-      <Link href={`/e/${r.entryId}`} className={cn("flex h-14 items-center gap-3 px-4 transition-colors", me ? "bg-[linear-gradient(90deg,rgb(92_227_203/0.16),rgb(92_227_203/0.03))] shadow-[inset_3px_0_0_var(--color-accent)]" : "hover:bg-[#131b28]")}>
-        <span className={cn("num w-10 text-right text-[1.0625rem]", r.rank <= 3 ? "text-ink" : "text-ink-2")}>{r.rank}</span>
-        <span className="w-8">
-          <Movement value={r.movement} />
-        </span>
+      <Link href={`/e/${r.entryId}`} className={cn("flex min-h-[62px] items-center gap-3 px-4 py-2 transition-colors", me ? "bg-accent-soft shadow-[inset_3px_0_0_var(--color-accent)]" : "hover:bg-elevated/60")}>
+        <span className={cn("num w-10 text-right text-callout", r.rank <= 3 ? "text-ink" : "text-ink-2")}>{r.rank.toLocaleString("en")}</span>
+        <span className="w-8">{r.movement !== null && r.movement !== undefined ? <Movement value={r.movement} /> : null}</span>
         <UserAvatar username={r.username} hue={r.avatarHue} size={32} />
         <span className="min-w-0 flex-1">
           <span className={cn("block truncate text-callout", me ? "font-semibold text-ink" : "text-ink")}>
@@ -136,7 +137,7 @@ function Row({ r, me, total }: { r: BoardRow; me: boolean; total: number }) {
           </span>
           {me ? <span className="block text-caption text-lavender">{percentileLabel(r.rank, total)}</span> : null}
         </span>
-        <span className={cn("num text-[1.125rem]", me ? "text-accent" : "text-ink")}>{pts(r.points)}</span>
+        <span className="num text-callout text-ink">{pts(r.points)}</span>
       </Link>
     </li>
   );

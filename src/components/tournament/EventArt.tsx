@@ -26,7 +26,7 @@ export function EventArt({ seed, accent = "#a78bfa", className, radar = true, ba
   const rng = new Rng(hashString(seed));
   const flipX = rng.chance(0.5);
   const flipY = rng.chance(0.5);
-  const tilt = -8 + rng.next() * 16;
+  const tilt = -6 + rng.next() * 12;
   const glowX = 55 + rng.next() * 35;
   const glowY = rng.next() * 25;
   // The radar board spans x 44–94, y 6–54; mirror within that box.
@@ -39,37 +39,29 @@ export function EventArt({ seed, accent = "#a78bfa", className, radar = true, ba
 
   return (
     <div className={className} aria-hidden>
-      <div
-        className="absolute inset-0"
-        style={{
-          background: `radial-gradient(80% 70% at ${glowX}% ${glowY}%, ${accent}40 0%, ${accent}0d 50%, transparent 75%), radial-gradient(70% 60% at 0% 100%, rgb(59 108 240 / 0.2), transparent 70%), #0c111b`,
-        }}
-      />
-      <div className="absolute inset-0 opacity-60" style={{ backgroundImage: "linear-gradient(rgb(255 255 255 / 0.03) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / 0.03) 1px, transparent 1px)", backgroundSize: "22px 22px" }} />
+      {/* One restrained spotlight, flat surface everywhere else (DESIGN.md §3.4). */}
+      <div className="absolute inset-0 bg-surface" style={{ backgroundImage: `radial-gradient(60% 80% at ${glowX}% ${glowY}%, ${accent}2e 0%, transparent 70%)` }} />
       {radar ? (
         <svg
           viewBox="38 0 62 60"
-          className={banner ? "absolute top-[-30%] right-[-24%] h-auto w-[62%] max-w-[420px] opacity-70 sm:right-[-4%] sm:w-[40%]" : "absolute top-[-10%] right-[-22%] h-auto w-[80%] max-w-[520px] sm:right-[-6%] sm:w-[58%]"}
-          style={{ maskImage: "radial-gradient(75% 75% at 60% 40%, #000 45%, transparent 100%)", WebkitMaskImage: "radial-gradient(75% 75% at 60% 40%, #000 45%, transparent 100%)" }}
+          className={banner ? "absolute top-[-30%] right-[-24%] h-auto w-[62%] max-w-[420px] sm:right-[-4%] sm:w-[40%]" : "absolute top-[-14%] right-[-18%] h-auto w-[78%] max-w-[560px] sm:right-[-4%] sm:w-[52%]"}
+          style={{ maskImage: "radial-gradient(70% 70% at 60% 40%, #000 40%, transparent 100%)", WebkitMaskImage: "radial-gradient(70% 70% at 60% 40%, #000 40%, transparent 100%)" }}
           focusable="false"
         >
-          <g opacity="0.7">
+          <g opacity="0.55">
             <g transform={transform}>
               {/* every room stroked, then filled on top, so only the union's outline shows */}
               {ROOMS.map(([x, y, w, h], i) => (
-                <rect key={`s${i}`} x={x} y={y} width={w} height={h} rx="0.6" fill="none" stroke={accent} strokeOpacity="0.6" strokeWidth="0.6" />
+                <rect key={`s${i}`} x={x} y={y} width={w} height={h} rx="0.6" fill="none" stroke={accent} strokeOpacity="0.7" strokeWidth="0.5" />
               ))}
               {ROOMS.map(([x, y, w, h], i) => (
-                <rect key={`f${i}`} x={x} y={y} width={w} height={h} rx="0.6" fill="#111827" />
-              ))}
-              {ROOMS.map(([x, y, w, h], i) => (
-                <rect key={`t${i}`} x={x} y={y} width={w} height={h} rx="0.6" fill={accent} fillOpacity="0.07" />
+                <rect key={`f${i}`} x={x} y={y} width={w} height={h} rx="0.6" fill="var(--color-elevated)" />
               ))}
             </g>
             {sites.map(([label, [x, y]]) => (
               <g key={label}>
-                <circle cx={x} cy={y} r="3.2" fill={accent} fillOpacity="0.16" stroke={accent} strokeOpacity="0.75" strokeWidth="0.3" />
-                <text x={x} y={y + 1.2} textAnchor="middle" fontSize="3.3" fontWeight="800" fill={accent} fontFamily="var(--font-archivo), sans-serif">
+                <circle cx={x} cy={y} r="3" fill="none" stroke={accent} strokeOpacity="0.8" strokeWidth="0.3" />
+                <text x={x} y={y + 1.15} textAnchor="middle" fontSize="3.2" fontWeight="700" fill={accent} fontFamily="var(--font-geist-sans), sans-serif">
                   {label}
                 </text>
               </g>
@@ -77,10 +69,11 @@ export function EventArt({ seed, accent = "#a78bfa", className, radar = true, ba
           </g>
         </svg>
       ) : null}
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_35%,rgb(10_14_22/0.85)_100%)]" />
+      {/* bottom fade so the headline overlay stays readable */}
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_30%,var(--color-surface)_88%)]" />
     </div>
   );
 }
 
-export const TIER_ACCENT: Record<string, string> = { major: "#a78bfa", tier1: "#5ce3cb", other: "#7d8ba0" };
+export const TIER_ACCENT: Record<string, string> = { major: "#a99aff", tier1: "#58e3cd", other: "#788ba0" };
 export const TIER_LABEL: Record<string, string> = { major: "Major", tier1: "Tier 1", other: "Event" };

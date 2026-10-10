@@ -10,11 +10,11 @@ const base =
   "relative inline-flex select-none items-center justify-center gap-2 whitespace-nowrap font-semibold transition-[background-color,color,transform,box-shadow,opacity] duration-150 ease-out active:scale-[0.98] disabled:active:scale-100 disabled:opacity-45";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-accent text-accent-ink shadow-[0_10px_30px_-12px_rgb(92_227_203/0.65)] hover:bg-accent-strong",
+  primary: "bg-accent text-accent-ink hover:bg-accent-strong",
   secondary: "bg-elevated text-ink hairline hover:bg-raised",
   ghost: "text-ink-2 hover:text-ink hover:bg-elevated",
   danger: "bg-negative-soft text-negative hover:bg-negative/20",
-  lavender: "bg-lavender text-[#1b1035] hover:brightness-110",
+  lavender: "bg-lavender text-lavender-ink hover:brightness-110",
 };
 
 const sizes: Record<Size, string> = {

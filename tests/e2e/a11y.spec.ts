@@ -2,7 +2,7 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
 /** Automated accessibility checks (axe) on the main screens: no serious or critical violations. */
-const pages = ["/", "/t/meridian-major", "/t/meridian-major/fantasy", "/t/harbor-cup/standings", "/c/demo-meridian-major--full-run/build", "/leagues", "/signin"];
+const pages = ["/", "/t/meridian-major", "/t/meridian-major/fantasy", "/t/harbor-cup/standings", "/c/demo-meridian-major--full-run/build", "/c/demo-meridian-major--full-run/leaderboard", "/leagues", "/signin"];
 
 for (const path of pages) {
   test(`a11y ${path}`, async ({ page }) => {

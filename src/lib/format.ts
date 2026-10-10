@@ -7,9 +7,14 @@ export function money(n: number): string {
   }
   if (Math.abs(n) >= 1000) {
     const k = n / 1000;
-    return `${n < 0 ? "−" : ""}$${Number.isInteger(Math.abs(k)) ? Math.abs(k) : Math.abs(k).toFixed(1)}k`;
+    return `${n < 0 ? "−" : ""}$${Number.isInteger(Math.abs(k)) ? Math.abs(k) : Math.abs(k).toFixed(1)}K`;
   }
   return `$${n}`;
+}
+
+/** Full salary for detail views (DESIGN.md §3.5): $245,000. */
+export function moneyFull(n: number): string {
+  return `${n < 0 ? "−" : ""}$${Math.abs(n).toLocaleString("en-US")}`;
 }
 
 export function pts(n: number, digits = 1): string {

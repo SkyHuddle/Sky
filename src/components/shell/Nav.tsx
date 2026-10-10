@@ -25,7 +25,7 @@ export function TabBar() {
               <Link
                 href={item.href}
                 aria-current={active ? "page" : undefined}
-                className={cn("flex h-14 flex-col items-center justify-center gap-0.5 text-[0.6875rem] font-medium transition-colors", active ? "text-ink" : "text-ink-3 hover:text-ink-2")}
+                className={cn("flex h-14 flex-col items-center justify-center gap-0.5 text-[0.75rem] font-medium transition-colors", active ? "text-ink" : "text-ink-3 hover:text-ink-2")}
               >
                 <span className={cn("flex h-7 w-12 items-center justify-center rounded-full transition-colors", active && "bg-elevated text-accent")}>
                   <Icon name={item.icon} size={21} strokeWidth={active ? 2 : 1.75} />

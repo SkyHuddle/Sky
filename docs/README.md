@@ -14,6 +14,8 @@ Phase 0 deliverables. Read in order; each document builds on the previous one.
 | 8 | [Risks and open questions](08-risks-and-open-questions.md) | Deliverable 11 |
 | 9 | [Product requirements document](09-prd.md) | Deliverable 12 |
 | 10 | [Implementation decisions](10-implementation-decisions.md) | What changed during the build, and why |
+| — | [DESIGN.md](DESIGN.md) | **UI/UX source of truth** (design system, screen specs, quality checklist) |
+| 11 | [Design gap analysis](11-design-gap-analysis.md) | Where the app differed from DESIGN.md, and the fix |
 
 ## The short version
 

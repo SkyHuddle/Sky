@@ -90,7 +90,7 @@ function Fact({ label, value, sub }: { label: string; value: string; sub?: strin
     <div className="rounded-xl bg-[rgb(10_14_22/0.5)] px-3 py-3 ring-1 ring-border">
       <dt className="text-caption text-ink-3">{label}</dt>
       <dd className="tabular mt-0.5 text-title text-ink">{value}</dd>
-      {sub ? <dd className="text-[0.6875rem] text-ink-3">{sub}</dd> : null}
+      {sub ? <dd className="text-[0.75rem] text-ink-3">{sub}</dd> : null}
     </div>
   );
 }

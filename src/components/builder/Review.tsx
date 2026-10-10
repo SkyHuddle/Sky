@@ -4,11 +4,11 @@ import { motion } from "motion/react";
 import { cn } from "@/lib/cn";
 import { money } from "@/lib/format";
 import type { BuilderData } from "@/server/queries/contest";
-import { PlayerCard } from "../player/PlayerCard";
 import { Button, ButtonLink } from "../ui/Button";
 import { Icon } from "../ui/Icon";
 import { Notice } from "../ui/primitives";
 import { Countdown } from "../ui/status";
+import { LineupShowcase, type ShowcasePlayer } from "./Showcase";
 import type { BuilderState } from "./useBuilder";
 
 export interface SubmitError {
@@ -39,86 +39,87 @@ export function Review({
   onBack: () => void;
   onSubmit: () => void;
 }) {
-  const ordered = [...b.playerIds].sort((x, y) => (x === b.captainId ? -1 : y === b.captainId ? 1 : 0));
   const teamOverLimit = [...b.summary.teamCounts.values()].some((n) => n > data.rules.maxPerTeam);
   const eliminated = b.playerIds.filter((id) => b.ineligible.has(id));
   const checks = [
     { ok: b.playerIds.length === data.rules.rosterSize, text: `${b.playerIds.length} of ${data.rules.rosterSize} players picked` },
     { ok: b.summary.salaryRemaining >= 0, text: b.summary.salaryRemaining >= 0 ? `Under the ${money(data.rules.salaryCap)} cap (${money(b.summary.salaryRemaining)} left)` : `${money(-b.summary.salaryRemaining)} over the cap` },
     { ok: !teamOverLimit, text: `No more than ${data.rules.maxPerTeam} players from one team` },
-    { ok: !!b.captainId && b.playerIds.includes(b.captainId), text: b.captainId ? "Captain chosen (scores 1.5×)" : "Choose a captain: tap the star on a player" },
+    { ok: !!b.captainId && b.playerIds.includes(b.captainId), text: b.captainId && b.playerIds.includes(b.captainId) ? `Captain chosen (scores ${data.rules.captainMultiplier}×)` : "Choose a captain: tap a player" },
     ...(eliminated.length ? [{ ok: false, text: `Replace ${eliminated.length} eliminated player${eliminated.length > 1 ? "s" : ""} (free)` }] : []),
     ...(b.transfers
       ? [{ ok: !b.transfers.error, text: `${b.transfers.discretionary.length} of ${b.transfers.allowed} transfers used${b.transfers.free.length ? ` · ${b.transfers.free.length} free replacement${b.transfers.free.length > 1 ? "s" : ""}` : ""}` }]
       : []),
   ];
   const valid = checks.every((c) => c.ok);
-  const cardFor = (id: string, big: boolean) => {
+  const players: ShowcasePlayer[] = b.playerIds.map((id) => {
     const p = b.byId.get(id);
     const out = b.ineligible.get(id);
-    const team = data.teams[p?.teamId ?? out?.teamId ?? ""];
-    const isCaptain = id === b.captainId;
-    return (
-      <PlayerCard
-        key={id}
-        size={big ? "lg" : "md"}
-        captain={isCaptain}
-        eliminated={!!out}
-        team={team}
-        player={{ nickname: p?.nickname ?? out?.nickname ?? "?", role: p?.role ?? "", nationality: p?.nationality ?? "", price: p?.price ?? out?.price ?? 0, avgPoints: p?.avgPoints }}
-        footer={
-          <button
-            onClick={() => b.setCaptainId(id)}
-            disabled={!!out}
-            aria-pressed={isCaptain}
-            className={cn(
-              "inline-flex h-9 w-full items-center justify-center gap-1.5 rounded-[10px] text-footnote font-semibold transition-colors",
-              isCaptain ? "bg-lavender-soft text-lavender" : "bg-elevated text-ink-2 hover:text-ink",
-            )}
-          >
-            <Icon name="star" size={14} strokeWidth={2.2} />
-            {isCaptain ? "Captain" : "Make captain"}
-          </button>
-        }
-      />
-    );
-  };
+    return { id, nickname: p?.nickname ?? out?.nickname ?? "?", team: data.teams[p?.teamId ?? out?.teamId ?? ""], price: p?.price ?? out?.price ?? 0, eliminated: !!out };
+  });
+  const hasCaptain = !!b.captainId && b.playerIds.includes(b.captainId);
+  const teamsUsed = b.summary.teamCounts.size;
 
   return (
-    <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }} className="mx-auto max-w-4xl">
-      <div className="flex flex-wrap items-end justify-between gap-3">
-        <div>
-          <div className="text-eyebrow text-lavender">{data.tournament.shortName} · {data.contest.name}</div>
-          <h1 className="mt-1 text-display text-ink">Your team</h1>
-          {data.window ? (
-            <p className="mt-1 text-callout text-ink-2">
-              {data.window.stageName} locks in <Countdown to={data.window.lockAt} now={nowIso} className="font-semibold text-ink" />. You can edit until then.
-            </p>
-          ) : null}
-        </div>
-        <Button variant="secondary" icon="chevronLeft" onClick={onBack}>
-          Edit players
-        </Button>
-      </div>
+    <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.26, ease: [0.22, 1, 0.36, 1] }} className="mx-auto max-w-[760px]">
+      <Button variant="ghost" icon="chevronLeft" onClick={onBack} className="-ml-3">
+        Edit players
+      </Button>
+      <h1 className="mt-2 text-title text-ink">Your team</h1>
+      <p className="mt-1 text-callout text-ink-2">
+        {hasCaptain ? (
+          <>
+            Tap another player to change your captain.{" "}
+            {data.window ? (
+              <>
+                You can edit until lock in <Countdown to={data.window.lockAt} now={nowIso} className="num text-ink" />.
+              </>
+            ) : null}
+          </>
+        ) : (
+          <>
+            <span className="font-semibold text-lavender">Choose a captain.</span> Tap a player: their points count {data.rules.captainMultiplier}×.
+          </>
+        )}
+      </p>
 
-      {!b.captainId || !b.playerIds.includes(b.captainId) ? (
-        <Notice tone="lavender" icon="star" className="mt-5">
-          <span className="font-semibold text-ink">Choose your captain.</span> <span className="text-ink-2">Their points count 1.5×. Tap “Make captain” on any player.</span>
-        </Notice>
-      ) : null}
-
-      <div className="mt-5 grid grid-cols-2 gap-3 lg:grid-cols-5">
-        {ordered.map((id, i) => (
-          <motion.div key={id} layout transition={{ type: "spring", stiffness: 420, damping: 38 }} className={i === 0 ? "col-span-2 lg:col-span-1" : undefined}>
-            {cardFor(id, i === 0 && b.captainId === id)}
-          </motion.div>
-        ))}
+      <div className="mt-4">
+        <LineupShowcase
+          players={players}
+          captainId={hasCaptain ? b.captainId : null}
+          captainMultiplier={data.rules.captainMultiplier}
+          onCaptain={(id) => b.setCaptainId(id)}
+          header={
+            <div className="flex items-baseline justify-between gap-3">
+              <span className="text-eyebrow text-ink-3">
+                {data.tournament.shortName} · {data.contest.name}
+              </span>
+              <span className="text-caption text-ink-3">{data.window?.stageName}</span>
+            </div>
+          }
+          footer={
+            <dl className="grid grid-cols-3 gap-3 text-center">
+              <div>
+                <dt className="text-caption text-ink-3">Salary used</dt>
+                <dd className="num text-callout text-ink">{money(b.summary.salaryUsed)}</dd>
+              </div>
+              <div>
+                <dt className="text-caption text-ink-3">Remaining</dt>
+                <dd className={cn("num text-callout", b.summary.salaryRemaining < 0 ? "text-negative" : "text-ink")}>{money(b.summary.salaryRemaining)}</dd>
+              </div>
+              <div>
+                <dt className="text-caption text-ink-3">Teams</dt>
+                <dd className="num text-callout text-ink">{teamsUsed}</dd>
+              </div>
+            </dl>
+          }
+        />
       </div>
 
       <div className="mt-6 grid gap-4 lg:grid-cols-[1fr_340px]">
         <section aria-labelledby="checks" className="rounded-2xl border border-border bg-surface p-4">
           <h2 id="checks" className="text-headline text-ink">
-            Rules check
+            Lineup rules
           </h2>
           <ul className="mt-3 space-y-2">
             {checks.map((c) => (
@@ -133,12 +134,6 @@ export function Review({
               </li>
             ))}
           </ul>
-          <div className="mt-4 flex items-center justify-between border-t border-border pt-3 text-callout">
-            <span className="text-ink-2">Total salary</span>
-            <span className="tabular font-semibold text-ink">
-              {money(b.summary.salaryUsed)} <span className="font-normal text-ink-3">/ {money(data.rules.salaryCap)}</span>
-            </span>
-          </div>
         </section>
 
         <section aria-labelledby="autopilot" className="rounded-2xl border border-border bg-surface p-4">
@@ -174,10 +169,10 @@ export function Review({
         </Notice>
       ) : null}
 
-      <div className="pb-safe sticky bottom-0 mt-6 -mx-4 border-t border-border bg-bg/95 px-4 pt-3 pb-4 backdrop-blur sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:px-0">
+      <div className="pb-safe sticky bottom-0 mt-6 -mx-4 border-t border-border bg-bg px-4 pt-3 pb-4 sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:px-0">
         {signedIn ? (
           <Button size="lg" block onClick={onSubmit} loading={submitting} disabled={!valid} icon="lock">
-            {data.saved ? "Save changes" : "Submit team"}
+            {data.saved ? "Save Changes" : "Submit Team"}
           </Button>
         ) : (
           <ButtonLink size="lg" block href={`/signup?next=${encodeURIComponent(`/c/${data.contest.id}/build?step=review`)}`} icon="user">

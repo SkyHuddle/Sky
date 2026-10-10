@@ -3,21 +3,23 @@
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { motion } from "motion/react";
 import { cn } from "@/lib/cn";
 import { money } from "@/lib/format";
 import type { BuilderData } from "@/server/queries/contest";
-import { Button, ButtonLink, IconButton } from "../ui/Button";
+import { Button, ButtonLink } from "../ui/Button";
 import { Icon } from "../ui/Icon";
-import { DemoBadge, PlayerAvatar } from "../ui/identity";
+import { DemoBadge } from "../ui/identity";
 import { EmptyState, Notice } from "../ui/primitives";
+import { Sheet } from "../ui/Sheet";
 import { Countdown, StatePill } from "../ui/status";
 import { useToast } from "../ui/Toast";
 import { FilterChips, FilterPanel, SearchField } from "./Filters";
 import { PlayerRow } from "./PlayerRow";
 import { PlayerSheet } from "./PlayerSheet";
 import { Review, type SubmitError } from "./Review";
-import { RosterTray } from "./RosterTray";
+import { LineupList, RosterSlots, SalarySummary } from "./RosterTray";
+import { LineupShowcase } from "./Showcase";
 import { useBuilder } from "./useBuilder";
 
 type Step = "pick" | "review" | "done";
@@ -29,6 +31,7 @@ export function Builder({ data, nowIso, signedIn }: { data: BuilderData; nowIso:
   const toast = useToast();
   const [step, setStep] = useState<Step>(params.get("step") === "review" ? "review" : "pick");
   const [openPlayer, setOpenPlayer] = useState<string | null>(null);
+  const [lineupOpen, setLineupOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<SubmitError | null>(null);
   const [result, setResult] = useState<{ entryId: string; created: boolean } | null>(null);
@@ -55,7 +58,6 @@ export function Builder({ data, nowIso, signedIn }: { data: BuilderData; nowIso:
   }, [step]);
 
   const editable = data.state === "open";
-  const canReview = b.playerIds.length > 0;
 
   const submit = useCallback(async () => {
     setSubmitting(true);
@@ -162,6 +164,8 @@ export function Builder({ data, nowIso, signedIn }: { data: BuilderData; nowIso:
   const rawError = b.errors.find((e) => e.code !== "CAPTAIN_REQUIRED") ?? null;
   const firstError =
     rawError?.code === "INELIGIBLE_PLAYER" ? { ...rawError, message: "Replace your eliminated players (free)" } : rawError;
+  const full = b.playerIds.length >= data.rules.rosterSize;
+  const canReview = full && !firstError;
   const stillOut = data.ineligiblePrevious.filter((p) => b.playerIds.includes(p.id));
   const transferNote = b.transfers ? (
     <Notice tone={b.transfers.error ? "danger" : "lavender"} icon="swap">
@@ -193,7 +197,7 @@ export function Builder({ data, nowIso, signedIn }: { data: BuilderData; nowIso:
   ) : null;
 
   const list = (
-    <ul className="space-y-2" aria-label="Player pool">
+    <ul className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface" aria-label="Player pool">
       {b.visible.map((p) => (
         <PlayerRow
           key={p.id}
@@ -209,7 +213,7 @@ export function Builder({ data, nowIso, signedIn }: { data: BuilderData; nowIso:
         />
       ))}
       {b.visible.length === 0 ? (
-        <li className="rounded-2xl border border-border bg-surface px-4 py-10 text-center">
+        <li className="px-4 py-10 text-center">
           <p className="text-headline text-ink">No players match</p>
           <p className="mt-1 text-callout text-ink-2">Try a different search or clear your filters.</p>
           <Button variant="secondary" size="sm" className="mt-4" onClick={() => b.setFilters({ q: "", teams: [], roles: [], sort: b.filters.sort, affordable: false })}>
@@ -222,23 +226,23 @@ export function Builder({ data, nowIso, signedIn }: { data: BuilderData; nowIso:
 
   const actionBar = (
     <div className="flex items-center gap-3">
-      <div className="min-w-0 flex-1">
-        {b.playerIds.length < data.rules.rosterSize ? (
+      <div className="min-w-0 flex-1" aria-live="polite">
+        {!full ? (
           <p className="text-footnote text-ink-2">
-            Pick <span className="font-semibold text-ink">{data.rules.rosterSize - b.playerIds.length}</span> more · {money(b.summary.salaryRemaining)} left
+            <span className="num text-ink">{b.playerIds.length}</span> of {data.rules.rosterSize} players selected
           </p>
         ) : firstError ? (
-          <p className="flex items-center gap-1.5 text-footnote text-negative">
-            <Icon name="alert" size={14} /> {firstError.message}
+          <p className="flex items-start gap-1.5 text-footnote text-negative">
+            <Icon name="alert" size={14} className="mt-0.5 shrink-0" /> {firstError.message}
           </p>
         ) : (
-          <p className="flex items-center gap-1.5 text-footnote text-accent">
-            <Icon name="check" size={14} /> Team complete
+          <p className="text-footnote text-ink-2">
+            <span className="font-semibold text-accent">Lineup complete</span> · {money(b.summary.salaryRemaining)} left
           </p>
         )}
       </div>
-      <Button size="lg" onClick={() => setStep("review")} disabled={!canReview} iconRight="chevronRight">
-        Review team
+      <Button size="lg" onClick={() => setStep("review")} disabled={!canReview} className="shrink-0">
+        Review Team
       </Button>
     </div>
   );
@@ -259,27 +263,28 @@ export function Builder({ data, nowIso, signedIn }: { data: BuilderData; nowIso:
         </Notice>
       ) : null}
 
-      <div className="lg:grid lg:grid-cols-[232px_minmax(0,1fr)_340px] lg:gap-6">
-        {/* Desktop: filters */}
-        <aside className="hidden lg:block">
-          <div className="sticky top-24 max-h-[calc(100dvh-7rem)] overflow-y-auto pr-1">
+      <div className="lg:grid lg:grid-cols-[240px_minmax(0,1fr)_360px] lg:gap-8">
+        {/* Desktop: filter rail */}
+        <aside className="hidden lg:block" aria-label="Filters">
+          <div className="sticky top-20 max-h-[calc(100dvh-6rem)] overflow-y-auto pr-1">
             <FilterPanel data={data} filters={b.filters} setFilters={b.setFilters} />
           </div>
         </aside>
 
         {/* Pool */}
         <section aria-label="Choose players" className="min-w-0">
-          {/* Mobile roster: money left, players picked, five slots. The sticky action bar repeats the essentials while scrolling. */}
-          <div className="rounded-[22px] border border-border bg-surface p-4 lg:hidden">
-            <RosterTray data={data} b={b} onOpenPlayer={setOpenPlayer} />
+          {/* Phone: compact sticky summary. The full lineup is one tap away. */}
+          <div className="sticky top-14 z-20 -mx-4 border-b border-border bg-bg px-4 pt-3 pb-3 sm:-mx-5 sm:px-5 lg:hidden">
+            <SalarySummary data={data} b={b} onOpenLineup={() => setLineupOpen(true)} />
+            <RosterSlots data={data} b={b} onOpenPlayer={setOpenPlayer} className="mt-3" />
           </div>
-          <div className="space-y-3 pt-3 lg:pt-0">
+          <div className="space-y-3 pt-4 lg:pt-0">
             {transferNote}
             <div className="flex gap-2">
               <div className="flex-1">
                 <SearchField value={b.filters.q} onChange={(q) => b.setFilters({ ...b.filters, q })} />
               </div>
-              <Button variant="secondary" icon="bolt" onClick={b.suggest} aria-label="Suggest a team" className="shrink-0">
+              <Button variant="secondary" icon="bolt" onClick={b.suggest} aria-label="Suggest a team" className="h-11 shrink-0">
                 <span className="hidden sm:inline">Suggest</span>
               </Button>
             </div>
@@ -290,52 +295,60 @@ export function Builder({ data, nowIso, signedIn }: { data: BuilderData; nowIso:
               <span>
                 {b.visible.length} of {data.pool.length} players
               </span>
-              <span className="hidden sm:inline">Form = last 5 maps · avg = points per map</span>
+              <span className="hidden md:inline">Avg = fantasy points per map · bars = last 5 maps</span>
             </div>
             {list}
           </div>
         </section>
 
-        {/* Desktop: sticky roster */}
-        <aside className="hidden lg:block">
-          <div className="sticky top-24 space-y-4 rounded-2xl border border-border bg-surface p-4">
-            <div className="flex items-center justify-between">
-              <h2 className="text-headline text-ink">Your roster</h2>
+        {/* Desktop: sticky lineup */}
+        <aside className="hidden lg:block" aria-label="Your roster">
+          <div className="sticky top-20 rounded-[20px] border border-border bg-surface p-5">
+            <div className="mb-4 flex items-center justify-between">
+              <h2 className="text-section text-ink">Your roster</h2>
               {b.playerIds.length ? (
-                <button onClick={b.clear} className="text-caption font-medium text-ink-3 hover:text-ink">
+                <button onClick={b.clear} className="h-9 rounded-lg px-2 text-footnote font-medium text-ink-3 hover:bg-elevated hover:text-ink">
                   Clear
                 </button>
               ) : null}
             </div>
-            <RosterTray data={data} b={b} onOpenPlayer={setOpenPlayer} />
-            <ul className="space-y-1.5">
-              {b.playerIds.map((id) => {
-                const p = b.byId.get(id);
-                const out = b.ineligible.get(id);
-                const team = data.teams[p?.teamId ?? out?.teamId ?? ""];
-                const cap = id === b.captainId;
-                return (
-                  <li key={id} className="flex items-center gap-2.5 rounded-xl bg-elevated px-2.5 py-2">
-                    <PlayerAvatar nickname={p?.nickname ?? out?.nickname ?? "?"} team={team} size={30} />
-                    <div className="min-w-0 flex-1">
-                      <div className={cn("truncate text-footnote font-semibold", out ? "text-negative" : "text-ink")}>{p?.nickname ?? out?.nickname}</div>
-                      <div className="tabular text-caption text-ink-3">{out ? "Eliminated · replace free" : money(p?.price ?? 0)}</div>
-                    </div>
-                    {!out ? (
-                      <IconButton icon="star" label={cap ? "Captain" : `Make ${p?.nickname} captain`} size={32} onClick={() => b.setCaptainId(id)} className={cn(cap && "bg-lavender-soft text-lavender hover:text-lavender")} aria-pressed={cap} />
-                    ) : null}
-                    <IconButton icon="x" label={`Remove ${p?.nickname ?? out?.nickname}`} size={32} onClick={() => b.remove(id)} />
-                  </li>
-                );
-              })}
-            </ul>
-            {actionBar}
+            <SalarySummary data={data} b={b} />
+            <div className="mt-4 border-t border-border pt-3">
+              <LineupList data={data} b={b} onOpenPlayer={setOpenPlayer} />
+              {b.playerIds.length > 0 && b.playerIds.length < data.rules.rosterSize ? (
+                <p className="mt-2 px-1.5 text-footnote text-ink-3">
+                  {data.rules.rosterSize - b.playerIds.length} open slot{data.rules.rosterSize - b.playerIds.length > 1 ? "s" : ""}
+                </p>
+              ) : null}
+            </div>
+            <div className="mt-4 border-t border-border pt-4">{actionBar}</div>
           </div>
         </aside>
       </div>
 
+      <Sheet
+        open={lineupOpen}
+        onOpenChange={setLineupOpen}
+        title="Your lineup"
+        footer={<div onClick={() => setLineupOpen(false)}>{actionBar}</div>}
+      >
+        <SalarySummary data={data} b={b} />
+        <div className="mt-4">
+          <LineupList
+            data={data}
+            b={b}
+            onOpenPlayer={(id) => {
+              setLineupOpen(false);
+              setOpenPlayer(id);
+            }}
+          />
+        </div>
+      </Sheet>
+
       {/* Mobile sticky action */}
-      <div className="glass pb-safe fixed inset-x-0 bottom-0 z-30 border-t border-border px-4 pt-3 pb-3 lg:hidden">{actionBar}</div>
+      <div className="pb-safe fixed inset-x-0 bottom-0 z-30 border-t border-border bg-bg px-4 pt-3 sm:px-5 lg:hidden">
+        <div className="pb-3">{actionBar}</div>
+      </div>
 
       <PlayerSheet
         playerId={openPlayer}
@@ -356,29 +369,40 @@ export function Builder({ data, nowIso, signedIn }: { data: BuilderData; nowIso:
 function Frame({ data, nowIso, children, wide }: { data: BuilderData; nowIso: string; children: React.ReactNode; wide?: boolean }) {
   return (
     <div className="min-h-dvh">
-      <header className="glass sticky top-0 z-30 border-b border-border">
-        <div className={cn("mx-auto flex h-14 items-center gap-2 px-2 sm:px-4", wide ? "max-w-[1400px]" : "max-w-4xl")}>
+      <header className="sticky top-0 z-30 border-b border-border bg-bg">
+        <div className={cn("mx-auto flex h-14 items-center gap-2 px-2 sm:px-4", wide ? "max-w-[1360px]" : "max-w-4xl")}>
           <Link href={`/t/${data.tournament.slug}/fantasy`} aria-label="Back to event" className="inline-flex size-10 items-center justify-center rounded-full text-ink-2 hover:bg-elevated hover:text-ink">
             <Icon name="chevronLeft" size={22} />
           </Link>
           <div className="min-w-0 flex-1">
             <div className="truncate text-[0.9375rem] font-semibold text-ink">
-              {data.tournament.shortName} <span className="font-normal text-ink-3">· {data.contest.name}</span>
+              {data.tournament.shortName} <span className="hidden font-normal text-ink-3 sm:inline">· {data.contest.name}</span>
             </div>
-            <div className="truncate text-caption text-ink-2">{data.window ? `${data.window.stageName}${data.window.position > 1 ? " transfer window" : ""}` : "Lineup"}</div>
+            <div className="truncate text-caption text-ink-2">
+              <span className="sm:hidden">{data.contest.name} · </span>
+              {data.window ? `${data.window.stageName}${data.window.position > 1 ? " transfers" : ""}` : "Lineup"}
+              {data.tournament.isDemo ? <span className="text-lavender sm:hidden"> · Demo data</span> : null}
+            </div>
           </div>
-          {data.tournament.isDemo ? <DemoBadge className="hidden sm:inline-flex" /> : null}
+          {data.tournament.isDemo ? (
+            <span className="hidden sm:block">
+              <DemoBadge />
+            </span>
+          ) : null}
           {data.window && data.state === "open" ? (
-            <span className="inline-flex h-8 items-center gap-1.5 rounded-full bg-elevated px-3 text-footnote text-ink-2 ring-1 ring-border">
+            <span className="inline-flex h-8 shrink-0 items-center gap-1.5 rounded-full bg-warning-soft px-3 text-footnote whitespace-nowrap text-warning">
               <Icon name="lock" size={14} />
-              <Countdown to={data.window.lockAt} now={nowIso} className="font-semibold text-ink" />
+              <span>
+                <span className="sr-only sm:not-sr-only">Locks in </span>
+                <Countdown to={data.window.lockAt} now={nowIso} className="num" />
+              </span>
             </span>
           ) : data.state === "locked" ? (
             <StatePill kind="locked" />
           ) : null}
         </div>
       </header>
-      <main id="main" className={cn("mx-auto px-4 pt-4 pb-32 lg:pt-6 lg:pb-12", wide ? "max-w-[1400px]" : "max-w-4xl")}>
+      <main id="main" className={cn("mx-auto px-4 pt-0 pb-36 sm:px-5 lg:px-8 lg:pt-8 lg:pb-12", wide ? "max-w-[1360px]" : "max-w-4xl pt-4")}>
         {children}
       </main>
     </div>
@@ -415,30 +439,28 @@ function Done({ data, b, entryId, created, nowIso }: { data: BuilderData; b: Ret
         {data.contest.name} · {data.window?.stageName} locks in <Countdown to={data.window!.lockAt} now={nowIso} className="font-semibold text-ink" />. You can keep editing until then.
       </p>
 
-      <div className="mt-7 rounded-[22px] border border-border bg-surface p-4 text-left">
-        <div className="flex items-center justify-between">
-          <div className="text-eyebrow text-ink-3">{data.tournament.shortName}</div>
-          <div className="tabular text-caption text-ink-3">{money(b.summary.salaryUsed)} / {money(data.rules.salaryCap)}</div>
-        </div>
-        <ul className="mt-3 grid grid-cols-5 gap-2">
-          <AnimatePresence>
-            {b.playerIds.map((id, i) => {
-              const p = b.byId.get(id);
-              return (
-                <motion.li key={id} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 * i }} className="flex min-w-0 flex-col items-center gap-1.5">
-                  <PlayerAvatar nickname={p?.nickname ?? "?"} team={data.teams[p?.teamId ?? ""]} size={52} ring={id === b.captainId ? "captain" : null} />
-                  <span className="w-full truncate text-center text-caption font-medium text-ink">{p?.nickname}</span>
-                  <span className="text-[0.625rem] text-ink-3">{data.teams[p?.teamId ?? ""]?.acronym}</span>
-                </motion.li>
-              );
-            })}
-          </AnimatePresence>
-        </ul>
+      <div className="mt-7 text-left">
+        <LineupShowcase
+          players={b.playerIds.map((id) => {
+            const p = b.byId.get(id);
+            return { id, nickname: p?.nickname ?? "?", team: data.teams[p?.teamId ?? ""], price: p?.price ?? 0 };
+          })}
+          captainId={b.captainId}
+          captainMultiplier={data.rules.captainMultiplier}
+          header={
+            <div className="flex items-baseline justify-between gap-3">
+              <span className="text-eyebrow text-ink-3">{data.tournament.shortName}</span>
+              <span className="tabular text-caption text-ink-3">
+                {money(b.summary.salaryUsed)} of {money(data.rules.salaryCap)}
+              </span>
+            </div>
+          }
+        />
       </div>
 
       <div className="mt-6 grid gap-2.5 sm:grid-cols-2">
         <ButtonLink href={`/e/${entryId}`} size="lg" iconRight="chevronRight">
-          View my fantasy
+          View My Team
         </ButtonLink>
         <ButtonLink href={`/leagues?contest=${data.contest.id}`} size="lg" variant="secondary" icon="trophy">
           Join or create a league

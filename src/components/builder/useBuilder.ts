@@ -128,7 +128,7 @@ export function useBuilder(data: BuilderData) {
     (p: PoolPlayerView): RosterError | null => {
       const hard = addBlockReason({ id: p.id, teamId: p.teamId, price: p.price }, playerIds, withIneligible, data.rules);
       if (hard?.code === "ROSTER_SIZE" && playerIds.some((id) => ineligible.has(id))) {
-        return { code: "ROSTER_SIZE", message: "Remove an eliminated player first (free)" };
+        return { code: "ROSTER_SIZE", message: "Replace an eliminated player first" };
       }
       if (hard || playerIds.includes(p.id)) return hard;
       const slotsAfter = data.rules.rosterSize - playerIds.length - 1;

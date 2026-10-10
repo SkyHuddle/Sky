@@ -31,7 +31,7 @@ test("a new fan builds a team, joins a league, follows scoring, transfers, and s
   // 1–2. Open the site and browse tournaments.
   await page.goto("/");
   await expect(page.getByRole("heading", { name: "Meridian Major" })).toBeVisible();
-  await page.getByRole("link", { name: "Event hub" }).click();
+  await page.getByRole("link", { name: /tournament overview/ }).click();
   await page.waitForURL(/\/t\/meridian-major$/, { timeout: 90_000 });
 
   // 3–4. Select the fantasy competition and read the rules.
@@ -48,7 +48,7 @@ test("a new fan builds a team, joins a league, follows scoring, transfers, and s
 
   // 6. The roster builder.
   await page.waitForURL(new RegExp(`/c/${CONTEST}/build`), { timeout: 90_000 });
-  await expect(vis(page, "0/5 players")).toBeVisible();
+  await expect(vis(page, "0 of 5 players")).toBeVisible();
 
   // 7. Search and filter.
   await page.getByPlaceholder("Search players or teams").fill("zzzz");
@@ -61,8 +61,8 @@ test("a new fan builds a team, joins a league, follows scoring, transfers, and s
 
   // 8. Inspect a player's statistics.
   await page.getByRole("button", { name: /View details/ }).first().click();
-  await expect(page.getByRole("tab", { name: "Recent maps" })).toBeVisible();
-  await page.getByRole("tab", { name: "Recent maps" }).click();
+  await expect(page.getByRole("tab", { name: "Stats" })).toBeVisible();
+  await page.getByRole("tab", { name: "Stats" }).click();
   await expect(page.getByRole("dialog").getByText("K–D–A")).toBeVisible();
   await page.keyboard.press("Escape");
 
@@ -76,17 +76,17 @@ test("a new fan builds a team, joins a league, follows scoring, transfers, and s
   await page.getByRole("button", { name: /Sort:/ }).click();
   await page.getByRole("button", { name: "Salary: low to high" }).click();
   await addFirstAvailable(page, 3);
-  await expect(vis(page, "5/5 players")).toBeVisible();
-  await expect(vis(page, "Team complete")).toBeVisible();
+  await expect(vis(page, "5 of 5 players")).toBeVisible();
+  await expect(vis(page, "Lineup complete")).toBeVisible();
 
   // 12–13. Review the team and choose a captain.
-  await page.getByRole("button", { name: "Review team" }).click();
+  await page.getByRole("button", { name: "Review Team" }).filter({ visible: true }).first().click();
   await expect(page.getByRole("heading", { name: "Your team" })).toBeVisible();
-  await page.getByRole("button", { name: "Make captain" }).first().click();
+  await page.getByRole("button", { name: /^Make .+ captain$/ }).first().click();
   await expect(page.getByText("Captain chosen (scores 1.5×)")).toBeVisible();
 
   // 14. Submit.
-  await page.getByRole("button", { name: "Submit team" }).click();
+  await page.getByRole("button", { name: "Submit Team" }).click();
   await expect(page.getByRole("heading", { name: "You're in" })).toBeVisible();
 
   // 15. Return later and see the saved entry.
@@ -115,24 +115,24 @@ test("a new fan builds a team, joins a league, follows scoring, transfers, and s
   await page.goto(entryUrl);
   await expect(page.getByText(/^of \d/)).toBeVisible();
   await page.getByRole("tab", { name: "Stage 1" }).click();
-  const firstPlayer = page.locator('button[aria-expanded]').first();
+  const firstPlayer = page.locator('section[aria-labelledby="roster-h"] button[aria-expanded]').first();
   await firstPlayer.click();
   await expect(page.getByText(/Map 1 ·/).first()).toBeVisible();
   await expect(page.getByText("Map average").first()).toBeVisible();
 
   // 21. Permitted roster changes during the transfer window.
-  await page.getByRole("link", { name: "Make transfers" }).click();
+  await page.getByRole("link", { name: "Make Transfers" }).click();
   await expect(page.getByText(/transfers used/)).toBeVisible();
   const outChip = page.getByRole("button", { name: /Remove eliminated player/ });
   while ((await outChip.count()) > 0) await outChip.first().click(); // free replacements
   const alive = page.locator('li button[aria-label^="Remove "]:not([aria-label*="eliminated"])').filter({ visible: true }).first();
   if (await alive.count()) await alive.click(); // one discretionary transfer
-  const tray = page.getByText(/\d\/5 players/).filter({ visible: true }).first();
-  const missing = 5 - Number((await tray.innerText()).trim().split("/")[0]);
+  const tray = page.getByText(/^\d of 5 players$/).filter({ visible: true }).first();
+  const missing = 5 - Number((await tray.innerText()).trim().split(" ")[0]);
   await addFirstAvailable(page, missing);
-  await page.getByRole("button", { name: "Review team" }).click();
-  if (await page.getByText("Choose a captain").count()) await page.getByRole("button", { name: "Make captain" }).first().click();
-  await page.getByRole("button", { name: "Save changes" }).click();
+  await page.getByRole("button", { name: "Review Team" }).filter({ visible: true }).first().click();
+  if (await page.getByText("Choose a captain").count()) await page.getByRole("button", { name: /^Make .+ captain$/ }).first().click();
+  await page.getByRole("button", { name: "Save Changes" }).click();
   await expect(page.getByRole("heading", { name: "Changes saved" })).toBeVisible();
 
   // 22. Play out the tournament, settle, and see the result on the profile.

@@ -1,0 +1,372 @@
+# Esports Fantasy — Product Design System & UX Specification
+
+**Status:** Working design source of truth · **Version:** 1.0 · **Primary platform:** Mobile web / iPhone first · **Launch esport:** CS2
+
+> **North star:** *Sleeper esports personality, refined with the restraint, clarity, and precision of a top-tier iOS app.* Player-first. Competition-first. Calm surfaces, vivid content, exquisite interaction details. The app must feel intentionally designed rather than generated from a generic dashboard template.
+
+![Internal visual direction reference](./reference/esports-ui-reference.jpeg)
+
+**Reference-image policy:** The image above is an **internal mood/layout reference**, not a production asset, pixel-perfect target, or source of facts. It contains Sleeper branding and illustrative statistics, tournament details, affiliations, fees, and leaderboard data. **Do not reproduce Sleeper's name, logo, artwork, trade dress, or proprietary assets. Do not ship the image.** Create an original product identity. Use only properly licensed esports images/logos; otherwise use clean placeholders. Never treat numbers or labels in the image as verified product data.
+
+---
+
+## 1. What we are building
+
+A tournament-based esports fantasy product: fans pick **five professional CS2 players** under a configurable salary cap, submit one lineup for a tournament contest, follow their performance as official map results arrive, and compete on **global, friends, private, and eventually creator** leaderboards. A single eligible entry can appear across multiple leaderboards. Between-stage transfers may be available under contest rules. The app launches with CS2 and should be extendable to LoL and VALORANT without redesigning the core UX.
+
+**User experience in one sentence:** Discover event → inspect players → assemble lineup → review / submit → follow fantasy score → compare standings → make allowed stage changes → return for next event.
+
+**Initial app surfaces:** Home / Tournaments, Fantasy, Leagues, Profile, plus contextual Tournament Overview, Build Team, Player Details, Roster Review, Fantasy Live/Updates, and Leaderboard. Pick'Ems and traditional draft leagues are **not part of the initial navigation or MVP**.
+
+**Gameplay source of truth:** `docs/04-gameplay-and-scoring.md` and `docs/09-prd.md`. UI must **never invent** roles, salary caps, captain multipliers, transfers, prize pools, positional requirements, team limits, scoring cadence, or contest statuses; display configured rules and actual data. Default planning example only: $1M cap, 5 players, maximum 2 per professional team, captain 1.5×, and controlled transfers between stages. All must be confirmed from actual contest configuration.
+
+**MVP is free-to-play.** No invented cash-entry fees, prize pools, or betting-related imagery. The reference's paid contest treatment should become a **free fantasy contest card** or a verified real sponsor reward only if legitimate and authorized.
+
+---
+
+## 2. What to keep / what to fix in the reference
+
+### Preserve
+
+1. **Four expressive product moments:** tournament discovery; roster-builder; immersive player research; fantasy standings.
+2. **Player portraits as focal points**, supported by team identification and useful numbers.
+3. **Deep navy atmosphere**, compact mobile navigation, restrained mint accent and secondary purple accents.
+4. **Highly recognizable esports content:** major events, teams, matchups, fantasy managers, rank movement.
+5. **Fast utility:** select a player from one row; inspect stats without losing draft context.
+
+### Refine aggressively
+
+1. **Reduce simultaneous visual noise.** No competing glow on every card, border, tab, chart, chip, and button. A single strongest focal point per screen.
+2. **Make a typographic hierarchy, not a wall of labels.** More room around headings/values; avoid 9–10px body text; use tertiary text sparingly.
+3. **Replace template-like card repetition.** Vary composition by function: a cinematic tournament hero, a dense functional player row, an editorial player profile, a numerical scoreboard.
+4. **Give every pixel a purpose.** Establish consistent margins, radii, spacing, icon sizes, and baseline alignment.
+5. **Keep real CS2 semantics.** Do not force five distinct positions called Rifler/AWPer/Support/Flex unless that is an explicit scored contest format. If no positions are required, show five neutral roster slots, optionally player role metadata.
+6. **Use authentic, licensed assets.** Consistent crops and quality. Do not generate fake professional player likenesses or mismatched team affiliations.
+7. **Remove unsupported facts:** historical tournament marketing dates presented as future, imaginary live scores, unlicensed prizes, and unverified performance claims.
+8. **Improve the mobile viewport.** Headers, hero, bottom navigation and a keyboard-safe fixed review bar must coexist without requiring awkward scroll gymnastics.
+9. **Own the identity.** No Sleeper branding, no Huddle branding, no pasted competitor layout. Create a distinct brand mark, app name, image treatment, and interaction language.
+
+**Editorial taste rule:** 80% calm utility and 20% esports energy. When in doubt, remove a visual effect rather than add one.
+
+---
+
+## 3. Visual foundation
+
+### 3.1 Design tokens
+
+These are **starting tokens**. Adjust only as part of a deliberate, documented system; do not locally invent near-duplicate colors on individual screens.
+
+| Purpose | Token | Value | Guidance |
+|---|---|---|---|
+| Canvas | `--bg` | `#0A0F18` | Full app background, never pure black |
+| Base surface | `--surface-1` | `#121B28` | Default cards, panels |
+| Raised surface | `--surface-2` | `#192536` | Sheet headers, focused sections |
+| Subtle surface | `--surface-3` | `#223044` | Hover / selected-neutral surfaces |
+| Border | `--border` | `#2A394C` | Usually 1px with low prominence |
+| Primary text | `--text-1` | `#F3F6FA` | Titles, scores, names |
+| Secondary text | `--text-2` | `#A2B1C3` | Supporting copy |
+| Tertiary text | `--text-3` | `#788BA0` | Less prominent metadata, only at accessible contrast |
+| Primary accent | `--mint` | `#58E3CD` | Select player, primary CTA, positive score |
+| Mint wash | `--mint-wash` | `#163A39` | Mint-highlighted backgrounds; no large neon panels |
+| Competitive accent | `--violet` | `#A99AFF` | Rank/trophies, limited special moments |
+| Negative/error | `--danger` | `#FF7881` | Invalid state, losses, fail |
+| Pending/warning | `--amber` | `#F3BA68` | Lock windows, action required |
+
+Use CSS variables / a Tailwind theme. Never hardcode different near-equivalent mint, navy, or purple shades across components.
+
+### 3.2 Type system
+
+Use **Inter**, **Geist**, or a similar carefully rendered, highly legible modern sans-serif. Use **tabular numerals** for fantasy points, salary, rank, countdown, standings.
+
+| Role | Mobile size / line-height | Weight |
+|---|---|---|
+| Screen hero headline | 28 / 34 | 650–700 |
+| Page title | 24 / 30 | 650–700 |
+| Section title | 18 / 24 | 600–650 |
+| Standard card title | 16 / 22 | 600 |
+| Primary body / player name | 14–15 / 20–22 | 450–600 |
+| Secondary data / helper | 13 / 18 | 400–500 |
+| Small label / badge | 12 / 16 | 500–600 |
+| Big score | 30–36 / 38 | 700, tabular |
+
+**Avoid text below 12px.** Important player salaries and fantasy metrics should be at least 14px. Do not use narrow, condensed display fonts for ordinary content. Protect names and values from truncation; only truncate metadata where acceptable.
+
+### 3.3 Geometry and spacing
+
+- Base spacing scale: `4, 8, 12, 16, 20, 24, 32, 40` px.
+- Screen horizontal inset: **16px** on small phones, **20px** on larger phones.
+- Standard vertical section spacing: **24px**; related card row spacing: **8–12px**.
+- Standard interactive control height: **44–48px**; primary CTA: **50–54px**.
+- Compact rows: **68–80px**, never a 40px press target.
+- Card radius: **14–16px**; hero panels: **18–20px**; chips: **10–12px** or full pill.
+- Dividers: 1px dark strokes. Avoid double-border + shadow + glow on a single card.
+- Navigation bar: approximately **64–72px content height** + bottom safe area.
+- iOS safe areas: `env(safe-area-inset-top)` and `env(safe-area-inset-bottom)` where applicable.
+- Desktop content max-width: **1360px** with intentional gutters; do not stretch data panels indefinitely.
+
+### 3.4 Lighting, backgrounds and image treatment
+
+- No full-page gradients by default. Use flat charcoal/navy surfaces and image-driven depth.
+- One restrained spotlight behind **hero imagery** or selected player, not everywhere.
+- Player portraits: consistent cutout/crop, neutral dark shadow, optional restrained team-tinted halo **inside the portrait region only**.
+- Team colors: tiny logo/stripe/thumbnail accents, not the application-wide primary color.
+- Prefer actual licensed event imagery or an original abstract event graphic. Do not use random Counter-Strike screenshots as universal art.
+- Gradients only when they clarify hierarchy (e.g., bottom fade for headline over a hero image).
+- No excessive blurs, fluorescent borders, fake glassmorphism, heavy beveled cards, or mysterious icons.
+
+### 3.5 Iconography and copy
+
+- One icon family throughout (Lucide or equivalent), consistent 1.75–2px strokes, usually **18–22px**.
+- Clear direct labels: **Build Team**, **View My Team**, **View Standings**, **Review Lineup**, **Submit Lineup**.
+- Use competition states exactly: **Open**, **Locks in 2h**, **Map in progress**, **Scores update after each map**, **Final**, **Transfers open**.
+- No fake “LIVE” badge for fantasy points that only refresh after each completed map. A match can be live while the fantasy score remains pending.
+- Currency styling: use compact `$245K` on player rows, but full `$245,000` on details; maintain one semantic salary unit.
+
+---
+
+## 4. Core mobile shell
+
+**Navigation model:** Home · Fantasy · Leagues · Profile (4 tabs at launch). A persistent bottom bar on top-level screens, contextual header/back navigation in deeper routes. Avoid a second bottom bar inside the fantasy builder.
+
+**Header:** 52–60px. Left logo or back arrow; centered or leading current page context, not both competing; right actions limited to one or two. Tournament and sport switches must have obvious interactive states.
+
+**Scrolling:** Header may be sticky when beneficial; bottom nav fixed. Avoid multiple independently scrolling panels on mobile. If the review CTA is sticky, account for the keyboard and safe area so it never obscures the list.
+
+**Transitions:** Deep links directly into tournament and league pages must work; return to builder restores search query, filters, selected players, and scroll position.
+
+---
+
+## 5. Screen specifications
+
+### 5.1 Home — tournament lobby
+
+**Job:** Find a tournament and resume an active fantasy competition in under 5 seconds.
+
+**Visual hierarchy:**
+
+1. Compact branded top bar + esport selector (CS2 active; future esports disabled or labeled *Coming later*).
+2. **One featured tournament hero**: original/esports-licensed visual, event name, relevant dates and stage, open/locked status, a single clear **Build Team** CTA.
+3. **Your Fantasy**: entry card with rank, points, progress, and next action. If no entry, thoughtful create-team prompt.
+4. Smaller **Upcoming Events** cards below.
+5. Recent relevant match results only when useful; not a parallel full scores app.
+
+**Hero sizing:** At 390px viewport width, start around **210–250px** tall including body/CTA; avoid a 400px banner that hides all secondary content. Use art plus readable bottom overlay (not text baked into art). Have alternate treatments for artwork-unavailable states.
+
+**Do not reproduce screenshot:** No oversized cash entry/prize card on the home screen for a free-to-play MVP. No generic glittery tournament art collage. One mint CTA, not three fighting for attention.
+
+### 5.2 Tournament overview
+
+**Job:** Understand competition structure, available fantasy contests, lock times, participating teams, and bracket/status.
+
+- Clear hero: event identity, stage, dates, legitimate status, succinct explanation of fantasy rules.
+- Tabs: **Overview · Fantasy · Matches · Bracket · Standings**; collapse/scroll if necessary, do not squeeze into unreadable labels.
+- Main Event and Full Run only if approved and configured; show what stage counts, when lock occurs, and who is eligible.
+- Progression timeline: stage chips with *current / upcoming / complete* markers.
+- One highlighted next action; no duplicate buttons above and below the same content without cause.
+- Brackets: independently scrollable in their own detail view, not crammed into tiny cards.
+
+### 5.3 Build Team — flagship functional screen
+
+**Job:** Build a valid five-player fantasy lineup quickly without sacrificing useful research.
+
+**Sticky first section / compact:** Back arrow + tournament label + honest lock countdown; salary summary; 5 neutral roster slots with thumbnail / nickname when selected. Expanded lineup is a separate tap, not permanently huge.
+
+**Middle:** Search input; quick controls for **All**, team, and appropriate player metadata; sorting **Salary**, **Fantasy Average**, **Recent Form** (only where sourced). A compact filter button opens a sheet for advanced filters. Avoid role tabs *Rifler / AWPer / Support / Flex* if those are not formal eligibility constraints.
+
+**Player pool row (target 72px):**
+
+- 46–52px consistent portrait region.
+- Nickname in 15px semibold; team + role in secondary 12–13px.
+- Right column: `$245K` in 14px semibold; derived historical fantasy average in 13px.
+- A 44px add/remove icon button with unmistakable states.
+- Tapping name/portrait opens player detail bottom sheet; tapping plus selects immediately.
+- Show selection state without painting the entire row mint. Use subtle tinted strip/border and selected icon.
+- Max team count / cap errors should explain **why** the add is unavailable.
+
+**Math/feedback:** Salary bar is clear but subordinate to salary value; amount updates instantly. Validations must be server-authoritative upon submission. If a selected player becomes ineligible, keep the draft and flag the issue rather than silently removing a player.
+
+**Bottom sticky primary action:** **Review Team** when full and valid; otherwise `3 of 5 players selected` with a disabled action, or another honest useful state. Keyboard must not cover this control.
+
+**Performance goal:** Search/filter and add/remove should feel immediate; no full-screen loading between selections. Preserve draft on navigation / temporary offline interruption.
+
+**Empty/invalid cases:** No search matches, insufficient salary, max team members reached, player removed from contest, locked contest. Each includes an action or explanation.
+
+### 5.4 Player detail — immersive editorial research
+
+**Job:** Know who the player is and decide whether they are worth the fantasy salary.
+
+- Hero can occupy upper **30–38%** of screen with a prominent licensed portrait against a restrained team-branded background.
+- Back icon, optional watchlist/favorite, no excessive toolbar controls.
+- Nickname + nationality + team + role; price and average points should be high priority; actual status shown clearly.
+- Tab bar: **Overview · Stats · Matches**. Don't add *News* until actual news integration exists.
+- Overview: 5-match fantasy-point spark/bar chart with honest sample sizes; 3–4 meaningful stat tiles; upcoming opponents; one paragraph only if verified / authored from facts.
+- Fixed **Add to Team** action when viewing from the roster builder, respecting all rules; in informational context use non-deceptive action/state.
+- On mobile, allow a non-navigation bottom sheet for quick research; a full player route for deeper investigation. Share components/state across both.
+
+**No fake numbers:** Player/team affiliations are time-dependent, as are team photos and event rosters. Data must come from contest-specific eligibility and mapped identities.
+
+### 5.5 Roster review — signature visual share moment
+
+**Job:** Make completing a lineup feel rewarding and trustworthy.
+
+- Five-player showcase arranged intentionally (e.g., prominent captain center + balanced 2/2, OR a clean five-card carousel for narrow screens). **Do not force a collage that makes names unreadable.**
+- Portraits dominate; coherent image backgrounds and crisp typography.
+- Show player nickname, team, salary; distinguish Captain `×1.5` only if enabled in the contest.
+- Below showcase: used budget, remaining salary, eligible team count, lock time, any validation issues.
+- **Submit Team** primary action; final server validation; success confirmation.
+- Social share card uses an original, consistent brand identity, with fallbacks if photos cannot be used.
+- Format review portrait-first; mobile functional builder remains compact.
+
+### 5.6 My Fantasy — match tracking / fantasy scoring
+
+**Job:** Understand points, rank, active players, and what will update next.
+
+- Top summary: Fantasy Points (large), Global Rank (large), movement, stage, last data update.
+- Five player rows: photo, name, team, match state, fantasy points, last-map change. Visually distinguish **in-progress match** from **points finalized**.
+- Tap player for point breakdown; scoring calculations come from an auditable backend.
+- Show map-result status honestly: `Map 2 in progress · Fantasy points update when map ends` when appropriate.
+- Below: compact leaderboard preview, stage progression, permitted roster action.
+- Do not turn this into a comprehensive match broadcast interface.
+
+### 5.7 Leaderboards
+
+**Job:** See relative standing and compare lineups.
+
+- Segmented control: Global / Friends / Private (where available).
+- Dense but readable rows (60–64px): rank, avatar, username, points, movement.
+- Current user accent row; if scrolled out of view, one sticky summary at bottom that doesn't duplicate when the row is visible.
+- Private league invite/create entry point when relevant.
+- Competing entries must be shown only after the contest's roster-visibility rules permit it.
+- Avoid giant nested cards around an ordinary ranking table; improve row rhythm and alignment instead.
+
+### 5.8 Profile and leagues
+
+- Profile hero: avatar, username, preferred esport; simple verified stats, event history, placements, achievements earned.
+- No fictional trophies or ranking data in production.
+- Leagues: create/join with minimal fields; reusable invite link; eligible existing contest entry appears in relevant standings without duplication.
+
+---
+
+## 6. Desktop adaptation
+
+At widths above roughly **1024px**, stop stretching the mobile pattern. Use a deliberate desktop composition:
+
+- Top navigation / compact left nav; content max-width ~1360px.
+- Tournament page: hero + contest details + upcoming matches in clean columns.
+- **Builder:** left filter rail **240px**; central player pool flexible; right sticky roster **340–380px**. All three remain visible on standard desktop viewports.
+- Player detail: portrait hero left, relevant statistics right, deeper history below.
+- Live fantasy: score and roster left/main; leaderboard, stage details, matches right.
+- Keep visual tokens identical across breakpoints; only information arrangement changes.
+
+Breakpoints are starting points, not dogma: verify at **375, 390, 430, 768, 1024, 1440** CSS pixels. Test browser zoom and iOS safe area.
+
+---
+
+## 7. Animation & tactile behavior
+
+**Motion budget:** Most state changes **140–220ms**, major sheet transitions **220–300ms**. Prefer opacity/transform; do not animate layout-heavy properties at every score update. Respect `prefers-reduced-motion`.
+
+| Interaction | Desired behavior |
+|---|---|
+| Add player | Immediate button state change, roster slot fills, salary interpolates subtly (or updates directly under reduced motion) |
+| Remove player | Instant release with short reverse transition; related disabled choices re-enable |
+| Open player detail | Bottom sheet rises smoothly; close restores exact builder scroll/filter state |
+| Select captain | Clean selection outline / badge; remove badge from previous captain |
+| Submit lineup | Explicit review and validation; success state only after server confirms |
+| Map finalized | Point changes highlight briefly once; updated timestamp shown |
+| Rank changes | Modest arrow + numeric change, no confetti or blinking scoreboard |
+| Error | Local inline explanation, no generic modal for routine validation |
+
+Use haptics only in supported native/mobile contexts, sparingly. No sound effects by default.
+
+---
+
+## 8. Content authenticity and data honesty
+
+This is as important as visual polish.
+
+- **No fictional live data** in production screens. Development/demo state must be visibly labeled.
+- The provided mockup includes **Sleeper's logo**, an outdated/historical event label, hypothetical player photos, fake stat values, role labels, prizes and live scoreboards. Treat every one as *style direction only*.
+- Confirm current roster/team affiliation for each tournament; use contest snapshot identities.
+- Do not suggest live fantasy event scoring if the product updates after **completed maps** only.
+- Don't show fabricated projections unless they are modeled and labeled.
+- Use image rights cleared for commercial use; preserve fallback quality when team logos, event images, or headshots are unavailable.
+- Reflect user score as **provisional** until finalized if provider corrections are possible.
+- Avoid premium or money-entry promises not supported by actual product/legal decisions.
+
+---
+
+## 9. Components and architecture expectations
+
+Required visual primitives:
+
+`AppShell`, `TopBar`, `BottomNav`, `SportSwitcher`, `TournamentHero`, `EventStatus`, `FantasyEntrySummary`, `StageStepper`, `PlayerRow`, `PlayerPortrait`, `TeamMark`, `SalaryDisplay`, `RosterSummary`, `RosterSlot`, `RosterShowcase`, `CaptainBadge`, `FilterChip`, `PlayerSearch`, `PlayerDetailsSheet`, `PlayerStatsChart`, `FantasyScore`, `LiveMapStatus`, `LeaderboardRow`, `StickyMyRank`, `LeagueCard`, `EmptyState`, `Skeleton`, `InlineError`, `LockCountdown`, `ConfirmDialog`, `PrimaryActionBar`.
+
+**Recommended implementation:** Create tokens first, then foundational components, then the **builder + player details pair** as a single coherent interaction. Reuse them in review/live views. Components should share data models; no duplicated state or independently invented player salaries.
+
+Design states for each component: default, hover (desktop), pressed, focused, disabled, loading, selected, error. Treat keyboard navigation, screen readers, and 44px hit targets as part of initial component definitions.
+
+Never combine mock and production data silently. Use typed `dataSource: 'demo' | 'official'` (or equivalent) and show demo state in the actual UI.
+
+---
+
+## 10. Non-negotiable quality checklist
+
+### Visual
+
+- [ ] Screenshot reads as an original app — **no competitor name or logo**.
+- [ ] Every screen has **one dominant focal point**, not eight equal cards.
+- [ ] Exactly one primary CTA per major viewport/state, absent compelling context.
+- [ ] Consistent 16/20px outer inset, 8/12/24px rhythm, cohesive radii.
+- [ ] Player names and fantasy metrics are readable without zooming.
+- [ ] Correct alignment of avatars, names, prices, add buttons, stats, tabs.
+- [ ] Portrait cropping and image treatments are consistent.
+- [ ] No excessive neon glows, gradient soup, randomly tinted cards, or unnecessary glassmorphism.
+- [ ] No stock-like generic hero art when original/license-cleared brand assets exist.
+- [ ] Production screenshot at 390×844 looks intentionally composed, not merely responsive.
+
+### UX
+
+- [ ] New user can understand the fantasy format and complete lineup in **about 2 minutes** (test, don't assert).
+- [ ] Player search, select/remove, salary limits, and cap feedback all work.
+- [ ] Opening player detail preserves roster and scroll state.
+- [ ] Review and submission clearly differentiate draft vs submitted entry.
+- [ ] Locked contest and late-save states are handled without lost progress.
+- [ ] Scoring cadence/status is honest about post-map updates.
+- [ ] Global + private leaderboard entry reuse works under the product rules.
+- [ ] Keyboard, focus, reduced motion, touch targets, and contrast verified.
+
+### Engineering / evidence
+
+- [ ] No fake wired controls or fabricated 'LIVE' state.
+- [ ] Real data uses authorized sources; image rights and branding checked.
+- [ ] No invented display values on production pages.
+- [ ] Every key route has loading, empty, error and completed states.
+- [ ] Browser screenshots captured and actually reviewed at **375×812, 390×844, 430×932, 768×1024, and 1440×900**.
+- [ ] At least **one visual revision** after screenshot critique per flagship screen.
+- [ ] Server enforces roster validity and deadlines.
+
+---
+
+## 11. How the AI coding agent should work with this spec
+
+1. Read this file, its reference image, and existing `docs/04-gameplay-and-scoring.md` and `docs/09-prd.md` **before implementing UI**.
+2. Verify repository and `esports-fantasy` branch. Preserve separation from other projects.
+3. Create theme variables, typography, geometry, original identity placeholder, and component inventory.
+4. Build **Home**, **Build Team**, **Player Details**, and **My Fantasy** as functioning routes using **one coherent typed demo dataset**.
+5. Implement correct add/remove/search/filter/cap/captain/review behavior, not static screen replicas.
+6. Run the app and take **real browser screenshots** at the sizes above. Compare structure and hierarchy with the reference. Identify *at least 10 concrete visual or usability defects*, fix them, retake screenshots.
+7. Review authenticity: remove unlicensed competitor assets, invented money contests, fake live updates, incompatible CS2 role constraints, and inconsistent data.
+8. Refine typography, line breaks, component spacing, image balance, row density, tab behavior, safe areas, and empty/loading/error states.
+9. Show actual screenshots + a brief report with verified interactions, data sources, blockers, and next steps.
+10. Continue to backend integration only after the first key screens achieve an agreed quality level. Do not claim a design is production-ready without actual device/viewport inspection.
+
+**Do not optimize for quantity of screens. Optimize for four outstanding screens and one flawless build-a-lineup flow.**
+
+---
+
+## 12. Definition of design success
+
+A brand-new esports fan should know what to do within seconds. A frequent fantasy player should be able to pick five players rapidly without losing access to advanced research. The completed lineup should feel exciting enough to share. Watching score progression should be unambiguous and satisfying. Every interaction should feel fast, coherent, and trustworthy.
+
+**Mental model:** Apple-grade clarity in the underlying product, Sleeper-grade fun in the fantasy interactions, original esports identity in the visual layer. The goal is not to look like AI made a pretty dashboard; the goal is to look like a thoughtful design team made a product people want to use every tournament.

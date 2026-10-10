@@ -31,11 +31,18 @@ export default async function LeaderboardPage({ params }: { params: Promise<{ co
         <Icon name="chevronLeft" size={16} /> {t!.shortName}
       </Link>
       <div className="mb-5 flex flex-wrap items-center gap-2">
-        <h1 className="text-display text-ink">{c.name} standings</h1>
+        <h1 className="text-title text-ink">{c.name} standings</h1>
         {t!.isDemo ? <DemoBadge /> : null}
       </div>
       <p className="mb-5 -mt-3 text-callout text-ink-2">Friends are people you share a league with. Tap any team to see its roster once its stage has locked.</p>
       <Leaderboard contestId={contestId} initial={initial} scopes={scopes} viewerId={viewer?.id ?? null} />
+      {viewer ? (
+        <Link href={`/leagues/new?contest=${encodeURIComponent(contestId)}`} className="mt-4 flex min-h-[60px] items-center gap-3 rounded-2xl border border-dashed border-border-strong px-4 py-3 text-callout text-ink-2 hover:text-ink">
+          <Icon name="trophy" size={18} className="text-lavender" />
+          <span className="flex-1">Play with friends: create a private league. Your entry joins it as is.</span>
+          <Icon name="chevronRight" size={18} className="text-ink-3" />
+        </Link>
+      ) : null}
     </div>
   );
 }
