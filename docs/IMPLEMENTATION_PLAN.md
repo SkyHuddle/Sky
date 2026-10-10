@@ -58,6 +58,7 @@ The milestones follow the master brief, Part 21. Each milestone keeps the earlie
 - Scoring fairness report: [SCORING_FAIRNESS.md](SCORING_FAIRNESS.md).
 
 **Not done**
+- Real team logos and player headshots. The UI renders `teams.logo_url` and `players.portrait_url` when present, and the sync stores them from the adapter. They need the provider's image rights in the contract; until then the demo uses generated crests and illustrated fictional players.
 - A licensed provider adapter: GRID is recommended ([LIVE_DATA.md](LIVE_DATA.md)). Needs a contract, credentials and field verification.
 - A dedicated ingestion worker and a live-only fast path. Today a tick takes about 3–4 s inside web requests.
 - Cross-process fan-out (Postgres NOTIFY or Redis).

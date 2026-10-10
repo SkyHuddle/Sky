@@ -27,6 +27,8 @@ export interface PoolPlayerView {
   form: number[];
   /** True when the user already owns this player: the price shown is what they paid. */
   held: boolean;
+  /** Licensed headshot from the provider; null for demo players (illustrated). */
+  photoUrl: string | null;
   /** Fantasy points scored in this contest so far (live events only). */
   contestPoints: number;
   nextOpponentId: string | null;
@@ -113,6 +115,7 @@ export async function builderData(db: Db, contestId: string, viewerId: string | 
         id: p.playerId,
         nickname: pl.nickname,
         firstName: pl.firstName,
+        photoUrl: pl.portraitUrl ?? null,
         lastName: pl.lastName,
         nationality: pl.nationality,
         role: pl.role,

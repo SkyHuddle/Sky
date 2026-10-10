@@ -43,7 +43,7 @@ export const PlayerRow = memo(function PlayerRow({
     <li className={cn("group relative flex min-h-[72px] items-center gap-3 py-2 pr-2 pl-3 transition-colors sm:pl-4", selected ? "bg-elevated" : "hover:bg-elevated/50")}>
       <button onClick={() => onOpen(p.id)} className="flex min-w-0 flex-1 items-center gap-3 rounded-xl text-left" aria-label={`${p.nickname}, ${team?.name}, ${money(p.price)}. View details`}>
         <span className="relative shrink-0">
-          <PlayerAvatar nickname={p.nickname} team={team} size={48} shape="tile" className={cn(disabled && "opacity-55")} />
+          <PlayerAvatar nickname={p.nickname} team={team} photoUrl={p.photoUrl} size={48} shape="tile" className={cn(disabled && "opacity-55")} />
           {captain ? (
             <span className="absolute -top-1 -right-1 inline-flex size-[18px] items-center justify-center rounded-full bg-lavender text-lavender-ink ring-2 ring-bg" aria-hidden>
               <Icon name="star" size={10} strokeWidth={2.6} />

@@ -83,6 +83,8 @@ export const teams = pgTable("teams", {
   acronym: text("acronym").notNull(),
   color: text("color").notNull(),
   country: text("country").notNull(),
+  /** Licensed logo from the data provider (null for demo teams, which use generated crests). */
+  logoUrl: text("logo_url"),
 });
 
 export const players = pgTable("players", {

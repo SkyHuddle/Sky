@@ -13,6 +13,8 @@ export interface NormTeam {
   acronym: string;
   color: string;
   country: string;
+  /** Licensed logo URL from the provider, when its contract allows display. Null in the demo. */
+  logoUrl?: string | null;
 }
 
 export interface NormPlayer {
@@ -24,6 +26,8 @@ export interface NormPlayer {
   role: string;
   teamExternalId: string;
   isStandIn: boolean;
+  /** Licensed headshot URL from the provider, when its contract allows display. Null in the demo. */
+  photoUrl?: string | null;
 }
 
 export interface NormStage {

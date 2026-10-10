@@ -27,7 +27,13 @@ export function TeamMark({ team, size = 24, className }: { team: TeamLite | null
   }
   return (
     <span className={cn("inline-flex shrink-0", className)} style={{ width: size, height: size }} aria-hidden>
-      <CrestSvg id={team.id} name={team.name} color={team.color} className="size-full" />
+      {team.logoUrl ? (
+        // A licensed logo from the data provider replaces the generated crest in the same box.
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={team.logoUrl} alt="" className="size-full object-contain" loading="lazy" decoding="async" />
+      ) : (
+        <CrestSvg id={team.id} name={team.name} color={team.color} className="size-full" />
+      )}
     </span>
   );
 }
@@ -54,6 +60,7 @@ export function PlayerAvatar({
   ring,
   shape = "circle",
   muted,
+  photoUrl,
 }: {
   nickname: string;
   seed?: string;
@@ -65,6 +72,8 @@ export function PlayerAvatar({
   shape?: "circle" | "tile";
   /** Dim the portrait only (eliminated players), keeping any captain/selected ring at full colour. */
   muted?: boolean;
+  /** A licensed headshot from the data provider; the illustration is used when there is none. */
+  photoUrl?: string | null;
 }) {
   const color = team?.color ?? "#6f7d92";
   return (
@@ -85,7 +94,12 @@ export function PlayerAvatar({
       }}
       aria-hidden
     >
-      <PortraitSvg seed={seed ?? nickname} color={color} team={team ?? undefined} className={cn("absolute inset-0 size-full", muted && "opacity-45 grayscale")} />
+      {photoUrl ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={photoUrl} alt="" className={cn("absolute inset-0 size-full object-cover object-top", muted && "opacity-45 grayscale")} loading="lazy" decoding="async" />
+      ) : (
+        <PortraitSvg seed={seed ?? nickname} color={color} team={team ?? undefined} className={cn("absolute inset-0 size-full", muted && "opacity-45 grayscale")} />
+      )}
     </span>
   );
 }

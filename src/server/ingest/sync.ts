@@ -71,16 +71,16 @@ async function syncTournament(db: Db, provider: ProviderAdapter, t: NormTourname
     const id = await upsertExternal(db, P, "team", team.externalId);
     await db
       .insert(s.teams)
-      .values({ id, gameId: t.game, name: team.name, acronym: team.acronym, color: team.color, country: team.country })
-      .onConflictDoUpdate({ target: s.teams.id, set: { name: team.name, acronym: team.acronym, color: team.color, country: team.country } });
+      .values({ id, gameId: t.game, name: team.name, acronym: team.acronym, color: team.color, country: team.country, logoUrl: team.logoUrl ?? null })
+      .onConflictDoUpdate({ target: s.teams.id, set: { name: team.name, acronym: team.acronym, color: team.color, country: team.country, logoUrl: team.logoUrl ?? null } });
   }
   for (const p of t.players) {
     const id = await upsertExternal(db, P, "player", p.externalId);
     const teamId = internalId(P, p.teamExternalId);
     await db
       .insert(s.players)
-      .values({ id, gameId: t.game, nickname: p.nickname, firstName: p.firstName, lastName: p.lastName, nationality: p.nationality, role: p.role, isStandIn: p.isStandIn })
-      .onConflictDoUpdate({ target: s.players.id, set: { nickname: p.nickname, role: p.role, isStandIn: p.isStandIn } });
+      .values({ id, gameId: t.game, nickname: p.nickname, firstName: p.firstName, lastName: p.lastName, nationality: p.nationality, role: p.role, isStandIn: p.isStandIn, portraitUrl: p.photoUrl ?? null })
+      .onConflictDoUpdate({ target: s.players.id, set: { nickname: p.nickname, role: p.role, isStandIn: p.isStandIn, portraitUrl: p.photoUrl ?? null } });
     await db
       .insert(s.playerTeamMemberships)
       .values({ playerId: id, teamId, validFrom: new Date(0) })

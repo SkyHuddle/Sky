@@ -3,14 +3,14 @@ import { EventArt, TIER_ACCENT, TIER_LABEL } from "@/components/tournament/Event
 import { StageProgress } from "@/components/tournament/StageProgress";
 import { ButtonLink } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
-import { DemoBadge, TeamMark } from "@/components/ui/identity";
+import { DemoBadge, PlayerAvatar, TeamMark } from "@/components/ui/identity";
 import { EmptyState } from "@/components/ui/primitives";
 import { Countdown, LocalTime, StatePill } from "@/components/ui/status";
 import { cn } from "@/lib/cn";
 import { contestCta, primaryContest } from "@/lib/contest";
 import { dateRange, money, ordinal, percentileLabel, pts } from "@/lib/format";
 import { pageContext } from "@/server/page";
-import type { MatchLite, TeamLite } from "@/server/queries/common";
+import { teamsById, type MatchLite, type TeamLite } from "@/server/queries/common";
 import { tournamentHub, tournamentSummaries, type ContestView, type TournamentHub, type TournamentSummary } from "@/server/queries/tournament";
 
 /**
@@ -19,7 +19,8 @@ import { tournamentHub, tournamentSummaries, type ContestView, type TournamentHu
  */
 export default async function HomePage() {
   const { db, viewer, now } = await pageContext();
-  const all = await tournamentSummaries(db, viewer?.id ?? null);
+  const [all, teamMap] = await Promise.all([tournamentSummaries(db, viewer?.id ?? null), teamsById(db)]);
+  const teams = Object.fromEntries(teamMap);
   const nowIso = now.toISOString();
 
   const featured =
@@ -52,7 +53,7 @@ export default async function HomePage() {
             <ul className="space-y-3">
               {mine.map(({ t, c }) => (
                 <li key={c.id}>
-                  <EntrySummary t={t} c={c} now={now} nowIso={nowIso} />
+                  <EntrySummary t={t} c={c} teams={teams} now={now} nowIso={nowIso} />
                 </li>
               ))}
             </ul>
@@ -227,7 +228,7 @@ function TournamentHero({ t, contest, now, nowIso }: { t: TournamentSummary; con
 }
 
 /** Your entry: points and rank, where the event is, and the next thing to do. */
-function EntrySummary({ t, c, now, nowIso }: { t: TournamentSummary; c: ContestView; now: Date; nowIso: string }) {
+function EntrySummary({ t, c, teams, now, nowIso }: { t: TournamentSummary; c: ContestView; teams: Record<string, TeamLite>; now: Date; nowIso: string }) {
   const e = c.myEntry!;
   const cta = contestCta(c, now);
   const scored = e.rank !== null;
@@ -241,6 +242,16 @@ function EntrySummary({ t, c, now, nowIso }: { t: TournamentSummary; c: ContestV
         </div>
         <StatePill kind={cta.state} label={cta.stateLabel} />
       </div>
+      {e.lineup.length ? (
+        <ul className="mt-4 flex gap-2" aria-label="Your lineup">
+          {e.lineup.map((p) => (
+            <li key={p.nickname} className="min-w-0 flex-1 text-center">
+              <PlayerAvatar nickname={p.nickname} team={teams[p.teamId]} size={44} ring={p.captain ? "captain" : null} className="mx-auto" />
+              <span className="mt-1 block truncate text-caption text-ink-2">{p.nickname}</span>
+            </li>
+          ))}
+        </ul>
+      ) : null}
       <div className="mt-4 grid grid-cols-2 gap-4">
         <div>
           <div className="text-caption text-ink-3">Fantasy points</div>

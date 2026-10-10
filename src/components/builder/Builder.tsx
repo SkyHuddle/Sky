@@ -10,7 +10,7 @@ import { money } from "@/lib/format";
 import type { BuilderData } from "@/server/queries/contest";
 import { Button, ButtonLink } from "../ui/Button";
 import { Icon } from "../ui/Icon";
-import { DemoBadge } from "../ui/identity";
+import { DemoBadge, PlayerAvatar } from "../ui/identity";
 import { EmptyState, Notice } from "../ui/primitives";
 import { Sheet } from "../ui/Sheet";
 import { Countdown, StatePill } from "../ui/status";
@@ -238,20 +238,44 @@ export function Builder({ data, nowIso, signedIn }: { data: BuilderData; nowIso:
     </ul>
   );
 
+  // The entry slip: your picks as stacked faces, then the status line (Underdog/PrizePicks-style slip).
+  const slipFaces = (
+    <span className="flex shrink-0 items-center" aria-hidden>
+      {Array.from({ length: data.rules.rosterSize }, (_, i) => {
+        const id = b.playerIds[i];
+        const p = id ? b.byId.get(id) : undefined;
+        return (
+          <span key={i} className={cn("relative rounded-full ring-2 ring-bg", i > 0 && "-ml-2.5")} style={{ zIndex: data.rules.rosterSize - i }}>
+            {p ? (
+              <motion.span key={id} initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: "spring", stiffness: 500, damping: 24 }} className="block">
+                <PlayerAvatar nickname={p.nickname} team={data.teams[p.teamId]} size={30} />
+              </motion.span>
+            ) : (
+              <span className="block size-[30px] rounded-full bg-raised" />
+            )}
+          </span>
+        );
+      })}
+    </span>
+  );
+
   const actionBar = (
     <div className="flex items-center gap-3">
+      {slipFaces}
       <div className="min-w-0 flex-1" aria-live="polite">
         {!full ? (
-          <p className="text-footnote text-ink-2">
-            <span className="num text-ink">{b.playerIds.length}</span> of {data.rules.rosterSize} players selected
+          <p className="text-footnote leading-4 text-ink-2">
+            <span className="num block text-callout text-ink">
+              {b.playerIds.length}/{data.rules.rosterSize}
+            </span>
+            {money(b.summary.salaryRemaining)} left
           </p>
         ) : firstError ? (
-          <p className="flex items-start gap-1.5 text-footnote text-negative">
-            <Icon name="alert" size={14} className="mt-0.5 shrink-0" /> {firstError.message}
-          </p>
+          <p className="line-clamp-2 text-footnote leading-4 text-negative">{firstError.message}</p>
         ) : (
-          <p className="text-footnote text-ink-2">
-            <span className="font-semibold text-accent">Lineup complete</span> · {money(b.summary.salaryRemaining)} left
+          <p className="text-footnote leading-4 text-ink-2">
+            <span className="block font-semibold text-accent">Lineup complete</span>
+            {money(b.summary.salaryRemaining)} left
           </p>
         )}
       </div>
@@ -427,15 +451,18 @@ function Frame({ data, nowIso, children, wide }: { data: BuilderData; nowIso: st
 function Done({ data, b, entryId, created, nowIso }: { data: BuilderData; b: ReturnType<typeof useBuilder>; entryId: string; created: boolean; nowIso: string }) {
   return (
     <div className="mx-auto max-w-xl py-6 text-center">
+      {/* The brand moment: the lineup is stamped "Locked in". */}
       <motion.div
-        initial={{ scale: 0.5, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ type: "spring", stiffness: 380, damping: 20 }}
-        className="mx-auto inline-flex size-16 items-center justify-center rounded-full bg-accent text-accent-ink"
+        initial={{ scale: 1.8, opacity: 0, rotate: -14 }}
+        animate={{ scale: 1, opacity: 1, rotate: -6 }}
+        transition={{ type: "spring", stiffness: 420, damping: 22, mass: 0.9 }}
+        className="font-display mx-auto inline-flex items-center gap-2 rounded-xl border-[3px] border-accent px-4 py-1.5 text-[2.5rem] leading-none font-bold text-accent uppercase"
+        aria-hidden
       >
-        <Icon name="check" size={32} strokeWidth={2.6} />
+        <Icon name="lock" size={30} strokeWidth={2.6} />
+        {created ? "Locked in" : "Updated"}
       </motion.div>
-      <h1 className="mt-5 text-display text-ink">{created ? "You're in" : "Changes saved"}</h1>
+      <h1 className="mt-5 text-title text-ink">{created ? "You're in" : "Changes saved"}</h1>
       <p className="mt-2 text-body text-ink-2">
         {data.contest.name} · {data.window?.stageName} locks in <Countdown to={data.window!.lockAt} now={nowIso} className="font-semibold text-ink" />. You can keep editing until then.
       </p>

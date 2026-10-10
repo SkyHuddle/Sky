@@ -249,6 +249,7 @@ function PlayerLine({ p, d }: { p: LivePlayer; d: LivePayload }) {
             · <span className="whitespace-nowrap">K–D–A <span className="text-ink-2">{p.live.kills}–{p.live.deaths}–{p.live.assists}</span></span>
           </span>
         ) : null}
+        {p.live && p.avgPerMap ? <PaceBar points={p.live.mapPoints} avg={p.avgPerMap} /> : null}
       </span>
       <span className="shrink-0 text-right">
         {p.live ? (
@@ -444,5 +445,24 @@ function Activity({ feed }: { feed: FeedItem[] }) {
         </ol>
       )}
     </section>
+  );
+}
+
+/**
+ * This map's points against the player's own per-map average (both real numbers, no projection).
+ * The track runs to 1.5× the average; the tick marks the average itself.
+ */
+function PaceBar({ points, avg }: { points: number; avg: number }) {
+  const full = avg * 1.5;
+  const pct = Math.max(0, Math.min(100, (points / full) * 100));
+  const tick = (avg / full) * 100;
+  return (
+    <span className="mt-2 flex items-center gap-2" aria-label={`${pts(points)} map points so far against a ${pts(avg)} per-map average`}>
+      <span className="relative h-1.5 flex-1 overflow-hidden rounded-full bg-raised">
+        <motion.span className="absolute inset-y-0 left-0 rounded-full bg-accent" initial={false} animate={{ width: `${pct}%` }} transition={{ type: "spring", stiffness: 160, damping: 24 }} />
+        <span className="absolute inset-y-0 w-0.5 bg-ink-2" style={{ left: `${tick}%` }} />
+      </span>
+      <span className="tabular shrink-0 text-caption text-ink-3">avg {pts(avg)}</span>
+    </span>
   );
 }

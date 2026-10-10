@@ -42,6 +42,8 @@ export interface LivePlayer {
     providerUpdatedAt: string;
   };
   next: null | { matchId: string; at: string; opponentId: string; postponed: boolean };
+  /** The player's average fantasy points per completed map (the contest's reference stats), or null. */
+  avgPerMap: number | null;
 }
 
 export interface LiveMatch {
@@ -125,6 +127,11 @@ export async function liveView(db: Db, entryId: string, viewerId: string | null,
   const liveRows = liveMatchIds.length ? await db.select().from(s.liveMaps).where(inArray(s.liveMaps.matchId, liveMatchIds)) : [];
   const liveByMatch = new Map(liveRows.map((r) => [r.matchId, r]));
 
+  const avgRows = rosterIds.length
+    ? await db.select({ id: s.playerPrices.playerId, avg: s.playerPrices.avgPoints, maps: s.playerPrices.mapsSampled }).from(s.playerPrices).where(and(eq(s.playerPrices.contestId, d.contest.id), inArray(s.playerPrices.playerId, rosterIds)))
+    : [];
+  const avgById = new Map(avgRows.filter((r) => r.maps > 0).map((r) => [r.id, Number(r.avg)]));
+
   const players: LivePlayer[] = roster.map((p) => {
     const m = p.status.kind === "live" ? d.matches.find((x) => x.id === (p.status as { matchId: string }).matchId) : null;
     const lm = m ? liveByMatch.get(m.id) : null;
@@ -160,6 +167,7 @@ export async function liveView(db: Db, entryId: string, viewerId: string | null,
       state: st.kind === "live" ? "live" : st.kind === "next" ? "upcoming" : st.kind === "eliminated" ? "eliminated" : st.kind === "done" || st.kind === "did_not_play" ? "finished" : "idle",
       live,
       next: st.kind === "next" ? { matchId: "", at: st.at, opponentId: st.opponentId, postponed: st.postponed } : null,
+      avgPerMap: avgById.get(p.id) ?? null,
     };
   });
 

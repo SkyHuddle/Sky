@@ -5,11 +5,11 @@ import * as s from "../db/schema";
 
 /** Shared read-model helpers for screens. Pure reads; no writes. */
 
-export type TeamLite = { id: string; name: string; acronym: string; color: string; country: string };
+export type TeamLite = { id: string; name: string; acronym: string; color: string; country: string; logoUrl?: string | null };
 
 export async function teamsById(db: Db, ids?: string[]): Promise<Map<string, TeamLite>> {
   const rows = ids ? (ids.length ? await db.select().from(s.teams).where(inArray(s.teams.id, ids)) : []) : await db.select().from(s.teams);
-  return new Map(rows.map((t) => [t.id, { id: t.id, name: t.name, acronym: t.acronym, color: t.color, country: t.country }]));
+  return new Map(rows.map((t) => [t.id, { id: t.id, name: t.name, acronym: t.acronym, color: t.color, country: t.country, logoUrl: t.logoUrl }]));
 }
 
 export interface RecentMap {
