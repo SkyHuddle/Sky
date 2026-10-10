@@ -121,6 +121,10 @@ The app shows only what the feed actually provides.
 - **How updates travel:** they go through the real adapter, sync, scoring and SSE layers. The front end receives real application updates. Nothing on the client increments numbers by itself.
 - **Labelling:** demo data is labelled on every screen. Demo controls need a signed-in user and are rate-limited. They only exist when `DEMO_MODE=true`.
 
+## Team logos and player photos
+
+No free source provides real CS2 team logos and player photos that are both complete and legally clean. Free licences (Wikimedia Commons, Flickr CC) clear copyright only, never trademark or likeness, and they cover few current players. Liquipedia, HLTV, PandaScore's free tier and organisers' photo portals don't permit reuse in a product. The plan is to get image rights into the data contract (GRID) and written permission from teams. Until then the app uses generated crests and illustrated portraits. Full research: [research/image-sources.md](research/image-sources.md).
+
 ## Restrictions we follow
 
 - No scraping of HLTV, Liquipedia, VLR or any other site.
