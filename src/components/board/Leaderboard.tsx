@@ -137,7 +137,12 @@ function Podium({ rows, viewerId }: { rows: BoardRow[]; viewerId: string | null 
       {rows.map((r, i) => {
         const me = r.userId === viewerId;
         return (
-          <li key={r.entryId} id={me ? `row-${r.entryId}` : undefined} className={cn(i === 0 ? "order-2" : i === 1 ? "order-1" : "order-3")}>
+          <li
+            key={r.entryId}
+            id={me ? `row-${r.entryId}` : undefined}
+            className={cn("motion-safe:animate-rise", i === 0 ? "order-2" : i === 1 ? "order-1" : "order-3")}
+            style={{ animationDelay: `${[120, 40, 200][i]}ms` }}
+          >
             <Link
               href={`/e/${r.entryId}`}
               className={cn(

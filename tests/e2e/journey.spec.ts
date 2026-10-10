@@ -44,7 +44,7 @@ test("a new fan builds a team, joins a league, follows scoring, transfers, and s
   await page.goto(`/signup?next=${encodeURIComponent(`/c/${CONTEST}/build`)}`);
   await page.getByLabel("Username").fill(user);
   await page.getByLabel("Email").fill(`${user}@example.com`);
-  await page.getByLabel("Password").fill("a-strong-password");
+  await page.getByLabel("Password", { exact: true }).fill("a-strong-password");
   await page.getByRole("button", { name: "Create account" }).click();
 
   // 6. The roster builder.

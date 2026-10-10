@@ -12,14 +12,9 @@ export default async function SignInPage({ searchParams }: { searchParams: Promi
   if (await getViewer()) redirect(next);
   return (
     <div>
-      <h1 className="text-display text-ink">Welcome back</h1>
-      <p className="mt-1.5 mb-7 text-body text-ink-2">Sign in to manage your teams and leagues.</p>
-      <AuthForm mode="signin" next={next} />
-      {isDemoMode() ? (
-        <p className="mt-6 rounded-xl bg-lavender-soft px-4 py-3 text-footnote text-lavender">
-          Demo account: <span className="font-semibold">demo</span> / <span className="font-semibold">lockin-demo</span>
-        </p>
-      ) : null}
+      <h1 className="text-title text-ink">Welcome back</h1>
+      <p className="mt-1 mb-6 text-callout text-ink-2">Sign in to manage your teams and leagues.</p>
+      <AuthForm mode="signin" next={next} demo={isDemoMode()} />
     </div>
   );
 }

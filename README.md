@@ -16,6 +16,10 @@ Start here: [rules](docs/GAMEPLAY.md) · [design](docs/DESIGN.md) · [live data]
 |---|---|---|---|---|
 | ![Live](docs/screenshots/mobile-live.png) | ![Match Center](docs/screenshots/mobile-match-center.png) | ![Transfers](docs/screenshots/mobile-transfers-final.png) | ![Recap](docs/screenshots/mobile-recap.png) | ![Stage cup](docs/screenshots/mobile-stage-cup.png) |
 
+| Sign in | Transfer review |
+|---|---|
+| ![Sign in](docs/screenshots/mobile-signin.png) | ![Transfer review](docs/screenshots/mobile-transfer-review.png) |
+
 ![Desktop live](docs/screenshots/desktop-live.png)
 
 ![Share card](docs/screenshots/share-card.png)

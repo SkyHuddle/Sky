@@ -6,6 +6,7 @@ import { money } from "@/lib/format";
 import type { BuilderData } from "@/server/queries/contest";
 import { Button, ButtonLink } from "../ui/Button";
 import { Icon } from "../ui/Icon";
+import { PlayerAvatar } from "../ui/identity";
 import { Notice } from "../ui/primitives";
 import { LineupShowcase, type ShowcasePlayer } from "./Showcase";
 import type { BuilderState } from "./useBuilder";
@@ -56,6 +57,14 @@ export function Review({
     return { id, nickname: p?.nickname ?? out?.nickname ?? "?", team: data.teams[p?.teamId ?? out?.teamId ?? ""], price: p?.price ?? out?.price ?? 0, eliminated: !!out };
   });
   const hasCaptain = !!b.captainId && b.playerIds.includes(b.captainId);
+  // Transfer windows: who leaves and who arrives, against the locked lineup from the last stage.
+  const prev = data.previous?.playerIds ?? [];
+  const removed = data.previous ? prev.filter((id) => !b.playerIds.includes(id)) : [];
+  const added = data.previous ? b.playerIds.filter((id) => !prev.includes(id)) : [];
+  const who = (id: string) => {
+    const p = b.byId.get(id) ?? data.ineligiblePrevious.find((x) => x.id === id);
+    return { nickname: p?.nickname ?? "?", team: data.teams[p?.teamId ?? ""], price: p?.price ?? 0 };
+  };
   const teamsUsed = b.summary.teamCounts.size;
 
   return (
@@ -108,6 +117,35 @@ export function Review({
           }
         />
       </div>
+
+      {removed.length || added.length ? (
+        <section aria-labelledby="changes" className="mt-6 rounded-2xl bg-surface p-4">
+          <div className="flex items-baseline justify-between gap-3">
+            <h2 id="changes" className="text-headline text-ink">
+              Changes since last stage
+            </h2>
+            {b.transfers ? (
+              <span className="text-caption text-ink-3">
+                {b.transfers.discretionary.length} of {b.transfers.allowed} transfers
+              </span>
+            ) : null}
+          </div>
+          <ul className="mt-3 space-y-2">
+            {Array.from({ length: Math.max(removed.length, added.length) }, (_, i) => {
+              const out = removed[i];
+              const inn = added[i];
+              const free = out ? !!b.transfers?.free.includes(out) : false;
+              return (
+                <li key={i} className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2 rounded-xl bg-elevated px-3 py-2.5">
+                  {out ? <Change label="Out" tone="out" note={free ? "Free swap" : "Transfer"} p={who(out)} /> : <span />}
+                  <Icon name="arrowRight" size={16} className="text-ink-3" />
+                  {inn ? <Change label="In" tone="in" note={money(who(inn).price)} p={who(inn)} /> : <span className="text-footnote text-ink-3">Pick a player</span>}
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      ) : null}
 
       <div className="mt-6 grid gap-4 lg:grid-cols-[1fr_340px]">
         <section aria-labelledby="checks" className="rounded-2xl bg-surface p-4">
@@ -176,5 +214,20 @@ export function Review({
         {!signedIn ? <p className="mt-2 text-center text-footnote text-ink-3">Your picks are saved on this device while you sign up.</p> : null}
       </div>
     </motion.div>
+  );
+}
+
+function Change({ label, tone, note, p }: { label: string; tone: "in" | "out"; note: string; p: { nickname: string; team: BuilderData["teams"][string] | undefined } }) {
+  return (
+    <span className="flex min-w-0 items-center gap-2.5">
+      <PlayerAvatar nickname={p.nickname} team={p.team} size={36} muted={tone === "out"} />
+      <span className="min-w-0">
+        <span className={cn("block truncate text-callout font-semibold", tone === "out" ? "text-ink-2 line-through decoration-ink-3" : "text-ink")}>
+          <span className="sr-only">{label}: </span>
+          {p.nickname}
+        </span>
+        <span className={cn("block truncate text-caption", tone === "in" ? "text-accent" : "text-ink-3")}>{note}</span>
+      </span>
+    </span>
   );
 }

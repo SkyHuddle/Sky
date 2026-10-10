@@ -231,10 +231,10 @@ function Flash({ value, children }: { value: number; children: React.ReactNode }
     <AnimatePresence mode="popLayout" initial={false}>
       <motion.span
         key={value}
-        initial={reduce ? false : { opacity: 0.4, y: 6 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.22 }}
-        className="inline-block"
+        initial={reduce ? false : { opacity: 0.4, y: 6, backgroundColor: "rgb(79 224 196 / 0.22)" }}
+        animate={{ opacity: 1, y: 0, backgroundColor: "rgb(79 224 196 / 0)" }}
+        transition={{ duration: 0.22, backgroundColor: { duration: 0.6, ease: "easeOut" } }}
+        className="-mx-1 inline-block rounded-md px-1"
       >
         {children}
       </motion.span>

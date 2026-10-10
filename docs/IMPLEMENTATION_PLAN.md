@@ -91,7 +91,7 @@ The milestones follow the master brief, Part 21. Each milestone keeps the earlie
 
 **Not done**
 - An Autopilot priority list (G-6).
-- A dedicated transfer-management screen with an in/out diff. Transfers happen in the builder, which shows the free and strategic counts.
+- A separate transfer-management screen. Transfers happen in the builder; its review step lists who leaves and who arrives, with free and strategic counts.
 - A notification centre and push or email reminders ("window opens", "lock in 1 hour", "your player is live").
 
 ## Milestone 7 — Full polish: Partial
@@ -111,7 +111,7 @@ The milestones follow the master brief, Part 21. Each milestone keeps the earlie
   - manual stats with two-person approval;
   - settlement confirmation.
 - Settings and a notification centre.
-- First-run onboarding polish (brief Part 14). Guests can already build a full team without an account; the draft is kept on the device and sign-in is asked for only at submit. A guided first-run explainer is not built.
+- A guided, interactive onboarding (brief Part 14). Today: guests can build a full team without an account (the draft is kept on the device, sign-in is asked for at submit), and Home explains the game in three steps until the first entry.
 - Light theme.
 - Performance budget measured on real devices.
 

@@ -19,7 +19,8 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<ToastItem[]>([]);
   const push = useCallback((text: string, tone: Tone = "info") => {
     const id = Date.now() + Math.random();
-    setItems((xs) => [...xs.slice(-2), { id, tone, text }]);
+    // One toast at a time, like a native app: a new message replaces the current one.
+    setItems([{ id, tone, text }]);
     setTimeout(() => setItems((xs) => xs.filter((x) => x.id !== id)), tone === "error" ? 6000 : 3500);
   }, []);
   return (

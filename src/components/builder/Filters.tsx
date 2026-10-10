@@ -28,7 +28,7 @@ export function SearchField({ value, onChange }: { value: string; onChange: (v: 
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder="Search players or teams"
-        className="h-11 w-full rounded-xl bg-surface pr-10 pl-10 text-[0.9375rem] text-ink placeholder:text-ink-3 focus:outline-none focus:ring-2 focus:ring-accent/60"
+        className="h-11 w-full rounded-xl bg-surface pr-10 pl-10 text-base text-ink placeholder:text-ink-3 focus:outline-none focus:ring-2 focus:ring-accent/60"
         autoComplete="off"
         enterKeyHint="search"
       />

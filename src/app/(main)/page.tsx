@@ -284,29 +284,32 @@ function EntrySummary({ t, c, teams, now, nowIso }: { t: TournamentSummary; c: C
   );
 }
 
-/** No entry yet: explain the format from the contest's own rules; the hero carries the CTA. */
+/**
+ * First run (no entry yet): the whole game in three steps, using the contest's own rules. The hero
+ * above carries the one CTA, so this card only explains.
+ */
 function FirstEntryPrompt({ c }: { c: ContestView | null }) {
   if (!c) return <p className="text-callout text-ink-2">No contests are open right now.</p>;
   const r = c.rules;
-  const facts: Array<[string, string]> = [
-    [`${r.rosterSize}`, "players"],
-    [money(r.salaryCap), "salary cap"],
-    [`${r.maxPerTeam}`, "per team"],
-    [`${r.captainMultiplier}×`, "captain"],
+  const steps: Array<{ title: string; body: string }> = [
+    { title: `Pick ${r.rosterSize} pros`, body: `Stay under the ${money(r.salaryCap)} cap, at most ${r.maxPerTeam} from one team. Your captain scores ${r.captainMultiplier}×.` },
+    { title: "Score from real maps", body: "Kills, assists, opening kills and clutches count. Totals update after every map." },
+    { title: "Transfer and climb", body: "Swap players between stages, replace eliminated ones for free, and beat your friends." },
   ];
   return (
     <div className="rounded-2xl bg-surface p-4 sm:p-5">
-      <p className="text-headline text-ink">You haven&apos;t picked a team yet</p>
-      <p className="mt-1 text-callout text-ink-2">Choose pros from the teams at this event. Your score follows their real results and updates after every map.</p>
-      <dl className="mt-4 grid grid-cols-4 gap-2">
-        {facts.map(([v, l]) => (
-          <div key={l} className="rounded-xl bg-elevated px-1 py-2.5 text-center">
-            <dt className="sr-only">{l}</dt>
-            <dd className="num text-headline text-ink">{v}</dd>
-            <dd className="text-caption text-ink-3">{l}</dd>
-          </div>
+      <p className="text-headline text-ink">How it works</p>
+      <ol className="mt-4 space-y-4">
+        {steps.map((st, i) => (
+          <li key={st.title} className="flex gap-3.5">
+            <span className="inline-flex size-8 shrink-0 items-center justify-center rounded-full bg-accent-soft font-display text-[1.125rem] font-bold text-accent">{i + 1}</span>
+            <span className="min-w-0">
+              <span className="block text-callout font-semibold text-ink">{st.title}</span>
+              <span className="block text-footnote text-ink-2">{st.body}</span>
+            </span>
+          </li>
         ))}
-      </dl>
+      </ol>
     </div>
   );
 }

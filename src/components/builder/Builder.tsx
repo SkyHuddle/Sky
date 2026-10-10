@@ -95,7 +95,8 @@ export function Builder({ data, nowIso, signedIn }: { data: BuilderData; nowIso:
       if (!editable) return;
       const adding = !b.playerIds.includes(id);
       b.toggle(id);
-      if (adding && b.playerIds.length + 1 === data.rules.rosterSize) {
+      // Only celebrate a full roster when it is actually playable (no eliminated players left in it).
+      if (adding && b.playerIds.length + 1 === data.rules.rosterSize && !b.playerIds.some((x) => b.ineligible.has(x))) {
         toast(b.captainId && b.playerIds.includes(b.captainId) ? "Roster full. Review your team when ready." : "Roster full. Pick a captain on the review screen.", "success");
       }
     },
@@ -243,12 +244,14 @@ export function Builder({ data, nowIso, signedIn }: { data: BuilderData; nowIso:
     <span className="flex shrink-0 items-center" aria-hidden>
       {Array.from({ length: data.rules.rosterSize }, (_, i) => {
         const id = b.playerIds[i];
-        const p = id ? b.byId.get(id) : undefined;
+        const p = id ? (b.byId.get(id) ?? data.ineligiblePrevious.find((x) => x.id === id)) : undefined;
+        const out = !!id && b.ineligible.has(id);
         return (
           <span key={i} className={cn("relative rounded-full ring-2 ring-bg", i > 0 && "-ml-2.5")} style={{ zIndex: data.rules.rosterSize - i }}>
             {p ? (
-              <motion.span key={id} initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: "spring", stiffness: 500, damping: 24 }} className="block">
-                <PlayerAvatar nickname={p.nickname} team={data.teams[p.teamId]} size={30} />
+              <motion.span key={id} initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: "spring", stiffness: 500, damping: 24 }} className="relative block">
+                <PlayerAvatar nickname={p.nickname} team={data.teams[p.teamId]} size={30} muted={out} />
+                {out ? <span className="absolute -right-0.5 -bottom-0.5 size-2.5 rounded-full bg-negative ring-2 ring-bg" /> : null}
               </motion.span>
             ) : (
               <span className="block size-[30px] rounded-full bg-raised" />
@@ -270,8 +273,15 @@ export function Builder({ data, nowIso, signedIn }: { data: BuilderData; nowIso:
             </span>
             {money(b.summary.salaryRemaining)} left
           </p>
+        ) : stillOut.length ? (
+          <p className="text-footnote leading-4 text-ink-2">
+            <span className="block font-semibold text-negative">{stillOut.length} out</span>
+            Replace free
+          </p>
         ) : firstError ? (
-          <p className="line-clamp-2 text-footnote leading-4 text-negative">{firstError.message}</p>
+          <p className="line-clamp-2 text-footnote leading-4 text-negative" title={firstError.message}>
+            {firstError.message}
+          </p>
         ) : (
           <p className="text-footnote leading-4 text-ink-2">
             <span className="block font-semibold text-accent">Lineup complete</span>

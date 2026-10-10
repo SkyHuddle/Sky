@@ -77,7 +77,7 @@ export default async function FantasyPage() {
 
       {open.length ? (
         <section aria-labelledby="open-h">
-          <SectionHeader id="open-h" title={active.length ? "Open for entry" : "Pick your first team"} />
+          <SectionHeader id="open-h" title={active.length || done.length ? "Open for entry" : "Pick your first team"} />
           <ul className="space-y-2">
             {open.map(({ t, c }) => (
               <li key={c.id} className="flex items-center gap-3 rounded-2xl bg-surface p-4">

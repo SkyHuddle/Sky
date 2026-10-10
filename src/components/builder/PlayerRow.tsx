@@ -52,7 +52,8 @@ export const PlayerRow = memo(function PlayerRow({
         </span>
         <span className="min-w-0 flex-1">
           <span className={cn("block truncate text-base leading-5 font-semibold", disabled ? "text-ink-2" : "text-ink")}>{p.nickname}</span>
-          {block && !selected ? (
+          {/* Player-specific reasons show in the row; "roster full" is about the lineup, not this player. */}
+          {block && !selected && block.code !== "ROSTER_SIZE" ? (
             <span className={cn("mt-0.5 line-clamp-2 block text-footnote leading-4", block.code === "OVER_CAP" ? "text-warning" : "text-ink-2")}>{block.message}</span>
           ) : (
             <span className="mt-0.5 flex min-w-0 items-center gap-1.5 text-footnote text-ink-2">
